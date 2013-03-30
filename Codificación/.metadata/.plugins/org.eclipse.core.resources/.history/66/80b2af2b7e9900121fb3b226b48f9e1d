@@ -1,12 +1,11 @@
 package datos;
 
-import java.security.Timestamp;
 import java.sql.Time;
 
 public class Precio 
 {
-	Timestamp fechaDesde;
-	Timestamp fechaHasta;
+	Time fechaDesde;
+	Time fechaHasta;
 	double precio;
 	double precioPromocional;
 }

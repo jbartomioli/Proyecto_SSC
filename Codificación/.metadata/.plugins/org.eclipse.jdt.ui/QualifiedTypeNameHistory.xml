@@ -4,4 +4,12 @@
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="java.util.Collection"/>
 <fullyQualifiedTypeName name="datos.Venta"/>
+<fullyQualifiedTypeName name="datos.Precio"/>
+<fullyQualifiedTypeName name="java.sql.Time"/>
+<fullyQualifiedTypeName name="java.security.Timestamp"/>
+<fullyQualifiedTypeName name="datos.LineaDeVenta"/>
+<fullyQualifiedTypeName name="datos.Cliente"/>
+<fullyQualifiedTypeName name="datos.Pedido"/>
+<fullyQualifiedTypeName name="datos.Producto"/>
+<fullyQualifiedTypeName name="datos.Categoria"/>
 </qualifiedTypeNameHistroy>

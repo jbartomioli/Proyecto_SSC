@@ -1,11 +1,10 @@
 package datos;
 
 import java.security.Timestamp;
-import java.util.Collection;
+import java.sql.Time;
 
 public class Venta 
 {
 	Timestamp fechaVenta;
-	private Collection<datos.LineaDeVenta> lineasDeVenta;
-	double total;
+	
 }
