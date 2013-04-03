@@ -1,0 +1,17 @@
+package datos;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class CatalogoProductos 
+{
+	//ATRIBUTOS
+	private Collection <datos.Producto> productos;
+	
+	
+	//CONSTRUCTOR
+	public CatalogoProductos() 
+	{
+		this.productos = new ArrayList<datos.Producto>(null);
+	}
+}

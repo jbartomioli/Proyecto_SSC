@@ -1,0 +1,22 @@
+package datos;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Collection;
+
+public class Venta 
+{
+	//ATRIBUTOS
+	private Date fechaVenta;
+	private Collection<datos.LineaDeVenta> lineasDeVenta;
+	double total;
+	
+	
+	//CONSTRUCTOR
+	public Venta() 
+	{
+		this.fechaVenta = new Date();
+		this.lineasDeVenta = new ArrayList<datos.LineaDeVenta>();
+		this.total = 0.00;
+	}
+}

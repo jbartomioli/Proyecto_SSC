@@ -1,0 +1,17 @@
+package datos;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class CatalogoAnuncios 
+{
+	private Collection<datos.Anuncio> anuncios;
+	
+	
+	public CatalogoAnuncios(Collection<Anuncio> anuncios) 
+	{
+		this.anuncios = new ArrayList<datos.Anuncio>(null);
+	}
+}
+
+

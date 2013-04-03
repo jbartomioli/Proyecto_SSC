@@ -1,0 +1,18 @@
+package datos;
+
+public class LineaDePedido 
+{
+	//ATRIBUTOS
+	datos.Producto producto;
+	double subTotal;
+	int cantidadPedida;
+	
+	
+	//CONSTRUCTOR
+	public LineaDePedido() 
+	{
+		this.producto = new datos.Producto();
+		this.subTotal = 0.00;
+		this.cantidadPedida = 0;
+	}
+}

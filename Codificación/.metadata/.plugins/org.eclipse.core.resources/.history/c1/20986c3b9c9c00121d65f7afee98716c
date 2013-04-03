@@ -1,0 +1,18 @@
+package datos;
+
+import java.util.Collection;
+
+public class Producto 
+{
+	public Producto() 
+	{
+		this.idProducto = idProducto;
+		this.nombre = nombre;
+		this.existenciaStock = existenciaStock;
+		this.precios = precios;
+	}
+	int idProducto;
+	String nombre;
+	int existenciaStock;
+	private Collection<datos.Precio> precios;
+}

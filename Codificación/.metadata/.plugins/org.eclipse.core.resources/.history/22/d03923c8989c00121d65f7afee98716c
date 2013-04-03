@@ -1,0 +1,14 @@
+package datos;
+
+public class MailDeposito 
+{
+	//ATRIBUTOS
+	datos.Pedido PCTemporal;
+	
+	
+	//CONSTRUCTOR
+	public MailDeposito() 
+	{
+		PCTemporal = new datos.Pedido();
+	}
+}

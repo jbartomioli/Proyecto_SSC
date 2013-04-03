@@ -1,0 +1,46 @@
+package negocio;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import datos.Anuncio;
+import datos.CatalogoAnuncios;
+import datos.CatalogoCategorias;
+import datos.CatalogoProductos;
+import datos.CatalogoSubCategorias;
+import datos.Cliente;
+import datos.Producto;
+import datos.SubCategoria;
+
+public class ControladorConfeccionarAnuncio 
+{
+	//ATRIBUTOS
+	datos.CatalogoCategorias cctg;
+	datos.CatalogoSubCategorias csctg;
+	datos.CatalogoProductos cp;
+	datos.CatalogoAnuncios ca;
+	private Collection<datos.Producto> productos;
+	private Collection<datos.SubCategoria> subCats;
+	datos.Producto productoActual;
+	private Collection<datos.Cliente> arrClientesInteresados;
+	private Collection<datos.Producto> arrProductosPublicación;
+	datos.Anuncio anuncioActual;
+	datos.Producto productoModificar;
+	
+	
+	//CONSTRUCTOR
+	public ControladorConfeccionarAnuncio() 
+	{
+		this.cctg = new datos.CatalogoCategorias();
+		this.csctg = new datos.CatalogoSubCategorias();
+		this.cp = new datos.CatalogoProductos();
+		this.ca = new datos.CatalogoAnuncios();
+		this.productos = new ArrayList<datos.Producto>();
+		this.subCats = new ArrayList<datos.SubCategoria>();
+		this.productoActual = new datos.Producto();
+		this.arrClientesInteresados = new ArrayList<datos.Cliente>();
+		this.arrProductosPublicación = new ArrayList<datos.Producto>();
+		this.anuncioActual = new datos.Anuncio();
+		this.productoModificar = new datos.Producto();
+	}
+}

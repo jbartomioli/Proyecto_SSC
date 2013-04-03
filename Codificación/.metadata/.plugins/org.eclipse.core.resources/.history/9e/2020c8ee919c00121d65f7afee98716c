@@ -1,0 +1,14 @@
+package datos;
+
+import datos.CatalogoClientes;
+import datos.CatalogoPedidos;
+import datos.CatalogoProductos;
+import datos.Pedido;
+
+public class ControladorRegistrarPedidoCliente 
+{
+	datos.CatalogoClientes cc;
+	datos.CatalogoProductos cp;
+	datos.CatalogoPedidos cpe;
+	datos.Pedido PCTemporal;
+}
