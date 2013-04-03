@@ -1,0 +1,8 @@
+package datos;
+
+import java.util.Collection;
+
+public class Categoria 
+{
+	private Collection<datos.Categoria> categorias;
+}
