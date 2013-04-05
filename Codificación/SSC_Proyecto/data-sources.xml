@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="mysql5-1365093153309--2144978267" provider="mysql" driver="mysql5" name="MySQL - Conexion" create-date="1365093153310" update-date="1365093286637" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="bartomserver.sytes.net" port="3306" server="" database="BD_SSC" url="jdbc:mysql://bartomserver.sytes.net:3306/BD_SSC" user="ssc_acceso" password="CSgQE3R1cRchHDEYOT1fcUb2" home="C:\Users\Javier\Desktop\SQLExplorer" type="dev"/>
+	</data-source>
+</data-sources>

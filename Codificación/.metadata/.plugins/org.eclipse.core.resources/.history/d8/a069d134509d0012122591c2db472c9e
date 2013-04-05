@@ -1,0 +1,23 @@
+package pruebas;
+
+public class Probando {
+
+	public Probando() {
+		
+		new Probando();
+
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		datos.CatalogoClientes prueba = new datos.CatalogoClientes();
+		
+		prueba.cargarClientes();
+		
+		System.out.print(prueba.getClientes());
+
+	}
+
+}
