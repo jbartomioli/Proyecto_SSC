@@ -20,15 +20,19 @@
 <fullyQualifiedTypeName name="datos.CatalogoProductos"/>
 <fullyQualifiedTypeName name="datos.CatalogoPedidos"/>
 <fullyQualifiedTypeName name="datos.Pedido"/>
-<fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="java.sql.Statement"/>
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="java.sql.DriverManager"/>
-<fullyQualifiedTypeName name="datos.BDConstantes"/>
 <fullyQualifiedTypeName name="java.util.Collection"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="datos.Cliente"/>
 <fullyQualifiedTypeName name="datos.CatalogoClientes"/>
 <fullyQualifiedTypeName name="pruebas.Probando"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="datos.ConectorDB"/>
+<fullyQualifiedTypeName name="java.lang.StrictMath"/>
+<fullyQualifiedTypeName name="datos.BDConstantes"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="datos.BDConector"/>
 </qualifiedTypeNameHistroy>

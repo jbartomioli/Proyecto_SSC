@@ -1,9 +1,0 @@
-package datos;
-
-import java.sql.Time;
-
-public class Precio 
-{
-	Time fechaDesde;
-	Time fechaHasta;
-}

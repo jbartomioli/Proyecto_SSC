@@ -1,10 +1,7 @@
 package datos;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -42,24 +39,22 @@ public class CatalogoClientes
 	//-------------------------------------------------------------
 	public Collection<datos.Cliente> cargarClientes()
 	{
-		Connection conexion = null;
-		Statement instruccion = null;
 		ResultSet conjuntoResult = null;
+		datos.BDConector conector = null;
 		
 		
 		try
 		{
-			Class.forName(datos.BDConstantes.CONTROLADOR);
 			
-			conexion = DriverManager.getConnection(
-						datos.BDConstantes.URL_BD, 
-						datos.BDConstantes.USER, 
-						datos.BDConstantes.PASS);
+			conector = new datos.BDConector(datos.BDConstantes.URL_BD, 
+					datos.BDConstantes.PORT, 
+					datos.BDConstantes.DATABASE, 
+					datos.BDConstantes.USER, 
+					datos.BDConstantes.PASS);
 			
-			instruccion = conexion.createStatement();
-			
-			conjuntoResult = instruccion.executeQuery("SELECT * FROM `clientes`");
-			
+
+			conjuntoResult = conector.ejecutaPeticion("SELECT * FROM `clientes`");
+					
 			
 			while( conjuntoResult.next())
 			{
@@ -69,25 +64,18 @@ public class CatalogoClientes
 				c.setNombre(conjuntoResult.getString("nombre"));
 							
 				clientes.add(c);
-			}
-			
-			
+			}			
 		}
 		catch ( SQLException excepcionSql)
 		{
 			excepcionSql.printStackTrace();
-		}
-		catch (ClassNotFoundException noEncontroClase)
-		{
-			noEncontroClase.printStackTrace();
 		}
 		finally
 		{
 			try
 			{
 				conjuntoResult.close();
-				instruccion.close();
-				conexion.close();
+				conector.cierraConexion();
 			}
 			catch (Exception excepcion)
 			{

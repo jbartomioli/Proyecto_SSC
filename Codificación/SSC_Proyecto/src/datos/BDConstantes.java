@@ -18,5 +18,9 @@ public class BDConstantes
 	public static final String PORT = "3306";
 	
 	//URL 
-	public static final String URL_BD = "jdbc:mysql://bartomserver.sytes.net:"+PORT+"/BD_SSC";
+	//public static final String URL_BD = "jdbc:mysql://bartomserver.sytes.net:"+PORT+"/BD_SSC";
+	public static final String URL_BD = "bartomserver.sytes.net"; 
+	
+	//DATABASE
+	public static final String DATABASE = "BD_SSC";
 }
