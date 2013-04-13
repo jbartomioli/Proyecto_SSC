@@ -1,0 +1,55 @@
+package pruebas;
+import java.util.zip.*;
+import java.io.*;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.util.*;
+
+public class XMLConvertor {
+    public XMLConvertor() {
+    }
+     
+    public static void main(String args[]){
+     ArrayList testArrayList = new ArrayList();
+     testArrayList.add(new String("Test"));
+     testArrayList.add(new String("Test1"));      
+     String testString = objectToXML(testArrayList); 
+     System.out.println("XML String .....");          
+     System.out.println(testString);          
+     ArrayList finalArrayList = (ArrayList)XMLToObject(new String(testString));
+     System.out.println("Actual Object.....");          
+     for(int i=0;i<finalArrayList.size();i++)
+     System.out.println(finalArrayList.get(i).toString());      
+     
+    }
+     public static String objectToXML(Object voObj)
+    {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            XMLEncoder xmlEncoder = null;
+            try
+            {
+                xmlEncoder = new XMLEncoder(new BufferedOutputStream(stream));
+                xmlEncoder.writeObject(voObj);
+                xmlEncoder.close();
+                return stream.toString("UTF-8"); 
+            }catch(Exception e)
+            {                
+                System.out.println("Inside exception from pymtHistToXML : " + e.getMessage());
+            }
+            return null;
+    }
+
+    public static Object XMLToObject(String dataXML) {
+           XMLDecoder d = null;
+           try {
+               d = new XMLDecoder(new ByteArrayInputStream(dataXML.getBytes("UTF-8")));
+               Object voObj = d.readObject();
+               d.close();
+               return voObj;
+           } catch (Exception e) {
+               System.out.println("Error while Converting XML to VO : " + e);
+           }
+           return null;
+       }
+
+}

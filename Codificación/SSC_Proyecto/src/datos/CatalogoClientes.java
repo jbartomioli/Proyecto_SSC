@@ -62,7 +62,8 @@ public class CatalogoClientes
 				
 				c.setIdCliente(conjuntoResult.getInt("idCliente"));
 				c.setNombre(conjuntoResult.getString("nombre"));
-							
+				c.setApellido(conjuntoResult.getString("apellido"));
+				c.setEmail(conjuntoResult.getString("email"));			
 				clientes.add(c);
 			}			
 		}

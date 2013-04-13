@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="datos.Venta"/>
 <fullyQualifiedTypeName name="java.sql.Time"/>
@@ -24,9 +23,6 @@
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="java.sql.DriverManager"/>
-<fullyQualifiedTypeName name="java.util.Collection"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="datos.Cliente"/>
 <fullyQualifiedTypeName name="datos.CatalogoClientes"/>
 <fullyQualifiedTypeName name="pruebas.Probando"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
@@ -35,4 +31,10 @@
 <fullyQualifiedTypeName name="datos.BDConstantes"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="datos.BDConector"/>
+<fullyQualifiedTypeName name="pruebas.XMLConvertor"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="java.lang.Object"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="datos.Cliente"/>
 </qualifiedTypeNameHistroy>
