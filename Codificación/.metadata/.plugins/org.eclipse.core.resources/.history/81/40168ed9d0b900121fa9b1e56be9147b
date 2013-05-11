@@ -1,0 +1,115 @@
+package explorador_bd;
+
+import java.awt.LayoutManager;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Button;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JTable;
+import javax.swing.JLabel;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.table.TableModel;
+
+
+public class ClienteVentas extends JFrame {
+	
+
+	//CTES BD
+	static final String CONTROLADOR = "com.mysql.jdbc.Driver";
+	static final String USER = "ssc_acceso";
+	static final String PASS = "zLvSUVUaDnWFNKzG";
+	static final String PORT = "3306";
+	static final String DATABASE = "BD_SSC";
+	static final String URL_BD = "bartomserver.sytes.net:"+PORT+"/"+DATABASE; 
+
+	
+	
+	//Consulta SQL
+	static final String CONSULTA_SQL = "";
+	
+	//----------------------------------------
+	private ResultSetTableModel modeloTabla;
+	
+	private JTextField txtCliente, txtVenta;
+	private JTable tabDatos;
+
+	
+	
+	
+	
+	public ClienteVentas() {
+		
+		super("Visor de ventas");
+			
+		modeloTabla = new ResultSetTableModel(CONTROLADOR,URL_BD, USER, PASS, CONSULTA_SQL);
+		
+		
+		getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("Siguiente >>");
+		btnNewButton.setBounds(134, 249, 101, 23);
+		getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("<< Anterior");
+		btnNewButton_1.setBounds(23, 249, 101, 23);
+		getContentPane().add(btnNewButton_1);
+		
+		txtCliente = new JTextField();
+		txtCliente.setEnabled(false);
+		txtCliente.setBounds(68, 11, 194, 20);
+		getContentPane().add(txtCliente);
+		txtCliente.setColumns(10);
+		
+		tabDatos = new JTable();
+		
+			
+		tabDatos.setModel(new DefaultTableModel(modeloTabla));
+		tabDatos.setBounds(23, 89, 484, 149);
+		getContentPane().add(tabDatos);
+		
+		JLabel lblNewLabel = new JLabel("Cliente");
+		lblNewLabel.setBounds(23, 14, 46, 14);
+		getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Productos");
+		lblNewLabel_1.setBounds(23, 70, 57, 14);
+		getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Venta");
+		lblNewLabel_2.setBounds(23, 45, 46, 14);
+		getContentPane().add(lblNewLabel_2);
+		
+		txtVenta = new JTextField();
+		txtVenta.setEnabled(false);
+		txtVenta.setBounds(68, 42, 114, 20);
+		getContentPane().add(txtVenta);
+		txtVenta.setColumns(10);
+		
+		Button button = new Button("Salir");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		getContentPane().add(button);
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+}

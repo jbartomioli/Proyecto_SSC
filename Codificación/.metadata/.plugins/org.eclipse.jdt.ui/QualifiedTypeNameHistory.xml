@@ -37,5 +37,12 @@
 <fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="datos.Cliente"/>
+<<<<<<< .mine
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="javax.swing.table.TableModel"/>
+<fullyQualifiedTypeName name="javax.swing.table.TableRowSorter"/>
+=======
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+>>>>>>> .r28
 </qualifiedTypeNameHistroy>
