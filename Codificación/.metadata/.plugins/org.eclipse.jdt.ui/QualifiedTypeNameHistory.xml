@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.lang.Boolean"/>
-<fullyQualifiedTypeName name="datos.Venta"/>
-<fullyQualifiedTypeName name="java.sql.Time"/>
-<fullyQualifiedTypeName name="java.security.Timestamp"/>
+<fullyQualifiedTypeName name="ClienteVentas"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="datos.CatalogoCategorias"/>
 <fullyQualifiedTypeName name="datos.Categoria"/>
+<<<<<<< .mine
+<fullyQualifiedTypeName name="java.lang.System"/>
+=======
 <fullyQualifiedTypeName name="java.sql.Timestamp"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="datos.LineaDeVenta"/>
 <fullyQualifiedTypeName name="datos.CatalogoCategorias"/>
 <fullyQualifiedTypeName name="datos.CatalogoSubCategorias"/>
 <fullyQualifiedTypeName name="datos.CatalogoAnuncios"/>
+>>>>>>> .r30
 <fullyQualifiedTypeName name="datos.SubCategoria"/>
+<<<<<<< .mine
+=======
 <fullyQualifiedTypeName name="datos.CatalogoProductos"/>
 <fullyQualifiedTypeName name="datos.CatalogoPedidos"/>
 <fullyQualifiedTypeName name="java.sql.Statement"/>
@@ -46,4 +51,5 @@
 =======
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 >>>>>>> .r28
+>>>>>>> .r30
 </qualifiedTypeNameHistroy>

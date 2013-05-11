@@ -4,18 +4,24 @@ INDEX VERSION 1.126+C:\Users\usuario\Documents\Facultad\5to año\Proyecto\Sistema
 3974580528.index
 =======
 INDEX VERSION 1.126+D:\Proyecto_Final_SSC\Codificación\.metadata\.plugins\org.eclipse.jdt.core
+1498219845.index
 488470099.index
-<<<<<<< .mine
 2202295820.index
 305854171.index
+1342218894.index
 30765161.index
-241883987.index
 4108727661.index
 1995173708.index
 >>>>>>> .r29
 4041092966.index
+<<<<<<< .mine
+4155206848.index
+=======
 1115467115.index
+>>>>>>> .r30
 3065916431.index
+<<<<<<< .mine
+=======
 1995173708.index
 4155206848.index
 <<<<<<< .mine
@@ -25,6 +31,7 @@ INDEX VERSION 1.126+D:\Proyecto_Final_SSC\Codificación\.metadata\.plugins\org.ec
 163172794.index
 =======
 1303884522.index
+>>>>>>> .r30
 1115467115.index
 >>>>>>> .r29
 1697886153.index
@@ -33,9 +40,12 @@ INDEX VERSION 1.126+D:\Proyecto_Final_SSC\Codificación\.metadata\.plugins\org.ec
 30765161.index
 1299022128.index
 <<<<<<< .mine
+=======
+<<<<<<< .mine
 1342218894.index
 =======
 =======
 1303884522.index
 >>>>>>> .r28
 >>>>>>> .r29
+>>>>>>> .r30

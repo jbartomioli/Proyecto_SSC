@@ -29,7 +29,11 @@
 <<<<<<< .mine
 		<item value="true" key="TOGGLE_SELECTED"/>
 =======
+<<<<<<< .mine
+		<item value="true" key="TOGGLE_SELECTED"/>
+=======
 		<item value="false" key="TOGGLE_SELECTED"/>
+>>>>>>> .r30
 >>>>>>> .r29
 	</section>
 </section>
