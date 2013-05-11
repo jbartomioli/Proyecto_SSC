@@ -52,4 +52,13 @@ public class LineaDePedido
 	{
 		this.cantidadPedida = cantidadPedida;
 	}
+
+	
+	//METODOS
+		//----------------------------------------------------------------------------
+	
+	public void delete(datos.LineaDePedido linea)
+	{
+		
+	}
 }

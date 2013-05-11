@@ -34,7 +34,6 @@ public class CatalogoClientes
 	
 	
 	
-	
 	//METODOS
 	//-------------------------------------------------------------
 	public Collection<datos.Cliente> cargarClientes()

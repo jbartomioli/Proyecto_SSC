@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< .mine
+<typeInfoHistroy>
+<typeInfo handle="=SSC_Proyecto/C:\/Program Files\/Java\/jre7\/lib\/rt.jar&lt;javax.swing(JPanel.class[JPanel" modifiers="1" timestamp="1366810194055"/>
+</typeInfoHistroy>
+=======
 <typeInfoHistroy>
 <typeInfo handle="=SSC_Proyecto/C:\/Program Files\/Java\/jre7\/lib\/rt.jar&lt;javax.swing(JPanel.class[JPanel" modifiers="33" timestamp="1364505144316"/>
 </typeInfoHistroy>
+>>>>>>> .r29

@@ -1,16 +1,15 @@
 package datos;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 
 public class Pedido 
 {
 	//ATRIBUTOS
 	int idPedido;
-	datos.Cliente cliente;
+	float total;
+	int idCliente;
 	private Date fecha;
-	private Collection<datos.LineaDePedido> lineas;
+	int idLinea;
 	Boolean estado;
 	
 	
@@ -18,9 +17,10 @@ public class Pedido
 	public Pedido() 
 	{
 		this.idPedido = 0;
-		this.cliente = new datos.Cliente();
+		this.total = 0;
+		this.idCliente = 0;
 		this.fecha = new Date();
-		this.lineas = new ArrayList<datos.LineaDePedido>();
+		this.idLinea = 0;
 		this.estado = false;
 	}
 
@@ -36,17 +36,27 @@ public class Pedido
 	{
 		this.idPedido = idPedido;
 	}
-
-
-	public datos.Cliente getCliente() 
+	
+	public float getTotal()
 	{
-		return cliente;
+		return total;	
+	}
+	
+	public void setTotal(float total)
+	{
+		this.total = total;
 	}
 
 
-	public void setCliente(datos.Cliente cliente) 
+	public int getCliente() 
 	{
-		this.cliente = cliente;
+		return idCliente;
+	}
+
+
+	public void setCliente(int idCliente) 
+	{
+		this.idCliente = idCliente;
 	}
 
 
@@ -62,15 +72,15 @@ public class Pedido
 	}
 
 
-	public Collection<datos.LineaDePedido> getLineas() 
+	public int getLinea() 
 	{
-		return lineas;
+		return idLinea;
 	}
 
 
-	public void setLineas(Collection<datos.LineaDePedido> lineas) 
+	public void setLinea(int idLinea) 
 	{
-		this.lineas = lineas;
+		this.idLinea = idLinea;
 	}
 
 
@@ -83,5 +93,28 @@ public class Pedido
 	public void setEstado(Boolean estado) 
 	{
 		this.estado = estado;
+	}
+
+
+	//METODOS
+		//----------------------------------------------------------------------------
+	
+	public void agregarProducto(datos.Producto producto, int cantidad)
+	{
+		
+	}
+	
+	public datos.LineaDePedido buscarLinea(datos.LineaDePedido linea)
+	{
+		datos.LineaDePedido linea1 = new datos.LineaDePedido();
+		
+		return linea1;
+	}
+	
+	public boolean buscarLinea(int idProductoViejo)
+	{
+		boolean flag = false;
+		
+		return flag;
 	}
 }

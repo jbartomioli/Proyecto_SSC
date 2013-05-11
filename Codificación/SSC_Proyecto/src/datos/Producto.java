@@ -7,18 +7,21 @@ public class Producto
 {
 	//ATRIBUTOS
 	int idProducto;
+	String codProducto;
 	String nombre;
 	int existenciaStock;
-	private Collection<datos.Precio> precios;
+	int idSubCategoria;
+	int idPrecio;
 	
 	
 	//CONSTRUCTOR
 	public Producto() 
 	{
 		this.idProducto = 0;
+		this.codProducto =  "";		
 		this.nombre = "";
 		this.existenciaStock = 0;
-		this.precios = new ArrayList<datos.Precio>();
+		this.idPrecio = 0;
 	}
 
 
@@ -35,6 +38,16 @@ public class Producto
 	}
 
 
+	public String getCodProducto()
+	{
+		return codProducto;
+	}
+	
+	public void setCodProducto(String codProducto)
+	{
+		this.codProducto = codProducto;
+	}
+	
 	public String getNombre() 
 	{
 		return nombre;
@@ -59,14 +72,25 @@ public class Producto
 	}
 
 
-	public Collection<datos.Precio> getPrecios() 
+	public int getPrecios() 
 	{
-		return precios;
+		return idPrecio;
 	}
 
 
-	public void setPrecios(Collection<datos.Precio> precios) 
+	public void setPrecios(int idPrecio) 
 	{
-		this.precios = precios;
+		this.idPrecio = idPrecio;
+	}
+	
+	public int getIdSubCategoria() 
+	{
+		return idSubCategoria;
+	}
+
+
+	public void setIdSubCategoria(int idSubCategoria) 
+	{
+		this.idSubCategoria = idSubCategoria;
 	}
 }

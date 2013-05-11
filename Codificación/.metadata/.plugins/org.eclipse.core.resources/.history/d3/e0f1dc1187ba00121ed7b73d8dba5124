@@ -1,0 +1,103 @@
+package datos;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+
+public class Anuncio 
+{
+	//ATRIBUTOS
+	int idProducto;
+	int idCliente;
+	String textoMensaje;
+	String estado;
+	Date fecha;
+	int idAnuncio;
+	
+	
+	//CONSTRUCTOR
+	public Anuncio() 
+	{
+		this.idProducto = 0;
+		this.idCliente = 0;
+		this.textoMensaje = "";
+		this.estado = "";
+		this.fecha = new Date();
+		this.idAnuncio = 0;
+	}
+
+
+	//GETTERS & SETTERS
+	public int getProducto()
+	{
+		return idProducto;
+	}
+
+
+	public void setProducto(int idProducto) 
+	{
+		this.idProducto = idProducto;
+	}
+
+
+	public Collection<datos.Cliente> getClientes() 
+	{
+		return clientes;
+	}
+
+
+	public void setClientes(Collection<datos.Cliente> clientes) 
+	{
+		this.clientes = clientes;
+	}
+
+
+	public String getTextoMensaje() 
+	{
+		return textoMensaje;
+	}
+
+
+	public void setTextoMensaje(String textoMensaje) 
+	{
+		this.textoMensaje = textoMensaje;
+	}
+
+
+	public String getEstado() 
+	{
+		return estado;
+	}
+
+
+	public void setEstado(String estado) 
+	{
+		this.estado = estado;
+	}
+
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+
+	public int getIdAnuncio() {
+		return idAnuncio;
+	}
+
+
+	public void setIdAnuncio(int idAnuncio) {
+		this.idAnuncio = idAnuncio;
+	}
+	
+	
+	//METODOS
+	//----------------------------------------------------------
+}
+
+

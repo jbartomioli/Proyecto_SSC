@@ -56,4 +56,15 @@ public class Venta
 	{
 		this.total = total;
 	}
+
+	
+	//METODOS
+		//----------------------------------------------------------
+	
+	public boolean comproProducto(datos.Producto producto)
+	{
+		boolean flag = false;
+		
+		return flag;
+	}
 }

@@ -130,4 +130,11 @@ public class Cliente
 	
 	//METODOS
 	//----------------------------------------------------------
+
+	public boolean comproProducto(datos.Producto producto)
+	{
+		boolean flag = false;
+		
+		return flag;
+	}
 }

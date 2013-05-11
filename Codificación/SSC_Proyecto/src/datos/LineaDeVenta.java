@@ -62,13 +62,16 @@ public class LineaDeVenta
 	{
 		this.idVenta = idVenta;
 	}
-
-
-
 	
 	
 	
 	//METODOS
 	//----------------------------------------------------------
 	
+	public boolean compararProductos(datos.Producto producto)
+	{
+		boolean flag = false;
+		
+		return flag;
+	}
 }

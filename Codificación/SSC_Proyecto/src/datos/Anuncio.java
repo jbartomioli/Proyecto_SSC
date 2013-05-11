@@ -1,54 +1,52 @@
 package datos;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 
 public class Anuncio 
 {
 	//ATRIBUTOS
-	private Collection<datos.Producto> productos;
-	private Collection<datos.Cliente> clientes;
+	int idAnuncio;
+	int idProducto;
+	int idCliente;
 	String textoMensaje;
 	String estado;
 	Date fecha;
-	int idAnuncio;
 	
 	
 	//CONSTRUCTOR
 	public Anuncio() 
 	{
-		this.productos = new ArrayList<datos.Producto>();
-		this.clientes = new ArrayList<datos.Cliente>();
+		this.idAnuncio = 0;
+		this.idProducto = 0;
+		this.idCliente = 0;
 		this.textoMensaje = "";
 		this.estado = "";
 		this.fecha = new Date();
-		this.idAnuncio = 0;
 	}
 
 
 	//GETTERS & SETTERS
-	public Collection<datos.Producto> getProductos()
+	public int getProducto()
 	{
-		return productos;
+		return idProducto;
 	}
 
 
-	public void setProductos(Collection<datos.Producto> productos) 
+	public void setProducto(int idProducto) 
 	{
-		this.productos = productos;
+		this.idProducto = idProducto;
 	}
 
 
-	public Collection<datos.Cliente> getClientes() 
+	public int getCliente() 
 	{
-		return clientes;
+		return idCliente;
 	}
 
 
-	public void setClientes(Collection<datos.Cliente> clientes) 
+	public void setClientes(int idCliente) 
 	{
-		this.clientes = clientes;
+		this.idCliente = idCliente;
 	}
 
 

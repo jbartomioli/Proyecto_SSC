@@ -25,6 +25,16 @@ public class Precio
 	}
 
 	//GETTER & SETTERS
+	public int getIdPrecio() 
+	{
+		return idPrecio;
+	}
+	
+	public void setIdPrecio(int idPrecio) 
+	{
+		this.idPrecio = idPrecio;
+	}
+	
 	public Date getFechaDesde() 
 	{
 		return fechaDesde;
@@ -65,16 +75,6 @@ public class Precio
 		this.precioPromocional = precioPromocional;
 	}
 
-	public int getIdPrecio() 
-	{
-		return idPrecio;
-	}
-	
-	public void setIdPrecio(int idPrecio) 
-	{
-		this.idPrecio = idPrecio;
-	}
-
 	public datos.Producto getProductoPrecio()
 	{
 		return productoPrecio;
@@ -84,8 +84,6 @@ public class Precio
 	{
 		this.productoPrecio = productoPrecio;
 	}	
-	
-	
 	
 	
 	
