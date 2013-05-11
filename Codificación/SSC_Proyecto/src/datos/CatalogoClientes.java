@@ -15,7 +15,7 @@ public class CatalogoClientes
 	public CatalogoClientes() 
 	{
 		this.clientes = new ArrayList<datos.Cliente>();
-		this.cargarClientes();
+		this.obtenerClientes();
 	}
 
 
@@ -34,9 +34,10 @@ public class CatalogoClientes
 	
 	
 	
+	
 	//METODOS
 	//-------------------------------------------------------------
-	public Collection<datos.Cliente> cargarClientes()
+	public Collection<datos.Cliente> obtenerClientes()
 	{
 		ResultSet conjuntoResult = null;
 		datos.BDConector conector = null;
@@ -62,7 +63,12 @@ public class CatalogoClientes
 				c.setIdCliente(conjuntoResult.getInt("idCliente"));
 				c.setNombre(conjuntoResult.getString("nombre"));
 				c.setApellido(conjuntoResult.getString("apellido"));
-				c.setEmail(conjuntoResult.getString("email"));			
+				c.setEmail(conjuntoResult.getString("email"));		
+				c.setEspecialidad(conjuntoResult.getString("especialidad"));
+				c.setTipoCliente(conjuntoResult.getBoolean("tipo"));
+				c.setDireccion(conjuntoResult.getString("direccion"));
+				c.setTelefono(conjuntoResult.getString("telefono"));
+	
 				clientes.add(c);
 			}			
 		}

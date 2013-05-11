@@ -1,22 +1,22 @@
 package datos;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
 public class Categoria 
 {
 	//ATRIBUTOS
-	int idCategoria;
-	private Collection<datos.SubCategoria> subCats;
-	private Collection<datos.Producto> productos;
+	public int idCategoria;
+	public String descripcion;
+	public int subCat;
+	public int producto;
 	
 	
 	//CONSTRUCTOR
 	public Categoria() 
 	{
 		this.idCategoria = 0;
-		this.subCats = new ArrayList<datos.SubCategoria>();
-		this.productos = new ArrayList<datos.Producto>();
+		this.descripcion = "";
+		this.subCat = 0;
+		this.producto = 0;
 	}
 	
 	
@@ -31,23 +31,34 @@ public class Categoria
 		this.idCategoria = idCategoria;
 	}
 	
-	public Collection<datos.SubCategoria> getSubCats() 
+	public String getDescripcion() 
 	{
-		return subCats;
+		return descripcion;
 	}
 	
-	public void setSubCats(Collection<datos.SubCategoria> subCats) 
+	public void setDescripcion(String descripcion) 
 	{
-		this.subCats = subCats;
+		this.descripcion = descripcion;
 	}
 	
-	public Collection<datos.Producto> getProductos() 
+	
+	public int getSubCat() 
 	{
-		return productos;
+		return subCat;
 	}
 	
-	public void setProductos(Collection<datos.Producto> productos) 
+	public void setSubCat(int subCat) 
 	{
-		this.productos = productos;
+		this.subCat = subCat;
+	}
+	
+	public int getProducto() 
+	{
+		return producto;
+	}
+	
+	public void setProducto(int producto) 
+	{
+		this.producto = producto;
 	}
 }

@@ -1,15 +1,12 @@
 package datos;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 public class SubCategoria 
 {
 	//ATRIBUTOS
 	int idSubcategoria;
 	int idCategoria;
 	String descripcion;
-	private Collection<datos.Producto> productos;
+	int producto;
 	
 	
 	//CONSTRUCTOR
@@ -18,7 +15,7 @@ public class SubCategoria
 		this.idSubcategoria = 0;
 		this.idCategoria = 0;
 		this.descripcion = "";
-		this.productos = new ArrayList<datos.Producto>();
+		this.producto = 0;
 	}
 
 
@@ -47,15 +44,15 @@ public class SubCategoria
 	}
 
 
-	public Collection<datos.Producto> getProductos() 
+	public int getProductos() 
 	{
-		return productos;
+		return producto;
 	}
 
 
-	public void setProductos(Collection<datos.Producto> productos) 
+	public void setProducto(int producto) 
 	{
-		this.productos = productos;
+		this.producto = producto;
 	}
 
 
