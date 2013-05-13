@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<drivers>
-	<provider id="nosql.cassandra"/>
-	<provider id="mysql"/>
-	<provider id="oracle"/>
-	<provider id="wmi"/>
-	<provider id="generic"/>
-</drivers>

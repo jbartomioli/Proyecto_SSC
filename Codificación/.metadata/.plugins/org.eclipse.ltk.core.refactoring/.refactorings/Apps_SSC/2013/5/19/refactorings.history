@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename field &apos;table&apos; in &apos;explorador_bd.ClienteVentas&apos; to &apos;tabDatos&apos;&#x0D;&#x0A;- Original project: &apos;Apps_SSC&apos;&#x0D;&#x0A;- Original element: &apos;explorador_bd.ClienteVentas.table&apos;&#x0D;&#x0A;- Renamed element: &apos;explorador_bd.ClienteVentas.tabDatos&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;table&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;explorador_bd{ClienteVentas.java[ClienteVentas^table" name="tabDatos" references="true" setter="false" stamp="1368230950637" textual="false" version="1.0"/>
-</session>
