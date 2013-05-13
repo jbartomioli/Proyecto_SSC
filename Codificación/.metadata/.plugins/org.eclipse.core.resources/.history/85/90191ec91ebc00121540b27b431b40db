@@ -1,0 +1,17 @@
+package negocio;
+
+public class ParametrosNegocio {
+	
+	String membrete;
+	int ultIdPedido;
+
+
+	public ParametrosNegocio() 
+	{
+		datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
+		
+		this.membrete = parametrosDatos.getMembrete();
+		this.ultIdPedido = parametrosDatos.getUltIdPedido();
+	}
+
+}

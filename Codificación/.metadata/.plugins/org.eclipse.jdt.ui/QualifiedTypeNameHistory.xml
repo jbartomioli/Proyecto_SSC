@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="datos.ParametrosNegocio"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="datos.CatalogoClientes"/>
+<fullyQualifiedTypeName name="datos.Cliente"/>
+<fullyQualifiedTypeName name="negocio.CatalogoClientes"/>
+<fullyQualifiedTypeName name="negocio.Cliente"/>
+</qualifiedTypeNameHistroy>

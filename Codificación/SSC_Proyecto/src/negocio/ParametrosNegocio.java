@@ -1,9 +1,46 @@
 package negocio;
 
 public class ParametrosNegocio {
+	
+	//ATRIBUTOS
+	String membrete;
+	int ultIdPedido;
 
-	public ParametrosNegocio() {
-		// TODO Auto-generated constructor stub
+	
+	//CONSTRUCTOR
+	public ParametrosNegocio() 
+	{
+		datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
+		
+		this.membrete = parametrosDatos.getMembrete();
+		this.ultIdPedido = parametrosDatos.getUltIdPedido();
 	}
+
+	
+	//GETTER & SETTERS
+	public String getMembrete() 
+	{
+		return membrete;
+	}
+
+
+	public void setMembrete(String membrete) 
+	{
+		this.membrete = membrete;
+	}
+
+
+	public int getUltIdPedido() 
+	{
+		return ultIdPedido;
+	}
+
+
+	public void setUltIdPedido(int ultIdPedido)
+	{
+		this.ultIdPedido = ultIdPedido;
+	}
+	
+	
 
 }

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;dc&apos; in &apos;negocio.CatalogoClientes.CatalogoClientes()&apos; to &apos;datosCliente&apos;&#x0D;&#x0A;- Original project: &apos;SSC_Proyecto&apos;&#x0D;&#x0A;- Original element: &apos;negocio.CatalogoClientes.CatalogoClientes().dc&apos;&#x0D;&#x0A;- Renamed element: &apos;dc&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;dc&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;negocio{CatalogoClientes.java[CatalogoClientes~CatalogoClientes@dc!325!340!339!340!Qdatos.Cliente;!0!false" name="datosCliente" references="true" stamp="1368486023726" version="1.0"/>
+</session>
