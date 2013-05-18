@@ -1,0 +1,19 @@
+package negocio;
+
+import java.util.Collection;
+
+public class CatalogoCategorias 
+{
+	private Collection<negocio.Categoria> categorias;
+
+	public CatalogoCategorias() 
+	{
+		
+	}
+	
+	
+	public negocio.Categoria buscarCategoria(int idCategoria)
+	{
+		return null;
+	}
+}

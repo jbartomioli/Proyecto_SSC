@@ -34,9 +34,25 @@ public class CatalogoClientes {
 	}
 
 	//GETTERS & SETTERS
-	public Collection<negocio.Cliente> getClientes() {
+	public Collection<negocio.Cliente> getClientes()
+	{
 		return clientes;
 	}
+	
+	
+	//METODOS
+	public Collection<negocio.Cliente> obtenerClientesProdcuto(negocio.Producto producto)
+	{
+		Collection<negocio.Cliente> clientesInteresados;
+
+		
+		//Se crea una coleccion de clientes interesados en el producto actual
+		clientesInteresados = new ArrayList<negocio.Cliente>();
+		
+		return clientesInteresados;
+	}
+	
+	
 	
 	
 

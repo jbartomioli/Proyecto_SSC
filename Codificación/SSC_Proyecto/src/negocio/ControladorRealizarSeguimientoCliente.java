@@ -42,4 +42,29 @@ public class ControladorRealizarSeguimientoCliente
 	{
 		CT = cT;
 	}
+	
+	
+	
+	//METODOS
+	
+	//Metodo 2.1.1
+	public ArrayList<String> buscarCliente(int idCliente)
+	{
+		return null;
+	}
+	
+	
+	//Metodo 2.1.2
+	public ArrayList<String> buscarCliente(String apellido, String nombre)
+	{
+		return null;
+	}
+	
+	
+	//Metodo 2.1.3
+	public ArrayList<String> seleccionarClientes(boolean tipoCliente)
+	{
+		return null;
+	}
+	
 }

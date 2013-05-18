@@ -1,0 +1,70 @@
+package datos;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Collection;
+
+public class Venta 
+{
+	//ATRIBUTOS
+	private Date fechaVenta;
+	private int  idLineaDeVenta;
+	double total;
+	
+	
+	//CONSTRUCTOR
+	public Venta() 
+	{
+		this.fechaVenta = new Date();
+		this.idLineaDeVenta = 0;
+		this.total = 0.00;
+	}
+
+
+	//GETTER & SETETER
+	public Date getFechaVenta() 
+	{
+		return fechaVenta;
+	}
+
+
+	public void setFechaVenta(Date fechaVenta) 
+	{
+		this.fechaVenta = fechaVenta;
+	}
+
+
+	public int getLineaDeVenta() 
+	{
+		return idLineaDeVenta;
+	}
+
+
+	public void setLineasDeVenta(int lineaDeVenta) 
+	{
+		this.idLineaDeVenta = lineaDeVenta;
+	}
+
+
+	public double getTotal() 
+	{
+		return total;
+	}
+
+
+	public void setTotal(double total) 
+	{
+		this.total = total;
+	}
+
+	
+	//METODOS
+		//----------------------------------------------------------
+	
+	public boolean comproProducto(datos.Producto productoActual)
+	{
+		boolean flag = false;
+		
+		return flag;
+	}
+}

@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.ArrayList;
+
 
 public class ControladorRegistrarPedidoCliente 
 {
@@ -67,4 +69,77 @@ public class ControladorRegistrarPedidoCliente
 	{
 		PCTemporal = pCTemporal;
 	}
+	
+	
+	//METODOS
+	
+	//Metodo 3.1.1
+	public ArrayList<String> buscarCliente(int idCliente)
+	{
+		return null;
+	}
+	
+	
+	//Metodo 3.1.2
+	public ArrayList<String> buscarCliente(String apellido, String nombre)
+	{
+		return null;
+	}
+	
+	
+	//Metodo 3.2.1
+	public ArrayList<String> seleccionarProducto(int idProdcuto, int cantidad)
+	{
+		return null;
+	}
+	
+	
+	//Metodo 3.2.2
+	public ArrayList<String> buscarProducto(String descParcial, int cantidad)
+	{
+		return null;
+	}
+	
+	
+	//Metodo 3.3.1
+	public ArrayList<String> pedidoCompleto()
+	{
+		return null;
+	}
+	
+	
+	//Metodo 3.5
+	public boolean eliminarProducto(int idProducto)
+	{
+		return true;
+	}	
+
+	
+	//Metodo 3.6.1 - 3.6.3.1
+	public ArrayList<String> seleccionarProducto(int idProducto)
+	{
+		return null;
+	}
+	
+	
+	//Metodo 3.6.2
+	public boolean modificarCantidad(int nuevaCantidad)
+	{
+		return true;
+	}
+	
+	
+	//Metodo 3.6.3.2
+	public ArrayList<String> seleccionarNuevoProducto(String descParcial)
+	{
+		return null;
+	}
+	
+	
+	//Metodo 3.6.4
+	public boolean ingresarCantidad(int cantidad)
+	{
+		return true;
+	}
+	
 }

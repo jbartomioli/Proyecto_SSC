@@ -1,0 +1,44 @@
+package negocio;
+
+import java.util.Date;
+
+public class Anuncio 
+{
+	//ATRIBUTOS
+	int idAnuncio;
+	int idProducto;
+	int idCliente;
+	String textoMensaje;
+	String estado;
+	Date fecha;
+	public datos.Anuncio anuncioDatos;
+	
+	
+	//CONSTRUCTOR
+	public Anuncio() 
+	{
+		this.anuncioDatos = new datos.Anuncio();
+	}
+
+	
+	//GETTER & SETTERS
+	public datos.Anuncio getAnuncioDatos() 
+	{
+		return anuncioDatos;
+	}
+
+	public void setAnuncioDatos(datos.Anuncio anuncioDatos) 
+	{
+		this.anuncioDatos = anuncioDatos;
+	}
+
+
+	public void setEstado(String estado) 
+	{
+			
+	}
+
+	//METODOS
+	//----------------------------------------------------------
+	
+}

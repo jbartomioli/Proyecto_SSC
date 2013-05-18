@@ -68,10 +68,8 @@ public class LineaDeVenta
 	//METODOS
 	//----------------------------------------------------------
 	
-	public boolean compararProductos(datos.Producto producto)
-	{
-		boolean flag = false;
-		
-		return flag;
+	public boolean compararProductos(datos.Producto productoActual)
+	{		
+		return true;
 	}
 }

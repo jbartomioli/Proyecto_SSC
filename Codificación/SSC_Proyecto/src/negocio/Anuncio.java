@@ -1,19 +1,102 @@
 package negocio;
 
-public class Anuncio {
-	
-	//ATRIBUTOS
-	private datos.Anuncio anuncioDatos; 
+import java.util.Collection;
+import java.util.Date;
 
+public class Anuncio 
+{
+	//ATRIBUTOS
+	public int idAnuncio;
+	public Collection<negocio.Producto> productos;
+	public Collection<negocio.Cliente> clientes;
+	public String textoMensaje;
+	public String estado;
+	public Date fecha;
+	public datos.Anuncio anuncioDatos;
+	
 	
 	//CONSTRUCTOR
 	public Anuncio() 
 	{
+		this.idAnuncio = 0;
+		this.productos = null;
+		this.clientes = null;
+		this.textoMensaje = "";
+		this.estado = "";
+		this.fecha = new Date();
+		
 		this.anuncioDatos = new datos.Anuncio();
 	}
 
 	
-	//GETTER & SETTERS
+	//GETTERS & SETTERS
+	public Collection<negocio.Producto> getProductos()
+	{
+		return productos;
+	}
+
+
+	public void setProducto(Collection<negocio.Producto> producto) 
+	{
+		this.productos = producto;
+	}
+
+
+	public Collection<negocio.Cliente> getClientes() 
+	{
+		return clientes;
+	}
+
+
+	public void setClientes(Collection<negocio.Cliente> clientes) 
+	{
+		this.clientes = clientes;
+	}
+
+
+	public String getTextoMensaje() 
+	{
+		return textoMensaje;
+	}
+
+
+	public void setTextoMensaje(String textoMensaje) 
+	{
+		this.textoMensaje = textoMensaje;
+	}
+
+
+	public String getEstado() 
+	{
+		return estado;
+	}
+
+
+	public void setEstado(String estado) 
+	{
+		this.estado = estado;
+	}
+
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+
+	public int getIdAnuncio() {
+		return idAnuncio;
+	}
+
+
+	public void setIdAnuncio(int idAnuncio) {
+		this.idAnuncio = idAnuncio;
+	}
+	
 	public datos.Anuncio getAnuncioDatos() 
 	{
 		return anuncioDatos;
@@ -24,7 +107,11 @@ public class Anuncio {
 		this.anuncioDatos = anuncioDatos;
 	}
 
+
 	//METODOS
 	//----------------------------------------------------------
-	
+	public void setProductos(Collection<negocio.Producto> arrProductosPublicacion)
+	{
+		this.setProductos(arrProductosPublicacion);
+	}
 }

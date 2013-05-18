@@ -1,14 +1,12 @@
 package datos;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Collection;
 
 public class Venta 
 {
 	//ATRIBUTOS
 	private Date fechaVenta;
-	private Collection<datos.LineaDeVenta> lineasDeVenta;
+	private int  idLineaDeVenta;
 	double total;
 	
 	
@@ -16,7 +14,7 @@ public class Venta
 	public Venta() 
 	{
 		this.fechaVenta = new Date();
-		this.lineasDeVenta = new ArrayList<datos.LineaDeVenta>();
+		this.idLineaDeVenta = 0;
 		this.total = 0.00;
 	}
 
@@ -34,15 +32,15 @@ public class Venta
 	}
 
 
-	public Collection<datos.LineaDeVenta> getLineasDeVenta() 
+	public int getLineaDeVenta() 
 	{
-		return lineasDeVenta;
+		return idLineaDeVenta;
 	}
 
 
-	public void setLineasDeVenta(Collection<datos.LineaDeVenta> lineasDeVenta) 
+	public void setLineasDeVenta(int lineaDeVenta) 
 	{
-		this.lineasDeVenta = lineasDeVenta;
+		this.idLineaDeVenta = lineaDeVenta;
 	}
 
 
@@ -61,10 +59,8 @@ public class Venta
 	//METODOS
 		//----------------------------------------------------------
 	
-	public boolean comproProducto(datos.Producto producto)
-	{
-		boolean flag = false;
-		
-		return flag;
+	public boolean comproProducto(datos.Producto productoActual)
+	{		
+		return true;
 	}
 }
