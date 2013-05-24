@@ -5,11 +5,11 @@ import java.util.Date;
 public class Precio 
 {
 	//ATRIBUTOS
-	public int idPrecio;
-	public Date fechaDesde;
-	public Date fechaHasta;
-	public float precio;
-	public float precioPromocional;
+	private int idPrecio;
+	private Date fechaDesde;
+	private Date fechaHasta;
+	private float precio;
+	private float precioPromocional;
 	//public datos.Producto productoPrecio;
 	
 	

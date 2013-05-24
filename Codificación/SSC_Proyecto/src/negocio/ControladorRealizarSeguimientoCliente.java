@@ -7,7 +7,7 @@ import java.util.Collection;
 public class ControladorRealizarSeguimientoCliente 
 {
 	//ATRIBUTOS
-	datos.CatalogoClientes cc;
+	private datos.CatalogoClientes cc;
 	private Collection<datos.Cliente> CT;
 	
 	

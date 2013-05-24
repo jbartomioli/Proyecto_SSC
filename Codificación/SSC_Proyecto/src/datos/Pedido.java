@@ -5,12 +5,12 @@ import java.util.Date;
 public class Pedido 
 {
 	//ATRIBUTOS
-	int idPedido;
-	float total;
-	int idCliente;
+	private int idPedido;
+	private float total;
+	private int idCliente;
 	private Date fecha;
-	int idLinea;
-	Boolean estado;
+	private int idLinea;
+	private boolean estado;
 	
 	
 	//CONSTRUCTOR

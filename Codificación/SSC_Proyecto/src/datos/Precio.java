@@ -5,12 +5,12 @@ import java.util.Date;
 public class Precio 
 {
 	//ATRIBUTOS
-	int idPrecio;
-	Date fechaDesde;
-	Date fechaHasta;
-	float precio;
-	float precioPromocional;
-	datos.Producto productoPrecio;
+	private int idPrecio;
+	private Date fechaDesde;
+	private Date fechaHasta;
+	private double precio;
+	private double precioPromocional;
+	private datos.Producto productoPrecio;
 	
 	
 	//CONSTRUCTOR
@@ -60,7 +60,7 @@ public class Precio
 		return precio;
 	}
 	
-	public void setPrecio(float precio) 
+	public void setPrecio(double precio) 
 	{
 		this.precio = precio;
 	}
@@ -70,7 +70,7 @@ public class Precio
 		return precioPromocional;
 	}
 	
-	public void setPrecioPromocional(float precioPromocional)
+	public void setPrecioPromocional(double precioPromocional)
 	{
 		this.precioPromocional = precioPromocional;
 	}

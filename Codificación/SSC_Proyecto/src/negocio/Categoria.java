@@ -5,10 +5,10 @@ import java.util.Collection;
 public class Categoria 
 {
 	//ATRIBUTOS
-	public int idCategoria;
-	public String descripcion;
-	public Collection<negocio.SubCategoria> subCat;   // ARMAR COLECCIONES
-	public Collection<negocio.Producto> producto; // ARMAR COLECCIONES
+	private int idCategoria;
+	private String descripcion;
+	private Collection<negocio.SubCategoria> subCat;   // ARMAR COLECCIONES
+	private Collection<negocio.Producto> producto; // ARMAR COLECCIONES
 	
 
 	//CONSTRUCTOR

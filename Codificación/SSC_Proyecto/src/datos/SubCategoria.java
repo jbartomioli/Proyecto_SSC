@@ -3,10 +3,10 @@ package datos;
 public class SubCategoria 
 {
 	//ATRIBUTOS
-	int idSubcategoria;
-	int idCategoria;
-	String descripcion;
-	int producto;
+	private int idSubcategoria;
+	private int idCategoria;
+	private String descripcion;
+	private int producto;
 	
 	
 	//CONSTRUCTOR

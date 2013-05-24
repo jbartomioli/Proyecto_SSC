@@ -5,9 +5,9 @@ import java.util.Collection;
 public class SubCategoria 
 {
 	//ATRIBUTOS
-	public int idSubcategoria;
-	public String descripcion;
-	public Collection<negocio.Producto> producto;
+	private int idSubcategoria;
+	private String descripcion;
+	private Collection<negocio.Producto> producto;
 	
 	
 	//CONSTRUCTOR

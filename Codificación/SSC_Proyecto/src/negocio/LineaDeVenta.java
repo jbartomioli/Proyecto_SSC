@@ -4,10 +4,10 @@ public class LineaDeVenta
 {
 	
 	//ATRIBUTOS
-	public negocio.Producto productoLinea;
-	public int idVenta;
-	public int cantidad;
-	public double subTotal;
+	private negocio.Producto productoLinea;
+	private int idVenta;
+	private int cantidad;
+	private double subTotal;
 	
 	
 	//CONSTRUCTOR

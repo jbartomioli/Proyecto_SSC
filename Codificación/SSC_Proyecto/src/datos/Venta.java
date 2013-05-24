@@ -7,7 +7,7 @@ public class Venta
 	//ATRIBUTOS
 	private Date fechaVenta;
 	private int  idLineaDeVenta;
-	double total;
+	private double total;
 	
 	
 	//CONSTRUCTOR

@@ -3,9 +3,9 @@ package datos;
 public class LineaDePedido 
 {
 	//ATRIBUTOS
-	datos.Producto producto;
-	double subTotal;
-	int cantidadPedida;
+	private datos.Producto producto;
+	private double subTotal;
+	private int cantidadPedida;
 	
 	
 	//CONSTRUCTOR

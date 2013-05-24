@@ -6,12 +6,12 @@ import java.util.Collection;
 public class Producto 
 {
 	//ATRIBUTOS
-	public int idProducto;
-	public String codProducto;
-	public String nombre;
-	public int existenciaStock;
-	public negocio.SubCategoria subCategoria;
-	public Collection<negocio.Precio> precios;
+	private int idProducto;
+	private String codProducto;
+	private String nombre;
+	private int existenciaStock;
+	private negocio.SubCategoria subCategoria;
+	private Collection<negocio.Precio> precios;
 	
 	
 	//CONSTRUCTOR

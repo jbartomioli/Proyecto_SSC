@@ -5,12 +5,12 @@ import java.util.Date;
 public class Anuncio 
 {
 	//ATRIBUTOS
-	int idAnuncio;
-	int idProducto;
-	int idCliente;
-	String textoMensaje;
-	String estado;
-	Date fecha;
+	private int idAnuncio;
+	private int idProducto;
+	private int idCliente;
+	private String textoMensaje;
+	private String estado;
+	private Date fecha;
 	
 	
 	//CONSTRUCTOR

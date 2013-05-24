@@ -6,66 +6,66 @@ import java.util.ArrayList;
 public class ControladorRegistrarPedidoCliente 
 {
 	//ATRIBUTOS
-	datos.CatalogoClientes cc;
-	datos.CatalogoProductos cp;
-	datos.CatalogoPedidos cpe;
-	datos.Pedido PCTemporal;
+	private negocio.CatalogoClientes cc;
+	private negocio.CatalogoProductos cp;
+	private negocio.CatalogoPedidos cpe;
+	private negocio.Pedido PCTemporal;
 	
 	
 	//CONSTRUCTOR
 	public ControladorRegistrarPedidoCliente() 
 	{
-		this.cc = new datos.CatalogoClientes();
-		this.cp = new datos.CatalogoProductos();
-		this.cpe = new datos.CatalogoPedidos();
-		PCTemporal = new datos.Pedido();
+		this.cc = new negocio.CatalogoClientes();
+		this.cp = new negocio.CatalogoProductos();
+		this.cpe = new negocio.CatalogoPedidos();
+		this.PCTemporal = new negocio.Pedido();
 	}
 
 
 	//GETTER & SETTER
-	public datos.CatalogoClientes getCc() 
+	public negocio.CatalogoClientes getCc() 
 	{
 		return cc;
 	}
 
 
-	public void setCc(datos.CatalogoClientes cc) 
+	public void setCc(negocio.CatalogoClientes cc) 
 	{
 		this.cc = cc;
 	}
 
 
-	public datos.CatalogoProductos getCp() 
+	public negocio.CatalogoProductos getCp() 
 	{
 		return cp;
 	}
 
 
-	public void setCp(datos.CatalogoProductos cp) 
+	public void setCp(negocio.CatalogoProductos cp) 
 	{
 		this.cp = cp;
 	}
 
 
-	public datos.CatalogoPedidos getCpe() 
+	public negocio.CatalogoPedidos getCpe() 
 	{
 		return cpe;
 	}
 
 
-	public void setCpe(datos.CatalogoPedidos cpe) 
+	public void setCpe(negocio.CatalogoPedidos cpe) 
 	{
 		this.cpe = cpe;
 	}
 
 
-	public datos.Pedido getPCTemporal() 
+	public negocio.Pedido getPCTemporal() 
 	{
 		return PCTemporal;
 	}
 
 
-	public void setPCTemporal(datos.Pedido pCTemporal) 
+	public void setPCTemporal(negocio.Pedido pCTemporal) 
 	{
 		PCTemporal = pCTemporal;
 	}
@@ -76,6 +76,8 @@ public class ControladorRegistrarPedidoCliente
 	//Metodo 3.1.1
 	public ArrayList<String> buscarCliente(int idCliente)
 	{
+		negocio.Pedido PCTemporal = new negocio.Pedido();
+
 		return null;
 	}
 	
@@ -83,6 +85,7 @@ public class ControladorRegistrarPedidoCliente
 	//Metodo 3.1.2
 	public ArrayList<String> buscarCliente(String apellido, String nombre)
 	{
+		
 		return null;
 	}
 	

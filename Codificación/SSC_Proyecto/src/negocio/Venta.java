@@ -6,9 +6,9 @@ import java.util.Date;
 public class Venta 
 {
 	//ATRIBUTOS
-	public Date fechaVenta;
-	public Collection<negocio.LineaDeVenta> lineasDeVenta;
-	public double total;
+	private Date fechaVenta;
+	private Collection<negocio.LineaDeVenta> lineasDeVenta;
+	private double total;
 	
 	
 	//CONSTRUCTOR

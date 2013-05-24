@@ -3,7 +3,7 @@ package datos;
 public class MailDeposito 
 {
 	//ATRIBUTOS
-	datos.Pedido PCTemporal;
+	private datos.Pedido PCTemporal;
 	
 	
 	//CONSTRUCTOR

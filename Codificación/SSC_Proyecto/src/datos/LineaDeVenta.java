@@ -4,10 +4,10 @@ public class LineaDeVenta
 {
 	
 	//ATRIBUTOS
-	datos.Producto productoLinea;
-	int idVenta;
-	int cantidad;
-	float subTotal;
+	private datos.Producto productoLinea;
+	private int idVenta;
+	private int cantidad;
+	private double subTotal;
 	
 	
 	//CONSTRUCTOR
@@ -42,12 +42,12 @@ public class LineaDeVenta
 	}
 	
 	
-	public float getSubTotal() 
+	public double getSubTotal() 
 	{
 		return subTotal;
 	}
 	
-	public void setSubTotal(float subTotal) 
+	public void setSubTotal(double subTotal) 
 	{
 		this.subTotal = subTotal;
 	}

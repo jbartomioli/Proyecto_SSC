@@ -6,7 +6,7 @@ import java.util.Collection;
 public class CatalogoClientes {
 	
 	//ATRIBUTOS
-	Collection<negocio.Cliente> clientes;
+	private Collection<negocio.Cliente> clientes;
 
 	
 	//CONSTRUCTOR
@@ -53,7 +53,10 @@ public class CatalogoClientes {
 	}
 	
 	
-	
+	public negocio.Cliente buscarCliente(int idCliente)
+	{
+		return null;
+	}
 	
 
 }

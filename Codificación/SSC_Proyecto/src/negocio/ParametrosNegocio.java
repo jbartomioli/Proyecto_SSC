@@ -3,8 +3,8 @@ package negocio;
 public class ParametrosNegocio {
 	
 	//ATRIBUTOS
-	String membrete;
-	int ultIdPedido;
+	private String membrete;
+	private int ultIdPedido;
 
 	
 	//CONSTRUCTOR

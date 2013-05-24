@@ -6,13 +6,13 @@ import java.util.Date;
 public class Anuncio 
 {
 	//ATRIBUTOS
-	public int idAnuncio;
-	public Collection<negocio.Producto> productos;
-	public Collection<negocio.Cliente> clientes;
-	public String textoMensaje;
-	public String estado;
-	public Date fecha;
-	public datos.Anuncio anuncioDatos;
+	private int idAnuncio;
+	private Collection<negocio.Producto> productos;
+	private Collection<negocio.Cliente> clientes;
+	private String textoMensaje;
+	private String estado;
+	private Date fecha;
+	private datos.Anuncio anuncioDatos;
 	
 	
 	//CONSTRUCTOR

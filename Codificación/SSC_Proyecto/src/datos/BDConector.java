@@ -8,7 +8,7 @@ public class BDConector {
 	private String ip,puerto,base,login,password;
 	@SuppressWarnings("unused")
 	private boolean conectado = false;
-	Connection conexion;
+	private Connection conexion;
 	private Statement s;
 	private ResultSet rs;
 	

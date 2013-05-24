@@ -3,12 +3,12 @@ package datos;
 public class Producto 
 {
 	//ATRIBUTOS
-	int idProducto;
-	String codProducto;
-	String nombre;
-	int existenciaStock;
-	int idSubCategoria;
-	int idPrecio;
+	private int idProducto;
+	private String codProducto;
+	private String nombre;
+	private int existenciaStock;
+	private int idSubCategoria;
+	private int idPrecio;
 	
 	
 	//CONSTRUCTOR

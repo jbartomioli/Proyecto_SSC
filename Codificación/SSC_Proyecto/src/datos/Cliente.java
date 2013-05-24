@@ -6,14 +6,14 @@ import java.util.Collection;
 public class Cliente 
 {
 	//ATRIBUTOS
-	int idCliente;
-	String nombre;
-	String apellido;
-	String direccion;
-	String email;
-	String especialidad;
-	String telefono;
-	Boolean tipoCliente;
+	private int idCliente;
+	private String nombre;
+	private String apellido;
+	private String direccion;
+	private String email;
+	private String especialidad;
+	private String telefono;
+	private boolean tipoCliente;
 	private Collection<datos.Venta> ventas;
 	
 	
@@ -83,12 +83,12 @@ public class Cliente
 		this.telefono = telefono;
 	}
 	
-	public Boolean getTipoCliente() 
+	public boolean getTipoCliente() 
 	{
 		return tipoCliente;
 	}
 	
-	public void setTipoCliente(Boolean tipoCliente) 
+	public void setTipoCliente(boolean tipoCliente) 
 	{
 		this.tipoCliente = tipoCliente;
 	}
@@ -133,8 +133,7 @@ public class Cliente
 
 	public boolean comproProducto(datos.Producto producto)
 	{
-		boolean flag = false;
 		
-		return flag;
+		return false;
 	}
 }
