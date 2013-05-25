@@ -31,9 +31,41 @@ public class CatalogoProductos
 
 	//METODOS
 	//-------------------------------------------------------------
+	
+	//Busca producto por id
 	public negocio.Producto buscarProducto(int idProducto)
 	{
 		return null;
 	}
+	//*************************************************************
+
+	//Busca producto por descripcion parcial
+	public negocio.Producto buscarProducto(String descParcial)
+	{
+		return null;
+	}
+	//*************************************************************
+	
+	//Actualiza la cantidad de productos en stock
+	public void actualizarStock(negocio.Producto P, int cantidad)
+	{
+		for(negocio.Producto PA: this.productos)
+		{
+			if (PA.getIdProducto() == P.getIdProducto())
+			{
+				int stock = 0;
+				int nuevoStock = 0;
+				
+				stock = PA.getExistenciaStock();
+				
+				nuevoStock = stock - cantidad;
+				
+				PA.setExistenciaStock(nuevoStock);
+				
+				//Guardar en BD
+			}
+		}
+	}
+	//*************************************************************
 
 }

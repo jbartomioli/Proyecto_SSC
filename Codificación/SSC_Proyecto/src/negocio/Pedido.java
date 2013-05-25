@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 public class Pedido 
@@ -9,7 +11,7 @@ public class Pedido
 	private float total;
 	private int idCliente;
 	private Date fecha;
-	private int idLinea;
+	private Collection<negocio.LineaDePedido> lineas;
 	private boolean estado;
 	
 	
@@ -20,7 +22,7 @@ public class Pedido
 		this.total = 0;
 		this.idCliente = 0;
 		this.fecha = new Date();
-		this.idLinea = 0;
+		this.lineas = new ArrayList<negocio.LineaDePedido>();
 		this.estado = false;
 	}
 
@@ -72,15 +74,15 @@ public class Pedido
 	}
 
 
-	public int getLinea() 
+	public  Collection<negocio.LineaDePedido> getLineas() 
 	{
-		return idLinea;
+		return lineas;
 	}
 
 
-	public void setLinea(int idLinea) 
+	public void setLineas(Collection<negocio.LineaDePedido> lineas) 
 	{
-		this.idLinea = idLinea;
+		this.lineas = lineas;
 	}
 
 
@@ -90,7 +92,7 @@ public class Pedido
 	}
 
 
-	public void setEstado(Boolean estado) 
+	public void setEstado(boolean estado) 
 	{
 		this.estado = estado;
 	}
@@ -98,5 +100,26 @@ public class Pedido
 
 	//METODOS
 	//----------------------------------------------------------------------------
+	
+	//Busca una linea en el pedido mediante comparacion de lineas
+	public negocio.LineaDePedido buscarLinea(negocio.LineaDePedido lineaActual)
+	{
+		for(negocio.LineaDePedido LP : this.lineas)
+		{
+			if (LP == lineaActual)
+				return LP;
+		}
+		return null;
+	}
+	
+	
+	//Busca una linea en el pedido con un producto especifico
+	public negocio.LineaDePedido buscarLinea(int idProductoViejo)
+	{
+		return null;
+	}
+	
+	
+	
 
 }

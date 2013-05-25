@@ -100,6 +100,8 @@ public class Producto
 	
 	//METODOS
 	//----------------------------------------------------------
+	
+	//Obtiene el precio vigente del producto
 	public double getPrecioActual()
 	{
 		
@@ -115,4 +117,8 @@ public class Producto
 		
 		return 0;
 	}
+	//*************************************************************
+	
+	
+
 }

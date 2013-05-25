@@ -32,6 +32,7 @@ public class ParametrosNegocio {
 
 	public int getUltIdPedido() 
 	{
+		this.ultIdPedido++;
 		return ultIdPedido;
 	}
 
