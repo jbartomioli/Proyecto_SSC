@@ -101,6 +101,20 @@ public class Pedido
 	//METODOS
 	//----------------------------------------------------------------------------
 	
+	
+	//Se agrega el producto al pedido
+	public void setProducto(negocio.Producto P, int cantidad)
+	{
+		negocio.LineaDePedido LP = new negocio.LineaDePedido();
+		
+		LP.setProducto(P);
+		LP.setCantidadPedida(cantidad);
+		
+		this.lineas.add(LP);
+		//
+	}
+	//****************************************************************************
+	
 	//Busca una linea en el pedido mediante comparacion de lineas
 	public negocio.LineaDePedido buscarLinea(negocio.LineaDePedido lineaActual)
 	{
@@ -111,14 +125,14 @@ public class Pedido
 		}
 		return null;
 	}
-	
+	//****************************************************************************
 	
 	//Busca una linea en el pedido con un producto especifico
 	public negocio.LineaDePedido buscarLinea(int idProductoViejo)
 	{
 		return null;
 	}
-	
+	//****************************************************************************
 	
 	
 

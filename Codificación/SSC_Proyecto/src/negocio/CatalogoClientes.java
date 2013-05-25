@@ -41,6 +41,9 @@ public class CatalogoClientes {
 	
 	
 	//METODOS
+	//------------------------------------------------------------------------------------
+	
+	//Obtiene los clientes que han comprado un producto específico
 	public Collection<negocio.Cliente> obtenerClientesProdcuto(negocio.Producto producto)
 	{
 		Collection<negocio.Cliente> clientesInteresados;
@@ -51,12 +54,22 @@ public class CatalogoClientes {
 		
 		return clientesInteresados;
 	}
+	//************************************************************************************
 	
-	
+	//Busca un cliente mediante su Id
 	public negocio.Cliente buscarCliente(int idCliente)
 	{
 		return null;
 	}
+	//************************************************************************************
+	
+	//Busca un cliente mediante su nombre y apellido
+	public negocio.Cliente buscarCliente(String nombre, String apellido)
+	{
+		return null;
+	}
+	//************************************************************************************
+	
 	
 
 }
