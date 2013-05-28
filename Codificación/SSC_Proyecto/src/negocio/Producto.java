@@ -10,6 +10,7 @@ public class Producto
 	private String codProducto;
 	private String nombre;
 	private int existenciaStock;
+	//private float precioVigente;
 	private negocio.SubCategoria subCategoria;
 	private Collection<negocio.Precio> precios;
 	
@@ -21,6 +22,7 @@ public class Producto
 		this.codProducto =  "";		
 		this.nombre = "";
 		this.existenciaStock = 0;
+		//this.precioVigente = 0;
 		this.subCategoria = null;
 		this.precios = null;
 	}
@@ -119,6 +121,10 @@ public class Producto
 	}
 	//*************************************************************
 	
+	public void setPrecioPromocional(float nuevoPrecio)
+	{
+		setPrecioPromocional(nuevoPrecio);
+	}
 	
 
 }

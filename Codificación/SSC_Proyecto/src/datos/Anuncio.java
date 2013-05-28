@@ -9,6 +9,7 @@ public class Anuncio
 	private int idProducto;
 	private int idCliente;
 	private String textoMensaje;
+	private String membrete;
 	private String estado;
 	private Date fecha;
 	
@@ -20,33 +21,46 @@ public class Anuncio
 		this.idProducto = 0;
 		this.idCliente = 0;
 		this.textoMensaje = "";
+		this.membrete = "";
 		this.estado = "";
 		this.fecha = new Date();
 	}
 
 
 	//GETTERS & SETTERS
-	public int getProducto()
+	public int getIdProducto() 
 	{
 		return idProducto;
 	}
 
 
-	public void setProducto(int idProducto) 
+	public void setIdProducto(int idProducto) 
 	{
 		this.idProducto = idProducto;
 	}
 
 
-	public int getCliente() 
+	public int getIdCliente() 
 	{
 		return idCliente;
 	}
 
 
-	public void setClientes(int idCliente) 
+	public void setIdCliente(int idCliente) 
 	{
 		this.idCliente = idCliente;
+	}
+
+
+	public String getMembrete() 
+	{
+		return membrete;
+	}
+
+
+	public void setMembrete(String membrete) 
+	{
+		this.membrete = membrete;
 	}
 
 

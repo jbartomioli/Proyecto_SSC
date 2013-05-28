@@ -56,8 +56,8 @@ public class CatalogoAnuncios
 				{
 					datos.Anuncio a = new datos.Anuncio();
 					
-					a.setClientes(conjuntoResult.getInt("idCliente"));
-					a.setProducto(conjuntoResult.getInt("idProducto"));
+					a.setIdCliente(conjuntoResult.getInt("idCliente"));
+					a.setIdProducto(conjuntoResult.getInt("idProducto"));
 					a.setIdAnuncio(conjuntoResult.getInt("idAnuncio"));
 					a.setTextoMensaje(conjuntoResult.getString("textoMensaje"));
 					a.setFecha(conjuntoResult.getDate("fecha"));

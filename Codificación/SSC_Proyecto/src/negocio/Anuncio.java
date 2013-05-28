@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -10,6 +11,7 @@ public class Anuncio
 	private Collection<negocio.Producto> productos;
 	private Collection<negocio.Cliente> clientes;
 	private String textoMensaje;
+	private String membrete;
 	private String estado;
 	private Date fecha;
 	private datos.Anuncio anuncioDatos;
@@ -22,6 +24,7 @@ public class Anuncio
 		this.productos = null;
 		this.clientes = null;
 		this.textoMensaje = "";
+		this.membrete = "";
 		this.estado = "";
 		this.fecha = new Date();
 		
@@ -36,9 +39,9 @@ public class Anuncio
 	}
 
 
-	public void setProducto(Collection<negocio.Producto> producto) 
+	public void setProductos(Collection<negocio.Producto> arrProductosPublicacion) 
 	{
-		this.productos = producto;
+		this.productos = arrProductosPublicacion;
 	}
 
 
@@ -48,9 +51,9 @@ public class Anuncio
 	}
 
 
-	public void setClientes(Collection<negocio.Cliente> clientes) 
+	public void setClientes(Collection<negocio.Cliente> arrClientesPublicacion) 
 	{
-		this.clientes = clientes;
+		this.clientes = arrClientesPublicacion;
 	}
 
 
@@ -63,6 +66,18 @@ public class Anuncio
 	public void setTextoMensaje(String textoMensaje) 
 	{
 		this.textoMensaje = textoMensaje;
+	}
+
+
+	public String getMembrete() 
+	{
+		return membrete;
+	}
+
+
+	public void setMembrete(String membrete) 
+	{
+		this.membrete = membrete;
 	}
 
 
@@ -110,8 +125,19 @@ public class Anuncio
 
 	//METODOS
 	//----------------------------------------------------------
-	public void setProductos(Collection<negocio.Producto> arrProductosPublicacion)
+	
+	public negocio.Producto modificarPrecioProducto(int idProducto)
 	{
-		this.setProductos(arrProductosPublicacion);
+		return null;
+	}
+	
+	public void actualizarProducto(negocio.Producto productoModificar)
+	{
+		//VER METODO
+	}
+	
+	public Collection<negocio.Cliente> seleccionarClientes(ArrayList<String>idCliente)
+	{
+		return null;
 	}
 }

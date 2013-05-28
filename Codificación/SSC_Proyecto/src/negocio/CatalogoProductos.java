@@ -67,5 +67,11 @@ public class CatalogoProductos
 		}
 	}
 	//*************************************************************
+	
+	//Actualizar precio promocional de un producto
+	public void actualizarPrecioPromProducto(negocio.Producto productoModificar,float nuevoPrecio)
+	{
+		productoModificar.setPrecioPromocional(nuevoPrecio);
+	}
 
 }
