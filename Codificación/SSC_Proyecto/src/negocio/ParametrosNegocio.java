@@ -30,6 +30,9 @@ public class ParametrosNegocio {
 	}
 
 
+	//Devuelve el numero del ultimo pedido y guarda el proximo
+	//Reveer si conviene tener un metodo aparte para que haga el autoincremento
+	//porque después hay que guardar el valor en la BD
 	public int getUltIdPedido() 
 	{
 		this.ultIdPedido++;

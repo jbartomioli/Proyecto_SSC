@@ -30,12 +30,12 @@ public class CatalogoAnuncios
 	// -------------------------------------------------------------
 	public Collection<negocio.Anuncio> obtenerAnuncios() 
 	{
+		/* ESTO NO CORRESPONDE A NEGOCIO
 		ResultSet conjuntoResult = null;
 		datos.BDConector conector = null;
 
 		try 
 		{
-
 			conector = new datos.BDConector(datos.BDConstantes.URL_BD,
 					datos.BDConstantes.PORT, datos.BDConstantes.DATABASE,
 					datos.BDConstantes.USER, datos.BDConstantes.PASS);
@@ -63,7 +63,7 @@ public class CatalogoAnuncios
 			} catch (Exception excepcion) {
 				excepcion.printStackTrace();
 			}
-		}
+		}*/
 		return anuncios;
 	}
 	
