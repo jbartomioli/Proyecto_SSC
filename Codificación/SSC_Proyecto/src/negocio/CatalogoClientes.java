@@ -10,11 +10,17 @@ public class CatalogoClientes {
 
 	
 	//CONSTRUCTOR
+	//VER --> Pensaba sacar esta seccion y generarla mediante un
+	//metodo fuera del constructor y ejecutarlo en el main de la clase
+	//dejando solo los constructores para inicializaciones
 	public CatalogoClientes() 
 	{
+		//se crea un objeto catalogoclientes de datos
 		datos.CatalogoClientes ctgDatos = new datos.CatalogoClientes();	
 		
+		//se inicializa el array de clientes del catalogo
 		clientes = new ArrayList<negocio.Cliente>();
+		
 		
 		for(datos.Cliente datosCliente: ctgDatos.getClientes())
 		{
@@ -47,7 +53,6 @@ public class CatalogoClientes {
 	public Collection<negocio.Cliente> obtenerClientesProdcuto(negocio.Producto producto)
 	{
 		Collection<negocio.Cliente> clientesInteresados;
-
 		
 		//Se crea una coleccion de clientes interesados en el producto actual
 		clientesInteresados = new ArrayList<negocio.Cliente>();
