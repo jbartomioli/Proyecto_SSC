@@ -39,17 +39,17 @@ public class CatalogoPedidos
 	public Collection<datos.Pedido> obtenerPedidos()
 	{
 		ResultSet conjuntoResult = null;
-		datos.BDConector conector = null;
+		utilidades.BDConector conector = null;
 		
 		
 		try
 		{
 			
-			conector = new datos.BDConector(datos.BDConstantes.URL_BD, 
-					datos.BDConstantes.PORT, 
-					datos.BDConstantes.DATABASE, 
-					datos.BDConstantes.USER, 
-					datos.BDConstantes.PASS);
+			conector = new utilidades.BDConector(utilidades.BDConstantes.URL_BD, 
+					utilidades.BDConstantes.PORT, 
+					utilidades.BDConstantes.DATABASE, 
+					utilidades.BDConstantes.USER, 
+					utilidades.BDConstantes.PASS);
 			
 
 			conjuntoResult = conector.ejecutaPeticion("CALL obtenerPedidos");
