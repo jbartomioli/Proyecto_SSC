@@ -1,4 +1,4 @@
-package datos;
+package utilidades;
 
 public class BDConstantes 
 {
