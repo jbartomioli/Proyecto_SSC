@@ -131,9 +131,11 @@ public class Anuncio
 		return null;
 	}
 	
+	
+	//DSD 1.5.2
 	public void actualizarProducto(negocio.Producto productoModificar)
 	{
-		//VER METODO
+		//Buscar el producto dentro del array de anuncios que coincida con el producto pasado como parametro e insertar el nuevo precio
 	}
 	
 	public Collection<negocio.Cliente> seleccionarClientes(ArrayList<String>idCliente)
