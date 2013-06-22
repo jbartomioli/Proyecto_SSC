@@ -50,7 +50,7 @@ public class CatalogoClientes {
 	//------------------------------------------------------------------------------------
 	
 	//Obtiene los clientes que han comprado un producto específico
-	public Collection<negocio.Cliente> obtenerClientesProdcuto(negocio.Producto producto)
+	public Collection<negocio.Cliente> obtenerClientesProducto(negocio.Producto producto)
 	{
 		Collection<negocio.Cliente> clientesInteresados;
 		
@@ -61,20 +61,48 @@ public class CatalogoClientes {
 	}
 	//************************************************************************************
 	
+	
+	//DSD 2.1.1
 	//Busca un cliente mediante su Id
 	public negocio.Cliente buscarCliente(int idCliente)
-	{
+	{	
+
+		for(negocio.Cliente c : this.clientes)
+		{
+			if (c.getIdCliente() == idCliente)
+				return c;
+		}
 		return null;
 	}
 	//************************************************************************************
 	
 	//Busca un cliente mediante su nombre y apellido
 	public negocio.Cliente buscarCliente(String nombre, String apellido)
-	{
+	{	
+		for(negocio.Cliente c : this.clientes)
+		{
+			if ((c.getNombre() == nombre)
+				&& (c.getApellido() == apellido))
+				return c;
+		}
 		return null;
 	}
+	
 	//************************************************************************************
 	
+	
+	//Devuelve un subconjunto de clientes 
+	public Collection<negocio.Cliente> buscarClientes(boolean tipoCliente)
+	{
+		Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
+
+		for(negocio.Cliente c : this.getClientes())
+		{
+			if(c.getTipoCliente() == tipoCliente)
+				arrClientesTemp.add(c);
+		}
+		return arrClientesTemp;	
+	}
 	
 
 }

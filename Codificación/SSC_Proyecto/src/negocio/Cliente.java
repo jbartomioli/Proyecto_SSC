@@ -14,7 +14,7 @@ public class Cliente
 	private String especialidad;
 	private String telefono;
 	private boolean tipoCliente;
-	private Collection<datos.Venta> ventas;
+	private Collection<negocio.Venta> ventas;
 		
 		
 	//CONSTRUCTOR
@@ -28,7 +28,7 @@ public class Cliente
 		this.especialidad = "";
 		this.telefono = "";
 		this.tipoCliente = false;
-		this.ventas = new ArrayList<datos.Venta>();
+		this.ventas = new ArrayList<negocio.Venta>();
 	}
 
 	
@@ -93,12 +93,12 @@ public class Cliente
 		this.tipoCliente = tipoCliente;
 	}
 	
-	public Collection<datos.Venta> getVentas()
+	public Collection<negocio.Venta> getVentas()
 	{
 		return ventas;
 	}
 	
-	public void setVentas(Collection<datos.Venta> ventas) 
+	public void setVentas(Collection<negocio.Venta> ventas) 
 	{
 		this.ventas = ventas;
 	}
