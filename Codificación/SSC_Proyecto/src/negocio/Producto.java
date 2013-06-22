@@ -117,6 +117,22 @@ public class Producto
 	}
 	
 	
+	//Obtiene el precio promocional del producto
+		public double getPrecioPromocional()
+		{
+			
+			for(negocio.Precio p: this.getPrecio())
+			{
+				if (p.getFechaHasta() == null)
+					return p.getPrecioPromocional();
+				else 
+					return 0;
+			}
+			
+			return 0;
+		}
+	
+	
 	//*************************************************************
 	public void setPrecioPromocional(float nuevoPrecio)
 	{

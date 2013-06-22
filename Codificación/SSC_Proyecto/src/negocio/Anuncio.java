@@ -148,15 +148,12 @@ public class Anuncio
 		return null;
 	}
 	
-
 	//----------------------------------------------------------
-
 	
 	//DSD 1.5.2
 
 	public void actualizarProducto(negocio.Producto productoModificar)
 	{
-
 		for(negocio.Producto p : this.productos)
 		{
 			if(p.getIdProducto()==productoModificar.getIdProducto())
@@ -166,8 +163,7 @@ public class Anuncio
 				break;
 			}
 		}
-		//Buscar el producto dentro del array de anuncios que coincida con el producto pasado como parametro e insertar el nuevo precio
-
+		//Busca el producto dentro del array de anuncios que coincida con el producto pasado como parametro e insertar el nuevo precio
 	}
 	
 	
