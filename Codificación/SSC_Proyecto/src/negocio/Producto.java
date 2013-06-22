@@ -10,7 +10,6 @@ public class Producto
 	private String codProducto;
 	private String nombre;
 	private int existenciaStock;
-	//private float precioVigente;
 	private negocio.SubCategoria subCategoria;
 	private Collection<negocio.Precio> precios;
 	
@@ -22,7 +21,6 @@ public class Producto
 		this.codProducto =  "";		
 		this.nombre = "";
 		this.existenciaStock = 0;
-		//this.precioVigente = 0;
 		this.subCategoria = null;
 		this.precios = null;
 	}
@@ -107,24 +105,29 @@ public class Producto
 	public double getPrecioActual()
 	{
 		
-		for(negocio.Precio precio: this.getPrecio())
+		for(negocio.Precio p: this.getPrecio())
 		{
-			if (precio.getFechaHasta() == null)
-			{
-				return precio.getPrecio();
-			}
+			if (p.getFechaHasta() == null)
+				return p.getPrecio();
 			else 
 				return 0;
 		}
 		
 		return 0;
 	}
-	//*************************************************************
 	
+	
+	//*************************************************************
 	public void setPrecioPromocional(float nuevoPrecio)
 	{
-		setPrecioPromocional(nuevoPrecio);
+		for(negocio.Precio p: this.precios)
+		{
+			if (p.getFechaHasta() == null)
+			{
+				p.setPrecioPromocional(nuevoPrecio);
+				
+				break;
+			}
+		}
 	}
-	
-
 }

@@ -128,18 +128,68 @@ public class Anuncio
 	
 	public negocio.Producto modificarPrecioProducto(int idProducto)
 	{
+		negocio.Producto productoModif = new negocio.Producto();
+		
+		for(negocio.Producto p : this.productos)
+		{
+			if(idProducto==p.getIdProducto())
+			{
+				productoModif.setCodProducto(p.getCodProducto());
+				productoModif.setIdProducto(p.getIdProducto());
+				productoModif.setNombre(p.getNombre());
+				productoModif.setSubCategoria(p.getSubCategoria());
+				productoModif.setPrecio(p.getPrecio());
+				productoModif.setExistenciaStock(p.getExistenciaStock());
+				
+				return productoModif;
+			}	
+		}
+		
 		return null;
 	}
 	
+<<<<<<< .mine
+	
+	
+	//----------------------------------------------------------
+=======
 	
 	//DSD 1.5.2
+>>>>>>> .r50
 	public void actualizarProducto(negocio.Producto productoModificar)
 	{
+<<<<<<< .mine
+		for(negocio.Producto p : this.productos)
+		{
+			if(p.getIdProducto()==productoModificar.getIdProducto())
+			{
+				p=productoModificar;
+				
+				break;
+			}
+		}
+=======
 		//Buscar el producto dentro del array de anuncios que coincida con el producto pasado como parametro e insertar el nuevo precio
+>>>>>>> .r50
 	}
 	
-	public Collection<negocio.Cliente> seleccionarClientes(ArrayList<String>idCliente)
+	
+	//----------------------------------------------------------
+	public Collection<negocio.Cliente> seleccionarClientes(String [] idCliente)
 	{
-		return null;
+		Collection<negocio.Cliente> arrClientesSeleccionados = new ArrayList<negocio.Cliente>();
+		
+		for(String id : idCliente)
+		{
+			for(negocio.Cliente c : this.clientes)
+			{
+				if(c.getIdCliente()==Integer.parseInt(id))
+				{
+					arrClientesSeleccionados.add(c);
+					continue;				
+				}
+			}
+		}
+		return arrClientesSeleccionados;
 	}
 }

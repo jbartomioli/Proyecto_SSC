@@ -71,7 +71,13 @@ public class CatalogoProductos
 	//Actualizar precio promocional de un producto
 	public void actualizarPrecioPromProducto(negocio.Producto productoModificar,float nuevoPrecio)
 	{
-		productoModificar.setPrecioPromocional(nuevoPrecio);
+		for(negocio.Producto p : this.productos)
+		{
+			if(p.getIdProducto()==productoModificar.getIdProducto())
+			{
+				p.setPrecioPromocional(nuevoPrecio);
+			}
+		}
 	}
 
 }

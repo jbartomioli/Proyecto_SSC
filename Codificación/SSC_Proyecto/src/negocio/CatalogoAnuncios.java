@@ -74,8 +74,12 @@ public class CatalogoAnuncios
 		
 	}
 	
-	public void guardarCambioClientesAnuncio(negocio.Anuncio anuncioActual, negocio.Cliente arrClientesSeleccionados)
+	public void guardarCambioClientesAnuncio(negocio.Anuncio anuncioActual)
 	{
-		
+		for(negocio.Anuncio a : this.anuncios)
+		{
+			if(anuncioActual.getIdAnuncio()==a.getIdAnuncio())
+				a=anuncioActual;
+		}
 	}
 }

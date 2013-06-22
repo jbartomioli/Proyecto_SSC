@@ -230,7 +230,14 @@ public class ControladorConfeccionarAnuncio
 	//Metodo DSD 1.5.1
 	public String modificarPrecioProducto(int idProducto)
 	{
-		return null;
+		negocio.Producto productoModificar;
+		
+		productoModificar=anuncioActual.modificarPrecioProducto(idProducto);
+		
+		if(productoModificar != null)
+			return Double.toString(productoModificar.getPrecioActual());
+		else
+			return null;
 	}
 	
 	
@@ -249,8 +256,29 @@ public class ControladorConfeccionarAnuncio
 	
 	
 	//Metodo DSD 1.6.2
-	public  ArrayList<String> seleccionarClientes(int [] idCliente)
+	public  String [][] seleccionarClientes(String [] idCliente)
 	{
+		Collection<negocio.Cliente> arrClientesTemp=new ArrayList<negocio.Cliente>();
+		
+		
+		arrClientesTemp=anuncioActual.seleccionarClientes(idCliente);
+		
+		anuncioActual.setClientes(arrClientesTemp);
+		
+		ca.guardarCambioClientesAnuncio(anuncioActual);
+		
+		String [][] arrDatos = new String[arrClientesTemp.size()][2]; //Revisar definicion
+		
+		int i=0;
+		
+		for(negocio.Cliente c : arrClientesTemp)
+		{
+			arrDatos[i][0]=Integer.toString(c.getIdCliente());
+			arrDatos[i][1]=c.getNombre();
+			arrDatos[i][2]=c.getApellido();
+			i++;
+		}
+		
 		return null;
 	}
 	
