@@ -15,19 +15,19 @@
   
   <!-- MAPEOS -->
   
-  <mapping class="main.java.Anuncios" resource="main/java/Anuncios.hbm.xml"/>
-  <mapping class="main.java.Categorias" resource="main/java/Categorias.hbm.xml"/>
-  <mapping class="main.java.Clientes" resource="main/java/Clientes.hbm.xml"/>
-  <mapping class="main.java.LineaDePedido" resource="main/java/LineaDePedido.hbm.xml"/>
-  <mapping class="main.java.LineasDeVentas" resource="main/java/LineasDeVentas.hbm.xml"/>
-  <mapping class="main.java.ParametrosNegocio" resource="main/java/ParametrosNegocio.hbm.xml"/>
-  <mapping class="main.java.Pedidos" resource="main/java/Pedidos.hbm.xml"/>   
-  <mapping class="main.java.Precios" resource="main/java/Precios.hbm.xml"/> 
-  <mapping class="main.java.Productos" resource="main/java/Productos.hbm.xml"/> 
-  <mapping class="main.java.Subcategorias" resource="main/java/Subcategorias.hbm.xml"/>  
-  <mapping class="main.java.Ventas" resource="main/java/Ventas.hbm.xml"/> 
-  <!--   <mapping class="main.java.Categorias" resource="main/java/Categorias.hbm.xml"/>  -->
-  <!--   <mapping class="main.java." resource="main/java/.hbm.xml"/>  -->
+  <mapping class="datos.Anuncios" resource="datos/Anuncios.hbm.xml"/>
+  <mapping class="datos.Categorias" resource="datos/Categorias.hbm.xml"/>
+  <mapping class="datos.Clientes" resource="datos/Clientes.hbm.xml"/>
+  <mapping class="datos.LineaDePedido" resource="datos/LineaDePedido.hbm.xml"/>
+  <mapping class="datos.LineasDeVentas" resource="datos/LineasDeVentas.hbm.xml"/>
+  <mapping class="datos.ParametrosNegocio" resource="datos/ParametrosNegocio.hbm.xml"/>
+  <mapping class="datos.Pedidos" resource="datos/Pedidos.hbm.xml"/>   
+  <mapping class="datos.Precios" resource="datos/Precios.hbm.xml"/> 
+  <mapping class="datos.Productos" resource="datos/Productos.hbm.xml"/> 
+  <mapping class="datos.Subcategorias" resource="datos/Subcategorias.hbm.xml"/>  
+  <mapping class="datos.Ventas" resource="datos/Ventas.hbm.xml"/> 
+  <!--   <mapping class="datos.Categorias" resource="datos/Categorias.hbm.xml"/>  -->
+  <!--   <mapping class="datos." resource="datos/.hbm.xml"/>  -->
   
  </session-factory>
 </hibernate-configuration>

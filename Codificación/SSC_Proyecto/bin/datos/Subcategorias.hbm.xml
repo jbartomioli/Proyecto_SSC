@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/06/2013 20:13:01 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="datos.Subcategorias" table="subcategorias" catalog="BD_SSC">
+        <id name="idSubcategoria" type="int">
+            <column name="idSubcategoria" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categorias" class="datos.Categorias" fetch="select">
+            <column name="idCategoria" not-null="true" />
+        </many-to-one>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="50" />
+        </property>
+        <set name="productoses" table="productos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idSubcategoria" />
+            </key>
+            <one-to-many class="datos.Productos" />
+        </set>
+    </class>
+</hibernate-mapping>

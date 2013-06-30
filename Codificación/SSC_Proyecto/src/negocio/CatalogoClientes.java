@@ -22,7 +22,7 @@ public class CatalogoClientes {
 		clientes = new ArrayList<negocio.Cliente>();
 		
 		
-		for(datos.Cliente datosCliente: ctgDatos.getClientes())
+		for(datos.OLD.Cliente datosCliente: ctgDatos.getClientes())
 		{
 			negocio.Cliente clienteNegocio = new negocio.Cliente();
 			

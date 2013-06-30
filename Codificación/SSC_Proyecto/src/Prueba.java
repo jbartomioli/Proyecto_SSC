@@ -1,7 +1,8 @@
-import main.java.Categorias;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import datos.Categorias;
 
 
 

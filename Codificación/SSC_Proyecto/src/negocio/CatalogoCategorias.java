@@ -38,17 +38,17 @@ public class CatalogoCategorias
 	public void obtenerCategorias()
 	{
 		//se crea un objeto catalogocategorias de datos
-		datos.CatalogoCategorias ctgDatos = new datos.CatalogoCategorias();
+		datos.OLD.CatalogoCategorias ctgDatos = new datos.OLD.CatalogoCategorias();
 		
 		//se inicializa el array de clientes del catalogo
 		categorias = new ArrayList<negocio.Categoria>();
 			
 		
-		Iterator <datos.Categoria> it = ctgDatos.getCategorias().iterator();
+		Iterator <datos.OLD.Categoria> it = ctgDatos.getCategorias().iterator();
 		
 		while(it.hasNext())
 		{
-			datos.Categoria datosCategoria = it.next();
+			datos.OLD.Categoria datosCategoria = it.next();
 			
 			negocio.Categoria categoriaNegocio = new negocio.Categoria();			
 			
@@ -58,7 +58,7 @@ public class CatalogoCategorias
 			
 			Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
 			
-			for(datos.Categoria dc: ctgDatos.getCategorias())
+			for(datos.OLD.Categoria dc: ctgDatos.getCategorias())
 			{
 				if(datosCategoria.getIdCategoria() == dc.getIdCategoria())
 				{

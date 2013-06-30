@@ -14,7 +14,7 @@ public class Anuncio
 	private String membrete;
 	private String estado;
 	private Date fecha;
-	private datos.Anuncio anuncioDatos;
+	private datos.OLD.Anuncio anuncioDatos;
 	
 	
 	//CONSTRUCTOR
@@ -28,7 +28,7 @@ public class Anuncio
 		this.estado = "";
 		this.fecha = new Date();
 		
-		this.anuncioDatos = new datos.Anuncio();
+		this.anuncioDatos = new datos.OLD.Anuncio();
 	}
 
 	
@@ -112,12 +112,12 @@ public class Anuncio
 		this.idAnuncio = idAnuncio;
 	}
 	
-	public datos.Anuncio getAnuncioDatos() 
+	public datos.OLD.Anuncio getAnuncioDatos() 
 	{
 		return anuncioDatos;
 	}
 
-	public void setAnuncioDatos(datos.Anuncio anuncioDatos) 
+	public void setAnuncioDatos(datos.OLD.Anuncio anuncioDatos) 
 	{
 		this.anuncioDatos = anuncioDatos;
 	}

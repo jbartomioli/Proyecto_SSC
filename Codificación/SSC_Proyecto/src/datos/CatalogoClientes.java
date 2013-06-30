@@ -1,32 +1,36 @@
 package datos;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 
 public class CatalogoClientes 
 {
 	//ATRIBUTOS
-	private Collection<datos.Cliente> clientes;
+	private Set<Clientes> clientes = new HashSet<Clientes>(0);
 	
 	
 	//CONSTRUCTOR
 	public CatalogoClientes() 
 	{
-		this.clientes = new ArrayList<datos.Cliente>();
+		this.clientes = null;
 		this.obtenerClientes();
 	}
 
 
 	//GETTER & SETTER
-	public Collection<datos.Cliente> getClientes() 
+	public Set<Clientes> getClientes() 
 	{
 		return clientes;
 	}
 
 
-	public void setClientes(Collection<datos.Cliente> clientes) 
+	public void setClientes(Set<Clientes> clientes) 
 	{
 		this.clientes = clientes;
 	}
@@ -37,57 +41,33 @@ public class CatalogoClientes
 	
 	//METODOS
 	//-------------------------------------------------------------
-	public Collection<datos.Cliente> obtenerClientes()
+	public List obtenerClientes()
 	{
-		ResultSet conjuntoResult = null;
-		utilidades.BDConector conector = null;
-		
+		Session session = null;	
+		List result = null;
 		
 		try
 		{
-			
-			conector = new utilidades.BDConector(utilidades.BDConstantes.URL_BD, 
-					utilidades.BDConstantes.PORT, 
-					utilidades.BDConstantes.DATABASE, 
-					utilidades.BDConstantes.USER, 
-					utilidades.BDConstantes.PASS);
-			
-
-			conjuntoResult = conector.ejecutaPeticion("CALL obtenerClientes");
-					
-			
-			while( conjuntoResult.next())
-			{
-				datos.Cliente c = new datos.Cliente();
-				
-				c.setIdCliente(conjuntoResult.getInt("idCliente"));
-				c.setNombre(conjuntoResult.getString("nombre"));
-				c.setApellido(conjuntoResult.getString("apellido"));
-				c.setEmail(conjuntoResult.getString("email"));		
-				c.setEspecialidad(conjuntoResult.getString("especialidad"));
-				c.setTipoCliente(conjuntoResult.getBoolean("tipo"));
-				c.setDireccion(conjuntoResult.getString("direccion"));
-				c.setTelefono(conjuntoResult.getString("telefono"));
-	
-				clientes.add(c);
-			}			
+			//SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+			//session = utilidades.HibernateUtil.getSessionFactory().getCurrentSession();
+					    
+		    session.beginTransaction();
+	        result = session.createQuery("from Clientes").list();
+	        session.getTransaction().commit();
+	        
+		    
 		}
-		catch ( SQLException excepcionSql)
-		{
-			excepcionSql.printStackTrace();
-		}
+		 
+		catch(Exception ex)
+		 {
+			ex.printStackTrace();
+		 }
+		 
 		finally
-		{
-			try
-			{
-				conjuntoResult.close();
-				conector.cierraConexion();
-			}
-			catch (Exception excepcion)
-			{
-				excepcion.printStackTrace();
-			}
-		}
-		return clientes;
+		 {
+		 	session.close();
+		 }	
+        return result;
 	}
 }
