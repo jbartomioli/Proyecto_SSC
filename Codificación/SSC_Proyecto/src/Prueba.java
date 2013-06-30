@@ -27,13 +27,14 @@ public class Prueba {
 			//session = utilidades.HibernateUtil.getSessionFactory().getCurrentSession();
 			
 		    tran = session.beginTransaction();
-		     
+		    
+		    /*
 		    Categorias categoria = new Categorias();
 		    
 		    categoria.setDescripcion("Anestesia");
 		    
 		    session.save(categoria);
-		      
+		      */
 		    tran.commit();
 		 }
 		 catch(Exception ex)
