@@ -4,7 +4,7 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://bartomserver.sytes.net:3306/BD_SSC</property>
+  <property name="hibernate.connection.url">jdbc:mysql://bartomserver.dyndns.org:3306/BD_SSC</property>
   <property name="hibernate.connection.username">ssc_acceso</property>
   <property name="hibernate.connection.password">zLvSUVUaDnWFNKzG</property>
   <property name="hibernate.show_sql">true</property>
