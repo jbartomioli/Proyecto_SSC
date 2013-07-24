@@ -21,7 +21,7 @@ public class CatalogoClientes {
 		//se inicializa el array de clientes del catalogo
 		clientes = new ArrayList<negocio.Cliente>();
 		
-		
+		/*
 		for(datos.OLD.Cliente datosCliente: ctgDatos.getClientes())
 		{
 			negocio.Cliente clienteNegocio = new negocio.Cliente();
@@ -36,7 +36,7 @@ public class CatalogoClientes {
 			//clienteNegocio.setVentas(ventas)
 			
 			clientes.add(clienteNegocio);
-		}
+		}*/
 	}
 
 	//GETTERS & SETTERS

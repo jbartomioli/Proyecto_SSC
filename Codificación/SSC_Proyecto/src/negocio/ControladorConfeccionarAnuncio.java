@@ -302,7 +302,7 @@ public class ControladorConfeccionarAnuncio
 
 		productoActual = this.cp.buscarProducto(idProducto);
 
-		arrClientesEliminar = cc.obtenerClientesProdcuto(productoActual);
+		//arrClientesEliminar = cc.obtenerClientesProdcuto(productoActual);
 
 		arrClientesInteresados.remove(arrClientesEliminar);
 
