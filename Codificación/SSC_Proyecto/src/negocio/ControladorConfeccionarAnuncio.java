@@ -149,36 +149,54 @@ public class ControladorConfeccionarAnuncio
 		this.productoModificar = productoModificar;
 	}
 
-	// METODOS
-	// Metodo DSD 1.1.1 - DSD 1.7.2
+	
+	/////////////////////////////////////////////////////////////////////////
+	// METODOS //////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////
+	
+	//////////////////////////////////
+	// Metodo DSD 1.1.1 - DSD 1.7.2 //
+	//////////////////////////////////
 	public ArrayList<String> seleccionarCategoria(int idCategoria) 
 	{
 		return null;
 	}
 
-	// Metodo DSD 1.1.2 - DSD 1.7.3
+	//////////////////////////////////
+	// Metodo DSD 1.1.2 - DSD 1.7.3 //
+	//////////////////////////////////
 	public ArrayList<String> seleccionarSubcategoria(int idSubCategoria) 
 	{
 		return null;
 	}
 
-	// Metodo DSD 1.1.3 - DSD 1.7.4
+	//////////////////////////////////
+	// Metodo DSD 1.1.3 - DSD 1.7.4 //
+	//////////////////////////////////
 	public ArrayList<String> seleccionarProducto(int idProducto) 
 	{
 		return null;
 	}
 
-	// Metodo DSD 1.1.4
+	//////////////////////
+	// Metodo DSD 1.1.4 //
+	//////////////////////
 	public boolean finalizarCargaProducto() 
 	{
 		this.anuncioActual = new negocio.Anuncio();
 
 		this.anuncioActual.setEstado("PENDIENTE");
+		//falta seteo productos 
+		//falta seteo de cliente
 
 		return true;
 	}
 
-	// Metodo DSD 1.2.1
+	
+	//////////////////////
+	// Metodo DSD 1.2.1 //
+	//////////////////////
+	//LISTO
 	public TipoMensaje redactarMensaje(String mensaje) 
 	{
 		anuncioActual.setTextoMensaje(mensaje);
@@ -187,6 +205,8 @@ public class ControladorConfeccionarAnuncio
 		
 		negocio.ParametrosNegocio parametroNegocio=new negocio.ParametrosNegocio();
 		
+		
+		///SALIDA
 		int i=0;
 		
 		for(negocio.Producto p : arrProductosPublicación)
@@ -199,25 +219,33 @@ public class ControladorConfeccionarAnuncio
 		}
 		
 		anuncioActual.setMembrete(parametroNegocio.getMembrete());
-		
 		datosMensaje.setMembrete(parametroNegocio.getMembrete());
 
 		return datosMensaje;
 	}
 
-	// Metodo DSD 1.3.1
+	/////////////////////
+	// Metodo DSD 1.3.1//
+	/////////////////////
+	//FALTA
 	public boolean guardarAnuncio() 
 	{
 		return true;
 	}
 
-	// Metodo DSD 1.4.1
+	/////////////////////
+	// Metodo DSD 1.4.1//
+	/////////////////////
+	//FALTA
 	public boolean enviarAnuncios() 
 	{
 		return true;
 	}
 
-	// Metodo DSD 1.5.1
+	/////////////////////
+	// Metodo DSD 1.5.1//
+	/////////////////////
+	//REVISAR METODOS INTERNOS
 	public String modificarPrecioProducto(int idProducto) 
 	{
 		negocio.Producto productoModificar;
@@ -230,8 +258,11 @@ public class ControladorConfeccionarAnuncio
 			return null;
 	}
 
-	// Metodo DSD 1.5.2
-	public String cambiarPrecio(float nuevoPrecio) 
+	/////////////////////
+	// Metodo DSD 1.5.2//
+	/////////////////////
+	//LISTO
+	public void cambiarPrecio(float nuevoPrecio) 
 	{
 		negocio.Producto productoModificar = new negocio.Producto();
 
@@ -241,16 +272,22 @@ public class ControladorConfeccionarAnuncio
 
 		anuncioActual.actualizarProducto(productoModificar);
 
-		return null;
+		//return null;
 	}
 
-	// Metodo DSD 1.6.1
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////
+	// Metodo DSD 1.6.1 (no modifica, solo muestra los posibles clientes a modificar) //
+	////////////////////////////////////////////////////////////////////////////////////
+	//LISTO
 	public String[][] modificarClientesDestinatarios() 
 	{
 		Collection<negocio.Cliente> arrClientes = new ArrayList<negocio.Cliente>();
 
 		arrClientes = anuncioActual.getClientes();
 
+		//SALIDA
 		String[][] arrDatos = new String[arrClientes.size()][2];
 
 		int i = 0;
@@ -266,7 +303,10 @@ public class ControladorConfeccionarAnuncio
 		return arrDatos;
 	}
 
-	// Metodo DSD 1.6.2
+	//////////////////////
+	// Metodo DSD 1.6.2 //
+	//////////////////////
+	//LISTO
 	public String[][] seleccionarClientes(String[] idCliente) 
 	{
 		Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
@@ -275,10 +315,11 @@ public class ControladorConfeccionarAnuncio
 
 		anuncioActual.setClientes(arrClientesTemp);
 
+		//El anuncio actual ya tiene los clientes como atributo
 		ca.guardarCambioClientesAnuncio(anuncioActual);
 
-		String[][] arrDatos = new String[arrClientesTemp.size()][2]; // Revisar
-																		// definicion
+		//SALIDA
+		String[][] arrDatos = new String[arrClientesTemp.size()][2]; // Revisar definicion
 
 		int i = 0;
 
@@ -293,19 +334,26 @@ public class ControladorConfeccionarAnuncio
 		return arrDatos;
 	}
 
-	// Metodo 1.7.1
+	
+	//////////////////
+	// Metodo 1.7.1 //
+	//////////////////
 	public String[][] eliminarProducto(int idProducto) 
 	{
 		negocio.Producto productoActual = new negocio.Producto();
-
 		Collection<negocio.Cliente> arrClientesEliminar = new ArrayList<negocio.Cliente>();
 
-		productoActual = this.cp.buscarProducto(idProducto);
+		
+		productoActual = cp.buscarProducto(idProducto);
 
-		//arrClientesEliminar = cc.obtenerClientesProdcuto(productoActual);
+		arrClientesEliminar = cc.obtenerClientesProducto(productoActual);
 
+		//VALIDAR QUE EL CLIENTE NO TENGA OTRO PRODUCTO
+		//ES DECIR, SI ELIMINAMOS UN CLIENTE QUE SEA UN POSIBLE INTERESADO DE OTRO
+		//PRODUCTO DEL ANUNCIO
 		arrClientesInteresados.remove(arrClientesEliminar);
 
+		//SALIDA
 		String[][] arrDatos = new String[arrClientesInteresados.size()][2];
 
 		int i = 0;
@@ -324,7 +372,10 @@ public class ControladorConfeccionarAnuncio
 	}
 
 	
-	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.2.1
+	
+	///////////////////////////////////////////////////////////////
+	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.2.1 /////////////////
+	///////////////////////////////////////////////////////////////
 	private class TipoMensaje 
 	{
 		String membrete;
@@ -364,4 +415,8 @@ public class ControladorConfeccionarAnuncio
 		}
 		
 	}
+	//--------------------------------------------------------------------------------
+	//////////////////////////////////////////////////////////////////////////////////
+	//REVISAR Y GENERAR SUBCLASES SALIDA PARA DATOS EN PANTALLA MEDTODOS ANTERIORES //
+	//////////////////////////////////////////////////////////////////////////////////
 }

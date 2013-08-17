@@ -30,29 +30,39 @@ public class ControladorRealizarSeguimientoCliente
 
 	
 	//METODOS
-	//-------------------------------------------------------------------
-	//Metodo 2.1.1
+
+	/////////////////
+	//Metodo 2.1.1 //
+	/////////////////
+	//LISTO
 	public DatosSalida buscarCliente(int idCliente)
 	{
+		//cliente temporal
 		negocio.Cliente cliente;
 		
+		//instancia clase salida datos
 		DatosSalida salidaObj = new DatosSalida();
 		
+		//instancia catalogo clientes
 		cc = new negocio.CatalogoClientes();
 		
+		//se busca al cliente por su idCliente		
 		cliente = cc.buscarCliente(idCliente);
 		
-		
+		//si el cliente no es nulo
 		if (cliente != null)
 		{
+			//array de ventas temporal
 			Collection<negocio.Venta> ventas = new ArrayList<negocio.Venta>();
 			
+			//seteos atributos clase salida datos
 			salidaObj.setNombre(cliente.getNombre());
 			salidaObj.setApellido(cliente.getApellido());
 			
-					
+			//se obtienen las ventas del cliente
 			ventas = cliente.getVentas();
 			
+			//si la venta es no nula
 			if (ventas != null)
 			{		
 				for(negocio.Venta v : ventas)
@@ -78,7 +88,10 @@ public class ControladorRealizarSeguimientoCliente
 	//*******************************************************************
 	
 	
-	//Metodo 2.1.2
+	/////////////////
+	//Metodo 2.1.2 //
+	/////////////////
+	//LISTO
 	public DatosSalida buscarCliente(String apellido, String nombre)
 	{
 	
@@ -126,9 +139,10 @@ public class ControladorRealizarSeguimientoCliente
 	//*******************************************************************
 
 	
-	
-	//Metodo 2.1.3
-	//FALTA SALIDA
+	/////////////////
+	//Metodo 2.1.3 //
+	/////////////////
+	//LISTO
 	public Collection<DatosSalida> seleccionarClientes(boolean tipoCliente)
 	{
 		Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
@@ -139,38 +153,42 @@ public class ControladorRealizarSeguimientoCliente
 		
 		arrClientesTemp = cc.buscarClientes(tipoCliente);
 		
-		
-		for(negocio.Cliente cliente : arrClientesTemp)
+		if(arrClientesTemp != null)
 		{
-			Collection<negocio.Venta> ventas = new ArrayList<negocio.Venta>();
 			
-			DatosSalida salidaObj = new DatosSalida();
-		
-			salidaObj.setNombre(cliente.getNombre());
-			salidaObj.setApellido(cliente.getApellido());
-			
-			ventas = cliente.getVentas();
-			
-			if (ventas != null)
+			for(negocio.Cliente cliente : arrClientesTemp)
 			{
-				for(negocio.Venta v : ventas)
+				Collection<negocio.Venta> ventas = new ArrayList<negocio.Venta>();
+				
+				DatosSalida salidaObj = new DatosSalida();
+			
+				salidaObj.setNombre(cliente.getNombre());
+				salidaObj.setApellido(cliente.getApellido());
+				
+				ventas = cliente.getVentas();
+				
+				
+				if (ventas != null)
 				{
-					Collection<negocio.LineaDeVenta> lineas = new ArrayList<negocio.LineaDeVenta>();
-					lineas = v.getLineasDeVenta();
-					
-					for(negocio.LineaDeVenta ldv : lineas)
+					for(negocio.Venta v : ventas)
 					{
-						negocio.Producto producto = new negocio.Producto();
+						Collection<negocio.LineaDeVenta> lineas = new ArrayList<negocio.LineaDeVenta>();
+						lineas = v.getLineasDeVenta();
 						
-						producto = ldv.getProductoLinea();
-						
-						String[] aux = { Integer.toString(producto.getIdProducto()),producto.getNombre(),Integer.toString(ldv.getCantidad())};
-						
-						salidaObj.productos.add(aux);	
+						for(negocio.LineaDeVenta ldv : lineas)
+						{
+							negocio.Producto producto = new negocio.Producto();
+							
+							producto = ldv.getProductoLinea();
+							
+							String[] aux = { Integer.toString(producto.getIdProducto()),producto.getNombre(),Integer.toString(ldv.getCantidad())};
+							
+							salidaObj.productos.add(aux);	
+						}
 					}
 				}
+				salida.add(salidaObj);
 			}
-			salida.add(salidaObj);
 		}
 		return salida;
 	}
@@ -178,7 +196,9 @@ public class ControladorRealizarSeguimientoCliente
 
 	
 	
-	//-------------------------------------------------------------------
+	/////////////////////////////////////////////////////////////////////
+	// SUBCLASE PARA SALIDA DE DATOS 								   //
+	/////////////////////////////////////////////////////////////////////
 	public class DatosSalida
 	{
 		String nombre;
