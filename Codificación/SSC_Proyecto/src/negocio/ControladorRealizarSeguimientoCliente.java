@@ -68,7 +68,7 @@ public class ControladorRealizarSeguimientoCliente
 				for(negocio.Venta v : ventas)
 				{
 					Collection<negocio.LineaDeVenta> lineas = new ArrayList<negocio.LineaDeVenta>();
-					lineas = v.getLineasDeVenta();
+					lineas = v.getLineas();
 					
 					for(negocio.LineaDeVenta ldv : lineas)
 					{
@@ -119,7 +119,7 @@ public class ControladorRealizarSeguimientoCliente
 				for(negocio.Venta v : ventas)
 				{
 					Collection<negocio.LineaDeVenta> lineas = new ArrayList<negocio.LineaDeVenta>();
-					lineas = v.getLineasDeVenta();
+					lineas = v.getLineas();
 					
 					for(negocio.LineaDeVenta ldv : lineas)
 					{
@@ -173,7 +173,7 @@ public class ControladorRealizarSeguimientoCliente
 					for(negocio.Venta v : ventas)
 					{
 						Collection<negocio.LineaDeVenta> lineas = new ArrayList<negocio.LineaDeVenta>();
-						lineas = v.getLineasDeVenta();
+						lineas = v.getLineas();
 						
 						for(negocio.LineaDeVenta ldv : lineas)
 						{

@@ -3,6 +3,8 @@ package datos;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import negocio.Venta;
+
 public class Cliente 
 {
 	//ATRIBUTOS

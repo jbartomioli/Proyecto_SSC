@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ public class Venta
 	public Venta() 
 	{
 		this.fechaVenta = new Date();
-		this.lineasDeVenta = null;
+		this.lineasDeVenta = new ArrayList<negocio.LineaDeVenta>();
 		this.total = 0;
 	}
 
@@ -33,13 +34,13 @@ public class Venta
 	}
 
 
-	public Collection<negocio.LineaDeVenta> getLineasDeVenta() 
+	public Collection<negocio.LineaDeVenta> getLineas() 
 	{
 		return lineasDeVenta;
 	}
 
 
-	public void setLineasDeVenta(Collection<negocio.LineaDeVenta> lineasDeVenta) 
+	public void setLineas(Collection<negocio.LineaDeVenta> lineasDeVenta) 
 	{
 		this.lineasDeVenta = lineasDeVenta;
 	}

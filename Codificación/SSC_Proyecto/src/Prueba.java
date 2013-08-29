@@ -15,7 +15,10 @@ public class Prueba {
 			negocio.CatalogoClientes cc = new negocio.CatalogoClientes();
 			for(negocio.Cliente C : cc.getClientes())
 			{
-				System.out.println(C.getApellido() + " " +C.getNombre());
+				System.out.println(C.getApellido() + " " +C.getNombre()+" "+C.getVentas().toString());
+				//for(negocio.Venta V: C.getVentas())
+				//	System.out.print(V.getFechaVenta()+" ");
+				//System.out.println("");
 			}
 			
 			

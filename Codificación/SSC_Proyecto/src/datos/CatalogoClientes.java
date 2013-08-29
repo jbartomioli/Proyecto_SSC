@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -55,11 +53,10 @@ public class CatalogoClientes
 		    session.beginTransaction();
 		        
             Query query = session.createQuery("from Clientes");  
-            List list = query.list();  
-            System.out.println("List Size " +list.size());  
-
+            @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
             
-            for(Iterator it=list.iterator();it.hasNext();)
+            for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
 	        	datos.Cliente clienteDatos = new datos.Cliente();
 	           
@@ -73,8 +70,44 @@ public class CatalogoClientes
 	           	clienteDatos.setIdCliente(entCliente.getIdCliente());
 	           	clienteDatos.setNombre(entCliente.getNombre());
 	           	clienteDatos.setTelefono(entCliente.getTelefono());
-	           	//clienteDatos.setVentas(entCliente.getVentases());
-          
+	           	
+	           	Collection<datos.Venta> ventas = new ArrayList<datos.Venta>();
+	           	
+	           	for(entidades.Ventas V: entCliente.getVentases())
+	           	{
+	           		datos.Venta venta = new datos.Venta();
+	           		
+	           		venta.setFechaVenta(V.getFecha());
+	           		
+	           		Collection<datos.LineaDeVenta> lineas = new ArrayList<datos.LineaDeVenta>();
+	           		
+	           		for(entidades.LineasDeVentas LDV: V.getLineasDeVentases())
+	           		{
+	           			datos.LineaDeVenta linea = new datos.LineaDeVenta();
+	           			
+	           			linea.setCantidad(LDV.getCantidad());
+	           			
+	           			datos.Producto producto = new datos.Producto();
+	           			
+	           			producto.setCodProducto(LDV.getProductos().getCodProducto());
+	           			producto.setExistenciaStock(LDV.getProductos().getStock());
+	           			producto.setNombre(LDV.getProductos().getNombre());
+	           			//producto.setPrecios(LDV.getProductos().getPrecioses());
+	           			
+	           			linea.setProductoLinea(producto);
+	           			
+	           			//linea.setSubTotal(LDV.getSubtotal());
+	           			
+	           			lineas.add(linea);
+	           			
+	           		}
+	           		
+	           		venta.setLineas(lineas);
+	           		//venta.setTotal(V.getTotal());
+	           		ventas.add(venta);
+	           	}
+	           	clienteDatos.setVentas(ventas);	           	
+
 	           	clientes.add(clienteDatos);
             }
 
