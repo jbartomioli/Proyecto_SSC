@@ -1,36 +1,37 @@
 package datos;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
+
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 
 public class CatalogoClientes 
 {
 	//ATRIBUTOS
-	private Set<Clientes> clientes = new HashSet<Clientes>(0);
+	private Collection<datos.Cliente> clientes;
 	
 	
 	//CONSTRUCTOR
 	public CatalogoClientes() 
 	{
-		this.clientes = null;
+		this.clientes = new ArrayList<datos.Cliente>();;
 		this.obtenerClientes();
 	}
 
 
 	//GETTER & SETTER
-	public Set<Clientes> getClientes() 
+	public Collection<datos.Cliente> getClientes() 
 	{
 		return clientes;
 	}
 
 
-	public void setClientes(Set<Clientes> clientes) 
+	public void setClientes(Collection<datos.Cliente> clientes) 
 	{
 		this.clientes = clientes;
 	}
@@ -41,33 +42,53 @@ public class CatalogoClientes
 	
 	//METODOS
 	//-------------------------------------------------------------
-	public List obtenerClientes()
+	public void obtenerClientes()
 	{
 		Session session = null;	
-		List result = null;
+		//List result = null;
+		
+
 		
 		try
 		{
-			//SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
 		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
-			//session = utilidades.HibernateUtil.getSessionFactory().getCurrentSession();
-					    
 		    session.beginTransaction();
-	        result = session.createQuery("from Clientes").list();
+		        
+            Query query = session.createQuery("from Clientes");  
+            List list = query.list();  
+            System.out.println("List Size " +list.size());  
+
+            
+            for(Iterator it=list.iterator();it.hasNext();)
+            {  
+	        	datos.Cliente clienteDatos = new datos.Cliente();
+	           
+	        	entidades.Clientes entCliente = (entidades.Clientes) it.next();  
+	           
+	           	clienteDatos.setApellido(entCliente.getApellido()); 
+	           	clienteDatos.setNombre(entCliente.getNombre());
+	           	clienteDatos.setDireccion(entCliente.getDireccion());
+	           	clienteDatos.setEmail(entCliente.getEmail());
+	           	clienteDatos.setEspecialidad(entCliente.getEspecialidad());
+	           	clienteDatos.setIdCliente(entCliente.getIdCliente());
+	           	clienteDatos.setNombre(entCliente.getNombre());
+	           	clienteDatos.setTelefono(entCliente.getTelefono());
+	           	//clienteDatos.setVentas(entCliente.getVentases());
+          
+	           	clientes.add(clienteDatos);
+            }
+
 	        session.getTransaction().commit();
-	        
-		    
 		}
 		 
 		catch(Exception ex)
-		 {
+		{
 			ex.printStackTrace();
-		 }
+		}
 		 
 		finally
-		 {
+		{
 		 	session.close();
-		 }	
-        return result;
+		}	
 	}
 }

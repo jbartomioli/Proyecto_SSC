@@ -21,22 +21,22 @@ public class CatalogoClientes {
 		//se inicializa el array de clientes del catalogo
 		clientes = new ArrayList<negocio.Cliente>();
 		
-		/*
-		for(datos.OLD.Cliente datosCliente: ctgDatos.getClientes())
+		
+		for(datos.Cliente clienteDato: ctgDatos.getClientes())
 		{
 			negocio.Cliente clienteNegocio = new negocio.Cliente();
 			
-			clienteNegocio.setApellido(datosCliente.getApellido());
-			clienteNegocio.setDireccion(datosCliente.getDireccion());
-			clienteNegocio.setEmail(datosCliente.getEmail());
-			clienteNegocio.setEspecialidad(datosCliente.getEspecialidad());
-			clienteNegocio.setIdCliente(datosCliente.getIdCliente());
-			clienteNegocio.setNombre(datosCliente.getNombre());
-			clienteNegocio.setTelefono(datosCliente.getTelefono());
-			//clienteNegocio.setVentas(ventas)
+			clienteNegocio.setApellido(clienteDato.getApellido());
+			clienteNegocio.setDireccion(clienteDato.getDireccion());
+			clienteNegocio.setEmail(clienteDato.getEmail());
+			clienteNegocio.setEspecialidad(clienteDato.getEspecialidad());
+			clienteNegocio.setIdCliente(clienteDato.getIdCliente());
+			clienteNegocio.setNombre(clienteDato.getNombre());
+			clienteNegocio.setTelefono(clienteDato.getTelefono());
+			//clienteNegocio.setVentas(clienteDato.getVentas());
 			
 			clientes.add(clienteNegocio);
-		}*/
+		}
 	}
 
 	//GETTERS & SETTERS

@@ -10,7 +10,7 @@ public class ParametrosNegocio {
 	//CONSTRUCTOR
 	public ParametrosNegocio() 
 	{
-		datos.OLD.ParametrosNegocio parametrosDatos = new datos.OLD.ParametrosNegocio();
+		datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
 		
 		this.membrete = parametrosDatos.getMembrete();
 		this.ultIdPedido = parametrosDatos.getUltIdPedido();

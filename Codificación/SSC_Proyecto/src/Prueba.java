@@ -1,11 +1,3 @@
-
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
-import datos.Categorias;
-
-
-
 public class Prueba {
 
 	//static SessionFactory sessionFactory;
@@ -17,25 +9,16 @@ public class Prueba {
 	
 	public static void main(String [] args)
 	{ 
-		
-		Session session = null;
-		Transaction tran = null;
+
 		try
 		{
-			//SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
-		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
-			//session = utilidades.HibernateUtil.getSessionFactory().getCurrentSession();
+			negocio.CatalogoClientes cc = new negocio.CatalogoClientes();
+			for(negocio.Cliente C : cc.getClientes())
+			{
+				System.out.println(C.getApellido() + " " +C.getNombre());
+			}
 			
-		    tran = session.beginTransaction();
-		    
-		    /*
-		    Categorias categoria = new Categorias();
-		    
-		    categoria.setDescripcion("Anestesia");
-		    
-		    session.save(categoria);
-		      */
-		    tran.commit();
+			
 		 }
 		 catch(Exception ex)
 		 {
@@ -43,7 +26,6 @@ public class Prueba {
 		 }
 		 finally
 		 {
-		 	session.close();
 		 }	
    }
 	
