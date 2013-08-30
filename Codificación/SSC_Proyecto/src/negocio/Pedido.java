@@ -9,7 +9,7 @@ public class Pedido
 	//ATRIBUTOS
 	private int idPedido;
 	private float total;
-	private int idCliente;
+	private negocio.Cliente cliente;
 	private Date fecha;
 	private Collection<negocio.LineaDePedido> lineas;
 	private boolean estado;
@@ -20,7 +20,7 @@ public class Pedido
 	{
 		this.idPedido = 0;
 		this.total = 0;
-		this.idCliente = 0;
+		this.cliente = new negocio.Cliente();
 		this.fecha = new Date();
 		this.lineas = new ArrayList<negocio.LineaDePedido>();
 		this.estado = false;
@@ -50,15 +50,15 @@ public class Pedido
 	}
 
 
-	public int getCliente() 
+	public negocio.Cliente getCliente() 
 	{
-		return idCliente;
+		return cliente;
 	}
 
 
-	public void setCliente(int idCliente) 
+	public void setCliente(negocio.Cliente cliente) 
 	{
-		this.idCliente = idCliente;
+		this.cliente = cliente;
 	}
 
 

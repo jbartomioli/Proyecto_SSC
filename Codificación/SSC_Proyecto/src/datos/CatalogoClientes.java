@@ -17,7 +17,7 @@ public class CatalogoClientes
 	//CONSTRUCTOR
 	public CatalogoClientes() 
 	{
-		this.clientes = new ArrayList<datos.Cliente>();;
+		this.clientes = new ArrayList<datos.Cliente>();
 		this.obtenerClientes();
 	}
 

@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class ControladorRegistrarPedidoCliente 
@@ -75,31 +76,92 @@ public class ControladorRegistrarPedidoCliente
 	//////////////////
 	//Metodo 3.1.1 ///
 	//////////////////
-	//FALTA
-	public ArrayList<String> buscarCliente(int idCliente)
+	//LISTO
+	public DatosCliente buscarCliente(int idCliente)
 	{
 		negocio.Pedido PCTemporal = new negocio.Pedido();
+		
+		negocio.Cliente clienteActual = new negocio.Cliente();
+		
+		clienteActual=cc.buscarCliente(idCliente);
+		
+		DatosCliente datosCliente = new DatosCliente();
+		
+		if(clienteActual!= null)
+		{	
+			datosCliente.setNombre(clienteActual.getNombre());
+			datosCliente.setApellido(clienteActual.getApellido());
+			datosCliente.setDireccion(clienteActual.getDireccion());
+			datosCliente.setTelefono(clienteActual.getTelefono());
+			
+			PCTemporal.setCliente(clienteActual);
+			PCTemporal.setFecha(new Date());
+			
+			return datosCliente;		
+		}
+		else
+			return null;
 
-		return null;
 	}
 	
 	/////////////////
 	//Metodo 3.1.2 //
 	/////////////////
-	//FALTA
-	public ArrayList<String> buscarCliente(String apellido, String nombre)
+	//LISTO
+	public DatosCliente buscarCliente(String apellido, String nombre)
 	{
 		
-		return null;
+		negocio.Pedido PCTemporal = new negocio.Pedido();
+		
+		negocio.Cliente clienteActual = new negocio.Cliente();
+		
+		clienteActual=cc.buscarCliente(apellido, nombre);
+		
+		DatosCliente datosCliente = new DatosCliente();
+		
+		if(clienteActual!= null)
+		{	
+			datosCliente.setNombre(clienteActual.getNombre());
+			datosCliente.setApellido(clienteActual.getApellido());
+			datosCliente.setDireccion(clienteActual.getDireccion());
+			datosCliente.setTelefono(clienteActual.getTelefono());
+			
+			PCTemporal.setCliente(clienteActual);
+			PCTemporal.setFecha(new Date());
+			
+			return datosCliente;	
+		}
+		else
+			return null;
 	}
 	
 	/////////////////
 	//Metodo 3.2.1 //
 	/////////////////
 	//FALTA
-	public ArrayList<String> seleccionarProducto(int idProdcuto, int cantidad)
+	public ArrayList<String> seleccionarProducto(int idProducto, int cantidad)
 	{
-		return null;
+		negocio.Producto productoTemporal = new negocio.Producto();
+		
+		productoTemporal = cp.buscarProducto(idProducto);
+		
+		if(productoTemporal != null)
+		{
+			int stockActual = productoTemporal.getExistenciaStock();
+			
+			//Obtener datos del producto mediante subclase
+			
+			if(stockActual>=cantidad)
+			{
+				PCTemporal.setProducto(productoTemporal, cantidad);
+				
+				return null; //Devolver datos
+			}
+			else
+				return null;
+		}
+		else
+			return null;
 	}
 	
 	
@@ -166,4 +228,71 @@ public class ControladorRegistrarPedidoCliente
 		return true;
 	}
 	
+	
+///////////////////////////////////////////////////////////////
+//SUB CLASE PARA DEVOLVER DATOS DEL DSD 3.1 ///////////////////
+///////////////////////////////////////////////////////////////
+private class DatosCliente 
+{
+String nombre, apellido, direccion, telefono;
+
+
+//CONSTRUCTOR
+public DatosCliente() 
+{
+this.nombre = "";
+this.apellido = "";
+this.direccion = "";
+this.telefono = "";
+}
+
+
+	public String getNombre() 
+	{
+	return nombre;
+	}
+	
+	
+	public void setNombre(String nombre) 
+	{
+	this.nombre = nombre;
+	}
+	
+	
+	public String getApellido() 
+	{
+	return apellido;
+	}
+	
+	
+	public void setApellido(String apellido) 
+	{
+	this.apellido = apellido;
+	}
+	
+	
+	public String getDireccion() 
+	{
+	return direccion;
+	}
+	
+	
+	public void setDireccion(String direccion) 
+	{
+	this.direccion = direccion;
+	}
+	
+	
+	public String getTelefono() 
+	{
+	return telefono;
+	}
+	
+	
+	public void setTelefono(String telefono) 
+	{
+	this.telefono = telefono;
+	}
+
+}
 }
