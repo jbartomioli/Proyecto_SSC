@@ -3,17 +3,25 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.border.EmptyBorder;
+
 
 public class ControladorRegistrarPedidoCliente 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private negocio.CatalogoClientes cc;
 	private negocio.CatalogoProductos cp;
 	private negocio.CatalogoPedidos cpe;
 	private negocio.Pedido PCTemporal;
+	//---------------------------------------------------------------
+
 	
 	
-	//CONSTRUCTOR
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public ControladorRegistrarPedidoCliente() 
 	{
 		this.cc = new negocio.CatalogoClientes();
@@ -21,9 +29,12 @@ public class ControladorRegistrarPedidoCliente
 		this.cpe = new negocio.CatalogoPedidos();
 		this.PCTemporal = new negocio.Pedido();
 	}
+	//---------------------------------------------------------------
 
 
-	//GETTER & SETTER
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public negocio.CatalogoClientes getCc() 
 	{
 		return cc;
@@ -70,14 +81,18 @@ public class ControladorRegistrarPedidoCliente
 	{
 		PCTemporal = pCTemporal;
 	}
+	//---------------------------------------------------------------
 	
 	
-	//METODOS
-	//////////////////
-	//Metodo 3.1.1 ///
-	//////////////////
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	// Metodo 3.1.1 												/
+	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public DatosCliente buscarCliente(int idCliente)
+	public DatosClienteSalida buscarCliente(int idCliente)
 	{
 		negocio.Pedido PCTemporal = new negocio.Pedido();
 		
@@ -85,7 +100,7 @@ public class ControladorRegistrarPedidoCliente
 		
 		clienteActual=cc.buscarCliente(idCliente);
 		
-		DatosCliente datosCliente = new DatosCliente();
+		DatosClienteSalida datosCliente = new DatosClienteSalida();
 		
 		if(clienteActual!= null)
 		{	
@@ -103,12 +118,13 @@ public class ControladorRegistrarPedidoCliente
 			return null;
 
 	}
+	//---------------------------------------------------------------	
 	
-	/////////////////
-	//Metodo 3.1.2 //
-	/////////////////
+	/////////////////////////////////////////////////////////////////
+	// Metodo 3.1.2 												/
+	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public DatosCliente buscarCliente(String apellido, String nombre)
+	public DatosClienteSalida buscarCliente(String apellido, String nombre)
 	{
 		
 		negocio.Pedido PCTemporal = new negocio.Pedido();
@@ -117,7 +133,7 @@ public class ControladorRegistrarPedidoCliente
 		
 		clienteActual=cc.buscarCliente(apellido, nombre);
 		
-		DatosCliente datosCliente = new DatosCliente();
+		DatosClienteSalida datosCliente = new DatosClienteSalida();
 		
 		if(clienteActual!= null)
 		{	
@@ -134,10 +150,11 @@ public class ControladorRegistrarPedidoCliente
 		else
 			return null;
 	}
+	//---------------------------------------------------------------
 	
-	/////////////////
-	//Metodo 3.2.1 //
-	/////////////////
+	/////////////////////////////////////////////////////////////////
+	// Metodo 3.2.1 												/
+	/////////////////////////////////////////////////////////////////
 	//FALTA
 	public ArrayList<String> seleccionarProducto(int idProducto, int cantidad)
 	{
@@ -163,136 +180,251 @@ public class ControladorRegistrarPedidoCliente
 		else
 			return null;
 	}
+	//---------------------------------------------------------------
 	
-	
-	/////////////////
-	//Metodo 3.2.2 //
-	/////////////////
+	/////////////////////////////////////////////////////////////////
+	// Metodo 3.2.2 												/
+	/////////////////////////////////////////////////////////////////
 	//FALTA
 	public ArrayList<String> buscarProducto(String descParcial, int cantidad)
 	{
 		return null;
 	}
+	//---------------------------------------------------------------
 	
-	/////////////////
-	//Metodo 3.3.1 //
-	/////////////////
+	/////////////////////////////////////////////////////////////////
+	// Metodo 3.3.1 												/
+	/////////////////////////////////////////////////////////////////
 	//FALTA	
 	public ArrayList<String> pedidoCompleto()
 	{
 		return null;
 	}
+	//---------------------------------------------------------------
 	
-	////////////////
-	// Metodo 3.5 //
-	////////////////
+	/////////////////////////////////////////////////////////////////
+	// Metodo 3.5 													/
+	/////////////////////////////////////////////////////////////////
 	//FALTA
 	public boolean eliminarProducto(int idProducto)
 	{
 		return true;
 	}	
-
-	////////////////////////////
-	// Metodo 3.6.1 - 3.6.3.1 //
-	////////////////////////////
+	//---------------------------------------------------------------
+	
+	/////////////////////////////////////////////////////////////////
+	// Metodo 3.6.1 - 3.6.3.1 										/
+	/////////////////////////////////////////////////////////////////
 	//FALTA
 	public ArrayList<String> seleccionarProducto(int idProducto)
 	{
 		return null;
 	}
+	//---------------------------------------------------------------
 	
-	//////////////////
-	// Metodo 3.6.2 //
-	//////////////////
+	/////////////////////////////////////////////////////////////////
+	// Metodo 3.6.2 												/
+	/////////////////////////////////////////////////////////////////
 	//FALTA
 	public boolean modificarCantidad(int nuevaCantidad)
 	{
 		return true;
 	}
+	//---------------------------------------------------------------
 	
-	////////////////////
-	// Metodo 3.6.3.2 //
-	////////////////////
-	//FALTA
-	public ArrayList<String> seleccionarNuevoProducto(String descParcial)
+	/////////////////////////////////////////////////////////////////
+	// Metodo 3.6.3.2 												/
+	/////////////////////////////////////////////////////////////////
+	//LISTO
+	public DatosProductoSalida seleccionarNuevoProducto(String descParcial)
 	{
-		return null;
+		//se crea un producto temporal para guardar resultado de la busqueda
+		negocio.Producto productoTemporal = new negocio.Producto();
+		
+		productoTemporal = cp.buscarProducto(descParcial);
+		
+		if(productoTemporal != null)
+		{
+			//se crea instancia DatosProductoSalida
+			DatosProductoSalida datosProdSalida = new DatosProductoSalida();
+				
+			//se obtienen datos del producto
+			datosProdSalida.setNombreProducto(productoTemporal.getNombre());
+			datosProdSalida.setStock(String.valueOf(productoTemporal.getExistenciaStock()));
+			
+			return datosProdSalida;
+		}
+		else 
+			return null;
 	}
+	//---------------------------------------------------------------
 	
-	//////////////////
-	// Metodo 3.6.4 //
-	//////////////////
+	/////////////////////////////////////////////////////////////////
+	// Metodo 3.6.4 												/
+	/////////////////////////////////////////////////////////////////
 	//FALTA
 	public boolean ingresarCantidad(int cantidad)
 	{
 		return true;
 	}
+	//---------------------------------------------------------------
 	
 	
-///////////////////////////////////////////////////////////////
-//SUB CLASE PARA DEVOLVER DATOS DEL DSD 3.1 ///////////////////
-///////////////////////////////////////////////////////////////
-private class DatosCliente 
-{
-String nombre, apellido, direccion, telefono;
+	
+	
+	
+	//***************************************************************
+	// SUBCLASES SALIDA DE DATOS 									*
+	//***************************************************************
+	
+	
+	/////////////////////////////////////////////////////////////////
+	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 3.1 					/
+	/////////////////////////////////////////////////////////////////
+	public class DatosClienteSalida 
+	{
+		//ATRIBUTOS
+		private String nombre, apellido, direccion, telefono;
+	
+		//CONSTRUCTOR
+		public DatosClienteSalida() 
+		{
+			this.nombre = "";
+			this.apellido = "";
+			this.direccion = "";
+			this.telefono = "";
+		}
+		
+		
+		public String getNombre() 
+		{
+			return nombre;
+		}
+		
+		
+		public void setNombre(String nombre) 
+		{
+			this.nombre = nombre;
+		}
+		
+		
+		public String getApellido() 
+		{
+			return apellido;
+		}
+		
+		
+		public void setApellido(String apellido) 
+		{
+			this.apellido = apellido;
+		}
+		
+		
+		public String getDireccion() 
+		{
+			return direccion;
+		}
+		
+		
+		public void setDireccion(String direccion) 
+		{
+			this.direccion = direccion;
+		}
+		
+		
+		public String getTelefono() 
+		{
+			return telefono;
+		}
+		
+		
+		public void setTelefono(String telefono) 
+		{
+			this.telefono = telefono;
+		}
 
+	}
+	//---------------------------------------------------------------
+	
+	/////////////////////////////////////////////////////////////////
+	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 3.2 y 3.6 				/
+	/////////////////////////////////////////////////////////////////
+	public class DatosProductoSalida
+	{
+		private String nombreProducto, stock, cantPedida;
+		
+		public DatosProductoSalida()
+		{
+			this.cantPedida = "";
+			this.nombreProducto = "";
+			this.cantPedida = "";
+		}
 
-//CONSTRUCTOR
-public DatosCliente() 
-{
-this.nombre = "";
-this.apellido = "";
-this.direccion = "";
-this.telefono = "";
-}
+		public String getNombreProducto() {
+			return nombreProducto;
+		}
 
+		public void setNombreProducto(String nombreProducto) {
+			this.nombreProducto = nombreProducto;
+		}
 
-	public String getNombre() 
-	{
-	return nombre;
-	}
-	
-	
-	public void setNombre(String nombre) 
-	{
-	this.nombre = nombre;
-	}
-	
-	
-	public String getApellido() 
-	{
-	return apellido;
-	}
-	
-	
-	public void setApellido(String apellido) 
-	{
-	this.apellido = apellido;
-	}
-	
-	
-	public String getDireccion() 
-	{
-	return direccion;
-	}
-	
-	
-	public void setDireccion(String direccion) 
-	{
-	this.direccion = direccion;
-	}
-	
-	
-	public String getTelefono() 
-	{
-	return telefono;
-	}
-	
-	
-	public void setTelefono(String telefono) 
-	{
-	this.telefono = telefono;
-	}
+		public String getStock() {
+			return stock;
+		}
 
-}
+		public void setStock(String stock) {
+			this.stock = stock;
+		}
+
+		public String getCantPedida() {
+			return cantPedida;
+		}
+
+		public void setCantPedida(String cantPedida) {
+			this.cantPedida = cantPedida;
+		}
+	}
+	//---------------------------------------------------------------
+		
+	/////////////////////////////////////////////////////////////////
+	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 3.3 					/
+	/////////////////////////////////////////////////////////////////
+	public class DatosSalidaPedido
+	{
+		private String idPedido, total, fecha;
+		
+		public DatosSalidaPedido()
+		{
+			this.idPedido = "";
+			this.fecha = "";
+			this.total = "";
+		}
+
+		public String getIdPedido() {
+			return idPedido;
+		}
+
+		public void setIdPedido(String idPedido) {
+			this.idPedido = idPedido;
+		}
+
+		public String getTotal() {
+			return total;
+		}
+
+		public void setTotal(String total) {
+			this.total = total;
+		}
+
+		public String getFecha() {
+			return fecha;
+		}
+
+		public void setFecha(String fecha) {
+			this.fecha = fecha;
+		}
+		
+	}
+	//---------------------------------------------------------------
+
 }

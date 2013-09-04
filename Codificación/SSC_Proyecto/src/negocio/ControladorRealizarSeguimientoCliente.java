@@ -35,13 +35,13 @@ public class ControladorRealizarSeguimientoCliente
 	//Metodo 2.1.1 //
 	/////////////////
 	//LISTO
-	public DatosSalida buscarCliente(int idCliente)
+	public DatosSalidaSeguimiento buscarCliente(int idCliente)
 	{
 		//cliente temporal
 		negocio.Cliente cliente;
 		
 		//instancia clase salida datos
-		DatosSalida salidaObj = new DatosSalida();
+		DatosSalidaSeguimiento salidaObj = new DatosSalidaSeguimiento();
 		
 		//instancia catalogo clientes
 		cc = new negocio.CatalogoClientes();
@@ -92,12 +92,12 @@ public class ControladorRealizarSeguimientoCliente
 	//Metodo 2.1.2 //
 	/////////////////
 	//LISTO
-	public DatosSalida buscarCliente(String apellido, String nombre)
+	public DatosSalidaSeguimiento buscarCliente(String apellido, String nombre)
 	{
 	
 		negocio.Cliente cliente;
 		
-		DatosSalida salidaObj = new DatosSalida();
+		DatosSalidaSeguimiento salidaObj = new DatosSalidaSeguimiento();
 		
 		cc = new negocio.CatalogoClientes();
 		
@@ -143,11 +143,11 @@ public class ControladorRealizarSeguimientoCliente
 	//Metodo 2.1.3 //
 	/////////////////
 	//LISTO
-	public Collection<DatosSalida> seleccionarClientes(boolean tipoCliente)
+	public Collection<DatosSalidaSeguimiento> seleccionarClientes(boolean tipoCliente)
 	{
 		Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
 		
-		Collection<DatosSalida> salida = new ArrayList<DatosSalida>();
+		Collection<DatosSalidaSeguimiento> salida = new ArrayList<DatosSalidaSeguimiento>();
 
 		cc = new CatalogoClientes();
 		
@@ -160,7 +160,7 @@ public class ControladorRealizarSeguimientoCliente
 			{
 				Collection<negocio.Venta> ventas = new ArrayList<negocio.Venta>();
 				
-				DatosSalida salidaObj = new DatosSalida();
+				DatosSalidaSeguimiento salidaObj = new DatosSalidaSeguimiento();
 			
 				salidaObj.setNombre(cliente.getNombre());
 				salidaObj.setApellido(cliente.getApellido());
@@ -199,13 +199,13 @@ public class ControladorRealizarSeguimientoCliente
 	/////////////////////////////////////////////////////////////////////
 	// SUBCLASE PARA SALIDA DE DATOS 								   //
 	/////////////////////////////////////////////////////////////////////
-	public class DatosSalida
+	public class DatosSalidaSeguimiento
 	{
 		String nombre;
 		String apellido;
 		Collection<String[]> productos;
 		
-		public DatosSalida()
+		public DatosSalidaSeguimiento()
 		{		
 			this.nombre = "";
 			this.apellido = "";

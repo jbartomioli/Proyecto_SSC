@@ -10,18 +10,27 @@ public class CatalogoClientes {
 
 	
 	//CONSTRUCTOR
-	//VER --> Pensaba sacar esta seccion y generarla mediante un
-	//metodo fuera del constructor y ejecutarlo en el main de la clase
-	//dejando solo los constructores para inicializaciones
 	public CatalogoClientes() 
 	{
+		this.clientes = new ArrayList<negocio.Cliente>();
+		this.obtenerClientes();
+	}
+	
+
+	//GETTERS & SETTERS
+	public Collection<negocio.Cliente> getClientes()
+	{
+		return clientes;
+	}
+	
+	
+	//METODOS
+	//------------------------------------------------------------------------------------
+	public void obtenerClientes()
+	{
 		//se crea un objeto catalogoclientes de datos
-		datos.CatalogoClientes ctgDatos = new datos.CatalogoClientes();	
-		
-		//se inicializa el array de clientes del catalogo
-		clientes = new ArrayList<negocio.Cliente>();
-		
-		
+		datos.CatalogoClientes ctgDatos = new datos.CatalogoClientes();				
+			
 		for(datos.Cliente clienteDato: ctgDatos.getClientes())
 		{
 			negocio.Cliente clienteNegocio = new negocio.Cliente();
@@ -34,6 +43,9 @@ public class CatalogoClientes {
 			clienteNegocio.setNombre(clienteDato.getNombre());
 			clienteNegocio.setTelefono(clienteDato.getTelefono());
 			
+			clienteNegocio.obtenerVentas(clienteDato);
+			
+			/*
 			Collection<negocio.Venta> ventas = new ArrayList<negocio.Venta>();
 			
 			for(datos.Venta DV : clienteDato.getVentas())
@@ -50,12 +62,12 @@ public class CatalogoClientes {
            			linea.setCantidad(DLDV.getCantidad());
            			
            			negocio.Producto producto = new negocio.Producto();
-           			/*
+           			
            			producto.setCodProducto(DLDV.getProducto().getCodProducto());
            			producto.setExistenciaStock(DLDV.getProducto().getStock());
            			producto.setNombre(DLDV.getProducto().getNombre());
            			//producto.setPrecios(LDV.getProductos().getPrecioses());
-           			*/
+           			
            			linea.setProductoLinea(producto);
            			
            			//linea.setSubTotal(LDV.getSubtotal());
@@ -74,20 +86,15 @@ public class CatalogoClientes {
 			//ventas.addAll(clienteDato.getVentas());
 			
 			clienteNegocio.setVentas(ventas);
-			
+			*/
 			clientes.add(clienteNegocio);
 		}
-	}
 
-	//GETTERS & SETTERS
-	public Collection<negocio.Cliente> getClientes()
-	{
-		return clientes;
 	}
 	
 	
-	//METODOS
-	//------------------------------------------------------------------------------------
+	
+	
 	
 	//Obtiene los clientes que han comprado un producto específico
 	public Collection<negocio.Cliente> obtenerClientesProducto(negocio.Producto producto)
@@ -121,8 +128,8 @@ public class CatalogoClientes {
 	{	
 		for(negocio.Cliente c : this.clientes)
 		{
-			if ((c.getNombre() == nombre)
-				&& (c.getApellido() == apellido))
+			if ((c.getNombre().equals(nombre))
+				&& (c.getApellido().equals(apellido)))
 				return c;
 		}
 		return null;

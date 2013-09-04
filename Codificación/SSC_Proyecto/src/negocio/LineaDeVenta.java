@@ -5,7 +5,7 @@ public class LineaDeVenta
 	
 	//ATRIBUTOS
 	private negocio.Producto productoLinea;
-	private int idVenta;
+	//private int idVenta;
 	private int cantidad;
 	private double subTotal;
 	
@@ -14,7 +14,7 @@ public class LineaDeVenta
 	public LineaDeVenta() 
 	{
 		this.productoLinea = null;
-		this.idVenta = 0;
+		//this.idVenta = 0;
 		this.cantidad = 0;
 		this.subTotal = 0;
 	}
@@ -51,7 +51,7 @@ public class LineaDeVenta
 	{
 		this.subTotal = subTotal;
 	}
-
+/*
 	public int getIdVenta()
 	{
 		return idVenta;
@@ -62,7 +62,7 @@ public class LineaDeVenta
 	{
 		this.idVenta = idVenta;
 	}
-	
+*/	
 	
 	
 	//METODOS

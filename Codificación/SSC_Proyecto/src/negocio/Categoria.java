@@ -7,8 +7,8 @@ public class Categoria
 	//ATRIBUTOS
 	private int idCategoria;
 	private String descripcion;
-	private Collection<negocio.SubCategoria> subCat;   // ARMAR COLECCIONES
-	private Collection<negocio.Producto> producto; // ARMAR COLECCIONES
+	private Collection<negocio.SubCategoria> subCat;   
+	private Collection<negocio.Producto> producto; 
 	
 
 	//CONSTRUCTOR

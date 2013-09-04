@@ -30,50 +30,18 @@ public class CatalogoAnuncios
 	// -------------------------------------------------------------
 	public Collection<negocio.Anuncio> obtenerAnuncios() 
 	{
-		/* ESTO NO CORRESPONDE A NEGOCIO
-		ResultSet conjuntoResult = null;
-		datos.BDConector conector = null;
-
-		try 
-		{
-			conector = new datos.BDConector(datos.BDConstantes.URL_BD,
-					datos.BDConstantes.PORT, datos.BDConstantes.DATABASE,
-					datos.BDConstantes.USER, datos.BDConstantes.PASS);
-
-			conjuntoResult = conector.ejecutaPeticion("CALL obtenerAnuncios");
-
-			while (conjuntoResult.next()) 
-			{
-				negocio.Anuncio a = new negocio.Anuncio();
-
-				a.setClientes(null); //VER
-				a.setProductos(null); //VER
-				a.setIdAnuncio(conjuntoResult.getInt("idAnuncio"));
-				a.setTextoMensaje(conjuntoResult.getString("textoMensaje"));
-				a.setFecha(conjuntoResult.getDate("fecha"));
-				a.setEstado(conjuntoResult.getString("estado"));
-				anuncios.add(a);
-			}
-		} catch (SQLException excepcionSql) {
-			excepcionSql.printStackTrace();
-		} finally {
-			try {
-				conjuntoResult.close();
-				conector.cierraConexion();
-			} catch (Exception excepcion) {
-				excepcion.printStackTrace();
-			}
-		}*/
+		
 		return anuncios;
 	}
 	
 	
-	
+	//-----------------------------------------------------------------------------
 	public void guardarAnuncio(negocio.Anuncio anuncioActual)
 	{
 		
 	}
 	
+	//-----------------------------------------------------------------------------
 	public void guardarCambioClientesAnuncio(negocio.Anuncio anuncioActual)
 	{
 		for(negocio.Anuncio a : this.anuncios)

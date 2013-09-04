@@ -94,7 +94,7 @@ public class Cliente
 	}
 	
 	public Collection<negocio.Venta> getVentas()
-	{
+	{		
 		return ventas;
 	}
 	
@@ -130,6 +130,25 @@ public class Cliente
 	
 	
 	//METODOS
+	public void obtenerVentas(datos.Cliente C)
+	{
+		//datos.Cliente clienteDato = new datos.Cliente();
+		
+		C.obtenerVentas(C);
+		
+		for(datos.Venta VD: C.getVentas())
+		{
+			negocio.Venta ventaNegocio = new negocio.Venta();
+			
+			ventaNegocio.setFechaVenta(VD.getFechaVenta());
+			//
+			
+			this.ventas.add(ventaNegocio);
+		}
+		
+	}
+	
+	
 	public boolean comproProducto(negocio.Producto productoActual)
 	{
 		return true;

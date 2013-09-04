@@ -7,28 +7,25 @@ import java.util.Date;
 public class Anuncio 
 {
 	//ATRIBUTOS
-	private int idAnuncio;
 	private Collection<negocio.Producto> productos;
 	private Collection<negocio.Cliente> clientes;
 	private String textoMensaje;
 	private String membrete;
 	private String estado;
 	private Date fecha;
-	private datos.Anuncio anuncioDatos;
+	private int idAnuncio;
 	
 	
 	//CONSTRUCTOR
 	public Anuncio() 
 	{
-		this.idAnuncio = 0;
-		this.productos = null;
-		this.clientes = null;
+		this.productos = new ArrayList<negocio.Producto>();
+		this.clientes = new ArrayList<negocio.Cliente>();
 		this.textoMensaje = "";
 		this.membrete = "";
 		this.estado = "";
 		this.fecha = new Date();
-		
-		this.anuncioDatos = new datos.Anuncio();
+		this.idAnuncio = 0;
 	}
 
 	
@@ -93,39 +90,32 @@ public class Anuncio
 	}
 
 
-	public Date getFecha() {
+	public Date getFecha() 
+	{
 		return fecha;
 	}
 
 
-	public void setFecha(Date fecha) {
+	public void setFecha(Date fecha)
+	{
 		this.fecha = fecha;
 	}
+	
 
-
-	public int getIdAnuncio() {
+	public int getIdAnuncio() 
+	{
 		return idAnuncio;
 	}
 
 
-	public void setIdAnuncio(int idAnuncio) {
+	public void setIdAnuncio(int idAnuncio) 
+	{
 		this.idAnuncio = idAnuncio;
-	}
 	
-	public datos.Anuncio getAnuncioDatos() 
-	{
-		return anuncioDatos;
+		
 	}
-
-	public void setAnuncioDatos(datos.Anuncio anuncioDatos) 
-	{
-		this.anuncioDatos = anuncioDatos;
-	}
-
-
 	//METODOS
 	//----------------------------------------------------------
-	
 	public negocio.Producto modificarPrecioProducto(int idProducto)
 	{
 		negocio.Producto productoModif = new negocio.Producto();
@@ -149,9 +139,7 @@ public class Anuncio
 	}
 	
 	//----------------------------------------------------------
-	
 	//DSD 1.5.2
-
 	public void actualizarProducto(negocio.Producto productoModificar)
 	{
 		for(negocio.Producto p : this.productos)

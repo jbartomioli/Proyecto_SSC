@@ -10,7 +10,6 @@ public class Precio
 	private Date fechaHasta;
 	private float precio;
 	private float precioPromocional;
-	//public datos.Producto productoPrecio;
 	
 	
 	//CONSTRUCTOR
@@ -21,7 +20,6 @@ public class Precio
 		this.fechaHasta = new Date();
 		this.precio = 0;
 		this.precioPromocional = 0;
-		//this.productoPrecio = new datos.Producto();
 	}
 
 	//GETTER & SETTERS
@@ -74,17 +72,7 @@ public class Precio
 	{
 		this.precioPromocional = precioPromocional;
 	}
-//
-//	public datos.Producto getProductoPrecio()
-//	{
-//		return productoPrecio;
-//	}
-//
-//	public void setProductoPrecio(datos.Producto productoPrecio) 
-//	{
-//		this.productoPrecio = productoPrecio;
-//	}	
-//	
+
 	
 	
 	//METODOS

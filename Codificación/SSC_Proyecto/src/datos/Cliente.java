@@ -2,6 +2,11 @@ package datos;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 import negocio.Venta;
 
@@ -97,6 +102,7 @@ public class Cliente
 	
 	public Collection<datos.Venta> getVentas()
 	{
+		//this.obtenerVentas(this);
 		return ventas;
 	}
 	
@@ -132,7 +138,49 @@ public class Cliente
 	
 	//METODOS
 	//----------------------------------------------------------
+	public void obtenerVentas(datos.Cliente C)
+	{
+		Session session = null;	
+			
+		try
+		{
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		        
+            Query query = session.createQuery("from Ventas v where v.clientes.idCliente = :idC");
+            query.setParameter("idC", C.getIdCliente());
+            
+            @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
+            
+            for(Iterator<Query> it=list.iterator();it.hasNext();)
+            {  
+	        	datos.Venta ventaDatos = new datos.Venta();
+	           
+	        	entidades.Ventas entVenta = (entidades.Ventas) it.next();  
+	           
+	        	ventaDatos.setFechaVenta(entVenta.getFecha()); 
+	        	//ventaDatos.setTotal(entVenta.getTotal());
+	        	
+	           	this.ventas.add(ventaDatos);
+            }
 
+	        session.getTransaction().commit();
+		}
+		 
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		 
+		finally
+		{
+		 	session.close();
+		}	
+	}
+	
+
+	//--------------------------------------------------
 	public boolean comproProducto(datos.Producto producto)
 	{
 		

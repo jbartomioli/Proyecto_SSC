@@ -71,6 +71,9 @@ public class CatalogoClientes
 	           	clienteDatos.setNombre(entCliente.getNombre());
 	           	clienteDatos.setTelefono(entCliente.getTelefono());
 	           	
+	           	clienteDatos.obtenerVentas(clienteDatos);
+	           	
+	           	/*
 	           	Collection<datos.Venta> ventas = new ArrayList<datos.Venta>();
 	           	
 	           	for(entidades.Ventas V: entCliente.getVentases())
@@ -107,7 +110,7 @@ public class CatalogoClientes
 	           		ventas.add(venta);
 	           	}
 	           	clienteDatos.setVentas(ventas);	           	
-
+*/
 	           	clientes.add(clienteDatos);
             }
 
