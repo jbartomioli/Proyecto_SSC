@@ -37,8 +37,8 @@ public class Pedido
 	public void setIdPedido(int idPedido) 
 	{
 		this.idPedido = idPedido;
-	}
-*/	
+	} */
+	
 	public float getTotal()
 	{
 		return total;	

@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.swing.border.EmptyBorder;
@@ -155,7 +156,7 @@ public class ControladorRegistrarPedidoCliente
 	/////////////////////////////////////////////////////////////////
 	// Metodo 3.2.1 												/
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//FALTA VER DEVOLUCION DE DATOS
 	public ArrayList<String> seleccionarProducto(int idProducto, int cantidad)
 	{
 		negocio.Producto productoTemporal = new negocio.Producto();
@@ -183,21 +184,60 @@ public class ControladorRegistrarPedidoCliente
 	//---------------------------------------------------------------
 	
 	/////////////////////////////////////////////////////////////////
-	// Metodo 3.2.2 												/
+	// Metodo 3.2.2 			RN 13/09/2013        				/
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//FALTA VER DEVOLUCION DE DATOS
 	public ArrayList<String> buscarProducto(String descParcial, int cantidad)
 	{
-		return null;
+		negocio.Producto producto = new negocio.Producto();
+		
+		producto = cp.buscarProducto(descParcial);
+		
+		if(producto != null)
+		{
+			int stockActual = producto.getExistenciaStock();
+			
+			//Obtener datos del producto mediante subclase
+			
+			if(stockActual>=cantidad)
+			{
+				PCTemporal.setProducto(producto, cantidad);
+				
+				return null; //Devolver datos
+			}
+			else
+				return null;
+		}
+		else
+			return null;
 	}
 	//---------------------------------------------------------------
 	
 	/////////////////////////////////////////////////////////////////
-	// Metodo 3.3.1 												/
+	// Metodo 3.3.1 			RN 13/09/2013						/
 	/////////////////////////////////////////////////////////////////
 	//FALTA	
 	public ArrayList<String> pedidoCompleto()
 	{
+		int idProducto = 0;
+		
+		negocio.ParametrosNegocio paramUltPedido = new ParametrosNegocio();
+		
+		Collection<negocio.LineaDePedido> arrLineasPedido = new ArrayList<negocio.LineaDePedido>();
+		
+		idProducto = paramUltPedido.getUltIdPedido();
+		
+		//VER MANEJO DE ID
+		
+		arrLineasPedido = PCTemporal.getLineas();
+		
+		int i = 0;
+		
+		for(negocio.LineaDePedido LP: arrLineasPedido)
+		{
+			//VER
+		}
+		
 		return null;
 	}
 	//---------------------------------------------------------------
