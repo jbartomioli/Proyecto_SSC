@@ -4,7 +4,7 @@ public class LineaDePedido
 {
 	//ATRIBUTOS
 	private negocio.Producto producto;
-	private double subTotal;
+	private float subTotal;
 	private int cantidadPedida;
 	
 	
@@ -12,7 +12,7 @@ public class LineaDePedido
 	public LineaDePedido() 
 	{
 		this.producto = new negocio.Producto();
-		this.subTotal = 0.00;
+		this.subTotal = 0;
 		this.cantidadPedida = 0;
 	}
 
@@ -30,13 +30,13 @@ public class LineaDePedido
 	}
 
 
-	public double getSubTotal() 
+	public float getSubTotal() 
 	{
 		return subTotal;
 	}
 
 
-	public void setSubTotal(double subTotal) 
+	public void setSubTotal(float subTotal) 
 	{
 		this.subTotal = subTotal;
 	}

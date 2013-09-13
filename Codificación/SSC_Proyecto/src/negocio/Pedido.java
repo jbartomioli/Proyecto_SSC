@@ -7,7 +7,7 @@ import java.util.Date;
 public class Pedido 
 {
 	//ATRIBUTOS
-	//private int idPedido;
+	private int idPedido;
 	private float total;
 	private negocio.Cliente cliente;
 	private Date fecha;
@@ -18,7 +18,7 @@ public class Pedido
 	//CONSTRUCTOR
 	public Pedido() 
 	{
-		//this.idPedido = 0;
+		this.idPedido = 0;
 		this.total = 0;
 		this.cliente = new negocio.Cliente();
 		this.fecha = new Date();
@@ -28,7 +28,7 @@ public class Pedido
 
 
 	//GETTER & SETTER
-/*	public int getIdPedido() 
+	public int getIdPedido() 
 	{
 		return idPedido;
 	}
@@ -37,7 +37,7 @@ public class Pedido
 	public void setIdPedido(int idPedido) 
 	{
 		this.idPedido = idPedido;
-	} */
+	}
 	
 	public float getTotal()
 	{

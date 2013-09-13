@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.swing.border.EmptyBorder;
 
+import org.jgroups.demos.TotalOrder;
+
 
 public class ControladorRegistrarPedidoCliente 
 {
@@ -221,13 +223,15 @@ public class ControladorRegistrarPedidoCliente
 	{
 		int idProducto = 0;
 		
+		float total = 0;
+		
 		negocio.ParametrosNegocio paramUltPedido = new ParametrosNegocio();
 		
 		Collection<negocio.LineaDePedido> arrLineasPedido = new ArrayList<negocio.LineaDePedido>();
 		
 		idProducto = paramUltPedido.getUltIdPedido();
 		
-		//VER MANEJO DE ID
+		PCTemporal.setIdPedido(idProducto);
 		
 		arrLineasPedido = PCTemporal.getLineas();
 		
@@ -235,9 +239,14 @@ public class ControladorRegistrarPedidoCliente
 		
 		for(negocio.LineaDePedido LP: arrLineasPedido)
 		{
-			//VER
+			cp.actualizarStock(LP.getProducto(), LP.getCantidadPedida());
+			total=PCTemporal.getTotal()+LP.getSubTotal();
+			PCTemporal.setTotal(total);
 		}
 		
+		negocio.MailDeposito mail = new negocio.MailDeposito();
+		mail.enviarPedido(PCTemporal); //FALTA VALIDAR SI EL ENVIO ES CORRECTO
+		cpe.agregarPedido(PCTemporal);
 		return null;
 	}
 	//---------------------------------------------------------------
