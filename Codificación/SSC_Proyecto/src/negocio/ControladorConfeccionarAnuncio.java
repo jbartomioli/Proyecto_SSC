@@ -5,7 +5,9 @@ import java.util.Collection;
 
 public class ControladorConfeccionarAnuncio 
 {
-	// ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private negocio.CatalogoCategorias cctg;
 	private negocio.CatalogoSubCategorias csctg;
 	private negocio.CatalogoProductos cp;
@@ -18,8 +20,12 @@ public class ControladorConfeccionarAnuncio
 	private Collection<negocio.Producto> arrProductosPublicación;
 	private negocio.Anuncio anuncioActual;
 	private negocio.Producto productoModificar;
+	//---------------------------------------------------------------
 
-	// CONSTRUCTOR
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public ControladorConfeccionarAnuncio() 
 	{
 		this.cctg = new negocio.CatalogoCategorias();
@@ -35,8 +41,12 @@ public class ControladorConfeccionarAnuncio
 		this.anuncioActual = new negocio.Anuncio();
 		this.productoModificar = new negocio.Producto();
 	}
+	//---------------------------------------------------------------
 
-	// GETTER & SETTER
+
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public negocio.CatalogoCategorias getCctg() 
 	{
 		return cctg;
@@ -148,39 +158,108 @@ public class ControladorConfeccionarAnuncio
 	{
 		this.productoModificar = productoModificar;
 	}
+	//---------------------------------------------------------------
 
 	
-	/////////////////////////////////////////////////////////////////////////
-	// METODOS //////////////////////////////////////////////////////////////
-	/////////////////////////////////////////////////////////////////////////
 	
-	//////////////////////////////////
-	// Metodo DSD 1.1.1 - DSD 1.7.2 //
-	//////////////////////////////////
-	public ArrayList<String> seleccionarCategoria(int idCategoria) 
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	// Metodo DSD 1.1.1 - DSD 1.7.2 							   //
+	/////////////////////////////////////////////////////////////////
+	//LISTO
+	public Collection<SalidaDatos> seleccionarCategoria(int idCategoria) 
 	{
-		return null;
-	}
+		negocio.Categoria categoriaActual = new negocio.Categoria();
+		
+		categoriaActual = cctg.buscarCategoria(idCategoria);
+		
+		Collection<negocio.SubCategoria> subCats = new ArrayList<negocio.SubCategoria>();
+		
+		Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
+		
+		subCats = categoriaActual.getSubCats();
 
-	//////////////////////////////////
-	// Metodo DSD 1.1.2 - DSD 1.7.3 //
-	//////////////////////////////////
-	public ArrayList<String> seleccionarSubcategoria(int idSubCategoria) 
+		//
+		if(subCats == null)
+		{
+			productos = categoriaActual.getProductos();
+			
+			for(negocio.Producto P: productos)
+			{
+				SalidaDatos salidaProd = new SalidaDatos();
+				
+				salidaProd.setId(Integer.toString(P.getIdProducto()));
+				salidaProd.setDescripcion(P.getNombre());
+
+				salidaDatos.add(salidaProd);	
+			}
+		}
+		else
+		{
+			for(negocio.SubCategoria SC : subCats)
+			{
+				SalidaDatos salidaSub = new SalidaDatos();
+				
+				salidaSub.setId(Integer.toString(SC.getIdSubcategoria()));
+				salidaSub.setDescripcion(SC.getDescripcion());
+
+				salidaDatos.add(salidaSub);	
+			}
+		}
+		
+		return salidaDatos;
+		
+	}
+	//---------------------------------------------------------------
+
+	/////////////////////////////////////////////////////////////////
+	// Metodo DSD 1.1.2 - DSD 1.7.3 							   //
+	/////////////////////////////////////////////////////////////////
+	//LISTO
+	public Collection<SalidaDatos> seleccionarSubcategoria(int idSubCategoria) 
 	{
-		return null;
-	}
+		negocio.SubCategoria subCatActual = new negocio.SubCategoria();
+		
+		subCatActual = csctg.buscarSubCategoria(idSubCategoria);
+		
+		Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
+		
+		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
+		
+		productos = subCatActual.getProductos();
+		
+		for(negocio.Producto P : productos)
+		{
+			SalidaDatos salidaProd = new SalidaDatos();
+			
+			salidaProd.setId(Integer.toString(P.getIdProducto()));
+			salidaProd.setDescripcion(P.getNombre());
 
-	//////////////////////////////////
+			salidaDatos.add(salidaProd);
+		}
+		
+		return salidaDatos;
+	}
+	//---------------------------------------------------------------
+
+	
+	
+
+	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.1.3 - DSD 1.7.4 //
-	//////////////////////////////////
+	/////////////////////////////////////////////////////////////////
 	public ArrayList<String> seleccionarProducto(int idProducto) 
 	{
 		return null;
 	}
 
-	//////////////////////
+	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.1.4 //
-	//////////////////////
+	/////////////////////////////////////////////////////////////////
 	public boolean finalizarCargaProducto() 
 	{
 		this.anuncioActual = new negocio.Anuncio();
@@ -193,9 +272,9 @@ public class ControladorConfeccionarAnuncio
 	}
 
 	
-	//////////////////////
+	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.2.1 //
-	//////////////////////
+	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public TipoMensaje redactarMensaje(String mensaje) 
 	{
@@ -223,28 +302,31 @@ public class ControladorConfeccionarAnuncio
 
 		return datosMensaje;
 	}
+	//---------------------------------------------------------------
 
-	/////////////////////
+	
+	
+	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.3.1//
-	/////////////////////
+	/////////////////////////////////////////////////////////////////
 	//FALTA
 	public boolean guardarAnuncio() 
 	{
 		return true;
 	}
 
-	/////////////////////
+	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.4.1//
-	/////////////////////
+	/////////////////////////////////////////////////////////////////
 	//FALTA
 	public boolean enviarAnuncios() 
 	{
 		return true;
 	}
 
-	/////////////////////
+	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.5.1//
-	/////////////////////
+	/////////////////////////////////////////////////////////////////
 	//REVISAR METODOS INTERNOS
 	public String modificarPrecioProducto(int idProducto) 
 	{
@@ -258,9 +340,9 @@ public class ControladorConfeccionarAnuncio
 			return null;
 	}
 
-	/////////////////////
+	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.5.2//
-	/////////////////////
+	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public void cambiarPrecio(float nuevoPrecio) 
 	{
@@ -274,12 +356,12 @@ public class ControladorConfeccionarAnuncio
 
 		//return null;
 	}
-
+	//---------------------------------------------------------------
 	
 	
-	////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.6.1 (no modifica, solo muestra los posibles clientes a modificar) //
-	////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public String[][] modificarClientesDestinatarios() 
 	{
@@ -302,10 +384,13 @@ public class ControladorConfeccionarAnuncio
 
 		return arrDatos;
 	}
+	//---------------------------------------------------------------
 
-	//////////////////////
-	// Metodo DSD 1.6.2 //
-	//////////////////////
+	
+	
+	/////////////////////////////////////////////////////////////////
+	// Metodo DSD 1.6.2 										   //
+	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public String[][] seleccionarClientes(String[] idCliente) 
 	{
@@ -333,11 +418,13 @@ public class ControladorConfeccionarAnuncio
 
 		return arrDatos;
 	}
+	//---------------------------------------------------------------
 
 	
-	//////////////////
-	// Metodo 1.7.1 //
-	//////////////////
+	/////////////////////////////////////////////////////////////////
+	// Metodo 1.7.1 											   //
+	/////////////////////////////////////////////////////////////////
+	//FALTA
 	public String[][] eliminarProducto(int idProducto) 
 	{
 		negocio.Producto productoActual = new negocio.Producto();
@@ -373,14 +460,53 @@ public class ControladorConfeccionarAnuncio
 
 	
 	
-	///////////////////////////////////////////////////////////////
-	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.2.1 /////////////////
-	///////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	//***************************************************************
+	// SUBCLASES SALIDA DE DATOS 									*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.1.1 y 1.1.2		   //
+	/////////////////////////////////////////////////////////////////
+	private class SalidaDatos
+	{
+		private String descripcion;
+		private String id;
+		
+		public SalidaDatos()
+		{
+			this.descripcion = "";
+			this.id = "";
+		}
+
+		public String getDescripcion() {
+			return descripcion;
+		}
+
+		public void setDescripcion(String descripcion) {
+			this.descripcion = descripcion;
+		}
+
+		public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}	
+	}
+	//---------------------------------------------------------------
+	
+	/////////////////////////////////////////////////////////////////
+	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.2.1 				   //
+	/////////////////////////////////////////////////////////////////
 	private class TipoMensaje 
 	{
-		String membrete;
-
-		String[][] arrDatosProductos;
+		private String membrete;
+		private String[][] arrDatosProductos;
 
 		
 		//CONSTRUCTOR
@@ -415,7 +541,8 @@ public class ControladorConfeccionarAnuncio
 		}
 		
 	}
-	//--------------------------------------------------------------------------------
+	//---------------------------------------------------------------
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//REVISAR Y GENERAR SUBCLASES SALIDA PARA DATOS EN PANTALLA MEDTODOS ANTERIORES //
 	//////////////////////////////////////////////////////////////////////////////////

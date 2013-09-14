@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Categoria 
@@ -7,8 +8,8 @@ public class Categoria
 	//ATRIBUTOS
 	private int idCategoria;
 	private String descripcion;
-	private Collection<negocio.SubCategoria> subCat;   
-	private Collection<negocio.Producto> producto; 
+	private Collection<negocio.SubCategoria> subCats;   
+	private Collection<negocio.Producto> productos; 
 	
 
 	//CONSTRUCTOR
@@ -16,8 +17,8 @@ public class Categoria
 	{
 		this.idCategoria = 0;
 		this.descripcion = "";
-		this.subCat = null;
-		this.producto = null;
+		this.subCats = new ArrayList<negocio.SubCategoria>();
+		this.productos = new ArrayList<negocio.Producto>();
 	}
 	
 	
@@ -43,24 +44,24 @@ public class Categoria
 	}
 	
 	
-	public Collection<SubCategoria> getSubCat() 
+	public Collection<SubCategoria> getSubCats() 
 	{
-		return subCat;
+		return subCats;
 	}
 	
-	public void setSubCat(Collection<SubCategoria> subCat) 
+	public void setSubCats(Collection<SubCategoria> subCat) 
 	{
-		this.subCat = subCat;
+		this.subCats = subCat;
 	}
 	
-	public Collection<Producto> getProducto() 
+	public Collection<Producto> getProductos() 
 	{
-		return producto;
+		return productos;
 	}
 	
-	public void setProducto(Collection<Producto> producto) 
+	public void setProductos(Collection<Producto> productos) 
 	{
-		this.producto = producto;
+		this.productos = productos;
 	}
 	
 	
