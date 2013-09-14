@@ -111,7 +111,6 @@ public class Pedido
 		LP.setCantidadPedida(cantidad);
 		
 		this.lineas.add(LP);
-		//
 	}
 	//****************************************************************************
 	

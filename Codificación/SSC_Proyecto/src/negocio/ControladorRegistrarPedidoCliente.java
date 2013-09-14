@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.swing.border.EmptyBorder;
 
+import org.hibernate.type.descriptor.java.UUIDTypeDescriptor.ToStringTransformer;
 import org.jgroups.demos.TotalOrder;
 
 
@@ -156,7 +157,7 @@ public class ControladorRegistrarPedidoCliente
 	//---------------------------------------------------------------
 	
 	/////////////////////////////////////////////////////////////////
-	// Metodo 3.2.1 												/
+	// Metodo 3.2.1 			            						/
 	/////////////////////////////////////////////////////////////////
 	//FALTA VER DEVOLUCION DE DATOS
 	public ArrayList<String> seleccionarProducto(int idProducto, int cantidad)
@@ -218,7 +219,7 @@ public class ControladorRegistrarPedidoCliente
 	/////////////////////////////////////////////////////////////////
 	// Metodo 3.3.1 			RN 13/09/2013						/
 	/////////////////////////////////////////////////////////////////
-	//FALTA	
+	//FALTA	DEVOLUCION DE DATOS
 	public ArrayList<String> pedidoCompleto()
 	{
 		int idProducto = 0;
@@ -235,8 +236,6 @@ public class ControladorRegistrarPedidoCliente
 		
 		arrLineasPedido = PCTemporal.getLineas();
 		
-		int i = 0;
-		
 		for(negocio.LineaDePedido LP: arrLineasPedido)
 		{
 			cp.actualizarStock(LP.getProducto(), LP.getCantidadPedida());
@@ -252,31 +251,60 @@ public class ControladorRegistrarPedidoCliente
 	//---------------------------------------------------------------
 	
 	/////////////////////////////////////////////////////////////////
-	// Metodo 3.5 													/
+	// Metodo 3.5 					RN 13/09/2013					/
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//LISTO
 	public boolean eliminarProducto(int idProducto)
 	{
-		return true;
+		Collection<negocio.LineaDePedido> arrLineasPedido = new ArrayList<negocio.LineaDePedido>();
+		boolean flag=false;
+		arrLineasPedido = PCTemporal.getLineas();
+		
+		for(negocio.LineaDePedido LP: arrLineasPedido)
+		{
+			if(LP.getProducto().getIdProducto()==idProducto)
+			{
+				arrLineasPedido.remove(LP);
+				flag=true;
+				break;
+			}
+		}
+		
+		return flag;
 	}	
 	//---------------------------------------------------------------
 	
 	/////////////////////////////////////////////////////////////////
-	// Metodo 3.6.1 - 3.6.3.1 										/
+	// Metodo 3.6.1 - 3.6.3.1 			RN 13/09/2013				/
 	/////////////////////////////////////////////////////////////////
-	//FALTA
-	public ArrayList<String> seleccionarProducto(int idProducto)
+	//LISTO - CAMBIE EL TIPO DE DEVOLUCION DE DATOS
+	public String[] seleccionarProducto(int idProducto)
 	{
-		return null;
+		Collection<negocio.LineaDePedido> arrLineasPedido = new ArrayList<negocio.LineaDePedido>();
+		String[] arrDatosSalida = new String[3];
+		
+		arrLineasPedido = PCTemporal.getLineas();
+		
+		for(negocio.LineaDePedido LP: arrLineasPedido)
+		{
+			if(LP.getProducto().getIdProducto()==idProducto)
+			{
+				arrDatosSalida[0] = Integer.toString(LP.getCantidadPedida());
+				arrDatosSalida[1] = LP.getProducto().getNombre();
+				arrDatosSalida[2] = Integer.toString(LP.getProducto().getExistenciaStock());
+				break;
+			}
+		}
+		return arrDatosSalida;
 	}
 	//---------------------------------------------------------------
 	
 	/////////////////////////////////////////////////////////////////
-	// Metodo 3.6.2 												/
+	// Metodo 3.6.2 			RN 13/09/2013						/
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//FALTA - VER COMO LLAMAR A LA LINEA ACTUAL
 	public boolean modificarCantidad(int nuevaCantidad)
-	{
+	{	
 		return true;
 	}
 	//---------------------------------------------------------------
