@@ -247,30 +247,37 @@ public class ControladorConfeccionarAnuncio
 	//---------------------------------------------------------------
 
 	
-	
 
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.1.3 - DSD 1.7.4 //
 	/////////////////////////////////////////////////////////////////
+	//FALTA
 	public ArrayList<String> seleccionarProducto(int idProducto) 
 	{
 		return null;
 	}
 
+	
+	
 	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.1.4 //
+	// Metodo DSD 1.1.4 										   //
 	/////////////////////////////////////////////////////////////////
+	//REVISAR
 	public boolean finalizarCargaProducto() 
 	{
 		this.anuncioActual = new negocio.Anuncio();
 
 		this.anuncioActual.setEstado("PENDIENTE");
-		//falta seteo productos 
-		//falta seteo de cliente
-
+		
+		this.anuncioActual.setProductos(this.arrProductosPublicación);
+		
+		this.anuncioActual.setClientes(this.arrClientesInteresados);
+		
 		return true;
 	}
-
+	//---------------------------------------------------------------
+	
+	
 	
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.2.1 //
@@ -309,14 +316,19 @@ public class ControladorConfeccionarAnuncio
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.3.1//
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//REVISAR
 	public boolean guardarAnuncio() 
 	{
+		ca.guardarAnuncio(this.anuncioActual);
+		
 		return true;
 	}
-
+	//---------------------------------------------------------------
+	
+	
+	
 	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.4.1//
+	// Metodo DSD 1.4.1 - DSD NO SE ELABORO POR SIMPLICIDAD        //
 	/////////////////////////////////////////////////////////////////
 	//FALTA
 	public boolean enviarAnuncios() 
@@ -324,10 +336,13 @@ public class ControladorConfeccionarAnuncio
 		return true;
 	}
 
+	
+	
+	
 	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.5.1//
+	// Metodo DSD 1.5.1											   //
 	/////////////////////////////////////////////////////////////////
-	//REVISAR METODOS INTERNOS
+	//LISTO
 	public String modificarPrecioProducto(int idProducto) 
 	{
 		negocio.Producto productoModificar;
@@ -339,9 +354,11 @@ public class ControladorConfeccionarAnuncio
 		else
 			return null;
 	}
-
+	//---------------------------------------------------------------
+	
+	
 	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.5.2//
+	// Metodo DSD 1.5.2											   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public void cambiarPrecio(float nuevoPrecio) 
@@ -359,9 +376,10 @@ public class ControladorConfeccionarAnuncio
 	//---------------------------------------------------------------
 	
 	
-	/////////////////////////////////////////////////////////////////
+	
+	////////////////////////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.6.1 (no modifica, solo muestra los posibles clientes a modificar) //
-	/////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////
 	//LISTO
 	public String[][] modificarClientesDestinatarios() 
 	{

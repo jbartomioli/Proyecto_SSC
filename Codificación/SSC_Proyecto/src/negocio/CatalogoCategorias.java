@@ -70,7 +70,7 @@ public class CatalogoCategorias
 				}
 			}
 			
-			categoriaNegocio.setProducto(productos);
+			categoriaNegocio.setProductos(productos);
 			
 			//subcat
 			
