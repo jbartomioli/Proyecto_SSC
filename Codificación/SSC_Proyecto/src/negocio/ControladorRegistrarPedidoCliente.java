@@ -19,6 +19,8 @@ public class ControladorRegistrarPedidoCliente
 	private negocio.CatalogoProductos cp;
 	private negocio.CatalogoPedidos cpe;
 	private negocio.Pedido PCTemporal;
+	private negocio.LineaDePedido lineaActual; //USADA EN 3.6.1 PARA GUARDAR LA LINEA ACTUAL Y LUEGO UTILIZARLA EN 3.6.2
+	private negocio.Producto productoTemporal; //USADA EN 3.6.3.2 PARA GUARDAR EL PRODUCTO SELECCIONADO Y LUEGO UTILIZARLO EN 3.6.4
 	//---------------------------------------------------------------
 
 	
@@ -32,6 +34,8 @@ public class ControladorRegistrarPedidoCliente
 		this.cp = new negocio.CatalogoProductos();
 		this.cpe = new negocio.CatalogoPedidos();
 		this.PCTemporal = new negocio.Pedido();
+		this.lineaActual = new negocio.LineaDePedido();
+		this.productoTemporal = new negocio.Producto();
 	}
 	//---------------------------------------------------------------
 
@@ -197,12 +201,10 @@ public class ControladorRegistrarPedidoCliente
 		producto = cp.buscarProducto(descParcial);
 		
 		if(producto != null)
-		{
-			int stockActual = producto.getExistenciaStock();
-			
+		{	
 			//Obtener datos del producto mediante subclase
 			
-			if(stockActual>=cantidad)
+			if(producto.getExistenciaStock()>=cantidad)
 			{
 				PCTemporal.setProducto(producto, cantidad);
 				
@@ -278,10 +280,11 @@ public class ControladorRegistrarPedidoCliente
 	// Metodo 3.6.1 - 3.6.3.1 			RN 13/09/2013				/
 	/////////////////////////////////////////////////////////////////
 	//LISTO - CAMBIE EL TIPO DE DEVOLUCION DE DATOS
-	public String[] seleccionarProducto(int idProducto)
+	public String[] modificarProducto(int idProducto)
 	{
 		Collection<negocio.LineaDePedido> arrLineasPedido = new ArrayList<negocio.LineaDePedido>();
 		String[] arrDatosSalida = new String[3];
+		
 		
 		arrLineasPedido = PCTemporal.getLineas();
 		
@@ -292,6 +295,7 @@ public class ControladorRegistrarPedidoCliente
 				arrDatosSalida[0] = Integer.toString(LP.getCantidadPedida());
 				arrDatosSalida[1] = LP.getProducto().getNombre();
 				arrDatosSalida[2] = Integer.toString(LP.getProducto().getExistenciaStock());
+				lineaActual = LP;
 				break;
 			}
 		}
@@ -300,11 +304,14 @@ public class ControladorRegistrarPedidoCliente
 	//---------------------------------------------------------------
 	
 	/////////////////////////////////////////////////////////////////
-	// Metodo 3.6.2 			RN 13/09/2013						/
+	// Metodo 3.6.2 			RN 25/09/2013						/
 	/////////////////////////////////////////////////////////////////
-	//FALTA - VER COMO LLAMAR A LA LINEA ACTUAL
+	//LISTO
 	public boolean modificarCantidad(int nuevaCantidad)
 	{	
+		if(lineaActual.getProducto().getExistenciaStock()>=nuevaCantidad)
+			lineaActual.setCantidadPedida(nuevaCantidad);
+		
 		return true;
 	}
 	//---------------------------------------------------------------
@@ -312,12 +319,9 @@ public class ControladorRegistrarPedidoCliente
 	/////////////////////////////////////////////////////////////////
 	// Metodo 3.6.3.2 												/
 	/////////////////////////////////////////////////////////////////
-	//LISTO
+	//LISTO - UNI EL METODO CON INGRESAR CANTIDAD
 	public DatosProductoSalida seleccionarNuevoProducto(String descParcial)
 	{
-		//se crea un producto temporal para guardar resultado de la busqueda
-		negocio.Producto productoTemporal = new negocio.Producto();
-		
 		productoTemporal = cp.buscarProducto(descParcial);
 		
 		if(productoTemporal != null)
@@ -337,11 +341,14 @@ public class ControladorRegistrarPedidoCliente
 	//---------------------------------------------------------------
 	
 	/////////////////////////////////////////////////////////////////
-	// Metodo 3.6.4 												/
+	// Metodo 3.6.4 		RN 25/09/2013   						/
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//LISTO
 	public boolean ingresarCantidad(int cantidad)
 	{
+		lineaActual.setProducto(productoTemporal);
+		lineaActual.setCantidadPedida(cantidad);
+		
 		return true;
 	}
 	//---------------------------------------------------------------

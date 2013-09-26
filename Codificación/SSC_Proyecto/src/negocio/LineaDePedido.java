@@ -58,19 +58,21 @@ public class LineaDePedido
 	//METODOS
 	//----------------------------------------------------------------------------
 
-	//
-	public void setNuevoProducto(int idProductoNuevo) //REVEER PORQUE DEBERIA MANDAR EL PRODUCTO
-	{												// ADEMAS DE PODER USARSE EL SET AUTOGENERADO
+	/////////////////////////////////////////////////////////////////
+	//RN 25/03/2013 - A MI CRITERIO HAY QUE USAR LO SET DE ARRIBA./// 
+	//                NO TIENE SENTIDO REPETIR LÓGICA////////////////
+	//public void setNuevoProducto(int idProductoNuevo) DEBERIA PASARLE EL PRODUCTO
+	//{												
 	//	this.idProducto = idProductoNuevo;
-	}
+	//}
 	//*************************************************************
 
 	//
 	//REEVER PORQUE PUEDE USARSE EL SET AUTOGENERADO
-	public void setNuevaCantidad(int cantidad) 
-	{
-		this.cantidadPedida = cantidad;
-	}
+	//public void setNuevaCantidad(int cantidad) 
+	//{
+	//	this.cantidadPedida = cantidad;
+	//}
 	//*************************************************************
 
 
