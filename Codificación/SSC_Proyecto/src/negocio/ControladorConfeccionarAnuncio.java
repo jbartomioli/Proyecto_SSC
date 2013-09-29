@@ -251,10 +251,41 @@ public class ControladorConfeccionarAnuncio
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.1.3 - DSD 1.7.4 //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
-	public ArrayList<String> seleccionarProducto(int idProducto) 
+	//FALTA SALIDA DATOS
+	public void seleccionarProducto(int idProducto) 
 	{
-		return null;
+		//se crea instancia de producto
+		negocio.Producto productoActual = new negocio.Producto();
+		
+		//se busca el producto y se guarda en la instancia creada
+		//si no se encuentra el producto se guarda null en la instancia
+		productoActual = cp.buscarProducto(idProducto);	
+		
+		//se valida que el producto exista
+		if (productoActual != null)
+		{
+			productoActual.getExistenciaStock();
+			
+			productoActual.getPrecioActual();
+			
+			Collection<negocio.Cliente> arrClientesInteresados = new ArrayList<negocio.Cliente>();
+			
+			arrClientesInteresados = cc.obtenerClientesProducto(productoActual);
+			
+			for(Cliente C: arrClientesInteresados)
+			{
+				C.getIdCliente();
+				C.getNombre();
+				C.getApellido();
+			}
+			
+			arrProductosPublicación.add(productoActual);
+		}
+		else
+		{
+			
+		}
+		
 	}
 
 	
@@ -262,18 +293,30 @@ public class ControladorConfeccionarAnuncio
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.1.4 										   //
 	/////////////////////////////////////////////////////////////////
-	//REVISAR
+	//LISTO - DEPURACION
 	public boolean finalizarCargaProducto() 
 	{
-		this.anuncioActual = new negocio.Anuncio();
-
-		this.anuncioActual.setEstado("PENDIENTE");
+		try
+		{
+			this.anuncioActual = new negocio.Anuncio();
+			
+			//se setea estado
+			this.anuncioActual.setEstado("PENDIENTE");
 		
-		this.anuncioActual.setProductos(this.arrProductosPublicación);
+			//se guardan los productos
+			this.anuncioActual.setProductos(this.arrProductosPublicación);
+			
+			//se guardan los clientes destinatarios
+			this.anuncioActual.setClientes(this.arrClientesInteresados);
 		
-		this.anuncioActual.setClientes(this.arrClientesInteresados);
-		
-		return true;
+			return true;
+		}
+		catch (Exception e)
+		{
+			//DEPURACION
+			e.printStackTrace();
+			return false;
+		}
 	}
 	//---------------------------------------------------------------
 	
@@ -316,12 +359,20 @@ public class ControladorConfeccionarAnuncio
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.3.1//
 	/////////////////////////////////////////////////////////////////
-	//REVISAR
+	//LISTO - DEPURACION
 	public boolean guardarAnuncio() 
 	{
-		ca.guardarAnuncio(this.anuncioActual);
-		
-		return true;
+		try
+		{
+			ca.guardarAnuncio(this.anuncioActual);
+			return true;
+		}
+		catch(Exception e)
+		{
+			//DEPURACION
+			e.printStackTrace();
+			return false;
+		}
 	}
 	//---------------------------------------------------------------
 	
@@ -442,7 +493,7 @@ public class ControladorConfeccionarAnuncio
 	/////////////////////////////////////////////////////////////////
 	// Metodo 1.7.1 											   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//FALTA COMPLETAR
 	public String[][] eliminarProducto(int idProducto) 
 	{
 		negocio.Producto productoActual = new negocio.Producto();
@@ -562,6 +613,6 @@ public class ControladorConfeccionarAnuncio
 	//---------------------------------------------------------------
 	
 	//////////////////////////////////////////////////////////////////////////////////
-	//REVISAR Y GENERAR SUBCLASES SALIDA PARA DATOS EN PANTALLA MEDTODOS ANTERIORES //
+	//REVISAR Y GENERAR SUBCLASES SALIDA PARA DATOS EN PANTALLA METODOS ANTERIORES //
 	//////////////////////////////////////////////////////////////////////////////////
 }

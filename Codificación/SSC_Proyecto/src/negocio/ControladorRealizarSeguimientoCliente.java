@@ -1,3 +1,5 @@
+//CLASE LISTA
+
 package negocio;
 
 import java.util.ArrayList;
@@ -6,18 +8,26 @@ import java.util.Collection;
 
 public class ControladorRealizarSeguimientoCliente 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private negocio.CatalogoClientes cc;
-	
-	
-	//CONSTRUCTOR
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public ControladorRealizarSeguimientoCliente() 
 	{
 		this.cc = new negocio.CatalogoClientes();
 	}
+	//---------------------------------------------------------------
 
 
-	//GETTER & SETTER
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public negocio.CatalogoClientes getCc() 
 	{
 		return cc;
@@ -27,13 +37,18 @@ public class ControladorRealizarSeguimientoCliente
 	{
 		this.cc = cc;
 	}
+	//---------------------------------------------------------------
 
 	
-	//METODOS
-
-	/////////////////
-	//Metodo 2.1.1 //
-	/////////////////
+	
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	//Metodo 2.1.1 												   //
+	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public DatosSalidaSeguimiento buscarCliente(int idCliente)
 	{
@@ -85,12 +100,12 @@ public class ControladorRealizarSeguimientoCliente
 		}
 		return salidaObj;
 	}
-	//*******************************************************************
+	//---------------------------------------------------------------
 	
 	
-	/////////////////
-	//Metodo 2.1.2 //
-	/////////////////
+	/////////////////////////////////////////////////////////////////
+	//Metodo 2.1.2 												   //
+	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public DatosSalidaSeguimiento buscarCliente(String apellido, String nombre)
 	{
@@ -136,12 +151,12 @@ public class ControladorRealizarSeguimientoCliente
 		}
 		return salidaObj;
 	}
-	//*******************************************************************
+	//---------------------------------------------------------------
 
 	
-	/////////////////
-	//Metodo 2.1.3 //
-	/////////////////
+	/////////////////////////////////////////////////////////////////
+	//Metodo 2.1.3 												   //
+	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public Collection<DatosSalidaSeguimiento> seleccionarClientes(boolean tipoCliente)
 	{
@@ -192,13 +207,13 @@ public class ControladorRealizarSeguimientoCliente
 		}
 		return salida;
 	}
-	//*******************************************************************
+	//---------------------------------------------------------------
 
 	
 	
-	/////////////////////////////////////////////////////////////////////
-	// SUBCLASE PARA SALIDA DE DATOS 								   //
-	/////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
+	// SUBCLASE PARA SALIDA DE DATOS 							   //
+	/////////////////////////////////////////////////////////////////
 	public class DatosSalidaSeguimiento
 	{
 		String nombre;
@@ -237,5 +252,6 @@ public class ControladorRealizarSeguimientoCliente
 		}
 		
 	}
-	
+	//---------------------------------------------------------------
+
 }
