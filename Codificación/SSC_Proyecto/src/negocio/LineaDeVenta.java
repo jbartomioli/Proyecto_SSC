@@ -66,10 +66,21 @@ public class LineaDeVenta
 	/////////////////////////////////////////////////////////////////
 	// 															   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//FALTA VALIDAR CATEGORIA O CAMBIAR ENFOQUE
 	public boolean compararProductos(negocio.Producto productoActual)
 	{		
-		return true;
+		if(
+			((productoActual.getSubCategoria() != null)
+			&& (this.productoLinea.getSubCategoria() != null)
+			&& (productoActual.getSubCategoria() == this.productoLinea.getSubCategoria()))
+			/*||
+			((productoActual.getSubCategoria() != null)
+			&& (this.productoLinea.getSubCategoria() != null)
+			&& (productoActual.getSubCategoria() == this.productoLinea.getSubCategoria())
+			)*/)
+			return true;
+		else
+			return false;
 	}
 	//---------------------------------------------------------------
 }

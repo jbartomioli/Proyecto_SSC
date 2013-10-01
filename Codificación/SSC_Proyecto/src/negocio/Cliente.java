@@ -165,10 +165,16 @@ public class Cliente
 	/////////////////////////////////////////////////////////////////
 	// 															   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//LISTO
 	public boolean comproProducto(negocio.Producto productoActual)
 	{
-		return true;
+		for(negocio.Venta V: this.ventas)
+		{
+			if (V.comproProducto(productoActual))
+				return true;
+		}
+		
+		return false;
 	}
 	//---------------------------------------------------------------
 }

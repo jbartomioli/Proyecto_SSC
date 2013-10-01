@@ -6,16 +6,21 @@ import java.util.Date;
 
 public class Pedido 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private int idPedido;
 	private float total;
 	private negocio.Cliente cliente;
 	private Date fecha;
 	private Collection<negocio.LineaDePedido> lineas;
 	private boolean estado;
-	
-	
-	//CONSTRUCTOR
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public Pedido() 
 	{
 		this.idPedido = 0;
@@ -25,14 +30,16 @@ public class Pedido
 		this.lineas = new ArrayList<negocio.LineaDePedido>();
 		this.estado = false;
 	}
+	//---------------------------------------------------------------
 
 
-	//GETTER & SETTER
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public int getIdPedido() 
 	{
 		return idPedido;
 	}
-
 
 	public void setIdPedido(int idPedido) 
 	{
@@ -49,60 +56,56 @@ public class Pedido
 		this.total = total;
 	}
 
-
 	public negocio.Cliente getCliente() 
 	{
 		return cliente;
 	}
-
 
 	public void setCliente(negocio.Cliente cliente) 
 	{
 		this.cliente = cliente;
 	}
 
-
 	public Date getFecha() 
 	{
 		return fecha;
 	}
-
 
 	public void setFecha(Date fecha) 
 	{
 		this.fecha = fecha;
 	}
 
-
 	public  Collection<negocio.LineaDePedido> getLineas() 
 	{
 		return lineas;
 	}
-
 
 	public void setLineas(Collection<negocio.LineaDePedido> lineas) 
 	{
 		this.lineas = lineas;
 	}
 
-
 	public Boolean getEstado() 
 	{
 		return estado;
 	}
 
-
 	public void setEstado(boolean estado) 
 	{
 		this.estado = estado;
 	}
-
-
-	//METODOS
-	//----------------------------------------------------------------------------
+	//---------------------------------------------------------------
 	
 	
-	//Se agrega el producto al pedido
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	// Se agrega el producto al pedido							   //
+	/////////////////////////////////////////////////////////////////
 	public void setProducto(negocio.Producto P, int cantidad)
 	{
 		negocio.LineaDePedido LP = new negocio.LineaDePedido();
@@ -112,9 +115,12 @@ public class Pedido
 		
 		this.lineas.add(LP);
 	}
-	//****************************************************************************
+	//---------------------------------------------------------------
+
 	
-	//Busca una linea en el pedido mediante comparacion de lineas
+	/////////////////////////////////////////////////////////////////
+	// Busca una linea en el pedido mediante comparacion de lineas //
+	/////////////////////////////////////////////////////////////////
 	public negocio.LineaDePedido buscarLinea(negocio.LineaDePedido lineaActual)
 	{
 		for(negocio.LineaDePedido LP : this.lineas)
@@ -124,15 +130,15 @@ public class Pedido
 		}
 		return null;
 	}
-	//****************************************************************************
+	//---------------------------------------------------------------
 	
-	//Busca una linea en el pedido con un producto especifico
+	
+	/////////////////////////////////////////////////////////////////
+	//Busca una linea en el pedido con un producto especifico	   //
+	/////////////////////////////////////////////////////////////////
 	public negocio.LineaDePedido buscarLinea(int idProductoViejo)
 	{
 		return null;
 	}
-	//****************************************************************************
-	
-	
-
+	//---------------------------------------------------------------
 }

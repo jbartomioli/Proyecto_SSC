@@ -112,14 +112,23 @@ public class CatalogoClientes {
 	//////////////////////////////////////////////////////////////////
 	// Obtiene los clientes que han comprado un producto específico //
 	//////////////////////////////////////////////////////////////////
+	//LISTO
 	public Collection<negocio.Cliente> obtenerClientesProducto(negocio.Producto producto)
 	{
-		Collection<negocio.Cliente> clientesInteresados;
+		Collection<negocio.Cliente> arrClientesInteresados;
 		
 		//Se crea una coleccion de clientes interesados en el producto actual
-		clientesInteresados = new ArrayList<negocio.Cliente>();
+		arrClientesInteresados = new ArrayList<negocio.Cliente>();
 		
-		return clientesInteresados;
+		for(negocio.Cliente C: this.clientes)
+		{
+			//si el cliente compro el producto lo agrego al arreglo
+			if(C.comproProducto(producto))
+				arrClientesInteresados.add(C);
+		}
+	
+		//devuelve el arreglo con los clientes
+		return arrClientesInteresados;
 	}
 	//---------------------------------------------------------------
 	
@@ -172,4 +181,6 @@ public class CatalogoClientes {
 	}
 	//---------------------------------------------------------------
 
+	
+	
 }

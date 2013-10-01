@@ -45,9 +45,14 @@ public class CatalogoProductos
 	/////////////////////////////////////////////////////////////////
 	//Busca producto por id										   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//LISTO
 	public negocio.Producto buscarProducto(int idProducto)
 	{
+		for(negocio.Producto P: this.getProductos())
+		{
+			if(P.getIdProducto() == idProducto)
+				return P;
+		}
 		return null;
 	}
 	//---------------------------------------------------------------
@@ -56,9 +61,14 @@ public class CatalogoProductos
 	/////////////////////////////////////////////////////////////////
 	// Busca producto por descripcion parcial 					   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//VER TEMA DESCRIPCION PARCIAL
 	public negocio.Producto buscarProducto(String descParcial)
 	{
+		for(negocio.Producto P: this.getProductos())
+		{
+			if(P.getNombre().equals(descParcial))
+				return P;
+		}
 		return null;
 	}
 	//---------------------------------------------------------------
@@ -67,7 +77,7 @@ public class CatalogoProductos
 	/////////////////////////////////////////////////////////////////
 	//Actualiza la cantidad de productos en stock				   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//FALTA CAPA DATOS
 	public void actualizarStock(negocio.Producto P, int cantidad)
 	{
 		for(negocio.Producto PA: this.productos)
@@ -89,18 +99,17 @@ public class CatalogoProductos
 	}
 	//---------------------------------------------------------------
 
-	
+
 	/////////////////////////////////////////////////////////////////
 	//Actualizar precio promocional de un producto				   //
 	/////////////////////////////////////////////////////////////////
+	//VA EN EL CATALOGO???
 	public void actualizarPrecioPromProducto(negocio.Producto productoModificar,float nuevoPrecio)
 	{
-		for(negocio.Producto p : this.productos)
+		for(negocio.Producto P : this.productos)
 		{
-			if(p.getIdProducto()==productoModificar.getIdProducto())
-			{
-				p.setPrecioPromocional(nuevoPrecio);
-			}
+			if(P.getIdProducto()==productoModificar.getIdProducto())
+				P.setPrecioPromocional(nuevoPrecio);
 		}
 	}
 	//---------------------------------------------------------------

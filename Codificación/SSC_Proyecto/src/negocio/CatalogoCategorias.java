@@ -47,6 +47,7 @@ public class CatalogoCategorias
 	/////////////////////////////////////////////////////////////////
 	// Seteo del array de categorias a partir de la capa de datos  //
 	/////////////////////////////////////////////////////////////////
+	//REVEER FALTA
 	public void obtenerCategorias()
 	{
 		//se crea un objeto catalogocategorias de datos
@@ -122,10 +123,16 @@ public class CatalogoCategorias
 	//---------------------------------------------------------------
 	
 	/////////////////////////////////////////////////////////////////
-	// Busca una categoria por su idCategoria  					   //
+	// Busca una categoria por su idCategoria y la devuelve        //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public negocio.Categoria buscarCategoria(int idCategoria)
 	{
+		for(negocio.Categoria CTG: this.categorias)
+		{
+			if(CTG.getIdCategoria() == idCategoria)
+				return CTG;
+		}
 		return null;
 	}
 	//---------------------------------------------------------------

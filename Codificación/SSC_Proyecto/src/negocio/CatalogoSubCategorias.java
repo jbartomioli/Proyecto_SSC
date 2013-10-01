@@ -44,11 +44,16 @@ public class CatalogoSubCategorias
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// Devuelve la subcategoria correspondiente al id seleccionado //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//LISTO
 	public negocio.SubCategoria buscarSubCategoria(int idSubCategoria)
 	{
+		for(negocio.SubCategoria SCTG: this.subcategorias)
+		{
+			if(SCTG.getIdSubcategoria() == idSubCategoria)
+				return SCTG;
+		}
 		return null;
 	}
 	//---------------------------------------------------------------
