@@ -1,13 +1,19 @@
 package negocio;
 
-public class ParametrosNegocio {
+public class ParametrosNegocio 
+{
 	
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************	
 	private String membrete;
 	private int ultIdPedido;
-
+	//---------------------------------------------------------------
 	
-	//CONSTRUCTOR
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************	
 	public ParametrosNegocio() 
 	{
 		datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
@@ -15,22 +21,32 @@ public class ParametrosNegocio {
 		this.membrete = parametrosDatos.getMembrete();
 		this.ultIdPedido = parametrosDatos.getUltIdPedido();
 	}
+	//---------------------------------------------------------------
 
-	
-	//GETTER & SETTERS
+
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public String getMembrete() 
 	{
 		return membrete;
 	}
 
-
 	public void setMembrete(String membrete) 
 	{
 		this.membrete = membrete;
 	}
-
-
-	//Devuelve el numero del ultimo pedido y guarda el proximo
+	//---------------------------------------------------------------
+	
+	
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	//Devuelve el numero del ultimo pedido y guarda el proximo     //
+	/////////////////////////////////////////////////////////////////
 	//Reveer si conviene tener un metodo aparte para que haga el autoincremento
 	//porque después hay que guardar el valor en la BD
 	public int getUltIdPedido() 
@@ -38,13 +54,15 @@ public class ParametrosNegocio {
 		this.ultIdPedido++;
 		return ultIdPedido;
 	}
+	//---------------------------------------------------------------
 
-
+	
+	/////////////////////////////////////////////////////////////////
+	// 															   //
+	/////////////////////////////////////////////////////////////////
 	public void setUltIdPedido(int ultIdPedido)
 	{
 		this.ultIdPedido = ultIdPedido;
 	}
-	
-	
-
+	//---------------------------------------------------------------
 }

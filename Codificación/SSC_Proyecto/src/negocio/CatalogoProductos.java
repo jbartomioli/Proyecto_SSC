@@ -5,48 +5,69 @@ import java.util.Collection;
 
 public class CatalogoProductos 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private Collection <negocio.Producto> productos;
-	
-	
-	//CONSTRUCTOR
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public CatalogoProductos() 
 	{
 		this.productos = new ArrayList<negocio.Producto>();
 	}
+	//---------------------------------------------------------------
 
 
-	//GETTER & SETTER
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public Collection<negocio.Producto> getProductos() 
 	{
 		return productos;
 	}
 
-
 	public void setProductos(Collection<negocio.Producto> productos) 
 	{
 		this.productos = productos;
 	}
-
-
-	//METODOS
-	//-------------------------------------------------------------
+	//---------------------------------------------------------------
 	
-	//Busca producto por id
+	
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	//Busca producto por id										   //
+	/////////////////////////////////////////////////////////////////
+	//FALTA
 	public negocio.Producto buscarProducto(int idProducto)
 	{
 		return null;
 	}
-	//*************************************************************
+	//---------------------------------------------------------------
 
-	//Busca producto por descripcion parcial
+	
+	/////////////////////////////////////////////////////////////////
+	// Busca producto por descripcion parcial 					   //
+	/////////////////////////////////////////////////////////////////
+	//FALTA
 	public negocio.Producto buscarProducto(String descParcial)
 	{
 		return null;
 	}
-	//*************************************************************
+	//---------------------------------------------------------------
+
 	
-	//Actualiza la cantidad de productos en stock
+	/////////////////////////////////////////////////////////////////
+	//Actualiza la cantidad de productos en stock				   //
+	/////////////////////////////////////////////////////////////////
+	//FALTA
 	public void actualizarStock(negocio.Producto P, int cantidad)
 	{
 		for(negocio.Producto PA: this.productos)
@@ -66,9 +87,12 @@ public class CatalogoProductos
 			}
 		}
 	}
-	//*************************************************************
+	//---------------------------------------------------------------
+
 	
-	//Actualizar precio promocional de un producto
+	/////////////////////////////////////////////////////////////////
+	//Actualizar precio promocional de un producto				   //
+	/////////////////////////////////////////////////////////////////
 	public void actualizarPrecioPromProducto(negocio.Producto productoModificar,float nuevoPrecio)
 	{
 		for(negocio.Producto p : this.productos)
@@ -79,5 +103,6 @@ public class CatalogoProductos
 			}
 		}
 	}
+	//---------------------------------------------------------------
 
 }

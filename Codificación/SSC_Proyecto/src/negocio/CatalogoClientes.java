@@ -5,27 +5,42 @@ import java.util.Collection;
 
 public class CatalogoClientes {
 	
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private Collection<negocio.Cliente> clientes;
+	//---------------------------------------------------------------
 
-	
-	//CONSTRUCTOR
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public CatalogoClientes() 
 	{
 		this.clientes = new ArrayList<negocio.Cliente>();
 		this.obtenerClientes();
 	}
-	
+	//---------------------------------------------------------------
 
-	//GETTERS & SETTERS
+
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public Collection<negocio.Cliente> getClientes()
 	{
 		return clientes;
 	}
+	//---------------------------------------------------------------
 	
 	
-	//METODOS
-	//------------------------------------------------------------------------------------
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	// 															   //
+	/////////////////////////////////////////////////////////////////
 	public void obtenerClientes()
 	{
 		//se crea un objeto catalogoclientes de datos
@@ -91,12 +106,12 @@ public class CatalogoClientes {
 		}
 
 	}
+	//---------------------------------------------------------------
 	
 	
-	
-	
-	
-	//Obtiene los clientes que han comprado un producto específico
+	//////////////////////////////////////////////////////////////////
+	// Obtiene los clientes que han comprado un producto específico //
+	//////////////////////////////////////////////////////////////////
 	public Collection<negocio.Cliente> obtenerClientesProducto(negocio.Producto producto)
 	{
 		Collection<negocio.Cliente> clientesInteresados;
@@ -106,11 +121,12 @@ public class CatalogoClientes {
 		
 		return clientesInteresados;
 	}
-	//************************************************************************************
+	//---------------------------------------------------------------
 	
 	
-	//DSD 2.1.1
-	//Busca un cliente mediante su Id
+	/////////////////////////////////////////////////////////////////
+	// DSD 2.1.1 - 	Busca un cliente mediante su Id				   //
+	/////////////////////////////////////////////////////////////////
 	public negocio.Cliente buscarCliente(int idCliente)
 	{	
 
@@ -121,9 +137,12 @@ public class CatalogoClientes {
 		}
 		return null;
 	}
-	//************************************************************************************
+	//---------------------------------------------------------------
 	
-	//Busca un cliente mediante su nombre y apellido
+	
+	/////////////////////////////////////////////////////////////////
+	// Busca un cliente mediante su nombre y apellido			   //
+	/////////////////////////////////////////////////////////////////
 	public negocio.Cliente buscarCliente(String nombre, String apellido)
 	{	
 		for(negocio.Cliente c : this.clientes)
@@ -134,11 +153,12 @@ public class CatalogoClientes {
 		}
 		return null;
 	}
+	//---------------------------------------------------------------	
 	
-	//************************************************************************************
 	
-	
-	//Devuelve un subconjunto de clientes 
+	/////////////////////////////////////////////////////////////////
+	//Devuelve un subconjunto de clientes						   // 
+	/////////////////////////////////////////////////////////////////
 	public Collection<negocio.Cliente> buscarClientes(boolean tipoCliente)
 	{
 		Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
@@ -150,6 +170,6 @@ public class CatalogoClientes {
 		}
 		return arrClientesTemp;	
 	}
-	
+	//---------------------------------------------------------------
 
 }

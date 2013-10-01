@@ -6,35 +6,47 @@ import java.util.Iterator;
 
 public class CatalogoCategorias 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private Collection<negocio.Categoria> categorias;
+	//---------------------------------------------------------------
 
-	
-	//CONSTRUCTOR
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public CatalogoCategorias() 
 	{
 		categorias = new ArrayList<negocio.Categoria>();
 		this.obtenerCategorias();
 	}
-	
-	
-	//GETTERS & SETTERS
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public Collection<negocio.Categoria> getCategorias()
 	{
 		return categorias;
 	}
 
-
 	public void setCategorias(Collection<negocio.Categoria> categorias) 
 	{
 		this.categorias = categorias;
 	}
+	//---------------------------------------------------------------
 	
 	
 	
-	//METODOS
-	//------------------------------------------------------------------------
-	//Seteo del array de categorias a partir de la capa de datos
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	// Seteo del array de categorias a partir de la capa de datos  //
+	/////////////////////////////////////////////////////////////////
 	public void obtenerCategorias()
 	{
 		//se crea un objeto catalogocategorias de datos
@@ -107,13 +119,15 @@ public class CatalogoCategorias
 			categorias.add(categoriaNegocio);
 		}
 	}
-	//*************************************************************************
-
-
-	//Busca una categoria por su idCategoria
+	//---------------------------------------------------------------
+	
+	/////////////////////////////////////////////////////////////////
+	// Busca una categoria por su idCategoria  					   //
+	/////////////////////////////////////////////////////////////////
 	public negocio.Categoria buscarCategoria(int idCategoria)
 	{
 		return null;
 	}
-	//*************************************************************************
+	//---------------------------------------------------------------
+
 }

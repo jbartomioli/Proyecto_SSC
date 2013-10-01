@@ -5,7 +5,9 @@ import java.util.Collection;
 
 public class Cliente 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private int idCliente;
 	private String nombre;
 	private String apellido;
@@ -15,9 +17,12 @@ public class Cliente
 	private String telefono;
 	private boolean tipoCliente;
 	private Collection<negocio.Venta> ventas;
-		
-		
-	//CONSTRUCTOR
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public Cliente() 
 	{
 		this.idCliente = 0;
@@ -30,9 +35,12 @@ public class Cliente
 		this.tipoCliente = false;
 		this.ventas = new ArrayList<negocio.Venta>();
 	}
+	//---------------------------------------------------------------
 
-	
-	//GETTERS & SETTERS
+
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public int getIdCliente() 
 	{
 		return idCliente;
@@ -103,33 +111,37 @@ public class Cliente
 		this.ventas = ventas;
 	}
 
-
 	public String getEmail() 
 	{
 		return email;
 	}
-
 
 	public void setEmail(String email) 
 	{
 		this.email = email;
 	}
 
-
 	public String getEspecialidad() 
 	{
 		return especialidad;
 	}
 
-
 	public void setEspecialidad(String especialidad) 
 	{
 		this.especialidad = especialidad;
 	}
+	//---------------------------------------------------------------
 	
 	
 	
-	//METODOS
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	// 															   //
+	/////////////////////////////////////////////////////////////////
+	//REVISAR
 	public void obtenerVentas(datos.Cliente C)
 	{
 		//datos.Cliente clienteDato = new datos.Cliente();
@@ -147,12 +159,16 @@ public class Cliente
 		}
 		
 	}
+	//---------------------------------------------------------------
 	
 	
+	/////////////////////////////////////////////////////////////////
+	// 															   //
+	/////////////////////////////////////////////////////////////////
+	//FALTA
 	public boolean comproProducto(negocio.Producto productoActual)
 	{
 		return true;
 	}
-			
-
+	//---------------------------------------------------------------
 }

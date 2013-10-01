@@ -5,14 +5,19 @@ import java.util.Collection;
 
 public class Categoria 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private int idCategoria;
 	private String descripcion;
 	private Collection<negocio.SubCategoria> subCats;   
 	private Collection<negocio.Producto> productos; 
-	
+	//---------------------------------------------------------------
 
-	//CONSTRUCTOR
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public Categoria() 
 	{
 		this.idCategoria = 0;
@@ -20,9 +25,12 @@ public class Categoria
 		this.subCats = new ArrayList<negocio.SubCategoria>();
 		this.productos = new ArrayList<negocio.Producto>();
 	}
-	
-	
-	//GETTER & SETTER
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public int getIdCategoria() 
 	{
 		return idCategoria;
@@ -41,8 +49,7 @@ public class Categoria
 	public void setDescripcion(String descripcion) 
 	{
 		this.descripcion = descripcion;
-	}
-	
+	}	
 	
 	public Collection<SubCategoria> getSubCats() 
 	{
@@ -63,8 +70,15 @@ public class Categoria
 	{
 		this.productos = productos;
 	}
+	//---------------------------------------------------------------
 	
 	
-	//METODOS
-	//--------------------------------------------------------------------------
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	// 															   //
+	/////////////////////////////////////////////////////////////////
 }

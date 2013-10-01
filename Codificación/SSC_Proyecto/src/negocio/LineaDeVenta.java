@@ -2,25 +2,31 @@ package negocio;
 
 public class LineaDeVenta 
 {
-	
-	//ATRIBUTOS
+
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************	
 	private negocio.Producto productoLinea;
-	//private int idVenta;
 	private int cantidad;
 	private double subTotal;
-	
-	
-	//CONSTRUCTOR
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public LineaDeVenta() 
 	{
 		this.productoLinea = null;
-		//this.idVenta = 0;
 		this.cantidad = 0;
 		this.subTotal = 0;
 	}
+	//---------------------------------------------------------------
+
 	
-	
-	//GETTERS & SETTERS
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public negocio.Producto getProductoLinea() 
 	{
 		return productoLinea;
@@ -41,7 +47,6 @@ public class LineaDeVenta
 		this.cantidad = cantidad;
 	}
 	
-	
 	public double getSubTotal() 
 	{
 		return subTotal;
@@ -51,25 +56,20 @@ public class LineaDeVenta
 	{
 		this.subTotal = subTotal;
 	}
-/*
-	public int getIdVenta()
-	{
-		return idVenta;
-	}
-
-
-	public void setIdVenta(int idVenta) 
-	{
-		this.idVenta = idVenta;
-	}
-*/	
+	//---------------------------------------------------------------
 	
 	
-	//METODOS
-	//----------------------------------------------------------
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
 	
+	/////////////////////////////////////////////////////////////////
+	// 															   //
+	/////////////////////////////////////////////////////////////////
+	//FALTA
 	public boolean compararProductos(negocio.Producto productoActual)
 	{		
 		return true;
 	}
+	//---------------------------------------------------------------
 }

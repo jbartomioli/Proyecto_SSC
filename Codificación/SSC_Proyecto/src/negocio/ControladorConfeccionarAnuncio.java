@@ -249,10 +249,10 @@ public class ControladorConfeccionarAnuncio
 	
 
 	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.1.3 - DSD 1.7.4 //
+	// Metodo DSD 1.1.3 - DSD 1.7.4 							   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA SALIDA DATOS
-	public void seleccionarProducto(int idProducto) 
+	//LISTO
+	public SalidaDatosSeleccionaProductos seleccionarProducto(int idProducto) 
 	{
 		//se crea instancia de producto
 		negocio.Producto productoActual = new negocio.Producto();
@@ -261,33 +261,41 @@ public class ControladorConfeccionarAnuncio
 		//si no se encuentra el producto se guarda null en la instancia
 		productoActual = cp.buscarProducto(idProducto);	
 		
+		//se crea una instancia de datos de salida
+		SalidaDatosSeleccionaProductos salida = new SalidaDatosSeleccionaProductos();
+		
 		//se valida que el producto exista
 		if (productoActual != null)
 		{
-			productoActual.getExistenciaStock();
-			
-			productoActual.getPrecioActual();
+			//se setean datos de salida
+			salida.setStock(Integer.toString(productoActual.getExistenciaStock()));
+			salida.setPrecio(Double.toString(productoActual.getPrecioActual()));
 			
 			Collection<negocio.Cliente> arrClientesInteresados = new ArrayList<negocio.Cliente>();
 			
 			arrClientesInteresados = cc.obtenerClientesProducto(productoActual);
 			
+			int i=0;
+			
+			//se crea array temporal de string para datos de salida de clientes
+			String[][] datosClientes = new String[arrClientesInteresados.size()][3]; 
+			
 			for(Cliente C: arrClientesInteresados)
 			{
-				C.getIdCliente();
-				C.getNombre();
-				C.getApellido();
+				//se setean datos de los clientes en array temporal
+				datosClientes[0][i] = Integer.toString(C.getIdCliente());
+				datosClientes[1][i] = C.getNombre();
+				datosClientes[2][i] = C.getApellido();
 			}
+			
+			//se setea el array de salida de datos a partir del array temporal
+			salida.setClientes(datosClientes);
 			
 			arrProductosPublicación.add(productoActual);
 		}
-		else
-		{
-			
-		}
-		
+		return salida;
 	}
-
+	//---------------------------------------------------------------
 	
 	
 	/////////////////////////////////////////////////////////////////
@@ -569,6 +577,52 @@ public class ControladorConfeccionarAnuncio
 	}
 	//---------------------------------------------------------------
 	
+	
+	/////////////////////////////////////////////////////////////////
+	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.1.3 y 1.1.7		   //
+	/////////////////////////////////////////////////////////////////
+	private class SalidaDatosSeleccionaProductos
+	{
+		private String stock;
+		private String precio;
+		private String[][] clientes;
+		
+		public SalidaDatosSeleccionaProductos()
+		{
+			this.stock = "";
+			this.precio = "";
+			this.clientes = new String[arrClientesInteresados.size()][3];
+		}
+
+		public String getStock() {
+			return stock;
+		}
+
+		public void setStock(String stock) {
+			this.stock = stock;
+		}
+
+		public String getPrecio() {
+			return precio;
+		}
+
+		public void setPrecio(String precio) {
+			this.precio = precio;
+		}
+
+		public String[][] getClientes() {
+			return clientes;
+		}
+
+		public void setClientes(String[][] clientes) {
+			this.clientes = clientes;
+		}
+
+
+	}
+	//---------------------------------------------------------------
+	
+		
 	/////////////////////////////////////////////////////////////////
 	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.2.1 				   //
 	/////////////////////////////////////////////////////////////////
