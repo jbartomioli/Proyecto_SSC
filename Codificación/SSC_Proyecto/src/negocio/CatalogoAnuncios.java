@@ -43,8 +43,9 @@ public class CatalogoAnuncios
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// seteo de la coleccion de anuncios						   //
 	/////////////////////////////////////////////////////////////////
+	//VER
 	public Collection<negocio.Anuncio> obtenerAnuncios() 
 	{		
 		return anuncios;
@@ -55,16 +56,17 @@ public class CatalogoAnuncios
 	/////////////////////////////////////////////////////////////////
 	// 															   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA COMPLETAR
+	//FALTA HACER
 	public void guardarAnuncio(negocio.Anuncio anuncioActual)
 	{
-		
+		//
 	}
 	//---------------------------------------------------------------
 	
 	/////////////////////////////////////////////////////////////////
 	// 															   //
 	/////////////////////////////////////////////////////////////////
+	//VER
 	public void guardarCambioClientesAnuncio(negocio.Anuncio anuncioActual)
 	{
 		for(negocio.Anuncio a : this.anuncios)

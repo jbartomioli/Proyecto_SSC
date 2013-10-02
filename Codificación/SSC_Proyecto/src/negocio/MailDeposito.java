@@ -22,11 +22,13 @@ public class MailDeposito
 	//***************************************************************
 	//* GETTES & SETTERS											*
 	//***************************************************************
-	public String getEstado() {
+	public String getEstado() 
+	{
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(String estado) 
+	{
 		this.estado = estado;
 	}
 	//---------------------------------------------------------------

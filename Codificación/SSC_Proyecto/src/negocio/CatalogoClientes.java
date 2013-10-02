@@ -39,8 +39,9 @@ public class CatalogoClientes {
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// inicializa la coleccion de clientes						   //
 	/////////////////////////////////////////////////////////////////
+	//VER
 	public void obtenerClientes()
 	{
 		//se crea un objeto catalogoclientes de datos

@@ -19,7 +19,6 @@ public class CatalogoSubCategorias
 	public CatalogoSubCategorias() 
 	{
 		this.subcategorias = new ArrayList<negocio.SubCategoria>();
-		
 	}
 	//---------------------------------------------------------------
 
