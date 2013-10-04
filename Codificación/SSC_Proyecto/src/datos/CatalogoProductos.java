@@ -4,6 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 public class CatalogoProductos 
 {
@@ -37,53 +42,48 @@ public class CatalogoProductos
 
 	public Collection<datos.Producto> obtenerProductos()
 	{
-		ResultSet conjuntoResult = null;
-		eliminar.BDConector conector = null;
-		
+		Session session = null;	
+		//List result = null;
 		
 		try
 		{
-			
-			conector = new eliminar.BDConector(eliminar.BDConstantes.URL_BD, 
-					eliminar.BDConstantes.PORT, 
-					eliminar.BDConstantes.DATABASE, 
-					eliminar.BDConstantes.USER, 
-					eliminar.BDConstantes.PASS);
-			
-
-			conjuntoResult = conector.ejecutaPeticion("CALL obtenerProductos");
-					
-			
-			while( conjuntoResult.next())
-			{
-				datos.Producto pr = new datos.Producto();
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		        
+            Query query = session.createQuery("from Productos");  
+            @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
+            
+            for(Iterator<Query> it=list.iterator();it.hasNext();)
+            {  
+	        	datos.Producto productoDatos = new datos.Producto();
+	           
+	        	entidades.Productos entProducto = (entidades.Productos) it.next();  
+	           
+	        	
+	        	productoDatos.setIdProducto(entProducto.getIdProducto());
+	        	productoDatos.setCodProducto(entProducto.getCodProducto());
+	        	productoDatos.setNombre(entProducto.getNombre());
+	        	productoDatos.setExistenciaStock(entProducto.getStock());
+	        	//productoDatos.setIdSubCategoria();
+	        	//productoDatos.setPrecios();
 				
-				pr.setIdProducto(conjuntoResult.getInt("idProducto"));
-				pr.setCodProducto(conjuntoResult.getString("codProducto"));
-				pr.setNombre(conjuntoResult.getString("nombre"));
-				pr.setExistenciaStock(conjuntoResult.getInt("stock"));
-				pr.setIdSubCategoria(conjuntoResult.getInt("idSubCategoria"));
-				pr.setPrecios(conjuntoResult.getInt("idPrecio"));
-				
-				productos.add(pr);
+				productos.add(productoDatos);
 			}			
-		}
-		catch ( SQLException excepcionSql)
-		{
-			excepcionSql.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				conjuntoResult.close();
-				conector.cierraConexion();
-			}
-			catch (Exception excepcion)
-			{
-				excepcion.printStackTrace();
-			}
-		}
+
+        session.getTransaction().commit();
+	}
+	 
+	catch(Exception ex)
+	{
+		ex.printStackTrace();
+	}
+	 
+	finally
+	{
+	 	session.close();
+	}	
+		
 		return productos;
 	}
 }

@@ -7,8 +7,8 @@ public class Producto
 	private String codProducto;
 	private String nombre;
 	private int existenciaStock;
-	private int idSubCategoria;
-	private int idPrecio;
+	private datos.SubCategoria subcategoria;
+	private datos.Precio precio;
 	
 	
 	//CONSTRUCTOR
@@ -18,7 +18,8 @@ public class Producto
 		this.codProducto =  "";		
 		this.nombre = "";
 		this.existenciaStock = 0;
-		this.idPrecio = 0;
+		this.subcategoria = new SubCategoria();
+		this.precio = new Precio();
 	}
 
 
@@ -69,25 +70,25 @@ public class Producto
 	}
 
 
-	public int getPrecios() 
-	{
-		return idPrecio;
+	public datos.SubCategoria getSubcategoria() {
+		return subcategoria;
 	}
 
 
-	public void setPrecios(int idPrecio) 
-	{
-		this.idPrecio = idPrecio;
-	}
-	
-	public int getIdSubCategoria() 
-	{
-		return idSubCategoria;
+	public void setSubcategoria(datos.SubCategoria subcategoria) {
+		this.subcategoria = subcategoria;
 	}
 
 
-	public void setIdSubCategoria(int idSubCategoria) 
-	{
-		this.idSubCategoria = idSubCategoria;
+	public datos.Precio getPrecio() {
+		return precio;
 	}
+
+
+	public void setPrecio(datos.Precio precio) {
+		this.precio = precio;
+	}
+
+
+
 }
