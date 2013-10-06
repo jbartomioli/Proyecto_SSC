@@ -173,17 +173,24 @@ public class ControladorConfeccionarAnuncio
 	//LISTO
 	public Collection<SalidaDatos> seleccionarCategoria(int idCategoria) 
 	{
+		//instancia para almacenar la categoria actual seleccionada
 		negocio.Categoria categoriaActual = new negocio.Categoria();
 		
+		//se almacena la categoria buscada 
 		categoriaActual = cctg.buscarCategoria(idCategoria);
 		
+		//categoriaActual.obtenerSubcategorias
+		
+		//se crea arreglo de subcategorias
 		Collection<negocio.SubCategoria> subCats = new ArrayList<negocio.SubCategoria>();
 		
+		//se crea instancia de salida de datos (subclase del controlador)
 		Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
 		
+		//se obtienen las subcategorias de la categoria actual
 		subCats = categoriaActual.getSubCats();
 
-		//
+		//si no tiene subcategorias
 		if(subCats == null)
 		{
 			productos = categoriaActual.getProductos();
@@ -198,6 +205,7 @@ public class ControladorConfeccionarAnuncio
 				salidaDatos.add(salidaProd);	
 			}
 		}
+		//si tiene subcategorias
 		else
 		{
 			for(negocio.SubCategoria SC : subCats)
@@ -211,6 +219,7 @@ public class ControladorConfeccionarAnuncio
 			}
 		}
 		
+		//devuelve la instancia con los atributos seteados
 		return salidaDatos;
 		
 	}

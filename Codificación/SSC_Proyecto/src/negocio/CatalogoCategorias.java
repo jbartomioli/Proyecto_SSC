@@ -47,7 +47,7 @@ public class CatalogoCategorias
 	/////////////////////////////////////////////////////////////////
 	// Seteo del array de categorias a partir de la capa de datos  //
 	/////////////////////////////////////////////////////////////////
-	//REVEER FALTA
+	//LISTO
 	public void obtenerCategorias()
 	{
 		//se crea un objeto catalogocategorias de datos
@@ -67,60 +67,13 @@ public class CatalogoCategorias
 			
 			categoriaNegocio.setIdCategoria(datosCategoria.getIdCategoria());
 			categoriaNegocio.setDescripcion(datosCategoria.getDescripcion());
-			//producto
 			
-			Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
-			
-			for(datos.Categoria dc: ctgDatos.getCategorias())
-			{
-				if(datosCategoria.getIdCategoria() == dc.getIdCategoria())
-				{
-					negocio.Producto productoNegocio = new negocio.Producto();
-					
-					productoNegocio.setIdProducto(datosCategoria.getProducto());
-				
-					productos.add(productoNegocio);
-				}
-			}
-			
-			categoriaNegocio.setProductos(productos);
-			
-			//subcat
-			
-		
-		/*
-			if(categoriaNegocio.getIdCategoria() != datosCategoria.getIdCategoria())
-			{	
-			//for(datos.Categoria datosCategoria: ctgDatos.getCategorias())
-			
-				negocio.Categoria categoriaNegocio1 = new negocio.Categoria();			
-				
-				categoriaNegocio1.setIdCategoria(datosCategoria.getIdCategoria());
-				categoriaNegocio1.setDescripcion(datosCategoria.getDescripcion());
-				//producto
-				
-				Collection<negocio.Producto> productos1 = new ArrayList<negocio.Producto>();
-				
-				for(datos.Categoria dc: ctgDatos.getCategorias())
-				{
-					if(datosCategoria.getIdCategoria() == dc.getIdCategoria())
-					{
-						negocio.Producto productoNegocio = new negocio.Producto();
-						
-						productoNegocio.setIdProducto(datosCategoria.getProducto());
-					
-						productos1.add(productoNegocio);
-					}
-				}
-				
-				categoriaNegocio1.setProducto(productos1);
-			}
-			//subcat
-				*/
 			categorias.add(categoriaNegocio);
 		}
 	}
 	//---------------------------------------------------------------
+	
+	
 	
 	/////////////////////////////////////////////////////////////////
 	// Busca una categoria por su idCategoria y la devuelve        //

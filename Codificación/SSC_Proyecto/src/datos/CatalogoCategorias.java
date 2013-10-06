@@ -1,25 +1,36 @@
 package datos;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 public class CatalogoCategorias 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private Collection<datos.Categoria> categorias;
+	//---------------------------------------------------------------
 
-	
-	//CONSTRUCTOR
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public CatalogoCategorias() 
 	{
 		this.categorias = new ArrayList<datos.Categoria>();
 		this.obtenerCategorias();
 	}
+	//---------------------------------------------------------------
 
 
-	//GETTER & SETTERS
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public Collection<datos.Categoria> getCategorias() 
 	{
 		return categorias;
@@ -29,61 +40,55 @@ public class CatalogoCategorias
 	{
 		this.categorias = categorias;
 	}
+	//---------------------------------------------------------------
 	
-
 	
-	//METODOS
-	//-------------------------------------------------------------
-	public Collection<datos.Categoria> obtenerCategorias()
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	// Seteo del array de categorias a partir de la capa de datos  //
+	/////////////////////////////////////////////////////////////////
+	//LISTO
+	public void obtenerCategorias()
 	{
-		ResultSet conjuntoResult = null;
-		eliminar.BDConector conector = null;
-		
+		Session session = null;	
 		
 		try
 		{
-			
-			conector = new eliminar.BDConector(eliminar.BDConstantes.URL_BD, 
-					eliminar.BDConstantes.PORT, 
-					eliminar.BDConstantes.DATABASE, 
-					eliminar.BDConstantes.USER, 
-					eliminar.BDConstantes.PASS);
-			
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		        
+            Query query = session.createQuery("from Categorias");  
+            @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
+            
+            for(Iterator<Query> it=list.iterator();it.hasNext();)
+            {  
+	        	datos.Categoria catergoriaDatos = new datos.Categoria();
+	           
+	        	entidades.Categorias entCategoria = (entidades.Categorias) it.next();  
+	           
+	           	catergoriaDatos.setIdCategoria(entCategoria.getIdCategoria());
+	           	catergoriaDatos.setDescripcion(entCategoria.getDescripcion());
+	           	
+	           	categorias.add(catergoriaDatos);            
+	        }
 
-			conjuntoResult = conector.ejecutaPeticion("CALL obtenerCategorias");
-					
-			
-			while( conjuntoResult.next() )
-			{
-				//se define categoria temporal
-				datos.Categoria ctg = new datos.Categoria();
-				
-				//se setean atributos de categoria
-				ctg.setIdCategoria(conjuntoResult.getInt("idCategoria"));
-				ctg.setDescripcion(conjuntoResult.getString("descripcion"));
-				ctg.setSubCat(conjuntoResult.getInt("idSubcategoria"));
-				ctg.setProducto(conjuntoResult.getInt("idProducto"));
-					
-				categorias.add(ctg);
-			}			
+	        session.getTransaction().commit();
 		}
-		catch ( SQLException excepcionSql)
+		 
+		catch(Exception ex)
 		{
-			excepcionSql.printStackTrace();
+			ex.printStackTrace();
 		}
+		 
 		finally
 		{
-			try
-			{
-				conjuntoResult.close();
-				conector.cierraConexion();
-			}
-			catch (Exception excepcion)
-			{
-				excepcion.printStackTrace();
-			}
-		}
-		return categorias;
+		 	session.close();
+		}	
 	}
-	//****************************************************************************
+	//---------------------------------------------------------------
 }
