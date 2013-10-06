@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import negocio.Venta;
-
 public class Cliente 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private int idCliente;
 	private String nombre;
 	private String apellido;
@@ -22,9 +21,12 @@ public class Cliente
 	private String telefono;
 	private boolean tipoCliente;
 	private Collection<datos.Venta> ventas;
-	
-	
-	//CONSTRUCTOR
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public Cliente() 
 	{
 		this.idCliente = 0;
@@ -37,9 +39,12 @@ public class Cliente
 		this.tipoCliente = false;
 		this.ventas = new ArrayList<datos.Venta>();
 	}
+	//---------------------------------------------------------------
 
-	
-	//GETTERS & SETTERS
+
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public int getIdCliente() 
 	{
 		return idCliente;
@@ -102,7 +107,6 @@ public class Cliente
 	
 	public Collection<datos.Venta> getVentas()
 	{
-		//this.obtenerVentas(this);
 		return ventas;
 	}
 	
@@ -111,34 +115,38 @@ public class Cliente
 		this.ventas = ventas;
 	}
 
-
 	public String getEmail() 
 	{
 		return email;
 	}
-
 
 	public void setEmail(String email) 
 	{
 		this.email = email;
 	}
 
-
 	public String getEspecialidad() 
 	{
 		return especialidad;
 	}
 
-
 	public void setEspecialidad(String especialidad) 
 	{
 		this.especialidad = especialidad;
 	}
+	//---------------------------------------------------------------
 	
 	
-	//METODOS
-	//----------------------------------------------------------
-	public void obtenerVentas(datos.Cliente C)
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	// Se utiliza para solicitar al cliente sus ventas			   //
+	/////////////////////////////////////////////////////////////////
+	//FALTA COMPLETAR
+	public void obtenerVentas(int idCliente)
 	{
 		Session session = null;	
 			
@@ -148,7 +156,7 @@ public class Cliente
 		    session.beginTransaction();
 		        
             Query query = session.createQuery("from Ventas v where v.clientes.idCliente = :idC");
-            query.setParameter("idC", C.getIdCliente());
+            query.setParameter("idC", idCliente);
             
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
@@ -178,12 +186,16 @@ public class Cliente
 		 	session.close();
 		}	
 	}
+	//---------------------------------------------------------------
 	
-
-	//--------------------------------------------------
+	
+	/////////////////////////////////////////////////////////////////
+	// 															   //
+	/////////////////////////////////////////////////////////////////	
 	public boolean comproProducto(datos.Producto producto)
 	{
 		
 		return false;
 	}
+	//---------------------------------------------------------------
 }

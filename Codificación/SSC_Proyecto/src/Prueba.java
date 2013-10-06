@@ -1,6 +1,5 @@
-public class Prueba {
 
-	//static SessionFactory sessionFactory;
+public class Prueba {
 	
 	public Prueba()
 	{
@@ -16,9 +15,10 @@ public class Prueba {
 			for(negocio.Cliente C : cc.getClientes())
 			{
 				System.out.println(C.getApellido() + " " +C.getNombre()+" "+C.getVentas().toString());
-				//for(negocio.Venta V: C.getVentas())
-				//	System.out.print(V.getFechaVenta()+" ");
-				//System.out.println("");
+				C.obtenerVentas();
+				for(negocio.Venta V: C.getVentas())
+					System.out.print(V.getFechaVenta()+"\n");
+				System.out.println("\n\n");
 			}
 			
 			

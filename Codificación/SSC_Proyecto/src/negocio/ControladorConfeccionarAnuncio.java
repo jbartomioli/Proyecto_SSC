@@ -572,6 +572,7 @@ public class ControladorConfeccionarAnuncio
 			this.id = "";
 		}
 
+		@SuppressWarnings("unused")
 		public String getDescripcion() {
 			return descripcion;
 		}
@@ -580,6 +581,7 @@ public class ControladorConfeccionarAnuncio
 			this.descripcion = descripcion;
 		}
 
+		@SuppressWarnings("unused")
 		public String getId() {
 			return id;
 		}
@@ -607,6 +609,7 @@ public class ControladorConfeccionarAnuncio
 			this.clientes = new String[arrClientesInteresados.size()][3];
 		}
 
+		@SuppressWarnings("unused")
 		public String getStock() {
 			return stock;
 		}
@@ -615,6 +618,7 @@ public class ControladorConfeccionarAnuncio
 			this.stock = stock;
 		}
 
+		@SuppressWarnings("unused")
 		public String getPrecio() {
 			return precio;
 		}
@@ -623,6 +627,7 @@ public class ControladorConfeccionarAnuncio
 			this.precio = precio;
 		}
 
+		@SuppressWarnings("unused")
 		public String[][] getClientes() {
 			return clientes;
 		}
@@ -653,6 +658,7 @@ public class ControladorConfeccionarAnuncio
 		}
 
 
+		@SuppressWarnings("unused")
 		public String getMembrete() 
 		{
 			return membrete;
@@ -665,12 +671,14 @@ public class ControladorConfeccionarAnuncio
 		}
 
 
+		@SuppressWarnings("unused")
 		public String[][] getArrDatosProductos() 
 		{
 			return arrDatosProductos;
 		}
 
 
+		@SuppressWarnings("unused")
 		public void setArrDatosProductos(String[][] arrDatosProductos) 
 		{
 			this.arrDatosProductos = arrDatosProductos;

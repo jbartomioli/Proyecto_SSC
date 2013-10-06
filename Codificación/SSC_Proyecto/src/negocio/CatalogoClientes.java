@@ -59,50 +59,6 @@ public class CatalogoClientes {
 			clienteNegocio.setNombre(clienteDato.getNombre());
 			clienteNegocio.setTelefono(clienteDato.getTelefono());
 			
-			clienteNegocio.obtenerVentas(clienteDato);
-			
-			/*
-			Collection<negocio.Venta> ventas = new ArrayList<negocio.Venta>();
-			
-			for(datos.Venta DV : clienteDato.getVentas())
-			{
-				negocio.Venta ventaNegocio = new negocio.Venta();
-				ventaNegocio.setFechaVenta(DV.getFechaVenta());
-
-				Collection<negocio.LineaDeVenta> lineas = new ArrayList<negocio.LineaDeVenta>();
-           		
-           		for(datos.LineaDeVenta DLDV: DV.getLineas())
-           		{
-           			negocio.LineaDeVenta linea = new negocio.LineaDeVenta();
-           			
-           			linea.setCantidad(DLDV.getCantidad());
-           			
-           			negocio.Producto producto = new negocio.Producto();
-           			
-           			producto.setCodProducto(DLDV.getProducto().getCodProducto());
-           			producto.setExistenciaStock(DLDV.getProducto().getStock());
-           			producto.setNombre(DLDV.getProducto().getNombre());
-           			//producto.setPrecios(LDV.getProductos().getPrecioses());
-           			
-           			linea.setProductoLinea(producto);
-           			
-           			//linea.setSubTotal(LDV.getSubtotal());
-           			
-           			lineas.add(linea);
-           			
-           		}
-           		
-           		ventaNegocio.setLineas(lineas);
-							
-				//ventaNegocio.setTotal(DV.getTotal());
-				
-				ventas.add(ventaNegocio);
-			}	
-				
-			//ventas.addAll(clienteDato.getVentas());
-			
-			clienteNegocio.setVentas(ventas);
-			*/
 			clientes.add(clienteNegocio);
 		}
 
@@ -123,6 +79,8 @@ public class CatalogoClientes {
 		
 		for(negocio.Cliente C: this.clientes)
 		{
+			C.obtenerVentas();
+			
 			//si el cliente compro el producto lo agrego al arreglo
 			if(C.comproProducto(producto))
 				arrClientesInteresados.add(C);

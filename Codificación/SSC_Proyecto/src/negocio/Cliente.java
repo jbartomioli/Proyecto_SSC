@@ -139,21 +139,24 @@ public class Cliente
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// Se utiliza para solicitar al cliente sus ventas			   //
 	/////////////////////////////////////////////////////////////////
-	//REVISAR
-	public void obtenerVentas(datos.Cliente C)
+	//VER
+	public void obtenerVentas()
 	{
-		//datos.Cliente clienteDato = new datos.Cliente();
+		//se crea una instancia de cliente de datos
+		datos.Cliente clienteDato = new datos.Cliente();
 		
-		C.obtenerVentas(C);
+		//se setean las ventas del cliente de datos
+		clienteDato.obtenerVentas(this.getIdCliente());
 		
-		for(datos.Venta VD: C.getVentas())
+		//se obtiene cada venta del cliente de datos
+		//para luego agregarlas al cliente de negocio
+		for(datos.Venta VD: clienteDato.getVentas())
 		{
 			negocio.Venta ventaNegocio = new negocio.Venta();
 			
 			ventaNegocio.setFechaVenta(VD.getFechaVenta());
-			//
 			
 			this.ventas.add(ventaNegocio);
 		}
