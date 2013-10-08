@@ -53,7 +53,7 @@ public class CatalogoCategorias
 		//se crea un objeto catalogocategorias de datos
 		datos.CatalogoCategorias ctgDatos = new datos.CatalogoCategorias();
 		
-		//se inicializa el array de clientes del catalogo
+		//
 		categorias = new ArrayList<negocio.Categoria>();
 			
 		

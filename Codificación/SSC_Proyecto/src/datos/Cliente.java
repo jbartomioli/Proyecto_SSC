@@ -45,94 +45,76 @@ public class Cliente
 	//***************************************************************
 	//* GETTES & SETTERS											*
 	//***************************************************************
-	public int getIdCliente() 
-	{
+	public int getIdCliente() {
 		return idCliente;
 	}
-	
-	public void setIdCliente(int idCliente) 
-	{
+
+	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
-	
-	public String getNombre()
-	{
+
+	public String getNombre() {
 		return nombre;
 	}
-	
-	public void setNombre(String nombre) 
-	{
+
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public String getApellido() 
-	{
+
+	public String getApellido() {
 		return apellido;
 	}
-	
-	public void setApellido(String apellido) 
-	{
+
+	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	
-	public String getDireccion() 
-	{
+
+	public String getDireccion() {
 		return direccion;
 	}
-	
-	public void setDireccion(String direccion)
-	{
+
+	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
-	public String getTelefono() 
-	{
-		return telefono;
-	}
-	
-	public void setTelefono(String telefono) 
-	{
-		this.telefono = telefono;
-	}
-	
-	public boolean getTipoCliente() 
-	{
-		return tipoCliente;
-	}
-	
-	public void setTipoCliente(boolean tipoCliente) 
-	{
-		this.tipoCliente = tipoCliente;
-	}
-	
-	public Collection<datos.Venta> getVentas()
-	{
-		return ventas;
-	}
-	
-	public void setVentas(Collection<datos.Venta> ventas) 
-	{
-		this.ventas = ventas;
-	}
 
-	public String getEmail() 
-	{
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) 
-	{
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public String getEspecialidad() 
-	{
+	public String getEspecialidad() {
 		return especialidad;
 	}
 
-	public void setEspecialidad(String especialidad) 
-	{
+	public void setEspecialidad(String especialidad) {
 		this.especialidad = especialidad;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public boolean isTipoCliente() {
+		return tipoCliente;
+	}
+
+	public void setTipoCliente(boolean tipoCliente) {
+		this.tipoCliente = tipoCliente;
+	}
+
+	public Collection<datos.Venta> getVentas() {
+		return ventas;
+	}
+
+	public void setVentas(Collection<datos.Venta> ventas) {
+		this.ventas = ventas;
 	}
 	//---------------------------------------------------------------
 	

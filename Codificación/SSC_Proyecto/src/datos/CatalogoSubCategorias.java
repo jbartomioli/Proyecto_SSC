@@ -1,89 +1,92 @@
 package datos;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 public class CatalogoSubCategorias 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private Collection<datos.SubCategoria> subcategorias;
+	//---------------------------------------------------------------
 
-	
-	//CONSTRUCTOR
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public CatalogoSubCategorias() 
 	{
 		this.subcategorias = new ArrayList<datos.SubCategoria>();
-		
+		this.obtenerSubCategorias();
 	}
+	//---------------------------------------------------------------
 
 
-	//GETTERS & SETTERS
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public Collection<datos.SubCategoria> getSubcategorias() 
 	{
 		return subcategorias;
 	}
 
-
 	public void setSubcatgorias(Collection<datos.SubCategoria> subcategorias) 
 	{
 		this.subcategorias = subcategorias;
 	}
+	//---------------------------------------------------------------
 	
 	
-	//METODOS
-	//----------------------------------------------------------
-	public Collection<datos.SubCategoria> obtenerSubCategorias()
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	//   //
+	/////////////////////////////////////////////////////////////////
+	public void obtenerSubCategorias()
 	{
-		ResultSet conjuntoResult = null;
-		eliminar.BDConector conector = null;
-		
+		Session session = null;	
 		
 		try
 		{
-			
-			conector = new eliminar.BDConector(eliminar.BDConstantes.URL_BD, 
-					eliminar.BDConstantes.PORT, 
-					eliminar.BDConstantes.DATABASE, 
-					eliminar.BDConstantes.USER, 
-					eliminar.BDConstantes.PASS);
-			
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		        
+            Query query = session.createQuery("from SubCategorias");  
+            @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
+            
+            for(Iterator<Query> it=list.iterator();it.hasNext();)
+            {  
+	        	datos.SubCategoria subCategoriaDatos = new datos.SubCategoria();
+	           
+	        	entidades.Subcategorias entSubCategoria = (entidades.Subcategorias) it.next();  
+	           
+	           	subCategoriaDatos.setIdSubcategoria(entSubCategoria.getIdSubcategoria());
+	           	subCategoriaDatos.setDescripcion(entSubCategoria.getDescripcion());
+	           	//
+	           	subcategorias.add(subCategoriaDatos);            
+	        }
 
-			conjuntoResult = conector.ejecutaPeticion("CALL obtenerSubCategorias");
-					
-			
-			while( conjuntoResult.next() )
-			{
-				//se define categoria temporal
-				datos.SubCategoria sctg = new datos.SubCategoria();
-				
-				//se setean atributos de subcategoria
-							
-				sctg.setIdSubcategoria(conjuntoResult.getInt("idSubCategoria"));
-				sctg.setDescripcion(conjuntoResult.getString("descripcion"));
-				sctg.setIdCategoria(conjuntoResult.getInt("idCategoria"));
-				sctg.setProducto(conjuntoResult.getInt("idProducto"));
-					
-				subcategorias.add(sctg);
-			}			
+	        session.getTransaction().commit();
 		}
-		catch ( SQLException excepcionSql)
+		 
+		catch(Exception ex)
 		{
-			excepcionSql.printStackTrace();
+			ex.printStackTrace();
 		}
+		 
 		finally
 		{
-			try
-			{
-				conjuntoResult.close();
-				conector.cierraConexion();
-			}
-			catch (Exception excepcion)
-			{
-				excepcion.printStackTrace();
-			}
-		}
-		return subcategorias;
+		 	session.close();
+		}	
 	}
+	//---------------------------------------------------------------
 }

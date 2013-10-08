@@ -1,74 +1,78 @@
 package datos;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class SubCategoria 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private int idSubcategoria;
-	private int idCategoria;
 	private String descripcion;
-	private int producto;
-	
-	
-	//CONSTRUCTOR
+	private datos.Categoria categoria;
+	private Collection<datos.Producto> productos;
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public SubCategoria() 
 	{
 		this.idSubcategoria = 0;
-		this.idCategoria = 0;
 		this.descripcion = "";
-		this.producto = 0;
+		this.categoria = new datos.Categoria();
+		this.productos = new ArrayList<datos.Producto>();
 	}
+	//---------------------------------------------------------------
 
 
-	//GETTER & SETTERS
-	public int getIdSubcategoria() 
-	{
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
+	public int getIdSubcategoria() {
 		return idSubcategoria;
 	}
 
-
-	public void setIdSubcategoria(int idSubcategoria) 
-	{
+	public void setIdSubcategoria(int idSubcategoria) {
 		this.idSubcategoria = idSubcategoria;
 	}
 
-
-	public String getDescripcion() 
-	{
+	public String getDescripcion() {
 		return descripcion;
 	}
 
-
-	public void setDescripcion(String descripcion) 
-	{
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
-
-	public int getProductos() 
-	{
-		return producto;
+	public datos.Categoria getCategoria() {
+		return categoria;
 	}
 
-
-	public void setProducto(int producto) 
-	{
-		this.producto = producto;
+	public void setCategoria(datos.Categoria categoria) {
+		this.categoria = categoria;
 	}
 
-
-	public int getIdCategoria() 
-	{
-		return idCategoria;
+	public Collection<datos.Producto> getProductos() {
+		return productos;
 	}
 
-
-	public void setIdCategoria(int idCategoria) 
-	{
-		this.idCategoria = idCategoria;
+	public void setProductos(Collection<datos.Producto> productos) {
+		this.productos = productos;
 	}
+	//---------------------------------------------------------------
 	
-	//METODOS
-	//----------------------------------------------------------
 	
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	// 			   //
+	/////////////////////////////////////////////////////////////////
+	//---------------------------------------------------------------
 
 }

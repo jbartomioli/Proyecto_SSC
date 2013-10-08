@@ -1,26 +1,37 @@
 package datos;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 
 public class Categoria 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private int idCategoria;
 	private String descripcion;
-	private int subCat;
-	private int producto;
-	
-	
-	//CONSTRUCTOR
+	private Collection<datos.SubCategoria> subCategorias;
+	private Collection<datos.Producto> productos;
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public Categoria() 
 	{
 		this.idCategoria = 0;
 		this.descripcion = "";
-		this.subCat = 0;
-		this.producto = 0;
+		this.subCategorias = new ArrayList<datos.SubCategoria>();
+		this.productos = new ArrayList<datos.Producto>();
 	}
-	
-	
-	//GETTER & SETTER
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public int getIdCategoria() 
 	{
 		return idCategoria;
@@ -41,24 +52,35 @@ public class Categoria
 		this.descripcion = descripcion;
 	}
 	
-	
-	public int getSubCat() 
+	public Collection<datos.SubCategoria> getSubCat() 
 	{
-		return subCat;
+		return subCategorias;
 	}
 	
-	public void setSubCat(int subCat) 
+	public void setSubCat(Collection<datos.SubCategoria> subCat) 
 	{
-		this.subCat = subCat;
+		this.subCategorias = subCat;
 	}
 	
-	public int getProducto() 
+	public Collection<datos.Producto> getProducto() 
 	{
-		return producto;
+		return productos;
 	}
 	
-	public void setProducto(int producto) 
+	public void setProducto(Collection<datos.Producto> productos) 
 	{
-		this.producto = producto;
+		this.productos = productos;
 	}
+	//---------------------------------------------------------------
+	
+	
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	//   //
+	/////////////////////////////////////////////////////////////////
+	
 }
