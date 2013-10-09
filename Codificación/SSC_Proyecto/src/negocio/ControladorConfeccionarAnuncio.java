@@ -179,8 +179,6 @@ public class ControladorConfeccionarAnuncio
 		//se almacena la categoria buscada 
 		categoriaActual = cctg.buscarCategoria(idCategoria);
 		
-		//categoriaActual.obtenerSubcategorias
-		
 		//se crea arreglo de subcategorias
 		Collection<negocio.SubCategoria> subCats = new ArrayList<negocio.SubCategoria>();
 		
@@ -188,11 +186,15 @@ public class ControladorConfeccionarAnuncio
 		Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
 		
 		//se obtienen las subcategorias de la categoria actual
+		categoriaActual.obtenerSubCategorias();
 		subCats = categoriaActual.getSubCats();
 
+		/*
+		//se va a implementar solo la subcategoria
 		//si no tiene subcategorias
 		if(subCats == null)
 		{
+			categoriaActual.obtenerProductos();
 			productos = categoriaActual.getProductos();
 			
 			for(negocio.Producto P: productos)
@@ -207,17 +209,17 @@ public class ControladorConfeccionarAnuncio
 		}
 		//si tiene subcategorias
 		else
+		{*/
+		for(negocio.SubCategoria SC : subCats)
 		{
-			for(negocio.SubCategoria SC : subCats)
-			{
-				SalidaDatos salidaSub = new SalidaDatos();
-				
-				salidaSub.setId(Integer.toString(SC.getIdSubcategoria()));
-				salidaSub.setDescripcion(SC.getDescripcion());
+			SalidaDatos salidaSub = new SalidaDatos();
+			
+			salidaSub.setId(Integer.toString(SC.getIdSubcategoria()));
+			salidaSub.setDescripcion(SC.getDescripcion());
 
-				salidaDatos.add(salidaSub);	
-			}
+			salidaDatos.add(salidaSub);	
 		}
+		//}
 		
 		//devuelve la instancia con los atributos seteados
 		return salidaDatos;
@@ -570,7 +572,7 @@ public class ControladorConfeccionarAnuncio
 	/////////////////////////////////////////////////////////////////
 	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.1.1 y 1.1.2		   //
 	/////////////////////////////////////////////////////////////////
-	private class SalidaDatos
+	public class SalidaDatos
 	{
 		private String descripcion;
 		private String id;

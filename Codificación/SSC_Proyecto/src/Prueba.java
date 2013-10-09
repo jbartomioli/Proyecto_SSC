@@ -1,5 +1,10 @@
+import java.util.ArrayList;
+import java.util.Collection;
+
 import negocio.CatalogoCategorias;
 import negocio.Categoria;
+import negocio.ControladorConfeccionarAnuncio;
+import negocio.ControladorConfeccionarAnuncio.SalidaDatos;
 
 
 public class Prueba {
@@ -25,11 +30,24 @@ public class Prueba {
 				System.out.println("\n\n");
 			}
 		*/
-		
+		/*
 			negocio.CatalogoCategorias ccc = new CatalogoCategorias();
 			for(negocio.Categoria C : ccc.getCategorias())
 				System.out.println(C.getIdCategoria()+" " +C.getDescripcion());
-
+		 */
+			
+			negocio.ControladorConfeccionarAnuncio ctrl = new ControladorConfeccionarAnuncio();
+			
+			Collection<negocio.ControladorConfeccionarAnuncio.SalidaDatos> salida = 
+					new ArrayList<ControladorConfeccionarAnuncio.SalidaDatos>();
+			
+			salida = ctrl.seleccionarCategoria(2);
+			
+			for(SalidaDatos SD: salida)
+			{
+				System.out.println(SD.getId()+" - "+SD.getDescripcion());
+			}
+			
 		 }
 		 catch(Exception ex)
 		 {

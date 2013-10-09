@@ -11,7 +11,7 @@ public class Categoria
 	private int idCategoria;
 	private String descripcion;
 	private Collection<negocio.SubCategoria> subCats;   
-	private Collection<negocio.Producto> productos; 
+	//private Collection<negocio.Producto> productos; 
 	//---------------------------------------------------------------
 
 
@@ -23,7 +23,7 @@ public class Categoria
 		this.idCategoria = 0;
 		this.descripcion = "";
 		this.subCats = new ArrayList<negocio.SubCategoria>();
-		this.productos = new ArrayList<negocio.Producto>();
+		//this.productos = new ArrayList<negocio.Producto>();
 	}
 	//---------------------------------------------------------------
 
@@ -61,16 +61,17 @@ public class Categoria
 		this.subCats = subCat;
 	}
 	
-	public Collection<Producto> getProductos() 
-	{
-		return productos;
-	}
-	
-	public void setProductos(Collection<Producto> productos) 
-	{
-		this.productos = productos;
-	}
+//	public Collection<Producto> getProductos() 
+//	{
+//		return productos;
+//	}
+//	
+//	public void setProductos(Collection<Producto> productos) 
+//	{
+//		this.productos = productos;
+//	}
 	//---------------------------------------------------------------
+
 	
 	
 	
@@ -81,5 +82,28 @@ public class Categoria
 	/////////////////////////////////////////////////////////////////
 	// 															   //
 	/////////////////////////////////////////////////////////////////
-	
+	//
+	public void obtenerSubCategorias() 
+	{
+		//se crea una instancia de cliente de datos
+		datos.Categoria categoriaDatos = new datos.Categoria();
+		
+		//se setean las ventas del cliente de datos
+		categoriaDatos.obtenerSubCategorias(this.idCategoria);
+		
+		//se obtiene cada venta del cliente de datos
+		//para luego agregarlas al cliente de negocio
+		for(datos.SubCategoria SC: categoriaDatos.getSubCats())
+		{
+			negocio.SubCategoria subCategoriaNegocio = new negocio.SubCategoria();
+			
+			//seteos
+			subCategoriaNegocio.setIdSubcategoria(SC.getIdSubcategoria());
+			subCategoriaNegocio.setDescripcion(SC.getDescripcion());
+			
+			this.subCats.add(subCategoriaNegocio);
+		}
+		
+	}
+	//---------------------------------------------------------------
 }

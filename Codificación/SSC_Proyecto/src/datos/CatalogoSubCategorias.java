@@ -59,7 +59,7 @@ public class CatalogoSubCategorias
 		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
 		    session.beginTransaction();
 		        
-            Query query = session.createQuery("from SubCategorias");  
+            Query query = session.createQuery("from Subcategorias");  
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
             
