@@ -10,7 +10,7 @@ public class Precio
 	private Date fechaHasta;
 	private double precio;
 	private double precioPromocional;
-	private datos.Producto productoPrecio;
+	//private datos.Producto productoPrecio;
 	
 	
 	//CONSTRUCTOR
@@ -21,7 +21,7 @@ public class Precio
 		this.fechaHasta = new Date();
 		this.precio = 0;
 		this.precioPromocional = 0;
-		this.productoPrecio = new datos.Producto();
+		//this.productoPrecio = new datos.Producto();
 	}
 
 	//GETTER & SETTERS
@@ -75,15 +75,15 @@ public class Precio
 		this.precioPromocional = precioPromocional;
 	}
 
-	public datos.Producto getProductoPrecio()
-	{
-		return productoPrecio;
-	}
-
-	public void setProductoPrecio(datos.Producto productoPrecio) 
-	{
-		this.productoPrecio = productoPrecio;
-	}	
+//	public datos.Producto getProductoPrecio()
+//	{
+//		return productoPrecio;
+//	}
+//
+//	public void setProductoPrecio(datos.Producto productoPrecio) 
+//	{
+//		this.productoPrecio = productoPrecio;
+//	}	
 	
 	
 	

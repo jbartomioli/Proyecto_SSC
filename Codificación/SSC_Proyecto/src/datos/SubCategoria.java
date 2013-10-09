@@ -2,6 +2,11 @@ package datos;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 public class SubCategoria 
 {
@@ -63,8 +68,8 @@ public class SubCategoria
 		this.productos = productos;
 	}
 	//---------------------------------------------------------------
-	
-	
+
+
 	
 	//***************************************************************
 	//* METODOS 													*
@@ -73,6 +78,49 @@ public class SubCategoria
 	/////////////////////////////////////////////////////////////////
 	// 			   //
 	/////////////////////////////////////////////////////////////////
+	public void obtenerProductos(int idSubcategoria) 
+	{
+		Session session = null;	
+		
+		try
+		{
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		        
+            Query query = session.createQuery("from Productos p where p.subcategorias.idSubcategoria = :idSC");
+            query.setParameter("idSC", idSubcategoria);
+            
+            @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
+            
+            for(Iterator<Query> it=list.iterator();it.hasNext();)
+            {  
+            	datos.Producto productoDatos = new datos.Producto();
+            	
+            	entidades.Productos entProducto = (entidades.Productos) it.next();
+            	
+            	//seteos
+            	productoDatos.setCodProducto(entProducto.getCodProducto());
+            	productoDatos.setExistenciaStock(entProducto.getStock());
+            	productoDatos.setIdProducto(entProducto.getIdProducto());
+            	productoDatos.setNombre(entProducto.getNombre());
+
+            	this.productos.add(productoDatos);
+            }
+
+	        session.getTransaction().commit();
+		}
+		 
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		 
+		finally
+		{
+		 	session.close();
+		}	
+	}
 	//---------------------------------------------------------------
 
 }

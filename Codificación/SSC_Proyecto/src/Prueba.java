@@ -48,6 +48,14 @@ public class Prueba {
 				System.out.println(SD.getId()+" - "+SD.getDescripcion());
 			}
 			
+			//////////////////////////////////////////////////////////////////////////////
+			salida = ctrl.seleccionarSubcategoria(3);
+			
+			for(SalidaDatos SD: salida)
+			{
+				System.out.println(SD.getId()+" - "+SD.getDescripcion());
+			}
+			
 		 }
 		 catch(Exception ex)
 		 {

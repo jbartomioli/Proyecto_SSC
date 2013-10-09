@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class SubCategoria 
@@ -9,7 +10,7 @@ public class SubCategoria
 	//***************************************************************
 	private int idSubcategoria;
 	private String descripcion;
-	private Collection<negocio.Producto> producto;
+	private Collection<negocio.Producto> productos;
 	//---------------------------------------------------------------
 	
 	
@@ -21,7 +22,7 @@ public class SubCategoria
 	{
 		this.idSubcategoria = 0;
 		this.descripcion = "";
-		this.producto = null;
+		this.productos = new ArrayList<negocio.Producto>();
 	}
 	//---------------------------------------------------------------
 
@@ -52,17 +53,17 @@ public class SubCategoria
 
 	public Collection<Producto> getProductos() 
 	{
-		return producto;
+		return productos;
 	}
 
-	public void setProducto(Collection<Producto> producto) 
+	public void setProductos(Collection<Producto> productos) 
 	{
-		this.producto = producto;
+		this.productos = productos;
 	}
 	//---------------------------------------------------------------
-	
-	
-	
+
+
+
 	//***************************************************************
 	//* METODOS 													*
 	//***************************************************************
@@ -70,7 +71,31 @@ public class SubCategoria
 	/////////////////////////////////////////////////////////////////
 	// 															   //
 	/////////////////////////////////////////////////////////////////
-	
+	public void obtenerProductos()
+	{
+		//se crea una instancia de cliente de datos
+		datos.SubCategoria subcategoriaDatos = new datos.SubCategoria();
+		
+		//se setean las ventas del cliente de datos
+		subcategoriaDatos.obtenerProductos(this.idSubcategoria);
+		
+		//se obtiene cada venta del cliente de datos
+		//para luego agregarlas al cliente de negocio
+		for(datos.Producto P: subcategoriaDatos.getProductos())
+		{
+			negocio.Producto productoNegocio = new negocio.Producto();
+			
+			//seteos
+        	productoNegocio.setCodProducto(P.getCodProducto());
+        	productoNegocio.setExistenciaStock(P.getExistenciaStock());
+        	productoNegocio.setIdProducto(P.getIdProducto());
+        	productoNegocio.setNombre(P.getNombre());		
+        	
+        	//
+			this.productos.add(productoNegocio);
+		}
+		
+	}
 	//---------------------------------------------------------------
 }
 

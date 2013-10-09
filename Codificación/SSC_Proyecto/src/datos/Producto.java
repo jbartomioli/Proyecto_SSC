@@ -8,7 +8,7 @@ public class Producto
 	private String nombre;
 	private int existenciaStock;
 	private datos.SubCategoria subcategoria;
-	private datos.Precio precio;
+	//private datos.Precio precio;
 	
 	
 	//CONSTRUCTOR
@@ -19,7 +19,7 @@ public class Producto
 		this.nombre = "";
 		this.existenciaStock = 0;
 		this.subcategoria = new SubCategoria();
-		this.precio = new Precio();
+		//this.precio = new Precio();
 	}
 
 
@@ -80,14 +80,14 @@ public class Producto
 	}
 
 
-	public datos.Precio getPrecio() {
-		return precio;
-	}
-
-
-	public void setPrecio(datos.Precio precio) {
-		this.precio = precio;
-	}
+//	public datos.Precio getPrecio() {
+//		return precio;
+//	}
+//
+//
+//	public void setPrecio(datos.Precio precio) {
+//		this.precio = precio;
+//	}
 
 
 

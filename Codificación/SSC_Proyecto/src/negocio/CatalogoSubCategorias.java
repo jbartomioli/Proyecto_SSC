@@ -56,7 +56,6 @@ public class CatalogoSubCategorias
 		//
 		subcategorias = new ArrayList<negocio.SubCategoria>();
 			
-		
 		Iterator <datos.SubCategoria> it = ctgDatos.getSubcategorias().iterator();
 		
 		while(it.hasNext())

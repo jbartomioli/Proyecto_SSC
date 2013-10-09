@@ -242,6 +242,7 @@ public class ControladorConfeccionarAnuncio
 		Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
 		
 		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
+		subCatActual.obtenerProductos();
 		
 		productos = subCatActual.getProductos();
 		

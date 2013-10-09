@@ -1,7 +1,7 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.Collection;
-
 
 public class Producto 
 {
@@ -27,8 +27,8 @@ public class Producto
 		this.codProducto =  "";		
 		this.nombre = "";
 		this.existenciaStock = 0;
-		this.subCategoria = null;
-		this.precios = null;
+		this.subCategoria = new negocio.SubCategoria();
+		this.precios = new ArrayList<negocio.Precio>();
 	}
 	//---------------------------------------------------------------
 
