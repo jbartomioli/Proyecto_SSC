@@ -9,6 +9,7 @@ public class Producto
 	private int existenciaStock;
 	private datos.SubCategoria subcategoria;
 	//private datos.Precio precio;
+	//REVEER COMO VAMOS A USAR EL PRECIO
 	
 	
 	//CONSTRUCTOR
