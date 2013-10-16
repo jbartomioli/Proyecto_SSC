@@ -149,6 +149,7 @@ public class Cliente
 	           
 	        	entidades.Ventas entVenta = (entidades.Ventas) it.next();  
 	           
+	        	ventaDatos.setIdVenta(entVenta.getIdVenta());
 	        	ventaDatos.setFechaVenta(entVenta.getFecha()); 
 	        	//ventaDatos.setTotal(entVenta.getTotal());
 	        	
@@ -174,10 +175,5 @@ public class Cliente
 	/////////////////////////////////////////////////////////////////
 	// 															   //
 	/////////////////////////////////////////////////////////////////	
-	public boolean comproProducto(datos.Producto producto)
-	{
-		
-		return false;
-	}
 	//---------------------------------------------------------------
 }

@@ -152,13 +152,19 @@ public class Cliente
 		
 		//se obtiene cada venta del cliente de datos
 		//para luego agregarlas al cliente de negocio
-		for(datos.Venta VD: clienteDato.getVentas())
+		
+		//esta opcion o volver a crear el array y setear siempre los datos
+		if(this.ventas != null)
 		{
-			negocio.Venta ventaNegocio = new negocio.Venta();
-			
-			ventaNegocio.setFechaVenta(VD.getFechaVenta());
-			
-			this.ventas.add(ventaNegocio);
+			for(datos.Venta VD: clienteDato.getVentas())
+			{
+				negocio.Venta ventaNegocio = new negocio.Venta();
+				
+				ventaNegocio.setIdVenta(VD.getIdVenta());
+				ventaNegocio.setFechaVenta(VD.getFechaVenta());
+				
+				this.ventas.add(ventaNegocio);
+			}
 		}
 		
 	}
@@ -173,6 +179,9 @@ public class Cliente
 	{
 		for(negocio.Venta V: this.ventas)
 		{
+			//
+			V.obtenerLineasDeVenta();
+			
 			if (V.comproProducto(productoActual))
 				return true;
 		}

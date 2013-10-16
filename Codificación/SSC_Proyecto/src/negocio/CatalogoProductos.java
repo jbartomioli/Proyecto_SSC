@@ -18,6 +18,7 @@ public class CatalogoProductos
 	public CatalogoProductos() 
 	{
 		this.productos = new ArrayList<negocio.Producto>();
+		this.obtenerProductos();
 	}
 	//---------------------------------------------------------------
 
@@ -41,6 +42,34 @@ public class CatalogoProductos
 	//***************************************************************
 	//* METODOS 													*
 	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	//	//
+	/////////////////////////////////////////////////////////////////
+	public void obtenerProductos()
+	{
+		datos.CatalogoProductos ctgDatos = new datos.CatalogoProductos();				
+			
+		for(datos.Producto productoDato: ctgDatos.getProductos())
+		{
+			negocio.Producto productoNegocio = new negocio.Producto();
+			
+			productoNegocio.setCodProducto(productoDato.getCodProducto());
+			productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
+			productoNegocio.setIdProducto(productoDato.getIdProducto());
+			productoNegocio.setNombre(productoDato.getNombre());
+			//productoNegocio.setPrecio(productoDato.getPrecio);
+			//productoNegocio.setPrecioPromocional();
+			//productoNegocio.setSubCategoria(productoDato.getSubcategoria());
+			
+			productos.add(productoNegocio);
+		}
+
+	}
+	//---------------------------------------------------------------
+	
+	
+	
 	
 	/////////////////////////////////////////////////////////////////
 	//Busca producto por id										   //

@@ -79,6 +79,7 @@ public class CatalogoClientes {
 		
 		for(negocio.Cliente C: this.clientes)
 		{
+			//
 			C.obtenerVentas();
 			
 			//si el cliente compro el producto lo agrego al arreglo

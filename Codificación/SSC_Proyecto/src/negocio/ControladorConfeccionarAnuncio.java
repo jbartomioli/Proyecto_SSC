@@ -287,6 +287,7 @@ public class ControladorConfeccionarAnuncio
 			
 			Collection<negocio.Cliente> arrClientesInteresados = new ArrayList<negocio.Cliente>();
 			
+			//
 			arrClientesInteresados = cc.obtenerClientesProducto(productoActual);
 			
 			int i=0;
