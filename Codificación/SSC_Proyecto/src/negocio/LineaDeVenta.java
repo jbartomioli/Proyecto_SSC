@@ -17,7 +17,7 @@ public class LineaDeVenta
 	//***************************************************************
 	public LineaDeVenta() 
 	{
-		this.productoLinea = null;
+		this.productoLinea = new negocio.Producto();
 		this.cantidad = 0;
 		this.subTotal = 0;
 	}

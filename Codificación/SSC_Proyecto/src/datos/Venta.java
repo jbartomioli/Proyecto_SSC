@@ -9,6 +9,8 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import entidades.Ventas;
+
 public class Venta 
 {
 	//ATRIBUTOS
@@ -97,13 +99,34 @@ public class Venta
             {  
 	        	datos.LineaDeVenta lineaDeVentaDatos = new datos.LineaDeVenta();
 	           
-	        	entidades.LineasDeVentas entLineaDeVenta = (entidades.LineasDeVentas) it.next();  
-	           
-	        	lineaDeVentaDatos.setCantidad(entLineaDeVenta.getCantidad()); 
-	        	lineaDeVentaDatos.setSubTotal(entLineaDeVenta.getSubtotal());
-	        	//lineaDeVentaDatos.setProductoLinea(entLineaDeVenta.getProductos());
+	        	//entidades.LineasDeVentas entLineaDeVenta = (entidades.LineasDeVentas) it.next();  
+	            entidades.Ventas entVenta = (entidades.Ventas) it.next();
 	        	
-	           	this.lineasDeVenta.add(lineaDeVentaDatos);
+	            for(entidades.LineasDeVentas ELDV: entVenta.getLineasDeVentases())
+	            {
+	            	lineaDeVentaDatos.setCantidad(ELDV.getCantidad()); 
+	            	//lineaDeVentaDatos.setSubTotal(ELDV.getSubtotal());
+	        	
+		        	//se crea instancia de producto entidades
+		        	//entidades.Productos entProducto = new entidades.Productos();
+	            	entidades.Productos entProducto = ELDV.getProductos();
+		        	
+		        	//se crea instancia de producto datos
+		        	datos.Producto productoDato = new datos.Producto();
+		        	
+		        	//se setean datos del producto
+		        	productoDato.setCodProducto(entProducto.getCodProducto());
+		        	productoDato.setCodProducto(entProducto.getCodProducto());
+		        	productoDato.setExistenciaStock(entProducto.getStock());
+		        	productoDato.setIdProducto(entProducto.getIdProducto());
+		        	productoDato.setNombre(entProducto.getNombre());
+					//productoNegocio.setPrecioPromocional(productoDato.get);
+		        	
+		        	//se setea el producto en la linea
+		        	lineaDeVentaDatos.setProductoLinea(productoDato);
+		        	
+		           	this.lineasDeVenta.add(lineaDeVentaDatos);
+	            }
             }
 
 	        session.getTransaction().commit();

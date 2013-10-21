@@ -609,7 +609,7 @@ public class ControladorConfeccionarAnuncio
 	/////////////////////////////////////////////////////////////////
 	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.1.3 y 1.1.7		   //
 	/////////////////////////////////////////////////////////////////
-	private class SalidaDatosSeleccionaProductos
+	public class SalidaDatosSeleccionaProductos
 	{
 		private String stock;
 		private String precio;

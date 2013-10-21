@@ -99,11 +99,27 @@ public class Venta
 		//{
 			for(datos.LineaDeVenta LDVD: ventaDato.getLineas())
 			{
+				//
 				negocio.LineaDeVenta lineaNegocio = new negocio.LineaDeVenta();
 				
 				lineaNegocio.setCantidad(LDVD.getCantidad());
-				//lineaNegocio.setProductoLinea(LDVD.getProductoLinea());
 				lineaNegocio.setSubTotal(LDVD.getSubTotal());
+
+				//se crea instancia de producto de negocio
+				negocio.Producto productoNegocio = new negocio.Producto();
+				
+				//objeto producto de datos temporal
+				datos.Producto productoDato = LDVD.getProductoLinea();
+				
+				//se setea el producto de negocio
+				productoNegocio.setCodProducto(productoDato.getCodProducto());
+				productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
+				productoNegocio.setIdProducto(productoDato.getIdProducto());
+				productoNegocio.setNombre(productoDato.getNombre());
+				//productoNegocio.setPrecioPromocional(productoDato.get);
+				
+				//se setea el producto en la linea de venta
+				lineaNegocio.setProductoLinea(productoNegocio);
 				
 				this.lineasDeVenta.add(lineaNegocio);
 			}
