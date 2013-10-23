@@ -3,7 +3,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class ControladorConfeccionarAnuncio 
+public class ControladorConfeccionarAnuncio
 {
 	//***************************************************************
 	//* ATRIBUTOS													*
