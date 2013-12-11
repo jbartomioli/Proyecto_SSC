@@ -15,6 +15,8 @@ import java.awt.ScrollPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JInternalFrame;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class anuncio extends JFrame {
 
@@ -50,33 +52,97 @@ public class anuncio extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmBraquets = new JMenuItem("Anestesias");
+		mntmBraquets.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				//Evento manejador de click para anestecias
+			}
+		});
 		mnNewMenu.add(mntmBraquets);
 		
 		JMenu mnIndumentaria = new JMenu("Descartables");
 		menuBar.add(mnIndumentaria);
 		
 		JMenuItem mntmGuardapolvos = new JMenuItem("Aplicadores");
+		mntmGuardapolvos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				//Evento manejador de click para aplicadores
+			}
+		});
 		mnIndumentaria.add(mntmGuardapolvos);
 		
 		JMenuItem mntmAmboBlanco = new JMenuItem("Barbijos");
+		mntmAmboBlanco.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				//Evento manejador de click para barbijos
+			}
+		});
 		mnIndumentaria.add(mntmAmboBlanco);
 		
 		JMenuItem mntmBaberos = new JMenuItem("Baberos");
+		mntmBaberos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				//Evento manejador de click para baberos
+			}
+		});
 		mnIndumentaria.add(mntmBaberos);
 		
 		JMenuItem mntmAlgodngasas = new JMenuItem("Algod\u00F3n/Gasas");
+		mntmAlgodngasas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				//Evento manejador de click para algodones y gasas
+			}
+		});
 		mnIndumentaria.add(mntmAlgodngasas);
 		
 		JMenuItem mntmEquipos = new JMenuItem("Equipos");
+		mntmEquipos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				//Evento manejador de click para equipos
+			}
+		});
 		mnIndumentaria.add(mntmEquipos);
 		
 		JMenuItem mntmGuantes = new JMenuItem("Guantes");
+		mntmGuantes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				//Evento manejador de click para guantes
+				System.out.println("Hola Mundo");
+			}
+		});
 		mnIndumentaria.add(mntmGuantes);
 		
 		JMenuItem mntmAgujasbistur = new JMenuItem("Agujas/Bistur\u00ED");
+		mntmAgujasbistur.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				//Evento manejador de click para agujas y bisturíes
+			}
+		});
 		mnIndumentaria.add(mntmAgujasbistur);
 		
 		JMenuItem mntmOtros = new JMenuItem("Otros");
+		mntmOtros.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				//Evento manejador de click para otros
+			}
+		});
 		mnIndumentaria.add(mntmOtros);
 		
 		JMenu mnEquipos = new JMenu("Materiales p/obturaci\u00F3n");
