@@ -2,8 +2,6 @@ package interfaces;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -15,8 +13,12 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JMenuBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.TitledBorder;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class menuPrincipal extends JFrame {
+public class GenerarAnuncio extends JFrame {
 
 	/**
 	 * Launch the application.
@@ -25,7 +27,7 @@ public class menuPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					menuPrincipal frame = new menuPrincipal();
+					GenerarAnuncio frame = new GenerarAnuncio();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,17 +39,33 @@ public class menuPrincipal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public menuPrincipal() {
+	public GenerarAnuncio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		
+		JPanel productos = new JPanel();
+		productos.setBorder(new TitledBorder(null, "Productos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
+		JPanel destinatarios = new JPanel();
+		destinatarios.setBorder(new TitledBorder(null, "Destinatarios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 434, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(productos, GroupLayout.PREFERRED_SIZE, 416, GroupLayout.PREFERRED_SIZE)
+						.addComponent(destinatarios, GroupLayout.PREFERRED_SIZE, 414, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 262, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(productos, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(destinatarios, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 		
@@ -481,5 +499,4 @@ public class menuPrincipal extends JFrame {
 		JMenu mnVarios = new JMenu("Varios");
 		menuBar.add(mnVarios);
 	}
-
 }

@@ -32,5 +32,6 @@
 	<classpathentry kind="var" path="LIB_EXT/hibernate-release-4.2.2.Final/lib/required/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
 	<classpathentry kind="var" path="LIB_EXT/mysql/mysql-connector-java-5.1.24-bin.jar"/>
 	<classpathentry kind="var" path="LIB_EXT/slf4j-1.7.5/slf4j-simple-1.7.5.jar"/>
+	<classpathentry kind="lib" path="forms-1.3.0.jar" sourcepath="forms-1.3.0-src.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
