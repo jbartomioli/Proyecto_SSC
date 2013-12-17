@@ -24,10 +24,14 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import javax.swing.JButton;
 
 public class GenerarAnuncio extends JFrame {
-	private JTable table;
-	private JTable table_1;
+	private JTable tblProductos;
+	private JTable tblDestinatarios;
+	private JTable tblProductos1;
+	private JTable tblDestinatarios1;
 
 	/**
 	 * Launch the application.
@@ -484,49 +488,96 @@ public class GenerarAnuncio extends JFrame {
 		JMenu mnVarios = new JMenu("Varios");
 		menuBar.add(mnVarios);
 		
-		JScrollPane productos = new JScrollPane();
-		productos.setViewportBorder(null);
+		JScrollPane scrlProductos = new JScrollPane();
+		scrlProductos.setViewportBorder(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		JScrollPane scrlDestinatarios = new JScrollPane();
+		
+		JScrollPane scrlProductos1 = new JScrollPane();
+		scrlProductos1.setViewportBorder(null);
+		
+		JScrollPane scrlDestinatarios1 = new JScrollPane();
+		
+		JButton btnGenerar = new JButton("Generar");
+		
+		JButton btnBorrar = new JButton("Borrar");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-						.addComponent(productos, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
-					.addContainerGap())
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(btnBorrar, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnGenerar, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(scrlDestinatarios, 0, 0, Short.MAX_VALUE)
+							.addGap(50)
+							.addComponent(scrlDestinatarios1, 0, 0, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(scrlProductos, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+							.addGap(50)
+							.addComponent(scrlProductos1, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
+					.addGap(58))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(productos, GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-					.addGap(10))
+					.addGap(19)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(scrlProductos, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+						.addComponent(scrlProductos1, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(scrlDestinatarios, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+						.addComponent(scrlDestinatarios1, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnGenerar)
+						.addComponent(btnBorrar))
+					.addGap(21))
 		);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
+		tblDestinatarios1 = new JTable();
+		tblDestinatarios1.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Apellido", "Nombre"
 			}
 		));
-		scrollPane.setViewportView(table_1);
+		scrlDestinatarios1.setViewportView(tblDestinatarios1);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		tblProductos1 = new JTable();
+		tblProductos1.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Producto", "Precio", "Stock"
 			}
 		));
-		productos.setViewportView(table);
+		scrlProductos1.setViewportView(tblProductos1);
+		
+		tblDestinatarios = new JTable();
+		tblDestinatarios.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Apellido", "Nombre"
+			}
+		));
+		scrlDestinatarios.setViewportView(tblDestinatarios);
+		
+		tblProductos = new JTable();
+		tblProductos.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Producto", "Precio", "Stock"
+			}
+		));
+		scrlProductos.setViewportView(tblProductos);
 		getContentPane().setLayout(groupLayout);
 	}
 }
