@@ -3,6 +3,10 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Properties;
+
+import javax.mail.*;
+import javax.mail.internet.*;
 
 public class Anuncio 
 {
@@ -187,6 +191,47 @@ public class Anuncio
 	//FALTA
 	public void enviarAnuncio() throws Exception
 	{
+		String smtpHost = "smtp.gmail.com";
+		Properties props = System.getProperties();
+		props.put("mail.smtp.host", smtpHost);
+		
+		props.put("mail.smtp.starttls.enable","true");
+		props.put("mail.smtp.user", "sscproyecto@gmail.com");
+		//props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.auth", "true");
+		
+		javax.mail.Authenticator authenticator = new javax.mail.Authenticator()
+	    {
+	    protected javax.mail.PasswordAuthentication getPasswordAuthentication() 
+	        {
+	        return new javax.mail.PasswordAuthentication("sscproyecto@gmail.com", "qweras123");
+	        }
+	    };       
+		
+		Session sesion = Session.getDefaultInstance(props, authenticator);
+		sesion.setDebug(true);
+		
+		try
+		{
+			Message mensaje = new MimeMessage(sesion);
+			
+			mensaje.setSubject("Asunto");
+			
+			mensaje.setFrom(new InternetAddress("sscproyecto@gmail.com"));
+			
+			mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress("sscproyecto@gmail.com"));
+			
+			mensaje.setText("Probando Mail");
+						
+			Transport.send(mensaje);
+			
+		}
+		catch(MessagingException me)
+		{
+			System.err.println(me.getMessage());
+		}
+		
+		
 	}
 	//---------------------------------------------------------------
 

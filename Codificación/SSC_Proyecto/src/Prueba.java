@@ -3,6 +3,7 @@ import java.util.Collection;
 
 import javax.swing.JOptionPane;
 
+import negocio.Anuncio;
 import negocio.CatalogoCategorias;
 import negocio.Categoria;
 import negocio.Cliente;
@@ -40,7 +41,7 @@ public class Prueba {
 				System.out.println(C.getIdCategoria()+" " +C.getDescripcion());
 		 */
 			
-			negocio.ControladorConfeccionarAnuncio ctrl = new ControladorConfeccionarAnuncio();
+		//	negocio.ControladorConfeccionarAnuncio ctrl = new ControladorConfeccionarAnuncio();
 			/*
 			Collection<negocio.ControladorConfeccionarAnuncio.SalidaDatos> salida = 
 					new ArrayList<ControladorConfeccionarAnuncio.SalidaDatos>();
@@ -62,7 +63,7 @@ public class Prueba {
 			
 			*/
 			//////////////////////////////////////////////////////////////////////////////
-			JOptionPane.showMessageDialog(null, "Antes del ...");
+		/*	JOptionPane.showMessageDialog(null, "Antes del ...");
 			
 			negocio.ControladorConfeccionarAnuncio.SalidaDatosSeleccionaProductos salida2;// = new negocio.ControladorConfeccionarAnuncio.SalidaDatosSeleccionaProductos();
 			
@@ -71,7 +72,7 @@ public class Prueba {
 			int i = 0;
 			
 			JOptionPane.showMessageDialog(null, "Antes del FOR");
-			
+			*/
 			/*
 			for(String[] datosClientes: salida2.getClientes())
 			{
@@ -85,6 +86,9 @@ public class Prueba {
 				JOptionPane.showMessageDialog(null, "Prueba");
 				i++;
 			}*/
+			
+			Anuncio a = new Anuncio();
+			a.enviarAnuncio();
 		 }
 		 catch(Exception ex)
 		 {
