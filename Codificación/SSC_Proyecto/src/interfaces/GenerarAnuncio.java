@@ -26,12 +26,12 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+import javax.swing.JToolBar;
 
 public class GenerarAnuncio extends JFrame {
 	private JTable tblProductos;
 	private JTable tblDestinatarios;
-	private JTable tblProductos1;
-	private JTable tblDestinatarios1;
 
 	/**
 	 * Launch the application.
@@ -489,75 +489,60 @@ public class GenerarAnuncio extends JFrame {
 		menuBar.add(mnVarios);
 		
 		JScrollPane scrlProductos = new JScrollPane();
-		scrlProductos.setViewportBorder(null);
+		scrlProductos.setToolTipText("");
 		
 		JScrollPane scrlDestinatarios = new JScrollPane();
-		
-		JScrollPane scrlProductos1 = new JScrollPane();
-		scrlProductos1.setViewportBorder(null);
-		
-		JScrollPane scrlDestinatarios1 = new JScrollPane();
 		
 		JButton btnGenerar = new JButton("Generar");
 		
 		JButton btnBorrar = new JButton("Borrar");
+		
+		JButton btnGenerarAnuncio = new JButton("Generar Anuncio");
+		
+		JButton btnModificarDestinatarios = new JButton("Modificar destinatarios");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(scrlProductos, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+							.addGap(142))
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(btnBorrar, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnGenerar, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(scrlDestinatarios, 0, 0, Short.MAX_VALUE)
-							.addGap(50)
-							.addComponent(scrlDestinatarios1, 0, 0, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(scrlProductos, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-							.addGap(50)
-							.addComponent(scrlProductos1, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
-					.addGap(58))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnGenerarAnuncio)
+								.addComponent(scrlDestinatarios, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(34)
+									.addComponent(btnBorrar, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnGenerar, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(btnModificarDestinatarios)))))
+					.addGap(14))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(19)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(scrlProductos, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-						.addComponent(scrlProductos1, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(scrlDestinatarios, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-						.addComponent(scrlDestinatarios1, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
-					.addGap(18)
+					.addGap(31)
+					.addComponent(scrlProductos, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(18)
+							.addComponent(scrlDestinatarios, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnModificarDestinatarios)))
+					.addGap(50)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnGenerar)
-						.addComponent(btnBorrar))
-					.addGap(21))
+						.addComponent(btnBorrar)
+						.addComponent(btnGenerarAnuncio))
+					.addContainerGap())
 		);
-		
-		tblDestinatarios1 = new JTable();
-		tblDestinatarios1.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Apellido", "Nombre"
-			}
-		));
-		scrlDestinatarios1.setViewportView(tblDestinatarios1);
-		
-		tblProductos1 = new JTable();
-		tblProductos1.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Producto", "Precio", "Stock"
-			}
-		));
-		scrlProductos1.setViewportView(tblProductos1);
 		
 		tblDestinatarios = new JTable();
 		tblDestinatarios.setModel(new DefaultTableModel(
