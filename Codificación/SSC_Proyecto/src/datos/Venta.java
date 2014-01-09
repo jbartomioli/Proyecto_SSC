@@ -9,18 +9,22 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import entidades.Ventas;
 
 public class Venta 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private int idVenta;
 	private Date fechaVenta;
 	private Collection<datos.LineaDeVenta>  lineasDeVenta;
 	private double total;
+	//---------------------------------------------------------------
 	
 	
-	//CONSTRUCTOR
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public Venta() 
 	{
 		this.idVenta = 0;
@@ -28,15 +32,19 @@ public class Venta
 		this.lineasDeVenta = new ArrayList<datos.LineaDeVenta>();
 		this.total = 0.00;
 	}
+	//---------------------------------------------------------------
 
 
-	//GETTER & SETETER
-	
-	public int getIdVenta() {
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************	
+	public int getIdVenta() 
+	{
 		return idVenta;
 	}
 	
-	public void setIdVenta(int idVenta) {
+	public void setIdVenta(int idVenta) 
+	{
 		this.idVenta = idVenta;
 	}
 
@@ -73,13 +81,17 @@ public class Venta
 	{
 		this.total = total;
 	}
+	//---------------------------------------------------------------
+
 
 	
-	//METODOS
-		//----------------------------------------------------------
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
 	
-	
-	
+	/////////////////////////////////////////////////////////////////
+	// 			   //
+	/////////////////////////////////////////////////////////////////
 	public void obtenerLineasDeVenta(int idVenta)
 	{
 		Session session = null;	

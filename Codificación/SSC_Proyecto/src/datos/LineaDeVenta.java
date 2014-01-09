@@ -2,15 +2,19 @@ package datos;
 
 public class LineaDeVenta 
 {
-	
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private datos.Producto productoLinea;
 	private int idVenta;
 	private int cantidad;
 	private double subTotal;
-	
-	
-	//CONSTRUCTOR
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public LineaDeVenta() 
 	{
 		this.productoLinea = new datos.Producto();
@@ -18,9 +22,12 @@ public class LineaDeVenta
 		this.cantidad = 0;
 		this.subTotal = 0;
 	}
-	
-	
-	//GETTERS & SETTERS
+	//---------------------------------------------------------------
+
+
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public datos.Producto getProductoLinea() 
 	{
 		return productoLinea;
@@ -62,14 +69,22 @@ public class LineaDeVenta
 	{
 		this.idVenta = idVenta;
 	}
+	//---------------------------------------------------------------
 	
 	
 	
-	//METODOS
-	//----------------------------------------------------------
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
 	
+	/////////////////////////////////////////////////////////////////
+	// //
+	/////////////////////////////////////////////////////////////////
+	/* corresponde a capa de negocio
 	public boolean compararProductos(datos.Producto productoActual)
 	{		
 		return true;
 	}
+	*/
+	//---------------------------------------------------------------
 }
