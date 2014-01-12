@@ -121,6 +121,7 @@ public class Anuncio
 	/////////////////////////////////////////////////////////////////
 	// 								 							   //
 	/////////////////////////////////////////////////////////////////
+	//VER
 	public negocio.Producto modificarPrecioProducto(int idProducto)
 	{
 		negocio.Producto productoModif = new negocio.Producto();
@@ -147,6 +148,7 @@ public class Anuncio
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.5.2				 							   //
 	/////////////////////////////////////////////////////////////////
+	//VER
 	public void actualizarProducto(negocio.Producto productoModificar)
 	{
 		for(negocio.Producto p : this.productos)
@@ -165,6 +167,7 @@ public class Anuncio
 	/////////////////////////////////////////////////////////////////
 	// 								 							   //
 	/////////////////////////////////////////////////////////////////
+	//VER
 	public Collection<negocio.Cliente> seleccionarClientes(String [] idCliente)
 	{
 		Collection<negocio.Cliente> arrClientesSeleccionados = new ArrayList<negocio.Cliente>();
@@ -188,7 +191,7 @@ public class Anuncio
 	/////////////////////////////////////////////////////////////////
 	// Metodo utilizado para el envio del email					   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//FALTA - ADEMAS USAR UNA CLASE DIFERENTE SOLO FUE UNA PRUEBA
 	public void enviarAnuncio() throws Exception
 	{
 		String smtpHost = "smtp.gmail.com";

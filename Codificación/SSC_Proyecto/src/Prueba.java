@@ -10,6 +10,7 @@ import negocio.Cliente;
 import negocio.ControladorConfeccionarAnuncio;
 import negocio.ControladorConfeccionarAnuncio.SalidaDatos;
 import negocio.ControladorConfeccionarAnuncio.SalidaDatosSeleccionaProductos;
+import negocio.ParametrosNegocio;
 
 
 public class Prueba {
@@ -86,9 +87,16 @@ public class Prueba {
 				JOptionPane.showMessageDialog(null, "Prueba");
 				i++;
 			}*/
-			
+			/*
 			Anuncio a = new Anuncio();
 			a.enviarAnuncio();
+			 */
+			
+			negocio.ParametrosNegocio param = new negocio.ParametrosNegocio();
+			
+			System.out.println(param.getUltIdPedido());
+			
+			
 		 }
 		 catch(Exception ex)
 		 {

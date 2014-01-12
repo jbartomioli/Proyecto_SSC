@@ -48,6 +48,7 @@ public class CatalogoSubCategorias
 	/////////////////////////////////////////////////////////////////
 	//	//
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerSubCategorias()
 	{
 		//
@@ -66,7 +67,6 @@ public class CatalogoSubCategorias
 			
 			subCategoriaNegocio.setIdSubcategoria(datosSubCategoria.getIdSubcategoria());
 			subCategoriaNegocio.setDescripcion(datosSubCategoria.getDescripcion());
-			//
 			
 			subcategorias.add(subCategoriaNegocio);
 		}

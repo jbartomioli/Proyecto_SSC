@@ -96,9 +96,9 @@ public class CatalogoClientes {
 	/////////////////////////////////////////////////////////////////
 	// DSD 2.1.1 - 	Busca un cliente mediante su Id				   //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public negocio.Cliente buscarCliente(int idCliente)
 	{	
-
 		for(negocio.Cliente c : this.clientes)
 		{
 			if (c.getIdCliente() == idCliente)
@@ -112,6 +112,7 @@ public class CatalogoClientes {
 	/////////////////////////////////////////////////////////////////
 	// Busca un cliente mediante su nombre y apellido			   //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public negocio.Cliente buscarCliente(String nombre, String apellido)
 	{	
 		for(negocio.Cliente c : this.clientes)
@@ -128,6 +129,7 @@ public class CatalogoClientes {
 	/////////////////////////////////////////////////////////////////
 	//Devuelve un subconjunto de clientes						   // 
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public Collection<negocio.Cliente> buscarClientes(boolean tipoCliente)
 	{
 		Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();

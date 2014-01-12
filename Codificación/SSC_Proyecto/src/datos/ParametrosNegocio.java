@@ -1,7 +1,10 @@
 package datos;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.util.Iterator;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 public class ParametrosNegocio 
 {
@@ -32,21 +35,15 @@ public class ParametrosNegocio
 		return membrete;
 	}
 
-
-
 	public void setMembrete(String membrete) 
 	{
 		this.membrete = membrete;
 	}
 
-
-
 	public int getUltIdPedido() 
 	{
 		return ultIdPedido;
 	}
-
-
 
 	public void setUltIdPedido(int ultIdPedido) 
 	{
@@ -59,57 +56,76 @@ public class ParametrosNegocio
 	//***************************************************************
 	//* METODOS 													*
 	//***************************************************************
-	//MODIFICAR PARA USAR HIBERNATE!!!!
+
 	/////////////////////////////////////////////////////////////////
 	// //
 	/////////////////////////////////////////////////////////////////
-	public datos.ParametrosNegocio getParametros()
+	public void obtenerParametrosNegocio()
 	{
-		ResultSet conjuntoResult = null;
-		eliminar.BDConector conector = null;
 		
-		datos.ParametrosNegocio parametros = null;
-
+		Session session = null;	
 		
 		try
 		{
-			
-			conector = new eliminar.BDConector(eliminar.BDConstantes.URL_BD, 
-					eliminar.BDConstantes.PORT, 
-					eliminar.BDConstantes.DATABASE, 
-					eliminar.BDConstantes.USER, 
-					eliminar.BDConstantes.PASS);
-			
-
-			conjuntoResult = conector.ejecutaPeticion("SELECT * FROM parametrosNegocio");
-			
-
-			
-			while( conjuntoResult.next())
-			{
-				parametros = new datos.ParametrosNegocio();
-
-				parametros.setMembrete(conjuntoResult.getString("membrete"));
-				parametros.setUltIdPedido(conjuntoResult.getInt("ultIdPedido"));
-			}			
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		        
+	        Query query = session.createQuery("from ParametrosNegocio");  
+	        @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
+	        
+	        for(Iterator<Query> it=list.iterator();it.hasNext();)
+	        {  
+	        	datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
+	           
+	        	//entidades.ParametrosNegocio entParametro = (entidades.ParametrosNegocio) it.next();  
+	           
+	        	//parametrosDatos.setMembrete(entParametro.getMembrete());
+	        	//parametrosDatos.setUltIdPedido(entParametro.getUltIdPedido());
+	        }
+	
+	        session.getTransaction().commit();
 		}
-		catch ( SQLException excepcionSql)
+		 
+		catch(Exception ex)
 		{
-			excepcionSql.printStackTrace();
+			ex.printStackTrace();
 		}
+		 
 		finally
 		{
-			try
-			{
-				conjuntoResult.close();
-				conector.cierraConexion();
-			}
-			catch (Exception excepcion)
-			{
-				excepcion.printStackTrace();
-			}
-		}
-		return parametros;
+		 	session.close();
+		}	
 	}
 	//---------------------------------------------------------------
+
+	
+	/////////////////////////////////////////////////////////////////
+	// //
+	/////////////////////////////////////////////////////////////////
+	public void guardarDatos() 
+	{
+		Session session = null;	
+		
+		try
+		{
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		    
+		    session.refresh(this);
+		    
+	        session.getTransaction().commit();
+		}
+		 
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		 
+		finally
+		{
+		 	session.close();
+		}	
+	}
+//---------------------------------------------------------------
 }

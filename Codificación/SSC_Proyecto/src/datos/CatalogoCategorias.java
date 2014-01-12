@@ -67,14 +67,14 @@ public class CatalogoCategorias
             
             for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
-	        	datos.Categoria catergoriaDatos = new datos.Categoria();
+	        	datos.Categoria categoriaDatos = new datos.Categoria();
 	           
 	        	entidades.Categorias entCategoria = (entidades.Categorias) it.next();  
 	           
-	           	catergoriaDatos.setIdCategoria(entCategoria.getIdCategoria());
-	           	catergoriaDatos.setDescripcion(entCategoria.getDescripcion());
+	           	categoriaDatos.setIdCategoria(entCategoria.getIdCategoria());
+	           	categoriaDatos.setDescripcion(entCategoria.getDescripcion());
 	           	
-	           	categorias.add(catergoriaDatos);            
+	           	categorias.add(categoriaDatos);            
 	        }
 
 	        session.getTransaction().commit();

@@ -1,9 +1,11 @@
 package datos;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 public class CatalogoAnuncios 
 {
@@ -47,55 +49,51 @@ public class CatalogoAnuncios
 	/////////////////////////////////////////////////////////////////
 	// //
 	/////////////////////////////////////////////////////////////////
-	public Collection<datos.Anuncio> obtenerAnuncios()
+	//FALTA
+	public void obtenerAnuncios()
 	{
-		ResultSet conjuntoResult = null;
-		eliminar.BDConector conector = null;
-		
+		Session session = null;	
 		
 		try
 		{
-			
-			conector = new eliminar.BDConector(eliminar.BDConstantes.URL_BD, 
-					eliminar.BDConstantes.PORT, 
-					eliminar.BDConstantes.DATABASE, 
-					eliminar.BDConstantes.USER, 
-					eliminar.BDConstantes.PASS);
-			
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		        
+            Query query = session.createQuery("from Anuncios");  
+            @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
+            
+            for(Iterator<Query> it=list.iterator();it.hasNext();)
+            {  
+	        	datos.Anuncio anuncioDatos = new datos.Anuncio();
+	           
+	        	entidades.Anuncios entAnuncio = (entidades.Anuncios) it.next();  
+	           
+	           	//catergoriaDatos.setIdCategoria(entCategoria.getIdCategoria());
+	           	//catergoriaDatos.setDescripcion(entCategoria.getDescripcion());
 
-			conjuntoResult = conector.ejecutaPeticion("CALL obtenerAnuncios");
-					
-			
-			while( conjuntoResult.next())
-			{
-				datos.Anuncio a = new datos.Anuncio();
-				
-				a.setIdCliente(conjuntoResult.getInt("idCliente"));
-				a.setIdProducto(conjuntoResult.getInt("idProducto"));
-				a.setIdAnuncio(conjuntoResult.getInt("idAnuncio"));
-				a.setTextoMensaje(conjuntoResult.getString("textoMensaje"));
-				a.setFecha(conjuntoResult.getDate("fecha"));
-				a.setEstado(conjuntoResult.getString("estado"));			
-				anuncios.add(a);
-			}			
+//				a.setIdCliente(conjuntoResult.getInt("idCliente"));
+//				a.setIdProducto(conjuntoResult.getInt("idProducto"));
+//				a.setIdAnuncio(conjuntoResult.getInt("idAnuncio"));
+//				a.setTextoMensaje(conjuntoResult.getString("textoMensaje"));
+//				a.setFecha(conjuntoResult.getDate("fecha"));
+//				a.setEstado(conjuntoResult.getString("estado"));	
+	           	
+	           	anuncios.add(anuncioDatos);            
+	        }
+
+	        session.getTransaction().commit();
 		}
-		catch ( SQLException excepcionSql)
+		 
+		catch(Exception ex)
 		{
-			excepcionSql.printStackTrace();
+			ex.printStackTrace();
 		}
+		 
 		finally
 		{
-			try
-			{
-				conjuntoResult.close();
-				conector.cierraConexion();
-			}
-			catch (Exception excepcion)
-			{
-				excepcion.printStackTrace();
-			}
-		}
-		return anuncios;
+		 	session.close();
+		}	
 	}
 	
 	//---------------------------------------------------------------

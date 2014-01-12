@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.swing.border.EmptyBorder;
-
-import org.hibernate.type.descriptor.java.UUIDTypeDescriptor.ToStringTransformer;
-import org.jgroups.demos.TotalOrder;
-
 
 public class ControladorRegistrarPedidoCliente 
 {

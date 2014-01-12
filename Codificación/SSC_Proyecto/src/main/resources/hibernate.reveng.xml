@@ -2,6 +2,7 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
+
 	<table-filter match-name="categorias" match-catalog="BD_SSC"></table-filter>
 	<table-filter match-name="subcategorias" match-catalog="BD_SSC"></table-filter>
 	<table-filter match-name="productos" match-catalog="BD_SSC"></table-filter>
