@@ -29,10 +29,17 @@ import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JToolBar;
 import javax.swing.Box;
+import javax.swing.SwingConstants;
+import java.awt.Component;
+import javax.swing.JFormattedTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Font;
 
 public class GenerarAnuncio extends JFrame {
 	private JTable table;
 	private JTable table_1;
+	private String LABEL_TEXT = "Modificar destiatarios";
 
 	/**
 	 * Launch the application.
@@ -490,13 +497,15 @@ public class GenerarAnuncio extends JFrame {
 		menuBar.add(mnVarios);
 		getContentPane().setLayout(null);
 		
-		Box horizontalBox = Box.createHorizontalBox();
-		horizontalBox.setBorder(new TitledBorder(null, "Productos", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		horizontalBox.setBounds(10, 11, 209, 87);
-		getContentPane().add(horizontalBox);
+		Box boxProductos = Box.createHorizontalBox();
+		boxProductos.setBorder(new TitledBorder(null, "Productos", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
+		boxProductos.setBounds(10, 30, 700, 250);
+		getContentPane().add(boxProductos);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		horizontalBox.add(scrollPane);
+		scrollPane.setAlignmentY(Component.TOP_ALIGNMENT);
+		scrollPane.setAlignmentX(Component.LEFT_ALIGNMENT);
+		boxProductos.add(scrollPane);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -508,13 +517,13 @@ public class GenerarAnuncio extends JFrame {
 		));
 		scrollPane.setViewportView(table);
 		
-		Box horizontalBox_1 = Box.createHorizontalBox();
-		horizontalBox_1.setBorder(new TitledBorder(null, "Destinatarios", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		horizontalBox_1.setBounds(10, 109, 209, 87);
-		getContentPane().add(horizontalBox_1);
+		Box boxDestinatarios = Box.createHorizontalBox();
+		boxDestinatarios.setBorder(new TitledBorder(null, "Destinatarios", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
+		boxDestinatarios.setBounds(10, 320, 600, 250);
+		getContentPane().add(boxDestinatarios);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		horizontalBox_1.add(scrollPane_1);
+		boxDestinatarios.add(scrollPane_1);
 		
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
@@ -525,5 +534,22 @@ public class GenerarAnuncio extends JFrame {
 			}
 		));
 		scrollPane_1.setViewportView(table_1);
+		
+		JButton btnCerrar = new JButton("Cerrar");
+		btnCerrar.setBounds(1250, 620, 89, 23);
+		getContentPane().add(btnCerrar);
+		
+		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setBounds(1150, 620, 89, 23);
+		getContentPane().add(btnGuardar);
+		
+		JButton btnGenerar = new JButton("Generar");
+		btnGenerar.setBounds(20, 620, 89, 23);
+		getContentPane().add(btnGenerar);
+		
+		JLabel lblModificarDestinatarios = new JLabel("Modificar destinatarios");
+		lblModificarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblModificarDestinatarios.setBounds(650, 550, 140, 14);
+		getContentPane().add(lblModificarDestinatarios);
 	}
 }
