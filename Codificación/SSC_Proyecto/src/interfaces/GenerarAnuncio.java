@@ -28,10 +28,11 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JToolBar;
+import javax.swing.Box;
 
 public class GenerarAnuncio extends JFrame {
-	private JTable tblProductos;
-	private JTable tblDestinatarios;
+	private JTable table;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -487,82 +488,42 @@ public class GenerarAnuncio extends JFrame {
 		
 		JMenu mnVarios = new JMenu("Varios");
 		menuBar.add(mnVarios);
+		getContentPane().setLayout(null);
 		
-		JScrollPane scrlProductos = new JScrollPane();
-		scrlProductos.setToolTipText("");
+		Box horizontalBox = Box.createHorizontalBox();
+		horizontalBox.setBorder(new TitledBorder(null, "Productos", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
+		horizontalBox.setBounds(10, 11, 209, 87);
+		getContentPane().add(horizontalBox);
 		
-		JScrollPane scrlDestinatarios = new JScrollPane();
+		JScrollPane scrollPane = new JScrollPane();
+		horizontalBox.add(scrollPane);
 		
-		JButton btnGenerar = new JButton("Generar");
-		
-		JButton btnBorrar = new JButton("Borrar");
-		
-		JButton btnGenerarAnuncio = new JButton("Generar Anuncio");
-		
-		JButton btnModificarDestinatarios = new JButton("Modificar destinatarios");
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(scrlProductos, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-							.addGap(142))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnGenerarAnuncio)
-								.addComponent(scrlDestinatarios, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(34)
-									.addComponent(btnBorrar, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnGenerar, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(btnModificarDestinatarios)))))
-					.addGap(14))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(31)
-					.addComponent(scrlProductos, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(18)
-							.addComponent(scrlDestinatarios, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnModificarDestinatarios)))
-					.addGap(50)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnGenerar)
-						.addComponent(btnBorrar)
-						.addComponent(btnGenerarAnuncio))
-					.addContainerGap())
-		);
-		
-		tblDestinatarios = new JTable();
-		tblDestinatarios.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Apellido", "Nombre"
-			}
-		));
-		scrlDestinatarios.setViewportView(tblDestinatarios);
-		
-		tblProductos = new JTable();
-		tblProductos.setModel(new DefaultTableModel(
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Producto", "Precio", "Stock"
 			}
 		));
-		scrlProductos.setViewportView(tblProductos);
-		getContentPane().setLayout(groupLayout);
+		scrollPane.setViewportView(table);
+		
+		Box horizontalBox_1 = Box.createHorizontalBox();
+		horizontalBox_1.setBorder(new TitledBorder(null, "Destinatarios", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
+		horizontalBox_1.setBounds(10, 109, 209, 87);
+		getContentPane().add(horizontalBox_1);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		horizontalBox_1.add(scrollPane_1);
+		
+		table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Apellido", "Nombre"
+			}
+		));
+		scrollPane_1.setViewportView(table_1);
 	}
 }
