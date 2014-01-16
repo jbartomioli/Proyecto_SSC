@@ -3,7 +3,6 @@ package negocio;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 public class CatalogoAnuncios 
 {
@@ -47,29 +46,24 @@ public class CatalogoAnuncios
 	// seteo de la coleccion de anuncios						   //
 	/////////////////////////////////////////////////////////////////
 	//VER
-	public Collection<negocio.Anuncio> obtenerAnuncios() 
-	{		
-		//se crea un objeto catalogoanuncios de datos
-		datos.CatalogoAnuncios ctgDatos = new datos.CatalogoAnuncios();
-		
-		//
-		anuncios = new ArrayList<negocio.Anuncio>();
+	public void obtenerAnuncios() 
+	{
+		//se crea un objeto catalogoclientes de datos
+		datos.CatalogoAnuncios ctgDatos = new datos.CatalogoAnuncios();				
 			
-		
-		Iterator <datos.Anuncio> it = ctgDatos.getAnuncios().iterator();
-		
-		while(it.hasNext())
+		for(datos.Anuncio anuncioDato: ctgDatos.getAnuncios())
 		{
-			datos.Anuncio datosAnuncio = it.next();
+			negocio.Anuncio anuncioNegocio = new negocio.Anuncio();
 			
-			negocio.Anuncio anuncioNegocio = new negocio.Anuncio();			
-			
-			//categoriaNegocio.setIdCategoria(datosCategoria.getIdCategoria());
-			//categoriaNegocio.setDescripcion(datosCategoria.getDescripcion());
+			anuncioNegocio.setIdAnuncio(anuncioDato.getIdAnuncio());
+			anuncioNegocio.setFecha(anuncioDato.getFecha());
+			anuncioNegocio.setEstado(anuncioDato.getEstado());
+			anuncioNegocio.setTextoMensaje(anuncioDato.getTextoMensaje());
+			anuncioNegocio.setMembrete(anuncioDato.getMembrete());
 			
 			anuncios.add(anuncioNegocio);
 		}
-		return anuncios;
+
 	}
 	//---------------------------------------------------------------
 	

@@ -1,5 +1,7 @@
 package datos;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 public class Anuncio 
@@ -8,12 +10,12 @@ public class Anuncio
 	//* ATRIBUTOS													*
 	//***************************************************************
 	private int idAnuncio;
-	private int idProducto;
-	private int idCliente;
 	private String textoMensaje;
 	private String membrete;
 	private String estado;
 	private Date fecha;
+	private Collection<datos.Cliente> clientes;
+	private Collection<datos.Producto> productos;
 	//---------------------------------------------------------------
 
 
@@ -23,12 +25,12 @@ public class Anuncio
 	public Anuncio() 
 	{
 		this.idAnuncio = 0;
-		this.idProducto = 0;
-		this.idCliente = 0;
 		this.textoMensaje = "";
 		this.membrete = "";
 		this.estado = "";
 		this.fecha = new Date();
+		this.productos = new ArrayList<datos.Producto>();
+		this.clientes = new ArrayList<datos.Cliente>();
 	}
 	//---------------------------------------------------------------
 
@@ -36,27 +38,27 @@ public class Anuncio
 	//***************************************************************
 	//* GETTES & SETTERS											*
 	//***************************************************************
-	public int getIdProducto() 
+	public Collection<datos.Producto> getProductos() 
 	{
-		return idProducto;
+		return productos;
 	}
 
 
-	public void setIdProducto(int idProducto) 
+	public void setProductos(Collection<datos.Producto> productos) 
 	{
-		this.idProducto = idProducto;
+		this.productos = productos;
 	}
 
 
-	public int getIdCliente() 
+	public Collection<datos.Cliente> getClientes() 
 	{
-		return idCliente;
+		return clientes;
 	}
 
 
-	public void setIdCliente(int idCliente) 
+	public void setClientes(Collection<datos.Cliente> clientes) 
 	{
-		this.idCliente = idCliente;
+		this.clientes = clientes;
 	}
 
 
@@ -96,22 +98,26 @@ public class Anuncio
 	}
 
 
-	public Date getFecha() {
+	public Date getFecha() 
+	{
 		return fecha;
 	}
 
 
-	public void setFecha(Date fecha) {
+	public void setFecha(Date fecha) 
+	{
 		this.fecha = fecha;
 	}
 
 
-	public int getIdAnuncio() {
+	public int getIdAnuncio() 
+	{
 		return idAnuncio;
 	}
 
 
-	public void setIdAnuncio(int idAnuncio) {
+	public void setIdAnuncio(int idAnuncio) 
+	{
 		this.idAnuncio = idAnuncio;
 	}
 	//---------------------------------------------------------------

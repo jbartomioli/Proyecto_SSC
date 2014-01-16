@@ -49,7 +49,7 @@ public class CatalogoAnuncios
 	/////////////////////////////////////////////////////////////////
 	// //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//LISTO
 	public void obtenerAnuncios()
 	{
 		Session session = null;	
@@ -69,16 +69,12 @@ public class CatalogoAnuncios
 	           
 	        	entidades.Anuncios entAnuncio = (entidades.Anuncios) it.next();  
 	           
-	           	//catergoriaDatos.setIdCategoria(entCategoria.getIdCategoria());
-	           	//catergoriaDatos.setDescripcion(entCategoria.getDescripcion());
-
-//				a.setIdCliente(conjuntoResult.getInt("idCliente"));
-//				a.setIdProducto(conjuntoResult.getInt("idProducto"));
-//				a.setIdAnuncio(conjuntoResult.getInt("idAnuncio"));
-//				a.setTextoMensaje(conjuntoResult.getString("textoMensaje"));
-//				a.setFecha(conjuntoResult.getDate("fecha"));
-//				a.setEstado(conjuntoResult.getString("estado"));	
-	           	
+				anuncioDatos.setIdAnuncio(entAnuncio.getIdAnuncio());
+				anuncioDatos.setFecha(entAnuncio.getFecha());
+				anuncioDatos.setEstado(entAnuncio.getEstado());
+				anuncioDatos.setTextoMensaje(entAnuncio.getTextoMensaje());
+				anuncioDatos.setMembrete(entAnuncio.getMembrete());
+				
 	           	anuncios.add(anuncioDatos);            
 	        }
 

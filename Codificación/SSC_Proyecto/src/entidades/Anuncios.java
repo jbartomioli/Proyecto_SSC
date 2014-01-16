@@ -25,6 +25,7 @@ public class Anuncios implements java.io.Serializable {
 	private String textoMensaje;
 	private Date fecha;
 	private String estado;
+	private String membrete;
 	private Set<Productos> productoses = new HashSet<Productos>(0);
 	private Set<Clientes> clienteses = new HashSet<Clientes>(0);
 
@@ -36,11 +37,12 @@ public class Anuncios implements java.io.Serializable {
 	}
 
 	public Anuncios(int idAnuncio, String textoMensaje, Date fecha,
-			String estado, Set<Productos> productoses, Set<Clientes> clienteses) {
+			String estado, String membrete, Set<Productos> productoses, Set<Clientes> clienteses) {
 		this.idAnuncio = idAnuncio;
 		this.textoMensaje = textoMensaje;
 		this.fecha = fecha;
 		this.estado = estado;
+		this.membrete = membrete;
 		this.productoses = productoses;
 		this.clienteses = clienteses;
 	}
@@ -83,6 +85,15 @@ public class Anuncios implements java.io.Serializable {
 		this.estado = estado;
 	}
 
+	@Column(name = "membrete", length = 500)
+	public String getMembrete() {
+		return this.membrete;
+	}
+
+	public void setMembrete(String membrete) {
+		this.membrete = membrete;
+	}
+	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "anuncioses")
 	public Set<Productos> getProductoses() {
 		return this.productoses;
