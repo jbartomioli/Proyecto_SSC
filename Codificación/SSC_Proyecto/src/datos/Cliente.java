@@ -151,7 +151,7 @@ public class Cliente
 	           
 	        	ventaDatos.setIdVenta(entVenta.getIdVenta());
 	        	ventaDatos.setFechaVenta(entVenta.getFecha()); 
-	        	//ventaDatos.setTotal(entVenta.getTotal());
+	        	ventaDatos.setTotal(entVenta.getTotal());
 	        	
 	           	this.ventas.add(ventaDatos);
             }

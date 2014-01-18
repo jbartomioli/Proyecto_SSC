@@ -105,6 +105,7 @@ public class Venta
 				
 				lineaNegocio.setCantidad(LDVD.getCantidad());
 				lineaNegocio.setSubTotal(LDVD.getSubTotal());
+				lineaNegocio.setIdVenta(LDVD.getIdVenta());
 
 				//se crea instancia de producto de negocio
 				negocio.Producto productoNegocio = new negocio.Producto();

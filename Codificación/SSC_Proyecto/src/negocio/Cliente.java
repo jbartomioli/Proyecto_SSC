@@ -162,6 +162,7 @@ public class Cliente
 				
 				ventaNegocio.setIdVenta(VD.getIdVenta());
 				ventaNegocio.setFechaVenta(VD.getFechaVenta());
+				ventaNegocio.setTotal(VD.getTotal());
 				
 				this.ventas.add(ventaNegocio);
 			}

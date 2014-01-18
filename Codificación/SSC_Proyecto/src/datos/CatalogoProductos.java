@@ -52,6 +52,7 @@ public class CatalogoProductos
 	/////////////////////////////////////////////////////////////////
 	//   //
 	/////////////////////////////////////////////////////////////////
+	//FALTA
 	public Collection<datos.Producto> obtenerProductos()
 	{
 		Session session = null;	
@@ -76,7 +77,16 @@ public class CatalogoProductos
 	        	productoDatos.setCodProducto(entProducto.getCodProducto());
 	        	productoDatos.setNombre(entProducto.getNombre());
 	        	productoDatos.setExistenciaStock(entProducto.getStock());
-	        	//productoDatos.setIdSubCategoria();
+	        	
+	        	{//seteo de la subcategoria
+	        		datos.SubCategoria subCatTemp = new datos.SubCategoria();
+	        	
+	        		subCatTemp.setDescripcion(entProducto.getSubcategorias().getDescripcion());
+	        		subCatTemp.setIdSubcategoria(entProducto.getSubcategorias().getIdSubcategoria());
+	        	
+	        		productoDatos.setSubcategoria(subCatTemp);
+	        	}
+	        	
 	        	//productoDatos.setPrecios();
 				
 				productos.add(productoDatos);

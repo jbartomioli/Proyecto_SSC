@@ -23,6 +23,7 @@ public class ParametrosNegocio
 	{
 		this.membrete = "";
 		this.ultIdPedido = 0;
+		this.obtenerParametrosNegocio();
 	}
 	//---------------------------------------------------------------
 
@@ -78,7 +79,7 @@ public class ParametrosNegocio
 	        {  
 	        	datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
 	           
-	        	//entidades.ParametrosNegocio entParametro = (entidades.ParametrosNegocio) it.next();  
+	        	entidades.ParametrosNegocio entParametro = (entidades.ParametrosNegocio) it.next();  
 	           
 	        	//parametrosDatos.setMembrete(entParametro.getMembrete());
 	        	//parametrosDatos.setUltIdPedido(entParametro.getUltIdPedido());

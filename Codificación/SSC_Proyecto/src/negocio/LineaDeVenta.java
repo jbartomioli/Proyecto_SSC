@@ -9,6 +9,7 @@ public class LineaDeVenta
 	private negocio.Producto productoLinea;
 	private int cantidad;
 	private double subTotal;
+	private int idVenta;
 	//---------------------------------------------------------------
 
 
@@ -20,6 +21,7 @@ public class LineaDeVenta
 		this.productoLinea = new negocio.Producto();
 		this.cantidad = 0;
 		this.subTotal = 0;
+		this.idVenta = 0;
 	}
 	//---------------------------------------------------------------
 
@@ -55,6 +57,17 @@ public class LineaDeVenta
 	public void setSubTotal(double subTotal) 
 	{
 		this.subTotal = subTotal;
+	}
+	
+	
+	public int getIdVenta() 
+	{
+		return idVenta;
+	}
+	
+	public void setIdVenta(int idVenta) 
+	{
+		this.idVenta = idVenta;
 	}
 	//---------------------------------------------------------------
 	

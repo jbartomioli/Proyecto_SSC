@@ -71,7 +71,7 @@ public class CatalogoSubCategorias
 	           
 	           	subCategoriaDatos.setIdSubcategoria(entSubCategoria.getIdSubcategoria());
 	           	subCategoriaDatos.setDescripcion(entSubCategoria.getDescripcion());
-	           	//
+	           	
 	           	subcategorias.add(subCategoriaDatos);            
 	        }
 

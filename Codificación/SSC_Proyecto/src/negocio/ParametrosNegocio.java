@@ -59,4 +59,23 @@ public class ParametrosNegocio
 		this.ultIdPedido = ultIdPedido;
 	}
 	//---------------------------------------------------------------
+	
+
+	//***************************************************************
+	//* METODOS														*
+	//***************************************************************
+
+	/////////////////////////////////////////////////////////////////
+	//	//
+	/////////////////////////////////////////////////////////////////
+	public void obtenerParametrosNegocio()
+	{
+    	datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
+    	
+    	negocio.ParametrosNegocio parametrosNegocio = new negocio.ParametrosNegocio();
+    	
+    	parametrosNegocio.setMembrete(parametrosDatos.getMembrete());
+    	parametrosNegocio.setUltIdPedido(parametrosDatos.getUltIdPedido());
+	}
+	//----------------------------------------------------------------
 }

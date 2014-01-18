@@ -111,16 +111,16 @@ public class Venta
             {  
 	        	datos.LineaDeVenta lineaDeVentaDatos = new datos.LineaDeVenta();
 	           
-	        	//entidades.LineasDeVentas entLineaDeVenta = (entidades.LineasDeVentas) it.next();  
 	            entidades.Ventas entVenta = (entidades.Ventas) it.next();
 	        	
 	            for(entidades.LineasDeVentas ELDV: entVenta.getLineasDeVentases())
 	            {
+	            	//datos de la linea
 	            	lineaDeVentaDatos.setCantidad(ELDV.getCantidad()); 
-	            	//lineaDeVentaDatos.setSubTotal(ELDV.getSubtotal());
+	            	lineaDeVentaDatos.setSubTotal(ELDV.getSubtotal());
+	            	lineaDeVentaDatos.setIdVenta(ELDV.getId().getIdProducto());
 	        	
 		        	//se crea instancia de producto entidades
-		        	//entidades.Productos entProducto = new entidades.Productos();
 	            	entidades.Productos entProducto = ELDV.getProductos();
 		        	
 		        	//se crea instancia de producto datos

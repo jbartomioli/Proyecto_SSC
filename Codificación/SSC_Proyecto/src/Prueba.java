@@ -94,7 +94,9 @@ public class Prueba {
 			
 			negocio.ParametrosNegocio param = new negocio.ParametrosNegocio();
 			
-			System.out.println(param.getUltIdPedido());
+			param.obtenerParametrosNegocio();
+			
+			System.out.println(param.getUltIdPedido()+" + "+param.getMembrete());
 			
 			
 		 }

@@ -11,7 +11,6 @@ public class Categoria
 	private int idCategoria;
 	private String descripcion;
 	private Collection<negocio.SubCategoria> subCategorias;   
-	//private Collection<negocio.Producto> productos; 
 	//---------------------------------------------------------------
 
 
@@ -23,7 +22,6 @@ public class Categoria
 		this.idCategoria = 0;
 		this.descripcion = "";
 		this.subCategorias = new ArrayList<negocio.SubCategoria>();
-		//this.productos = new ArrayList<negocio.Producto>();
 	}
 	//---------------------------------------------------------------
 
@@ -60,16 +58,7 @@ public class Categoria
 	{
 		this.subCategorias = subCat;
 	}
-	
-//	public Collection<Producto> getProductos() 
-//	{
-//		return productos;
-//	}
-//	
-//	public void setProductos(Collection<Producto> productos) 
-//	{
-//		this.productos = productos;
-//	}
+
 	//---------------------------------------------------------------
 
 	
