@@ -3,6 +3,11 @@ package datos;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 public class Anuncio 
 {
@@ -131,7 +136,48 @@ public class Anuncio
 	/////////////////////////////////////////////////////////////////
 	// //
 	/////////////////////////////////////////////////////////////////
-	
+	public void obtenerProductos(int idAnuncio)
+	{
+		Session session = null;	
+			
+		try
+		{
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		        
+            Query query = session.createQuery("from Anuncios a where a.idAnuncio = :idA");
+            query.setParameter("idA", idAnuncio);
+            
+            @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
+            
+            for(Iterator<Query> it=list.iterator();it.hasNext();)
+            {  
+	        	datos.Producto productoDatos = new datos.Producto();
+	           
+	        	entidades.Productos entProducto = (entidades.Productos) it.next();  
+	           
+	        	productoDatos.setCodProducto(entProducto.getCodProducto());
+	        	productoDatos.setExistenciaStock(entProducto.getStock());
+	        	productoDatos.setIdProducto(productoDatos.getIdProducto());
+	        	productoDatos.setNombre(entProducto.getNombre());
+	        	
+	           	this.productos.add(productoDatos);
+            }
+
+	        session.getTransaction().commit();
+		}
+		 
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		 
+		finally
+		{
+		 	session.close();
+		}	
+	}
 	//---------------------------------------------------------------
 }
 
