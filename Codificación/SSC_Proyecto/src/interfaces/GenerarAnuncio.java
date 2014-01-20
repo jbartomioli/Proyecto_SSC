@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.BoxLayout;
 import javax.swing.UIManager;
@@ -37,8 +38,8 @@ import java.awt.event.MouseEvent;
 import java.awt.Font;
 
 public class GenerarAnuncio extends JFrame {
-	private JTable table;
-	private JTable table_1;
+	private JTable tblProductos;
+	private JTable tblDestinatarios;
 	private String LABEL_TEXT = "Modificar destiatarios";
 
 	/**
@@ -502,38 +503,39 @@ public class GenerarAnuncio extends JFrame {
 		boxProductos.setBounds(10, 30, 700, 250);
 		getContentPane().add(boxProductos);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setAlignmentY(Component.TOP_ALIGNMENT);
-		scrollPane.setAlignmentX(Component.LEFT_ALIGNMENT);
-		boxProductos.add(scrollPane);
+		JScrollPane scrollProductos = new JScrollPane();
+		scrollProductos.setAlignmentY(Component.TOP_ALIGNMENT);
+		scrollProductos.setAlignmentX(Component.LEFT_ALIGNMENT);
+		boxProductos.add(scrollProductos);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		tblProductos = new JTable();
+		tblProductos.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Producto", "Precio", "Stock"
+				"Producto", "Precio", "Stock", "Eliminar"
 			}
+			// TableCellRenderer btnEliminar = new JTableButtonRenderer();
 		));
-		scrollPane.setViewportView(table);
+		scrollProductos.setViewportView(tblProductos);
 		
 		Box boxDestinatarios = Box.createHorizontalBox();
 		boxDestinatarios.setBorder(new TitledBorder(null, "Destinatarios", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
 		boxDestinatarios.setBounds(10, 320, 600, 250);
 		getContentPane().add(boxDestinatarios);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		boxDestinatarios.add(scrollPane_1);
+		JScrollPane scrollDestinatarios = new JScrollPane();
+		boxDestinatarios.add(scrollDestinatarios);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
+		tblDestinatarios = new JTable();
+		tblDestinatarios.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Apellido", "Nombre"
 			}
 		));
-		scrollPane_1.setViewportView(table_1);
+		scrollDestinatarios.setViewportView(tblDestinatarios);
 		
 		JButton btnCerrar = new JButton("Cerrar");
 		btnCerrar.setBounds(1250, 620, 89, 23);
