@@ -58,6 +58,7 @@ public class CatalogoClientes {
 			clienteNegocio.setIdCliente(clienteDato.getIdCliente());
 			clienteNegocio.setNombre(clienteDato.getNombre());
 			clienteNegocio.setTelefono(clienteDato.getTelefono());
+			clienteNegocio.setTipoCliente(clienteDato.getTipoCliente());
 			
 			clientes.add(clienteNegocio);
 		}

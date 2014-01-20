@@ -121,6 +121,71 @@ public class Anuncio
 	/////////////////////////////////////////////////////////////////
 	// 								 							   //
 	/////////////////////////////////////////////////////////////////
+	//FALTA - VER VENTA
+	public void obtenerProductos()
+	{
+		//
+		datos.Anuncio anuncioDato = new datos.Anuncio();
+		
+		//
+		anuncioDato.obtenerProductos(this.idAnuncio);
+		
+
+		for(datos.Producto productoDato: anuncioDato.getProductos())
+		{
+			//
+			negocio.Producto productoNegocio = new negocio.Producto();
+				
+			//se setea el producto de negocio
+			productoNegocio.setCodProducto(productoDato.getCodProducto());
+			productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
+			productoNegocio.setIdProducto(productoDato.getIdProducto());
+			productoNegocio.setNombre(productoDato.getNombre());
+			
+			this.productos.add(productoNegocio);
+		}
+	}
+	//--------------------------------------------------------------
+
+	
+	
+	////////////////////////////////////////////////////////////////
+	//	//
+	////////////////////////////////////////////////////////////////
+	public void obtenerClientes()
+	{
+		//
+		datos.Anuncio anuncioDato = new datos.Anuncio();
+		
+		//
+		anuncioDato.obtenerClientes(this.idAnuncio);
+		
+
+		for(datos.Cliente clienteDato: anuncioDato.getClientes())
+		{
+			//
+			negocio.Cliente clienteNegocio = new negocio.Cliente();
+				
+			//
+			clienteNegocio.setApellido(clienteDato.getApellido());
+			clienteNegocio.setDireccion(clienteDato.getDireccion());
+			clienteNegocio.setEmail(clienteDato.getEmail());
+			clienteNegocio.setEspecialidad(clienteDato.getEspecialidad());
+			clienteNegocio.setIdCliente(clienteDato.getIdCliente());
+			clienteNegocio.setNombre(clienteDato.getNombre());
+			clienteNegocio.setTelefono(clienteDato.getTelefono());
+			clienteNegocio.setTipoCliente(clienteDato.getTipoCliente());
+			
+			this.clientes.add(clienteNegocio);
+		}
+	}
+	//--------------------------------------------------------------
+	
+		
+	
+	/////////////////////////////////////////////////////////////////
+	// 								 							   //
+	/////////////////////////////////////////////////////////////////	
 	//VER
 	public negocio.Producto modificarPrecioProducto(int idProducto)
 	{

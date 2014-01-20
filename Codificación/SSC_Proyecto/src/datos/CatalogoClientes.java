@@ -80,6 +80,7 @@ public class CatalogoClientes
 	           	clienteDatos.setIdCliente(entCliente.getIdCliente());
 	           	clienteDatos.setNombre(entCliente.getNombre());
 	           	clienteDatos.setTelefono(entCliente.getTelefono());
+	           	clienteDatos.setTipoCliente(entCliente.getTipo());
 	           	
 	           	clientes.add(clienteDatos);
             }

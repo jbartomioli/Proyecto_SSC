@@ -179,6 +179,58 @@ public class Anuncio
 		}	
 	}
 	//---------------------------------------------------------------
+	
+	
+	/////////////////////////////////////////////////////////////////
+	// //
+	/////////////////////////////////////////////////////////////////
+	public void obtenerClientes(int idAnuncio)
+	{
+		Session session = null;	
+			
+		try
+		{
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		        
+            Query query = session.createQuery("from Anuncios a where a.idAnuncio = :idA");
+            query.setParameter("idA", idAnuncio);
+            
+            @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
+            
+            for(Iterator<Query> it=list.iterator();it.hasNext();)
+            {  
+	        	datos.Cliente clienteDato = new datos.Cliente();
+	           
+	        	entidades.Clientes entCliente = (entidades.Clientes) it.next();  
+	           
+	        	clienteDato.setApellido(entCliente.getApellido());
+	        	clienteDato.setDireccion(entCliente.getDireccion());
+	        	clienteDato.setEmail(entCliente.getEmail());
+	        	clienteDato.setEspecialidad(entCliente.getEspecialidad());
+	        	clienteDato.setIdCliente(entCliente.getIdCliente());
+	        	clienteDato.setNombre(entCliente.getNombre());
+	        	clienteDato.setTelefono(entCliente.getTelefono());
+	        	clienteDato.setTipoCliente(entCliente.getTipo());
+	        	
+	           	this.clientes.add(clienteDato);
+            }
+
+	        session.getTransaction().commit();
+		}
+		 
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		 
+		finally
+		{
+		 	session.close();
+		}	
+	}
+	//---------------------------------------------------------------
 }
 
 

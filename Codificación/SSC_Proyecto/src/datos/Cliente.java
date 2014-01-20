@@ -101,7 +101,7 @@ public class Cliente
 		this.telefono = telefono;
 	}
 
-	public boolean isTipoCliente() {
+	public boolean getTipoCliente() {
 		return tipoCliente;
 	}
 
