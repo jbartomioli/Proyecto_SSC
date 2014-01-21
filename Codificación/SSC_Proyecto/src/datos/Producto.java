@@ -1,5 +1,8 @@
 package datos;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Producto 
 {
 	//***************************************************************
@@ -10,8 +13,7 @@ public class Producto
 	private String nombre;
 	private int existenciaStock;
 	private datos.SubCategoria subcategoria;
-	//private datos.Precio precio;
-	//REVEER COMO VAMOS A USAR EL PRECIO
+	private Collection<datos.Precio> precios;
 	//---------------------------------------------------------------
 
 	
@@ -25,10 +27,8 @@ public class Producto
 		this.nombre = "";
 		this.existenciaStock = 0;
 		this.subcategoria = new SubCategoria();
-		//this.precio = new Precio();
+		this.precios = new ArrayList<datos.Precio>();
 	}
-
-
 	//---------------------------------------------------------------
 
 
@@ -81,25 +81,28 @@ public class Producto
 	}
 
 
-	public datos.SubCategoria getSubcategoria() {
+	public datos.SubCategoria getSubcategoria() 
+	{
 		return subcategoria;
 	}
 
 
-	public void setSubcategoria(datos.SubCategoria subcategoria) {
+	public void setSubcategoria(datos.SubCategoria subcategoria) 
+	{
 		this.subcategoria = subcategoria;
 	}
 
 
-//	public datos.Precio getPrecio() {
-//		return precio;
-//	}
-//
-//
-//	public void setPrecio(datos.Precio precio) {
-//		this.precio = precio;
-//	}
+	public Collection<datos.Precio> getPrecios() 
+	{
+		return precios;
+	}
 
+
+	public void setPrecios(Collection<datos.Precio> precios) 
+	{
+		this.precios = precios;
+	}
 	//---------------------------------------------------------------
 
 
@@ -111,8 +114,7 @@ public class Producto
 	/////////////////////////////////////////////////////////////////
 	// 			   //
 	/////////////////////////////////////////////////////////////////
-	
-	
+		
 	//---------------------------------------------------------------
 
 

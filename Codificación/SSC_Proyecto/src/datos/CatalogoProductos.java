@@ -52,7 +52,7 @@ public class CatalogoProductos
 	/////////////////////////////////////////////////////////////////
 	//   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//
 	public Collection<datos.Producto> obtenerProductos()
 	{
 		Session session = null;	
@@ -65,33 +65,70 @@ public class CatalogoProductos
             Query query = session.createQuery("from Productos");  
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
-            
+          
+            //SE RECORRE CADA PRODUCTO DE LA CONSULTA
             for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
+            	//SE CREA PRODUCTO TEMPORAL DE DATOS PARA SETEOS
 	        	datos.Producto productoDatos = new datos.Producto();
 	           
+	        	//SE CREA PRODUCTO TEMPORAL DE ENTIDADES PARA OBTENER DATOS
 	        	entidades.Productos entProducto = (entidades.Productos) it.next();  
-	           
-	        	
+	                   	
+	        	//SETEOS DE DATOS DEL PRODUCTO
 	        	productoDatos.setIdProducto(entProducto.getIdProducto());
 	        	productoDatos.setCodProducto(entProducto.getCodProducto());
 	        	productoDatos.setNombre(entProducto.getNombre());
 	        	productoDatos.setExistenciaStock(entProducto.getStock());
 	        	
-	        	{//seteo de la subcategoria
-	        		datos.SubCategoria subCatTemp = new datos.SubCategoria();
+//	        	{//SETEO DE LA SUBCATEGORIA DEL PRODUCTO
+//	        		
+//	        		//SE CREA SUBCATEGORIA TEMPORAL DE DATOS PARA SETEOS
+//	        		datos.SubCategoria subCatTemp = new datos.SubCategoria();
+//	        	
+//	        		//SE CREA SUBCATEGORIA DE ENTIDADES PARA OBTENER DATOS
+//	        		entidades.Subcategorias entSubcat = new entidades.Subcategorias();
+//	        		
+//	        		//SE RECUPERA INFORMACION DE LA SUBCATEGORIA
+//	        		entSubcat = entProducto.getSubcategorias();
+//	        		
+//	        		//SE SETEAN DATOS DE LA SUBCATEGORIA
+//	        		subCatTemp.setDescripcion(entSubcat.getDescripcion());
+//	        		subCatTemp.setIdSubcategoria(entSubcat.getIdSubcategoria());
+//	        	
+//	        		//SE SETEA LA SUBCATEGORIA EN EL PRODUCTO
+//	        		productoDatos.setSubcategoria(subCatTemp);
+//	        	}
 	        	
-	        		subCatTemp.setDescripcion(entProducto.getSubcategorias().getDescripcion());
-	        		subCatTemp.setIdSubcategoria(entProducto.getSubcategorias().getIdSubcategoria());
-	        	
-	        		productoDatos.setSubcategoria(subCatTemp);
+	        	{//SETEO DE LOS PRECIOS DEL PRODUCTO
+	        		
+	        		//ARRAY TEMPORAL DE PRECIOS
+	        		Collection<datos.Precio> preciosArrTemp = new ArrayList<datos.Precio>();
+	        		
+	        		//SE OBTIENE CADA PRECIO DEL PRODUCTO
+	        		for(entidades.Precios entPrecio: entProducto.getPrecioses())
+	        		{	
+	        			//PRECIO TEMPORAL PARA SETEO DE DATOS
+	        			datos.Precio precioDato = new datos.Precio();
+	        			
+	        			//SETEO DE DATOS DE PRECIO
+	        			//precioDato.setIdPrecio(entPrecio.getIdPrecio());
+	        			precioDato.setFechaDesde(entPrecio.getFechaDesde());
+	        			precioDato.setFechaHasta(entPrecio.getFechaHasta());
+	        			precioDato.setPrecio(entPrecio.getPrecio());
+	        			precioDato.setPrecioPromocional(entPrecio.getPrecioPromocional());
+	        			
+	        			//SE AGREGA EL PRECIO AL ARRAY TEMPORAL
+	        			preciosArrTemp.add(precioDato);
+	        		}
+	        		
+	        		//SE SETEAN LOS PRECIOS EN EL PRODUCTO
+	        		productoDatos.setPrecios(preciosArrTemp);
 	        	}
-	        	
-	        	//productoDatos.setPrecios();
-				
+	        				
+	        	//SE AGREGA EL PRODUCTO SETEADO EN EL ARRAY DEL CATALOGO
 				productos.add(productoDatos);
 			}			
-
         session.getTransaction().commit();
 	}
 	 

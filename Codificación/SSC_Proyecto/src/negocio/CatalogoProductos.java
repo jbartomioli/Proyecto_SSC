@@ -3,6 +3,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 
+
 public class CatalogoProductos 
 {
 	//***************************************************************
@@ -44,28 +45,77 @@ public class CatalogoProductos
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	//	//
+	// Setea los productos y sus datos en el array del catalogo    //
 	/////////////////////////////////////////////////////////////////
-	//REDEFINIR TEMA PRECIOS
+	//AL FINAL CONSIDERE USAR EL ESQUEMA DEL HISTORICO DE PRECIOS
+	//YA QUE EN SI ES MAS FACIL OBTENER LOS DATOS
+	//HIBERNATE RECUPERA UN ARRAY DE PRECIOS PARA EL CADA PRODUCTO
+	//JAVI
 	public void obtenerProductos()
 	{
+		//SE CREA INSTANCIA DEL CATALOGO DE DATOS
 		datos.CatalogoProductos ctgDatos = new datos.CatalogoProductos();				
 			
+        //SE RECORRE CADA PRODUCTO DEL CATALOGO DE DATOS
 		for(datos.Producto productoDato: ctgDatos.getProductos())
-		{
-			negocio.Producto productoNegocio = new negocio.Producto();
-			
-			productoNegocio.setCodProducto(productoDato.getCodProducto());
-			productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
-			productoNegocio.setIdProducto(productoDato.getIdProducto());
-			productoNegocio.setNombre(productoDato.getNombre());
-			//productoNegocio.setPrecio(productoDato.getPrecio);
-			//productoNegocio.setPrecioPromocional();
-			//productoNegocio.setSubCategoria(productoDato.getSubcategoria());
-			
+        {  
+        	//SE CREA PRODUCTO TEMPORAL DE NEGOCIO PARA SETEOS
+        	negocio.Producto productoNegocio = new negocio.Producto();
+                            	
+        	//SETEOS DE DATOS DEL PRODUCTO
+        	productoNegocio.setIdProducto(productoDato.getIdProducto());
+        	productoNegocio.setCodProducto(productoDato.getCodProducto());
+        	productoNegocio.setNombre(productoDato.getNombre());
+        	productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
+        	
+//        	{//SETEO DE LA SUBCATEGORIA DEL PRODUCTO
+//        		
+//        		//SE CREA SUBCATEGORIA TEMPORAL DE DATOS PARA SETEOS
+//        		negocio.SubCategoria subCatTemp = new negocio.SubCategoria();
+//        	
+//        		//SE CREA SUBCATEGORIA DE DATOS PARA OBTENER DATOS
+//        		datos.SubCategoria subcatDato = new datos.SubCategoria();
+//        		
+//        		//SE RECUPERA INFORMACION DE LA SUBCATEGORIA
+//        		subcatDato = productoDato.getSubcategoria();
+//        		
+//        		//SE SETEAN DATOS DE LA SUBCATEGORIA
+//        		subCatTemp.setDescripcion(subcatDato.getDescripcion());
+//        		subCatTemp.setIdSubcategoria(subcatDato.getIdSubcategoria());
+//        	
+//        		//SE SETEA LA SUBCATEGORIA EN EL PRODUCTO
+//        		productoDato.setSubcategoria(subcatDato);
+//        	}
+        	
+        	{//SETEO DE LOS PRECIOS DEL PRODUCTO
+        		
+        		//ARRAY TEMPORAL DE PRECIOS
+        		Collection<negocio.Precio> preciosArrTemp = new ArrayList<negocio.Precio>();
+        		
+        		//SE OBTIENE CADA PRECIO DEL PRODUCTO
+        		for(datos.Precio precioDato : productoDato.getPrecios())
+        		{	
+        			//PRECIO TEMPORAL PARA SETEO DE DATOS
+        			negocio.Precio precioProducto = new negocio.Precio();
+        			
+        			//SETEO DE DATOS DE PRECIO
+        			precioProducto.setIdPrecio(precioDato.getIdPrecio());
+        			precioProducto.setFechaDesde(precioDato.getFechaDesde());
+        			precioProducto.setFechaHasta(precioDato.getFechaHasta());
+        			precioProducto.setPrecio(precioDato.getPrecio());
+        			precioProducto.setPrecioPromocional(precioDato.getPrecioPromocional());
+        			
+        			//SE AGREGA EL PRECIO AL ARRAY TEMPORAL
+        			preciosArrTemp.add(precioProducto);
+        		}
+        		
+        		//SE SETEAN LOS PRECIOS EN EL PRODUCTO
+        		productoNegocio.setPrecios(preciosArrTemp);
+        	}
+        				
+        	//SE AGREGA EL PRODUCTO SETEADO EN EL ARRAY DEL CATALOGO
 			productos.add(productoNegocio);
-		}
-
+        }
 	}
 	//---------------------------------------------------------------
 	

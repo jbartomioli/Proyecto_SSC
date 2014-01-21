@@ -199,7 +199,7 @@ public class Anuncio
 				productoModif.setIdProducto(p.getIdProducto());
 				productoModif.setNombre(p.getNombre());
 				productoModif.setSubCategoria(p.getSubCategoria());
-				productoModif.setPrecio(p.getPrecio());
+				//productoModif.setPrecio(p.getPrecio());
 				productoModif.setExistenciaStock(p.getExistenciaStock());
 				
 				return productoModif;

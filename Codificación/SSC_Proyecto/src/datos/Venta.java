@@ -9,7 +9,6 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-
 public class Venta 
 {
 	//***************************************************************
@@ -111,14 +110,14 @@ public class Venta
             {  
 	        	datos.LineaDeVenta lineaDeVentaDatos = new datos.LineaDeVenta();
 	           
-	            entidades.Ventas entVenta = (entidades.Ventas) it.next();
+	        	entidades.Ventas entVenta = (entidades.Ventas) it.next();
 	        	
 	            for(entidades.LineasDeVentas ELDV: entVenta.getLineasDeVentases())
 	            {
 	            	//datos de la linea
 	            	lineaDeVentaDatos.setCantidad(ELDV.getCantidad()); 
 	            	lineaDeVentaDatos.setSubTotal(ELDV.getSubtotal());
-	            	lineaDeVentaDatos.setIdVenta(ELDV.getId().getIdProducto());
+	            	//lineaDeVentaDatos.setIdVenta(ELDV.getId().getIdProducto());
 	        	
 		        	//se crea instancia de producto entidades
 	            	entidades.Productos entProducto = ELDV.getProductos();

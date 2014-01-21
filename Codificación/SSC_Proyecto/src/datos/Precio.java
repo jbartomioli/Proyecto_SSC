@@ -4,16 +4,20 @@ import java.util.Date;
 
 public class Precio 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private int idPrecio;
 	private Date fechaDesde;
 	private Date fechaHasta;
 	private double precio;
 	private double precioPromocional;
-	//private datos.Producto productoPrecio;
+	//---------------------------------------------------------------
+
 	
-	
-	//CONSTRUCTOR
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public Precio() 
 	{
 		this.idPrecio = 0;
@@ -21,10 +25,13 @@ public class Precio
 		this.fechaHasta = new Date();
 		this.precio = 0;
 		this.precioPromocional = 0;
-		//this.productoPrecio = new datos.Producto();
 	}
+	//---------------------------------------------------------------
 
-	//GETTER & SETTERS
+
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
 	public int getIdPrecio() 
 	{
 		return idPrecio;
@@ -74,19 +81,15 @@ public class Precio
 	{
 		this.precioPromocional = precioPromocional;
 	}
+	//---------------------------------------------------------------
 
-//	public datos.Producto getProductoPrecio()
-//	{
-//		return productoPrecio;
-//	}
-//
-//	public void setProductoPrecio(datos.Producto productoPrecio) 
-//	{
-//		this.productoPrecio = productoPrecio;
-//	}	
+
 	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
 	
-	
-	//METODOS
-	//----------------------------------------------------------
+	/////////////////////////////////////////////////////////////////
+	// 			   //
+	/////////////////////////////////////////////////////////////////
 }

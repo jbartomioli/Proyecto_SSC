@@ -79,7 +79,7 @@ public class ParametrosNegocio
 	        {  
 	        	datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
 	           
-	        	entidades.ParametrosNegocio entParametro = (entidades.ParametrosNegocio) it.next();  
+	        	ParametrosNegocio entParametro = (ParametrosNegocio) it.next();  
 	           
 	        	//parametrosDatos.setMembrete(entParametro.getMembrete());
 	        	//parametrosDatos.setUltIdPedido(entParametro.getUltIdPedido());

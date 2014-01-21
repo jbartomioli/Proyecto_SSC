@@ -10,8 +10,8 @@ public class Precio
 	private int idPrecio;
 	private Date fechaDesde;
 	private Date fechaHasta;
-	private float precio;
-	private float precioPromocional;
+	private double precio;
+	private double precioPromocional;
 	//---------------------------------------------------------------
 
 
@@ -67,7 +67,7 @@ public class Precio
 		return precio;
 	}
 	
-	public void setPrecio(float precio) 
+	public void setPrecio(double precio) 
 	{
 		this.precio = precio;
 	}
@@ -77,7 +77,7 @@ public class Precio
 		return precioPromocional;
 	}
 	
-	public void setPrecioPromocional(float precioPromocional)
+	public void setPrecioPromocional(double precioPromocional)
 	{
 		this.precioPromocional = precioPromocional;
 	}

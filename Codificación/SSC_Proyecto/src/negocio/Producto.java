@@ -87,12 +87,12 @@ public class Producto
 		this.subCategoria = subCategoria;
 	}
 
-	public Collection<negocio.Precio> getPrecio() 
+	public Collection<negocio.Precio> getPrecios() 
 	{
 		return precios;
 	}
 
-	public void setPrecio(Collection<negocio.Precio> precios) 
+	public void setPrecios(Collection<negocio.Precio> precios) 
 	{
 		this.precios = precios;
 	}
@@ -110,7 +110,7 @@ public class Producto
 	//VER TEMA PRECIOS
 	public double getPrecioActual()
 	{
-		for(negocio.Precio p: this.getPrecio())
+		for(negocio.Precio p: this.getPrecios())
 		{
 			if (p.getFechaHasta() == null)
 				return p.getPrecio();
@@ -127,7 +127,7 @@ public class Producto
 	//VER TEMA PRECIOS
 	public double getPrecioPromocional()
 	{
-		for(negocio.Precio p: this.getPrecio())
+		for(negocio.Precio p: this.getPrecios())
 		{
 			if (p.getFechaHasta() == null)
 				return p.getPrecioPromocional();
