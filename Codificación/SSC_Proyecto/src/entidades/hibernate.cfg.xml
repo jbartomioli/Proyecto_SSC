@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">zLvSUVUaDnWFNKzG</property>
+        <property name="hibernate.connection.pool_size">5</property>
+        <property name="hibernate.connection.url">jdbc:mysql://bartomserver.dyndns.org:3306/BD_SSC</property>
+        <property name="hibernate.connection.username">ssc_acceso</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.generate_statistics">true</property>
+        <property name="hibernate.jdbc.batch_versioned_data">true</property>
+        <property name="hibernate.max_fetch_depth">5</property>
+        <property name="hibernate.search.autoregister_listeners">false</property>
+        <property name="hibernate.show_sql">true</property>
+        <mapping class="Ventas" />
+        <mapping class="Pedidos" />
+        <mapping class="Productos" />
+        <mapping class="ParametrosNegocio" />
+        <mapping class="Clientes" />
+        <mapping class="Precios" />
+        <mapping class="Categorias" />
+        <mapping class="Subcategorias" />
+        <mapping class="LineaDePedido" />
+        <mapping class="LineasDeVentas" />
+        <mapping class="Anuncios" />
+    </session-factory>
+</hibernate-configuration>

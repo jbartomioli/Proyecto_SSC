@@ -1,6 +1,6 @@
 package entidades;
-
-// Generated 27/06/2013 20:12:59 by Hibernate Tools 3.4.0.CR1
+// default package
+// Generated 21/01/2014 08:02:06 by Hibernate Tools 4.0.0
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -27,8 +27,8 @@ public class ParametrosNegocio implements java.io.Serializable {
 
 	@EmbeddedId
 	@AttributeOverrides({
-			@AttributeOverride(name = "membrete", column = @Column(name = "membrete", nullable = false, length = 500)),
-			@AttributeOverride(name = "ultIdPedido", column = @Column(name = "ultIdPedido", nullable = false)) })
+			@AttributeOverride(name = "membrete", column = @Column(name = "membrete", length = 500)),
+			@AttributeOverride(name = "ultIdPedido", column = @Column(name = "ultIdPedido")) })
 	public ParametrosNegocioId getId() {
 		return this.id;
 	}

@@ -1,6 +1,6 @@
 package entidades;
-
-// Generated 27/06/2013 20:12:59 by Hibernate Tools 3.4.0.CR1
+// default package
+// Generated 21/01/2014 08:02:06 by Hibernate Tools 4.0.0
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -46,8 +46,8 @@ public class LineasDeVentas implements java.io.Serializable {
 
 	@EmbeddedId
 	@AttributeOverrides({
-			@AttributeOverride(name = "idVenta", column = @Column(name = "idVenta", nullable = false)),
-			@AttributeOverride(name = "idProducto", column = @Column(name = "idProducto", nullable = false)) })
+			@AttributeOverride(name = "idLinea", column = @Column(name = "idLinea", nullable = false)),
+			@AttributeOverride(name = "idVenta", column = @Column(name = "idVenta", nullable = false)) })
 	public LineasDeVentasId getId() {
 		return this.id;
 	}
@@ -67,7 +67,7 @@ public class LineasDeVentas implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idProducto", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "idProducto", nullable = false)
 	public Productos getProductos() {
 		return this.productos;
 	}

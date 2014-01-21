@@ -1,13 +1,13 @@
 package entidades;
+// default package
+// Generated 21/01/2014 08:02:06 by Hibernate Tools 4.0.0
 
-// Generated 27/06/2013 20:12:59 by Hibernate Tools 3.4.0.CR1
-
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "lineaDePedido", catalog = "BD_SSC")
 public class LineaDePedido implements java.io.Serializable {
 
-	private Integer idLinea;
+	private LineaDePedidoId id;
 	private Pedidos pedidos;
 	private Productos productos;
 	private Integer cantidad;
@@ -27,30 +27,35 @@ public class LineaDePedido implements java.io.Serializable {
 	public LineaDePedido() {
 	}
 
-	public LineaDePedido(Pedidos pedidos, Productos productos) {
+	public LineaDePedido(LineaDePedidoId id, Pedidos pedidos,
+			Productos productos) {
+		this.id = id;
 		this.pedidos = pedidos;
 		this.productos = productos;
 	}
 
-	public LineaDePedido(Pedidos pedidos, Productos productos, Integer cantidad) {
+	public LineaDePedido(LineaDePedidoId id, Pedidos pedidos,
+			Productos productos, Integer cantidad) {
+		this.id = id;
 		this.pedidos = pedidos;
 		this.productos = productos;
 		this.cantidad = cantidad;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "idLinea", unique = true, nullable = false)
-	public Integer getIdLinea() {
-		return this.idLinea;
+	@EmbeddedId
+	@AttributeOverrides({
+			@AttributeOverride(name = "idLinea", column = @Column(name = "idLinea", nullable = false)),
+			@AttributeOverride(name = "idPedido", column = @Column(name = "idPedido", nullable = false)) })
+	public LineaDePedidoId getId() {
+		return this.id;
 	}
 
-	public void setIdLinea(Integer idLinea) {
-		this.idLinea = idLinea;
+	public void setId(LineaDePedidoId id) {
+		this.id = id;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idPedido", nullable = false)
+	@JoinColumn(name = "idPedido", nullable = false, insertable = false, updatable = false)
 	public Pedidos getPedidos() {
 		return this.pedidos;
 	}

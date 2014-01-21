@@ -1,6 +1,6 @@
 package entidades;
-
-// Generated 27/06/2013 20:12:59 by Hibernate Tools 3.4.0.CR1
+// default package
+// Generated 21/01/2014 08:02:06 by Hibernate Tools 4.0.0
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -12,17 +12,17 @@ import javax.persistence.Embeddable;
 public class ParametrosNegocioId implements java.io.Serializable {
 
 	private String membrete;
-	private int ultIdPedido;
+	private Integer ultIdPedido;
 
 	public ParametrosNegocioId() {
 	}
 
-	public ParametrosNegocioId(String membrete, int ultIdPedido) {
+	public ParametrosNegocioId(String membrete, Integer ultIdPedido) {
 		this.membrete = membrete;
 		this.ultIdPedido = ultIdPedido;
 	}
 
-	@Column(name = "membrete", nullable = false, length = 500)
+	@Column(name = "membrete", length = 500)
 	public String getMembrete() {
 		return this.membrete;
 	}
@@ -31,12 +31,12 @@ public class ParametrosNegocioId implements java.io.Serializable {
 		this.membrete = membrete;
 	}
 
-	@Column(name = "ultIdPedido", nullable = false)
-	public int getUltIdPedido() {
+	@Column(name = "ultIdPedido")
+	public Integer getUltIdPedido() {
 		return this.ultIdPedido;
 	}
 
-	public void setUltIdPedido(int ultIdPedido) {
+	public void setUltIdPedido(Integer ultIdPedido) {
 		this.ultIdPedido = ultIdPedido;
 	}
 
@@ -52,7 +52,10 @@ public class ParametrosNegocioId implements java.io.Serializable {
 		return ((this.getMembrete() == castOther.getMembrete()) || (this
 				.getMembrete() != null && castOther.getMembrete() != null && this
 				.getMembrete().equals(castOther.getMembrete())))
-				&& (this.getUltIdPedido() == castOther.getUltIdPedido());
+				&& ((this.getUltIdPedido() == castOther.getUltIdPedido()) || (this
+						.getUltIdPedido() != null
+						&& castOther.getUltIdPedido() != null && this
+						.getUltIdPedido().equals(castOther.getUltIdPedido())));
 	}
 
 	public int hashCode() {
@@ -60,7 +63,10 @@ public class ParametrosNegocioId implements java.io.Serializable {
 
 		result = 37 * result
 				+ (getMembrete() == null ? 0 : this.getMembrete().hashCode());
-		result = 37 * result + this.getUltIdPedido();
+		result = 37
+				* result
+				+ (getUltIdPedido() == null ? 0 : this.getUltIdPedido()
+						.hashCode());
 		return result;
 	}
 

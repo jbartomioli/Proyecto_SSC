@@ -1,12 +1,14 @@
 package entidades;
-
-// Generated 27/06/2013 20:12:59 by Hibernate Tools 3.4.0.CR1
+// default package
+// Generated 21/01/2014 08:02:06 by Hibernate Tools 4.0.0
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,7 +22,7 @@ import javax.persistence.Table;
 @Table(name = "subcategorias", catalog = "BD_SSC")
 public class Subcategorias implements java.io.Serializable {
 
-	private int idSubcategoria;
+	private Integer idSubcategoria;
 	private Categorias categorias;
 	private String descripcion;
 	private Set<Productos> productoses = new HashSet<Productos>(0);
@@ -28,26 +30,25 @@ public class Subcategorias implements java.io.Serializable {
 	public Subcategorias() {
 	}
 
-	public Subcategorias(int idSubcategoria, Categorias categorias) {
-		this.idSubcategoria = idSubcategoria;
+	public Subcategorias(Categorias categorias) {
 		this.categorias = categorias;
 	}
 
-	public Subcategorias(int idSubcategoria, Categorias categorias,
-			String descripcion, Set<Productos> productoses) {
-		this.idSubcategoria = idSubcategoria;
+	public Subcategorias(Categorias categorias, String descripcion,
+			Set<Productos> productoses) {
 		this.categorias = categorias;
 		this.descripcion = descripcion;
 		this.productoses = productoses;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "idSubcategoria", unique = true, nullable = false)
-	public int getIdSubcategoria() {
+	public Integer getIdSubcategoria() {
 		return this.idSubcategoria;
 	}
 
-	public void setIdSubcategoria(int idSubcategoria) {
+	public void setIdSubcategoria(Integer idSubcategoria) {
 		this.idSubcategoria = idSubcategoria;
 	}
 

@@ -1,6 +1,6 @@
 package entidades;
-
-// Generated 27/06/2013 20:12:59 by Hibernate Tools 3.4.0.CR1
+// default package
+// Generated 21/01/2014 08:02:06 by Hibernate Tools 4.0.0
 
 import java.util.Date;
 import java.util.HashSet;
@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -21,7 +23,7 @@ import javax.persistence.TemporalType;
 @Table(name = "anuncios", catalog = "BD_SSC")
 public class Anuncios implements java.io.Serializable {
 
-	private int idAnuncio;
+	private Integer idAnuncio;
 	private String textoMensaje;
 	private Date fecha;
 	private String estado;
@@ -32,13 +34,9 @@ public class Anuncios implements java.io.Serializable {
 	public Anuncios() {
 	}
 
-	public Anuncios(int idAnuncio) {
-		this.idAnuncio = idAnuncio;
-	}
-
-	public Anuncios(int idAnuncio, String textoMensaje, Date fecha,
-			String estado, String membrete, Set<Productos> productoses, Set<Clientes> clienteses) {
-		this.idAnuncio = idAnuncio;
+	public Anuncios(String textoMensaje, Date fecha, String estado,
+			String membrete, Set<Productos> productoses,
+			Set<Clientes> clienteses) {
 		this.textoMensaje = textoMensaje;
 		this.fecha = fecha;
 		this.estado = estado;
@@ -48,12 +46,13 @@ public class Anuncios implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "idAnuncio", unique = true, nullable = false)
-	public int getIdAnuncio() {
+	public Integer getIdAnuncio() {
 		return this.idAnuncio;
 	}
 
-	public void setIdAnuncio(int idAnuncio) {
+	public void setIdAnuncio(Integer idAnuncio) {
 		this.idAnuncio = idAnuncio;
 	}
 
@@ -93,7 +92,7 @@ public class Anuncios implements java.io.Serializable {
 	public void setMembrete(String membrete) {
 		this.membrete = membrete;
 	}
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "anuncioses")
 	public Set<Productos> getProductoses() {
 		return this.productoses;

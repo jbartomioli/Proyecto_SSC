@@ -91,13 +91,13 @@ public class Prueba {
 			Anuncio a = new Anuncio();
 			a.enviarAnuncio();
 			 */
-			
+			/*
 			negocio.ParametrosNegocio param = new negocio.ParametrosNegocio();
 			
 			param.obtenerParametrosNegocio();
 			
 			System.out.println(param.getUltIdPedido()+" + "+param.getMembrete());
-			
+			*/
 			
 		 }
 		 catch(Exception ex)

@@ -1,14 +1,14 @@
 package entidades;
-
-// Generated 27/06/2013 20:12:59 by Hibernate Tools 3.4.0.CR1
+// default package
+// Generated 21/01/2014 08:02:06 by Hibernate Tools 4.0.0
 
 import java.util.Date;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name = "precios", catalog = "BD_SSC")
 public class Precios implements java.io.Serializable {
 
-	private Integer idPrecio;
+	private PreciosId id;
 	private Productos productos;
 	private Date fechaDesde;
 	private Date fechaHasta;
@@ -32,8 +32,14 @@ public class Precios implements java.io.Serializable {
 	public Precios() {
 	}
 
-	public Precios(Productos productos, Date fechaDesde, Date fechaHasta,
-			Float precio, Float precioPromocional) {
+	public Precios(PreciosId id, Productos productos) {
+		this.id = id;
+		this.productos = productos;
+	}
+
+	public Precios(PreciosId id, Productos productos, Date fechaDesde,
+			Date fechaHasta, Float precio, Float precioPromocional) {
+		this.id = id;
 		this.productos = productos;
 		this.fechaDesde = fechaDesde;
 		this.fechaHasta = fechaHasta;
@@ -41,19 +47,20 @@ public class Precios implements java.io.Serializable {
 		this.precioPromocional = precioPromocional;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "idPrecio", unique = true, nullable = false)
-	public Integer getIdPrecio() {
-		return this.idPrecio;
+	@EmbeddedId
+	@AttributeOverrides({
+			@AttributeOverride(name = "idPrecio", column = @Column(name = "idPrecio", nullable = false)),
+			@AttributeOverride(name = "idProducto", column = @Column(name = "idProducto", nullable = false)) })
+	public PreciosId getId() {
+		return this.id;
 	}
 
-	public void setIdPrecio(Integer idPrecio) {
-		this.idPrecio = idPrecio;
+	public void setId(PreciosId id) {
+		this.id = id;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idProducto")
+	@JoinColumn(name = "idProducto", nullable = false, insertable = false, updatable = false)
 	public Productos getProductos() {
 		return this.productos;
 	}
