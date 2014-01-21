@@ -513,9 +513,8 @@ public class GenerarAnuncio extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"Producto", "Precio", "Stock", "Eliminar"
+				"Producto", "Precio", "Stock", ""
 			}
-			// TableCellRenderer btnEliminar = new JTableButtonRenderer();
 		));
 		scrollProductos.setViewportView(tblProductos);
 		
