@@ -9,25 +9,22 @@
   <property name="hibernate.connection.password">zLvSUVUaDnWFNKzG</property>
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
-  <!-- <property name="hibernate.session_factory_name">ssc_bd</property> -->
+  
+ <!-- <property name="hibernate.session_factory_name">ssc_bd</property> -->
   
   <property name="current_session_context_class">thread</property>
-  
-  <!-- MAPEOS -->
-  
-  <mapping class="entidades.Anuncios" resource="entidades/Anuncios.hbm.xml"/>
   <mapping class="entidades.Categorias" resource="entidades/Categorias.hbm.xml"/>
   <mapping class="entidades.Clientes" resource="entidades/Clientes.hbm.xml"/>
   <mapping class="entidades.LineaDePedido" resource="entidades/LineaDePedido.hbm.xml"/>
   <mapping class="entidades.LineasDeVentas" resource="entidades/LineasDeVentas.hbm.xml"/>
   <mapping class="entidades.ParametrosNegocio" resource="entidades/ParametrosNegocio.hbm.xml"/>
-  <mapping class="entidades.Pedidos" resource="entidades/Pedidos.hbm.xml"/>   
-  <mapping class="entidades.Precios" resource="entidades/Precios.hbm.xml"/> 
-  <mapping class="entidades.Productos" resource="entidades/Productos.hbm.xml"/> 
-  <mapping class="entidades.Subcategorias" resource="entidades/Subcategorias.hbm.xml"/>  
-  <mapping class="entidades.Ventas" resource="entidades/Ventas.hbm.xml"/> 
-  <!--   <mapping class="entidades.Categorias" resource="entidades/Categorias.hbm.xml"/>  -->
-  <!--   <mapping class="entidades." resource="entidades/.hbm.xml"/>  -->
-  
+  <mapping class="entidades.Pedidos" resource="entidades/Pedidos.hbm.xml"/>
+  <mapping class="entidades.Precios" resource="entidades/Precios.hbm.xml"/>
+  <mapping class="entidades.Productos" resource="entidades/Productos.hbm.xml"/>
+  <mapping class="entidades.Subcategorias" resource="entidades/Subcategorias.hbm.xml"/>
+  <mapping class="entidades.Ventas" resource="entidades/Ventas.hbm.xml"/>
+  <mapping class="entidades.Anuncios" resource="entidades/Anuncios.hbm.xml"/>
+  <!--   <mapping class="entidades.Categorias" resource="entidades/Categorias.hbm.xml"/>  
+   <mapping class="entidades." resource="entidades/.hbm.xml"/>  -->
  </session-factory>
 </hibernate-configuration>

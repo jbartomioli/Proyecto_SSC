@@ -131,6 +131,7 @@ public class Prueba {
 		 }
 		 finally
 		 {
+			 //limpieza de memoria
 				Runtime garbage = Runtime.getRuntime();
 				garbage.gc();
 		 }	
