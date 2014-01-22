@@ -64,7 +64,7 @@ public class Prueba {
 			
 			*/
 			//////////////////////////////////////////////////////////////////////////////
-		/*	JOptionPane.showMessageDialog(null, "Antes del ...");
+			/*JOptionPane.showMessageDialog(null, "Antes del ...");
 			
 			negocio.ControladorConfeccionarAnuncio.SalidaDatosSeleccionaProductos salida2;// = new negocio.ControladorConfeccionarAnuncio.SalidaDatosSeleccionaProductos();
 			
@@ -73,11 +73,11 @@ public class Prueba {
 			int i = 0;
 			
 			JOptionPane.showMessageDialog(null, "Antes del FOR");
-			*/
-			/*
+			
+			
 			for(String[] datosClientes: salida2.getClientes())
 			{
-				/*
+				
 				//se setean datos de los clientes en array temporal
 				System.out.print(datosClientes[0][i]+" ");
 				System.out.print(datosClientes[1][i]+" ");
@@ -86,7 +86,7 @@ public class Prueba {
 				System.out.print(datosClientes[i]);
 				JOptionPane.showMessageDialog(null, "Prueba");
 				i++;
-			}*/
+			}
 			/*
 			Anuncio a = new Anuncio();
 			a.enviarAnuncio();
@@ -99,6 +99,31 @@ public class Prueba {
 			System.out.println(param.getUltIdPedido()+" + "+param.getMembrete());
 			*/
 			
+
+			
+			negocio.CatalogoProductos ctg = new negocio.CatalogoProductos();
+			
+			for(negocio.Producto P : ctg.getProductos())
+			{
+				System.out.print(P.getCodProducto()+" - "+
+						P.getNombre()+" - "+
+						P.getCodProducto()+" - "+
+						P.getExistenciaStock()+" - "+
+						P.getIdProducto()+" - ");
+						//P.getSubCategoria()
+				for(negocio.Precio pre : P.getPrecios())	
+				{
+					System.out.print(pre.getIdPrecio()+" - "+
+							pre.getPrecio()+" - "+
+							pre.getPrecioPromocional()+" - "+
+							pre.getFechaDesde()+" - "+
+							pre.getFechaHasta());
+				}
+				System.out.print("\n");
+
+			}
+			
+			
 		 }
 		 catch(Exception ex)
 		 {
@@ -106,6 +131,8 @@ public class Prueba {
 		 }
 		 finally
 		 {
+				Runtime garbage = Runtime.getRuntime();
+				garbage.gc();
 		 }	
    }
 	
