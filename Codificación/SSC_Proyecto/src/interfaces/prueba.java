@@ -24,7 +24,6 @@ public class prueba extends JFrame
 {
 
 	private JPanel contentPane;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -58,31 +57,7 @@ public class prueba extends JFrame
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		String[] columnNames = {"First Name",
-                "Last Name",
-                "Sport",
-                "# of Years",
-                "Vegetarian"};
-		
-		Object[][] data = {
-			    {"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
-			    {"John", "Doe", "Rowing", new Integer(3), new Boolean(true)},
-			    {"Sue", "Black", "Knitting", new Integer(2), new Boolean(false)},
-			    {"Jane", "White", "Speed reading", new Integer(20), new Boolean(true)},
-			    {"Joe", "Brown", "Pool", new Integer(10), new Boolean(false)}
-			};
-		
-		JTable table = new JTable(data, columnNames);
-		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(36, 25, 337, 99);
-		contentPane.add(scrollPane);
-	
-		TableColumn agregarColumn;
-		agregarColumn = table.getColumnModel().getColumn(4);
-		//agregarColumn.setCellEditor(new myeditor(table));
-		agregarColumn.setCellRenderer(new myrenderer(true));
+
 	}
 
 

@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Frame;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -37,6 +39,7 @@ import javax.swing.JFormattedTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
+import java.awt.SystemColor;
 
 public class GenerarAnuncio extends JFrame {
 	private JTable tblProductos;
@@ -568,8 +571,20 @@ public class GenerarAnuncio extends JFrame {
 		getContentPane().add(btnGenerar);
 		
 		JLabel lblModificarDestinatarios = new JLabel("Modificar destinatarios");
+		lblModificarDestinatarios.setForeground(SystemColor.inactiveCaptionText);
+		lblModificarDestinatarios.setBorder(new BevelBorder(0));
+		// Cambia el tipo de cursor al posarlo sobre el link
+		lblModificarDestinatarios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblModificarDestinatarios.setBackground(UIManager.getColor("Button.disabledForeground"));
+		lblModificarDestinatarios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				System.out.println("Hola mundo");
+			}
+		});
 		lblModificarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblModificarDestinatarios.setBounds(650, 550, 140, 14);
+		lblModificarDestinatarios.setBounds(650, 550, 144, 14);
 		getContentPane().add(lblModificarDestinatarios);
 	}
 }
