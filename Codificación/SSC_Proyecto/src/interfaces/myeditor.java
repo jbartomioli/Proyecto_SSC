@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
+// El TableCellEditor se utiliza para editar las celdas
 public class myeditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
 
     Boolean currentValue;
@@ -40,10 +41,7 @@ public class myeditor extends AbstractCellEditor implements TableCellEditor, Act
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         // Va a mostrar el botón solo en la última fila.
         // de otra forma muestra un espacio en blanco.
-        if (row == table.getModel().getRowCount() - 1) {
             currentValue = (Boolean) value;
             return button;
-        }
-        return new JLabel();
     }
 }

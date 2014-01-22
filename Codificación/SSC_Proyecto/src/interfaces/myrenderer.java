@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
+// El TableCellRenderer se encarga de dibujar datos en las celdas de un JTable
 public class myrenderer extends JLabel implements TableCellRenderer {
 
     boolean isBordered = true;
@@ -18,13 +19,7 @@ public class myrenderer extends JLabel implements TableCellRenderer {
     }
 
     public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) {
-        // Va a mostrar el botón solo en la última fila.
-        // de otra forma muestra un espacio en blanco.
-        //if (row == table.getModel().getRowCount() - 1) {
-            return new JButton("Eliminar");
-        //} else {
-           // setBackground(new Color(0xffffff));
-          //  return this;
-       // }
+        // Muestra el Boton Eliminar en cada fila del JTable.
+    	return new JButton("Eliminar");
     }
 }
