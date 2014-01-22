@@ -21,7 +21,7 @@ public class myrenderer extends JLabel implements TableCellRenderer {
         // Va a mostrar el botón solo en la última fila.
         // de otra forma muestra un espacio en blanco.
         //if (row == table.getModel().getRowCount() - 1) {
-            return new JButton("X");
+            return new JButton("Eliminar");
         //} else {
            // setBackground(new Color(0xffffff));
           //  return this;

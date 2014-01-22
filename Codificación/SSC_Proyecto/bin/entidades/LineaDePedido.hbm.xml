@@ -1,14 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 27/06/2013 20:13:01 by Hibernate Tools 3.4.0.CR1 -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/01/2014 08:02:06 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
     <class name="entidades.LineaDePedido" table="lineaDePedido" catalog="BD_SSC">
-        <id name="idLinea" type="java.lang.Integer">
-            <column name="idLinea" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="pedidos" class="entidades.Pedidos" fetch="select">
+        <composite-id name="id" class="entidades.LineaDePedidoId">
+            <key-property name="idLinea" type="int">
+                <column name="idLinea" />
+            </key-property>
+            <key-property name="idPedido" type="int">
+                <column name="idPedido" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="pedidos" class="entidades.Pedidos" update="false" insert="false" fetch="select">
             <column name="idPedido" not-null="true" />
         </many-to-one>
         <many-to-one name="productos" class="entidades.Productos" fetch="select">

@@ -19,6 +19,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.BoxLayout;
 import javax.swing.UIManager;
@@ -508,15 +509,33 @@ public class GenerarAnuncio extends JFrame {
 		scrollProductos.setAlignmentX(Component.LEFT_ALIGNMENT);
 		boxProductos.add(scrollProductos);
 		
-		tblProductos = new JTable();
-		tblProductos.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Producto", "Precio", "Stock", ""
-			}
-		));
+		String[] columnNames = {"Producto",
+                "Precio",
+                "Stock",
+                ""};
+		
+		Object[][] data = {
+			    {"Barbijo", "$2.50", "500", new Boolean(false)},
+			    {"Gasas", "$5.00", "1000", new Boolean(true)},
+			    {"Pinza", "$50.00", "25", new Boolean(false)},
+			    {"Amalgama", "$2.00", "650", new Boolean(true)},
+			};
+		
+		tblProductos = new JTable(data, columnNames);
+		
+		//tblProductos.setModel(new DefaultTableModel(
+			//new Object[][] {
+			//},
+			//new String[] {
+				//"Producto", "Precio", "Stock", ""
+			//}
+		//));
 		scrollProductos.setViewportView(tblProductos);
+		
+		TableColumn agregarColumn;
+		agregarColumn = tblProductos.getColumnModel().getColumn(3);
+		agregarColumn.setCellEditor(new myeditor(tblProductos));
+		agregarColumn.setCellRenderer(new myrenderer(true));
 		
 		Box boxDestinatarios = Box.createHorizontalBox();
 		boxDestinatarios.setBorder(new TitledBorder(null, "Destinatarios", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
