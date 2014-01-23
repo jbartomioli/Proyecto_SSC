@@ -68,24 +68,24 @@ public class CatalogoProductos
         	productoNegocio.setNombre(productoDato.getNombre());
         	productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
         	
-//        	{//SETEO DE LA SUBCATEGORIA DEL PRODUCTO
-//        		
-//        		//SE CREA SUBCATEGORIA TEMPORAL DE DATOS PARA SETEOS
-//        		negocio.SubCategoria subCatTemp = new negocio.SubCategoria();
-//        	
-//        		//SE CREA SUBCATEGORIA DE DATOS PARA OBTENER DATOS
-//        		datos.SubCategoria subcatDato = new datos.SubCategoria();
-//        		
-//        		//SE RECUPERA INFORMACION DE LA SUBCATEGORIA
-//        		subcatDato = productoDato.getSubcategoria();
-//        		
-//        		//SE SETEAN DATOS DE LA SUBCATEGORIA
-//        		subCatTemp.setDescripcion(subcatDato.getDescripcion());
-//        		subCatTemp.setIdSubcategoria(subcatDato.getIdSubcategoria());
-//        	
-//        		//SE SETEA LA SUBCATEGORIA EN EL PRODUCTO
-//        		productoDato.setSubcategoria(subcatDato);
-//        	}
+        	{//SETEO DE LA SUBCATEGORIA DEL PRODUCTO
+        		
+        		//SE CREA SUBCATEGORIA TEMPORAL DE DATOS PARA SETEOS
+        		negocio.SubCategoria subCatTemp = new negocio.SubCategoria();
+        	
+        		//SE CREA SUBCATEGORIA DE DATOS PARA OBTENER DATOS
+        		datos.SubCategoria subcatDato = new datos.SubCategoria();
+        		
+        		//SE RECUPERA INFORMACION DE LA SUBCATEGORIA
+        		subcatDato = productoDato.getSubcategoria();
+        		
+        		//SE SETEAN DATOS DE LA SUBCATEGORIA
+        		subCatTemp.setDescripcion(subcatDato.getDescripcion());
+        		subCatTemp.setIdSubcategoria(subcatDato.getIdSubcategoria());
+        	
+        		//SE SETEA LA SUBCATEGORIA EN EL PRODUCTO
+        		productoDato.setSubcategoria(subcatDato);
+        	}
         	
         	{//SETEO DE LOS PRECIOS DEL PRODUCTO
         		

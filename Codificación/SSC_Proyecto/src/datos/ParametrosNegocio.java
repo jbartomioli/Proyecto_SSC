@@ -3,6 +3,7 @@ package datos;
 
 import java.util.Iterator;
 import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -77,9 +78,11 @@ public class ParametrosNegocio
 	        
 	        for(Iterator<Query> it=list.iterator();it.hasNext();)
 	        {  
-	        	datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
+	        	@SuppressWarnings("unused")
+				datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
 	           
-	        	ParametrosNegocio entParametro = (ParametrosNegocio) it.next();  
+	        	@SuppressWarnings("unused")
+				ParametrosNegocio entParametro = (ParametrosNegocio) it.next();  
 	           
 	        	//parametrosDatos.setMembrete(entParametro.getMembrete());
 	        	//parametrosDatos.setUltIdPedido(entParametro.getUltIdPedido());

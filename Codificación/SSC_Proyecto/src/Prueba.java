@@ -103,24 +103,28 @@ public class Prueba {
 			
 			negocio.CatalogoProductos ctg = new negocio.CatalogoProductos();
 			
+			int i=0;
+			
 			for(negocio.Producto P : ctg.getProductos())
 			{
-				System.out.print(P.getCodProducto()+" - "+
-						P.getNombre()+" - "+
-						P.getCodProducto()+" - "+
-						P.getExistenciaStock()+" - "+
-						P.getIdProducto()+" - ");
-						//P.getSubCategoria()
+				System.out.print(P.getCodProducto()+" \t "+
+						P.getNombre()+" \t\t "+
+						P.getExistenciaStock()+" \t "+
+						P.getIdProducto()+" \t "+
+						P.getSubCategoria());
 				for(negocio.Precio pre : P.getPrecios())	
 				{
-					System.out.print(pre.getIdPrecio()+" - "+
-							pre.getPrecio()+" - "+
-							pre.getPrecioPromocional()+" - "+
-							pre.getFechaDesde()+" - "+
+					System.out.print(pre.getIdPrecio()+" \t "+
+							pre.getPrecio()+" \t "+
+							pre.getPrecioPromocional()+" \t "+
+							pre.getFechaDesde()+" \t "+
 							pre.getFechaHasta());
 				}
 				System.out.print("\n");
 
+				++i;
+				
+				if (i==6) break;
 			}
 			
 			

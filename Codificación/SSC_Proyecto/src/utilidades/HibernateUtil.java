@@ -7,7 +7,8 @@ public class HibernateUtil {
 
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
-    public static SessionFactory buildSessionFactory() {
+    @SuppressWarnings("deprecation")
+	public static SessionFactory buildSessionFactory() {
         try {
             // Create the SessionFactory from hibernate.cfg.xml
             return new Configuration().configure("/main/resources/hibernate.cfg.xml").buildSessionFactory();
