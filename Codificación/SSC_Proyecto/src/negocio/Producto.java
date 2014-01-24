@@ -107,8 +107,7 @@ public class Producto
 	/////////////////////////////////////////////////////////////////
 	// Obtiene el precio vigente del producto					   //
 	/////////////////////////////////////////////////////////////////
-	//VER TEMA PRECIOS
-	public double getPrecioActual()
+	public float getPrecioActual()
 	{
 		for(negocio.Precio p: this.getPrecios())
 		{
@@ -124,8 +123,7 @@ public class Producto
 	/////////////////////////////////////////////////////////////////
 	// Obtiene el precio promocional del producto				   //
 	/////////////////////////////////////////////////////////////////
-	//VER TEMA PRECIOS
-	public double getPrecioPromocional()
+	public float getPrecioPromocional()
 	{
 		for(negocio.Precio p: this.getPrecios())
 		{
@@ -134,7 +132,6 @@ public class Producto
 			else 
 				return 0;
 		}
-		
 		return 0;
 	}
 	//---------------------------------------------------------------
@@ -142,7 +139,6 @@ public class Producto
 	/////////////////////////////////////////////////////////////////
 	// 															   //
 	/////////////////////////////////////////////////////////////////
-	//VER TEMA PRECIOS
 	public void setPrecioPromocional(float nuevoPrecio)
 	{
 		for(negocio.Precio p: this.precios)

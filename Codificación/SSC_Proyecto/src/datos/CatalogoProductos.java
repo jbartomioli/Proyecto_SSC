@@ -50,7 +50,7 @@ public class CatalogoProductos
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	//   //
+	// OBTIENE TODOS LOS PRODCUTOS Y SU SUBCATEGORIA Y PRECIOS     //
 	/////////////////////////////////////////////////////////////////
 	//
 	public Collection<datos.Producto> obtenerProductos()

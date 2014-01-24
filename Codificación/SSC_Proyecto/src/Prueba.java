@@ -105,22 +105,15 @@ public class Prueba {
 			
 			for(negocio.Producto P : ctg.getProductos())
 			{
-				System.out.print(P.getCodProducto()+" \t\t\t "+
-						P.getNombre()+" \t\t\t\t "+
-						P.getExistenciaStock()+" \t\t\t "+
-						P.getIdProducto()+" \t\t\t "+
-						P.getSubCategoria().getDescripcion()+" \t ");
-				for(negocio.Precio pre : P.getPrecios())	
-				{
-					System.out.print(pre.getIdPrecio()+" \t\t\t "+
-							pre.getPrecio()+" \t\t\t "+
-							pre.getPrecioPromocional()+" \t\t\t "+
-							pre.getFechaDesde()+" \t\t\t "+
-							pre.getFechaHasta());
+				System.out.print(P.getCodProducto()+" \t "+
+						P.getNombre()+" \t "+
+						P.getExistenciaStock()+" \t "+
+						P.getIdProducto()+" \t "+
+						P.getSubCategoria().getDescripcion()+" \t "+
+						P.getPrecioActual()+" \t "+
+						P.getPrecioPromocional());
 				}
 				System.out.print("\n");
-				
-			}
 			
 			
 		 }

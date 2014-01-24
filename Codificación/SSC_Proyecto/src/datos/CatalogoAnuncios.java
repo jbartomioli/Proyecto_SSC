@@ -47,9 +47,8 @@ public class CatalogoAnuncios
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// //
+	// OBTIENE TODOS LOS ANUNCIOS 								   //
 	/////////////////////////////////////////////////////////////////
-	//LISTO
 	public void obtenerAnuncios()
 	{
 		Session session = null;	

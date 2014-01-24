@@ -50,9 +50,8 @@ public class CatalogoClientes
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 								 							   //
+	// OBTIENE TODOS LOS CLIENTES								   //
 	/////////////////////////////////////////////////////////////////
-	//LISTO
 	public void obtenerClientes()
 	{
 		Session session = null;	

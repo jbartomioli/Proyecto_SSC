@@ -66,7 +66,7 @@ public class ParametrosNegocio
 	//***************************************************************
 
 	/////////////////////////////////////////////////////////////////
-	//	//
+	// OBTIENE LOS DATOS DE PARAMETROS NEGOCIO                     //
 	/////////////////////////////////////////////////////////////////
 	public void obtenerParametrosNegocio()
 	{

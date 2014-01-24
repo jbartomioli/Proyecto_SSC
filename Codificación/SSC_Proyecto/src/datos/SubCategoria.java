@@ -76,7 +76,7 @@ public class SubCategoria
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 			   //
+	// 	OBTIENE LOS PRODUCTOS DE UNA SUBCATEGORIA ESPECIFICA	   //
 	/////////////////////////////////////////////////////////////////
 	public void obtenerProductos(int idSubcategoria) 
 	{

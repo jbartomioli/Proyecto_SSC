@@ -89,7 +89,7 @@ public class Venta
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 			   //
+	// 	OBTIENE LAS LINEAS DE VENTA DE UNA VENTA ESPECIFICA		   //
 	/////////////////////////////////////////////////////////////////
 	public void obtenerLineasDeVenta(int idVenta)
 	{
@@ -131,7 +131,6 @@ public class Venta
 		        	productoDato.setExistenciaStock(entProducto.getStock());
 		        	productoDato.setIdProducto(entProducto.getIdProducto());
 		        	productoDato.setNombre(entProducto.getNombre());
-					//productoNegocio.setPrecioPromocional(productoDato.get);
 		        	
 		        	//se setea el producto en la linea
 		        	lineaDeVentaDatos.setProductoLinea(productoDato);

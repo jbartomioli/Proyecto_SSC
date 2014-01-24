@@ -60,7 +60,7 @@ public class ParametrosNegocio
 	//***************************************************************
 
 	/////////////////////////////////////////////////////////////////
-	// //
+	// OBTIENE LOS DATOS DE PARAMETROS NEGOCIO                     //
 	/////////////////////////////////////////////////////////////////
 	public void obtenerParametrosNegocio()
 	{
@@ -78,14 +78,12 @@ public class ParametrosNegocio
 	        
 	        for(Iterator<Query> it=list.iterator();it.hasNext();)
 	        {  
-	        	@SuppressWarnings("unused")
 				datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
 	           
-	        	@SuppressWarnings("unused")
-				ParametrosNegocio entParametro = (ParametrosNegocio) it.next();  
+				entidades.ParametrosNegocio entParametro = (entidades.ParametrosNegocio) it.next();  
 	           
-	        	//parametrosDatos.setMembrete(entParametro.getMembrete());
-	        	//parametrosDatos.setUltIdPedido(entParametro.getUltIdPedido());
+	        	parametrosDatos.setMembrete(entParametro.getId().getMembrete());
+	        	parametrosDatos.setUltIdPedido(entParametro.getId().getUltIdPedido());
 	        }
 	
 	        session.getTransaction().commit();
@@ -107,6 +105,7 @@ public class ParametrosNegocio
 	/////////////////////////////////////////////////////////////////
 	// //
 	/////////////////////////////////////////////////////////////////
+	//FALTA
 	public void guardarDatos() 
 	{
 		Session session = null;	

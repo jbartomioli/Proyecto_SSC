@@ -17,7 +17,6 @@ public class Categoria
 	private int idCategoria;
 	private String descripcion;
 	private Collection<datos.SubCategoria> subCategorias;
-	//private Collection<datos.Producto> productos;
 	//---------------------------------------------------------------
 
 
@@ -29,7 +28,6 @@ public class Categoria
 		this.idCategoria = 0;
 		this.descripcion = "";
 		this.subCategorias = new ArrayList<datos.SubCategoria>();
-		//this.productos = new ArrayList<datos.Producto>();
 	}
 	//---------------------------------------------------------------
 
@@ -66,16 +64,6 @@ public class Categoria
 	{
 		this.subCategorias = subCat;
 	}
-	
-//	public Collection<datos.Producto> getProductos() 
-//	{
-//		return productos;
-//	}
-//	
-//	public void setProductos(Collection<datos.Producto> productos) 
-//	{
-//		this.productos = productos;
-//	}
 	//---------------------------------------------------------------
 
 	
@@ -85,9 +73,8 @@ public class Categoria
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	//   //
+	// OBTIENE TODAS LAS SUBCATEGORIAS DE UNA CATEGORIA ESPECIFICA //
 	/////////////////////////////////////////////////////////////////
-	//
 	public void obtenerSubCategorias(int idCategoria) 
 	{
 		Session session = null;	
@@ -129,9 +116,4 @@ public class Categoria
 		}	
 	}
 	//---------------------------------------------------------------
-	
-	
-	
-
-	
 }
