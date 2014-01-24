@@ -94,7 +94,7 @@ public class CatalogoProductos
 	        		
 	        		//SE SETEAN DATOS DE LA SUBCATEGORIA
 	        		subCatTemp.setDescripcion(entSubcat.getDescripcion());
-	        		subCatTemp.setIdSubcategoria(entSubcat.getIdSubcategoria());
+	        		subCatTemp.setIdSubcategoria(entSubcat.getId().getIdSubcategoria());
 	        	
 	        		//SE SETEA LA SUBCATEGORIA EN EL PRODUCTO
 	        		productoDatos.setSubcategoria(subCatTemp);

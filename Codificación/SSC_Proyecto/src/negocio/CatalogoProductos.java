@@ -84,7 +84,7 @@ public class CatalogoProductos
         		subCatTemp.setIdSubcategoria(subcatDato.getIdSubcategoria());
         	
         		//SE SETEA LA SUBCATEGORIA EN EL PRODUCTO
-        		productoDato.setSubcategoria(subcatDato);
+        		productoNegocio.setSubCategoria(subCatTemp);
         	}
         	
         	{//SETEO DE LOS PRECIOS DEL PRODUCTO

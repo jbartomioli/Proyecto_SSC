@@ -69,7 +69,7 @@ public class CatalogoSubCategorias
 	           
 	        	entidades.Subcategorias entSubCategoria = (entidades.Subcategorias) it.next();  
 	           
-	           	subCategoriaDatos.setIdSubcategoria(entSubCategoria.getIdSubcategoria());
+	           	subCategoriaDatos.setIdSubcategoria(entSubCategoria.getId().getIdSubcategoria());
 	           	subCategoriaDatos.setDescripcion(entSubCategoria.getDescripcion());
 	           	
 	           	subcategorias.add(subCategoriaDatos);            

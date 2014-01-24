@@ -109,7 +109,7 @@ public class Categoria
             	
             	entidades.Subcategorias entSubcategoria = (entidades.Subcategorias) it.next();
             	
-            	subcategoriaDatos.setIdSubcategoria(entSubcategoria.getIdSubcategoria());
+            	subcategoriaDatos.setIdSubcategoria(entSubcategoria.getId().getIdSubcategoria());
             	subcategoriaDatos.setDescripcion(entSubcategoria.getDescripcion());
 
             	this.subCategorias.add(subcategoriaDatos);

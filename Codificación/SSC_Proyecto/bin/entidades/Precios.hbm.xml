@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/01/2014 08:02:06 by Hibernate Tools 4.0.0 -->
+<!-- Generated 23/01/2014 20:39:55 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
     <class name="entidades.Precios" table="precios" catalog="BD_SSC">
         <composite-id name="id" class="entidades.PreciosId">

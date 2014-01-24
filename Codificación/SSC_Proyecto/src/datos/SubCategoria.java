@@ -87,7 +87,7 @@ public class SubCategoria
 		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
 		    session.beginTransaction();
 		        
-            Query query = session.createQuery("from Productos p where p.subcategorias.idSubcategoria = :idSC");
+            Query query = session.createQuery("from Productos p where p.subcategorias.id.idSubcategoria = :idSC");
             query.setParameter("idSC", idSubcategoria);
             
             @SuppressWarnings("unchecked")

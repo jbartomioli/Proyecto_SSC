@@ -18,8 +18,8 @@ select * from aux.parametrosNegocio
 select * from BD_SSC.parametrosNegocio
 
 /*
-insert into BD_SSC.subcategorias (idCategoria, descripcion)
-(select sc.idCategoria, sc.descripcion from aux.subcategorias sc)
+insert into BD_SSC.subcategorias 
+(select * from aux.subcategorias sc)
 */
 select * from BD_SSC.subcategorias sc
 

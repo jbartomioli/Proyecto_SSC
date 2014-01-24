@@ -1,14 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/01/2014 08:02:06 by Hibernate Tools 4.0.0 -->
+<!-- Generated 23/01/2014 20:39:55 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
     <class name="entidades.Subcategorias" table="subcategorias" catalog="BD_SSC">
-        <id name="idSubcategoria" type="java.lang.Integer">
-            <column name="idSubcategoria" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="categorias" class="entidades.Categorias" fetch="select">
+        <composite-id name="id" class="entidades.SubcategoriasId">
+            <key-property name="idSubcategoria" type="int">
+                <column name="idSubcategoria" />
+            </key-property>
+            <key-property name="idCategoria" type="int">
+                <column name="idCategoria" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="categorias" class="entidades.Categorias" update="false" insert="false" fetch="select">
             <column name="idCategoria" not-null="true" />
         </many-to-one>
         <property name="descripcion" type="string">
@@ -17,6 +21,7 @@
         <set name="productoses" table="productos" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idSubcategoria" />
+                <column name="idCategoria" />
             </key>
             <one-to-many class="entidades.Productos" />
         </set>
