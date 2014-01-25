@@ -123,9 +123,13 @@ public class GenerarAnuncio extends JFrame {
 		scrollProductos.setAlignmentX(0.0f);
 		boxProductos.add(scrollProductos);
 		
-		tblProductos = new JTable();
-		
+		tblProductos = new JTable(data, columnNames);
 		scrollProductos.setViewportView(tblProductos);
+		
+		TableColumn agregarColumna;
+		agregarColumna = tblProductos.getColumnModel().getColumn(3);
+		agregarColumna.setCellEditor(new myeditor(tblProductos));
+		agregarColumna.setCellRenderer(new myrenderer(true));
 		
 		Box boxDestinatarios = Box.createHorizontalBox();
 		boxDestinatarios.setBorder(new TitledBorder(null, "Destinatarios", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));

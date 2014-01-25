@@ -19,7 +19,7 @@ public class myrenderer extends JLabel implements TableCellRenderer {
     }
 
     public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) {
-        // Muestra el Boton Eliminar en cada fila del JTable.
-    	return new JButton("Eliminar");
+        // Muestra el Boton Eliminar en cada fila del JTable.	
+    	return new JButton("Eliminar"); //VER COMO HACER PARA QUE EL BOTON SEA AÑADIR EN LA TABLA DE PRODUCTOS EN LUGAR DE ELIMINAR  		
     }
 }
