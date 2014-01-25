@@ -65,12 +65,19 @@ public class CatalogoClientes
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
             
+            //SE OBTIENEN LOS DATOS DE CADA CLIENTE A PARTIR DE LA
+            //CONSULTA ANTERIOR
             for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
+            	//SE CREA UN OBJETO CLIENTE DE DATOS PARA SETEAR Y AGREGAR
+            	//AL ARRAY
 	        	datos.Cliente clienteDatos = new datos.Cliente();
 	           
+	        	//SE CREA UN OBJETO CLIENTE ENTIDADES PARA OBTENER
+	        	//LOS DATOS DEL CLIENTE DE LA CONSULTA A LA BD
 	        	entidades.Clientes entCliente = (entidades.Clientes) it.next();  
 	           
+	        	//SE SETEAN LOS DATOS DEL CLIENTE
 	           	clienteDatos.setApellido(entCliente.getApellido()); 
 	           	clienteDatos.setNombre(entCliente.getNombre());
 	           	clienteDatos.setDireccion(entCliente.getDireccion());
@@ -81,6 +88,7 @@ public class CatalogoClientes
 	           	clienteDatos.setTelefono(entCliente.getTelefono());
 	           	clienteDatos.setTipoCliente(entCliente.getTipo());
 	           	
+	           	//SE AGREGA EL CLIENTE EN EL ARRAY
 	           	clientes.add(clienteDatos);
             }
 

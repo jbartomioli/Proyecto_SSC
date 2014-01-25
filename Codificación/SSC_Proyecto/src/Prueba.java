@@ -40,10 +40,10 @@ public class Prueba {
 			negocio.CatalogoCategorias ccc = new CatalogoCategorias();
 			for(negocio.Categoria C : ccc.getCategorias())
 				System.out.println(C.getIdCategoria()+" " +C.getDescripcion());
-		 */
+		 
+			*/
+			negocio.ControladorConfeccionarAnuncio ctrl = new ControladorConfeccionarAnuncio();
 			
-		//	negocio.ControladorConfeccionarAnuncio ctrl = new ControladorConfeccionarAnuncio();
-			/*
 			Collection<negocio.ControladorConfeccionarAnuncio.SalidaDatos> salida = 
 					new ArrayList<ControladorConfeccionarAnuncio.SalidaDatos>();
 			
@@ -55,6 +55,7 @@ public class Prueba {
 			}
 			
 			//////////////////////////////////////////////////////////////////////////////
+			/*
 			salida = ctrl.seleccionarSubcategoria(3);
 			
 			for(SalidaDatos SD: salida)
@@ -100,22 +101,20 @@ public class Prueba {
 			*/
 			
 
-			
+			/*
 			negocio.CatalogoProductos ctg = new negocio.CatalogoProductos();
 			
 			for(negocio.Producto P : ctg.getProductos())
 			{
-				System.out.print(P.getCodProducto()+" \t "+
+				System.out.println(P.getCodProducto()+" \t "+
 						P.getNombre()+" \t "+
 						P.getExistenciaStock()+" \t "+
 						P.getIdProducto()+" \t "+
 						P.getSubCategoria().getDescripcion()+" \t "+
 						P.getPrecioActual()+" \t "+
 						P.getPrecioPromocional());
-				}
-				System.out.print("\n");
-			
-			
+				}	
+			*/
 		 }
 		 catch(Exception ex)
 		 {

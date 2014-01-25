@@ -84,21 +84,27 @@ public class Categoria
 		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
 		    session.beginTransaction();
 		        
-            Query query = session.createQuery("from Subcategorias sc where sc.categorias.idCategoria = :idC");
+            Query query = session.createQuery("select c.subcategoriases from Categorias c where c.idCategoria = :idC");
             query.setParameter("idC", idCategoria);
             
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
             
+            //SETEO DE CADA SUBCATEGORIA DE LA CATEGORIA SELECCIONADA
             for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
+            	//SE CREA OBJETO SUBCATEGORIA DE DATOS PARA DESPUES AGREGARLO AL ARRAY
             	datos.SubCategoria subcategoriaDatos = new datos.SubCategoria();
             	
+            	//SE CREA SUBCATEGORIA DE ENTIDADES PARA RECORRER CADA SUBCATEGORIA
+            	//OBTENIDA EN LA CONSULTA A LA BD
             	entidades.Subcategorias entSubcategoria = (entidades.Subcategorias) it.next();
             	
+            	//SE SETEAN LOS DATOS
             	subcategoriaDatos.setIdSubcategoria(entSubcategoria.getId().getIdSubcategoria());
             	subcategoriaDatos.setDescripcion(entSubcategoria.getDescripcion());
 
+            	//SE AGREGA LAS SUBCATEGORIA AL ARRAY
             	this.subCategorias.add(subcategoriaDatos);
             }
 

@@ -148,20 +148,26 @@ public class Anuncio
             Query query = session.createQuery("from Anuncios a where a.idAnuncio = :idA");
             query.setParameter("idA", idAnuncio);
             
-            @SuppressWarnings("unchecked")
+			@SuppressWarnings("unchecked")
 			List<Query> list = query.list();
             
+            //SETEO DE LOS PRODUCTOS DEL ANUNCIO
             for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
+            	//OBJETO PRODUCTO DE DATO TEMPORAL PARA AGREGAR AL ARRAY
 	        	datos.Producto productoDatos = new datos.Producto();
 	           
+	        	//OBJETO PRODUCTO DE ENTIDADES PARA RECORRER CADA 
+	        	//ELEMENTO RESULTANTE DE LA CONSULTA
 	        	entidades.Productos entProducto = (entidades.Productos) it.next();  
 	           
+	        	//SE SETEAN LOS DATOS DEL PRODUCTO
 	        	productoDatos.setCodProducto(entProducto.getCodProducto());
 	        	productoDatos.setExistenciaStock(entProducto.getStock());
 	        	productoDatos.setIdProducto(productoDatos.getIdProducto());
 	        	productoDatos.setNombre(entProducto.getNombre());
 	        	
+	        	//SE AGREGA EL PRODUCTO AL ARRAY DE PRODUCTOS DEL ANUNCIO ACTUAL
 	           	this.productos.add(productoDatos);
             }
 
@@ -199,12 +205,17 @@ public class Anuncio
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
             
+            //SETEO DE LOS CLIENTES DESTINATARIOS DEL ANUNCIO
             for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
+            	//SE CREA OBJETO CLIENTE DATO TEMPORAL PARA AGREGARLO EN EL ARRAY
 	        	datos.Cliente clienteDato = new datos.Cliente();
 	           
+	        	//OBJETO CLIENTE DE ENTIDADES PARA RECORRER CADA 
+	        	//ELEMENTO RESULTANTE DE LA CONSULTA
 	        	entidades.Clientes entCliente = (entidades.Clientes) it.next();  
 	           
+	        	//SE SETEAN LOS DATOS DEL CLIENTE EN EL OBJETO CLIENTE DE DATOS
 	        	clienteDato.setApellido(entCliente.getApellido());
 	        	clienteDato.setDireccion(entCliente.getDireccion());
 	        	clienteDato.setEmail(entCliente.getEmail());
@@ -214,6 +225,7 @@ public class Anuncio
 	        	clienteDato.setTelefono(entCliente.getTelefono());
 	        	clienteDato.setTipoCliente(entCliente.getTipo());
 	        	
+	        	//SE AGREGA EL CLIENTE EN EL ARRAY
 	           	this.clientes.add(clienteDato);
             }
 

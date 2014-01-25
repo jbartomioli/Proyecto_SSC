@@ -62,18 +62,24 @@ public class CatalogoAnuncios
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
             
+            //SETEO DE LOS DATOS DEL ANUNCIO
             for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
+            	//SE CREA OBJETO ANUNCIO DE DATOS TEMPORAL PARA AGREGARLO AL ARRAY
 	        	datos.Anuncio anuncioDatos = new datos.Anuncio();
 	           
+	        	//SE CREA OBJETO ANUNCIO DE ENTIDADES PARA RECORRER
+	        	//CADA ELEMENTO DE LA CONSULTA A LA BD
 	        	entidades.Anuncios entAnuncio = (entidades.Anuncios) it.next();  
 	           
+	        	//SE SETEAN LOS DATOS DEL ANUNCIO
 				anuncioDatos.setIdAnuncio(entAnuncio.getIdAnuncio());
 				anuncioDatos.setFecha(entAnuncio.getFecha());
 				anuncioDatos.setEstado(entAnuncio.getEstado());
 				anuncioDatos.setTextoMensaje(entAnuncio.getTextoMensaje());
 				anuncioDatos.setMembrete(entAnuncio.getMembrete());
 				
+				//SE AGREGA EL ANUNCIO EN EL ARRAY
 	           	anuncios.add(anuncioDatos);            
 	        }
 

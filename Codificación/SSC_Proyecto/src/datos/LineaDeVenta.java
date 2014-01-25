@@ -80,11 +80,5 @@ public class LineaDeVenta
 	/////////////////////////////////////////////////////////////////
 	// //
 	/////////////////////////////////////////////////////////////////
-	/* corresponde a capa de negocio
-	public boolean compararProductos(datos.Producto productoActual)
-	{		
-		return true;
-	}
-	*/
 	//---------------------------------------------------------------
 }

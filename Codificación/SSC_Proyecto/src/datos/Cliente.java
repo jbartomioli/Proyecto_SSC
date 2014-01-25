@@ -137,7 +137,7 @@ public class Cliente
 		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
 		    session.beginTransaction();
 		        
-            Query query = session.createQuery("from Ventas v where v.clientes.idCliente = :idC");
+            Query query = session.createQuery("selec c.ventases from Clientes c where c.idCliente = :idC");
             query.setParameter("idC", idCliente);
             
             @SuppressWarnings("unchecked")
