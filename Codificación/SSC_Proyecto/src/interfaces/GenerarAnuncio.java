@@ -47,6 +47,7 @@ public class GenerarAnuncio extends JFrame {
 	private JTable tblProductosAnuncio;
 	private JTable tblDestinatarios;
 	private String LABEL_TEXT = "Modificar destiatarios";
+	private JTable tblProductos;
 
 	/**
 	 * Launch the application.
@@ -121,6 +122,10 @@ public class GenerarAnuncio extends JFrame {
 		scrollProductos.setAlignmentY(0.0f);
 		scrollProductos.setAlignmentX(0.0f);
 		boxProductos.add(scrollProductos);
+		
+		tblProductos = new JTable();
+		
+		scrollProductos.setViewportView(tblProductos);
 		
 		Box boxDestinatarios = Box.createHorizontalBox();
 		boxDestinatarios.setBorder(new TitledBorder(null, "Destinatarios", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
