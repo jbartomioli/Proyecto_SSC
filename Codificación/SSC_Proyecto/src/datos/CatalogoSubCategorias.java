@@ -63,15 +63,20 @@ public class CatalogoSubCategorias
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
             
+            //SE RECORRE CADA ELEMENTO DE LA CONSULTA
             for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
+            	//SE CREA OBJETO SUBCATEGORIA DATOS PARA SETEARLO Y AGREGARLO EN EL ARRAY 
 	        	datos.SubCategoria subCategoriaDatos = new datos.SubCategoria();
 	           
+	        	//SE CREA OBKJETO SUBCATEGORIA ENTIDADES PARA OBTENER DATOS DE LA BD
 	        	entidades.Subcategorias entSubCategoria = (entidades.Subcategorias) it.next();  
 	           
+	        	//SE SETEAN LOS DATOS DE LA SUBCATEGORIA
 	           	subCategoriaDatos.setIdSubcategoria(entSubCategoria.getId().getIdSubcategoria());
 	           	subCategoriaDatos.setDescripcion(entSubCategoria.getDescripcion());
 	           	
+	           	//SE AGREGA LA SUBCATEGORIA EN EL ARRAY
 	           	subcategorias.add(subCategoriaDatos);            
 	        }
 

@@ -20,7 +20,7 @@ public class CatalogoPedidos
 	public CatalogoPedidos() 
 	{
 		this.pedidos = new ArrayList<datos.Pedido>();
-		this.obtenerPedidos();
+		//this.obtenerPedidos();
 	}
 	//---------------------------------------------------------------
 
@@ -50,7 +50,7 @@ public class CatalogoPedidos
 	// //
 	/////////////////////////////////////////////////////////////////
 	//MODIFICAR A HIBERNATE
-	public Collection<datos.Pedido> obtenerPedidos()
+	/*public Collection<datos.Pedido> obtenerPedidos()
 	{
 		ResultSet conjuntoResult = null;
 		eliminar.BDConector conector = null;
@@ -99,7 +99,7 @@ public class CatalogoPedidos
 			}
 		}
 		return pedidos;
-	}
+	}*/
 	//---------------------------------------------------------------
 
 }

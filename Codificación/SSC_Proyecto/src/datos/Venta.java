@@ -135,6 +135,7 @@ public class Venta
 		        	//se setea el producto en la linea
 		        	lineaDeVentaDatos.setProductoLinea(productoDato);
 		        	
+		        	//SE AGREGA LA LINEA EN EL ARRAY
 		           	this.lineasDeVenta.add(lineaDeVentaDatos);
 	            }
             }

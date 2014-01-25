@@ -137,22 +137,28 @@ public class Cliente
 		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
 		    session.beginTransaction();
 		        
-            Query query = session.createQuery("selec c.ventases from Clientes c where c.idCliente = :idC");
+            Query query = session.createQuery("select c.ventases from Clientes c where c.idCliente = :idC");
             query.setParameter("idC", idCliente);
             
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
             
+            //SE RECORRE CADA ELEMENTO RESULTANTE DE LA CONSULTA A LA BD
             for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
+            	//SE CREA OBJETO VENTA DE DATOS PARA SETEARLO Y AGREGARLO AL ARRAY
 	        	datos.Venta ventaDatos = new datos.Venta();
 	           
+	        	//SE CREAOBJETO VENTA DE ENTIDADES PARA RECUPERAR DATOS 
+	        	//DE LA BD Y SETEAR EL OBJETO DE VENTA DATOS
 	        	entidades.Ventas entVenta = (entidades.Ventas) it.next();  
 	           
+	        	//SE SETEA EL OBJETO VENTA DE DATOS
 	        	ventaDatos.setIdVenta(entVenta.getIdVenta());
 	        	ventaDatos.setFechaVenta(entVenta.getFecha()); 
 	        	ventaDatos.setTotal(entVenta.getTotal());
 	        	
+	        	//SE AGREGA LA VENTA AL ARRAY
 	           	this.ventas.add(ventaDatos);
             }
 

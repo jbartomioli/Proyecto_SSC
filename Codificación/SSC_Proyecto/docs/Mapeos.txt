@@ -1,0 +1,6 @@
+Los mapeos de los objetos entre las capas siguen un esquema similar. 
+El mmismo se detalla a continuación:
+
+Para recuperación y lectura de datos
+
+Base de Datos  -->  Capa "entidades" (Hibernate)  -->  Capa "datos"  -->  Capa "negocio"
