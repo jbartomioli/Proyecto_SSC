@@ -14,7 +14,7 @@ public class Pedido
 	private negocio.Cliente cliente;
 	private Date fecha;
 	private Collection<negocio.LineaDePedido> lineas;
-	private boolean estado;
+	private String estado;
 	//---------------------------------------------------------------
 
 
@@ -28,7 +28,7 @@ public class Pedido
 		this.cliente = new negocio.Cliente();
 		this.fecha = new Date();
 		this.lineas = new ArrayList<negocio.LineaDePedido>();
-		this.estado = false;
+		this.estado = "";
 	}
 	//---------------------------------------------------------------
 
@@ -86,12 +86,12 @@ public class Pedido
 		this.lineas = lineas;
 	}
 
-	public Boolean getEstado() 
+	public String getEstado() 
 	{
 		return estado;
 	}
 
-	public void setEstado(boolean estado) 
+	public void setEstado(String estado) 
 	{
 		this.estado = estado;
 	}

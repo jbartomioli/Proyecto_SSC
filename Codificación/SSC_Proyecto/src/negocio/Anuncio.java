@@ -3,10 +3,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Properties;
 
-import javax.mail.*;
-import javax.mail.internet.*;
 
 public class Anuncio 
 {
@@ -118,55 +115,62 @@ public class Anuncio
 	//* METODOS 													*
 	//***************************************************************
 	
+	
 	/////////////////////////////////////////////////////////////////
-	// 								 							   //
+	// OBTIENE LOS PRODUCTOS DE UN ANUNCIO ESPECIFICO			   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA - VER VENTA
+	//LISTO
 	public void obtenerProductos()
 	{
-		//
+		//SE CREA OBJETO ANUNCIO DE DATOS PARA RECUPERAR
+		//LOS DATOS DE LA BD
 		datos.Anuncio anuncioDato = new datos.Anuncio();
 		
-		//
+		//SE RECUPERAN LOS PRODUCTOS DEL ANUNCIO
 		anuncioDato.obtenerProductos(this.idAnuncio);
 		
-
+		//SE RECORRE CADA ELEMENTO DEL ARRAY PARA RECUPERAR DATOS
 		for(datos.Producto productoDato: anuncioDato.getProductos())
 		{
-			//
+			//SE CREA OBJETO PRODUCTO DE NEGOCIO PARA SETEAR LOS DATOS
+			//Y DESPUES AGREGARLO AL ARRAY DE PRODUCTOS DEL ANUNCIO
 			negocio.Producto productoNegocio = new negocio.Producto();
 				
-			//se setea el producto de negocio
+			//SE SETEAN LOS DATOS DEL PRODUCTO DE NEGOCIO
 			productoNegocio.setCodProducto(productoDato.getCodProducto());
 			productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
 			productoNegocio.setIdProducto(productoDato.getIdProducto());
 			productoNegocio.setNombre(productoDato.getNombre());
 			
+			//SE AGREGA EL PRODUCTO AL ARRAY
 			this.productos.add(productoNegocio);
 		}
 	}
 	//--------------------------------------------------------------
-
 	
 	
 	////////////////////////////////////////////////////////////////
-	//	//
+	//OBTIENE LOS CLIENTES DESTINATARIOS DE UN ANUNCIO ESPECIFICO //
 	////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerClientes()
 	{
-		//
+		//SE CREA OBJETO ANUNCIO DE DATOS PARA RECUPERAR
+		//LOS DATOS DE LA BD
 		datos.Anuncio anuncioDato = new datos.Anuncio();
 		
-		//
+		//SE RECUPERAN LOS CLIENTES DEL ANUNCIO
 		anuncioDato.obtenerClientes(this.idAnuncio);
 		
+		//SE RECORRE CADA ELEMENTO DEL ARRAY PARA RECUPERAR DATOS
 
 		for(datos.Cliente clienteDato: anuncioDato.getClientes())
 		{
-			//
+			//SE CREA OBJETO CLIENTE DE NEGOCIO PARA SETEAR LOS DATOS
+			//Y DESPUES AGREGARLO AL ARRAY DE CLIENTES DESTINATARIOS DEL ANUNCIO
 			negocio.Cliente clienteNegocio = new negocio.Cliente();
 				
-			//
+			//SE SETEAN LOS DATOS DEL CLIENTE DE NEGOCIO
 			clienteNegocio.setApellido(clienteDato.getApellido());
 			clienteNegocio.setDireccion(clienteDato.getDireccion());
 			clienteNegocio.setEmail(clienteDato.getEmail());
@@ -176,12 +180,12 @@ public class Anuncio
 			clienteNegocio.setTelefono(clienteDato.getTelefono());
 			clienteNegocio.setTipoCliente(clienteDato.getTipoCliente());
 			
+			//SE AGREGA EL CLIENTE AL ARRAY
 			this.clientes.add(clienteNegocio);
 		}
 	}
 	//--------------------------------------------------------------
-	
-		
+			
 	
 	/////////////////////////////////////////////////////////////////
 	// 								 							   //
@@ -199,7 +203,6 @@ public class Anuncio
 				productoModif.setIdProducto(p.getIdProducto());
 				productoModif.setNombre(p.getNombre());
 				productoModif.setSubCategoria(p.getSubCategoria());
-				//productoModif.setPrecio(p.getPrecio());
 				productoModif.setExistenciaStock(p.getExistenciaStock());
 				
 				return productoModif;
@@ -209,6 +212,7 @@ public class Anuncio
 		return null;
 	}
 	//---------------------------------------------------------------
+	
 	
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.5.2				 							   //
@@ -229,76 +233,49 @@ public class Anuncio
 	}
 	//---------------------------------------------------------------
 
+	
 	/////////////////////////////////////////////////////////////////
-	// 								 							   //
+	// SELECCIONA LOS CLIENTES DESTINATARIOS DEL ANUNCIO		   //
 	/////////////////////////////////////////////////////////////////
-	//VER
+	//LISTO
 	public Collection<negocio.Cliente> seleccionarClientes(String [] idCliente)
 	{
+		//SE CREA ARRAY TEMPORAL DE CLIENTES DESTINATARIOS
 		Collection<negocio.Cliente> arrClientesSeleccionados = new ArrayList<negocio.Cliente>();
 		
+		//SE RECORRE CADA ID DE CLIENTE DEL ARREGLO RECIBIDO COMO PARAMETRO
 		for(String id : idCliente)
 		{
+			//SE RECORRE CADA CLIENTE DEL ARRAY DE CLIENTES DEL ANUNCIO
 			for(negocio.Cliente c : this.clientes)
 			{
+				//SE COMPARAN LOS ID
 				if(c.getIdCliente()==Integer.parseInt(id))
 				{
+					//SI SON IGUALES SE AGREGA EL CLIENTE ACTUAL AL ARRAY TEMPORAL
 					arrClientesSeleccionados.add(c);
 					continue;				
 				}
 			}
 		}
+		//DEVUELVE EL ARRAY TEMPORAL DE CLIENTES SELECCIONADOS
 		return arrClientesSeleccionados;
 	}
+	//---------------------------------------------------------------
+	
+	
+	/////////////////////////////////////////////////////////////////
+	// 								 							   //
+	/////////////////////////////////////////////////////////////////	
 	//---------------------------------------------------------------
 
 
 	/////////////////////////////////////////////////////////////////
-	// Metodo utilizado para el envio del email					   //
+	// METODO UTILIZADO PARA EL ENVIO DE MAIL DE ANUNCIO		   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA - ADEMAS USAR UNA CLASE DIFERENTE SOLO FUE UNA PRUEBA
-	public void enviarAnuncio() throws Exception
+	//FALTA
+	public void enviarAnuncio()
 	{
-		String smtpHost = "smtp.gmail.com";
-		Properties props = System.getProperties();
-		props.put("mail.smtp.host", smtpHost);
-		
-		props.put("mail.smtp.starttls.enable","true");
-		props.put("mail.smtp.user", "sscproyecto@gmail.com");
-		//props.put("mail.smtp.port", "587");
-		props.put("mail.smtp.auth", "true");
-		
-		javax.mail.Authenticator authenticator = new javax.mail.Authenticator()
-	    {
-	    protected javax.mail.PasswordAuthentication getPasswordAuthentication() 
-	        {
-	        return new javax.mail.PasswordAuthentication("sscproyecto@gmail.com", "qweras123");
-	        }
-	    };       
-		
-		Session sesion = Session.getDefaultInstance(props, authenticator);
-		sesion.setDebug(true);
-		
-		try
-		{
-			Message mensaje = new MimeMessage(sesion);
-			
-			mensaje.setSubject("Asunto");
-			
-			mensaje.setFrom(new InternetAddress("sscproyecto@gmail.com"));
-			
-			mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress("sscproyecto@gmail.com"));
-			
-			mensaje.setText("Probando Mail");
-						
-			Transport.send(mensaje);
-			
-		}
-		catch(MessagingException me)
-		{
-			System.err.println(me.getMessage());
-		}
-		
 		
 	}
 	//---------------------------------------------------------------

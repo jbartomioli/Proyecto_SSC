@@ -45,13 +45,31 @@ public class CatalogoPedidos
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// GUARDA EL NUEVO PEDIDO									   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA COMPLETAR
-	public void agregarPedido(negocio.Pedido PCTemporal)
+	//FALTA COMPLETAR DATOS
+	public void agregarPedido(negocio.Pedido pedidoTemporal)
 	{
-		this.pedidos.add(PCTemporal);
-		//Guardar en BD
+		//SE AGREGA EL ANUNCIO EN EL ARRAY
+		this.pedidos.add(pedidoTemporal);
+		
+		//SE CREA PEDIDO TEMPORAL DE DATOS
+		datos.Pedido pedidoTempDatos = new datos.Pedido();
+		
+		//SE SETEAN LOS DATOS DEL PEDIDO
+		pedidoTempDatos.setFecha(pedidoTemporal.getFecha());
+		pedidoTempDatos.setEstado(pedidoTemporal.getEstado());
+		pedidoTempDatos.setTotal(pedidoTemporal.getTotal());
+		
+		
+		//SETEO DEL CLIENTE
+		//SETEO DE LAS LINEAS DEL PEDIDO
+		
+		//SE CREA CATALOGO DE PEDIDOS DE DATOS PARA GUARDAR EL NUEVO PEDIDO
+		datos.CatalogoPedidos ctgPedidosDatos = new datos.CatalogoPedidos();
+		
+		//SE GUARDA EL PEDIDO
+		ctgPedidosDatos.agregarPedido(pedidoTempDatos);
 	}
 	//---------------------------------------------------------------
 

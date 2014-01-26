@@ -1,9 +1,12 @@
 package datos;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 public class CatalogoPedidos 
 {
@@ -20,7 +23,7 @@ public class CatalogoPedidos
 	public CatalogoPedidos() 
 	{
 		this.pedidos = new ArrayList<datos.Pedido>();
-		//this.obtenerPedidos();
+		this.obtenerPedidos();
 	}
 	//---------------------------------------------------------------
 
@@ -47,59 +50,96 @@ public class CatalogoPedidos
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// //
+	// OBTIENE TODOS LOS PEDIDOS DE LA BD						   //
 	/////////////////////////////////////////////////////////////////
-	//MODIFICAR A HIBERNATE
-	/*public Collection<datos.Pedido> obtenerPedidos()
+	public void obtenerPedidos()
 	{
-		ResultSet conjuntoResult = null;
-		eliminar.BDConector conector = null;
-		
+		Session session = null;	
 		
 		try
 		{
-			
-			conector = new eliminar.BDConector(eliminar.BDConstantes.URL_BD, 
-					eliminar.BDConstantes.PORT, 
-					eliminar.BDConstantes.DATABASE, 
-					eliminar.BDConstantes.USER, 
-					eliminar.BDConstantes.PASS);
-			
-
-			conjuntoResult = conector.ejecutaPeticion("CALL obtenerPedidos");
-					
-			
-			while( conjuntoResult.next())
-			{
-				datos.Pedido p = new datos.Pedido();
-				
-				p.setIdPedido(conjuntoResult.getInt("idPedido"));
-				p.setTotal(conjuntoResult.getFloat("total"));
-				p.setFecha(conjuntoResult.getDate("fecha"));
-				p.setEstado(conjuntoResult.getBoolean("estado"));			
-				p.setCliente(conjuntoResult.getInt("idCliente"));
-				p.setLinea(conjuntoResult.getInt("idLinea"));
-				pedidos.add(p);
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		        
+            Query query = session.createQuery("from Pedidos");  
+            @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
+          
+            //SE RECORRE CADA PEDIDO DE LA CONSULTA
+            for(Iterator<Query> it=list.iterator();it.hasNext();)
+            {  
+            	//SE CREA PEDIDO TEMPORAL DE DATOS PARA SETEOS
+	        	datos.Pedido pedidoDatos = new datos.Pedido();
+	           
+	        	//SE CREA PEDIDO TEMPORAL DE ENTIDADES PARA OBTENER DATOS
+	        	entidades.Pedidos entPedido = (entidades.Pedidos) it.next();  
+	                   	
+	        	//SETEOS DE DATOS DEL PEDIDO
+	        	pedidoDatos.setIdPedido(entPedido.getIdPedido());
+	        	pedidoDatos.setFecha(entPedido.getFecha());
+	        	pedidoDatos.setTotal(entPedido.getTotal());
+	        	pedidoDatos.setEstado(entPedido.getEstado());
+	        				
+	        	//SE AGREGA EL PEDIDO SETEADO EN EL ARRAY DEL CATALOGO
+				pedidos.add(pedidoDatos);
 			}			
+        session.getTransaction().commit();
 		}
-		catch ( SQLException excepcionSql)
+		 
+		catch(Exception ex)
 		{
-			excepcionSql.printStackTrace();
+			ex.printStackTrace();
 		}
+		 
 		finally
 		{
-			try
-			{
-				conjuntoResult.close();
-				conector.cierraConexion();
-			}
-			catch (Exception excepcion)
-			{
-				excepcion.printStackTrace();
-			}
+		 	session.close();
 		}
-		return pedidos;
-	}*/
+	}
 	//---------------------------------------------------------------
-
+	
+	
+	
+	/////////////////////////////////////////////////////////////////
+	// GUARDA EL NUEVO PEDIDO EN LA BD							   //
+	/////////////////////////////////////////////////////////////////
+	//FALTA COMPLETAR DATOS
+	public void agregarPedido(datos.Pedido pedidoDatos)
+	{
+		Session session = null;	
+		
+		try
+		{
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		    
+		    //SE CREA PEDIDO DE ENTIDADES PARA SETEO DE DATOS
+		    entidades.Pedidos entPedido = new entidades.Pedidos();
+		    
+		    //SE SETEAN LOS DATOS DEL PEDIDO
+		    entPedido.setFecha(pedidoDatos.getFecha());
+		    entPedido.setEstado(pedidoDatos.getEstado());
+		    entPedido.setTotal(entPedido.getTotal());
+		   
+		    //FALTAN LAS LINEAS
+		    //FALTA EL CLIENTE
+	         
+		    //SE GUARDA EN BD - INSERT
+	        session.save(entPedido);
+	        
+	        session.getTransaction().commit();
+		   
+		}
+		 
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		 
+		finally
+		{
+		 	session.close();
+		}	
+	}
+	//---------------------------------------------------------------
 }

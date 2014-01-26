@@ -43,24 +43,30 @@ public class CatalogoAnuncios
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// seteo de la coleccion de anuncios						   //
+	// OBTIENE TODOS LOS ANUNCIOS								   //
 	/////////////////////////////////////////////////////////////////
-	//VER
+	//LISTO
 	public void obtenerAnuncios() 
 	{
-		//se crea un objeto catalogoclientes de datos
+		//SE CREA OBJETO CATALOGO ANUNCIO DE DATOS PARA RECUPERAR 
+		//LOS ANUNCIOS DE LA BD
 		datos.CatalogoAnuncios ctgDatos = new datos.CatalogoAnuncios();				
 			
+		//SE RECORRE CADA ANUNCIO OBTENIDO DE LA CONSULTA A LA BD
 		for(datos.Anuncio anuncioDato: ctgDatos.getAnuncios())
 		{
+			//SE CREA OBJETO AUNCIO DE NEGOCIO PARA SETEARLO
+			//Y DESPUES AGREGARLO AL ARRAY
 			negocio.Anuncio anuncioNegocio = new negocio.Anuncio();
 			
+			//SE SETEAN DATOS DEL ANUNCIO
 			anuncioNegocio.setIdAnuncio(anuncioDato.getIdAnuncio());
 			anuncioNegocio.setFecha(anuncioDato.getFecha());
 			anuncioNegocio.setEstado(anuncioDato.getEstado());
 			anuncioNegocio.setTextoMensaje(anuncioDato.getTextoMensaje());
 			anuncioNegocio.setMembrete(anuncioDato.getMembrete());
 			
+			//SE AGREGA EL ANUNCIO AL ARRAY
 			anuncios.add(anuncioNegocio);
 		}
 
@@ -69,14 +75,35 @@ public class CatalogoAnuncios
 	
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// GUARDA EL ANUNCIO EN LA BD								   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA HACER
+	//FALTA COMPLETAR DATOS
 	public void guardarAnuncio(negocio.Anuncio anuncioActual)
 	{
-		//
+		//SE AGREGA EL NUEVO ANUNCIO EN EL ARRAY
+		this.anuncios.add(anuncioActual);
+		
+		//SE CREA ANUNCIO TEMPORAL DE DATOS
+		datos.Anuncio anuncioTempDatos = new datos.Anuncio();
+		
+		//SE SETEAN LOS DATOS DEL ANUNCIO
+		anuncioTempDatos.setIdAnuncio(anuncioActual.getIdAnuncio());
+		anuncioTempDatos.setFecha(anuncioActual.getFecha());
+		anuncioTempDatos.setEstado(anuncioActual.getEstado());
+		anuncioTempDatos.setMembrete(anuncioActual.getMembrete());
+		anuncioTempDatos.setTextoMensaje(anuncioActual.getTextoMensaje());
+		
+		//SETEO DE CLIENTES
+		//SETEO DE PRODUCTOS
+		
+		//SE CREA CATALOGO ANUNCIO DE DATOS PARA GUARDAR EL ANUNCIO
+		datos.CatalogoAnuncios ctgAnunciosDatos = new datos.CatalogoAnuncios();
+		
+		//SE GUARDA EL ANUNCIO
+		ctgAnunciosDatos.guardarAnuncio(anuncioTempDatos);
 	}
 	//---------------------------------------------------------------
+	
 	
 	/////////////////////////////////////////////////////////////////
 	// 															   //

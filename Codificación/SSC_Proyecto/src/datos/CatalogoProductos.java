@@ -8,6 +8,9 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+
+
+
 public class CatalogoProductos 
 {
 	//***************************************************************
@@ -143,6 +146,51 @@ public class CatalogoProductos
 	}	
 		
 		return productos;
+	}
+	//---------------------------------------------------------------
+	
+	
+		
+	/////////////////////////////////////////////////////////////////
+	// Actualiza la cantidad de productos en stock				   //
+	/////////////////////////////////////////////////////////////////
+	//FALTA
+	public void actualizarStock(datos.Producto prodActualizarStock)
+	{
+		Session session = null;	
+		
+		try
+		{
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		    
+		    //SE CREA OBJETO PRODUCTO DE ENTIDADES PARA SETEO DE DATOS
+		    entidades.Productos entProducto = new entidades.Productos();	         
+
+		    //SE BUSCA EL PRODUCTO A ACTUALIZAR
+		    entProducto = (entidades.Productos) 
+		    		session.get(entidades.Productos.class, prodActualizarStock.getIdProducto()); 
+		    
+		    //SE SETEA EL NUEVO STOCK
+		    entProducto.setStock(prodActualizarStock.getExistenciaStock());
+		   
+		    //SE ACTUALIZA EL PRODUCTO EN BD
+			session.update(entProducto); 
+		    
+			//
+	        session.getTransaction().commit();
+		   
+		}
+		 
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		 
+		finally
+		{
+		 	session.close();
+		}	
 	}
 	//---------------------------------------------------------------
 

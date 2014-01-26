@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -95,9 +96,54 @@ public class CatalogoAnuncios
 		{
 		 	session.close();
 		}	
-	}
-	
+	}	
 	//---------------------------------------------------------------
+	
+	
+	/////////////////////////////////////////////////////////////////
+	// GUARDA EL NUEVO ANUNCIO EN LA BD							   //
+	/////////////////////////////////////////////////////////////////
+	public void guardarAnuncio(datos.Anuncio anuncioActual)
+	{
+		Session session = null;	
+		
+		try
+		{
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		    
+		    //SE CREA ANUNCIO DE ENTIDADES PARA SETEO DE DATOS
+		    entidades.Anuncios entAnuncio = new entidades.Anuncios();
+		    
+			//SE SETEAN LOS DATOS DEL ANUNCIO
+		    entAnuncio.setIdAnuncio(anuncioActual.getIdAnuncio());
+		    entAnuncio.setFecha(anuncioActual.getFecha());
+		    entAnuncio.setEstado(anuncioActual.getEstado());
+		    entAnuncio.setMembrete(anuncioActual.getMembrete());
+			entAnuncio.setTextoMensaje(anuncioActual.getTextoMensaje());
+			
+			//SETEO DE CLIENTES
+			//SETEO DE PRODUCTOS
+	         
+			//GUARDA EL ANUNCIO EN BD - INSERT
+	        session.save(entAnuncio);
+	        
+	        session.getTransaction().commit();
+		   
+		}
+		 
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		 
+		finally
+		{
+		 	session.close();
+		}	
+	}
+	//---------------------------------------------------------------
+	
 }
 
 

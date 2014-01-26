@@ -1,32 +1,44 @@
 package datos;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+
 
 public class Pedido 
 {
-	//ATRIBUTOS
+	//***************************************************************
+	//* ATRIBUTOS													*
+	//***************************************************************
 	private int idPedido;
 	private float total;
-	private int idCliente;
+	private datos.Cliente cliente;
 	private Date fecha;
-	private int idLinea;
-	private boolean estado;
+	private Collection<datos.LineaDePedido> lineas;
+	private String estado;
+	//---------------------------------------------------------------
 	
-	
-	//CONSTRUCTOR
+
+
+	//***************************************************************
+	//* CONSTRUCTOR													*
+	//***************************************************************
 	public Pedido() 
 	{
 		this.idPedido = 0;
 		this.total = 0;
-		this.idCliente = 0;
+		this.cliente = new datos.Cliente();
 		this.fecha = new Date();
-		this.idLinea = 0;
-		this.estado = false;
+		this.lineas = new ArrayList<datos.LineaDePedido>();
+		this.estado = "";
 	}
+	//---------------------------------------------------------------
 
 
-	//GETTER & SETTER
-	public int getIdPedido() 
+	//***************************************************************
+	//* GETTES & SETTERS											*
+	//***************************************************************
+	public int getIdPedido()
 	{
 		return idPedido;
 	}
@@ -36,27 +48,29 @@ public class Pedido
 	{
 		this.idPedido = idPedido;
 	}
-	
-	public float getTotal()
+
+
+	public float getTotal() 
 	{
-		return total;	
+		return total;
 	}
-	
-	public void setTotal(float total)
+
+
+	public void setTotal(float total) 
 	{
 		this.total = total;
 	}
 
 
-	public int getCliente() 
+	public datos.Cliente getCliente() 
 	{
-		return idCliente;
+		return cliente;
 	}
 
 
-	public void setCliente(int idCliente) 
+	public void setCliente(datos.Cliente cliente) 
 	{
-		this.idCliente = idCliente;
+		this.cliente = cliente;
 	}
 
 
@@ -72,37 +86,44 @@ public class Pedido
 	}
 
 
-	public int getLinea() 
+	public Collection<datos.LineaDePedido> getLineas() 
 	{
-		return idLinea;
+		return lineas;
 	}
 
 
-	public void setLinea(int idLinea) 
+	public void setLineas(Collection<datos.LineaDePedido> lineas) 
 	{
-		this.idLinea = idLinea;
+		this.lineas = lineas;
 	}
 
 
-	public Boolean getEstado() 
+	public String getEstado() 
 	{
 		return estado;
 	}
 
 
-	public void setEstado(Boolean estado) 
+	public void setEstado(String estado) 
 	{
 		this.estado = estado;
 	}
-
-
-	//METODOS
-		//----------------------------------------------------------------------------
+	//---------------------------------------------------------------
 	
+	
+	
+	//***************************************************************
+	//* METODOS 													*
+	//***************************************************************
+	
+	/////////////////////////////////////////////////////////////////
+	// 															   //
+	/////////////////////////////////////////////////////////////////
 	public void agregarProducto(datos.Producto producto, int cantidad)
 	{
 		
 	}
+	//---------------------------------------------------------------
 	
 	public datos.LineaDePedido buscarLinea(datos.LineaDePedido linea)
 	{
@@ -117,4 +138,12 @@ public class Pedido
 		
 		return flag;
 	}
+	
+	
+	
+
+	
+	
+	
+
 }

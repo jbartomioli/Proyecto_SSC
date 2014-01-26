@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 
+
 public class CatalogoProductos 
 {
 	//***************************************************************
@@ -157,23 +158,37 @@ public class CatalogoProductos
 	/////////////////////////////////////////////////////////////////
 	//Actualiza la cantidad de productos en stock				   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA CAPA DATOS
-	public void actualizarStock(negocio.Producto P, int cantidad)
+	//LISTO
+	public void actualizarStock(negocio.Producto productoParametro, int cantidad)
 	{
-		for(negocio.Producto PA: this.productos)
+		for(negocio.Producto productoActual: this.productos)
 		{
-			if (PA.getIdProducto() == P.getIdProducto())
+			if (productoActual.getIdProducto() == productoParametro.getIdProducto())
 			{
 				int stock = 0;
 				int nuevoStock = 0;
 				
-				stock = PA.getExistenciaStock();
+				//SE OBTIENE EL STOCK ACTUAL
+				stock = productoActual.getExistenciaStock();
 				
+				//SE CALCULA EL NUEVO STOCK
 				nuevoStock = stock - cantidad;
 				
-				PA.setExistenciaStock(nuevoStock);
+				//SE ACTUALIZA EL STOCK EN MEMORIA
+				productoActual.setExistenciaStock(nuevoStock);
 				
-				//Guardar en BD
+				//SE CREA OBJETO CATALOGO PRODUCTOS DE DATOS PARA ACTUALIZAR STOCK EN BD
+				datos.CatalogoProductos ctgProductoDatos = new datos.CatalogoProductos();
+				
+				//SE CREA OBJETO PRODUCTO DE DATOS PARA SETEO DE DATOS
+				datos.Producto productoDatos = new datos.Producto();
+				
+				//SE SETEAN DATOS NECESARIOS
+				productoDatos.setIdProducto(productoActual.getIdProducto());
+				productoDatos.setExistenciaStock(nuevoStock);
+				
+				//SE ACTUALIZA STOCK EN BD
+				ctgProductoDatos.actualizarStock(productoDatos);				
 			}
 		}
 	}

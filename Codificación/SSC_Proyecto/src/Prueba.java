@@ -1,16 +1,20 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import negocio.Anuncio;
 import negocio.CatalogoCategorias;
+import negocio.CatalogoProductos;
 import negocio.Categoria;
 import negocio.Cliente;
 import negocio.ControladorConfeccionarAnuncio;
+import negocio.Pedido;
 import negocio.ControladorConfeccionarAnuncio.SalidaDatos;
 import negocio.ControladorConfeccionarAnuncio.SalidaDatosSeleccionaProductos;
 import negocio.ParametrosNegocio;
+import negocio.Producto;
 
 
 public class Prueba {
@@ -42,6 +46,7 @@ public class Prueba {
 				System.out.println(C.getIdCategoria()+" " +C.getDescripcion());
 		 
 			*/
+			/*
 			negocio.ControladorConfeccionarAnuncio ctrl = new ControladorConfeccionarAnuncio();
 			
 			Collection<negocio.ControladorConfeccionarAnuncio.SalidaDatos> salida = 
@@ -53,6 +58,7 @@ public class Prueba {
 			{
 				System.out.println(SD.getId()+" - "+SD.getDescripcion());
 			}
+			*/
 			
 			//////////////////////////////////////////////////////////////////////////////
 			/*
@@ -115,6 +121,34 @@ public class Prueba {
 						P.getPrecioPromocional());
 				}	
 			*/
+			/*
+			for(int i=0; i<= 1000; i++)
+			{
+			negocio.Pedido pedido = new negocio.Pedido();
+			
+			pedido.setEstado("Pendiente");
+			pedido.setFecha(new Date());
+			pedido.setTotal(200);
+			
+			negocio.CatalogoPedidos ctg = new negocio.CatalogoPedidos();
+			
+			ctg.agregarPedido(pedido);
+			}
+			*/
+			/*
+			negocio.CatalogoProductos ctgProductos = new negocio.CatalogoProductos();
+			
+			negocio.Producto productoActual = new negocio.Producto();
+			
+			productoActual = ctgProductos.buscarProducto(2);
+			
+			System.out.println(productoActual.getCodProducto()+" - "+productoActual.getExistenciaStock());
+			
+			System.in.read();
+			
+			ctgProductos.actualizarStock(productoActual, 10);
+			*/
+			
 		 }
 		 catch(Exception ex)
 		 {

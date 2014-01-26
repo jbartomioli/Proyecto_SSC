@@ -69,27 +69,29 @@ public class Categoria
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// 	OBTIENE LAS SUBCATEGORIAS DE UNA CATEGORIA ESPECIFICA      //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public void obtenerSubCategorias() 
 	{
-		//se crea una instancia de cliente de datos
+		//SE CREA OBJETO CATEGORIA DE DATOS PARA OBTENER DATOS DE LA BD
 		datos.Categoria categoriaDatos = new datos.Categoria();
 		
-		//se setean las ventas del cliente de datos
+		//SE OBTIENEN LAS SUBCATEGORIAS DE LA CATEGORIA SELECCIONADA
 		categoriaDatos.obtenerSubCategorias(this.idCategoria);
 		
-		//se obtiene cada venta del cliente de datos
-		//para luego agregarlas al cliente de negocio
+		//SE RECORRE CADA SUBCATEGORIA RESULTANTE DE LA CONSULTA A 
+		//LA BD PARA LUEGO SETEAR DATOS 
 		for(datos.SubCategoria SC: categoriaDatos.getSubCats())
 		{
+			//SE CREA OBJETO SUBCATEGORIA DE NEGOCIO PARA SETEOS DE DATOS
 			negocio.SubCategoria subCategoriaNegocio = new negocio.SubCategoria();
 			
-			//seteos
+			//SETEOS DE DATOS DE LA SUBCATEGORIA
 			subCategoriaNegocio.setIdSubcategoria(SC.getIdSubcategoria());
 			subCategoriaNegocio.setDescripcion(SC.getDescripcion());
 			
+			//SE AGREGA LA SUBCATEGORIA EN EL ARRAY
 			this.subCategorias.add(subCategoriaNegocio);
 		}
 		
