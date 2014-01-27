@@ -105,48 +105,72 @@ public class Producto
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// Obtiene el precio vigente del producto					   //
+	// OBTIENE EL PRECIO VIGENTE DEL PRODUCTO					   //
 	/////////////////////////////////////////////////////////////////
+	//VER
 	public float getPrecioActual()
 	{
+		//SE RECORRE EL HISTORICO DE PRECIOS
 		for(negocio.Precio p: this.getPrecios())
 		{
+			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
+			//ES EL PRECIO VIGENTE
 			if (p.getFechaHasta() == null)
 				return p.getPrecio();
+			//SINO CONTINUA ITERANDO
 			else 
-				return 0;
+				//return 0;
+				continue;
 		}
+		//FINALMENTE SI NO TIENE PRECIO DEVUELVE 0
 		return 0;
 	}
 	//---------------------------------------------------------------
 	
+	
+	
 	/////////////////////////////////////////////////////////////////
-	// Obtiene el precio promocional del producto				   //
+	// OBTIENE EL PRECIO PROMOCIONAL DEL PRODUCTO				   //
 	/////////////////////////////////////////////////////////////////
+	//VER
 	public float getPrecioPromocional()
 	{
+		//SE RECORRE EL HISTORICO DE PRECIOS
 		for(negocio.Precio p: this.getPrecios())
 		{
+			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
+			//ES EL PRECIO PROMOCIONAL VIGENTE
 			if (p.getFechaHasta() == null)
 				return p.getPrecioPromocional();
+			//SINO CONTINUA ITERANDO
 			else 
-				return 0;
+				//return 0;
+				continue;
 		}
+		//FINALMENTE SI NO TIENE PRECIO DEVUELVE 0
 		return 0;
 	}
 	//---------------------------------------------------------------
 	
+	
+	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// DEFINE EL NUEVO PRECIO PROMOCIONAL DEL PRODUCTO			   //
 	/////////////////////////////////////////////////////////////////
+	//VER - FALTARIA ACTUALIZAR EN BD
 	public void setPrecioPromocional(float nuevoPrecio)
 	{
+		//SE RECORRE EL HISTORICO DE PRECIOS
 		for(negocio.Precio p: this.precios)
 		{
+			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
+			//ES EL PRECIO PROMOCIONAL VIGENTE
 			if (p.getFechaHasta() == null)
 			{
+				//SE MODIFICA EL PRECIO DEL PRODUCTO
 				p.setPrecioPromocional(nuevoPrecio);
 				
+				//SE CORTA LA ITERACION
 				break;
 			}
 		}

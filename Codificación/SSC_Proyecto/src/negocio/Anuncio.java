@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.mail.MessagingException;
+
+import utilidades.MailPromocional;
+
 
 public class Anuncio 
 {
@@ -226,10 +230,13 @@ public class Anuncio
 			{
 				p=productoModificar;
 				
+				//
+				
 				break;
 			}
 		}
-		//Busca el producto dentro del array de anuncios que coincida con el producto pasado como parametro e insertar el nuevo precio
+		//Busca el producto dentro del array de productos que coincida con el 
+		//producto pasado como parametro e inserta el nuevo precio
 	}
 	//---------------------------------------------------------------
 
@@ -276,7 +283,20 @@ public class Anuncio
 	//FALTA
 	public void enviarAnuncio()
 	{
+		try
+		{
+		utilidades.MailPromocional nuevoMail = new utilidades.MailPromocional();
 		
+		//nuevoMail.enviarMail(this.getTextoMensaje(), mailsDestinatarios, asuntoMail);
+		}
+		catch(Exception e)
+		{
+			
+		}
+		finally
+		{
+			
+		}
 	}
 	//---------------------------------------------------------------
 

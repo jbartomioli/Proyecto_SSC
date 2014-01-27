@@ -36,7 +36,7 @@ public class MailPromocional {
 	/////////////////////////////////////////////////////////////////
 	//	//
 	/////////////////////////////////////////////////////////////////
-	public void enviarMail(String textoMensaje, String [] mailsDestinatarios, String asuntoMail)
+	public void enviarMail(String textoMensaje, String [] mailsDestinatarios, String asuntoMail) throws MessagingException
 	{
 		try
 		{
@@ -86,10 +86,6 @@ public class MailPromocional {
 			Transport.send(mensaje);
 				
 		}
-		catch(Exception e)
-		{
-
-		}
 		finally
 		{
 			
@@ -101,7 +97,7 @@ public class MailPromocional {
 	/////////////////////////////////////////////////////////////////
 	//	//
 	/////////////////////////////////////////////////////////////////
-	public String concatenarDirecciones(String [] mailsDestinatarios)
+	private String concatenarDirecciones(String [] mailsDestinatarios)
 	{
 		String concatenacion = "";
 		int i = 0;
@@ -115,13 +111,4 @@ public class MailPromocional {
 		return concatenacion;
 	}
 	//---------------------------------------------------------------
-	
-	
-	
-	public static void main(String [] args)
-	{
-		MailPromocional ma = new MailPromocional();
-		
-		ma.enviarMail("<h1>Probando un html</h1>", null, "Prueba");
-	}
 }

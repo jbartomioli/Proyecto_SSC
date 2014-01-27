@@ -69,30 +69,32 @@ public class SubCategoria
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// OBTIENE TODOS LOS PRODUCTOS DE UNA SUBCATEGORIA ESPECIFICA  //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public void obtenerProductos()
 	{
-		//se crea una instancia de cliente de datos
+		//SE CREA SUBCATEGORIA DE DATOS PARA OBTENER LOS DATOS LA BD
 		datos.SubCategoria subcategoriaDatos = new datos.SubCategoria();
 		
-		//se setean las ventas del cliente de datos
+		//SE RECUPERAN TODOS LOS PRODUCTOS DE LA SUBCATEGORIA
 		subcategoriaDatos.obtenerProductos(this.idSubcategoria);
 		
-		//se obtiene cada venta del cliente de datos
-		//para luego agregarlas al cliente de negocio
+		//SE RECORRE CADA ELEMENTO DE LA CONSULTA PARA LUEGO
+		//SETEARLOS Y AGREGARLOS AL ARRAY
 		for(datos.Producto P: subcategoriaDatos.getProductos())
 		{
+			//SE CREA OBJETO PRODUCTO DE NEGOCIO PARA SETEARLO
+			//Y AGREGARLO AL ARRAY
 			negocio.Producto productoNegocio = new negocio.Producto();
 			
-			//seteos
+			//SE SETEAN LOS DATOS DEL PRODUCTO
         	productoNegocio.setCodProducto(P.getCodProducto());
         	productoNegocio.setExistenciaStock(P.getExistenciaStock());
         	productoNegocio.setIdProducto(P.getIdProducto());
         	productoNegocio.setNombre(P.getNombre());		
         	
-        	//
+        	//SE AGREGA EL PRODUCTO AL ARRAY
 			this.productos.add(productoNegocio);
 		}
 		

@@ -93,18 +93,22 @@ public class SubCategoria
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
             
+            //SE RECORRE CADA ELEMENTO RESULTANTE DE LA CONSULTA A LA BD
             for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
+            	//SE CREA OBJETO PRODUCTO DE DATOS PARA LUEGO AGREGARLO AL ARRAY
             	datos.Producto productoDatos = new datos.Producto();
             	
+            	//SE RECUPERAN DATOS DEL PRODUCTO DE LA BD
             	entidades.Productos entProducto = (entidades.Productos) it.next();
             	
-            	//seteos
+            	//SE SETEA EL PRODUCTO DE DATOS
             	productoDatos.setCodProducto(entProducto.getCodProducto());
             	productoDatos.setExistenciaStock(entProducto.getStock());
             	productoDatos.setIdProducto(entProducto.getIdProducto());
             	productoDatos.setNombre(entProducto.getNombre());
-
+            
+            	//SE AGREGA EL PRODUCTO AL ARRAY
             	this.productos.add(productoDatos);
             }
 

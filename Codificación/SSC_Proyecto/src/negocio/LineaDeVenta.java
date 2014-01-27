@@ -82,8 +82,10 @@ public class LineaDeVenta
 	//LISTO
 	public boolean compararProductos(negocio.Producto productoActual)
 	{		
+		//SI LOS PRODUTOS SON LOS MISMOS DEVUELVE VERDADERO
 		if(productoActual.getIdProducto() == this.getProductoLinea().getIdProducto())
 			return true;
+		//SINO DEVUELVE FALSO
 		else
 			return false;
 	}
