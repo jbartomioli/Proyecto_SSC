@@ -129,7 +129,7 @@ public class GenerarAnuncio extends JFrame {
 		TableColumn agregarColumna;
 		agregarColumna = tblProductos.getColumnModel().getColumn(3);
 		agregarColumna.setCellEditor(new myeditor(tblProductos));
-		agregarColumna.setCellRenderer(new myrenderer(true));
+		agregarColumna.setCellRenderer(new myrenderer1(true));
 		
 		Box boxDestinatarios = Box.createHorizontalBox();
 		boxDestinatarios.setBorder(new TitledBorder(null, "Destinatarios", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
