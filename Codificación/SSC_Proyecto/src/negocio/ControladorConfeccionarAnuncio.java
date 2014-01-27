@@ -29,10 +29,20 @@ public class ControladorConfeccionarAnuncio
 	public ControladorConfeccionarAnuncio() 
 	{
 		this.cctg = new negocio.CatalogoCategorias();
+		this.cctg.obtenerCategorias();
+		
 		this.csctg = new negocio.CatalogoSubCategorias();
+		this.csctg.obtenerSubCategorias();
+		
 		this.cp = new negocio.CatalogoProductos();
+		this.cp.obtenerProductos();
+		
 		this.ca = new negocio.CatalogoAnuncios();
+		this.ca.obtenerAnuncios();
+		
 		this.cc = new negocio.CatalogoClientes();
+		this.cc.obtenerClientes();
+		
 		this.productos = new ArrayList<negocio.Producto>();
 		this.subCats = new ArrayList<negocio.SubCategoria>();
 		this.productoActual = new negocio.Producto();
@@ -189,27 +199,6 @@ public class ControladorConfeccionarAnuncio
 		categoriaActual.obtenerSubCategorias();
 		subCats = categoriaActual.getSubCats();
 
-		/*
-		//se va a implementar solo la subcategoria
-		//si no tiene subcategorias
-		if(subCats == null)
-		{
-			categoriaActual.obtenerProductos();
-			productos = categoriaActual.getProductos();
-			
-			for(negocio.Producto P: productos)
-			{
-				SalidaDatos salidaProd = new SalidaDatos();
-				
-				salidaProd.setId(Integer.toString(P.getIdProducto()));
-				salidaProd.setDescripcion(P.getNombre());
-
-				salidaDatos.add(salidaProd);	
-			}
-		}
-		//si tiene subcategorias
-		else
-		{*/
 		for(negocio.SubCategoria SC : subCats)
 		{
 			SalidaDatos salidaSub = new SalidaDatos();

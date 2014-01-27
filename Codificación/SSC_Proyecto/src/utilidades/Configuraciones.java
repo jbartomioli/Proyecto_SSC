@@ -31,6 +31,7 @@ public class Configuraciones {
 		this.SMTP_USER = "";
 		this.SMTP_PASS = "";
 		this.SMTP_TTLS = "";
+		obtenerConfiguracionesMail();
 	}
 	//---------------------------------------------------------------
 

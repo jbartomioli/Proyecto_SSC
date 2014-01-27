@@ -19,7 +19,6 @@ public class CatalogoAnuncios
 	public CatalogoAnuncios() 
 	{
 		this.anuncios = new ArrayList<negocio.Anuncio>();
-		this.obtenerAnuncios();
 	}
 	//---------------------------------------------------------------
 
@@ -51,7 +50,9 @@ public class CatalogoAnuncios
 		//SE CREA OBJETO CATALOGO ANUNCIO DE DATOS PARA RECUPERAR 
 		//LOS ANUNCIOS DE LA BD
 		datos.CatalogoAnuncios ctgDatos = new datos.CatalogoAnuncios();				
-			
+		
+		ctgDatos.obtenerAnuncios();
+		
 		//SE RECORRE CADA ANUNCIO OBTENIDO DE LA CONSULTA A LA BD
 		for(datos.Anuncio anuncioDato: ctgDatos.getAnuncios())
 		{

@@ -23,7 +23,6 @@ public class CatalogoClientes
 	public CatalogoClientes() 
 	{
 		this.clientes = new ArrayList<datos.Cliente>();
-		this.obtenerClientes();
 	}
 	//---------------------------------------------------------------
 

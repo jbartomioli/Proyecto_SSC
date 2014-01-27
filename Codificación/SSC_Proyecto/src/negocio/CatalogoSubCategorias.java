@@ -20,7 +20,6 @@ public class CatalogoSubCategorias
 	public CatalogoSubCategorias() 
 	{
 		this.subcategorias = new ArrayList<negocio.SubCategoria>();
-		this.obtenerSubCategorias();
 	}
 	//---------------------------------------------------------------
 
@@ -53,6 +52,7 @@ public class CatalogoSubCategorias
 	{
 		//
 		datos.CatalogoSubCategorias ctgDatos = new datos.CatalogoSubCategorias();
+		ctgDatos.obtenerSubCategorias();
 		
 		//
 		subcategorias = new ArrayList<negocio.SubCategoria>();

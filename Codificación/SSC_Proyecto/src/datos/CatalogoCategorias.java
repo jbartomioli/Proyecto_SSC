@@ -23,7 +23,6 @@ public class CatalogoCategorias
 	public CatalogoCategorias() 
 	{
 		this.categorias = new ArrayList<datos.Categoria>();
-		this.obtenerCategorias();
 	}
 	//---------------------------------------------------------------
 

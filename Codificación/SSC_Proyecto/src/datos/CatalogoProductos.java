@@ -26,7 +26,6 @@ public class CatalogoProductos
 	public CatalogoProductos() 
 	{
 		this.productos = new ArrayList<datos.Producto>();
-		this.obtenerProductos();
 	}
 	//---------------------------------------------------------------
 

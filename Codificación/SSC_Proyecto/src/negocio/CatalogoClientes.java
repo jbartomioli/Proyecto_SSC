@@ -18,7 +18,6 @@ public class CatalogoClientes {
 	public CatalogoClientes() 
 	{
 		this.clientes = new ArrayList<negocio.Cliente>();
-		this.obtenerClientes();
 	}
 	//---------------------------------------------------------------
 
@@ -47,6 +46,8 @@ public class CatalogoClientes {
 		//se crea un objeto catalogoclientes de datos
 		datos.CatalogoClientes ctgDatos = new datos.CatalogoClientes();				
 			
+		ctgDatos.obtenerClientes();
+		
 		for(datos.Cliente clienteDato: ctgDatos.getClientes())
 		{
 			negocio.Cliente clienteNegocio = new negocio.Cliente();

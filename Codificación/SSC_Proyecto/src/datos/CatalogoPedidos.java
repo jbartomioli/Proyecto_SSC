@@ -23,7 +23,6 @@ public class CatalogoPedidos
 	public CatalogoPedidos() 
 	{
 		this.pedidos = new ArrayList<datos.Pedido>();
-		this.obtenerPedidos();
 	}
 	//---------------------------------------------------------------
 

@@ -21,6 +21,7 @@ public class ControladorRealizarSeguimientoCliente
 	public ControladorRealizarSeguimientoCliente() 
 	{
 		this.cc = new negocio.CatalogoClientes();
+		this.cc.obtenerClientes();
 	}
 	//---------------------------------------------------------------
 
@@ -57,9 +58,6 @@ public class ControladorRealizarSeguimientoCliente
 		
 		//instancia clase salida datos
 		DatosSalidaSeguimiento salidaObj = new DatosSalidaSeguimiento();
-		
-		//instancia catalogo clientes
-		cc = new negocio.CatalogoClientes();
 		
 		//se busca al cliente por su idCliente		
 		cliente = cc.buscarCliente(idCliente);
@@ -113,9 +111,7 @@ public class ControladorRealizarSeguimientoCliente
 		negocio.Cliente cliente;
 		
 		DatosSalidaSeguimiento salidaObj = new DatosSalidaSeguimiento();
-		
-		cc = new negocio.CatalogoClientes();
-		
+				
 		cliente = cc.buscarCliente(apellido,nombre);
 		
 		
@@ -163,8 +159,6 @@ public class ControladorRealizarSeguimientoCliente
 		Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
 		
 		Collection<DatosSalidaSeguimiento> salida = new ArrayList<DatosSalidaSeguimiento>();
-
-		cc = new CatalogoClientes();
 		
 		arrClientesTemp = cc.buscarClientes(tipoCliente);
 		

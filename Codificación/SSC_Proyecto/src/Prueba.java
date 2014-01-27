@@ -148,6 +148,7 @@ public class Prueba {
 			
 			ctgProductos.actualizarStock(productoActual, 10);
 			*/
+						
 			
 		 }
 		 catch(Exception ex)

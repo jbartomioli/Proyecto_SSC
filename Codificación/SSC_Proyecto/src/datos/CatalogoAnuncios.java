@@ -23,7 +23,6 @@ public class CatalogoAnuncios
 	public CatalogoAnuncios() 
 	{
 		this.anuncios = new ArrayList<datos.Anuncio>();
-		this.obtenerAnuncios();
 	}
 	//---------------------------------------------------------------
 

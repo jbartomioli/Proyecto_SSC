@@ -22,7 +22,6 @@ public class CatalogoSubCategorias
 	public CatalogoSubCategorias() 
 	{
 		this.subcategorias = new ArrayList<datos.SubCategoria>();
-		this.obtenerSubCategorias();
 	}
 	//---------------------------------------------------------------
 

@@ -26,8 +26,14 @@ public class ControladorRegistrarPedidoCliente
 	public ControladorRegistrarPedidoCliente() 
 	{
 		this.cc = new negocio.CatalogoClientes();
+		this.cc.obtenerClientes();
+		
 		this.cp = new negocio.CatalogoProductos();
+		this.cp.obtenerProductos();
+		
 		this.cpe = new negocio.CatalogoPedidos();
+		//this.cpe.obtenerPedidos();
+		
 		this.PCTemporal = new negocio.Pedido();
 		this.lineaActual = new negocio.LineaDePedido();
 		this.productoTemporal = new negocio.Producto();

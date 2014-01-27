@@ -77,20 +77,12 @@ public class LineaDeVenta
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	//COMPARA EL PRODUCTO SELECCIONADO CON EL PRODCUTO DE LA LINEA //
 	/////////////////////////////////////////////////////////////////
-	//FALTA VALIDAR CATEGORIA O CAMBIAR ENFOQUE
+	//LISTO
 	public boolean compararProductos(negocio.Producto productoActual)
 	{		
-		if(
-			((productoActual.getSubCategoria() != null)
-			&& (this.productoLinea.getSubCategoria() != null)
-			&& (productoActual.getSubCategoria() == this.productoLinea.getSubCategoria()))
-			/*||
-			((productoActual.getSubCategoria() != null)
-			&& (this.productoLinea.getSubCategoria() != null)
-			&& (productoActual.getSubCategoria() == this.productoLinea.getSubCategoria())
-			)*/)
+		if(productoActual.getIdProducto() == this.getProductoLinea().getIdProducto())
 			return true;
 		else
 			return false;

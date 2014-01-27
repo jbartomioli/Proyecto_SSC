@@ -20,7 +20,6 @@ public class CatalogoProductos
 	public CatalogoProductos() 
 	{
 		this.productos = new ArrayList<negocio.Producto>();
-		this.obtenerProductos();
 	}
 	//---------------------------------------------------------------
 
@@ -55,7 +54,9 @@ public class CatalogoProductos
 	public void obtenerProductos()
 	{
 		//SE CREA INSTANCIA DEL CATALOGO DE DATOS
-		datos.CatalogoProductos ctgDatos = new datos.CatalogoProductos();				
+		datos.CatalogoProductos ctgDatos = new datos.CatalogoProductos();		
+		
+		ctgDatos.obtenerProductos();
 			
         //SE RECORRE CADA PRODUCTO DEL CATALOGO DE DATOS
 		for(datos.Producto productoDato: ctgDatos.getProductos())
