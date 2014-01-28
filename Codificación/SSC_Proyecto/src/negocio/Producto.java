@@ -107,16 +107,16 @@ public class Producto
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE EL PRECIO VIGENTE DEL PRODUCTO					   //
 	/////////////////////////////////////////////////////////////////
-	//VER
+	//LISTO
 	public float getPrecioActual()
 	{
 		//SE RECORRE EL HISTORICO DE PRECIOS
-		for(negocio.Precio p: this.getPrecios())
+		for(negocio.Precio precioNegocio: this.getPrecios())
 		{
 			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
 			//ES EL PRECIO VIGENTE
-			if (p.getFechaHasta() == null)
-				return p.getPrecio();
+			if (precioNegocio.getFechaHasta() == null)
+				return precioNegocio.getPrecio();
 			//SINO CONTINUA ITERANDO
 			else 
 				//return 0;
@@ -132,16 +132,16 @@ public class Producto
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE EL PRECIO PROMOCIONAL DEL PRODUCTO				   //
 	/////////////////////////////////////////////////////////////////
-	//VER
+	//LISTO
 	public float getPrecioPromocional()
 	{
 		//SE RECORRE EL HISTORICO DE PRECIOS
-		for(negocio.Precio p: this.getPrecios())
+		for(negocio.Precio precioNegocio: this.getPrecios())
 		{
 			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
 			//ES EL PRECIO PROMOCIONAL VIGENTE
-			if (p.getFechaHasta() == null)
-				return p.getPrecioPromocional();
+			if (precioNegocio.getFechaHasta() == null)
+				return precioNegocio.getPrecioPromocional();
 			//SINO CONTINUA ITERANDO
 			else 
 				//return 0;
@@ -161,14 +161,24 @@ public class Producto
 	public void setPrecioPromocional(float nuevoPrecio)
 	{
 		//SE RECORRE EL HISTORICO DE PRECIOS
-		for(negocio.Precio p: this.precios)
+		for(negocio.Precio precioNegocio: this.precios)
 		{
 			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
-			//ES EL PRECIO PROMOCIONAL VIGENTE
-			if (p.getFechaHasta() == null)
+			//ES EL PRECIO VIGENTE
+			if (precioNegocio.getFechaHasta() == null)
 			{
 				//SE MODIFICA EL PRECIO DEL PRODUCTO
-				p.setPrecioPromocional(nuevoPrecio);
+				precioNegocio.setPrecioPromocional(nuevoPrecio);
+				
+				//SE CREA OBJETO PRODUCTO DE DATOS PARA ACTUALIZAR 
+				//EN LA BD
+				datos.Producto productoDatos = new datos.Producto();
+				
+				//SE SETEAN LOS DATOS NECESARIOS DEL PRECIO DE DATOS
+				//productoDatos.setPrecioPromocional();
+				
+				//SE GUARDAN LOS CAMBIOS EN LA DB
+				//precioDatos.guardarPrecioPromocional();
 				
 				//SE CORTA LA ITERACION
 				break;
