@@ -139,31 +139,36 @@ public class Cliente
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// Se utiliza para solicitar al cliente sus ventas			   //
+	// OBTIENE TODAS LAS VENTAS EFECTUADAS A UN CLIENTE ESPECIFICO  //
 	/////////////////////////////////////////////////////////////////
 	//VER
 	public void obtenerVentas()
 	{
-		//se crea una instancia de cliente de datos
+		//SE CREA OBJETO CLIENTE DE DATOS PARA RECUPERAR
+		//VENTAS DE LA BD
 		datos.Cliente clienteDato = new datos.Cliente();
 		
-		//se setean las ventas del cliente de datos
+		//SE RECUPERAN LAS VENTAS DE LA BD
 		clienteDato.obtenerVentas(this.getIdCliente());
 		
-		//se obtiene cada venta del cliente de datos
-		//para luego agregarlas al cliente de negocio
-		
-		//esta opcion o volver a crear el array y setear siempre los datos
+		//SI EL OBJETO CLIENTE DE NEGOCIO YA TIENE SUS VENTAS
+		//CARGADAS SE LAS VUELVE A SETEAR CON EL FIN DE MANTENER
+		//ACTUALIZADO EL ARRAY AL MOMENTO DE LLAMAR ESTE METODO
 		if(this.ventas != null)
 		{
-			for(datos.Venta VD: clienteDato.getVentas())
+			//SE RECORRE CADA VENTA DE LA BD
+			for(datos.Venta ventaDato: clienteDato.getVentas())
 			{
+				//SE CREA OBJETO VENTA DE NEGOCIO PARA SETEARLO Y DESPUES
+				//AGREGARLO AL ARRAY
 				negocio.Venta ventaNegocio = new negocio.Venta();
 				
-				ventaNegocio.setIdVenta(VD.getIdVenta());
-				ventaNegocio.setFechaVenta(VD.getFechaVenta());
-				ventaNegocio.setTotal(VD.getTotal());
+				//SE SETEAN LOS DATOS DE LA VENTA
+				ventaNegocio.setIdVenta(ventaDato.getIdVenta());
+				ventaNegocio.setFechaVenta(ventaDato.getFechaVenta());
+				ventaNegocio.setTotal(ventaDato.getTotal());
 				
+				//SE AGREGA LA VENTA AL ARRAY
 				this.ventas.add(ventaNegocio);
 			}
 		}
@@ -173,17 +178,20 @@ public class Cliente
 	
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// VERIFICA SI EL CLIENTE COMPRO O NO UN PRODUCTO			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public boolean comproProducto(negocio.Producto productoActual)
 	{
-		for(negocio.Venta V: this.ventas)
+		//SE RECORRE CADA VENTA DEL CLIENTE
+		for(negocio.Venta ventaNegocio: this.ventas)
 		{
-			//
-			V.obtenerLineasDeVenta();
+			//SE RECUPERAN LAS LINEAS DE VENTA DE LA VENTA ACTUAL
+			ventaNegocio.obtenerLineasDeVenta();
 			
-			if (V.comproProducto(productoActual))
+			//SI EL CLIENTE COMPRO EL PRODUCTO DEVUELVE VERDADERO
+			//Y CORTA LA ITERACION
+			if (ventaNegocio.comproProducto(productoActual))
 				return true;
 		}
 		

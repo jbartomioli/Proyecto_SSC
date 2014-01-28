@@ -38,20 +38,26 @@ public class CatalogoClientes {
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// inicializa la coleccion de clientes						   //
+	// OBTIENE TODOS LOS CLIENTES DE LA BD						   //
 	/////////////////////////////////////////////////////////////////
-	//VER
+	//LISTO
 	public void obtenerClientes()
 	{
-		//se crea un objeto catalogoclientes de datos
+
+		//SE CREA OBJETO DE CATALOGO DE CLIENTES DE DATOS
 		datos.CatalogoClientes ctgDatos = new datos.CatalogoClientes();				
 			
+		//SE RECUPERAN TODOS LOS CLIENTES DE LA BD
 		ctgDatos.obtenerClientes();
 		
+		//SE RECORREN TODOS LOS CLIENTES RECUPERADOS DE LA BD
 		for(datos.Cliente clienteDato: ctgDatos.getClientes())
 		{
+			//SE CREA OBJETO CLIENTE DE NEGOCIO PARA SETEO DE DATOS
+			//Y LUEGO AGREGARLO AL ARRAY
 			negocio.Cliente clienteNegocio = new negocio.Cliente();
 			
+			//SE SETEA EL OBJETO CON LOS DATOS DEL CLIENTE
 			clienteNegocio.setApellido(clienteDato.getApellido());
 			clienteNegocio.setDireccion(clienteDato.getDireccion());
 			clienteNegocio.setEmail(clienteDato.getEmail());
@@ -61,6 +67,7 @@ public class CatalogoClientes {
 			clienteNegocio.setTelefono(clienteDato.getTelefono());
 			clienteNegocio.setTipoCliente(clienteDato.getTipoCliente());
 			
+			//SE AGREGA EL CLIENTE AL ARRAY
 			clientes.add(clienteNegocio);
 		}
 
@@ -69,27 +76,28 @@ public class CatalogoClientes {
 	
 	
 	//////////////////////////////////////////////////////////////////
-	// Obtiene los clientes que han comprado un producto específico //
+	// OBTIENE LOS CLIENTES QUE HAN COMPRADO UN PRODUCTO ESPECIFICO //
 	//////////////////////////////////////////////////////////////////
 	//LISTO
 	public Collection<negocio.Cliente> obtenerClientesProducto(negocio.Producto producto)
 	{
-		Collection<negocio.Cliente> arrClientesInteresados;
+		//ARRAY TEMPORAL DE CLIENTES DE NEGOCIO UTILIZADO PARA AGREGARLOS POSIBLES CLIENTES DESTINATARIOS
+		Collection<negocio.Cliente> arrClientesInteresados = new ArrayList<negocio.Cliente>();
 		
-		//Se crea una coleccion de clientes interesados en el producto actual
-		arrClientesInteresados = new ArrayList<negocio.Cliente>();
-		
-		for(negocio.Cliente C: this.clientes)
+		//SE RECORRE CADA CLIENTE DEL ARRAY
+		for(negocio.Cliente clienteNegocio: this.clientes)
 		{
-			//
-			C.obtenerVentas();
+			//SE RECUPERAN LAS VENTAS DEL CLIENTE ACTUAL
+			clienteNegocio.obtenerVentas();
 			
-			//si el cliente compro el producto lo agrego al arreglo
-			if(C.comproProducto(producto))
-				arrClientesInteresados.add(C);
+			//SE EVALUA SI EL CLIENTE COMPRO EL PRODUCTO
+			//EN CASO AFIRMATIVO SE AGREGA EL CLIENTE ACTUAL
+			//EN EL ARRAY
+			if(clienteNegocio.comproProducto(producto))
+				arrClientesInteresados.add(clienteNegocio);
 		}
 	
-		//devuelve el arreglo con los clientes
+		//DEVUELVE EL ARRAY CON LOS CLIENTES
 		return arrClientesInteresados;
 	}
 	//---------------------------------------------------------------

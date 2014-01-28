@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.mail.MessagingException;
-
-import utilidades.MailPromocional;
 
 
 public class Anuncio 

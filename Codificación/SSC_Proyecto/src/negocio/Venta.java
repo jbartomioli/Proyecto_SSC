@@ -81,51 +81,56 @@ public class Venta
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	//	//
+	// RECUPERA TODAS LAS LINEAS DE VENTA DE UNA VENTA ESPECIFICA  //
 	/////////////////////////////////////////////////////////////////
-	//FALTAN ATRIBUTOS
+	//LISTO
 	public void obtenerLineasDeVenta()
 	{
-		//
+		//SE CREA OBJETO VENTA DE DATOS PARA RECUPERAR 
+		//LA INFORMACION DE LA BD
 		datos.Venta ventaDato = new datos.Venta();
 		
-		//se setean las ventas del cliente de datos
+		//SE RECUPERAN DE LA BD TODAS LAS LINEAS DE VENTA DE LA VENTA
 		ventaDato.obtenerLineasDeVenta(this.idVenta);
 		
-		//se obtiene cada venta del cliente de datos
-		//para luego agregarlas al cliente de negocio
-		
-		//esta opcion o volver a crear el array y setear siempre los datos
-		//if(this.ventas != null)
-		//{
-			for(datos.LineaDeVenta LDVD: ventaDato.getLineas())
+		//SI EL OBJETO VENTA DE NEGOCIO YA TIENE SUS LINEAS
+		//CARGADAS SE LAS VUELVE A SETEAR CON EL FIN DE MANTENER
+		//ACTUALIZADO EL ARRAY AL MOMENTO DE LLAMAR ESTE METODO
+		if(this.lineasDeVenta != null)
+		{
+			//SE RECORRE CADA OBJETO RESULTANTE DE LA CONSULTA A LA BD
+			for(datos.LineaDeVenta lineaDato: ventaDato.getLineas())
 			{
-				//
+				//SE CREA UN OBJETO LINEA DE VENTA DE NEGOCIO PARA
+				//SETEARLO Y LUEGO AGREGARLO AL ARRAY
 				negocio.LineaDeVenta lineaNegocio = new negocio.LineaDeVenta();
 				
-				lineaNegocio.setCantidad(LDVD.getCantidad());
-				lineaNegocio.setSubTotal(LDVD.getSubTotal());
-				lineaNegocio.setIdVenta(LDVD.getIdVenta());
+				//SE SETEAN DATOS DE LA LINEA
+				lineaNegocio.setCantidad(lineaDato.getCantidad());
+				lineaNegocio.setSubTotal(lineaDato.getSubTotal());
+				lineaNegocio.setIdVenta(lineaDato.getIdVenta());
 
-				//se crea instancia de producto de negocio
-				negocio.Producto productoNegocio = new negocio.Producto();
+				{//SETEO DE DATOS DEL PRODUCTO DE LA LINEA
+					//SE CREA OBJETO PRODUCTO DE NEGOCIO PARA SETEAR EL PRODUCTO
+					negocio.Producto productoNegocio = new negocio.Producto();
+					
+					//SE CREA OBJETO PRODUCTO DE DATOS PARA OBTENER DATOS DEL MISMO
+					datos.Producto productoDato = lineaDato.getProductoLinea();
+					
+					//SE SETEAN DATOS DEL PRODUCTO DE NEGOCIO
+					productoNegocio.setCodProducto(productoDato.getCodProducto());
+					productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
+					productoNegocio.setIdProducto(productoDato.getIdProducto());
+					productoNegocio.setNombre(productoDato.getNombre());
+
+					//SE SETEA LA LINEA CON EL PRODUCTO
+					lineaNegocio.setProductoLinea(productoNegocio);
+				}
 				
-				//objeto producto de datos temporal
-				datos.Producto productoDato = LDVD.getProductoLinea();
-				
-				//se setea el producto de negocio
-				productoNegocio.setCodProducto(productoDato.getCodProducto());
-				productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
-				productoNegocio.setIdProducto(productoDato.getIdProducto());
-				productoNegocio.setNombre(productoDato.getNombre());
-				//productoNegocio.setPrecioPromocional(productoDato.get);
-				
-				//se setea el producto en la linea de venta
-				lineaNegocio.setProductoLinea(productoNegocio);
-				
+				//SE AGREGA LA LINEA DE VENTA EN EL ARRAY		
 				this.lineasDeVenta.add(lineaNegocio);
 			}
-		//}
+		}
 		
 	}	
 	//---------------------------------------------------------------
@@ -133,14 +138,17 @@ public class Venta
 	
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// VERIFICA SI EL PRODUCTO ESTA EN UNA LINEA ANTERIOR		   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public boolean comproProducto(negocio.Producto productoActual)
-	{		
-		for(negocio.LineaDeVenta LDV: this.lineasDeVenta)
+	{	
+		//SE RECORRE CADA LINEA DE LA VENTA ACTUAL
+		for(negocio.LineaDeVenta lineaNegocio: this.lineasDeVenta)
 		{
-			if(LDV.compararProductos(productoActual))
+			//COMPARA LOS PRODUCTOS Y SI SON IGUALES DEVUELVE 
+			//VERDADERO Y CORTA LA ITERACION
+			if(lineaNegocio.compararProductos(productoActual))
 				return true;
 		}
 		

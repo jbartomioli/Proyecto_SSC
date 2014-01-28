@@ -125,9 +125,9 @@ public class Cliente
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// Se utiliza para solicitar al cliente sus ventas			   //
+	// OBTIENE LA VENTAS HECHAS A UN CLIENTE DESDE LA BDs		   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA COMPLETAR
+	//LISTO
 	public void obtenerVentas(int idCliente)
 	{
 		Session session = null;	
@@ -149,7 +149,7 @@ public class Cliente
             	//SE CREA OBJETO VENTA DE DATOS PARA SETEARLO Y AGREGARLO AL ARRAY
 	        	datos.Venta ventaDatos = new datos.Venta();
 	           
-	        	//SE CREAOBJETO VENTA DE ENTIDADES PARA RECUPERAR DATOS 
+	        	//SE CREA OBJETO VENTA DE ENTIDADES PARA RECUPERAR DATOS 
 	        	//DE LA BD Y SETEAR EL OBJETO DE VENTA DATOS
 	        	entidades.Ventas entVenta = (entidades.Ventas) it.next();  
 	           

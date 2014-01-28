@@ -89,8 +89,9 @@ public class Venta
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 	OBTIENE LAS LINEAS DE VENTA DE UNA VENTA ESPECIFICA		   //
+	// OBTIENE LAS LINEAS DE VENTA DE UNA VENTA ESPECIFICA		   //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerLineasDeVenta(int idVenta)
 	{
 		Session session = null;	
@@ -106,37 +107,43 @@ public class Venta
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
             
+            //SE RECORRE CADA ELEMENTO RESULTANTE DE LA CONSULTA A LA BD
             for(Iterator<Query> it=list.iterator();it.hasNext();)
-            {  
-	        	datos.LineaDeVenta lineaDeVentaDatos = new datos.LineaDeVenta();
-	           
+            {  	           
+	        	//SE CREA OBJETO VENTA DE ENTIDADES
 	        	entidades.Ventas entVenta = (entidades.Ventas) it.next();
 	        	
-	            for(entidades.LineasDeVentas ELDV: entVenta.getLineasDeVentases())
+	        	//SE RECORRE CADA LINEA DE LA VENTA ACTUAL
+	            for(entidades.LineasDeVentas entLinea: entVenta.getLineasDeVentases())
 	            {
-	            	//datos de la linea
-	            	lineaDeVentaDatos.setCantidad(ELDV.getCantidad()); 
-	            	lineaDeVentaDatos.setSubTotal(ELDV.getSubtotal());
-	            	//lineaDeVentaDatos.setIdVenta(ELDV.getId().getIdProducto());
+	            	//SE CREA OBJETO LINEA DE VENTA DE DATOS PARA
+	            	//SETEARLE LOS DATOS Y AGREGARLO AL ARRAY
+		        	datos.LineaDeVenta lineaDatos = new datos.LineaDeVenta();
+		        	
+		        	//SE SETEAN LOS DATOS DE LA LINEA
+	            	lineaDatos.setCantidad(entLinea.getCantidad()); 
+	            	lineaDatos.setSubTotal(entLinea.getSubtotal());
+	            	lineaDatos.setIdVenta(entLinea.getId().getIdVenta());
 	        	
-		        	//se crea instancia de producto entidades
-	            	entidades.Productos entProducto = ELDV.getProductos();
-		        	
-		        	//se crea instancia de producto datos
-		        	datos.Producto productoDato = new datos.Producto();
-		        	
-		        	//se setean datos del producto
-		        	productoDato.setCodProducto(entProducto.getCodProducto());
-		        	productoDato.setCodProducto(entProducto.getCodProducto());
-		        	productoDato.setExistenciaStock(entProducto.getStock());
-		        	productoDato.setIdProducto(entProducto.getIdProducto());
-		        	productoDato.setNombre(entProducto.getNombre());
-		        	
-		        	//se setea el producto en la linea
-		        	lineaDeVentaDatos.setProductoLinea(productoDato);
-		        	
+	            	{//SETEO DEL PRODUCTO DE LA LINEA
+		            	//SE CREA OBJETO PRODUCTO DE ENTIDADES
+		            	entidades.Productos entProducto = entLinea.getProductos();
+			        	
+			        	//SE CREA OBJETO PRODUCTO DE DATOS PARA SETEO
+			        	datos.Producto productoDato = new datos.Producto();
+			        	
+			        	//SE SETEAN DATOS DEL PRODUCTO
+			        	productoDato.setCodProducto(entProducto.getCodProducto());
+			        	productoDato.setExistenciaStock(entProducto.getStock());
+			        	productoDato.setIdProducto(entProducto.getIdProducto());
+			        	productoDato.setNombre(entProducto.getNombre());
+			        	
+			        	//SE SETEA EL PRODUCTO EN LA LINEA
+			        	lineaDatos.setProductoLinea(productoDato);
+	            	}
+	            	
 		        	//SE AGREGA LA LINEA EN EL ARRAY
-		           	this.lineasDeVenta.add(lineaDeVentaDatos);
+		           	this.lineasDeVenta.add(lineaDatos);
 	            }
             }
 
