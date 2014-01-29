@@ -3,6 +3,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 
+
 public class Producto 
 {
 	//***************************************************************
@@ -170,16 +171,19 @@ public class Producto
 				//SE MODIFICA EL PRECIO DEL PRODUCTO
 				precioNegocio.setPrecioPromocional(nuevoPrecio);
 				
-				//SE CREA OBJETO PRODUCTO DE DATOS PARA ACTUALIZAR 
-				//EN LA BD
+				//SE CREA OBJETO PRODUCTO DE DATOS PARA ACTUALIZAR EN LA BD
 				datos.Producto productoDatos = new datos.Producto();
 				
-				//SE SETEAN LOS DATOS NECESARIOS DEL PRECIO DE DATOS
-				//productoDatos.setPrecioPromocional();
+				//SE CREA OBJETO PRECIO DE DATOS PARA SETEOS
+				datos.Precio precioDatos = new datos.Precio();
 				
-				//SE GUARDAN LOS CAMBIOS EN LA DB
-				//precioDatos.guardarPrecioPromocional();
+				//SE SETEAN LOS DATOS NECESARIOS
+				precioDatos.setIdPrecio(precioNegocio.getIdPrecio());
+				precioDatos.setPrecioPromocional(nuevoPrecio);
 				
+				//SE GUARDA EN BD
+				productoDatos.setPrecioPromocional(precioDatos);
+								
 				//SE CORTA LA ITERACION
 				break;
 			}

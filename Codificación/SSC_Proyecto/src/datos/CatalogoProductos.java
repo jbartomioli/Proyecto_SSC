@@ -176,8 +176,8 @@ public class CatalogoProductos
 		    //SE ACTUALIZA EL PRODUCTO EN BD
 			session.update(entProducto); 
 		    
-			//
-	        session.getTransaction().commit();
+			//SE CONFIRMA TRANSACCION
+			session.getTransaction().commit();
 		   
 		}
 		 

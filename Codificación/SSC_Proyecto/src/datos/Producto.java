@@ -3,6 +3,8 @@ package datos;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.hibernate.Session;
+
 public class Producto 
 {
 	//***************************************************************
@@ -112,10 +114,45 @@ public class Producto
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// 			   //
+	// DEFINE EL NUEVO PRECIO PROMOCIONAL DEL PRODUCTO			   //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
+	//VER SI LA OPERACION SOBRE LA BD CONVIENE O NO PONERLA EN DATOS.PRECIO
+	public void setPrecioPromocional(datos.Precio nuevoPrecio)
+	{
+		Session session = null;	
 		
+		try
+		{
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+			
+			//SE CREA OBJETO PRECIO DE ENTIDADES PARA SETEAR Y ACTUALIZAR
+			entidades.Precios entPrecio = new entidades.Precios();
+		    
+		    //SE BUSCA EL PRECIO A ACTUALIZAR
+			entPrecio = (entidades.Precios) 
+		    		session.get(entidades.Precios.class, nuevoPrecio.getIdPrecio()); 
+		    			
+			//SE SETEA EL NUEVO PRECIO
+			entPrecio.setPrecioPromocional(nuevoPrecio.getPrecioPromocional());
+					
+			//SE ACTUALIZA EL PRODUCTO EN BD
+			session.update(entPrecio); 
+			
+			//SE CONFIRMA TRANSACCION
+	        session.getTransaction().commit();
+					
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		 
+		finally
+		{
+		 	session.close();
+		}	
+	}
 	//---------------------------------------------------------------
-
-
 }
