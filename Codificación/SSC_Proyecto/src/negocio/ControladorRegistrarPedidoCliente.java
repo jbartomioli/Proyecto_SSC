@@ -179,7 +179,7 @@ public class ControladorRegistrarPedidoCliente
 			
 			if(stockActual>=cantidad)
 			{
-				PCTemporal.setProducto(productoTemporal, cantidad);
+				PCTemporal.agregarProducto(productoTemporal, cantidad);
 				
 				return null; //Devolver datos
 			}
@@ -207,7 +207,7 @@ public class ControladorRegistrarPedidoCliente
 			
 			if(producto.getExistenciaStock()>=cantidad)
 			{
-				PCTemporal.setProducto(producto, cantidad);
+				PCTemporal.agregarProducto(producto, cantidad);
 				
 				return null; //Devolver datos
 			}

@@ -10,11 +10,11 @@ public class HibernateUtil {
     @SuppressWarnings("deprecation")
 	public static SessionFactory buildSessionFactory() {
         try {
-            // Create the SessionFactory from hibernate.cfg.xml
+            //CREA LA SESION A PARTIR DEL ARCHIVO hibernate.cfg.xml
             return new Configuration().configure("/main/resources/hibernate.cfg.xml").buildSessionFactory();
         }
         catch (Throwable ex) {
-            // Make sure you log the exception, as it might be swallowed
+            //
             System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }

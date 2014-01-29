@@ -104,40 +104,66 @@ public class Pedido
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// Se agrega el producto al pedido							   //
+	// SE AGREGA EL PRODUCTO AL PEDIDO ACTUAL					   //
 	/////////////////////////////////////////////////////////////////
-	public void setProducto(negocio.Producto P, int cantidad)
+	//VER TEMA PRECIO PROMOCIONAL
+	public void agregarProducto(negocio.Producto productoAgregar, int cantidad)
 	{
-		negocio.LineaDePedido LP = new negocio.LineaDePedido();
+		//SE CREA OBJETO LINEA DE PEDIDO DE NEGOCIO PARA
+		//SETEARLO Y AGREGARLO AL ARRAY
+		negocio.LineaDePedido lineaNegocio = new negocio.LineaDePedido();
 		
-		LP.setProducto(P);
-		LP.setCantidadPedida(cantidad);
+		//SE SETEAN DATOS
+		lineaNegocio.setProducto(productoAgregar);
+		lineaNegocio.setCantidadPedida(cantidad);
 		
-		this.lineas.add(LP);
+		float precioVigente = 0;
+		float subTotal = 0;
+		
+		precioVigente = productoAgregar.getPrecioActual();
+		subTotal = precioVigente*cantidad;
+		
+		lineaNegocio.setSubTotal(subTotal);
+		
+		//SE AGREGA LA LINEA AL ARRAY
+		this.lineas.add(lineaNegocio);
 	}
 	//---------------------------------------------------------------
 
 	
 	/////////////////////////////////////////////////////////////////
-	// Busca una linea en el pedido mediante comparacion de lineas //
+	// BUSCA UNA LINEA DE PEDIDO ESPECIFICA						   //
 	/////////////////////////////////////////////////////////////////
+	//VER
 	public negocio.LineaDePedido buscarLinea(negocio.LineaDePedido lineaActual)
 	{
-		for(negocio.LineaDePedido LP : this.lineas)
+		//SE RECORRE CADA ELEMENTO DEL ARRAY
+		for(negocio.LineaDePedido lineaNegocio : this.lineas)
 		{
-			if (LP == lineaActual)
-				return LP;
+			//SI LAS LINEAS SON IGUALES SE DEVUELVE LA LINEA ACTUAL
+			if (lineaNegocio == lineaActual)
+				return lineaNegocio;
 		}
+		//FINALMENTE SI NO ENCUENTRA LA LINEA DEVUELVE NULO
 		return null;
 	}
 	//---------------------------------------------------------------
 	
 	
 	/////////////////////////////////////////////////////////////////
-	//Busca una linea en el pedido con un producto especifico	   //
+	// BUSCA UNA LINEA DE PEDIDO POR PRODUCTO ESPECIFICO		   //
 	/////////////////////////////////////////////////////////////////
+	//VER
 	public negocio.LineaDePedido buscarLinea(int idProductoViejo)
 	{
+		//SE RECORRE CADA ELEMENTO DEL ARRAY
+		for(negocio.LineaDePedido lineaNegocio : this.lineas)
+		{
+			//SI LAS LINEAS TIENEN EL MISMO PRODUCTO DEVUELVE LA LINEA ACTUAL
+			if (lineaNegocio.getProducto().getIdProducto() == idProductoViejo)
+				return lineaNegocio;
+		}
+		//FINALMENTE SI NO ENCUENTRA LA LINEA DEVUELVE NULO
 		return null;
 	}
 	//---------------------------------------------------------------

@@ -243,69 +243,6 @@ public class Anuncio
 		}	
 	}
 	//---------------------------------------------------------------
-	
-	
-	
-	
-	/*
-	 * ejemplo guardar
-	 *   Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        
-        //Add new Employee object
-        EmployeeEntity emp = new EmployeeEntity();
-        emp.setEmail("lokesh@mail.com");
-        emp.setFirstName("lokesh");
-        emp.setLastName("gupta");
-         
-        //Save the employee in database
-        session.save(emp);
- 
-        //Commit the transaction
-        session.getTransaction().commit();
-        HibernateUtil.shutdown();
-        
-        
-        
-       update 
-        Session session = factory.openSession();
-      Transaction tx = null;
-      try{
-         tx = session.beginTransaction();
-         Employee employee = 
-                    (Employee)session.get(Employee.class, EmployeeID); 
-         employee.setSalary( salary );
-		 session.update(employee); 
-         tx.commit();
-      }catch (HibernateException e) {
-         if (tx!=null) tx.rollback();
-         e.printStackTrace(); 
-      }finally {
-         session.close(); 
-      }
-      
-      
-      
-      delete
-      {
-      Session session = factory.openSession();
-      Transaction tx = null;
-      try{
-         tx = session.beginTransaction();
-         Employee employee = 
-                   (Employee)session.get(Employee.class, EmployeeID); 
-         session.delete(employee); 
-         tx.commit();
-      }catch (HibernateException e) {
-         if (tx!=null) tx.rollback();
-         e.printStackTrace(); 
-      }finally {
-         session.close(); 
-      }
-        
-        
-        
-	  */
 }
 
 
