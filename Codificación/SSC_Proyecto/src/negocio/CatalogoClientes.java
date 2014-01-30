@@ -104,55 +104,62 @@ public class CatalogoClientes {
 	
 	
 	/////////////////////////////////////////////////////////////////
-	// DSD 2.1.1 - 	Busca un cliente mediante su Id				   //
+	// DSD 2.1.1 - 	BUSCA UN CLIENTE POR SU ID					   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public negocio.Cliente buscarCliente(int idCliente)
 	{	
-		for(negocio.Cliente c : this.clientes)
+		//SE RECORRE CADA CLIENTE DEL ARRAY
+		for(negocio.Cliente clienteNegocio : this.clientes)
 		{
-			if (c.getIdCliente() == idCliente)
-				return c;
+			//SI LOS ID SON IGUALES DEVUELVE EL CLIENTE
+			if (clienteNegocio.getIdCliente() == idCliente)
+				return clienteNegocio;
 		}
+		//SI NO LO ENCUENTRA DEVUELVE NULO
 		return null;
 	}
 	//---------------------------------------------------------------
 	
 	
 	/////////////////////////////////////////////////////////////////
-	// Busca un cliente mediante su nombre y apellido			   //
+	// BUSCA UN CLIENTE MEDIANTE SU NOMBRE Y APELLIDO			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public negocio.Cliente buscarCliente(String nombre, String apellido)
 	{	
-		for(negocio.Cliente c : this.clientes)
+		//SE RECORRE CADA CLIENTE DEL ARRAY
+		for(negocio.Cliente clienteNegocio : this.clientes)
 		{
-			if ((c.getNombre().equals(nombre))
-				&& (c.getApellido().equals(apellido)))
-				return c;
+			//SI EL NOMBRE Y EL APELLIDO COINCIDEN DEVUELVE EL CLIENTE
+			if ((clienteNegocio.getNombre().equals(nombre))
+					&& (clienteNegocio.getApellido().equals(apellido)))
+				return clienteNegocio;
 		}
+		//EN CASO DE NO ENCONTRARLO DEVUELVE NULO
 		return null;
 	}
 	//---------------------------------------------------------------	
 	
 	
 	/////////////////////////////////////////////////////////////////
-	//Devuelve un subconjunto de clientes						   // 
+	// DEVUELVE UN SUBCONJUNTO DE CLIENTES						   // 
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public Collection<negocio.Cliente> buscarClientes(boolean tipoCliente)
 	{
+		//SE CREA ARRAY DE CLIENTES DE NEGOCIO TEMPORA PARA AGREGAR CLIENTES
 		Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
 
-		for(negocio.Cliente c : this.getClientes())
+		//SE RECORRE CADA CLIENTE DEL ARRAY
+		for(negocio.Cliente clienteNegocio : this.getClientes())
 		{
-			if(c.getTipoCliente() == tipoCliente)
-				arrClientesTemp.add(c);
+			//SE AGREGAN TODOS LOS CLIENTES QUE SON DE UN MISMO TIPO
+			if(clienteNegocio.getTipoCliente() == tipoCliente)
+				arrClientesTemp.add(clienteNegocio);
 		}
+		//DEVUELVE EL ARRAY TEMPORAL
 		return arrClientesTemp;	
 	}
 	//---------------------------------------------------------------
-
-	
-	
 }

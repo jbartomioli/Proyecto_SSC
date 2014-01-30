@@ -245,16 +245,16 @@ public class Anuncio
 		Collection<negocio.Cliente> arrClientesSeleccionados = new ArrayList<negocio.Cliente>();
 		
 		//SE RECORRE CADA ID DE CLIENTE DEL ARREGLO RECIBIDO COMO PARAMETRO
-		for(String id : idCliente)
+		for(String idActual : idCliente)
 		{
 			//SE RECORRE CADA CLIENTE DEL ARRAY DE CLIENTES DEL ANUNCIO
-			for(negocio.Cliente c : this.clientes)
+			for(negocio.Cliente clienteNegocio : this.clientes)
 			{
 				//SE COMPARAN LOS ID
-				if(c.getIdCliente()==Integer.parseInt(id))
+				if(clienteNegocio.getIdCliente()==Integer.parseInt(idActual))
 				{
 					//SI SON IGUALES SE AGREGA EL CLIENTE ACTUAL AL ARRAY TEMPORAL
-					arrClientesSeleccionados.add(c);
+					arrClientesSeleccionados.add(clienteNegocio);
 					continue;				
 				}
 			}

@@ -126,15 +126,27 @@ public class CatalogoAnuncios
 	
 	
 	/////////////////////////////////////////////////////////////////
-	// 															   //
+	// GUARDA EN EL ANUNCIO EL NUEVO CONJUNTO DE CLIENTES 		   //
 	/////////////////////////////////////////////////////////////////
-	//VER
+	//VER - FALTA
 	public void guardarCambioClientesAnuncio(negocio.Anuncio anuncioActual)
 	{
-		for(negocio.Anuncio a : this.anuncios)
+		//SE RECORRE CADA ANUNCIO DEL ARRAY
+		for(negocio.Anuncio anuncioNegocio : this.anuncios)
 		{
-			if(anuncioActual.getIdAnuncio()==a.getIdAnuncio())
-				a=anuncioActual;
+			//SE COMPARAN LOS ANUNCIO POR SU ID
+			//SI SON IGUALES SE MODIFICA EL ANUNCIO EN EL ARRAY Y SE GUARDAN CAMBIOS EN BD
+			if(anuncioActual.getIdAnuncio() == anuncioNegocio.getIdAnuncio())
+			{
+				//SE MODIFICAN LOS CLIENTES
+				anuncioNegocio.setClientes(anuncioActual.getClientes());
+				
+				//GUARDAR EN BD
+				
+				
+				//SE CORTA ITERACION
+				break;
+			}
 		}
 	}
 	//---------------------------------------------------------------
