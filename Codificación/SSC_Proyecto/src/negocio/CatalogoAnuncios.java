@@ -4,6 +4,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 
+
 public class CatalogoAnuncios 
 {
 	//***************************************************************
@@ -94,8 +95,26 @@ public class CatalogoAnuncios
 		anuncioTempDatos.setMembrete(anuncioActual.getMembrete());
 		anuncioTempDatos.setTextoMensaje(anuncioActual.getTextoMensaje());
 		
-		//SETEO DE CLIENTES
-		//SETEO DE PRODUCTOS
+		
+		{//SETEO DE CLIENTES
+			for(negocio.Cliente clienteNegocio : anuncioActual.getClientes())
+			{
+				datos.Cliente clienteDatos = new datos.Cliente();
+				
+				clienteDatos.setIdCliente(clienteNegocio.getIdCliente());
+			}
+		}
+		
+		
+		{//SETEO DE PRODUCTOS
+			for(negocio.Producto productoNegocio : anuncioActual.getProductos())
+			{
+				datos.Producto productoDatos = new datos.Producto();
+				
+				productoDatos.setIdProducto(productoNegocio.getIdProducto());;
+			}
+		}
+		
 		
 		//SE CREA CATALOGO ANUNCIO DE DATOS PARA GUARDAR EL ANUNCIO
 		datos.CatalogoAnuncios ctgAnunciosDatos = new datos.CatalogoAnuncios();

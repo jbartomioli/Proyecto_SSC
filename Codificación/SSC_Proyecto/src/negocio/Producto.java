@@ -106,11 +106,11 @@ public class Producto
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// OBTIENE EL PRECIO VIGENTE DEL PRODUCTO					   //
+	// OBTIENE EL PRECIO ACTUAL DEL PRODUCTO					   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public float getPrecioActual()
-	{
+	{		
 		//SE RECORRE EL HISTORICO DE PRECIOS
 		for(negocio.Precio precioNegocio: this.getPrecios())
 		{
@@ -120,10 +120,9 @@ public class Producto
 				return precioNegocio.getPrecio();
 			//SINO CONTINUA ITERANDO
 			else 
-				//return 0;
 				continue;
 		}
-		//FINALMENTE SI NO TIENE PRECIO DEVUELVE 0
+		//FINALMENTE SI NO TIENE PRECIO DEVUELVE NULO
 		return 0;
 	}
 	//---------------------------------------------------------------
@@ -145,7 +144,6 @@ public class Producto
 				return precioNegocio.getPrecioPromocional();
 			//SINO CONTINUA ITERANDO
 			else 
-				//return 0;
 				continue;
 		}
 		//FINALMENTE SI NO TIENE PRECIO DEVUELVE 0
@@ -156,9 +154,33 @@ public class Producto
 	
 	
 	/////////////////////////////////////////////////////////////////
+	// OBTIENE EL PRECIO VIGENTE DEL PRODUCTO				       //
+	/////////////////////////////////////////////////////////////////
+	//LISTO
+	public negocio.Precio getPrecioVigente()
+	{
+		//SE RECORRE EL HISTORICO DE PRECIOS
+		for(negocio.Precio precioNegocio: this.getPrecios())
+		{
+			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
+			//ES EL PRECIO VIGENTE
+			if (precioNegocio.getFechaHasta() == null)
+				return precioNegocio;
+			//SINO CONTINUA ITERANDO
+			else 
+				continue;
+		}
+		//FINALMENTE SI NO TIENE PRECIO DEVUELVE NULO
+		return null;
+	}
+	//---------------------------------------------------------------
+	
+	
+	
+	/////////////////////////////////////////////////////////////////
 	// DEFINE EL NUEVO PRECIO PROMOCIONAL DEL PRODUCTO			   //
 	/////////////////////////////////////////////////////////////////
-	//VER - FALTARIA ACTUALIZAR EN BD
+	//LISTO
 	public void setPrecioPromocional(float nuevoPrecio)
 	{
 		//SE RECORRE EL HISTORICO DE PRECIOS

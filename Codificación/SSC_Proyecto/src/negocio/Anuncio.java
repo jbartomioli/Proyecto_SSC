@@ -189,51 +189,48 @@ public class Anuncio
 			
 	
 	/////////////////////////////////////////////////////////////////
-	// 								 							   //
+	// SELECCIONA EL PRODUCTO AL CUAL SE LE MODIFICARA EL PRECIO   //
 	/////////////////////////////////////////////////////////////////	
-	//VER
+	//LISTO
 	public negocio.Producto modificarPrecioProducto(int idProducto)
 	{
-		negocio.Producto productoModif = new negocio.Producto();
-		
-		for(negocio.Producto p : this.productos)
+		//SE RECORRE CADA PRODUCTO DEL ANUNCIO
+		for(negocio.Producto productoNegocio : this.productos)
 		{
-			if(idProducto==p.getIdProducto())
+			//SE COMPARAN LOS ID DE PRODUCTOS
+			//SI SON IGUALES SE MODIFICA EL PRECIO DEL PRODUCTO
+			if(idProducto == productoNegocio.getIdProducto())
 			{
-				productoModif.setCodProducto(p.getCodProducto());
-				productoModif.setIdProducto(p.getIdProducto());
-				productoModif.setNombre(p.getNombre());
-				productoModif.setSubCategoria(p.getSubCategoria());
-				productoModif.setExistenciaStock(p.getExistenciaStock());
-				
-				return productoModif;
+				//DEVUELVE EL PRODUCTO SETEADO
+				return productoNegocio;
 			}	
 		}
-		
+		//EN CASO DE NO ENCONTRAR EL PRODUCTO DEVUELVE NULO
 		return null;
 	}
 	//---------------------------------------------------------------
 	
 	
 	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.5.2				 							   //
+	// Metodo DSD 1.5.2	- ACTUALIZA MODIFICACION EN EL PRODUCTO    //
 	/////////////////////////////////////////////////////////////////
 	//VER
 	public void actualizarProducto(negocio.Producto productoModificar)
 	{
-		for(negocio.Producto p : this.productos)
+		//SE RECORRE CADA ELEMENTO DEL ARRAY
+		for(negocio.Producto productoNegocio : this.productos)
 		{
-			if(p.getIdProducto()==productoModificar.getIdProducto())
+			//SE COMPARA POR EL ID DE PRODUCTO
+			//SI SON IGUALES SE MODIFICA EL PRODUCTO ACTUAL
+			if(productoNegocio.getIdProducto()==productoModificar.getIdProducto())
 			{
-				p=productoModificar;
+				//SE MODIFICA EL PRODUCTO
+				productoNegocio = productoModificar;
 				
-				//
-				
+				//SE CORTA ITERACION
 				break;
 			}
 		}
-		//Busca el producto dentro del array de productos que coincida con el 
-		//producto pasado como parametro e inserta el nuevo precio
 	}
 	//---------------------------------------------------------------
 
@@ -282,7 +279,7 @@ public class Anuncio
 	{
 		try
 		{
-		utilidades.MailPromocional nuevoMail = new utilidades.MailPromocional();
+		//utilidades.MailPromocional nuevoMail = new utilidades.MailPromocional();
 		
 		//nuevoMail.enviarMail(this.getTextoMensaje(), mailsDestinatarios, asuntoMail);
 		}

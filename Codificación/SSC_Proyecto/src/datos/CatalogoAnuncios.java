@@ -102,6 +102,7 @@ public class CatalogoAnuncios
 	/////////////////////////////////////////////////////////////////
 	// GUARDA EL NUEVO ANUNCIO EN LA BD							   //
 	/////////////////////////////////////////////////////////////////
+	//VER
 	public void guardarAnuncio(datos.Anuncio anuncioActual)
 	{
 		Session session = null;	
@@ -121,12 +122,29 @@ public class CatalogoAnuncios
 		    entAnuncio.setMembrete(anuncioActual.getMembrete());
 			entAnuncio.setTextoMensaje(anuncioActual.getTextoMensaje());
 			
-			//SETEO DE CLIENTES
-			//SETEO DE PRODUCTOS
+			{//SETEO DE CLIENTES
+				for(datos.Cliente clienteDatos : anuncioActual.getClientes())
+				{
+					entidades.Clientes entCliente = new entidades.Clientes();
+					
+					entCliente.setIdCliente(clienteDatos.getIdCliente());
+				}
+			}
+			
+			
+			{//SETEO DE PRODUCTOS
+				for(datos.Producto productoDatos : anuncioActual.getProductos())
+				{
+					entidades.Productos entProducto = new entidades.Productos();
+					
+					entProducto.setIdProducto(productoDatos.getIdProducto());
+				}
+			}
 	         
 			//GUARDA EL ANUNCIO EN BD - INSERT
 	        session.save(entAnuncio);
 	        
+	        //CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		   
 		}

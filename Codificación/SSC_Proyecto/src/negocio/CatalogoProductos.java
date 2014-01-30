@@ -5,6 +5,7 @@ import java.util.Collection;
 
 
 
+
 public class CatalogoProductos 
 {
 	//***************************************************************
@@ -125,16 +126,20 @@ public class CatalogoProductos
 	
 	
 	/////////////////////////////////////////////////////////////////
-	//Busca producto por id										   //
+	// BUSCA UN PRODUCTO POR SU ID								   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public negocio.Producto buscarProducto(int idProducto)
 	{
-		for(negocio.Producto P: this.getProductos())
+		//SE RECORRE CADA PRODUCTO DEL ARRAY
+		for(negocio.Producto productoNegocio : this.getProductos())
 		{
-			if(P.getIdProducto() == idProducto)
-				return P;
+			//SE COMPARA POR EL ID INGRESADO
+			//SI LOS ID SON IGUALES SE DEVUELVE EL PRODUCTO
+			if(productoNegocio.getIdProducto() == idProducto)
+				return productoNegocio;
 		}
+		//EN CASO DE NO ENCONTRAR EL PRODUCTO DEVUELVE NULO
 		return null;
 	}
 	//---------------------------------------------------------------
@@ -196,16 +201,42 @@ public class CatalogoProductos
 	//---------------------------------------------------------------
 
 
+	
 	/////////////////////////////////////////////////////////////////
-	//Actualizar precio promocional de un producto				   //
+	// ACTUALIZA EL PRECIO PROMOCIONAL MODIFICADO EN EL ARRAY PROD.//
 	/////////////////////////////////////////////////////////////////
-	//VA EN EL CATALOGO???
+	//VER
 	public void actualizarPrecioPromProducto(negocio.Producto productoModificar,float nuevoPrecio)
 	{
-		for(negocio.Producto P : this.productos)
+		//SE RECORRE CADA PRODUCTO DEL ARRAY
+		for(negocio.Producto productoNegocio : this.productos)
 		{
-			if(P.getIdProducto()==productoModificar.getIdProducto())
-				P.setPrecioPromocional(nuevoPrecio);
+			//SE COMPARAN LOS PRODUCTOS POR SU ID
+			//SI SON IGUALES DE ACTUALIZA EL PRECIO DEL PRODUCTO EN EL ARRAY
+			if(productoNegocio.getIdProducto()==productoModificar.getIdProducto())
+			{
+				//SE SETEA EL PRECIO EN EL PRODUCTO ACTUAL
+				productoNegocio.setPrecioPromocional(nuevoPrecio);
+				
+				//
+				datos.CatalogoProductos ctgDatos = new datos.CatalogoProductos();
+				
+				//
+				datos.Producto productoModifDatos = new datos.Producto();
+				
+				//
+				productoModifDatos.setIdProducto(productoNegocio.getIdProducto());
+				
+				//
+				datos.Precio precioDatos = new datos.Precio();
+				precioDatos.setPrecioPromocional(productoNegocio.getPrecioVigente().getPrecioPromocional());
+				precioDatos.setIdPrecio(productoNegocio.getPrecioVigente().getIdPrecio());
+				
+				productoModifDatos.setPrecioPromocional(precioDatos);
+				
+				//
+				ctgDatos.actualizarPrecioPromocionalProducto(productoModifDatos);
+			}
 		}
 	}
 	//---------------------------------------------------------------

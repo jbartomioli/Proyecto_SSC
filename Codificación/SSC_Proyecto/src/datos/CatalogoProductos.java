@@ -193,4 +193,10 @@ public class CatalogoProductos
 	}
 	//---------------------------------------------------------------
 
+
+	public void actualizarPrecioPromocionalProducto(datos.Producto productoModificar) 
+	{
+				
+	}
+	
 }
