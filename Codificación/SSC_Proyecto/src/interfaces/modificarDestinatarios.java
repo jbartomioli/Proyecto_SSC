@@ -1,13 +1,17 @@
 package interfaces;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.SystemColor;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -21,6 +25,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.TableColumn;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class modificarDestinatarios extends JFrame {
 
@@ -31,6 +37,7 @@ public class modificarDestinatarios extends JFrame {
 	private Box boxDestinatariosBuscados;
 	private JScrollPane scrollDestinatariosBuscados;
 	private JTable tblDestinatariosBuscados;
+	private JLabel lblImagen;
 
 	/**
 	 * Launch the application.
@@ -60,6 +67,14 @@ public class modificarDestinatarios extends JFrame {
 		setContentPane(contentPane);
 		
 		txtBuscarDestinatarios = new JTextField();
+		txtBuscarDestinatarios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				txtBuscarDestinatarios.setText("");
+				txtBuscarDestinatarios.setForeground(SystemColor.black);
+			}
+		});
 		txtBuscarDestinatarios.setForeground(Color.GRAY);
 		txtBuscarDestinatarios.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtBuscarDestinatarios.setText("ingrese apellido o nombre...");
@@ -133,9 +148,12 @@ public class modificarDestinatarios extends JFrame {
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(1250, 645, 89, 23);
 		contentPane.add(btnAceptar);
+		
+		lblImagen = new JLabel("");
+		lblImagen.setIcon(new ImageIcon("G:\\Mis documentos\\Facultad\\5to a\u00F1o\\Proyecto\\icono_buscar.png"));
+		lblImagen.setBounds(425, 103, 29, 20);
+		contentPane.add(lblImagen);
 		agregarColumna.setCellRenderer(new myrenderer1(true));
-		
-		
 		
 	}
 }

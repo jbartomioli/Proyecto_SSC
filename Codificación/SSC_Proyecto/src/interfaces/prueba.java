@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +21,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
 
 public class prueba extends JFrame 
 {
@@ -59,6 +62,4 @@ public class prueba extends JFrame
 		contentPane.setLayout(null);
 
 	}
-
-
 }
