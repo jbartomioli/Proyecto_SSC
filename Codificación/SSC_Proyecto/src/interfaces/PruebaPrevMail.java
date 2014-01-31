@@ -7,9 +7,14 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.JEditorPane;
 
-public class PruebaPrevMail extends JFrame {
+import com.hexidec.ekit.Ekit;
+import com.hexidec.ekit.EkitCore;
+
+
+public class PruebaPrevMail extends Ekit {
 
 	private JPanel contentPane;
 
@@ -35,19 +40,7 @@ public class PruebaPrevMail extends JFrame {
 	 */
 	public PruebaPrevMail() throws IOException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		
-		JEditorPane.registerEditorKitForContentType( "text/html", "com.inet.html.InetHtmlEditorKit" );
-		
-		
-		JEditorPane editorPane = new JEditorPane();
-		editorPane.setPage("http://www.ibcrosario.com.ar");
-		
-		contentPane.add(editorPane, BorderLayout.CENTER);
+		setBounds(100, 100, 450, 300);		
 	}
 
 }

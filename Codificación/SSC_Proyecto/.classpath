@@ -34,6 +34,6 @@
 	<classpathentry kind="var" path="LIB_EXT/slf4j-1.7.5/slf4j-simple-1.7.5.jar"/>
 	<classpathentry kind="var" path="LIB_EXT/javamail-1.4.7/mail.jar"/>
 	<classpathentry kind="var" path="LIB_EXT/forms-1.3.0/forms-1.3.0.jar"/>
-	<classpathentry kind="var" path="LIB_EXT/jwebengine_1.07/JWebEngine.jar"/>
+	<classpathentry kind="var" path="LIB_EXT/ekit-1.4/ekit-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
