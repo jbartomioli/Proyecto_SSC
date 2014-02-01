@@ -16,12 +16,8 @@ public class ParametrosNegocio
 	//***************************************************************	
 	public ParametrosNegocio() 
 	{
-		datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
-		
-		parametrosDatos.obtenerParametrosNegocio();
-		
-		this.membrete = parametrosDatos.getMembrete();
-		this.ultIdPedido = parametrosDatos.getUltIdPedido();
+		this.membrete = "";
+		this.ultIdPedido = 0;
 	}
 	//---------------------------------------------------------------
 
@@ -38,19 +34,9 @@ public class ParametrosNegocio
 	{
 		this.membrete = membrete;
 	}	
-	
-	/////////////////////////////////////////////////////////////////
-	//Devuelve el numero del ultimo pedido y guarda el proximo     //
-	/////////////////////////////////////////////////////////////////
+
 	public int getUltIdPedido() 
 	{
-		this.ultIdPedido++;
-		
-		datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
-		
-		parametrosDatos.setUltIdPedido(this.ultIdPedido);
-		parametrosDatos.guardarDatos();
-		
 		return ultIdPedido;
 	}
 	
@@ -68,14 +54,18 @@ public class ParametrosNegocio
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE LOS DATOS DE PARAMETROS NEGOCIO                     //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerParametrosNegocio()
 	{
+		//SE CREA OBJETO PARAMETROSNEGOCIO DE DATOS PARA RECUPERAR DATOS
     	datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
     	
-    	negocio.ParametrosNegocio parametrosNegocio = new negocio.ParametrosNegocio();
-    	
-    	parametrosNegocio.setMembrete(parametrosDatos.getMembrete());
-    	parametrosNegocio.setUltIdPedido(parametrosDatos.getUltIdPedido());
+    	//SE OBTIENEN LOS DATOS DE LA BD
+    	parametrosDatos.obtenerParametrosNegocio();
+    	    	
+    	//SE SETEAN LOS ATRIBUTOS
+    	setMembrete(parametrosDatos.getMembrete());
+    	setUltIdPedido(parametrosDatos.getUltIdPedido());
 	}
 	//----------------------------------------------------------------
 }

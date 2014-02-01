@@ -24,7 +24,6 @@ public class ParametrosNegocio
 	{
 		this.membrete = "";
 		this.ultIdPedido = 0;
-		this.obtenerParametrosNegocio();
 	}
 	//---------------------------------------------------------------
 
@@ -62,6 +61,7 @@ public class ParametrosNegocio
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE LOS DATOS DE PARAMETROS NEGOCIO                     //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerParametrosNegocio()
 	{
 		
@@ -76,16 +76,17 @@ public class ParametrosNegocio
 	        @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
 	        
+	        //SE RECORRE CADA ELEMENTO RESULTANTE DE LA CONSULTA
 	        for(Iterator<Query> it=list.iterator();it.hasNext();)
-	        {  
-				datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();
-	           
+	        {             
+	        	//SE CREA OBJETO PARAMETROSNEGOCIO DE ENTIDADES
 				entidades.ParametrosNegocio entParametro = (entidades.ParametrosNegocio) it.next();  
 	           
-	        	parametrosDatos.setMembrete(entParametro.getId().getMembrete());
-	        	parametrosDatos.setUltIdPedido(entParametro.getId().getUltIdPedido());
+				//SE SETEAN LOS DATOS
+	        	setMembrete(entParametro.getMembrete());
+	        	setUltIdPedido(entParametro.getUltIdPedido());       	
 	        }
-	
+	        //SE CONFIRMA TRANSACCION
 	        session.getTransaction().commit();
 		}
 		 
@@ -130,5 +131,5 @@ public class ParametrosNegocio
 		 	session.close();
 		}	
 	}
-//---------------------------------------------------------------
+	//---------------------------------------------------------------
 }

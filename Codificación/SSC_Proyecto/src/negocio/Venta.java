@@ -151,7 +151,7 @@ public class Venta
 			if(lineaNegocio.compararProductos(productoActual))
 				return true;
 		}
-		
+		//EN CASO CONTRARIO DEVUELVE FALSO
 		return false;
 	}
 	//---------------------------------------------------------------

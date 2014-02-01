@@ -2,7 +2,6 @@ package negocio;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 public class CatalogoCategorias 
 {
@@ -44,31 +43,28 @@ public class CatalogoCategorias
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// Seteo del array de categorias a partir de la capa de datos  //
+	// SE OBTIENEN TODAS LA CATEGORIAS DE LA BD					   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public void obtenerCategorias()
 	{
-		//se crea un objeto catalogocategorias de datos
+		//SE CREA OBJETO CATALOGO CATEGORIAS DE DATOS PARA RECUPERAR DATOS
 		datos.CatalogoCategorias ctgDatos = new datos.CatalogoCategorias();
 		
-		ctgDatos.obtenerCategorias();
+		//SE OBTIENEN TODAS LAS CATEGORIAS DE LA BD
+		ctgDatos.obtenerCategorias();			
 		
-		//
-		categorias = new ArrayList<negocio.Categoria>();
-			
-		
-		Iterator <datos.Categoria> it = ctgDatos.getCategorias().iterator();
-		
-		while(it.hasNext())
+		//SE RECORRE CADA CATEGORIA DEL ARRAY
+		for(datos.Categoria categoriaDatos : ctgDatos.getCategorias())
 		{
-			datos.Categoria datosCategoria = it.next();
-			
+			//SE CREA OBJETO CATEGORIA DE NEGOCIO PARA DESPUES AGREGARLO AL ARRAY
 			negocio.Categoria categoriaNegocio = new negocio.Categoria();			
 			
-			categoriaNegocio.setIdCategoria(datosCategoria.getIdCategoria());
-			categoriaNegocio.setDescripcion(datosCategoria.getDescripcion());
+			//SE SETEA LA CATEGORIA DE NEGOCIO
+			categoriaNegocio.setIdCategoria(categoriaDatos.getIdCategoria());
+			categoriaNegocio.setDescripcion(categoriaDatos.getDescripcion());
 			
+			//SE AGREGA AL ARRAY
 			categorias.add(categoriaNegocio);
 		}
 	}

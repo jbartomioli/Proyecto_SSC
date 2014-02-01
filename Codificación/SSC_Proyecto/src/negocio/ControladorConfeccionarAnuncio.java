@@ -208,7 +208,6 @@ public class ControladorConfeccionarAnuncio
 
 			salidaDatos.add(salidaSub);	
 		}
-		//}
 		
 		//devuelve la instancia con los atributos seteados
 		return salidaDatos;
@@ -345,7 +344,8 @@ public class ControladorConfeccionarAnuncio
 		
 		TipoMensaje datosMensaje=new TipoMensaje();
 		
-		negocio.ParametrosNegocio parametroNegocio=new negocio.ParametrosNegocio();
+		negocio.ParametrosNegocio parametroNegocio = new negocio.ParametrosNegocio();
+		parametroNegocio.obtenerParametrosNegocio();
 		
 		
 		///SALIDA

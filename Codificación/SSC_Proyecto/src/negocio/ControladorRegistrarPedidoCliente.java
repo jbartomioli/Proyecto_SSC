@@ -225,17 +225,18 @@ public class ControladorRegistrarPedidoCliente
 	//FALTA	DEVOLUCION DE DATOS
 	public ArrayList<String> pedidoCompleto()
 	{
-		int idProducto = 0;
+		int idPedidoActual = 0;
 		
 		float total = 0;
 		
-		negocio.ParametrosNegocio paramUltPedido = new ParametrosNegocio();
+		negocio.ParametrosNegocio parametrosNegocio = new negocio.ParametrosNegocio();
+		parametrosNegocio.obtenerParametrosNegocio();
 		
 		Collection<negocio.LineaDePedido> arrLineasPedido = new ArrayList<negocio.LineaDePedido>();
 		
-		idProducto = paramUltPedido.getUltIdPedido();
+		idPedidoActual = (parametrosNegocio.getUltIdPedido()) + 1;
 		
-		PCTemporal.setIdPedido(idProducto);
+		PCTemporal.setIdPedido(idPedidoActual);
 		
 		arrLineasPedido = PCTemporal.getLineas();
 		

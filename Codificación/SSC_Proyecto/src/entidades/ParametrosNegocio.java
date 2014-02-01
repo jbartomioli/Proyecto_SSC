@@ -1,12 +1,12 @@
 package entidades;
 // default package
-// Generated 23/01/2014 20:39:53 by Hibernate Tools 4.0.0
+// Generated 01/02/2014 00:38:44 by Hibernate Tools 4.0.0
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -16,25 +16,45 @@ import javax.persistence.Table;
 @Table(name = "parametrosNegocio", catalog = "BD_SSC")
 public class ParametrosNegocio implements java.io.Serializable {
 
-	private ParametrosNegocioId id;
+	private Integer idParametro;
+	private String membrete;
+	private Integer ultIdPedido;
 
 	public ParametrosNegocio() {
 	}
 
-	public ParametrosNegocio(ParametrosNegocioId id) {
-		this.id = id;
+	public ParametrosNegocio(String membrete, Integer ultIdPedido) {
+		this.membrete = membrete;
+		this.ultIdPedido = ultIdPedido;
 	}
 
-	@EmbeddedId
-	@AttributeOverrides({
-			@AttributeOverride(name = "membrete", column = @Column(name = "membrete", length = 500)),
-			@AttributeOverride(name = "ultIdPedido", column = @Column(name = "ultIdPedido")) })
-	public ParametrosNegocioId getId() {
-		return this.id;
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "idParametro", unique = true, nullable = false)
+	public Integer getIdParametro() {
+		return this.idParametro;
 	}
 
-	public void setId(ParametrosNegocioId id) {
-		this.id = id;
+	public void setIdParametro(Integer idParametro) {
+		this.idParametro = idParametro;
+	}
+
+	@Column(name = "membrete", length = 500)
+	public String getMembrete() {
+		return this.membrete;
+	}
+
+	public void setMembrete(String membrete) {
+		this.membrete = membrete;
+	}
+
+	@Column(name = "ultIdPedido")
+	public Integer getUltIdPedido() {
+		return this.ultIdPedido;
+	}
+
+	public void setUltIdPedido(Integer ultIdPedido) {
+		this.ultIdPedido = ultIdPedido;
 	}
 
 }

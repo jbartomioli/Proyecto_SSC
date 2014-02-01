@@ -1,16 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23/01/2014 20:39:55 by Hibernate Tools 4.0.0 -->
+<!-- Generated 01/02/2014 00:38:46 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
     <class name="entidades.ParametrosNegocio" table="parametrosNegocio" catalog="BD_SSC">
-        <composite-id name="id" class="entidades.ParametrosNegocioId">
-            <key-property name="membrete" type="string">
-                <column name="membrete" length="500" />
-            </key-property>
-            <key-property name="ultIdPedido" type="java.lang.Integer">
-                <column name="ultIdPedido" />
-            </key-property>
-        </composite-id>
+        <id name="idParametro" type="java.lang.Integer">
+            <column name="idParametro" />
+            <generator class="identity" />
+        </id>
+        <property name="membrete" type="string">
+            <column name="membrete" length="500" />
+        </property>
+        <property name="ultIdPedido" type="java.lang.Integer">
+            <column name="ultIdPedido" />
+        </property>
     </class>
 </hibernate-mapping>

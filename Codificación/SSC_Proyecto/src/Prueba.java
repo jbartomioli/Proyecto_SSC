@@ -103,9 +103,8 @@ public class Prueba {
 			
 			param.obtenerParametrosNegocio();
 			
-			System.out.println(param.getUltIdPedido()+" + "+param.getMembrete());
+			System.out.println(param.getUltIdPedido()+" - "+param.getMembrete());
 			*/
-			
 
 			/*
 			negocio.CatalogoProductos ctg = new negocio.CatalogoProductos();

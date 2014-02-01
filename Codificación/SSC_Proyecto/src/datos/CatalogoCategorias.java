@@ -48,8 +48,9 @@ public class CatalogoCategorias
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// Seteo del array de categorias a partir de la capa de datos  //
+	// OBTIENE TODAS LAS CATEGORIAS DE LA BD					   //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerCategorias()
 	{
 		Session session = null;	
@@ -63,18 +64,24 @@ public class CatalogoCategorias
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();
             
+            //SE RECORRE EL CONJUNTO RESULTANTE DE LA CONSULTA
             for(Iterator<Query> it=list.iterator();it.hasNext();)
             {  
+            	//SE CREA OBJETO CATEGORIA DE DATOS PARA DESPUES AGREGARLO AL ARRAY
 	        	datos.Categoria categoriaDatos = new datos.Categoria();
 	           
+	        	//SE CREA OBJETO CATEGORIA DE ENTIDADES PARA RECUPERAR DATOS
 	        	entidades.Categorias entCategoria = (entidades.Categorias) it.next();  
 	           
+	        	//SE SETEA LA CATEGORIA DE DATOS
 	           	categoriaDatos.setIdCategoria(entCategoria.getIdCategoria());
 	           	categoriaDatos.setDescripcion(entCategoria.getDescripcion());
 	           	
+	           	//SE AGREGA LA CATEGORIA AL ARRAY
 	           	categorias.add(categoriaDatos);            
 	        }
 
+            //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		}
 		 
