@@ -3,15 +3,21 @@ package interfaces;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
 import java.awt.Color;
+
 import javax.swing.JLabel;
+
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Canvas;
+
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JProgressBar;
 import javax.swing.ImageIcon;
+
+import utilidades.Configuraciones;
 
 public class PantallaInicial {
 
@@ -20,30 +26,30 @@ public class PantallaInicial {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PantallaInicial window = new PantallaInicial();
-					window.frmInicio.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					PantallaInicial window = new PantallaInicial();
+//					window.frmInicio.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
-	public PantallaInicial() {
-		initialize();
+	public PantallaInicial(utilidades.Configuraciones configuraciones) {
+		initialize(configuraciones);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(utilidades.Configuraciones configuraciones) {
 		frmInicio = new JFrame();
 		frmInicio.setBackground(Color.WHITE);
 		frmInicio.getContentPane().setBackground(Color.WHITE);
@@ -52,7 +58,7 @@ public class PantallaInicial {
 		
 		JLabel lblImagenSup = new JLabel("");
 		lblImagenSup.setBackground(Color.WHITE);
-		lblImagenSup.setIcon(new ImageIcon("D:\\Proyecto_Final_SSC\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\imgInicioSup.jpg"));
+		lblImagenSup.setIcon(new ImageIcon(configuraciones.getIMG_RECURSOS()+"imgInicioSup.jpg"));
 		lblImagenSup.setBounds(0, 0, 400, 81);
 		frmInicio.getContentPane().add(lblImagenSup);
 		
@@ -75,7 +81,7 @@ public class PantallaInicial {
 		frmInicio.getContentPane().add(lblTitulo3);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("D:\\Proyecto_Final_SSC\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\imgInicioInf.jpg"));
+		label.setIcon(new ImageIcon(configuraciones.getIMG_RECURSOS()+"imgInicioInf.jpg"));
 		label.setBounds(0, 194, 400, 81);
 		frmInicio.getContentPane().add(label);
 		

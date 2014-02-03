@@ -16,6 +16,10 @@ public class Configuraciones {
 	private String SMTP_USER;
 	private String SMTP_PASS;
 	private String SMTP_TTLS;
+	
+	//CONFIGURACIONES DIRECTORIOS
+	private String IMG_RECURSOS;
+	private String IMG_ANUNCIOS;
 	//---------------------------------------------------------------
 
 
@@ -31,7 +35,10 @@ public class Configuraciones {
 		this.SMTP_USER = "";
 		this.SMTP_PASS = "";
 		this.SMTP_TTLS = "";
-		obtenerConfiguracionesMail();
+		
+		//CONFIGURACIONES DIRECTORIOS
+		this.IMG_RECURSOS = "";
+		this.IMG_ANUNCIOS = "";
 	}
 	//---------------------------------------------------------------
 
@@ -109,6 +116,30 @@ public class Configuraciones {
 	{
 		SMTP_TTLS = sMTP_TTLS;
 	}
+	
+	
+	public String getIMG_RECURSOS()
+	{
+		return IMG_RECURSOS;
+	}
+
+
+	public void setIMG_RECURSOS(String iMG_RECURSOS) 
+	{
+		IMG_RECURSOS = iMG_RECURSOS;
+	}
+
+
+	public String getIMG_ANUNCIOS() 
+	{
+		return IMG_ANUNCIOS;
+	}
+
+
+	public void setIMG_ANUNCIOS(String iMG_ANUNCIOS) 
+	{
+		IMG_ANUNCIOS = iMG_ANUNCIOS;
+	}
 	//---------------------------------------------------------------
 	
 	
@@ -117,10 +148,13 @@ public class Configuraciones {
 	//* METODOS														*
 	//***************************************************************
 	
+
+
+
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE LOS DATOS DE CONFIGURACIONES DEL ARCHIVO DE CONFIG. //
 	/////////////////////////////////////////////////////////////////
-	public void obtenerConfiguracionesMail() 
+	public void obtenerConfiguraciones() 
 	{
 		try
 		{
@@ -134,10 +168,14 @@ public class Configuraciones {
 			this.SMTP_USER = propiedades.getProperty("SMTP_USER").toString();
 			this.SMTP_PASS = propiedades.getProperty("SMTP_PASS").toString();
 			this.SMTP_TTLS = propiedades.getProperty("SMTP_TTLS").toString();
+			
+			this.IMG_RECURSOS = propiedades.getProperty("IMG_RECURSOS").toString();
+			this.IMG_ANUNCIOS = propiedades.getProperty("IMG_ANUNCIOS").toString();
 		} 
 		catch (Exception e) 
 		{
 			System.out.println("Error al leer el archivo de configuración."+ e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	//---------------------------------------------------------------
