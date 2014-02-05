@@ -1,32 +1,26 @@
 package interfaces;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 
 import java.awt.Color;
 
 import javax.swing.JLabel;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.Canvas;
 
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JProgressBar;
 import javax.swing.ImageIcon;
 
-import utilidades.Configuraciones;
 
-public class PantallaInicial {
+public class PantallaBienvenida {
 
 	private JFrame frmInicio;
 
 	/**
 	 * Create the application.
 	 */
-	public PantallaInicial(utilidades.Configuraciones configuraciones) {
+	public PantallaBienvenida(utilidades.Configuraciones configuraciones) {
 		initialize(configuraciones);
 	}
 
@@ -42,7 +36,7 @@ public class PantallaInicial {
 		
 		JLabel lblImagenSup = new JLabel("");
 		lblImagenSup.setBackground(Color.WHITE);
-		lblImagenSup.setIcon(new ImageIcon(configuraciones.getIMG_RECURSOS()+"imgInicioSup.jpg"));
+		lblImagenSup.setIcon(new ImageIcon(configuraciones.getIMG_PRESENTACION()+"imgInicioSup.jpg"));
 		lblImagenSup.setBounds(0, 0, 400, 81);
 		frmInicio.getContentPane().add(lblImagenSup);
 		
@@ -64,10 +58,15 @@ public class PantallaInicial {
 		lblTitulo3.setBounds(0, 159, 400, 24);
 		frmInicio.getContentPane().add(lblTitulo3);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(configuraciones.getIMG_RECURSOS()+"imgInicioInf.jpg"));
-		label.setBounds(0, 194, 400, 81);
-		frmInicio.getContentPane().add(label);
+		JLabel lblTitulo4 = new JLabel("Todos los derechos reservados");
+		lblTitulo4.setFont(new Font("Tahoma", Font.ITALIC, 9));
+		lblTitulo4.setBounds(10, 260, 131, 14);
+		frmInicio.getContentPane().add(lblTitulo4);
+		
+		JLabel lblImagenInf = new JLabel("");
+		lblImagenInf.setIcon(new ImageIcon(configuraciones.getIMG_PRESENTACION()+"imgInicioInf.jpg"));
+		lblImagenInf.setBounds(0, 194, 400, 81);
+		frmInicio.getContentPane().add(lblImagenInf);
 		
 		JProgressBar prgBarraProgreso = new JProgressBar();
 		
@@ -85,12 +84,13 @@ public class PantallaInicial {
 	    {
 	      for (long j=0; j<1000000; ++j)//modifica el numero segun la velidad q desees
 	      {
-	        String poop = " " + (j + i);
+	        @SuppressWarnings("unused")
+			String poop = " " + (j + i);
 	      }
 	      prgBarraProgreso.setValue(i);        //si no quieres q muestre nada, solo la barra
 	   }
-	   System.exit(0);
-	    
+
+	    frmInicio.dispose();
 		
 
 	}

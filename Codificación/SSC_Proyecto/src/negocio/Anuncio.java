@@ -214,7 +214,7 @@ public class Anuncio
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.5.2	- ACTUALIZA MODIFICACION EN EL PRODUCTO    //
 	/////////////////////////////////////////////////////////////////
-	//VER
+	//LISTO
 	public void actualizarProducto(negocio.Producto productoModificar)
 	{
 		//SE RECORRE CADA ELEMENTO DEL ARRAY
@@ -262,12 +262,6 @@ public class Anuncio
 		//DEVUELVE EL ARRAY TEMPORAL DE CLIENTES SELECCIONADOS
 		return arrClientesSeleccionados;
 	}
-	//---------------------------------------------------------------
-	
-	
-	/////////////////////////////////////////////////////////////////
-	// 								 							   //
-	/////////////////////////////////////////////////////////////////	
 	//---------------------------------------------------------------
 
 

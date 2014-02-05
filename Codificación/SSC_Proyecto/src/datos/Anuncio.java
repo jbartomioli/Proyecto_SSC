@@ -158,7 +158,8 @@ public class Anuncio
 	        	//SE AGREGA EL PRODUCTO AL ARRAY DE PRODUCTOS DEL ANUNCIO ACTUAL
 	           	this.productos.add(productoDatos);
             }
-
+            
+            //SE CONFIRMA LA TRANSACCION           
 	        session.getTransaction().commit();
 		}
 		 

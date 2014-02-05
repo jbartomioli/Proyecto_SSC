@@ -18,7 +18,7 @@ public class Configuraciones {
 	private String SMTP_TTLS;
 	
 	//CONFIGURACIONES DIRECTORIOS
-	private String IMG_RECURSOS;
+	private String IMG_PRESENTACION;
 	private String IMG_ANUNCIOS;
 	//---------------------------------------------------------------
 
@@ -37,7 +37,7 @@ public class Configuraciones {
 		this.SMTP_TTLS = "";
 		
 		//CONFIGURACIONES DIRECTORIOS
-		this.IMG_RECURSOS = "";
+		this.IMG_PRESENTACION = "";
 		this.IMG_ANUNCIOS = "";
 	}
 	//---------------------------------------------------------------
@@ -118,15 +118,15 @@ public class Configuraciones {
 	}
 	
 	
-	public String getIMG_RECURSOS()
+	public String getIMG_PRESENTACION()
 	{
-		return IMG_RECURSOS;
+		return IMG_PRESENTACION;
 	}
 
 
-	public void setIMG_RECURSOS(String iMG_RECURSOS) 
+	public void getIMG_PRESENTACION(String iMG_PRESENTACION) 
 	{
-		IMG_RECURSOS = iMG_RECURSOS;
+		IMG_PRESENTACION = iMG_PRESENTACION;
 	}
 
 
@@ -169,7 +169,7 @@ public class Configuraciones {
 			this.SMTP_PASS = propiedades.getProperty("SMTP_PASS").toString();
 			this.SMTP_TTLS = propiedades.getProperty("SMTP_TTLS").toString();
 			
-			this.IMG_RECURSOS = propiedades.getProperty("IMG_RECURSOS").toString();
+			this.IMG_PRESENTACION = propiedades.getProperty("IMG_PRESENTACION").toString();
 			this.IMG_ANUNCIOS = propiedades.getProperty("IMG_ANUNCIOS").toString();
 		} 
 		catch (Exception e) 

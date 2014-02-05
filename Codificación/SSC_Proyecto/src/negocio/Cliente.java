@@ -141,7 +141,7 @@ public class Cliente
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE TODAS LAS VENTAS EFECTUADAS A UN CLIENTE ESPECIFICO  //
 	/////////////////////////////////////////////////////////////////
-	//VER
+	//LISTO
 	public void obtenerVentas()
 	{
 		//SE CREA OBJETO CLIENTE DE DATOS PARA RECUPERAR
@@ -194,7 +194,7 @@ public class Cliente
 			if (ventaNegocio.comproProducto(productoActual))
 				return true;
 		}
-		
+		//EN CASO DE QUE EL CLIENTE NO HAYA COMPRADO EL PRODUCTO DEVUELVE FALSO
 		return false;
 	}
 	//---------------------------------------------------------------
