@@ -43,66 +43,55 @@ public class Pedido
 		return idPedido;
 	}
 
-
 	public void setIdPedido(int idPedido) 
 	{
 		this.idPedido = idPedido;
 	}
-
 
 	public float getTotal() 
 	{
 		return total;
 	}
 
-
 	public void setTotal(float total) 
 	{
 		this.total = total;
 	}
-
 
 	public datos.Cliente getCliente() 
 	{
 		return cliente;
 	}
 
-
 	public void setCliente(datos.Cliente cliente) 
 	{
 		this.cliente = cliente;
 	}
-
 
 	public Date getFecha() 
 	{
 		return fecha;
 	}
 
-
 	public void setFecha(Date fecha) 
 	{
 		this.fecha = fecha;
 	}
-
 
 	public Collection<datos.LineaDePedido> getLineas() 
 	{
 		return lineas;
 	}
 
-
 	public void setLineas(Collection<datos.LineaDePedido> lineas) 
 	{
 		this.lineas = lineas;
 	}
 
-
 	public String getEstado() 
 	{
 		return estado;
 	}
-
 
 	public void setEstado(String estado) 
 	{

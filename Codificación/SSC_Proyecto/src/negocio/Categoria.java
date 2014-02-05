@@ -82,14 +82,14 @@ public class Categoria
 		
 		//SE RECORRE CADA SUBCATEGORIA RESULTANTE DE LA CONSULTA A 
 		//LA BD PARA LUEGO SETEAR DATOS 
-		for(datos.SubCategoria SC: categoriaDatos.getSubCats())
+		for(datos.SubCategoria subcategoriaDatos: categoriaDatos.getSubCats())
 		{
 			//SE CREA OBJETO SUBCATEGORIA DE NEGOCIO PARA SETEOS DE DATOS
 			negocio.SubCategoria subCategoriaNegocio = new negocio.SubCategoria();
 			
 			//SETEOS DE DATOS DE LA SUBCATEGORIA
-			subCategoriaNegocio.setIdSubcategoria(SC.getIdSubcategoria());
-			subCategoriaNegocio.setDescripcion(SC.getDescripcion());
+			subCategoriaNegocio.setIdSubcategoria(subcategoriaDatos.getIdSubcategoria());
+			subCategoriaNegocio.setDescripcion(subcategoriaDatos.getDescripcion());
 			
 			//SE AGREGA LA SUBCATEGORIA EN EL ARRAY
 			this.subCategorias.add(subCategoriaNegocio);

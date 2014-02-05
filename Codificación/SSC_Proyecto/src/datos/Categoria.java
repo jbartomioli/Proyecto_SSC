@@ -75,6 +75,7 @@ public class Categoria
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE TODAS LAS SUBCATEGORIAS DE UNA CATEGORIA ESPECIFICA //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerSubCategorias(int idCategoria) 
 	{
 		Session session = null;	
@@ -107,7 +108,8 @@ public class Categoria
             	//SE AGREGA LAS SUBCATEGORIA AL ARRAY
             	this.subCategorias.add(subcategoriaDatos);
             }
-
+            
+            //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		}
 		 

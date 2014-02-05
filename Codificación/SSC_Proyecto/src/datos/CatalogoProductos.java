@@ -9,8 +9,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 
-
-
 public class CatalogoProductos 
 {
 	//***************************************************************
@@ -38,7 +36,6 @@ public class CatalogoProductos
 		return productos;
 	}
 
-
 	public void setProductos(Collection<datos.Producto> productos) 
 	{
 		this.productos = productos;
@@ -52,9 +49,9 @@ public class CatalogoProductos
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	// OBTIENE TODOS LOS PRODCUTOS Y SU SUBCATEGORIA Y PRECIOS     //
+	// OBTIENE TODOS LOS PRODUCTOS Y SU SUBCATEGORIA Y PRECIOS     //
 	/////////////////////////////////////////////////////////////////
-	//
+	//LISTO
 	public Collection<datos.Producto> obtenerProductos()
 	{
 		Session session = null;	
@@ -114,7 +111,7 @@ public class CatalogoProductos
 	        			datos.Precio precioDato = new datos.Precio();
 	        			
 	        			//SETEO DE DATOS DE PRECIO
-	        			//precioDato.setIdPrecio(entPrecio.getIdPrecio());
+	        			precioDato.setIdPrecio(entPrecio.getId().getIdPrecio());
 	        			precioDato.setFechaDesde(entPrecio.getFechaDesde());
 	        			precioDato.setFechaHasta(entPrecio.getFechaHasta());
 	        			precioDato.setPrecio(entPrecio.getPrecio());
@@ -151,9 +148,9 @@ public class CatalogoProductos
 	
 		
 	/////////////////////////////////////////////////////////////////
-	// Actualiza la cantidad de productos en stock				   //
+	// ACTUALIZA LA CANTIDAD DE PRODUCTOS EN STOCK				   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
+	//LISTO
 	public void actualizarStock(datos.Producto prodActualizarStock)
 	{
 		Session session = null;	
@@ -192,11 +189,4 @@ public class CatalogoProductos
 		}	
 	}
 	//---------------------------------------------------------------
-
-
-	public void actualizarPrecioPromocionalProducto(datos.Producto productoModificar) 
-	{
-				
-	}
-	
 }

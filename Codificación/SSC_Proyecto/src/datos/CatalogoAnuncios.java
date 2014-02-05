@@ -49,6 +49,7 @@ public class CatalogoAnuncios
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE TODOS LOS ANUNCIOS 								   //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerAnuncios()
 	{
 		Session session = null;	
@@ -82,7 +83,8 @@ public class CatalogoAnuncios
 				//SE AGREGA EL ANUNCIO EN EL ARRAY
 	           	anuncios.add(anuncioDatos);            
 	        }
-
+            
+            //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		}
 		 
@@ -161,6 +163,16 @@ public class CatalogoAnuncios
 	}
 	//---------------------------------------------------------------
 	
+	
+	/////////////////////////////////////////////////////////////////
+	// GUARDA EN EL ANUNCIO EL NUEVO CONJUNTO DE CLIENTES 		   //
+	/////////////////////////////////////////////////////////////////
+	//VER
+	public void guardarCambioClientesAnuncio(datos.Anuncio anuncioActual)
+	{
+		
+	}
+	//---------------------------------------------------------------
 }
 
 

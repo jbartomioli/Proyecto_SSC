@@ -32,7 +32,7 @@ public class LineaDeVenta
 	{
 		return productoLinea;
 	}
-	
+		
 	public void setProductoLinea(datos.Producto productoLinea) 
 	{
 		this.productoLinea = productoLinea;
@@ -47,7 +47,6 @@ public class LineaDeVenta
 	{
 		this.cantidad = cantidad;
 	}
-	
 	
 	public double getSubTotal() 
 	{
@@ -64,21 +63,9 @@ public class LineaDeVenta
 		return idVenta;
 	}
 
-
 	public void setIdVenta(int idVenta) 
 	{
 		this.idVenta = idVenta;
 	}
-	//---------------------------------------------------------------
-	
-	
-	
-	//***************************************************************
-	//* METODOS 													*
-	//***************************************************************
-	
-	/////////////////////////////////////////////////////////////////
-	// //
-	/////////////////////////////////////////////////////////////////
 	//---------------------------------------------------------------
 }

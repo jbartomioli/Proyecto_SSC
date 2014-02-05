@@ -2,7 +2,7 @@ package negocio;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
+
 
 public class CatalogoSubCategorias 
 {
@@ -45,29 +45,28 @@ public class CatalogoSubCategorias
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
-	//	//
+	// OBTIENE TODAS LA SUBCATEGORIAS DE LA BD					   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public void obtenerSubCategorias()
 	{
-		//
+		//SE CREA OBJETO CATALOGO SUBCATEGORIAS DE DATOS PARA RECUPERAR DATOS DE LA BD
 		datos.CatalogoSubCategorias ctgDatos = new datos.CatalogoSubCategorias();
+		
+		//SE OBTIENEN TODAS LAS SUBCATEGORIAS DE LA BD
 		ctgDatos.obtenerSubCategorias();
-		
-		//
-		subcategorias = new ArrayList<negocio.SubCategoria>();
 			
-		Iterator <datos.SubCategoria> it = ctgDatos.getSubcategorias().iterator();
-		
-		while(it.hasNext())
+		//SE RECORRE CADA SUBCATEGORIA DEL ARRAY
+		for(datos.SubCategoria subcategoriaDatos : ctgDatos.getSubcategorias())
 		{
-			datos.SubCategoria datosSubCategoria = it.next();
-			
+			//SE CREA OBJETO SUBCATEGORIA DE NEGOCIO PARA DESPUES AGREGARLO AL ARRAY	
 			negocio.SubCategoria subCategoriaNegocio = new negocio.SubCategoria();			
 			
-			subCategoriaNegocio.setIdSubcategoria(datosSubCategoria.getIdSubcategoria());
-			subCategoriaNegocio.setDescripcion(datosSubCategoria.getDescripcion());
+			//SE SETEAN LOS DATOS DE LA SUBCATEGORIA
+			subCategoriaNegocio.setIdSubcategoria(subcategoriaDatos.getIdSubcategoria());
+			subCategoriaNegocio.setDescripcion(subcategoriaDatos.getDescripcion());
 			
+			//SE AGREGA LA SUBCATEGORIA AL ARRAY
 			subcategorias.add(subCategoriaNegocio);
 		}
 	}
@@ -76,16 +75,20 @@ public class CatalogoSubCategorias
 	
 	
 	/////////////////////////////////////////////////////////////////
-	// Devuelve la subcategoria correspondiente al id seleccionado //
+	// DEVUELVE UNA SUBCATEGORIA SEGUN EL ID SELECCIONADO          //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public negocio.SubCategoria buscarSubCategoria(int idSubCategoria)
 	{
-		for(negocio.SubCategoria SCTG: this.subcategorias)
+		//SE RECORRE CADA SUBCATEGORIA DEL ARRAY
+		for(negocio.SubCategoria subcategoriaNegocio: this.subcategorias)
 		{
-			if(SCTG.getIdSubcategoria() == idSubCategoria)
-				return SCTG;
+			//COMPARA LAS SUBCATEGORIAS POR SU ID
+			//SI LA ENCUENTRA LA DEVUELVE
+			if(subcategoriaNegocio.getIdSubcategoria() == idSubCategoria)
+				return subcategoriaNegocio;
 		}
+		//SI NO LA ENCUENTRA DEVUELVE NULO
 		return null;
 	}
 	//---------------------------------------------------------------

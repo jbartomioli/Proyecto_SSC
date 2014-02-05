@@ -51,6 +51,7 @@ public class CatalogoClientes
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE TODOS LOS CLIENTES								   //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerClientes()
 	{
 		Session session = null;	
@@ -91,6 +92,7 @@ public class CatalogoClientes
 	           	clientes.add(clienteDatos);
             }
 
+            //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		}
 		 

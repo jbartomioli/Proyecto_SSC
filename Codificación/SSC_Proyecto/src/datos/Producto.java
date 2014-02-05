@@ -42,64 +42,55 @@ public class Producto
 		return idProducto;
 	}
 
-
 	public void setIdProducto(int idProducto) 
 	{
 		this.idProducto = idProducto;
 	}
 
-
 	public String getCodProducto()
 	{
 		return codProducto;
 	}
-	
+		
 	public void setCodProducto(String codProducto)
 	{
 		this.codProducto = codProducto;
 	}
-	
+		
 	public String getNombre() 
 	{
 		return nombre;
 	}
-
 
 	public void setNombre(String nombre) 
 	{
 		this.nombre = nombre;
 	}
 
-
 	public int getExistenciaStock() 
 	{
 		return existenciaStock;
 	}
-
 
 	public void setExistenciaStock(int existenciaStock) 
 	{
 		this.existenciaStock = existenciaStock;
 	}
 
-
 	public datos.SubCategoria getSubcategoria() 
 	{
 		return subcategoria;
 	}
-
 
 	public void setSubcategoria(datos.SubCategoria subcategoria) 
 	{
 		this.subcategoria = subcategoria;
 	}
 
-
 	public Collection<datos.Precio> getPrecios() 
 	{
 		return precios;
 	}
-
 
 	public void setPrecios(Collection<datos.Precio> precios) 
 	{
@@ -117,7 +108,6 @@ public class Producto
 	// DEFINE EL NUEVO PRECIO PROMOCIONAL DEL PRODUCTO			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	//VER SI LA OPERACION SOBRE LA BD CONVIENE O NO PONERLA EN DATOS.PRECIO
 	public void setPrecioPromocional(datos.Precio nuevoPrecio)
 	{
 		Session session = null;	

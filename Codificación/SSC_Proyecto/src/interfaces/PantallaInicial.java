@@ -24,22 +24,6 @@ public class PantallaInicial {
 	private JFrame frmInicio;
 
 	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					PantallaInicial window = new PantallaInicial();
-//					window.frmInicio.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
 	 * Create the application.
 	 */
 	public PantallaInicial(utilidades.Configuraciones configuraciones) {

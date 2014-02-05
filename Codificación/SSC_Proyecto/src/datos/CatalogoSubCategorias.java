@@ -49,6 +49,7 @@ public class CatalogoSubCategorias
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE TODAS LAS SUBCATEGORIAS                             //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerSubCategorias()
 	{
 		Session session = null;	
@@ -79,6 +80,7 @@ public class CatalogoSubCategorias
 	           	subcategorias.add(subCategoriaDatos);            
 	        }
 
+            //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		}
 		 

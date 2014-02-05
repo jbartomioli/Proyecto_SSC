@@ -194,12 +194,12 @@ public class ControladorRegistrarPedidoCliente
 	/////////////////////////////////////////////////////////////////
 	// Metodo 3.2.2 			RN 13/09/2013        				/
 	/////////////////////////////////////////////////////////////////
-	//FALTA VER DEVOLUCION DE DATOS
+	//FALTA VER DEVOLUCION DE DATOS Y TAMBIEN BUSQUEDA POR DESCRIPCION
 	public ArrayList<String> buscarProducto(String descParcial, int cantidad)
 	{
 		negocio.Producto producto = new negocio.Producto();
 		
-		producto = cp.buscarProducto(descParcial);
+		//producto = cp.buscarProducto(descParcial);
 		
 		if(producto != null)
 		{	
@@ -324,7 +324,7 @@ public class ControladorRegistrarPedidoCliente
 	//LISTO - UNI EL METODO CON INGRESAR CANTIDAD
 	public DatosProductoSalida seleccionarNuevoProducto(String descParcial)
 	{
-		productoTemporal = cp.buscarProducto(descParcial);
+		//productoTemporal = cp.buscarProducto(descParcial);
 		
 		if(productoTemporal != null)
 		{

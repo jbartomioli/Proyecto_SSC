@@ -131,7 +131,7 @@ public class CatalogoClientes {
 		//SE RECORRE CADA CLIENTE DEL ARRAY
 		for(negocio.Cliente clienteNegocio : this.clientes)
 		{
-			//SI EL NOMBRE Y EL APELLIDO COINCIDEN DEVUELVE EL CLIENTE
+			//SI EL NOMBRE Y EL APELLIDO COINCIDEN DEVUELVE EL PRIMER CLIENTE
 			if ((clienteNegocio.getNombre().equals(nombre))
 					&& (clienteNegocio.getApellido().equals(apellido)))
 				return clienteNegocio;

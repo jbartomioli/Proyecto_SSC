@@ -79,7 +79,7 @@ public class CatalogoAnuncios
 	/////////////////////////////////////////////////////////////////
 	// GUARDA EL ANUNCIO EN LA BD								   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA COMPLETAR DATOS
+	//VER
 	public void guardarAnuncio(negocio.Anuncio anuncioActual)
 	{
 		//SE AGREGA EL NUEVO ANUNCIO EN EL ARRAY
@@ -128,7 +128,7 @@ public class CatalogoAnuncios
 	/////////////////////////////////////////////////////////////////
 	// GUARDA EN EL ANUNCIO EL NUEVO CONJUNTO DE CLIENTES 		   //
 	/////////////////////////////////////////////////////////////////
-	//VER - FALTA
+	//VER
 	public void guardarCambioClientesAnuncio(negocio.Anuncio anuncioActual)
 	{
 		//SE RECORRE CADA ANUNCIO DEL ARRAY
@@ -141,8 +141,33 @@ public class CatalogoAnuncios
 				//SE MODIFICAN LOS CLIENTES
 				anuncioNegocio.setClientes(anuncioActual.getClientes());
 				
-				//GUARDAR EN BD
+				//SE CREA OBJETO ANUNCIO DE DATOS PARA SETEAR DATOS
+				datos.Anuncio anuncioDatos = new datos.Anuncio();
 				
+				//SE CREA ARRAY TEMPORAL DE CLIENTES DE DATOS PARA SETEOS DE CLIENTES
+				Collection<datos.Cliente> arrayClientesDatos = new ArrayList<datos.Cliente>();
+				
+				//SE RECORRE CADA CLIENTE DEL ANUNCIO DE NEGOCIO
+				for(negocio.Cliente clienteNegocio : anuncioActual.getClientes())
+				{
+					//SE CREA CLIENTE DE DATOS PARA SETEOS
+					datos.Cliente clienteDatos = new datos.Cliente();
+					
+					//SE SETEAN LOS DATOS NECESARIOS
+					clienteDatos.setIdCliente(clienteNegocio.getIdCliente());
+					
+					//SE AGREGA EL CLIENTE DE DATOS EN EL ARRAY TEMPORAL
+					arrayClientesDatos.add(clienteDatos);
+				}
+				
+				//SE SETEAN LOS CLIENTES EN EL ANUNCIO DE DATOS
+				anuncioDatos.setClientes(arrayClientesDatos);
+				
+				//SE CREA OBETO DE CATALOGO DE ANUNCIO DE DATOS PARA GUARDAR EN BD
+				datos.CatalogoAnuncios ctgAnuncios = new datos.CatalogoAnuncios();
+				
+				//SE GUARDA EL ANUNCIO EN LA BD
+				ctgAnuncios.guardarCambioClientesAnuncio(anuncioDatos);
 				
 				//SE CORTA ITERACION
 				break;

@@ -48,10 +48,7 @@ public class CatalogoProductos
 	/////////////////////////////////////////////////////////////////
 	// Setea los productos y sus datos en el array del catalogo    //
 	/////////////////////////////////////////////////////////////////
-	//AL FINAL CONSIDERE USAR EL ESQUEMA DEL HISTORICO DE PRECIOS
-	//YA QUE EN SI ES MAS FACIL OBTENER LOS DATOS
-	//HIBERNATE RECUPERA UN ARRAY DE PRECIOS PARA EL CADA PRODUCTO
-	//JAVI
+	//LISTO
 	public void obtenerProductos()
 	{
 		//SE CREA INSTANCIA DEL CATALOGO DE DATOS
@@ -146,29 +143,38 @@ public class CatalogoProductos
 
 	
 	/////////////////////////////////////////////////////////////////
-	// Busca producto por descripcion parcial 					   //
+	// BUSCA UN PRODUCTO POR SU DESCRIPCION PARCIAL				   //
 	/////////////////////////////////////////////////////////////////
-	//VER TEMA DESCRIPCION PARCIAL
-	public negocio.Producto buscarProducto(String descParcial)
+	//LISTO
+	public Collection<negocio.Producto> buscarProducto(String descParcial)
 	{
-		for(negocio.Producto P: this.getProductos())
+		//SE CREA COLECCION DE PRODUCTOS PARA AGREGAR LOS QUE TIENEN LA MISMA DESCRIPCION PARCIAL
+		Collection<negocio.Producto> productosSimilares = new ArrayList<negocio.Producto>();
+		
+		//SE RECORRE CADA PRODUCTO DEL ARRAY
+		for(negocio.Producto productoNegocio: this.getProductos())
 		{
-			if(P.getNombre().equals(descParcial))
-				return P;
+			//SE EVALUA SI EL NOMBRE DEL PRODUCTO CONTIENE LA CADENA
+			if(productoNegocio.getNombre().contains(descParcial))
+				productosSimilares.add(productoNegocio);
 		}
-		return null;
+		//SE DEVUELVE EL ARRAY
+		return productosSimilares;
 	}
 	//---------------------------------------------------------------
 
 	
 	/////////////////////////////////////////////////////////////////
-	//Actualiza la cantidad de productos en stock				   //
+	// ACTUALIZA LA CANTIDAD DE PRODUCTOS EN STOCK				   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public void actualizarStock(negocio.Producto productoParametro, int cantidad)
 	{
+		//SE RECORRE CADA PRODUCTO
 		for(negocio.Producto productoActual: this.productos)
 		{
+			//COMPARA EL PRODUCTO INGRESADO PARA MODIFICAR STOCK
+			//CON EL PRODUCTO ACTUAL DEL ARRAY
 			if (productoActual.getIdProducto() == productoParametro.getIdProducto())
 			{
 				int stock = 0;
@@ -205,7 +211,7 @@ public class CatalogoProductos
 	/////////////////////////////////////////////////////////////////
 	// ACTUALIZA EL PRECIO PROMOCIONAL MODIFICADO EN EL ARRAY PROD.//
 	/////////////////////////////////////////////////////////////////
-	//VER
+	//LISTO
 	public void actualizarPrecioPromProducto(negocio.Producto productoModificar,float nuevoPrecio)
 	{
 		//SE RECORRE CADA PRODUCTO DEL ARRAY
@@ -218,24 +224,22 @@ public class CatalogoProductos
 				//SE SETEA EL PRECIO EN EL PRODUCTO ACTUAL
 				productoNegocio.setPrecioPromocional(nuevoPrecio);
 				
-				//
-				datos.CatalogoProductos ctgDatos = new datos.CatalogoProductos();
-				
-				//
+				//SE CREA OBJETO PRODUCTO DE DATOS PARA SETEO DE DATOS
 				datos.Producto productoModifDatos = new datos.Producto();
 				
-				//
+				//SE SETEAN LOS DATOS NECESARIOS
 				productoModifDatos.setIdProducto(productoNegocio.getIdProducto());
 				
-				//
-				datos.Precio precioDatos = new datos.Precio();
-				precioDatos.setPrecioPromocional(productoNegocio.getPrecioVigente().getPrecioPromocional());
-				precioDatos.setIdPrecio(productoNegocio.getPrecioVigente().getIdPrecio());
-				
-				productoModifDatos.setPrecioPromocional(precioDatos);
-				
-				//
-				ctgDatos.actualizarPrecioPromocionalProducto(productoModifDatos);
+				{//SE CREA OBJETO PRECIO DE DATOS PARA SETEARLO EN EL PRODUCTO
+					datos.Precio precioDatos = new datos.Precio();
+					
+					//SE SETEAN LOS DATOS NECESARIOS DEL PRECIO
+					precioDatos.setPrecioPromocional(productoNegocio.getPrecioVigente().getPrecioPromocional());
+					precioDatos.setIdPrecio(productoNegocio.getPrecioVigente().getIdPrecio());
+					
+					//SE GUARDA EN BD LA MODIFICACION DEL PRECIO DEL PRODUCTO
+					productoModifDatos.setPrecioPromocional(precioDatos);
+				}
 			}
 		}
 	}

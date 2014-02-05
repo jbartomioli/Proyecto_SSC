@@ -35,7 +35,6 @@ public class CatalogoPedidos
 		return pedidos;
 	}
 
-
 	public void setPedidos(Collection<datos.Pedido> pedidos) 
 	{
 		this.pedidos = pedidos;
@@ -51,6 +50,7 @@ public class CatalogoPedidos
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE TODOS LOS PEDIDOS DE LA BD						   //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerPedidos()
 	{
 		Session session = null;	

@@ -48,78 +48,65 @@ public class Anuncio
 		return productos;
 	}
 
-
 	public void setProductos(Collection<datos.Producto> productos) 
 	{
 		this.productos = productos;
 	}
-
 
 	public Collection<datos.Cliente> getClientes() 
 	{
 		return clientes;
 	}
 
-
 	public void setClientes(Collection<datos.Cliente> clientes) 
 	{
 		this.clientes = clientes;
 	}
-
 
 	public String getMembrete() 
 	{
 		return membrete;
 	}
 
-
 	public void setMembrete(String membrete) 
 	{
 		this.membrete = membrete;
 	}
-
 
 	public String getTextoMensaje() 
 	{
 		return textoMensaje;
 	}
 
-
 	public void setTextoMensaje(String textoMensaje) 
 	{
 		this.textoMensaje = textoMensaje;
 	}
-
 
 	public String getEstado() 
 	{
 		return estado;
 	}
 
-
 	public void setEstado(String estado) 
 	{
 		this.estado = estado;
 	}
-
 
 	public Date getFecha() 
 	{
 		return fecha;
 	}
 
-
 	public void setFecha(Date fecha) 
 	{
 		this.fecha = fecha;
 	}
 
-
 	public int getIdAnuncio() 
 	{
 		return idAnuncio;
 	}
-
 
 	public void setIdAnuncio(int idAnuncio) 
 	{
@@ -136,6 +123,7 @@ public class Anuncio
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE LOS PRODUCTOS DE UN ANUNCIO ANTERIOR				   //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerProductos(int idAnuncio)
 	{
 		Session session = null;	
@@ -190,6 +178,7 @@ public class Anuncio
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE LOS CLIENTES DESTINATARIOS DE UN ANUNCIO ANTERIOR   //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerClientes(int idAnuncio)
 	{
 		Session session = null;	

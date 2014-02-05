@@ -51,30 +51,26 @@ public class Venta
 	{
 		return fechaVenta;
 	}
-
+	
 	public void setFechaVenta(Date fechaVenta) 
 	{
 		this.fechaVenta = fechaVenta;
 	}
-
 
 	public Collection<datos.LineaDeVenta> getLineas() 
 	{
 		return lineasDeVenta;
 	}
 
-
 	public void setLineas(Collection<datos.LineaDeVenta> lineasDeVenta) 
 	{
 		this.lineasDeVenta = lineasDeVenta;
 	}
 
-
 	public double getTotal() 
 	{
 		return total;
 	}
-
 
 	public void setTotal(double total) 
 	{
@@ -146,7 +142,7 @@ public class Venta
 		           	this.lineasDeVenta.add(lineaDatos);
 	            }
             }
-
+            //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		}
 		 

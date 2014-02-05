@@ -82,17 +82,17 @@ public class SubCategoria
 		
 		//SE RECORRE CADA ELEMENTO DE LA CONSULTA PARA LUEGO
 		//SETEARLOS Y AGREGARLOS AL ARRAY
-		for(datos.Producto P: subcategoriaDatos.getProductos())
+		for(datos.Producto productoDatos: subcategoriaDatos.getProductos())
 		{
 			//SE CREA OBJETO PRODUCTO DE NEGOCIO PARA SETEARLO
 			//Y AGREGARLO AL ARRAY
 			negocio.Producto productoNegocio = new negocio.Producto();
 			
 			//SE SETEAN LOS DATOS DEL PRODUCTO
-        	productoNegocio.setCodProducto(P.getCodProducto());
-        	productoNegocio.setExistenciaStock(P.getExistenciaStock());
-        	productoNegocio.setIdProducto(P.getIdProducto());
-        	productoNegocio.setNombre(P.getNombre());		
+        	productoNegocio.setCodProducto(productoDatos.getCodProducto());
+        	productoNegocio.setExistenciaStock(productoDatos.getExistenciaStock());
+        	productoNegocio.setIdProducto(productoDatos.getIdProducto());
+        	productoNegocio.setNombre(productoDatos.getNombre());		
         	
         	//SE AGREGA EL PRODUCTO AL ARRAY
 			this.productos.add(productoNegocio);

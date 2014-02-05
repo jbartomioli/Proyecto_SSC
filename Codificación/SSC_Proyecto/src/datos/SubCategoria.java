@@ -15,7 +15,6 @@ public class SubCategoria
 	//***************************************************************
 	private int idSubcategoria;
 	private String descripcion;
-	private datos.Categoria categoria;
 	private Collection<datos.Producto> productos;
 	//---------------------------------------------------------------
 
@@ -27,7 +26,6 @@ public class SubCategoria
 	{
 		this.idSubcategoria = 0;
 		this.descripcion = "";
-		this.categoria = new datos.Categoria();
 		this.productos = new ArrayList<datos.Producto>();
 	}
 	//---------------------------------------------------------------
@@ -52,14 +50,6 @@ public class SubCategoria
 		this.descripcion = descripcion;
 	}
 
-	public datos.Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(datos.Categoria categoria) {
-		this.categoria = categoria;
-	}
-
 	public Collection<datos.Producto> getProductos() {
 		return productos;
 	}
@@ -78,6 +68,7 @@ public class SubCategoria
 	/////////////////////////////////////////////////////////////////
 	// 	OBTIENE LOS PRODUCTOS DE UNA SUBCATEGORIA ESPECIFICA	   //
 	/////////////////////////////////////////////////////////////////
+	//LISTO
 	public void obtenerProductos(int idSubcategoria) 
 	{
 		Session session = null;	
@@ -111,7 +102,8 @@ public class SubCategoria
             	//SE AGREGA EL PRODUCTO AL ARRAY
             	this.productos.add(productoDatos);
             }
-
+            
+            //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		}
 		 

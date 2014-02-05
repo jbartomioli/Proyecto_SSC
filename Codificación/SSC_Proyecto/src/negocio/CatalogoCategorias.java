@@ -73,16 +73,20 @@ public class CatalogoCategorias
 	
 	
 	/////////////////////////////////////////////////////////////////
-	// Busca una categoria por su idCategoria y la devuelve        //
+	// BUSCA UNA CATEGORIA POR SU ID Y LA DEVUELVE		           //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public negocio.Categoria buscarCategoria(int idCategoria)
 	{
-		for(negocio.Categoria CTG: this.categorias)
+		//SE RECORRE CADA CATEGORIA DEL ARRAY
+		for(negocio.Categoria categoriaNegocio: this.categorias)
 		{
-			if(CTG.getIdCategoria() == idCategoria)
-				return CTG;
+			//COMPARA LAS CATEGORIAS POR SU ID
+			//SI SON IGUALES DEVUELVE LA CATEGORIA
+			if(categoriaNegocio.getIdCategoria() == idCategoria)
+				return categoriaNegocio;
 		}
+		//EN CASO DE NO ENCONTRARLA DEVUELVE NULO
 		return null;
 	}
 	//---------------------------------------------------------------
