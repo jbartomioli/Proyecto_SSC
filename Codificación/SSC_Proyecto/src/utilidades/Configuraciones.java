@@ -20,6 +20,7 @@ public class Configuraciones {
 	//CONFIGURACIONES DIRECTORIOS
 	private String IMG_PRESENTACION;
 	private String IMG_ANUNCIOS;
+	private String IMG_ICONOS;
 	//---------------------------------------------------------------
 
 
@@ -39,6 +40,7 @@ public class Configuraciones {
 		//CONFIGURACIONES DIRECTORIOS
 		this.IMG_PRESENTACION = "";
 		this.IMG_ANUNCIOS = "";
+		this.IMG_ICONOS = "";
 	}
 	//---------------------------------------------------------------
 
@@ -128,7 +130,10 @@ public class Configuraciones {
 	{
 		IMG_PRESENTACION = iMG_PRESENTACION;
 	}
-
+	
+	public void setIMG_PRESENTACION(String iMG_PRESENTACION) {
+		IMG_PRESENTACION = iMG_PRESENTACION;
+	}
 
 	public String getIMG_ANUNCIOS() 
 	{
@@ -140,6 +145,14 @@ public class Configuraciones {
 	{
 		IMG_ANUNCIOS = iMG_ANUNCIOS;
 	}
+
+	public String getIMG_ICONOS() {
+		return IMG_ICONOS;
+	}
+
+	public void setIMG_ICONOS(String iMG_ICONOS) {
+		IMG_ICONOS = iMG_ICONOS;
+	}
 	//---------------------------------------------------------------
 	
 	
@@ -148,7 +161,6 @@ public class Configuraciones {
 	//* METODOS														*
 	//***************************************************************
 	
-
 
 
 	/////////////////////////////////////////////////////////////////
@@ -171,6 +183,8 @@ public class Configuraciones {
 			
 			this.IMG_PRESENTACION = propiedades.getProperty("IMG_PRESENTACION").toString();
 			this.IMG_ANUNCIOS = propiedades.getProperty("IMG_ANUNCIOS").toString();
+			this.IMG_ICONOS = propiedades.getProperty("IMG_ICONOS").toString();
+
 		} 
 		catch (Exception e) 
 		{

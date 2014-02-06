@@ -14,6 +14,9 @@ import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 
 
 public class Principal extends JFrame {
@@ -27,7 +30,7 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal(utilidades.Configuraciones configuraciones) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\Proyecto_Final_SSC\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\SSC.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(configuraciones.getIMG_ICONOS()+"SSC_128.png"));
 		setMinimumSize(new Dimension(800, 600));
 		setTitle("SSC - Sistema de Seguimiento de Clientes");
         setLocationRelativeTo(null);
@@ -47,17 +50,19 @@ public class Principal extends JFrame {
 		cntContenedor.add(lblImagenfondo);
 		lblImagenfondo.setIcon(new ImageIcon(configuraciones.getIMG_PRESENTACION()+"imgFondo.jpg"));
 
-		
+		//
 		JMenuBar mnuBarraMenu = new JMenuBar();
 		setJMenuBar(mnuBarraMenu);
 		
-		JMenu mnuMenu1 = new JMenu("New menu");
-		mnuBarraMenu.add(mnuMenu1);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
-		mnuMenu1.add(mntmNewMenuItem);
+		//
+		JMenu mnuArchivo = new JMenu("Archivo");
+		mnuArchivo.setMnemonic('A');
+		mnuBarraMenu.add(mnuArchivo);
 		
 		JMenuItem mntSalir = new JMenuItem("Salir...");
+		mntSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
+		mntSalir.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"SALIR_16.png"));
 		mntSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int rta = 0;
@@ -66,17 +71,49 @@ public class Principal extends JFrame {
 					System.exit(0);
 			}
 		});
-		mnuMenu1.add(mntSalir);
+		mnuArchivo.add(mntSalir);
 		
-		JMenu mnuMenu2 = new JMenu("New menu");
-		mnuBarraMenu.add(mnuMenu2);
 		
-		JMenu mnNewMenu_2 = new JMenu("New menu");
-		mnuBarraMenu.add(mnNewMenu_2);
+		//
+		JMenu mnuOperaciones = new JMenu("Operaciones");
+		mnuOperaciones.setMnemonic('O');
+		mnuBarraMenu.add(mnuOperaciones);
 		
-		JMenu mnNewMenu_3 = new JMenu("New menu");
-		mnuBarraMenu.add(mnNewMenu_3);
+		JMenuItem mntConfeccionar = new JMenuItem("Confeccionar Anuncio");
+		mntConfeccionar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
+		mntConfeccionar.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"CONFECCIONAR_16.png"));
+		mnuOperaciones.add(mntConfeccionar);
+	
+		JMenuItem mntSeguimiento = new JMenuItem("Realizar Seguimiento de Cliente");
+		mntSeguimiento.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"SEGUIMIENTO_16.png"));
+		mnuOperaciones.add(mntSeguimiento);
+		
+		
+		//
+		JMenu mnuAyuda = new JMenu("Ayuda");
+		mnuAyuda.setMnemonic('u');
+		mnuBarraMenu.add(mnuAyuda);
+		
+		JMenuItem mntContenidoAyuda = new JMenuItem("Contenidos");
+		mntContenidoAyuda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
+		mnuAyuda.add(mntContenidoAyuda);
+		mntContenidoAyuda.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"AYUDA_16.png"));
+		
+		JMenuItem mntAcerca = new JMenuItem("Acerca de SSC");
+		mntAcerca.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"ACERCA_16.png"));
+		final interfaces.Acerca acerca = new interfaces.Acerca(this, true);
 
+		mntAcerca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				acerca.setVisible(true);
+			}
+		});
+		mntAcerca.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, InputEvent.ALT_MASK));
+		mnuAyuda.add(mntAcerca);
+		
+		
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setContentPane(cntContenedor);

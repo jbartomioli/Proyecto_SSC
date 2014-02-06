@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JProgressBar;
 import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 
 public class PantallaBienvenida {
@@ -28,7 +29,8 @@ public class PantallaBienvenida {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(utilidades.Configuraciones configuraciones) {
-		frmInicio = new JFrame();
+		frmInicio = new JFrame("SSC - Sistema de Seguimiento de Clientes");
+		frmInicio.setIconImage(Toolkit.getDefaultToolkit().getImage(configuraciones.getIMG_ICONOS()+"SSC_128.png"));
 		frmInicio.setBackground(Color.WHITE);
 		frmInicio.getContentPane().setBackground(Color.WHITE);
 		frmInicio.getContentPane().setLayout(null);
@@ -78,7 +80,7 @@ public class PantallaBienvenida {
 		frmInicio.setSize(400, 300);
 		frmInicio.setVisible(true);
 		frmInicio.setLocationRelativeTo(null);
-		frmInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frmInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	    for (int i = 0; i <= 100; i++)
 	    {
