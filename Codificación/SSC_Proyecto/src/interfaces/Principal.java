@@ -29,9 +29,11 @@ public class Principal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Principal(utilidades.Configuraciones configuraciones) {
+	public Principal(utilidades.Configuraciones configuraciones) {		
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(configuraciones.getIMG_ICONOS()+"SSC_128.png"));
 		setMinimumSize(new Dimension(800, 600));
+		setSize(getToolkit().getScreenSize());
 		setTitle("SSC - Sistema de Seguimiento de Clientes");
         setLocationRelativeTo(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);		
@@ -79,7 +81,15 @@ public class Principal extends JFrame {
 		mnuOperaciones.setMnemonic('O');
 		mnuBarraMenu.add(mnuOperaciones);
 		
+		final interfaces.GenerarAnuncio generarAnuncio = new interfaces.GenerarAnuncio(this, true);
+		//generarAnuncio.setVisible(false);
+		
 		JMenuItem mntConfeccionar = new JMenuItem("Confeccionar Anuncio");
+		mntConfeccionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				generarAnuncio.setVisible(true);
+			}
+		});
 		mntConfeccionar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		mntConfeccionar.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"CONFECCIONAR_16.png"));
 		mnuOperaciones.add(mntConfeccionar);
@@ -101,6 +111,7 @@ public class Principal extends JFrame {
 		
 		JMenuItem mntAcerca = new JMenuItem("Acerca de SSC");
 		mntAcerca.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"ACERCA_16.png"));
+		
 		final interfaces.Acerca acerca = new interfaces.Acerca(this, true);
 
 		mntAcerca.addActionListener(new ActionListener() {

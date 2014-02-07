@@ -15,8 +15,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JMenuBar;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +28,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.BoxLayout;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
+import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -34,19 +39,28 @@ import javax.swing.JInternalFrame;
 import javax.swing.JToolBar;
 import javax.swing.Box;
 import javax.swing.SwingConstants;
+
 import java.awt.Component;
+
 import javax.swing.JFormattedTextField;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
 import java.awt.SystemColor;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class GenerarAnuncio extends JFrame {
+import java.awt.Dialog.ModalityType;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class GenerarAnuncio extends JDialog {
 	private JTable tblProductosAnuncio;
 	private JTable tblDestinatarios;
-	private String LABEL_TEXT = "Modificar destiatarios";
+	private String LABEL_TEXT = "Modificar Destinatarios";
 	private JTable tblProductos;
 
 	/**
@@ -56,10 +70,9 @@ public class GenerarAnuncio extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GenerarAnuncio frame = new GenerarAnuncio();
+					GenerarAnuncio frame = new GenerarAnuncio(new JFrame(),true);
 					frame.setVisible(true);
 					//Maximiza el JFrame
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -70,10 +83,52 @@ public class GenerarAnuncio extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GenerarAnuncio() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+	public GenerarAnuncio(Frame padre, boolean modal) {
+		
+		super(padre);
+
+		
+		negocio.ControladorConfeccionarAnuncio ctrlAnuncio = new negocio.ControladorConfeccionarAnuncio();
+		
+		setTitle("Confeccionar Anuncio");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\Proyecto_Final_SSC\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\CONFECCIONAR_32.png"));
+		setModalityType(ModalityType.APPLICATION_MODAL);
+		setModal(true);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		
+		setSize(new Dimension(1366, 738));
 		getContentPane().setLayout(null);
+		
+		JLabel lblCategoria = new JLabel("Categor\u00EDa:");
+		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCategoria.setBounds(20, 39, 77, 23);
+		getContentPane().add(lblCategoria);
+		
+		ArrayList<String> array = new  ArrayList<String>(); 
+		for(negocio.Categoria cat : ctrlAnuncio.getCctg().getCategorias())
+		{
+			array.add(cat.getDescripcion());
+		}
+		
+		interfaces.ArrayListComboBoxModel modelo = 
+				new interfaces.ArrayListComboBoxModel(array);
+
+		JComboBox cmbCategoria = new JComboBox(modelo);
+		lblCategoria.setLabelFor(cmbCategoria);
+		//cmbCategoria.setModel(new DefaultComboBoxModel(new String[] {"", "Descartables", "Anestesias", "Pinzas", "Moldes"}));
+		cmbCategoria.setBounds(107, 42, 97, 20);
+		getContentPane().add(cmbCategoria);
+		
+		JLabel lblSubcategoria = new JLabel("Subcategor\u00EDa:");
+		lblSubcategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSubcategoria.setBounds(272, 39, 97, 23);
+		getContentPane().add(lblSubcategoria);
+		
+		JComboBox cmbSubcategoria = new JComboBox();
+		lblSubcategoria.setLabelFor(cmbSubcategoria);
+		cmbSubcategoria.setModel(new DefaultComboBoxModel(new String[] {"", "Jeringas", "Algodones y gasas", "Obturadores", "Barbijos"}));
+		cmbSubcategoria.setBounds(380, 42, 97, 20);
+		getContentPane().add(cmbSubcategoria);
 		
 		Box boxProductosAnuncio = Box.createHorizontalBox();
 		boxProductosAnuncio.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
@@ -99,13 +154,6 @@ public class GenerarAnuncio extends JFrame {
 		
 		tblProductosAnuncio = new JTable(data, columnNames);
 		
-		//tblProductos.setModel(new DefaultTableModel(
-			//new Object[][] {
-			//},
-			//new String[] {
-				//"Producto", "Precio", "Stock", ""
-			//}
-		//));
 		scrollProductosAnuncio.setViewportView(tblProductosAnuncio);
 		
 		TableColumn agregarColumn;
@@ -150,6 +198,11 @@ public class GenerarAnuncio extends JFrame {
 		scrollDestinatarios.setViewportView(tblDestinatarios);
 		
 		JButton btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 		btnCerrar.setBounds(1250, 645, 89, 23);
 		getContentPane().add(btnCerrar);
 		
@@ -177,25 +230,5 @@ public class GenerarAnuncio extends JFrame {
 		lblModificarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblModificarDestinatarios.setBounds(650, 590, 144, 14);
 		getContentPane().add(lblModificarDestinatarios);
-		
-		JLabel lblCategoria = new JLabel("Categor\u00EDa:");
-		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCategoria.setBounds(20, 39, 77, 23);
-		getContentPane().add(lblCategoria);
-		
-		JComboBox comboCategoria = new JComboBox();
-		comboCategoria.setModel(new DefaultComboBoxModel(new String[] {"", "Descartables", "Anestesias", "Pinzas", "Moldes"}));
-		comboCategoria.setBounds(107, 42, 97, 20);
-		getContentPane().add(comboCategoria);
-		
-		JLabel lblSubcategoria = new JLabel("Subcategor\u00EDa:");
-		lblSubcategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblSubcategoria.setBounds(272, 39, 97, 23);
-		getContentPane().add(lblSubcategoria);
-		
-		JComboBox comboSubCategoria = new JComboBox();
-		comboSubCategoria.setModel(new DefaultComboBoxModel(new String[] {"", "Jeringas", "Algodones y gasas", "Obturadores", "Barbijos"}));
-		comboSubCategoria.setBounds(380, 42, 97, 20);
-		getContentPane().add(comboSubCategoria);
 	}
 }

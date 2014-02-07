@@ -38,13 +38,9 @@ public class Acerca extends JDialog {
 		setRootPaneCheckingEnabled(false);
 		getContentPane().setBackground(Color.WHITE);
 		setUndecorated(true);
-		setSize(new Dimension(400, 300));
-		setMaximumSize(new Dimension(400, 400));
-		setMinimumSize(new Dimension(400, 400));
+		setSize(new Dimension(400, 400));
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setVisible(false);
-		setBounds(100, 100, 400, 300);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();

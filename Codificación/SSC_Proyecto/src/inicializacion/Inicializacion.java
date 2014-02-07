@@ -18,8 +18,8 @@ public class Inicializacion
 		configuraciones.obtenerConfiguraciones();
 		
 		//
-		@SuppressWarnings("unused")
-		interfaces.PantallaBienvenida pantallaInicio = new interfaces.PantallaBienvenida(configuraciones);
+		//@SuppressWarnings("unused")
+		//interfaces.PantallaBienvenida pantallaInicio = new interfaces.PantallaBienvenida(configuraciones);
 		
 		//
 		@SuppressWarnings("unused")
