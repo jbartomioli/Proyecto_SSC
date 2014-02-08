@@ -1,97 +1,68 @@
 package interfaces;
 
-import java.awt.BorderLayout;
+
+import interfaces.componentes.BotonesIconos;
+
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Frame;
-
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JMenuBar;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.BoxLayout;
 import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
-
-import java.awt.Color;
-
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JToolBar;
 import javax.swing.Box;
-import javax.swing.SwingConstants;
 
 import java.awt.Component;
-
-import javax.swing.JFormattedTextField;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
 import java.awt.SystemColor;
-
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-
-import java.awt.Dialog.ModalityType;
 import java.awt.Toolkit;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+
+
+
+
 
 public class GenerarAnuncio extends JDialog {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4454249604145639442L;
+	
 	private JTable tblProductosAnuncio;
 	private JTable tblDestinatarios;
-	private String LABEL_TEXT = "Modificar Destinatarios";
 	private JTable tblProductos;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GenerarAnuncio frame = new GenerarAnuncio(new JFrame(),true);
-					frame.setVisible(true);
-					//Maximiza el JFrame
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private interfaces.componentes.ComboCategorias cmbCategorias;
+	private interfaces.componentes.ComboSubcategorias cmbSubcategorias;
+	private negocio.Categoria categoria;
+	private interfaces.componentes.BotonesIconos btnGenerar;
+	private interfaces.componentes.BotonesIconos btnGuardar;
+	private interfaces.componentes.BotonesIconos btnCerrar;
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public GenerarAnuncio(Frame padre, boolean modal) {
+	public GenerarAnuncio(Frame padre, boolean modal, utilidades.Configuraciones configuraciones) {
 		
 		super(padre);
 
-		
+		//
 		negocio.ControladorConfeccionarAnuncio ctrlAnuncio = new negocio.ControladorConfeccionarAnuncio();
 		
 		setTitle("Confeccionar Anuncio");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\Proyecto_Final_SSC\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\CONFECCIONAR_32.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(configuraciones.getIMG_ICONOS()+"CONFECCIONAR_32.png"));
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -110,25 +81,26 @@ public class GenerarAnuncio extends JDialog {
 			array.add(cat.getDescripcion());
 		}
 		
-		interfaces.ArrayListComboBoxModel modelo = 
-				new interfaces.ArrayListComboBoxModel(array);
 
-		JComboBox cmbCategoria = new JComboBox(modelo);
-		lblCategoria.setLabelFor(cmbCategoria);
-		//cmbCategoria.setModel(new DefaultComboBoxModel(new String[] {"", "Descartables", "Anestesias", "Pinzas", "Moldes"}));
-		cmbCategoria.setBounds(107, 42, 97, 20);
-		getContentPane().add(cmbCategoria);
+
+		cmbCategorias = new interfaces.componentes.ComboCategorias(ctrlAnuncio.getCctg().getCategorias());
+		lblCategoria.setLabelFor(cmbCategorias);
+		cmbCategorias.setBounds(97, 39, 200, 23);
+		getContentPane().add(cmbCategorias);
 		
 		JLabel lblSubcategoria = new JLabel("Subcategor\u00EDa:");
 		lblSubcategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblSubcategoria.setBounds(272, 39, 97, 23);
+		lblSubcategoria.setBounds(320, 39, 97, 23);
 		getContentPane().add(lblSubcategoria);
+
+		categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
+		categoria.obtenerSubCategorias();
 		
-		JComboBox cmbSubcategoria = new JComboBox();
-		lblSubcategoria.setLabelFor(cmbSubcategoria);
-		cmbSubcategoria.setModel(new DefaultComboBoxModel(new String[] {"", "Jeringas", "Algodones y gasas", "Obturadores", "Barbijos"}));
-		cmbSubcategoria.setBounds(380, 42, 97, 20);
-		getContentPane().add(cmbSubcategoria);
+		cmbSubcategorias = new interfaces.componentes.ComboSubcategorias(categoria.getSubCats());
+		lblSubcategoria.setLabelFor(cmbSubcategorias);
+		//cmbSubcategoria.setModel(new DefaultComboBoxModel(new String[] {"", "Jeringas", "Algodones y gasas", "Obturadores", "Barbijos"}));
+		cmbSubcategorias.setBounds(420, 39, 196, 23);
+		getContentPane().add(cmbSubcategorias);
 		
 		Box boxProductosAnuncio = Box.createHorizontalBox();
 		boxProductosAnuncio.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
@@ -197,22 +169,7 @@ public class GenerarAnuncio extends JDialog {
 		));
 		scrollDestinatarios.setViewportView(tblDestinatarios);
 		
-		JButton btnCerrar = new JButton("Cerrar");
-		btnCerrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-			}
-		});
-		btnCerrar.setBounds(1250, 645, 89, 23);
-		getContentPane().add(btnCerrar);
-		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(1150, 645, 89, 23);
-		getContentPane().add(btnGuardar);
-		
-		JButton btnGenerar = new JButton("Generar");
-		btnGenerar.setBounds(20, 645, 89, 23);
-		getContentPane().add(btnGenerar);
+
 		
 		JLabel lblModificarDestinatarios = new JLabel("Modificar destinatarios");
 		lblModificarDestinatarios.setForeground(SystemColor.inactiveCaptionText);
@@ -230,5 +187,46 @@ public class GenerarAnuncio extends JDialog {
 		lblModificarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblModificarDestinatarios.setBounds(650, 590, 144, 14);
 		getContentPane().add(lblModificarDestinatarios);
+		
+		
+		btnGenerar = new BotonesIconos("Generar", configuraciones.getIMG_ICONOS()+"GENERAR_32.png");
+		btnGenerar.setLocation(10, 629);
+		getContentPane().add(btnGenerar);
+		
+		
+		btnGuardar = new BotonesIconos("Guardar", configuraciones.getIMG_ICONOS()+"GUARDAR_32.png");
+		btnGuardar.setLocation(1131, 629);
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		getContentPane().add(btnGuardar);
+		
+		
+		btnCerrar = new BotonesIconos("Cerrar", configuraciones.getIMG_ICONOS()+"CERRAR_32.png");
+		btnCerrar.setLocation(1250, 629);
+		btnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+		getContentPane().add(btnCerrar);
+		
+		
+		
+		cmbCategorias.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED)
+				{
+					categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
+					if(categoria.getSubCats().isEmpty())
+					{
+						categoria.obtenerSubCategorias();
+					}
+					cmbSubcategorias.actualizarModelo(categoria.getSubCats());					
+				}
+			}
+		});
 	}
 }

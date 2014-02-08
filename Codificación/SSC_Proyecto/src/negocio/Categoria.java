@@ -59,6 +59,10 @@ public class Categoria
 		this.subCategorias = subCat;
 	}
 
+	public String toString()
+	{
+		return this.descripcion;
+	}
 	//---------------------------------------------------------------
 
 	

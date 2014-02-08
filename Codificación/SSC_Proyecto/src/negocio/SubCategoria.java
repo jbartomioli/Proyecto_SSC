@@ -60,6 +60,11 @@ public class SubCategoria
 	{
 		this.productos = productos;
 	}
+	
+	public String toString()
+	{
+		return this.descripcion;
+	}
 	//---------------------------------------------------------------
 
 
