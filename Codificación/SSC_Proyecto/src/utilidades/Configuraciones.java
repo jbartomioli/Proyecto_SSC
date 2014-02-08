@@ -3,7 +3,7 @@ package utilidades;
 import java.util.*;
 import java.io.*;
 
-public class Configuraciones {
+public class Configuraciones{
 	
 	
 	//***************************************************************
@@ -166,10 +166,8 @@ public class Configuraciones {
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE LOS DATOS DE CONFIGURACIONES DEL ARCHIVO DE CONFIG. //
 	/////////////////////////////////////////////////////////////////
-	public void obtenerConfiguraciones() 
+	public void obtenerConfiguraciones() throws IOException, FileNotFoundException
 	{
-		try
-		{
 			Properties propiedades = new Properties();
 			
 			propiedades.load(new FileInputStream("configuraciones.ini"));
@@ -184,13 +182,6 @@ public class Configuraciones {
 			this.IMG_PRESENTACION = propiedades.getProperty("IMG_PRESENTACION").toString();
 			this.IMG_ANUNCIOS = propiedades.getProperty("IMG_ANUNCIOS").toString();
 			this.IMG_ICONOS = propiedades.getProperty("IMG_ICONOS").toString();
-
-		} 
-		catch (Exception e) 
-		{
-			System.out.println("Error al leer el archivo de configuración."+ e.getMessage());
-			e.printStackTrace();
-		}
 	}
 	//---------------------------------------------------------------
 }

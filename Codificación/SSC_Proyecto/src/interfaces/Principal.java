@@ -7,14 +7,22 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import java.awt.Dimension;
+
 import javax.swing.JLabel;
+
 import java.awt.Color;
+
 import javax.swing.SwingConstants;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.KeyStroke;
+
+
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 
@@ -40,7 +48,8 @@ public class Principal extends JFrame {
 	private interfaces.Acerca acerca;
 	
 	//CONSTRUCTOR
-	public Principal(utilidades.Configuraciones configuraciones) {		
+	public Principal(utilidades.Configuraciones configuraciones) 
+	{		
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(configuraciones.getIMG_ICONOS()+"SSC_128.png"));
 		setMinimumSize(new Dimension(800, 600));
