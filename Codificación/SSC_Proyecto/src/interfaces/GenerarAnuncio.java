@@ -12,7 +12,6 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import javax.swing.UIManager;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
@@ -33,9 +32,9 @@ public class GenerarAnuncio extends JDialog {
 	private static final long serialVersionUID = 4454249604145639442L;
 	
 	//COMPONENTES
-	private JTable tblProductosAnuncio;
+	private interfaces.componentes.TablaProductos tblProductosAnuncio;
 	private JTable tblDestinatarios;
-	private JTable tblProductos;
+	private interfaces.componentes.TablaProductos tblProductos;
 	private interfaces.componentes.ComboCategorias cmbCategorias;
 	private interfaces.componentes.ComboSubcategorias cmbSubcategorias;
 	private negocio.Categoria categoria;
@@ -52,11 +51,11 @@ public class GenerarAnuncio extends JDialog {
 		
 		super(padre);
 		setResizable(false);
-		setMinimumSize(new Dimension(1024, 768));
-		getContentPane().setMinimumSize(new Dimension(1024, 768));
-		getContentPane().setMaximumSize(new Dimension(1366, 768));
+		setMinimumSize(new Dimension(1024, 668));
+		getContentPane().setMinimumSize(new Dimension(1024, 668));
+		getContentPane().setMaximumSize(new Dimension(1366, 668));
 		setMaximumSize(new Dimension(1366, 768));
-		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-40);
+		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);
 		setLocationRelativeTo(null);
 		setTitle("Confeccionar Anuncio");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CONFECCIONAR_32.png"));
@@ -99,32 +98,15 @@ public class GenerarAnuncio extends JDialog {
 		scrollProductosAnuncio.setAlignmentY(Component.TOP_ALIGNMENT);
 		scrollProductosAnuncio.setAlignmentX(Component.LEFT_ALIGNMENT);
 		boxProductosAnuncio.add(scrollProductosAnuncio);
-		
-		String[] columnNames = {"Producto", "Precio", "Stock", "Elimina"};
-		
+				
 		
 		negocio.SubCategoria subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		
-
-		Object[][] data = {
-			    {"Barbijo", "$2.50", "500", new Boolean(false)},
-			    {"Gasas", "$5.00", "1000", new Boolean(true)},
-			    {"Pinza", "$50.00", "25", new Boolean(false)},
-			    {"Amalgama", "$2.00", "650", new Boolean(true)},
-			};
 		
-		tblProductosAnuncio = new JTable(data,columnNames);
-		
+		tblProductosAnuncio = new interfaces.componentes.TablaProductos(controladorAux.seleccionarSubcategoria(subcategoriaActual.getIdSubcategoria()));
+		tblProductosAnuncio.definirTablaProductosAnuncio();
 		scrollProductosAnuncio.setViewportView(tblProductosAnuncio);
-		
-		TableColumn agregarColumn = new TableColumn();
-		agregarColumn = tblProductosAnuncio.getColumnModel().getColumn(3);
-		agregarColumn.setCellEditor(new interfaces.componentes.EditorCeldas(tblProductosAnuncio));
-		agregarColumn.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(true));
-		
-		
-		
-		
+	
 		
 		Box boxProductos = Box.createHorizontalBox();
 		boxProductos.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
@@ -136,33 +118,12 @@ public class GenerarAnuncio extends JDialog {
 		scrollProductos.setAlignmentX(0.0f);
 		boxProductos.add(scrollProductos);
 		
-		
-		DefaultTableModel modeloTablaProductos = new DefaultTableModel(); 
-		modeloTablaProductos.addColumn("Producto"); 
-		modeloTablaProductos.addColumn("Precio"); 
-		modeloTablaProductos.addColumn("Stock"); 
-		modeloTablaProductos.addColumn("Añade"); 
-		modeloTablaProductos.setNumRows(controladorAux.seleccionarSubcategoria(subcategoriaActual.getIdSubcategoria()).size()); 
-		
-		
-		int i = 0;
-		for(negocio.Producto productoActual : controladorAux.seleccionarSubcategoria(subcategoriaActual.getIdSubcategoria()) )
-		{
-			modeloTablaProductos.setValueAt(productoActual.getNombre(), i, 0); 
-			modeloTablaProductos.setValueAt(productoActual.getPrecioActual(), i, 1); 
-			modeloTablaProductos.setValueAt(productoActual.getExistenciaStock(), i, 2);
-			modeloTablaProductos.setValueAt(new Boolean(false), i, 3);
-			i++;
-		} 
-		
-		tblProductos = new JTable();
-		tblProductos.setModel(modeloTablaProductos);
+
+		tblProductos = new interfaces.componentes.TablaProductos(controladorAux.seleccionarSubcategoria(subcategoriaActual.getIdSubcategoria()));
+		tblProductos.definirTablaProductos();
 		scrollProductos.setViewportView(tblProductos);
 		
-		TableColumn agregarColumna;
-		agregarColumna = tblProductos.getColumnModel().getColumn(3);
-		agregarColumna.setCellEditor(new interfaces.componentes.EditorCeldas(tblProductos));
-		agregarColumna.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(true));
+
 		
 		Box boxDestinatarios = Box.createHorizontalBox();
 		boxDestinatarios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));

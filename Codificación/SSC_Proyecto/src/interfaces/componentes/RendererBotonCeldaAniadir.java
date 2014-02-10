@@ -1,5 +1,6 @@
 package interfaces.componentes;
 
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.ImageIcon;
@@ -21,14 +22,14 @@ public class RendererBotonCeldaAniadir extends JLabel implements TableCellRender
     public RendererBotonCeldaAniadir(boolean isBordered) 
     {
         this.isBordered = isBordered;
-        setOpaque(true);
     }
 
     public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) 
     {
         // Muestra el Boton en cada fila del JTable ProductosAnuncio.
     	JButton botonAniadir = new JButton();
-    	botonAniadir.setIcon(new ImageIcon("D:\\Proyecto_Final_SSC\\Codificación\\SSC_Proyecto\\recursos\\iconos\\"+"ANIADIR_16.png"));
+    	botonAniadir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ANIADIR_16.png"));
+    	botonAniadir.setBackground(Color.WHITE);
     	
     	return botonAniadir; //new JButton();
     }

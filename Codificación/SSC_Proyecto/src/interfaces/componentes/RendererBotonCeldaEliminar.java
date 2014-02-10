@@ -21,14 +21,13 @@ public class RendererBotonCeldaEliminar extends JLabel implements TableCellRende
     public RendererBotonCeldaEliminar(boolean isBordered) 
     {
         this.isBordered = isBordered;
-        setOpaque(true);
     }
 
     public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) 
     {
         // Muestra el Boton Eliminar en cada fila del JTable ProductosAnuncio.
     	JButton botonEliminar = new JButton();
-    	botonEliminar.setIcon(new ImageIcon("D:\\Proyecto_Final_SSC\\Codificación\\SSC_Proyecto\\recursos\\iconos\\"+"ELIMINAR_16.png"));
+    	botonEliminar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ELIMINAR_16.png"));
    
     	return botonEliminar;
     }
