@@ -1,5 +1,6 @@
 package interfaces;
 
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -16,15 +17,20 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
 import java.awt.Color;
+
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.TableColumn;
 import javax.swing.JTable;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -123,8 +129,8 @@ public class modificarDestinatarios extends JFrame {
 		
 		TableColumn agregarColumn;
 		agregarColumn = tblDestinatariosNuevos.getColumnModel().getColumn(3);
-		agregarColumn.setCellEditor(new myeditor(tblDestinatariosNuevos));
-		agregarColumn.setCellRenderer(new myrenderer(true));
+		agregarColumn.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosNuevos));
+		agregarColumn.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(true));
 		
 		boxDestinatariosBuscados = Box.createHorizontalBox();
 		boxDestinatariosBuscados.setBorder(new TitledBorder(null, "Destinatarios Anuncio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -139,7 +145,7 @@ public class modificarDestinatarios extends JFrame {
 		
 		TableColumn agregarColumna;
 		agregarColumna = tblDestinatariosBuscados.getColumnModel().getColumn(3);
-		agregarColumna.setCellEditor(new myeditor(tblDestinatariosBuscados));
+		agregarColumna.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosBuscados));
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(1150, 645, 89, 23);
@@ -153,7 +159,7 @@ public class modificarDestinatarios extends JFrame {
 		lblImagen.setIcon(new ImageIcon("G:\\Mis documentos\\Facultad\\5to a\u00F1o\\Proyecto\\icono_buscar.png"));
 		lblImagen.setBounds(425, 103, 29, 20);
 		contentPane.add(lblImagen);
-		agregarColumna.setCellRenderer(new myrenderer1(true));
+		agregarColumna.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(true));
 		
 	}
 }

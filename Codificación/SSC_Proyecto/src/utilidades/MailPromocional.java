@@ -42,17 +42,15 @@ public class MailPromocional {
 		{
 			this.propiedades = System.getProperties();
 
+						
+			this.propiedades.put("mail.smtp.host", utilidades.Configuraciones.SMTP_HOST);
+			this.propiedades.put("mail.smtp.starttls.enable",utilidades.Configuraciones.SMTP_TTLS);
+			this.propiedades.put("mail.smtp.user", utilidades.Configuraciones.SMTP_USER);
+			this.propiedades.put("mail.smtp.port", utilidades.Configuraciones.SMTP_PORT);
+			this.propiedades.put("mail.smtp.auth", utilidades.Configuraciones.SMTP_AUTH);
 			
-			Configuraciones configuracionesMail = new Configuraciones();
-			
-			this.propiedades.put("mail.smtp.host", configuracionesMail.getSMTP_HOST());
-			this.propiedades.put("mail.smtp.starttls.enable",configuracionesMail.getSMTP_TTLS());
-			this.propiedades.put("mail.smtp.user", configuracionesMail.getSMTP_USER());
-			this.propiedades.put("mail.smtp.port", configuracionesMail.getSMTP_PORT());
-			this.propiedades.put("mail.smtp.auth", configuracionesMail.getSMTP_AUTH());
-			
-			final String usuarioMail = configuracionesMail.getSMTP_USER();
-			final String passMail = configuracionesMail.getSMTP_PASS();
+			final String usuarioMail = utilidades.Configuraciones.SMTP_USER;
+			final String passMail = utilidades.Configuraciones.SMTP_PASS;
 			
 			javax.mail.Authenticator authenticator = new javax.mail.Authenticator()
 		    {
@@ -72,12 +70,12 @@ public class MailPromocional {
 			mensaje.setSubject(asuntoMail);
 			
 			//SE DEFINE EL REMITENTE
-			mensaje.setFrom(new InternetAddress(configuracionesMail.getSMTP_USER()));
+			mensaje.setFrom(new InternetAddress(utilidades.Configuraciones.SMTP_USER));
 				
 			//SE DEFINEN DESTINATARIOS
 			//mensaje.addRecipient(Message.RecipientType.TO, 
 			//	new InternetAddress(...));
-			mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(configuracionesMail.getSMTP_USER()));
+			mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(utilidades.Configuraciones.SMTP_USER));
 			
 			//SE DEFINE EL CONTENIDO DEL MAIL
 			mensaje.setText(textoMensaje, "utf-8", "html");

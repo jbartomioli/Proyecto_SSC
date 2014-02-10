@@ -1,4 +1,7 @@
 package interfaces;
+/*
+ * INTERFAZ PRINCIPAL DE LA APLICACION
+ */
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -30,8 +33,8 @@ import java.awt.event.InputEvent;
 public class Principal extends JFrame {
 
 	//SERIALIZABLE
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = 3856238941350632345L;
+	
 	//COMPONENTES
 	private JPanel cntContenedor;
 	private JLabel lblImagenfondo;
@@ -48,10 +51,10 @@ public class Principal extends JFrame {
 	private interfaces.Acerca acerca;
 	
 	//CONSTRUCTOR
-	public Principal(utilidades.Configuraciones configuraciones) 
+	public Principal(negocio.ControladorConfeccionarAnuncio controladorAnuncios) 
 	{		
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(configuraciones.getIMG_ICONOS()+"SSC_128.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"SSC_128.png"));
 		setMinimumSize(new Dimension(800, 600));
 		setSize(getToolkit().getScreenSize());
 		setTitle("SSC - Sistema de Seguimiento de Clientes");
@@ -70,7 +73,7 @@ public class Principal extends JFrame {
 		lblImagenfondo.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblImagenfondo.setBounds(0, 0, 1365, 696);
 		cntContenedor.add(lblImagenfondo);
-		lblImagenfondo.setIcon(new ImageIcon(configuraciones.getIMG_PRESENTACION()+"imgFondo.jpg"));
+		lblImagenfondo.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_PRESENTACION+"imgFondo.jpg"));
 
 		
 		mnuBarraMenu = new JMenuBar();
@@ -83,11 +86,16 @@ public class Principal extends JFrame {
 		
 		mntSalir = new JMenuItem("Salir...");
 		mntSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
-		mntSalir.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"SALIR_16.png"));
+		mntSalir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_16.png"));
 		mntSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int rta = 0;
-				rta = JOptionPane.showConfirmDialog(null, "Esta a punto de salir de la aplicación:\n¿Realmente desea salir de la misma?","ATENCIÓN", JOptionPane.YES_NO_OPTION);
+				rta = JOptionPane.showConfirmDialog(null, 
+						"Esta a punto de salir de la aplicación:\n¿Realmente desea salir de la misma?",
+						"ATENCIÓN",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE, 
+						new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_32.png"));
 				if(rta==0)
 					System.exit(0);
 			}
@@ -100,7 +108,7 @@ public class Principal extends JFrame {
 		mnuOperaciones.setMnemonic('O');
 		mnuBarraMenu.add(mnuOperaciones);
 		
-		generarAnuncio = new interfaces.GenerarAnuncio(this, true, configuraciones);
+		generarAnuncio = new interfaces.GenerarAnuncio(this, true, controladorAnuncios);
 		
 		mntConfeccionar = new JMenuItem("Confeccionar Anuncio");
 		mntConfeccionar.addActionListener(new ActionListener() {
@@ -109,11 +117,11 @@ public class Principal extends JFrame {
 			}
 		});
 		mntConfeccionar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
-		mntConfeccionar.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"CONFECCIONAR_16.png"));
+		mntConfeccionar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFECCIONAR_16.png"));
 		mnuOperaciones.add(mntConfeccionar);
 	
 		mntSeguimiento = new JMenuItem("Realizar Seguimiento de Cliente");
-		mntSeguimiento.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"SEGUIMIENTO_16.png"));
+		mntSeguimiento.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SEGUIMIENTO_16.png"));
 		mnuOperaciones.add(mntSeguimiento);
 		
 
@@ -124,12 +132,12 @@ public class Principal extends JFrame {
 		mntContenidoAyuda = new JMenuItem("Contenidos");
 		mntContenidoAyuda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 		mnuAyuda.add(mntContenidoAyuda);
-		mntContenidoAyuda.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"AYUDA_16.png"));
+		mntContenidoAyuda.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"AYUDA_16.png"));
 		
 		mntAcerca = new JMenuItem("Acerca de SSC");
-		mntAcerca.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"ACERCA_16.png"));
+		mntAcerca.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ACERCA_16.png"));
 		
-		acerca = new interfaces.Acerca(this, true, configuraciones);
+		acerca = new interfaces.Acerca(this, true);
 
 		mntAcerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

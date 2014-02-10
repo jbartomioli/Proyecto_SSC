@@ -1,5 +1,8 @@
 package interfaces;
-
+/*
+ * PANTALLA PARA MOSTRAR INFORMACION
+ * SOBRE EL DESARROLLO
+ */
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -19,7 +22,7 @@ import javax.swing.ImageIcon;
 public class Acerca extends JDialog {
 
 	//SERIALIZABLE
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 143340851367791756L;
 	
 	//COMPONENTES
 	private JPanel pnlContenido;
@@ -32,7 +35,7 @@ public class Acerca extends JDialog {
 	private JTextPane txtVersion;
 
 	//CONSTRUCTOR
-	public Acerca(JFrame padre, boolean modal, utilidades.Configuraciones configuraciones)
+	public Acerca(JFrame padre, boolean modal)
 	{
 		super(padre,modal);
 		setRootPaneCheckingEnabled(false);
@@ -65,7 +68,7 @@ public class Acerca extends JDialog {
 		
 		imgAcerca = new JLabel("");
 		imgAcerca.setSize(new Dimension(128, 128));
-		imgAcerca.setIcon(new ImageIcon(configuraciones.getIMG_ICONOS()+"ACERCA_128.png"));
+		imgAcerca.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ACERCA_128.png"));
 		imgAcerca.setBounds(260, 115, 130, 132);
 		pnlContenido.add(imgAcerca);
 		
@@ -94,7 +97,7 @@ public class Acerca extends JDialog {
 			txtVersion.setText("Versi\u00F3n 1.01\r\n\r\nQueda prohibida la reproducci\u00F3n parcial y/o total del c\u00F3digo de la aplicaci\u00F3n, como as\u00ED tambi\u00E9n, los textos contenidos en manuales y pantallas, im\u00E1genes, y estructura y contenido de la base de datos, sin el previo consentimiento de los autores.\r\n\r\nTodos los derechos reservados.");
 			txtVersion.setBounds(10, 243, 380, 110);
 			pnlContenido.add(txtVersion);
-			btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar",configuraciones.getIMG_ICONOS()+"ACEPTAR_32.png");
+			btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 			btnAceptar.setLocation(300, 329);
 			pnlContenido.add(btnAceptar);
 			btnAceptar.addActionListener(new java.awt.event.ActionListener() {

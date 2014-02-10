@@ -1,14 +1,13 @@
 package interfaces;
-
-
-import interfaces.componentes.BotonesIconos;
+/*
+ * PANTALLA CORRESPONDIENTE AL CU GENERAR ANUNCIO
+ */
 
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTable;
@@ -19,27 +18,21 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.Box;
-
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
-import java.util.ArrayList;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
 
-
-
-
 public class GenerarAnuncio extends JDialog {
-	/**
-	 * 
-	 */
+	//SERIALIZABLE
 	private static final long serialVersionUID = 4454249604145639442L;
 	
+	//COMPONENTES
 	private JTable tblProductosAnuncio;
 	private JTable tblDestinatarios;
 	private JTable tblProductos;
@@ -50,40 +43,37 @@ public class GenerarAnuncio extends JDialog {
 	private interfaces.componentes.BotonesIconos btnGuardar;
 	private interfaces.componentes.BotonesIconos btnCerrar;
 	
+	private negocio.ControladorConfeccionarAnuncio controladorAux;
 
 	/**
 	 * Create the frame.
 	 */
-	public GenerarAnuncio(Frame padre, boolean modal, utilidades.Configuraciones configuraciones) {
+	public GenerarAnuncio(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios) {
 		
 		super(padre);
-
-		//
-		negocio.ControladorConfeccionarAnuncio ctrlAnuncio = new negocio.ControladorConfeccionarAnuncio();
-		
+		setResizable(false);
+		setMinimumSize(new Dimension(1024, 768));
+		getContentPane().setMinimumSize(new Dimension(1024, 768));
+		getContentPane().setMaximumSize(new Dimension(1366, 768));
+		setMaximumSize(new Dimension(1366, 768));
+		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-40);
+		setLocationRelativeTo(null);
 		setTitle("Confeccionar Anuncio");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(configuraciones.getIMG_ICONOS()+"CONFECCIONAR_32.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CONFECCIONAR_32.png"));
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		
-		setSize(new Dimension(1366, 738));
 		getContentPane().setLayout(null);
+		
 		
 		JLabel lblCategoria = new JLabel("Categor\u00EDa:");
 		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCategoria.setBounds(20, 39, 77, 23);
 		getContentPane().add(lblCategoria);
 		
-		ArrayList<String> array = new  ArrayList<String>(); 
-		for(negocio.Categoria cat : ctrlAnuncio.getCctg().getCategorias())
-		{
-			array.add(cat.getDescripcion());
-		}
-		
+		controladorAux = controladorAnuncios;
 
-
-		cmbCategorias = new interfaces.componentes.ComboCategorias(ctrlAnuncio.getCctg().getCategorias());
+		cmbCategorias = new interfaces.componentes.ComboCategorias(controladorAux.getCatalogoCategorias().getCategorias());
 		lblCategoria.setLabelFor(cmbCategorias);
 		cmbCategorias.setBounds(97, 39, 200, 23);
 		getContentPane().add(cmbCategorias);
@@ -94,17 +84,15 @@ public class GenerarAnuncio extends JDialog {
 		getContentPane().add(lblSubcategoria);
 
 		categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
-		categoria.obtenerSubCategorias();
 		
-		cmbSubcategorias = new interfaces.componentes.ComboSubcategorias(categoria.getSubCats());
+		cmbSubcategorias = new interfaces.componentes.ComboSubcategorias(controladorAux.seleccionarCategoria(categoria.getIdCategoria()));
 		lblSubcategoria.setLabelFor(cmbSubcategorias);
-		//cmbSubcategoria.setModel(new DefaultComboBoxModel(new String[] {"", "Jeringas", "Algodones y gasas", "Obturadores", "Barbijos"}));
 		cmbSubcategorias.setBounds(420, 39, 196, 23);
 		getContentPane().add(cmbSubcategorias);
 		
 		Box boxProductosAnuncio = Box.createHorizontalBox();
-		boxProductosAnuncio.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		boxProductosAnuncio.setBounds(10, 100, 700, 250);
+		boxProductosAnuncio.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
+		boxProductosAnuncio.setBounds(10, 106, 464, 244);
 		getContentPane().add(boxProductosAnuncio);
 		
 		JScrollPane scrollProductosAnuncio = new JScrollPane();
@@ -112,11 +100,12 @@ public class GenerarAnuncio extends JDialog {
 		scrollProductosAnuncio.setAlignmentX(Component.LEFT_ALIGNMENT);
 		boxProductosAnuncio.add(scrollProductosAnuncio);
 		
-		String[] columnNames = {"Producto",
-                "Precio",
-                "Stock",
-                ""};
+		String[] columnNames = {"Producto", "Precio", "Stock", "Elimina"};
 		
+		
+		negocio.SubCategoria subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
+		
+
 		Object[][] data = {
 			    {"Barbijo", "$2.50", "500", new Boolean(false)},
 			    {"Gasas", "$5.00", "1000", new Boolean(true)},
@@ -124,18 +113,22 @@ public class GenerarAnuncio extends JDialog {
 			    {"Amalgama", "$2.00", "650", new Boolean(true)},
 			};
 		
-		tblProductosAnuncio = new JTable(data, columnNames);
+		tblProductosAnuncio = new JTable(data,columnNames);
 		
 		scrollProductosAnuncio.setViewportView(tblProductosAnuncio);
 		
-		TableColumn agregarColumn;
+		TableColumn agregarColumn = new TableColumn();
 		agregarColumn = tblProductosAnuncio.getColumnModel().getColumn(3);
-		agregarColumn.setCellEditor(new myeditor(tblProductosAnuncio));
-		agregarColumn.setCellRenderer(new myrenderer(true));
+		agregarColumn.setCellEditor(new interfaces.componentes.EditorCeldas(tblProductosAnuncio));
+		agregarColumn.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(true));
+		
+		
+		
+		
 		
 		Box boxProductos = Box.createHorizontalBox();
 		boxProductos.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		boxProductos.setBounds(850, 100, 400, 400);
+		boxProductos.setBounds(504, 106, 400, 466);
 		getContentPane().add(boxProductos);
 		
 		JScrollPane scrollProductos = new JScrollPane();
@@ -143,17 +136,37 @@ public class GenerarAnuncio extends JDialog {
 		scrollProductos.setAlignmentX(0.0f);
 		boxProductos.add(scrollProductos);
 		
-		tblProductos = new JTable(data, columnNames);
+		
+		DefaultTableModel modeloTablaProductos = new DefaultTableModel(); 
+		modeloTablaProductos.addColumn("Producto"); 
+		modeloTablaProductos.addColumn("Precio"); 
+		modeloTablaProductos.addColumn("Stock"); 
+		modeloTablaProductos.addColumn("Añade"); 
+		modeloTablaProductos.setNumRows(controladorAux.seleccionarSubcategoria(subcategoriaActual.getIdSubcategoria()).size()); 
+		
+		
+		int i = 0;
+		for(negocio.Producto productoActual : controladorAux.seleccionarSubcategoria(subcategoriaActual.getIdSubcategoria()) )
+		{
+			modeloTablaProductos.setValueAt(productoActual.getNombre(), i, 0); 
+			modeloTablaProductos.setValueAt(productoActual.getPrecioActual(), i, 1); 
+			modeloTablaProductos.setValueAt(productoActual.getExistenciaStock(), i, 2);
+			modeloTablaProductos.setValueAt(new Boolean(false), i, 3);
+			i++;
+		} 
+		
+		tblProductos = new JTable();
+		tblProductos.setModel(modeloTablaProductos);
 		scrollProductos.setViewportView(tblProductos);
 		
 		TableColumn agregarColumna;
 		agregarColumna = tblProductos.getColumnModel().getColumn(3);
-		agregarColumna.setCellEditor(new myeditor(tblProductos));
-		agregarColumna.setCellRenderer(new myrenderer1(true));
+		agregarColumna.setCellEditor(new interfaces.componentes.EditorCeldas(tblProductos));
+		agregarColumna.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(true));
 		
 		Box boxDestinatarios = Box.createHorizontalBox();
-		boxDestinatarios.setBorder(new TitledBorder(null, "Destinatarios", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		boxDestinatarios.setBounds(10, 380, 600, 230);
+		boxDestinatarios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
+		boxDestinatarios.setBounds(10, 380, 464, 192);
 		getContentPane().add(boxDestinatarios);
 		
 		JScrollPane scrollDestinatarios = new JScrollPane();
@@ -185,17 +198,17 @@ public class GenerarAnuncio extends JDialog {
 			}
 		});
 		lblModificarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblModificarDestinatarios.setBounds(650, 590, 144, 14);
+		lblModificarDestinatarios.setBounds(330, 577, 144, 14);
 		getContentPane().add(lblModificarDestinatarios);
 		
 		
-		btnGenerar = new BotonesIconos("Generar", configuraciones.getIMG_ICONOS()+"GENERAR_32.png");
-		btnGenerar.setLocation(10, 629);
+		btnGenerar = new interfaces.componentes.BotonesIconos("Generar", utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png");
+		btnGenerar.setLocation(10, 609);
 		getContentPane().add(btnGenerar);
 		
 		
-		btnGuardar = new BotonesIconos("Guardar", configuraciones.getIMG_ICONOS()+"GUARDAR_32.png");
-		btnGuardar.setLocation(1131, 629);
+		btnGuardar = new interfaces.componentes.BotonesIconos("Guardar", utilidades.Configuraciones.IMG_ICONOS+"GUARDAR_32.png");
+		btnGuardar.setLocation(698, 609);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -204,8 +217,8 @@ public class GenerarAnuncio extends JDialog {
 		getContentPane().add(btnGuardar);
 		
 		
-		btnCerrar = new BotonesIconos("Cerrar", configuraciones.getIMG_ICONOS()+"CERRAR_32.png");
-		btnCerrar.setLocation(1250, 629);
+		btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		btnCerrar.setLocation(817, 609);
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -219,12 +232,8 @@ public class GenerarAnuncio extends JDialog {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange() == ItemEvent.SELECTED)
 				{
-					categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
-					if(categoria.getSubCats().isEmpty())
-					{
-						categoria.obtenerSubCategorias();
-					}
-					cmbSubcategorias.actualizarModelo(categoria.getSubCats());					
+					categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();					
+					cmbSubcategorias.actualizarModelo(controladorAux.seleccionarCategoria(categoria.getIdCategoria()));					
 				}
 			}
 		});

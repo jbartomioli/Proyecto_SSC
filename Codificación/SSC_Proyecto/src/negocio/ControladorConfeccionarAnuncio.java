@@ -8,13 +8,13 @@ public class ControladorConfeccionarAnuncio
 	//***************************************************************
 	//* ATRIBUTOS													*
 	//***************************************************************
-	private negocio.CatalogoCategorias cctg;
-	private negocio.CatalogoSubCategorias csctg;
-	private negocio.CatalogoProductos cp;
-	private negocio.CatalogoAnuncios ca;
-	private negocio.CatalogoClientes cc;
+	private negocio.CatalogoCategorias catalogoCategorias;
+	private negocio.CatalogoSubCategorias catalogoSubCategorias;
+	private negocio.CatalogoProductos catalogoPrecios;
+	private negocio.CatalogoAnuncios catalogoAnuncios;
+	private negocio.CatalogoClientes catalogoClientes;
 	private Collection<negocio.Producto> productos;
-	private Collection<negocio.SubCategoria> subCats;
+	private Collection<negocio.SubCategoria> subCategorias;
 	private negocio.Producto productoActual;
 	private Collection<negocio.Cliente> arrClientesInteresados;
 	private Collection<negocio.Producto> arrProductosPublicación;
@@ -28,23 +28,13 @@ public class ControladorConfeccionarAnuncio
 	//***************************************************************
 	public ControladorConfeccionarAnuncio() 
 	{
-		this.cctg = new negocio.CatalogoCategorias();
-		this.cctg.obtenerCategorias();
-		
-		this.csctg = new negocio.CatalogoSubCategorias();
-		this.csctg.obtenerSubCategorias();
-		
-		this.cp = new negocio.CatalogoProductos();
-		this.cp.obtenerProductos();
-		
-		this.ca = new negocio.CatalogoAnuncios();
-		this.ca.obtenerAnuncios();
-		
-		this.cc = new negocio.CatalogoClientes();
-		this.cc.obtenerClientes();
-		
+		this.catalogoCategorias = new negocio.CatalogoCategorias();
+		this.catalogoSubCategorias = new negocio.CatalogoSubCategorias();
+		this.catalogoPrecios = new negocio.CatalogoProductos();
+		this.catalogoAnuncios = new negocio.CatalogoAnuncios();		
+		this.catalogoClientes = new negocio.CatalogoClientes();		
 		this.productos = new ArrayList<negocio.Producto>();
-		this.subCats = new ArrayList<negocio.SubCategoria>();
+		this.subCategorias = new ArrayList<negocio.SubCategoria>();
 		this.productoActual = new negocio.Producto();
 		this.arrClientesInteresados = new ArrayList<negocio.Cliente>();
 		this.arrProductosPublicación = new ArrayList<negocio.Producto>();
@@ -57,115 +47,125 @@ public class ControladorConfeccionarAnuncio
 	//***************************************************************
 	//* GETTES & SETTERS											*
 	//***************************************************************
-	public negocio.CatalogoCategorias getCctg() 
-	{
-		return cctg;
+	public negocio.CatalogoCategorias getCatalogoCategorias() {
+		return catalogoCategorias;
 	}
 
-	public void setCctg(negocio.CatalogoCategorias cctg) 
-	{
-		this.cctg = cctg;
+
+	public void setCatalogoCategorias(negocio.CatalogoCategorias catalogoCategorias) {
+		this.catalogoCategorias = catalogoCategorias;
 	}
 
-	public negocio.CatalogoSubCategorias getCsctg() 
-	{
-		return csctg;
+
+	public negocio.CatalogoSubCategorias getCatalogoSubCategorias() {
+		return catalogoSubCategorias;
 	}
 
-	public void setCsctg(negocio.CatalogoSubCategorias csctg) 
-	{
-		this.csctg = csctg;
+
+	public void setCatalogoSubCategorias(
+			negocio.CatalogoSubCategorias catalogoSubCategorias) {
+		this.catalogoSubCategorias = catalogoSubCategorias;
 	}
 
-	public negocio.CatalogoProductos getCp() 
-	{
-		return cp;
+
+	public negocio.CatalogoProductos getCatalogoPrecios() {
+		return catalogoPrecios;
 	}
 
-	public void setCp(negocio.CatalogoProductos cp) 
-	{
-		this.cp = cp;
+
+	public void setCatalogoPrecios(negocio.CatalogoProductos catalogoPrecios) {
+		this.catalogoPrecios = catalogoPrecios;
 	}
 
-	public negocio.CatalogoAnuncios getCa() 
-	{
-		return ca;
+
+	public negocio.CatalogoAnuncios getCatalogoAnuncios() {
+		return catalogoAnuncios;
 	}
 
-	public void setCa(negocio.CatalogoAnuncios ca) 
-	{
-		this.ca = ca;
+
+	public void setCatalogoAnuncios(negocio.CatalogoAnuncios catalogoAnuncios) {
+		this.catalogoAnuncios = catalogoAnuncios;
 	}
 
-	public Collection<negocio.Producto> getProductos() 
-	{
+
+	public negocio.CatalogoClientes getCatalogoClientes() {
+		return catalogoClientes;
+	}
+
+
+	public void setCatalogoClientes(negocio.CatalogoClientes catalogoClientes) {
+		this.catalogoClientes = catalogoClientes;
+	}
+
+
+	public Collection<negocio.Producto> getProductos() {
 		return productos;
 	}
 
-	public void setProductos(Collection<negocio.Producto> productos) 
-	{
+
+	public void setProductos(Collection<negocio.Producto> productos) {
 		this.productos = productos;
 	}
 
-	public Collection<negocio.SubCategoria> getSubCats() 
-	{
-		return subCats;
+
+	public Collection<negocio.SubCategoria> getSubCategorias() {
+		return subCategorias;
 	}
 
-	public void setSubCats(Collection<negocio.SubCategoria> subCats) 
-	{
-		this.subCats = subCats;
+
+	public void setSubCategorias(Collection<negocio.SubCategoria> subCategorias) {
+		this.subCategorias = subCategorias;
 	}
 
-	public negocio.Producto getProductoActual() 
-	{
+
+	public negocio.Producto getProductoActual() {
 		return productoActual;
 	}
 
-	public void setProductoActual(negocio.Producto productoActual) 
-	{
+
+	public void setProductoActual(negocio.Producto productoActual) {
 		this.productoActual = productoActual;
 	}
 
-	public Collection<negocio.Cliente> getArrClientesInteresados() 
-	{
+
+	public Collection<negocio.Cliente> getArrClientesInteresados() {
 		return arrClientesInteresados;
 	}
 
+
 	public void setArrClientesInteresados(
-			Collection<negocio.Cliente> arrClientesInteresados) 
-	{
+			Collection<negocio.Cliente> arrClientesInteresados) {
 		this.arrClientesInteresados = arrClientesInteresados;
 	}
 
-	public Collection<negocio.Producto> getArrProductosPublicación() 
-	{
+
+	public Collection<negocio.Producto> getArrProductosPublicación() {
 		return arrProductosPublicación;
 	}
 
+
 	public void setArrProductosPublicación(
-			Collection<negocio.Producto> arrProductosPublicación) 
-	{
+			Collection<negocio.Producto> arrProductosPublicación) {
 		this.arrProductosPublicación = arrProductosPublicación;
 	}
 
-	public negocio.Anuncio getAnuncioActual() 
-	{
+
+	public negocio.Anuncio getAnuncioActual() {
 		return anuncioActual;
 	}
 
-	public void setAnuncioActual(negocio.Anuncio anuncioActual) 
-	{
+
+	public void setAnuncioActual(negocio.Anuncio anuncioActual) {
 		this.anuncioActual = anuncioActual;
 	}
 
-	public negocio.Producto getProductoModificar() 
-	{
+
+	public negocio.Producto getProductoModificar() {
 		return productoModificar;
 	}
 
-	public void setProductoModificar(negocio.Producto productoModificar) 
-	{
+
+	public void setProductoModificar(negocio.Producto productoModificar) {
 		this.productoModificar = productoModificar;
 	}
 	//---------------------------------------------------------------
@@ -177,40 +177,57 @@ public class ControladorConfeccionarAnuncio
 	//* METODOS 													*
 	//***************************************************************
 	
+	public void inicializarCatalogos()
+	{
+		this.catalogoCategorias.obtenerCategorias();
+		this.catalogoSubCategorias.obtenerSubCategorias();
+		this.catalogoPrecios.obtenerProductos();
+		this.catalogoAnuncios.obtenerAnuncios();
+		this.catalogoClientes.obtenerClientes();
+	}
+	
+	
+
+
+
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.1.1 - DSD 1.7.2 							   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public Collection<SalidaDatos> seleccionarCategoria(int idCategoria) 
+	public Collection<negocio.SubCategoria> seleccionarCategoria(int idCategoria) 
 	{
 		//instancia para almacenar la categoria actual seleccionada
 		negocio.Categoria categoriaActual = new negocio.Categoria();
 		
 		//se almacena la categoria buscada 
-		categoriaActual = cctg.buscarCategoria(idCategoria);
+		categoriaActual = catalogoCategorias.buscarCategoria(idCategoria);
 		
 		//se crea arreglo de subcategorias
 		Collection<negocio.SubCategoria> subCats = new ArrayList<negocio.SubCategoria>();
 		
 		//se crea instancia de salida de datos (subclase del controlador)
-		Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
+		//Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
 		
 		//se obtienen las subcategorias de la categoria actual
-		categoriaActual.obtenerSubCategorias();
-		subCats = categoriaActual.getSubCats();
-
-		for(negocio.SubCategoria SC : subCats)
-		{
-			SalidaDatos salidaSub = new SalidaDatos();
-			
-			salidaSub.setId(Integer.toString(SC.getIdSubcategoria()));
-			salidaSub.setDescripcion(SC.getDescripcion());
-
-			salidaDatos.add(salidaSub);	
-		}
+		if (categoriaActual.getSubCats().isEmpty())
+				categoriaActual.obtenerSubCategorias();
 		
-		//devuelve la instancia con los atributos seteados
-		return salidaDatos;
+		subCats = categoriaActual.getSubCats();
+		
+		return subCats;
+
+//		for(negocio.SubCategoria SC : subCats)
+//		{
+//			SalidaDatos salidaSub = new SalidaDatos();
+//			
+//			salidaSub.setId(Integer.toString(SC.getIdSubcategoria()));
+//			salidaSub.setDescripcion(SC.getDescripcion());
+//
+//			salidaDatos.add(salidaSub);	
+//		}
+//		
+//		//devuelve la instancia con los atributos seteados
+//		return salidaDatos;
 		
 	}
 	//---------------------------------------------------------------
@@ -221,30 +238,34 @@ public class ControladorConfeccionarAnuncio
 	// Metodo DSD 1.1.2 - DSD 1.7.3 							   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public Collection<SalidaDatos> seleccionarSubcategoria(int idSubCategoria) 
+	public Collection<negocio.Producto> seleccionarSubcategoria(int idSubCategoria) 
 	{
 		negocio.SubCategoria subCatActual = new negocio.SubCategoria();
 		
-		subCatActual = csctg.buscarSubCategoria(idSubCategoria);
+		subCatActual = catalogoSubCategorias.buscarSubCategoria(idSubCategoria);
 		
-		Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
+		//Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
 		
 		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
-		subCatActual.obtenerProductos();
 		
+		if(subCatActual.getProductos().isEmpty())
+			subCatActual.obtenerProductos();
+
 		productos = subCatActual.getProductos();
 		
-		for(negocio.Producto P : productos)
-		{
-			SalidaDatos salidaProd = new SalidaDatos();
-			
-			salidaProd.setId(Integer.toString(P.getIdProducto()));
-			salidaProd.setDescripcion(P.getNombre());
-
-			salidaDatos.add(salidaProd);
-		}
+		return productos;
 		
-		return salidaDatos;
+//		for(negocio.Producto P : productos)
+//		{
+//			SalidaDatos salidaProd = new SalidaDatos();
+//			
+//			salidaProd.setId(Integer.toString(P.getIdProducto()));
+//			salidaProd.setDescripcion(P.getNombre());
+//
+//			salidaDatos.add(salidaProd);
+//		}
+//		
+//		return salidaDatos;
 	}
 	//---------------------------------------------------------------
 	
@@ -261,7 +282,7 @@ public class ControladorConfeccionarAnuncio
 		
 		//se busca el producto y se guarda en la instancia creada
 		//si no se encuentra el producto se guarda null en la instancia
-		productoActual = cp.buscarProducto(idProducto);	
+		productoActual = catalogoPrecios.buscarProducto(idProducto);	
 		
 		//se crea una instancia de datos de salida
 		SalidaDatosSeleccionaProductos salida = new SalidaDatosSeleccionaProductos();
@@ -276,7 +297,7 @@ public class ControladorConfeccionarAnuncio
 			Collection<negocio.Cliente> arrClientesInteresados = new ArrayList<negocio.Cliente>();
 			
 			//
-			arrClientesInteresados = cc.obtenerClientesProducto(productoActual);
+			arrClientesInteresados = catalogoClientes.obtenerClientesProducto(productoActual);
 			
 			int i=0;
 			
@@ -377,7 +398,7 @@ public class ControladorConfeccionarAnuncio
 	{
 		try
 		{
-			ca.guardarAnuncio(this.anuncioActual);
+			catalogoAnuncios.guardarAnuncio(this.anuncioActual);
 			return true;
 		}
 		catch(Exception e)
@@ -440,7 +461,7 @@ public class ControladorConfeccionarAnuncio
 
 		productoModificar.setPrecioPromocional(nuevoPrecio);
 
-		cp.actualizarPrecioPromProducto(productoModificar, nuevoPrecio);
+		catalogoPrecios.actualizarPrecioPromProducto(productoModificar, nuevoPrecio);
 
 		anuncioActual.actualizarProducto(productoModificar);
 
@@ -492,7 +513,7 @@ public class ControladorConfeccionarAnuncio
 		anuncioActual.setClientes(arrClientesTemp);
 
 		//El anuncio actual ya tiene los clientes como atributo
-		ca.guardarCambioClientesAnuncio(anuncioActual);
+		catalogoAnuncios.guardarCambioClientesAnuncio(anuncioActual);
 
 		//SALIDA
 		String[][] arrDatos = new String[arrClientesTemp.size()][2]; // Revisar definicion
@@ -523,9 +544,9 @@ public class ControladorConfeccionarAnuncio
 		Collection<negocio.Cliente> arrClientesEliminar = new ArrayList<negocio.Cliente>();
 
 		
-		productoActual = cp.buscarProducto(idProducto);
+		productoActual = catalogoPrecios.buscarProducto(idProducto);
 
-		arrClientesEliminar = cc.obtenerClientesProducto(productoActual);
+		arrClientesEliminar = catalogoClientes.obtenerClientesProducto(productoActual);
 
 		//VALIDAR QUE EL CLIENTE NO TENGA OTRO PRODUCTO
 		//ES DECIR, SI ELIMINAMOS UN CLIENTE QUE SEA UN POSIBLE INTERESADO DE OTRO

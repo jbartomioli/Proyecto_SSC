@@ -1,4 +1,4 @@
-package interfaces;
+package interfaces.componentes;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -6,19 +6,22 @@ import java.awt.event.ActionListener;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
 // El TableCellEditor se utiliza para editar las celdas
-public class myeditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
+public class EditorCeldas extends AbstractCellEditor implements TableCellEditor, ActionListener {
 
-    Boolean currentValue;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8892573371156211838L;
+	Boolean currentValue;
     JButton button;
     protected static final String EDIT = "edit";
     private JTable table;
 
-    public myeditor(JTable table) {
+    public EditorCeldas(JTable table) {
         button = new JButton();
         button.setActionCommand(EDIT);
         button.addActionListener(this);

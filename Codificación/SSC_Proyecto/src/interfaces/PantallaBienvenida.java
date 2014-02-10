@@ -21,16 +21,17 @@ public class PantallaBienvenida {
 	/**
 	 * Create the application.
 	 */
-	public PantallaBienvenida(utilidades.Configuraciones configuraciones) {
-		initialize(configuraciones);
+	public PantallaBienvenida(negocio.ControladorConfeccionarAnuncio controladorAnuncios) 
+	{
+		inicializar(controladorAnuncios);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(utilidades.Configuraciones configuraciones) {
+	private void inicializar(negocio.ControladorConfeccionarAnuncio controladorAnuncios) {
 		frmInicio = new JFrame("SSC - Sistema de Seguimiento de Clientes");
-		frmInicio.setIconImage(Toolkit.getDefaultToolkit().getImage(configuraciones.getIMG_ICONOS()+"SSC_128.png"));
+		frmInicio.setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"SSC_128.png"));
 		frmInicio.setBackground(Color.WHITE);
 		frmInicio.getContentPane().setBackground(Color.WHITE);
 		frmInicio.getContentPane().setLayout(null);
@@ -38,7 +39,7 @@ public class PantallaBienvenida {
 		
 		JLabel lblImagenSup = new JLabel("");
 		lblImagenSup.setBackground(Color.WHITE);
-		lblImagenSup.setIcon(new ImageIcon(configuraciones.getIMG_PRESENTACION()+"imgInicioSup.jpg"));
+		lblImagenSup.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_PRESENTACION+"imgInicioSup.jpg"));
 		lblImagenSup.setBounds(0, 0, 400, 81);
 		frmInicio.getContentPane().add(lblImagenSup);
 		
@@ -66,7 +67,7 @@ public class PantallaBienvenida {
 		frmInicio.getContentPane().add(lblTitulo4);
 		
 		JLabel lblImagenInf = new JLabel("");
-		lblImagenInf.setIcon(new ImageIcon(configuraciones.getIMG_PRESENTACION()+"imgInicioInf.jpg"));
+		lblImagenInf.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_PRESENTACION+"imgInicioInf.jpg"));
 		lblImagenInf.setBounds(0, 194, 400, 81);
 		frmInicio.getContentPane().add(lblImagenInf);
 		
@@ -80,18 +81,20 @@ public class PantallaBienvenida {
 		frmInicio.setSize(400, 300);
 		frmInicio.setVisible(true);
 		frmInicio.setLocationRelativeTo(null);
-		//frmInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-	    for (int i = 0; i <= 100; i++)
-	    {
-	      for (long j=0; j<1000000; ++j)//modifica el numero segun la velidad q desees
-	      {
-	        @SuppressWarnings("unused")
-			String poop = " " + (j + i);
-	      }
-	      prgBarraProgreso.setValue(i);        //si no quieres q muestre nada, solo la barra
-	   }
+//	    for (int i = 0; i <= 100; i++)
+//	    {
+//	      for (long j=0; j<1000000; ++j)//modifica el numero segun la velidad q desees
+//	      {
+//	        @SuppressWarnings("unused")
+//			String poop = " " + (j + i);
+//	      }
+//	      prgBarraProgreso.setValue(i);        //si no quieres q muestre nada, solo la barra
+//	   }
 
+		controladorAnuncios.inicializarCatalogos();
+		prgBarraProgreso.setValue(100);  
+		
 	    frmInicio.dispose();
 		
 
