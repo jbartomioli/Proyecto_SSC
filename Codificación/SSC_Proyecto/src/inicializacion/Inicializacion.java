@@ -8,8 +8,6 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import negocio.ControladorConfeccionarAnuncio;
-
 
 public class Inicializacion 
 {

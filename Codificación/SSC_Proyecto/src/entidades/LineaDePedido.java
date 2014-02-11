@@ -19,6 +19,10 @@ import javax.persistence.Table;
 @Table(name = "lineaDePedido", catalog = "BD_SSC")
 public class LineaDePedido implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2578024259004349422L;
 	private LineaDePedidoId id;
 	private Pedidos pedidos;
 	private Productos productos;

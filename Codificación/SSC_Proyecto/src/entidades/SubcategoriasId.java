@@ -11,6 +11,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SubcategoriasId implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6091342518570049833L;
 	private int idSubcategoria;
 	private int idCategoria;
 

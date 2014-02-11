@@ -97,7 +97,30 @@ public class SubCategoria
         	productoNegocio.setCodProducto(productoDatos.getCodProducto());
         	productoNegocio.setExistenciaStock(productoDatos.getExistenciaStock());
         	productoNegocio.setIdProducto(productoDatos.getIdProducto());
-        	productoNegocio.setNombre(productoDatos.getNombre());		
+        	productoNegocio.setNombre(productoDatos.getNombre());	
+        	
+        	//SE CREA ARRAY DE PRECIOS DE NEGOCIO PARA AGREGAR CADA PRECIO
+        	Collection<negocio.Precio> preciosProductoNegocio = new ArrayList<negocio.Precio>();
+
+        	//SE RECORRE CADA PRECIO
+        	for(datos.Precio precioProductoDatos : productoDatos.getPrecios())
+        	{
+        		//SE CREA OBJETO PRECIO DE NEGOCIO PARA SETEOS
+        		negocio.Precio precioNegocio = new negocio.Precio();
+        		
+        		//SE SETEAN LOS DATOS
+        		precioNegocio.setFechaDesde(precioProductoDatos.getFechaDesde());
+        		precioNegocio.setFechaHasta(precioProductoDatos.getFechaHasta());
+        		precioNegocio.setIdPrecio(precioProductoDatos.getIdPrecio());
+        		precioNegocio.setPrecio(precioProductoDatos.getPrecio());
+        		precioNegocio.setPrecioPromocional(precioProductoDatos.getPrecioPromocional());
+        		
+        		//SE AGREGA EL PRECIO EN EL ARRAY
+        		preciosProductoNegocio.add(precioNegocio);
+        	}
+        	
+        	//SE SETEAN LOS PRECIOS EN EL PRODUCTO
+        	productoNegocio.setPrecios(preciosProductoNegocio);
         	
         	//SE AGREGA EL PRODUCTO AL ARRAY
 			this.productos.add(productoNegocio);

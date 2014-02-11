@@ -20,6 +20,10 @@ import javax.persistence.Table;
 @Table(name = "categorias", catalog = "BD_SSC")
 public class Categorias implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8362432549400917676L;
 	private Integer idCategoria;
 	private String descripcion;
 	private Set<Subcategorias> subcategoriases = new HashSet<Subcategorias>(0);

@@ -26,6 +26,10 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "productos", catalog = "BD_SSC", uniqueConstraints = @UniqueConstraint(columnNames = "codProducto"))
 public class Productos implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2956068983674021554L;
 	private Integer idProducto;
 	private Subcategorias subcategorias;
 	private String codProducto;

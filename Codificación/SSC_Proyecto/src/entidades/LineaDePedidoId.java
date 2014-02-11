@@ -11,6 +11,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class LineaDePedidoId implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7128941925395402135L;
 	private int idLinea;
 	private int idPedido;
 

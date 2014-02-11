@@ -1,8 +1,14 @@
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
+
+import java.sql.Connection;
 
 import negocio.Anuncio;
 import negocio.CatalogoCategorias;
@@ -148,6 +154,11 @@ public class Prueba {
 			ctgProductos.actualizarStock(productoActual, 10);
 			*/
 						
+			//Class.forName("com.mysql.jdbc.Driver").newInstance();
+			//Connection con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/dbssc","sscacceso", "zLvSUVUaDnWFNKzG");
+			//System.out.print(con);
+			
+			maxId();
 			
 		 }
 		 catch(Exception ex)
@@ -162,4 +173,60 @@ public class Prueba {
 		 }	
    }
 	
+	
+	
+	
+	
+	
+	
+	public static void maxId()
+	{
+		Connection conexion = null;
+		Statement instruccion = null;
+		ResultSet conjuntoResultPers = null;
+		
+		
+		int max = 0;
+		try
+		{
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			conexion = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/dbssc","sscacceso", "zLvSUVUaDnWFNKzG");
+			
+			instruccion = conexion.createStatement();
+			
+			conjuntoResultPers = instruccion.executeQuery(
+					"select * from clientes");
+				  
+			while( conjuntoResultPers.next())
+			{
+				max = conjuntoResultPers.getInt("idCLiente");
+				System.out.println(max);
+			}
+			
+			
+		}
+		catch ( SQLException excepcionSql)
+		{
+			excepcionSql.printStackTrace();
+		}
+		catch (ClassNotFoundException noEncontroClase)
+		{
+			noEncontroClase.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				conjuntoResultPers.close();
+				instruccion.close();
+				conexion.close();
+			}
+			catch (Exception excepcion)
+			{
+				excepcion.printStackTrace();
+			}
+		}
+		//return max;
+	}
 }

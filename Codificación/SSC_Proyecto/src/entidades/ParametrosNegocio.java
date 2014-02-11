@@ -16,6 +16,10 @@ import javax.persistence.Table;
 @Table(name = "parametrosNegocio", catalog = "BD_SSC")
 public class ParametrosNegocio implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5267312538837545341L;
 	private Integer idParametro;
 	private String membrete;
 	private Integer ultIdPedido;

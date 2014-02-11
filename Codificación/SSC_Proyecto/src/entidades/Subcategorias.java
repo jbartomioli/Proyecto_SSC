@@ -22,6 +22,10 @@ import javax.persistence.Table;
 @Table(name = "subcategorias", catalog = "BD_SSC")
 public class Subcategorias implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3029124354805262694L;
 	private SubcategoriasId id;
 	private Categorias categorias;
 	private String descripcion;

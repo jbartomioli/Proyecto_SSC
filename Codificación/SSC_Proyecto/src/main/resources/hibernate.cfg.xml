@@ -2,14 +2,13 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory name="">
+ <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://www.db4free.net:3306/dbssc</property>
-  <property name="hibernate.connection.username">sscacceso</property>
+  <property name="hibernate.connection.url">jdbc:mysql://bartomserver.dyndns.org:3306/BD_SSC</property>
+  <property name="hibernate.connection.username">ssc_acceso</property>
   <property name="hibernate.connection.password">zLvSUVUaDnWFNKzG</property>
-  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.show_sql">false</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
-  <!-- <property name="hibernate.session_factory_name">ssc_bd</property> -->
   <property name="current_session_context_class">thread</property>
   <mapping class="entidades.Categorias" resource="entidades/Categorias.hbm.xml"/>
   <mapping class="entidades.Clientes" resource="entidades/Clientes.hbm.xml"/>

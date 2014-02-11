@@ -11,6 +11,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PreciosId implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5016477078427138234L;
 	private int idPrecio;
 	private int idProducto;
 
