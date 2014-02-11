@@ -6,11 +6,16 @@ package interfaces;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Color;
+
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -100,9 +105,9 @@ public class Acerca extends JDialog {
 			btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 			btnAceptar.setLocation(300, 329);
 			pnlContenido.add(btnAceptar);
-			btnAceptar.addActionListener(new java.awt.event.ActionListener() {
-		        public void actionPerformed(java.awt.event.ActionEvent evento) {
-		        	actionPerformedBotonCerrar(evento);
+			btnAceptar.addActionListener(new ActionListener() {
+		        public void actionPerformed(ActionEvent evento) {
+		        	clickBotonCerrar(evento);
 		        }
 		      });
 		}
@@ -113,7 +118,7 @@ public class Acerca extends JDialog {
 	
 	//EVENTOS	
 	//EVENTO BOTON ACEPTAR
-	private void actionPerformedBotonCerrar(ActionEvent evento)
+	private void clickBotonCerrar(ActionEvent evento)
 	{
 		dispose();
 	}

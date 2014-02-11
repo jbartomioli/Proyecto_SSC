@@ -10,7 +10,7 @@ public class ControladorConfeccionarAnuncio
 	//***************************************************************
 	private negocio.CatalogoCategorias catalogoCategorias;
 	private negocio.CatalogoSubCategorias catalogoSubCategorias;
-	private negocio.CatalogoProductos catalogoPrecios;
+	private negocio.CatalogoProductos catalogoProductos;
 	private negocio.CatalogoAnuncios catalogoAnuncios;
 	private negocio.CatalogoClientes catalogoClientes;
 	private Collection<negocio.Producto> productos;
@@ -30,7 +30,7 @@ public class ControladorConfeccionarAnuncio
 	{
 		this.catalogoCategorias = new negocio.CatalogoCategorias();
 		this.catalogoSubCategorias = new negocio.CatalogoSubCategorias();
-		this.catalogoPrecios = new negocio.CatalogoProductos();
+		this.catalogoProductos = new negocio.CatalogoProductos();
 		this.catalogoAnuncios = new negocio.CatalogoAnuncios();		
 		this.catalogoClientes = new negocio.CatalogoClientes();		
 		this.productos = new ArrayList<negocio.Producto>();
@@ -69,12 +69,12 @@ public class ControladorConfeccionarAnuncio
 
 
 	public negocio.CatalogoProductos getCatalogoPrecios() {
-		return catalogoPrecios;
+		return catalogoProductos;
 	}
 
 
 	public void setCatalogoPrecios(negocio.CatalogoProductos catalogoPrecios) {
-		this.catalogoPrecios = catalogoPrecios;
+		this.catalogoProductos = catalogoPrecios;
 	}
 
 
@@ -181,7 +181,7 @@ public class ControladorConfeccionarAnuncio
 	{
 		this.catalogoCategorias.obtenerCategorias();
 		this.catalogoSubCategorias.obtenerSubCategorias();
-		this.catalogoPrecios.obtenerProductos();
+		this.catalogoProductos.obtenerProductos();
 		this.catalogoAnuncios.obtenerAnuncios();
 		this.catalogoClientes.obtenerClientes();
 	}
@@ -275,49 +275,47 @@ public class ControladorConfeccionarAnuncio
 	// Metodo DSD 1.1.3 - DSD 1.7.4 							   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public SalidaDatosSeleccionaProductos seleccionarProducto(int idProducto) 
+	public Collection<negocio.Cliente> seleccionarProducto(int idProducto) 
 	{
 		//se crea instancia de producto
 		negocio.Producto productoActual = new negocio.Producto();
 		
 		//se busca el producto y se guarda en la instancia creada
 		//si no se encuentra el producto se guarda null en la instancia
-		productoActual = catalogoPrecios.buscarProducto(idProducto);	
+		productoActual = catalogoProductos.buscarProducto(idProducto);	
 		
 		//se crea una instancia de datos de salida
-		SalidaDatosSeleccionaProductos salida = new SalidaDatosSeleccionaProductos();
+		//SalidaDatosSeleccionaProductos salida = new SalidaDatosSeleccionaProductos();
 		
 		//se valida que el producto exista
 		if (productoActual != null)
 		{
 			//se setean datos de salida
-			salida.setStock(Integer.toString(productoActual.getExistenciaStock()));
-			salida.setPrecio(Double.toString(productoActual.getPrecioActual()));
-			
-			Collection<negocio.Cliente> arrClientesInteresados = new ArrayList<negocio.Cliente>();
+			//salida.setStock(Integer.toString(productoActual.getExistenciaStock()));
+			//salida.setPrecio(Double.toString(productoActual.getPrecioActual()));
 			
 			//
 			arrClientesInteresados = catalogoClientes.obtenerClientesProducto(productoActual);
 			
-			int i=0;
+			//int i=0;
 			
 			//se crea array temporal de string para datos de salida de clientes
-			String[][] datosClientes = new String[arrClientesInteresados.size()][3]; 
+			//String[][] datosClientes = new String[arrClientesInteresados.size()][3]; 
 			
-			for(Cliente C: arrClientesInteresados)
-			{
+			//for(Cliente C: arrClientesInteresados)
+			//{
 				//se setean datos de los clientes en array temporal
-				datosClientes[0][i] = Integer.toString(C.getIdCliente());
-				datosClientes[1][i] = C.getNombre();
-				datosClientes[2][i] = C.getApellido();
-			}
+			//	datosClientes[0][i] = Integer.toString(C.getIdCliente());
+			//	datosClientes[1][i] = C.getNombre();
+			//	datosClientes[2][i] = C.getApellido();
+			//}
 			
 			//se setea el array de salida de datos a partir del array temporal
-			salida.setClientes(datosClientes);
+			//salida.setClientes(datosClientes);
 			
 			arrProductosPublicación.add(productoActual);
 		}
-		return salida;
+		return arrClientesInteresados;
 	}
 	//---------------------------------------------------------------
 	
@@ -461,7 +459,7 @@ public class ControladorConfeccionarAnuncio
 
 		productoModificar.setPrecioPromocional(nuevoPrecio);
 
-		catalogoPrecios.actualizarPrecioPromProducto(productoModificar, nuevoPrecio);
+		catalogoProductos.actualizarPrecioPromProducto(productoModificar, nuevoPrecio);
 
 		anuncioActual.actualizarProducto(productoModificar);
 
@@ -544,7 +542,7 @@ public class ControladorConfeccionarAnuncio
 		Collection<negocio.Cliente> arrClientesEliminar = new ArrayList<negocio.Cliente>();
 
 		
-		productoActual = catalogoPrecios.buscarProducto(idProducto);
+		productoActual = catalogoProductos.buscarProducto(idProducto);
 
 		arrClientesEliminar = catalogoClientes.obtenerClientesProducto(productoActual);
 

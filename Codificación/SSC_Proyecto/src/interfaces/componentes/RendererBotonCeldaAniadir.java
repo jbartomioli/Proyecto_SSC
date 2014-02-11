@@ -1,8 +1,6 @@
 package interfaces.componentes;
 
-import java.awt.Color;
 import java.awt.Component;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -29,7 +27,6 @@ public class RendererBotonCeldaAniadir extends JLabel implements TableCellRender
         // Muestra el Boton en cada fila del JTable ProductosAnuncio.
     	JButton botonAniadir = new JButton();
     	botonAniadir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ANIADIR_16.png"));
-    	botonAniadir.setBackground(Color.WHITE);
     	
     	return botonAniadir; //new JButton();
     }

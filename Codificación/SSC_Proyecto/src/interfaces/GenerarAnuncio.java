@@ -8,15 +8,16 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.Box;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,6 +26,8 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 
 public class GenerarAnuncio extends JDialog {
@@ -33,7 +36,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	//COMPONENTES
 	private interfaces.componentes.TablaProductos tblProductosAnuncio;
-	private JTable tblDestinatarios;
+	private interfaces.componentes.TablaClientesDestino tblDestinatarios;
 	private interfaces.componentes.TablaProductos tblProductos;
 	private interfaces.componentes.ComboCategorias cmbCategorias;
 	private interfaces.componentes.ComboSubcategorias cmbSubcategorias;
@@ -85,6 +88,11 @@ public class GenerarAnuncio extends JDialog {
 		categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
 		
 		cmbSubcategorias = new interfaces.componentes.ComboSubcategorias(controladorAux.seleccionarCategoria(categoria.getIdCategoria()));
+		cmbSubcategorias.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent evento) {
+				clickComboSubcategorias(evento);
+			}
+		});
 		lblSubcategoria.setLabelFor(cmbSubcategorias);
 		cmbSubcategorias.setBounds(420, 39, 196, 23);
 		getContentPane().add(cmbSubcategorias);
@@ -133,14 +141,7 @@ public class GenerarAnuncio extends JDialog {
 		JScrollPane scrollDestinatarios = new JScrollPane();
 		boxDestinatarios.add(scrollDestinatarios);
 		
-		tblDestinatarios = new JTable();
-		tblDestinatarios.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Apellido", "Nombre"
-			}
-		));
+		tblDestinatarios = new interfaces.componentes.TablaClientesDestino(controladorAnuncios.seleccionarProducto(100));
 		scrollDestinatarios.setViewportView(tblDestinatarios);
 		
 
@@ -170,33 +171,57 @@ public class GenerarAnuncio extends JDialog {
 		
 		btnGuardar = new interfaces.componentes.BotonesIconos("Guardar", utilidades.Configuraciones.IMG_ICONOS+"GUARDAR_32.png");
 		btnGuardar.setLocation(698, 609);
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
 		getContentPane().add(btnGuardar);
 		
 		
 		btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
-		btnCerrar.setLocation(817, 609);
+		btnCerrar.setLocation(817, 609);	
 		btnCerrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-			}
-		});
-		getContentPane().add(btnCerrar);
-		
+	        public void actionPerformed(ActionEvent evento) {
+	        	clickBotonCerrar(evento);}});
 		
 		
 		cmbCategorias.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED)
-				{
-					categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();					
-					cmbSubcategorias.actualizarModelo(controladorAux.seleccionarCategoria(categoria.getIdCategoria()));					
-				}
-			}
-		});
+			public void itemStateChanged(ItemEvent evento) {
+				clickComboCategorias(evento);}});
+		
+				
+		getContentPane().add(btnCerrar);
+	}
+
+	
+	
+	
+	// EVENTOS
+	public void clickComboCategorias(ItemEvent evento)
+	{
+		if(evento.getStateChange() == ItemEvent.SELECTED)
+		{
+			categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();					
+			cmbSubcategorias.actualizarModelo(controladorAux.seleccionarCategoria(categoria.getIdCategoria()));		
+		}
+	}
+	
+	
+	
+	
+	public void clickComboSubcategorias(ItemEvent evento)
+	{
+		if(evento.getStateChange() == ItemEvent.SELECTED )
+		{
+			negocio.SubCategoria subcategoriaSeleccionda = new negocio.SubCategoria();
+			subcategoriaSeleccionda = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
+			subcategoriaSeleccionda.obtenerProductos();
+									
+			tblProductos.actualizarModelo(controladorAux.seleccionarSubcategoria(
+					subcategoriaSeleccionda.getIdSubcategoria()));
+			tblProductos.definirTablaProductos();
+		}
+	}
+		
+	
+	public void clickBotonCerrar(ActionEvent ae)
+	{
+		dispose();
 	}
 }

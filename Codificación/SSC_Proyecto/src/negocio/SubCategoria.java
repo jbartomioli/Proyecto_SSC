@@ -63,7 +63,7 @@ public class SubCategoria
 	
 	public String toString()
 	{
-		return this.descripcion;
+		return descripcion;
 	}
 	//---------------------------------------------------------------
 

@@ -10,24 +10,17 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import java.awt.Dimension;
-
 import javax.swing.JLabel;
-
 import java.awt.Color;
-
 import javax.swing.SwingConstants;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.KeyStroke;
-
-
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
+
 
 
 public class Principal extends JFrame {
@@ -52,8 +45,7 @@ public class Principal extends JFrame {
 	
 	//CONSTRUCTOR
 	public Principal(negocio.ControladorConfeccionarAnuncio controladorAnuncios) 
-	{		
-		
+	{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"SSC_128.png"));
 		setMinimumSize(new Dimension(800, 600));
 		setSize(getToolkit().getScreenSize());
@@ -89,14 +81,14 @@ public class Principal extends JFrame {
 		mntSalir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_16.png"));
 		mntSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int rta = 0;
+				int rta;
 				rta = JOptionPane.showConfirmDialog(null, 
 						"Esta a punto de salir de la aplicación:\n¿Realmente desea salir de la misma?",
 						"ATENCIÓN",
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE, 
 						new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_32.png"));
-				if(rta==0)
+				if(rta==JOptionPane.YES_OPTION)
 					System.exit(0);
 			}
 		});

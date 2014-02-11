@@ -97,6 +97,12 @@ public class Producto
 	{
 		this.precios = precios;
 	}
+	
+	
+	public String toString()
+	{
+		return nombre;
+	}
 	//---------------------------------------------------------------
 
 		
