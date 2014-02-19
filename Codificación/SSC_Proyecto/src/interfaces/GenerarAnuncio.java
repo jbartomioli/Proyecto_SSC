@@ -3,6 +3,8 @@ package interfaces;
  * PANTALLA CORRESPONDIENTE AL CU GENERAR ANUNCIO
  */
 
+import interfaces.componentes.TablaProductos;
+
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -75,7 +77,13 @@ public class GenerarAnuncio extends JDialog {
 		
 		controladorAux = controladorAnuncios;
 
-		cmbCategorias = new interfaces.componentes.ComboCategorias(controladorAux.getCatalogoCategorias().getCategorias());
+		cmbCategorias = new interfaces.componentes.ComboCategorias(
+				controladorAux.getCatalogoCategorias().getCategorias());
+		
+		cmbCategorias.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent evento) {
+				clickComboCategorias(evento);}});
+		
 		lblCategoria.setLabelFor(cmbCategorias);
 		cmbCategorias.setBounds(97, 39, 200, 23);
 		getContentPane().add(cmbCategorias);
@@ -87,7 +95,9 @@ public class GenerarAnuncio extends JDialog {
 
 		categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
 		
-		cmbSubcategorias = new interfaces.componentes.ComboSubcategorias(controladorAux.seleccionarCategoria(categoria.getIdCategoria()));
+		cmbSubcategorias = new interfaces.componentes.ComboSubcategorias(
+				controladorAux.seleccionarCategoria(categoria.getIdCategoria()));
+		
 		cmbSubcategorias.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
 				clickComboSubcategorias(evento);
@@ -111,7 +121,9 @@ public class GenerarAnuncio extends JDialog {
 		negocio.SubCategoria subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		
 		
-		tblProductosAnuncio = new interfaces.componentes.TablaProductos(controladorAux.seleccionarSubcategoria(subcategoriaActual.getIdSubcategoria()));
+		tblProductosAnuncio = new interfaces.componentes.TablaProductos();
+		tblProductosAnuncio.completarTabla(
+				controladorAux.seleccionarSubcategoria(subcategoriaActual.getIdSubcategoria()));
 		tblProductosAnuncio.definirTablaProductosAnuncio();
 		scrollProductosAnuncio.setViewportView(tblProductosAnuncio);
 	
@@ -127,7 +139,9 @@ public class GenerarAnuncio extends JDialog {
 		boxProductos.add(scrollProductos);
 		
 
-		tblProductos = new interfaces.componentes.TablaProductos(controladorAux.seleccionarSubcategoria(subcategoriaActual.getIdSubcategoria()));
+		tblProductos = new interfaces.componentes.TablaProductos();
+		tblProductos.completarTabla(
+				controladorAux.seleccionarSubcategoria(subcategoriaActual.getIdSubcategoria()));
 		tblProductos.definirTablaProductos();
 		scrollProductos.setViewportView(tblProductos);
 		
@@ -179,13 +193,7 @@ public class GenerarAnuncio extends JDialog {
 		btnCerrar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
 	        	clickBotonCerrar(evento);}});
-		
-		
-		cmbCategorias.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent evento) {
-				clickComboCategorias(evento);}});
-		
-				
+			
 		getContentPane().add(btnCerrar);
 	}
 
@@ -198,7 +206,10 @@ public class GenerarAnuncio extends JDialog {
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{
 			categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();					
-			cmbSubcategorias.actualizarModelo(controladorAux.seleccionarCategoria(categoria.getIdCategoria()));		
+			cmbSubcategorias.actualizarModelo(
+					controladorAux.seleccionarCategoria(categoria.getIdCategoria()));
+			
+			
 		}
 	}
 	
@@ -209,13 +220,15 @@ public class GenerarAnuncio extends JDialog {
 	{
 		if(evento.getStateChange() == ItemEvent.SELECTED )
 		{
-			negocio.SubCategoria subcategoriaSeleccionda = new negocio.SubCategoria();
-			subcategoriaSeleccionda = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
-			subcategoriaSeleccionda.obtenerProductos();
+			negocio.SubCategoria subcategoriaSeleccionada = new negocio.SubCategoria();
+			
+			subcategoriaSeleccionada = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
+			subcategoriaSeleccionada.obtenerProductos();
 									
-			tblProductos.actualizarModelo(controladorAux.seleccionarSubcategoria(
-					subcategoriaSeleccionda.getIdSubcategoria()));
-			tblProductos.definirTablaProductos();
+			tblProductos.completarTabla(controladorAux.seleccionarSubcategoria(
+					subcategoriaSeleccionada.getIdSubcategoria()));
+						
+			//tblProductos.definirTablaProductos();
 		}
 	}
 		

@@ -14,6 +14,7 @@ public class SubCategoria
 	//* ATRIBUTOS													*
 	//***************************************************************
 	private int idSubcategoria;
+	private int idCategoria;
 	private String descripcion;
 	private Collection<datos.Producto> productos;
 	//---------------------------------------------------------------
@@ -25,6 +26,7 @@ public class SubCategoria
 	public SubCategoria() 
 	{
 		this.idSubcategoria = 0;
+		this.idCategoria = 0;
 		this.descripcion = "";
 		this.productos = new ArrayList<datos.Producto>();
 	}
@@ -42,6 +44,16 @@ public class SubCategoria
 		this.idSubcategoria = idSubcategoria;
 	}
 
+	public int getIdcategoria() 
+	{
+		return idCategoria;
+	}
+
+	public void setIdcategoria(int idCategoria) 
+	{
+		this.idCategoria = idCategoria;
+	}
+	
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -69,7 +81,7 @@ public class SubCategoria
 	// 	OBTIENE LOS PRODUCTOS DE UNA SUBCATEGORIA ESPECIFICA	   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerProductos(int idSubcategoria) 
+	public void obtenerProductos(int idSubcategoria, int idCategoria) 
 	{
 		Session session = null;	
 		
@@ -78,8 +90,11 @@ public class SubCategoria
 		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
 		    session.beginTransaction();
 		        
-            Query query = session.createQuery("select sc.productoses from Subcategorias sc where sc.id.idSubcategoria = :idSC");
+            Query query = session.createQuery("select sc.productoses from Subcategorias sc "
+            		+ "where sc.id.idSubcategoria = :idSC"
+            		+ " and sc.id.idCategoria = :idC");
             query.setParameter("idSC", idSubcategoria);
+            query.setParameter("idC", idCategoria);
             
             @SuppressWarnings("unchecked")
 			List<Query> list = query.list();

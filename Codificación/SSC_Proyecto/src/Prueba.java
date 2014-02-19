@@ -17,8 +17,6 @@ import negocio.Categoria;
 import negocio.Cliente;
 import negocio.ControladorConfeccionarAnuncio;
 import negocio.Pedido;
-import negocio.ControladorConfeccionarAnuncio.SalidaDatos;
-import negocio.ControladorConfeccionarAnuncio.SalidaDatosSeleccionaProductos;
 import negocio.ParametrosNegocio;
 import negocio.Producto;
 
@@ -46,13 +44,35 @@ public class Prueba {
 				System.out.println("\n\n");
 			}
 		*/
-		/*
-			negocio.CatalogoCategorias ccc = new CatalogoCategorias();
-			for(negocio.Categoria C : ccc.getCategorias())
-				System.out.println(C.getIdCategoria()+" " +C.getDescripcion());
+		
+			ControladorConfeccionarAnuncio ctrl = new ControladorConfeccionarAnuncio();
+			
+			ctrl.inicializarCatalogos();
+			
+			//negocio.CatalogoCategorias ccc = new CatalogoCategorias();
+			for(negocio.Categoria C : ctrl.getCatalogoCategorias().getCategorias())
+			{
+				System.out.println("Categoria: "+C.getIdCategoria()+"-"+C.getDescripcion());
+				C.obtenerSubCategorias();
+				
+				for(negocio.SubCategoria sub : C.getSubCats())
+				{
+					System.out.print("\tSub: ");
+					System.out.println(sub.getIdSubcategoria()+" "+sub.getDescripcion());
+					sub.obtenerProductos();
+					
+					for(negocio.Producto p : sub.getProductos())
+					{
+						System.out.println("\t\tProducto: "+p.toString());
+					}
+				}		
+				System.in.read();
+			}
+			
+			
 		 
-			*/
 			/*
+			
 			negocio.ControladorConfeccionarAnuncio ctrl = new ControladorConfeccionarAnuncio();
 			
 			Collection<negocio.ControladorConfeccionarAnuncio.SalidaDatos> salida = 
@@ -158,7 +178,7 @@ public class Prueba {
 			//Connection con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/dbssc","sscacceso", "zLvSUVUaDnWFNKzG");
 			//System.out.print(con);
 			
-			maxId();
+			//maxId();
 			
 		 }
 		 catch(Exception ex)

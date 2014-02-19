@@ -64,6 +64,7 @@ public class CatalogoSubCategorias
 			
 			//SE SETEAN LOS DATOS DE LA SUBCATEGORIA
 			subCategoriaNegocio.setIdSubcategoria(subcategoriaDatos.getIdSubcategoria());
+			subCategoriaNegocio.setIdcategoria(subcategoriaDatos.getIdcategoria());
 			subCategoriaNegocio.setDescripcion(subcategoriaDatos.getDescripcion());
 			
 			//SE AGREGA LA SUBCATEGORIA AL ARRAY

@@ -103,6 +103,7 @@ public class Categoria
             	
             	//SE SETEAN LOS DATOS
             	subcategoriaDatos.setIdSubcategoria(entSubcategoria.getId().getIdSubcategoria());
+            	subcategoriaDatos.setIdcategoria(entSubcategoria.getId().getIdCategoria());
             	subcategoriaDatos.setDescripcion(entSubcategoria.getDescripcion());
 
             	//SE AGREGA LAS SUBCATEGORIA AL ARRAY

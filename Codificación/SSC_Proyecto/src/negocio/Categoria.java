@@ -93,6 +93,7 @@ public class Categoria
 			
 			//SETEOS DE DATOS DE LA SUBCATEGORIA
 			subCategoriaNegocio.setIdSubcategoria(subcategoriaDatos.getIdSubcategoria());
+			subCategoriaNegocio.setIdcategoria(subcategoriaDatos.getIdcategoria());
 			subCategoriaNegocio.setDescripcion(subcategoriaDatos.getDescripcion());
 			
 			//SE AGREGA LA SUBCATEGORIA EN EL ARRAY

@@ -9,6 +9,7 @@ public class SubCategoria
 	//* ATRIBUTOS													*
 	//***************************************************************
 	private int idSubcategoria;
+	private int idCategoria;
 	private String descripcion;
 	private Collection<negocio.Producto> productos;
 	//---------------------------------------------------------------
@@ -21,6 +22,7 @@ public class SubCategoria
 	public SubCategoria() 
 	{
 		this.idSubcategoria = 0;
+		this.idCategoria = 0; 
 		this.descripcion = "";
 		this.productos = new ArrayList<negocio.Producto>();
 	}
@@ -39,6 +41,16 @@ public class SubCategoria
 	public void setIdSubcategoria(int idSubcategoria) 
 	{
 		this.idSubcategoria = idSubcategoria;
+	}
+
+	public int getIdcategoria() 
+	{
+		return idCategoria;
+	}
+
+	public void setIdcategoria(int idCategoria) 
+	{
+		this.idCategoria = idCategoria;
 	}
 
 	public String getDescripcion() 
@@ -83,7 +95,7 @@ public class SubCategoria
 		datos.SubCategoria subcategoriaDatos = new datos.SubCategoria();
 		
 		//SE RECUPERAN TODOS LOS PRODUCTOS DE LA SUBCATEGORIA
-		subcategoriaDatos.obtenerProductos(this.idSubcategoria);
+		subcategoriaDatos.obtenerProductos(this.idSubcategoria, this.idCategoria);
 		
 		//SE RECORRE CADA ELEMENTO DE LA CONSULTA PARA LUEGO
 		//SETEARLOS Y AGREGARLOS AL ARRAY
