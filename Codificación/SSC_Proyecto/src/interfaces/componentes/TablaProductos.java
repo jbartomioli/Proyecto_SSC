@@ -1,13 +1,11 @@
 package interfaces.componentes;
 
 import java.util.Collection;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
+
+
 
 public class TablaProductos extends JTable {
 	

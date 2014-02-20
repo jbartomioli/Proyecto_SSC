@@ -153,9 +153,9 @@ public class GenerarAnuncio extends JDialog {
 		JScrollPane scrollDestinatarios = new JScrollPane();
 		boxDestinatarios.add(scrollDestinatarios);
 		
-		tblDestinatarios = new interfaces.componentes.TablaClientesDestino(controladorAnuncios.seleccionarProducto(100));
+		tblDestinatarios = new interfaces.componentes.TablaClientesDestino();
+		tblDestinatarios.completarDatos(controladorAnuncios.seleccionarProducto(100));
 		scrollDestinatarios.setViewportView(tblDestinatarios);
-		
 
 		
 		JLabel lblModificarDestinatarios = new JLabel("Modificar destinatarios");
@@ -247,7 +247,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	
-	public void clickBotonCerrar(ActionEvent ae)
+	public void clickBotonCerrar(ActionEvent evento)
 	{
 		dispose();
 	}

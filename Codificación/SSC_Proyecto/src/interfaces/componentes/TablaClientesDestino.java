@@ -14,7 +14,13 @@ public class TablaClientesDestino extends JTable {
 	 */
 	private static final long serialVersionUID = -6350468692762393156L;
 
-	public TablaClientesDestino(Collection<negocio.Cliente> clientes)
+	
+	public TablaClientesDestino()
+	{
+		
+	}
+	
+	public void completarDatos(Collection<negocio.Cliente> clientes)
 	{
 		modeloTablaClientes = new DefaultTableModel(); 
 		modeloTablaClientes.addColumn("Nombre"); 

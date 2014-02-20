@@ -27,7 +27,7 @@ public class RendererBotonCeldaAniadir extends JLabel implements TableCellRender
         // Muestra el Boton en cada fila del JTable ProductosAnuncio.
     	JButton botonAniadir = new JButton();
     	botonAniadir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ANIADIR_16.png"));
-    	
+     	
     	return botonAniadir; //new JButton();
     }
 }

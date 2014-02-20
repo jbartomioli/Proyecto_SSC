@@ -1,7 +1,6 @@
 package interfaces.componentes;
 
 import java.awt.Component;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -23,12 +22,13 @@ public class RendererBotonCeldaEliminar extends JLabel implements TableCellRende
         this.isBordered = isBordered;
     }
 
+    
     public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) 
     {
         // Muestra el Boton Eliminar en cada fila del JTable ProductosAnuncio.
     	JButton botonEliminar = new JButton();
     	botonEliminar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ELIMINAR_16.png"));
-   
+    	
     	return botonEliminar;
     }
 }
