@@ -153,7 +153,7 @@ public class Anuncio
 	        	productoDatos.setCodProducto(entProducto.getCodProducto());
 	        	productoDatos.setExistenciaStock(entProducto.getStock());
 	        	productoDatos.setIdProducto(productoDatos.getIdProducto());
-	        	productoDatos.setNombre(entProducto.getNombre());
+	        	productoDatos.setNombre(utilidades.Utilidades.utf8_decode(entProducto.getNombre()));
 	        	
 	        	//SE AGREGA EL PRODUCTO AL ARRAY DE PRODUCTOS DEL ANUNCIO ACTUAL
 	           	this.productos.add(productoDatos);
@@ -206,12 +206,12 @@ public class Anuncio
 	        	entidades.Clientes entCliente = (entidades.Clientes) it.next();  
 	           
 	        	//SE SETEAN LOS DATOS DEL CLIENTE EN EL OBJETO CLIENTE DE DATOS
-	        	clienteDato.setApellido(entCliente.getApellido());
-	        	clienteDato.setDireccion(entCliente.getDireccion());
-	        	clienteDato.setEmail(entCliente.getEmail());
-	        	clienteDato.setEspecialidad(entCliente.getEspecialidad());
+	        	clienteDato.setApellido(utilidades.Utilidades.utf8_decode(entCliente.getApellido()));
+	        	clienteDato.setDireccion(utilidades.Utilidades.utf8_decode(entCliente.getDireccion()));
+	        	clienteDato.setEmail(utilidades.Utilidades.utf8_decode(entCliente.getEmail()));
+	        	clienteDato.setEspecialidad(utilidades.Utilidades.utf8_decode(entCliente.getEspecialidad()));
 	        	clienteDato.setIdCliente(entCliente.getIdCliente());
-	        	clienteDato.setNombre(entCliente.getNombre());
+	        	clienteDato.setNombre(utilidades.Utilidades.utf8_decode(entCliente.getNombre()));
 	        	clienteDato.setTelefono(entCliente.getTelefono());
 	        	clienteDato.setTipoCliente(entCliente.getTipo());
 	        	

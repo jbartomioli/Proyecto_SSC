@@ -92,7 +92,8 @@ public class CatalogoProductos
 	        		entSubcat = entProducto.getSubcategorias();
 	        		
 	        		//SE SETEAN DATOS DE LA SUBCATEGORIA
-	        		subCatTemp.setDescripcion(entSubcat.getDescripcion());
+	        		subCatTemp.setDescripcion(utilidades.Utilidades.utf8_decode(entSubcat.getDescripcion()));
+	        		subCatTemp.setIdcategoria(entSubcat.getId().getIdCategoria());
 	        		subCatTemp.setIdSubcategoria(entSubcat.getId().getIdSubcategoria());
 	        	
 	        		//SE SETEA LA SUBCATEGORIA EN EL PRODUCTO

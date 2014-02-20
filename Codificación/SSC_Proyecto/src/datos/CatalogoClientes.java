@@ -78,13 +78,12 @@ public class CatalogoClientes
 	        	entidades.Clientes entCliente = (entidades.Clientes) it.next();  
 	           
 	        	//SE SETEAN LOS DATOS DEL CLIENTE
-	           	clienteDatos.setApellido(entCliente.getApellido()); 
-	           	clienteDatos.setNombre(entCliente.getNombre());
-	           	clienteDatos.setDireccion(entCliente.getDireccion());
-	           	clienteDatos.setEmail(entCliente.getEmail());
-	           	clienteDatos.setEspecialidad(entCliente.getEspecialidad());
+	           	clienteDatos.setApellido(utilidades.Utilidades.utf8_decode(entCliente.getApellido())); 
+	           	clienteDatos.setNombre(utilidades.Utilidades.utf8_decode(entCliente.getNombre()));
+	           	clienteDatos.setDireccion(utilidades.Utilidades.utf8_decode(entCliente.getDireccion()));
+	           	clienteDatos.setEmail(utilidades.Utilidades.utf8_decode(entCliente.getEmail()));
+	           	clienteDatos.setEspecialidad(utilidades.Utilidades.utf8_decode(entCliente.getEspecialidad()));
 	           	clienteDatos.setIdCliente(entCliente.getIdCliente());
-	           	clienteDatos.setNombre(entCliente.getNombre());
 	           	clienteDatos.setTelefono(entCliente.getTelefono());
 	           	clienteDatos.setTipoCliente(entCliente.getTipo());
 	           	

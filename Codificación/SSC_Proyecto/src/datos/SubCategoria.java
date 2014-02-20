@@ -112,7 +112,7 @@ public class SubCategoria
             	productoDatos.setCodProducto(entProducto.getCodProducto());
             	productoDatos.setExistenciaStock(entProducto.getStock());
             	productoDatos.setIdProducto(entProducto.getIdProducto());
-            	productoDatos.setNombre(entProducto.getNombre());
+            	productoDatos.setNombre(utilidades.Utilidades.utf8_decode(entProducto.getNombre()));
             
             	//SE CREA ARRAY DE PRECIOS DE DATOS PARA AGREGAR CADA PRECIO
             	Collection<datos.Precio> preciosProductoDatos = new ArrayList<datos.Precio>();

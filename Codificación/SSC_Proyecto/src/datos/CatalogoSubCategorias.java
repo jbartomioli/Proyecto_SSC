@@ -75,7 +75,7 @@ public class CatalogoSubCategorias
 	        	//SE SETEAN LOS DATOS DE LA SUBCATEGORIA
 	           	subCategoriaDatos.setIdSubcategoria(entSubCategoria.getId().getIdSubcategoria());
 	           	subCategoriaDatos.setIdcategoria(entSubCategoria.getId().getIdCategoria());
-	           	subCategoriaDatos.setDescripcion(entSubCategoria.getDescripcion());
+	           	subCategoriaDatos.setDescripcion(utilidades.Utilidades.utf8_decode(entSubCategoria.getDescripcion()));
 	           	
 	           	//SE AGREGA LA SUBCATEGORIA EN EL ARRAY
 	           	subcategorias.add(subCategoriaDatos);            

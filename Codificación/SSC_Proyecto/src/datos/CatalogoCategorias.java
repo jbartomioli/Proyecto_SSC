@@ -75,7 +75,7 @@ public class CatalogoCategorias
 	           
 	        	//SE SETEA LA CATEGORIA DE DATOS
 	           	categoriaDatos.setIdCategoria(entCategoria.getIdCategoria());
-	           	categoriaDatos.setDescripcion(entCategoria.getDescripcion());
+	           	categoriaDatos.setDescripcion(utilidades.Utilidades.utf8_decode(entCategoria.getDescripcion()));
 	           	
 	           	//SE AGREGA LA CATEGORIA AL ARRAY
 	           	categorias.add(categoriaDatos);            
