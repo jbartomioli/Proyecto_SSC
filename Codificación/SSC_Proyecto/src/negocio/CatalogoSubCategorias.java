@@ -79,14 +79,15 @@ public class CatalogoSubCategorias
 	// DEVUELVE UNA SUBCATEGORIA SEGUN EL ID SELECCIONADO          //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public negocio.SubCategoria buscarSubCategoria(int idSubCategoria)
+	public negocio.SubCategoria buscarSubCategoria(int idCategoria, int idSubCategoria)
 	{
 		//SE RECORRE CADA SUBCATEGORIA DEL ARRAY
 		for(negocio.SubCategoria subcategoriaNegocio: this.subcategorias)
 		{
 			//COMPARA LAS SUBCATEGORIAS POR SU ID
 			//SI LA ENCUENTRA LA DEVUELVE
-			if(subcategoriaNegocio.getIdSubcategoria() == idSubCategoria)
+			if(subcategoriaNegocio.getIdSubcategoria() == idSubCategoria
+					&& subcategoriaNegocio.getIdcategoria() == idCategoria)
 				return subcategoriaNegocio;
 		}
 		//SI NO LA ENCUENTRA DEVUELVE NULO

@@ -238,11 +238,11 @@ public class ControladorConfeccionarAnuncio
 	// Metodo DSD 1.1.2 - DSD 1.7.3 							   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public Collection<negocio.Producto> seleccionarSubcategoria(int idSubCategoria) 
+	public Collection<negocio.Producto> seleccionarSubcategoria(int idCategoria, int idSubCategoria) 
 	{
 		negocio.SubCategoria subCatActual = new negocio.SubCategoria();
 		
-		subCatActual = catalogoSubCategorias.buscarSubCategoria(idSubCategoria);
+		subCatActual = catalogoSubCategorias.buscarSubCategoria(idCategoria,idSubCategoria);
 		
 		//Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
 		

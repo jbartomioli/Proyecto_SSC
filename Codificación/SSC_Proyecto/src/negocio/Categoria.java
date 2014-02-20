@@ -81,25 +81,28 @@ public class Categoria
 		//SE CREA OBJETO CATEGORIA DE DATOS PARA OBTENER DATOS DE LA BD
 		datos.Categoria categoriaDatos = new datos.Categoria();
 		
-		//SE OBTIENEN LAS SUBCATEGORIAS DE LA CATEGORIA SELECCIONADA
-		categoriaDatos.obtenerSubCategorias(this.idCategoria);
 		
-		//SE RECORRE CADA SUBCATEGORIA RESULTANTE DE LA CONSULTA A 
-		//LA BD PARA LUEGO SETEAR DATOS 
-		for(datos.SubCategoria subcategoriaDatos: categoriaDatos.getSubCats())
+		if(this.getSubCats().isEmpty())
 		{
-			//SE CREA OBJETO SUBCATEGORIA DE NEGOCIO PARA SETEOS DE DATOS
-			negocio.SubCategoria subCategoriaNegocio = new negocio.SubCategoria();
+			//SE OBTIENEN LAS SUBCATEGORIAS DE LA CATEGORIA SELECCIONADA
+			categoriaDatos.obtenerSubCategorias(this.idCategoria);
 			
-			//SETEOS DE DATOS DE LA SUBCATEGORIA
-			subCategoriaNegocio.setIdSubcategoria(subcategoriaDatos.getIdSubcategoria());
-			subCategoriaNegocio.setIdcategoria(subcategoriaDatos.getIdcategoria());
-			subCategoriaNegocio.setDescripcion(subcategoriaDatos.getDescripcion());
-			
-			//SE AGREGA LA SUBCATEGORIA EN EL ARRAY
-			this.subCategorias.add(subCategoriaNegocio);
-		}
-		
+			//SE RECORRE CADA SUBCATEGORIA RESULTANTE DE LA CONSULTA A 
+			//LA BD PARA LUEGO SETEAR DATOS 
+			for(datos.SubCategoria subcategoriaDatos: categoriaDatos.getSubCats())
+			{
+				//SE CREA OBJETO SUBCATEGORIA DE NEGOCIO PARA SETEOS DE DATOS
+				negocio.SubCategoria subCategoriaNegocio = new negocio.SubCategoria();
+				
+				//SETEOS DE DATOS DE LA SUBCATEGORIA
+				subCategoriaNegocio.setIdSubcategoria(subcategoriaDatos.getIdSubcategoria());
+				subCategoriaNegocio.setIdcategoria(subcategoriaDatos.getIdcategoria());
+				subCategoriaNegocio.setDescripcion(subcategoriaDatos.getDescripcion());
+				
+				//SE AGREGA LA SUBCATEGORIA EN EL ARRAY
+				this.subCategorias.add(subCategoriaNegocio);
+			}
+		}	
 	}
 	//---------------------------------------------------------------
 }

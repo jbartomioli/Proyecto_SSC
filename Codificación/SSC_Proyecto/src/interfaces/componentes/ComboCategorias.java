@@ -11,10 +11,21 @@ public class ComboCategorias extends JComboBox<negocio.Categoria>
 	 * 
 	 */
 	private static final long serialVersionUID = -2776846341907269710L;
-
-	public ComboCategorias(Collection<negocio.Categoria> categorias)
+	private DefaultComboBoxModel<negocio.Categoria> modeloCombo; 
+	
+	
+	public ComboCategorias()
+	{
+		
+	}
+	
+	public void completarDatos(Collection<negocio.Categoria> categorias)
 	{		
-		DefaultComboBoxModel<negocio.Categoria> modeloCombo = new DefaultComboBoxModel<negocio.Categoria>();
+		
+		if(modeloCombo != null)
+			modeloCombo.removeAllElements();
+		
+		modeloCombo = new DefaultComboBoxModel<negocio.Categoria>();
 		
 		for(negocio.Categoria categoriaNegocio : categorias)
 		{

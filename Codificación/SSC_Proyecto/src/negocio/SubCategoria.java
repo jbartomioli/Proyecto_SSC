@@ -94,48 +94,52 @@ public class SubCategoria
 		//SE CREA SUBCATEGORIA DE DATOS PARA OBTENER LOS DATOS LA BD
 		datos.SubCategoria subcategoriaDatos = new datos.SubCategoria();
 		
-		//SE RECUPERAN TODOS LOS PRODUCTOS DE LA SUBCATEGORIA
-		subcategoriaDatos.obtenerProductos(this.idSubcategoria, this.idCategoria);
 		
-		//SE RECORRE CADA ELEMENTO DE LA CONSULTA PARA LUEGO
-		//SETEARLOS Y AGREGARLOS AL ARRAY
-		for(datos.Producto productoDatos: subcategoriaDatos.getProductos())
+		if(this.getProductos().isEmpty())
 		{
-			//SE CREA OBJETO PRODUCTO DE NEGOCIO PARA SETEARLO
-			//Y AGREGARLO AL ARRAY
-			negocio.Producto productoNegocio = new negocio.Producto();
+			//SE RECUPERAN TODOS LOS PRODUCTOS DE LA SUBCATEGORIA
+			subcategoriaDatos.obtenerProductos(this.idSubcategoria, this.idCategoria);
 			
-			//SE SETEAN LOS DATOS DEL PRODUCTO
-        	productoNegocio.setCodProducto(productoDatos.getCodProducto());
-        	productoNegocio.setExistenciaStock(productoDatos.getExistenciaStock());
-        	productoNegocio.setIdProducto(productoDatos.getIdProducto());
-        	productoNegocio.setNombre(productoDatos.getNombre());	
-        	
-        	//SE CREA ARRAY DE PRECIOS DE NEGOCIO PARA AGREGAR CADA PRECIO
-        	Collection<negocio.Precio> preciosProductoNegocio = new ArrayList<negocio.Precio>();
-
-        	//SE RECORRE CADA PRECIO
-        	for(datos.Precio precioProductoDatos : productoDatos.getPrecios())
-        	{
-        		//SE CREA OBJETO PRECIO DE NEGOCIO PARA SETEOS
-        		negocio.Precio precioNegocio = new negocio.Precio();
-        		
-        		//SE SETEAN LOS DATOS
-        		precioNegocio.setFechaDesde(precioProductoDatos.getFechaDesde());
-        		precioNegocio.setFechaHasta(precioProductoDatos.getFechaHasta());
-        		precioNegocio.setIdPrecio(precioProductoDatos.getIdPrecio());
-        		precioNegocio.setPrecio(precioProductoDatos.getPrecio());
-        		precioNegocio.setPrecioPromocional(precioProductoDatos.getPrecioPromocional());
-        		
-        		//SE AGREGA EL PRECIO EN EL ARRAY
-        		preciosProductoNegocio.add(precioNegocio);
-        	}
-        	
-        	//SE SETEAN LOS PRECIOS EN EL PRODUCTO
-        	productoNegocio.setPrecios(preciosProductoNegocio);
-        	
-        	//SE AGREGA EL PRODUCTO AL ARRAY
-			this.productos.add(productoNegocio);
+			//SE RECORRE CADA ELEMENTO DE LA CONSULTA PARA LUEGO
+			//SETEARLOS Y AGREGARLOS AL ARRAY
+			for(datos.Producto productoDatos: subcategoriaDatos.getProductos())
+			{
+				//SE CREA OBJETO PRODUCTO DE NEGOCIO PARA SETEARLO
+				//Y AGREGARLO AL ARRAY
+				negocio.Producto productoNegocio = new negocio.Producto();
+				
+				//SE SETEAN LOS DATOS DEL PRODUCTO
+	        	productoNegocio.setCodProducto(productoDatos.getCodProducto());
+	        	productoNegocio.setExistenciaStock(productoDatos.getExistenciaStock());
+	        	productoNegocio.setIdProducto(productoDatos.getIdProducto());
+	        	productoNegocio.setNombre(productoDatos.getNombre());	
+	        	
+	        	//SE CREA ARRAY DE PRECIOS DE NEGOCIO PARA AGREGAR CADA PRECIO
+	        	Collection<negocio.Precio> preciosProductoNegocio = new ArrayList<negocio.Precio>();
+	
+	        	//SE RECORRE CADA PRECIO
+	        	for(datos.Precio precioProductoDatos : productoDatos.getPrecios())
+	        	{
+	        		//SE CREA OBJETO PRECIO DE NEGOCIO PARA SETEOS
+	        		negocio.Precio precioNegocio = new negocio.Precio();
+	        		
+	        		//SE SETEAN LOS DATOS
+	        		precioNegocio.setFechaDesde(precioProductoDatos.getFechaDesde());
+	        		precioNegocio.setFechaHasta(precioProductoDatos.getFechaHasta());
+	        		precioNegocio.setIdPrecio(precioProductoDatos.getIdPrecio());
+	        		precioNegocio.setPrecio(precioProductoDatos.getPrecio());
+	        		precioNegocio.setPrecioPromocional(precioProductoDatos.getPrecioPromocional());
+	        		
+	        		//SE AGREGA EL PRECIO EN EL ARRAY
+	        		preciosProductoNegocio.add(precioNegocio);
+	        	}
+	        	
+	        	//SE SETEAN LOS PRECIOS EN EL PRODUCTO
+	        	productoNegocio.setPrecios(preciosProductoNegocio);
+	        	
+	        	//SE AGREGA EL PRODUCTO AL ARRAY
+				this.productos.add(productoNegocio);
+			}
 		}
 		
 	}
