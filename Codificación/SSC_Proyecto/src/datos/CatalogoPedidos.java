@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+
 
 public class CatalogoPedidos 
 {
@@ -120,12 +122,50 @@ public class CatalogoPedidos
 		    entPedido.setEstado(pedidoDatos.getEstado());
 		    entPedido.setTotal(entPedido.getTotal());
 		   
-		    //FALTAN LAS LINEAS
-		    //FALTA EL CLIENTE
+			{//SETEO DEL CLIENTE
+				
+				//SE CREA UN CLIENTE DE DATOS PARA SETEOS DE
+				//DE LOS DATOS NECESARIOS
+				entidades.Clientes entCliente = new entidades.Clientes();
+				
+				//SE SETEAN LOS DATOS
+				entCliente.setIdCliente(pedidoDatos.getCliente().getIdCliente());
+			}
+			
+			{//SETEO DE LAS LINEAS DEL PEDIDO
+				//SE CREA UN ARRAY DE LINEAS DE PEDIDO 
+				//PARA SETEAR EL ARRAY 
+				Collection<entidades.LineaDePedido> arrayEntLineas = new ArrayList<entidades.LineaDePedido>();
+				
+				//SE RECORRE CADA LINEA DE PEDIDO
+				for(datos.LineaDePedido lineaDatos : pedidoDatos.getLineas())
+				{
+					//SE CREA UN OBJETO LINEA PARA DESPUES AGREGARLO 
+					//AL ARRAY
+					entidades.LineaDePedido entLineaDePedido = new entidades.LineaDePedido();
+					
+					//SE SETEAN LOS DATOS
+					entLineaDePedido.setCantidad(lineaDatos.getCantidadPedida());
+					
+					//SE CREA UN PRODUCTO PARA SETEO
+					entidades.Productos entProducto = new entidades.Productos();
+					entProducto.setIdProducto(lineaDatos.getProducto().getIdProducto());
+					
+					entLineaDePedido.setProductos(entProducto);				
+					//entLineaDePedido.setSubTotal();
+					
+					//SE AGREGA LA LINEA SETEDA AL ARRAY
+					arrayEntLineas.add(entLineaDePedido);
+				}
+				
+				//SE SETEA EL ARRAY DE LINEAS EN EL PEDIDO
+				entPedido.setLineaDePedidos((Set<entidades.LineaDePedido>) arrayEntLineas);
+			}
 	         
 		    //SE GUARDA EN BD - INSERT
 	        session.save(entPedido);
 	        
+	        //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		   
 		}

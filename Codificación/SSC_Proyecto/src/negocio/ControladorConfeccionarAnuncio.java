@@ -177,6 +177,10 @@ public class ControladorConfeccionarAnuncio
 	//* METODOS 													*
 	//***************************************************************
 	
+	
+	/////////////////////////////////////////////////////////////////
+	//
+	/////////////////////////////////////////////////////////////////
 	public void inicializarCatalogos()
 	{
 		this.catalogoCategorias.obtenerCategorias();
@@ -185,11 +189,8 @@ public class ControladorConfeccionarAnuncio
 		this.catalogoAnuncios.obtenerAnuncios();
 		this.catalogoClientes.obtenerClientes();
 	}
+	//---------------------------------------------------------------
 	
-	
-
-
-
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.1.1 - DSD 1.7.2 							   //
 	/////////////////////////////////////////////////////////////////
@@ -205,30 +206,13 @@ public class ControladorConfeccionarAnuncio
 		//se crea arreglo de subcategorias
 		Collection<negocio.SubCategoria> subCats = new ArrayList<negocio.SubCategoria>();
 		
-		//se crea instancia de salida de datos (subclase del controlador)
-		//Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
-		
 		//se obtienen las subcategorias de la categoria actual
 		if (categoriaActual.getSubCats().isEmpty())
 				categoriaActual.obtenerSubCategorias();
 		
 		subCats = categoriaActual.getSubCats();
 		
-		return subCats;
-
-//		for(negocio.SubCategoria SC : subCats)
-//		{
-//			SalidaDatos salidaSub = new SalidaDatos();
-//			
-//			salidaSub.setId(Integer.toString(SC.getIdSubcategoria()));
-//			salidaSub.setDescripcion(SC.getDescripcion());
-//
-//			salidaDatos.add(salidaSub);	
-//		}
-//		
-//		//devuelve la instancia con los atributos seteados
-//		return salidaDatos;
-		
+		return subCats;	
 	}
 	//---------------------------------------------------------------
 
@@ -243,9 +227,7 @@ public class ControladorConfeccionarAnuncio
 		negocio.SubCategoria subCatActual = new negocio.SubCategoria();
 		
 		subCatActual = catalogoSubCategorias.buscarSubCategoria(idCategoria,idSubCategoria);
-		
-		//Collection<SalidaDatos> salidaDatos = new ArrayList<SalidaDatos>();
-		
+				
 		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
 		
 		if(subCatActual.getProductos().isEmpty())
@@ -254,18 +236,6 @@ public class ControladorConfeccionarAnuncio
 		productos = subCatActual.getProductos();
 		
 		return productos;
-		
-//		for(negocio.Producto P : productos)
-//		{
-//			SalidaDatos salidaProd = new SalidaDatos();
-//			
-//			salidaProd.setId(Integer.toString(P.getIdProducto()));
-//			salidaProd.setDescripcion(P.getNombre());
-//
-//			salidaDatos.add(salidaProd);
-//		}
-//		
-//		return salidaDatos;
 	}
 	//---------------------------------------------------------------
 	
@@ -284,34 +254,11 @@ public class ControladorConfeccionarAnuncio
 		//si no se encuentra el producto se guarda null en la instancia
 		productoActual = catalogoProductos.buscarProducto(idProducto);	
 		
-		//se crea una instancia de datos de salida
-		//SalidaDatosSeleccionaProductos salida = new SalidaDatosSeleccionaProductos();
-		
 		//se valida que el producto exista
 		if (productoActual != null)
 		{
-			//se setean datos de salida
-			//salida.setStock(Integer.toString(productoActual.getExistenciaStock()));
-			//salida.setPrecio(Double.toString(productoActual.getPrecioActual()));
-			
 			//
 			arrClientesInteresados = catalogoClientes.obtenerClientesProducto(productoActual);
-			
-			//int i=0;
-			
-			//se crea array temporal de string para datos de salida de clientes
-			//String[][] datosClientes = new String[arrClientesInteresados.size()][3]; 
-			
-			//for(Cliente C: arrClientesInteresados)
-			//{
-				//se setean datos de los clientes en array temporal
-			//	datosClientes[0][i] = Integer.toString(C.getIdCliente());
-			//	datosClientes[1][i] = C.getNombre();
-			//	datosClientes[2][i] = C.getApellido();
-			//}
-			
-			//se setea el array de salida de datos a partir del array temporal
-			//salida.setClientes(datosClientes);
 			
 			arrProductosPublicación.add(productoActual);
 		}
