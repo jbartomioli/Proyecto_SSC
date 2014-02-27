@@ -157,6 +157,7 @@ public class GenerarAnuncio extends JDialog {
 		tblDestinatarios.completarDatos(controladorAnuncios.seleccionarProducto(100));
 		scrollDestinatarios.setViewportView(tblDestinatarios);
 
+		final JDialog dialogPadre = this;
 		
 		JLabel lblModificarDestinatarios = new JLabel("Modificar destinatarios");
 		lblModificarDestinatarios.setForeground(SystemColor.inactiveCaptionText);
@@ -168,7 +169,10 @@ public class GenerarAnuncio extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				System.out.println("Hola mundo");
+				//System.out.println("Hola mundo");
+				setModal(false);
+				interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
+				modif.setVisible(true);
 			}
 		});
 		lblModificarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 12));

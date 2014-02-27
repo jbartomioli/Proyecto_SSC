@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
@@ -32,6 +33,7 @@ public class EditorCeldas extends AbstractCellEditor implements TableCellEditor,
     public void actionPerformed(ActionEvent e) {
         // mymodel t = (mymodel) jTable1.getModel();
         // t.addNewRecord();
+    	JOptionPane.showMessageDialog(null, "Presiona boton");
         fireEditingStopped();
     }
 

@@ -1,76 +1,91 @@
 package interfaces;
 
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Graphics;
+
+import interfaces.componentes.BotonesIconos;
 import java.awt.SystemColor;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
-
 import java.awt.Font;
-
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-
 import java.awt.Color;
-
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.TableColumn;
 import javax.swing.JTable;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
-public class modificarDestinatarios extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField txtBuscarDestinatarios;
-	private JLabel lblBuscarDestinatarios;
-	private JTable tblDestinatariosNuevos;
-	private Box boxDestinatariosBuscados;
-	private JScrollPane scrollDestinatariosBuscados;
-	private JTable tblDestinatariosBuscados;
-	private JLabel lblImagen;
+
+public class ModificarDestinatarios extends JDialog {
 
 	/**
-	 * Launch the application.
+	 * 
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					modificarDestinatarios frame = new modificarDestinatarios();
-					frame.setVisible(true);
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private static final long serialVersionUID = -1068385037676479263L;
+
+	private JTextField txtBuscarDestinatarios;
+	private JLabel lblBuscarDestinatarios;
+	private JLabel lblEspecialidad;
+	private JLabel lblImagen;
+	private JComboBox cmbEspecialidad;
+	private JTable tblDestinatariosBuscados;
+	private JTable tblDestinatariosNuevos;
+	private Box boxDestinatariosBuscados;
+	private Box boxDestinatariosNuevos;
+	private JScrollPane scrollDestinatariosBuscados;
+	private JScrollPane scrollDestinatariosNuevos;
+	private interfaces.componentes.BotonesIconos btnAceptar;
+	private interfaces.componentes.BotonesIconos btnCancelar;
+
+
 
 	/**
 	 * Create the frame.
 	 */
-	public modificarDestinatarios() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public ModificarDestinatarios(JDialog padre) {
+		super(padre);
+		setResizable(false);
+		setMinimumSize(new Dimension(1024, 668));
+		getContentPane().setMinimumSize(new Dimension(1024, 668));
+		getContentPane().setMaximumSize(new Dimension(1366, 668));
+		setMaximumSize(new Dimension(1366, 768));
+		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);
+		setLocationRelativeTo(null);		
+		setTitle("Modificar Clientes Destinatarios");
+		setModalityType(ModalityType.APPLICATION_MODAL);
+		setModal(true);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CLIENTES_32.png"));
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		getContentPane().setLayout(null);
+		
+	
+		lblBuscarDestinatarios = new JLabel("Buscar destinatarios");
+		lblBuscarDestinatarios.setForeground(Color.DARK_GRAY);
+		lblBuscarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblBuscarDestinatarios.setBounds(10, 30, 341, 29);
+		getContentPane().add(lblBuscarDestinatarios);
+		
+				
+		lblEspecialidad = new JLabel("Especialidad:");
+		lblEspecialidad.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblEspecialidad.setBounds(10, 88, 86, 14);
+		getContentPane().add(lblEspecialidad);
+				
+		
+		cmbEspecialidad = new JComboBox();
+		cmbEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"", "Endodentista", "Ortodoncistas", "Pedodentista", "Periodentista"}));
+		cmbEspecialidad.setBounds(92, 85, 111, 20);
+		getContentPane().add(cmbEspecialidad);
+
 		
 		txtBuscarDestinatarios = new JTextField();
 		txtBuscarDestinatarios.addMouseListener(new MouseAdapter() {
@@ -84,46 +99,36 @@ public class modificarDestinatarios extends JFrame {
 		txtBuscarDestinatarios.setForeground(Color.GRAY);
 		txtBuscarDestinatarios.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtBuscarDestinatarios.setText("ingrese apellido o nombre...");
-		txtBuscarDestinatarios.setBounds(283, 104, 141, 20);
+		txtBuscarDestinatarios.setBounds(283, 85, 141, 20);
 		txtBuscarDestinatarios.setColumns(10);
+		getContentPane().add(txtBuscarDestinatarios);
 		
-		JLabel lblEspecialidad = new JLabel("Especialidad:");
-		lblEspecialidad.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEspecialidad.setBounds(31, 106, 86, 14);
-		contentPane.setLayout(null);
-		contentPane.add(lblEspecialidad);
-		contentPane.add(txtBuscarDestinatarios);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Endodentista", "Ortodoncistas", "Pedodentista", "Periodentista"}));
-		comboBox.setBounds(113, 104, 111, 20);
-		contentPane.add(comboBox);
+		lblImagen = new JLabel("");
+		lblImagen.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_32.png"));
+		lblImagen.setBounds(425, 103, 29, 20);
+		getContentPane().add(lblImagen);
 		
-		lblBuscarDestinatarios = new JLabel("Buscar destinatarios");
-		lblBuscarDestinatarios.setForeground(Color.DARK_GRAY);
-		lblBuscarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblBuscarDestinatarios.setBounds(31, 29, 341, 29);
-		contentPane.add(lblBuscarDestinatarios);
 		
-		Box boxDestinatariosNuevos = Box.createHorizontalBox();
+		boxDestinatariosNuevos = Box.createHorizontalBox();
 		boxDestinatariosNuevos.setBorder(new TitledBorder(null, "Destinatarios Anuncio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		boxDestinatariosNuevos.setBounds(31, 165, 500, 250);
-		contentPane.add(boxDestinatariosNuevos);
+		boxDestinatariosNuevos.setBounds(10, 134, 500, 250);
+		getContentPane().add(boxDestinatariosNuevos);
 		
-		JScrollPane scrollDestinatariosNuevos = new JScrollPane();
+		scrollDestinatariosNuevos = new JScrollPane();
 		boxDestinatariosNuevos.add(scrollDestinatariosNuevos);
 		
-		String[] columnNames = {"Apellido",
-                "Nombre",
-                "Especialidad",
-                ""};
-		
-		Object[][] data = {
-			    {"Diaz", "Carolina", "Endodoncista", new Boolean(false)},
-			    {"Hulter", "Antonio", "Ortodoncista", new Boolean(true)},
-			    {"Ríos", "Damián", "Ortodoncista", new Boolean(false)}
-		};
-		
+				String[] columnNames = {"Apellido",
+		                "Nombre",
+		                "Especialidad",
+		                ""};
+				
+				Object[][] data = {
+					    {"Diaz", "Carolina", "Endodoncista", new Boolean(false)},
+					    {"Hulter", "Antonio", "Ortodoncista", new Boolean(true)},
+					    {"Ríos", "Damián", "Ortodoncista", new Boolean(false)}
+				};
+				
 		tblDestinatariosNuevos = new JTable(data, columnNames);
 		scrollDestinatariosNuevos.setViewportView(tblDestinatariosNuevos);
 		
@@ -132,10 +137,11 @@ public class modificarDestinatarios extends JFrame {
 		agregarColumn.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosNuevos));
 		agregarColumn.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(true));
 		
+		
 		boxDestinatariosBuscados = Box.createHorizontalBox();
 		boxDestinatariosBuscados.setBorder(new TitledBorder(null, "Destinatarios Anuncio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		boxDestinatariosBuscados.setBounds(700, 165, 500, 250);
-		contentPane.add(boxDestinatariosBuscados);
+		boxDestinatariosBuscados.setBounds(520, 134, 488, 250);
+		getContentPane().add(boxDestinatariosBuscados);
 		
 		scrollDestinatariosBuscados = new JScrollPane();
 		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
@@ -143,23 +149,20 @@ public class modificarDestinatarios extends JFrame {
 		tblDestinatariosBuscados = new JTable(data, columnNames);
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
+		
 		TableColumn agregarColumna;
 		agregarColumna = tblDestinatariosBuscados.getColumnModel().getColumn(3);
 		agregarColumna.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosBuscados));
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(1150, 645, 89, 23);
-		contentPane.add(btnCancelar);
-		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(1250, 645, 89, 23);
-		contentPane.add(btnAceptar);
-		
-		lblImagen = new JLabel("");
-		lblImagen.setIcon(new ImageIcon("G:\\Mis documentos\\Facultad\\5to a\u00F1o\\Proyecto\\icono_buscar.png"));
-		lblImagen.setBounds(425, 103, 29, 20);
-		contentPane.add(lblImagen);
 		agregarColumna.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(true));
+				
 		
+		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
+		btnAceptar.setLocation(820, 606);
+		getContentPane().add(btnAceptar);
+		
+		
+		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		btnCancelar.setLocation(919, 606);
+		getContentPane().add(btnCancelar);
 	}
 }
