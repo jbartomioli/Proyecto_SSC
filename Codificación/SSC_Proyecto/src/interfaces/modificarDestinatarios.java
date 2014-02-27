@@ -77,13 +77,13 @@ public class ModificarDestinatarios extends JDialog {
 				
 		lblEspecialidad = new JLabel("Especialidad:");
 		lblEspecialidad.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEspecialidad.setBounds(10, 88, 86, 14);
+		lblEspecialidad.setBounds(10, 83, 86, 14);
 		getContentPane().add(lblEspecialidad);
 				
 		
 		cmbEspecialidad = new JComboBox();
 		cmbEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"", "Endodentista", "Ortodoncistas", "Pedodentista", "Periodentista"}));
-		cmbEspecialidad.setBounds(92, 85, 111, 20);
+		cmbEspecialidad.setBounds(92, 80, 111, 20);
 		getContentPane().add(cmbEspecialidad);
 
 		
@@ -99,14 +99,15 @@ public class ModificarDestinatarios extends JDialog {
 		txtBuscarDestinatarios.setForeground(Color.GRAY);
 		txtBuscarDestinatarios.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtBuscarDestinatarios.setText("ingrese apellido o nombre...");
-		txtBuscarDestinatarios.setBounds(283, 85, 141, 20);
+		txtBuscarDestinatarios.setBounds(283, 80, 141, 20);
 		txtBuscarDestinatarios.setColumns(10);
 		getContentPane().add(txtBuscarDestinatarios);
 		
 		
 		lblImagen = new JLabel("");
+		lblImagen.setSize(new Dimension(32, 32));
 		lblImagen.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_32.png"));
-		lblImagen.setBounds(425, 103, 29, 20);
+		lblImagen.setBounds(434, 72, 44, 36);
 		getContentPane().add(lblImagen);
 		
 		
@@ -157,12 +158,12 @@ public class ModificarDestinatarios extends JDialog {
 				
 		
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
-		btnAceptar.setLocation(820, 606);
+		btnAceptar.setLocation(819, 569);
 		getContentPane().add(btnAceptar);
 		
 		
 		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
-		btnCancelar.setLocation(919, 606);
+		btnCancelar.setLocation(918, 569);
 		getContentPane().add(btnCancelar);
 	}
 }
