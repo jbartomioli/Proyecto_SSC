@@ -171,7 +171,7 @@ public class GenerarAnuncio extends JDialog {
 			{
 				//System.out.println("Hola mundo");
 				setModal(false);
-				interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
+				interfaces.modificarDestinatarios modif = new interfaces.modificarDestinatarios(dialogPadre);
 				modif.setVisible(true);
 			}
 		});

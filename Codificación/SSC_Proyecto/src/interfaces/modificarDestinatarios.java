@@ -24,7 +24,7 @@ import java.awt.Toolkit;
 
 
 
-public class ModificarDestinatarios extends JDialog {
+public class modificarDestinatarios extends JDialog {
 
 	/**
 	 * 
@@ -50,7 +50,7 @@ public class ModificarDestinatarios extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public ModificarDestinatarios(JDialog padre) {
+	public modificarDestinatarios(JDialog padre) {
 		super(padre);
 		setResizable(false);
 		setMinimumSize(new Dimension(1024, 668));
