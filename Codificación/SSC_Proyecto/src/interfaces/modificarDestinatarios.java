@@ -21,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.UIManager;
 
 
 
@@ -36,7 +37,7 @@ public class modificarDestinatarios extends JDialog {
 	private JLabel lblEspecialidad;
 	private JLabel lblImagen;
 	private JComboBox cmbEspecialidad;
-	private JTable tblDestinatariosBuscados;
+	private interfaces.componentes.TablaDestinatariosBuscados tblDestinatariosBuscados;
 	private JTable tblDestinatariosNuevos;
 	private Box boxDestinatariosBuscados;
 	private Box boxDestinatariosNuevos;
@@ -140,14 +141,16 @@ public class modificarDestinatarios extends JDialog {
 		
 		
 		boxDestinatariosBuscados = Box.createHorizontalBox();
-		boxDestinatariosBuscados.setBorder(new TitledBorder(null, "Destinatarios Anuncio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		boxDestinatariosBuscados.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios por Especialidad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		boxDestinatariosBuscados.setBounds(520, 134, 488, 250);
 		getContentPane().add(boxDestinatariosBuscados);
 		
 		scrollDestinatariosBuscados = new JScrollPane();
 		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
 		
-		tblDestinatariosBuscados = new JTable(data, columnNames);
+		//FALTA COMPLETAR LA TABLA
+		tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatariosBuscados();
+		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
 		

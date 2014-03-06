@@ -3,11 +3,13 @@ package interfaces;
  * PANTALLA CORRESPONDIENTE AL CU GENERAR ANUNCIO
  */
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
@@ -15,6 +17,7 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.Box;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -165,6 +168,7 @@ public class GenerarAnuncio extends JDialog {
 		// Cambia el tipo de cursor al posarlo sobre el link
 		lblModificarDestinatarios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblModificarDestinatarios.setBackground(UIManager.getColor("Button.disabledForeground"));
+		lblModificarDestinatarios.setForeground(new Color(8,98,235));
 		lblModificarDestinatarios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
