@@ -25,7 +25,7 @@ import javax.swing.UIManager;
 
 
 
-public class modificarDestinatarios extends JDialog {
+public class ModificarDestinatarios extends JDialog {
 
 	/**
 	 * 
@@ -51,7 +51,7 @@ public class modificarDestinatarios extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public modificarDestinatarios(JDialog padre) {
+	public ModificarDestinatarios(JDialog padre) {
 		super(padre);
 		setResizable(false);
 		setMinimumSize(new Dimension(1024, 668));

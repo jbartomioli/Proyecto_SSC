@@ -157,7 +157,7 @@ public class GenerarAnuncio extends JDialog {
 		boxDestinatarios.add(scrollDestinatarios);
 		
 		tblDestinatarios = new interfaces.componentes.TablaClientesDestino();
-		tblDestinatarios.completarDatos(controladorAnuncios.seleccionarProducto(100));
+		//tblDestinatarios.completarDatos(controladorAnuncios.seleccionarProducto(100));
 		scrollDestinatarios.setViewportView(tblDestinatarios);
 
 		final JDialog dialogPadre = this;
@@ -175,7 +175,7 @@ public class GenerarAnuncio extends JDialog {
 			{
 				//System.out.println("Hola mundo");
 				setModal(false);
-				interfaces.modificarDestinatarios modif = new interfaces.modificarDestinatarios(dialogPadre);
+				interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
 				modif.setVisible(true);
 			}
 		});
@@ -186,6 +186,11 @@ public class GenerarAnuncio extends JDialog {
 		
 		btnGenerar = new interfaces.componentes.BotonesIconos("Generar", utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png");
 		btnGenerar.setLocation(10, 609);
+		btnGenerar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent evento) {
+	        	setVisible(false);
+	        	interfaces.EditorHTML editor = new interfaces.EditorHTML();
+	        	}});
 		getContentPane().add(btnGenerar);
 		
 		
