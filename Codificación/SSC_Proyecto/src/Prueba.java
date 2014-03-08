@@ -8,6 +8,9 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import utilidades.Configuraciones;
+import utilidades.MailPromocional;
+
 import java.sql.Connection;
 
 import negocio.Anuncio;
@@ -44,7 +47,7 @@ public class Prueba {
 				System.out.println("\n\n");
 			}
 		*/
-		
+		/*
 			ControladorConfeccionarAnuncio ctrl = new ControladorConfeccionarAnuncio();
 			
 			ctrl.inicializarCatalogos();
@@ -69,7 +72,7 @@ public class Prueba {
 				System.in.read();
 			}
 			
-			
+			*/
 		 
 			/*
 			
@@ -120,10 +123,20 @@ public class Prueba {
 				JOptionPane.showMessageDialog(null, "Prueba");
 				i++;
 			}
-			/*
-			Anuncio a = new Anuncio();
-			a.enviarAnuncio();
-			 */
+			*/
+			
+			Configuraciones configuraciones = new Configuraciones();
+			
+			MailPromocional mail = new MailPromocional();
+			
+			String contenido = 
+			"<html><head></head><body><p style=\"margin-top: 0\"><big>Prueba contenido html </big></p>"+
+			"<p style=\"margin-top: 0\"></p><p style=\"margin-top: 0\">"+
+			"<img src=\"CONFECCIONAR_300.png\">"+
+			"</p><hr></body></html>";
+
+			mail.enviarMail(contenido,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, "prueba");
+			
 			/*
 			negocio.ParametrosNegocio param = new negocio.ParametrosNegocio();
 			

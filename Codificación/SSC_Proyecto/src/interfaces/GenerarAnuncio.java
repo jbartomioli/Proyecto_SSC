@@ -26,6 +26,7 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.SwingConstants;
 
 
 public class GenerarAnuncio extends JDialog {
@@ -162,7 +163,8 @@ public class GenerarAnuncio extends JDialog {
 
 		final JDialog dialogPadre = this;
 		
-		JLabel lblModificarDestinatarios = new JLabel("Modificar destinatarios");
+		JLabel lblModificarDestinatarios = new JLabel("Modificar Destinatarios");
+		lblModificarDestinatarios.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblModificarDestinatarios.setForeground(SystemColor.inactiveCaptionText);
 		lblModificarDestinatarios.setBorder(new BevelBorder(0));
 		// Cambia el tipo de cursor al posarlo sobre el link
@@ -180,7 +182,7 @@ public class GenerarAnuncio extends JDialog {
 			}
 		});
 		lblModificarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblModificarDestinatarios.setBounds(330, 577, 144, 14);
+		lblModificarDestinatarios.setBounds(324, 583, 150, 14);
 		getContentPane().add(lblModificarDestinatarios);
 		
 		
@@ -188,8 +190,9 @@ public class GenerarAnuncio extends JDialog {
 		btnGenerar.setLocation(10, 609);
 		btnGenerar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	setVisible(false);
+	        	
 	        	interfaces.EditorHTML editor = new interfaces.EditorHTML();
+	        	setVisible(false);
 	        	}});
 		getContentPane().add(btnGenerar);
 		
