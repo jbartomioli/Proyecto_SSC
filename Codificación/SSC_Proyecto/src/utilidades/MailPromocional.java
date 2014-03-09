@@ -89,7 +89,7 @@ public class MailPromocional {
 			
 			// first part  (the html)
 	        BodyPart messageBodyPart = new MimeBodyPart();
-	        String htmlText = "<H1>Hello</H1><img src=\"cid:image\">";
+	        String htmlText = "<H1>Prueba Adjuntos</H1><img src=\"cid:image\">";
 	        messageBodyPart.setContent(htmlText, "text/html");
 
 	        // add it

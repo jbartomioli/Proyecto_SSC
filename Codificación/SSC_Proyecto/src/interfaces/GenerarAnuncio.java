@@ -158,7 +158,7 @@ public class GenerarAnuncio extends JDialog {
 		boxDestinatarios.add(scrollDestinatarios);
 		
 		tblDestinatarios = new interfaces.componentes.TablaClientesDestino();
-		//tblDestinatarios.completarDatos(controladorAnuncios.seleccionarProducto(100));
+		//tblDestinatarios.completarDatos(controladorAnuncios.getArrClientesInteresados());
 		scrollDestinatarios.setViewportView(tblDestinatarios);
 
 		final JDialog dialogPadre = this;
