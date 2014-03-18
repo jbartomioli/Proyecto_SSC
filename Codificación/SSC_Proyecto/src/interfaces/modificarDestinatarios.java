@@ -83,7 +83,7 @@ public class ModificarDestinatarios extends JDialog {
 				
 		
 		cmbEspecialidad = new JComboBox();
-		cmbEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"", "Endodentista", "Ortodoncistas", "Pedodentista", "Periodentista"}));
+		cmbEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"", "Endodoncia", "Ortodoncia", "Periodoncia", "Protesista", "Gnatología", "Odontología General", "Distribuidor"}));
 		cmbEspecialidad.setBounds(92, 80, 111, 20);
 		getContentPane().add(cmbEspecialidad);
 
