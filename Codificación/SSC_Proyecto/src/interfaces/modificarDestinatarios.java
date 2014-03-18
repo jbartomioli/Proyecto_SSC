@@ -3,12 +3,16 @@ package interfaces;
 
 
 import interfaces.componentes.BotonesIconos;
+
 import java.awt.SystemColor;
+
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
@@ -17,11 +21,14 @@ import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.TableColumn;
 import javax.swing.JTable;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 
 
 
@@ -166,7 +173,30 @@ public class ModificarDestinatarios extends JDialog {
 		
 		
 		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+	        	clickBotonCancelar(evento);}});
+		
 		btnCancelar.setLocation(918, 569);
 		getContentPane().add(btnCancelar);
 	}
+	
+	
+	
+	
+	// EVENTOS
+	public void clickComboEspecialidad(ItemEvent evento)
+	{		
+		if(evento.getStateChange() == ItemEvent.SELECTED)
+		{			
+						
+		}
+	}
+	
+	
+	public void clickBotonCancelar(ActionEvent evento)
+	{
+		dispose();
+	}
+	
 }
