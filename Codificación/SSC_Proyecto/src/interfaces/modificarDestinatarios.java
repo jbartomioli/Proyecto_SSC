@@ -10,9 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-
 import java.awt.Font;
-
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
@@ -29,6 +27,7 @@ import java.awt.Toolkit;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.sql.*;
 
 
 
@@ -90,10 +89,49 @@ public class ModificarDestinatarios extends JDialog {
 				
 		
 		cmbEspecialidad = new JComboBox();
+		cmbEspecialidad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try 
+				{
+					Class.forName("com.mysql.jdbc.Driver");
+					
+					Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/BD_SSC", "root", "root");
+					Statement stm = conexion.createStatement();
+					Object esp = cmbEspecialidad.getSelectedItem();
+					String especialidad = String.valueOf(esp);
+					ResultSet rst = stm.executeQuery("select apellido, nombre, especialidad from `clientes` where especialidad = 'endodoncia'");
+					ResultSetMetaData rstMd = rst.getMetaData();
+					
+					int nroColumnas = rstMd.getColumnCount();
+					
+					while(rst.next())
+					{
+						Object [] fila = new Object [nroColumnas];
+						
+						for(int i = 0; i<nroColumnas; i++)
+						{
+							fila [i] = rst.getObject(i=1);
+						}
+						
+						tblDestinatariosBuscados.agregarFila(fila);
+					}
+					
+				}
+				
+				catch(ClassNotFoundException ce) 
+				{
+					ce.printStackTrace();
+				}
+				
+				catch(SQLException se) 
+				{
+					se.printStackTrace();
+				}
+			}
+		});
 		cmbEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"", "Endodoncia", "Ortodoncia", "Periodoncia", "Protesista", "Gnatología", "Odontología General", "Distribuidor"}));
 		cmbEspecialidad.setBounds(92, 80, 111, 20);
 		getContentPane().add(cmbEspecialidad);
-
 		
 		txtBuscarDestinatarios = new JTextField();
 		txtBuscarDestinatarios.addMouseListener(new MouseAdapter() {

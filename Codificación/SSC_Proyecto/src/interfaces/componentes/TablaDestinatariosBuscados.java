@@ -1,6 +1,7 @@
 package interfaces.componentes;
 
 import java.util.Collection;
+import java.util.Vector;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -65,6 +66,11 @@ public class TablaDestinatariosBuscados extends JTable {
 		columnaNombre1.setPreferredWidth(100);
 	}
 	
+	
+	public void agregarFila(Object fila)
+	{
+		modeloTablaDestinatarios.addRow(fila);
+	}
 	
 	public void definirTablaDestinatariosAnuncio() {
 		columnaBoton
