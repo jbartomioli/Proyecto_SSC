@@ -67,7 +67,8 @@ public class TablaDestinatariosBuscados extends JTable {
 	}
 	
 	
-	public void agregarFila(Object fila)
+	//Agrega filas a la tabla de clientes buscados cuando se selecciona una especialidad
+	public void agregarFila(Object [] fila)
 	{
 		modeloTablaDestinatarios.addRow(fila);
 	}

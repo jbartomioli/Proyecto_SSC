@@ -89,8 +89,10 @@ public class ModificarDestinatarios extends JDialog {
 				
 		
 		cmbEspecialidad = new JComboBox();
-		cmbEspecialidad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		cmbEspecialidad.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				try 
 				{
 					Class.forName("com.mysql.jdbc.Driver");
@@ -99,7 +101,8 @@ public class ModificarDestinatarios extends JDialog {
 					Statement stm = conexion.createStatement();
 					Object esp = cmbEspecialidad.getSelectedItem();
 					String especialidad = String.valueOf(esp);
-					ResultSet rst = stm.executeQuery("select apellido, nombre, especialidad from `clientes` where especialidad = 'endodoncia'");
+					String SQL = "select apellido, nombre, especialidad from clientes where especialidad =" + especialidad;
+					ResultSet rst = stm.executeQuery(SQL);
 					ResultSetMetaData rstMd = rst.getMetaData();
 					
 					int nroColumnas = rstMd.getColumnCount();
@@ -110,7 +113,7 @@ public class ModificarDestinatarios extends JDialog {
 						
 						for(int i = 0; i<nroColumnas; i++)
 						{
-							fila [i] = rst.getObject(i=1);
+							fila [i] = rst.getObject(i+1);
 						}
 						
 						tblDestinatariosBuscados.agregarFila(fila);
