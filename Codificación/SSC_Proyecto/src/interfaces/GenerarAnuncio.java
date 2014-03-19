@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
@@ -26,6 +27,7 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+
 import javax.swing.SwingConstants;
 
 
@@ -196,12 +198,11 @@ public class GenerarAnuncio extends JDialog {
 	        	}});
 		getContentPane().add(btnGenerar);
 		
-		
 		btnGuardar = new interfaces.componentes.BotonesIconos("Guardar", utilidades.Configuraciones.IMG_ICONOS+"GUARDAR_32.png");
 		btnGuardar.setLocation(698, 609);
 		getContentPane().add(btnGuardar);
 		
-		
+	
 		btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCerrar.setLocation(817, 609);	
 		btnCerrar.addActionListener(new ActionListener() {
