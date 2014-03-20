@@ -129,11 +129,11 @@ public class Prueba {
 			
 			MailPromocional mail = new MailPromocional();
 			
-			String contenido = 
-			"<html><head></head><body><p style=\"margin-top: 0\"><big>Prueba contenido html </big></p>"+
-			"<p style=\"margin-top: 0\"></p><p style=\"margin-top: 0\">"+
-			"<img src=\"CONFECCIONAR_300.png\">"+
-			"</p><hr></body></html>";
+			String contenido = "";
+//			"<html><head></head><body><p style=\"margin-top: 0\"><big>Prueba contenido html </big></p>"+
+//			"<p style=\"margin-top: 0\"></p><p style=\"margin-top: 0\">"+
+//			"<img src=\"CONFECCIONAR_300.png\">"+
+//			"</p><hr></body></html>";
 
 			mail.enviarMail(contenido,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, "prueba");
 			

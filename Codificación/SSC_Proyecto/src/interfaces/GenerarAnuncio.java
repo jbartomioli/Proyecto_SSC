@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
@@ -27,6 +27,8 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.SwingConstants;
 
@@ -44,7 +46,9 @@ public class GenerarAnuncio extends JDialog {
 	private negocio.Categoria categoria;
 	private interfaces.componentes.BotonesIconos btnGenerar;
 	private interfaces.componentes.BotonesIconos btnGuardar;
+	private interfaces.componentes.BotonesIconos btnEnviar;
 	private interfaces.componentes.BotonesIconos btnCerrar;
+	private interfaces.EditorHTML editorHTML;
 	
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
 
@@ -188,15 +192,57 @@ public class GenerarAnuncio extends JDialog {
 		getContentPane().add(lblModificarDestinatarios);
 		
 		
-		btnGenerar = new interfaces.componentes.BotonesIconos("Generar", utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png");
-		btnGenerar.setLocation(10, 609);
+		
+		btnGenerar = new interfaces.componentes.BotonesIconos("Modificar Contenido", utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png");
+		btnGenerar.setText("Generar");
+		btnGenerar.setLocation(22, 608);
 		btnGenerar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	
-	        	interfaces.EditorHTML editor = new interfaces.EditorHTML();
 	        	setVisible(false);
-	        	}});
+	        	setModal(false);
+	        	editorHTML = new interfaces.EditorHTML();
+	     	    }});
 		getContentPane().add(btnGenerar);
+		
+		
+		btnEnviar = new interfaces.componentes.BotonesIconos("Enviar Mail", utilidades.Configuraciones.IMG_ICONOS+"ENVIAR_32.png");
+		btnEnviar.setText("Enviar");
+		btnEnviar.setLocation(145, 608);
+		btnEnviar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent evento) {
+	        	try
+	        	{
+		        	setVisible(false);
+		        	setModal(false);
+		        	interfaces.PrevisualizadorHTML previsualizadorHTML = new interfaces.PrevisualizadorHTML("prueba.html");
+	        	}
+	        	catch(FileNotFoundException fne)
+	        	{
+	        		JOptionPane.showMessageDialog(
+	        				null, 
+	        				"No se ha encontrado el archivo generado con el contenido del mail.\n"
+	        				+ "Primero debe confeccionarse el cuerpo del mensaje.",
+	        				"ERROR",
+	        				JOptionPane.ERROR_MESSAGE);
+	        		setVisible(true);
+		        	setModal(true);
+	        	} 
+	        	catch (IOException e) 
+	        	{
+	        		JOptionPane.showMessageDialog(
+	        				null, 
+	        				"Se ha producido un error en la lectura del archivo.\n"
+	        				+ "Deberá reconfeccionar el contenido del mensaje.",
+	        				"ERROR",
+	        				JOptionPane.ERROR_MESSAGE);
+	        		setVisible(true);
+		        	setModal(true);
+				}
+	        }});
+		
+	    getContentPane().add(btnEnviar);
+	    
+
 		
 		btnGuardar = new interfaces.componentes.BotonesIconos("Guardar", utilidades.Configuraciones.IMG_ICONOS+"GUARDAR_32.png");
 		btnGuardar.setLocation(698, 609);

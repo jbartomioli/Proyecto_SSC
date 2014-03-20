@@ -10,16 +10,25 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import java.awt.Dimension;
+
 import javax.swing.JLabel;
+
 import java.awt.Color;
+
 import javax.swing.SwingConstants;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.KeyStroke;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 
@@ -81,15 +90,7 @@ public class Principal extends JFrame {
 		mntSalir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_16.png"));
 		mntSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int rta;
-				rta = JOptionPane.showConfirmDialog(null, 
-						"Esta a punto de salir de la aplicación:\n¿Realmente desea salir de la misma?",
-						"ATENCIÓN",
-						JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE, 
-						new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_32.png"));
-				if(rta==JOptionPane.YES_OPTION)
-					System.exit(0);
+				cerrando();
 			}
 		});
 		mnuArchivo.add(mntSalir);
@@ -141,8 +142,29 @@ public class Principal extends JFrame {
 		
 		setContentPane(cntContenedor);
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setVisible(true);
-
+		
+		addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent evt) {
+            	cerrando();            	
+            }
+        });
+	}
+	
+	
+	
+	public void cerrando()
+	{
+		int rta;
+		rta = JOptionPane.showConfirmDialog(null, 
+				"Esta a punto de salir de la aplicación:\n¿Realmente desea salir de la misma?",
+				"ATENCIÓN",
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE, 
+				new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_32.png"));
+		if(rta==JOptionPane.YES_OPTION)
+			System.exit(0);
 	}
 }

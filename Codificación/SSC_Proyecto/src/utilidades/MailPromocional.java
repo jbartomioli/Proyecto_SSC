@@ -14,6 +14,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.swing.JOptionPane;
+
+import org.infinispan.util.Base64;
 
 public class MailPromocional {
 	//***************************************************************
@@ -89,19 +92,12 @@ public class MailPromocional {
 			
 			// first part  (the html)
 	        BodyPart messageBodyPart = new MimeBodyPart();
-	        String htmlText = "<H1>Prueba Adjuntos</H1><img src=\"cid:image\">";
+	        //String htmlText = "<H1>Prueba Adjuntos</H1><img src=\"cid:CONFECCIONAR_300.png\">";
+	        String htmlText = 
+	        		"<H1>Prueba Adjuntos</H1><img src=\"data:image/png;base64,"+
+	        		Base64.encodeFromFile("D:\\Proyecto_Final_SSC\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\CONFECCIONAR_300.png").toString()+"\"";
 	        messageBodyPart.setContent(htmlText, "text/html");
-
-	        // add it
-	        multipart.addBodyPart(messageBodyPart);
 	        
-	        // second part (the image)
-	        messageBodyPart = new MimeBodyPart();
-	        DataSource fds = new FileDataSource("I:\\Proyecto_Final_SSC\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\CONFECCIONAR_300.png");
-	        messageBodyPart.setDataHandler(new DataHandler(fds));
-	        messageBodyPart.setFileName("CONFECCIONAR_300.png");
-	        messageBodyPart.setHeader("Content-ID","<image>");
-
 	        // add it
 	        multipart.addBodyPart(messageBodyPart);
 
