@@ -32,6 +32,8 @@ import java.io.IOException;
 
 import javax.swing.SwingConstants;
 
+import net.atlanticbb.tantlinger.shef.EditorHTML;
+
 
 public class GenerarAnuncio extends JDialog {
 	//SERIALIZABLE
@@ -48,7 +50,7 @@ public class GenerarAnuncio extends JDialog {
 	private interfaces.componentes.BotonesIconos btnGuardar;
 	private interfaces.componentes.BotonesIconos btnEnviar;
 	private interfaces.componentes.BotonesIconos btnCerrar;
-	private interfaces.EditorHTML editorHTML;
+	private EditorHTML editorHTML;
 	
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
 
@@ -200,7 +202,7 @@ public class GenerarAnuncio extends JDialog {
 	        public void actionPerformed(ActionEvent evento) {
 	        	setVisible(false);
 	        	setModal(false);
-	        	editorHTML = new interfaces.EditorHTML();
+	        	editorHTML = new EditorHTML();
 	     	    }});
 		getContentPane().add(btnGenerar);
 		
