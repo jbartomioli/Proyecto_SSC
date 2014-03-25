@@ -9,7 +9,6 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JOptionPane;
@@ -18,7 +17,6 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.Box;
-
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -27,11 +25,7 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import javax.swing.SwingConstants;
-
 import net.atlanticbb.tantlinger.shef.EditorHTML;
 
 
@@ -50,8 +44,7 @@ public class GenerarAnuncio extends JDialog {
 	private interfaces.componentes.BotonesIconos btnGuardar;
 	private interfaces.componentes.BotonesIconos btnEnviar;
 	private interfaces.componentes.BotonesIconos btnCerrar;
-	private EditorHTML editorHTML;
-	
+		
 	
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
 
@@ -201,9 +194,7 @@ public class GenerarAnuncio extends JDialog {
 		btnGenerar.setLocation(22, 608);
 		btnGenerar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	//setVisible(false);
-	        	//setModal(false);
-	        	editorHTML = new EditorHTML(dialogPadre);
+	        	EditorHTML editorHTML = new EditorHTML(dialogPadre);
 	     	    }});
 		getContentPane().add(btnGenerar);
 		
@@ -213,34 +204,7 @@ public class GenerarAnuncio extends JDialog {
 		btnEnviar.setLocation(145, 608);
 		btnEnviar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	try
-	        	{
-		        	setVisible(false);
-		        	setModal(false);
-		        	interfaces.PrevisualizadorHTML previsualizadorHTML = new interfaces.PrevisualizadorHTML("prueba.html");
-	        	}
-	        	catch(FileNotFoundException fne)
-	        	{
-	        		JOptionPane.showMessageDialog(
-	        				null, 
-	        				"No se ha encontrado el archivo generado con el contenido del mail.\n"
-	        				+ "Primero debe confeccionarse el cuerpo del mensaje.",
-	        				"ERROR",
-	        				JOptionPane.ERROR_MESSAGE);
-	        		setVisible(true);
-		        	setModal(true);
-	        	} 
-	        	catch (IOException e) 
-	        	{
-	        		JOptionPane.showMessageDialog(
-	        				null, 
-	        				"Se ha producido un error en la lectura del archivo.\n"
-	        				+ "Deberá reconfeccionar el contenido del mensaje.",
-	        				"ERROR",
-	        				JOptionPane.ERROR_MESSAGE);
-	        		setVisible(true);
-		        	setModal(true);
-				}
+	        	interfaces.PrevisualizadorHTML previsualizadorHTML = new interfaces.PrevisualizadorHTML("prueba.html", dialogPadre);
 	        }});
 		
 	    getContentPane().add(btnEnviar);

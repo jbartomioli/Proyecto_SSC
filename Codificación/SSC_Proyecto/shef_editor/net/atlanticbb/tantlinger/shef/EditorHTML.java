@@ -34,7 +34,6 @@ public class EditorHTML extends JDialog
     	setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 
     	addWindowListener(new WindowAdapter() {
-        	@Override
         	public void windowClosing(WindowEvent arg0) {
         		cerrarEditor();
         	}
@@ -91,9 +90,6 @@ public class EditorHTML extends JDialog
 				 break;
 		case(1): setModal(false);
 				 dispose();
-				 
-				 //padre.setVisible(true);
-				// padre.setModal(true);
 				 break;
 		}
     }
