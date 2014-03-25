@@ -52,12 +52,14 @@ public class GenerarAnuncio extends JDialog {
 	private interfaces.componentes.BotonesIconos btnCerrar;
 	private EditorHTML editorHTML;
 	
+	
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
 
 	/**
 	 * Create the frame.
 	 */
-	public GenerarAnuncio(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios) {
+	public GenerarAnuncio(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios)
+	{
 		
 		super(padre);
 		setResizable(false);
@@ -193,16 +195,15 @@ public class GenerarAnuncio extends JDialog {
 		lblModificarDestinatarios.setBounds(324, 583, 150, 14);
 		getContentPane().add(lblModificarDestinatarios);
 		
-		
-		
+
 		btnGenerar = new interfaces.componentes.BotonesIconos("Modificar Contenido", utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png");
 		btnGenerar.setText("Generar");
 		btnGenerar.setLocation(22, 608);
 		btnGenerar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	setVisible(false);
-	        	setModal(false);
-	        	editorHTML = new EditorHTML();
+	        	//setVisible(false);
+	        	//setModal(false);
+	        	editorHTML = new EditorHTML(dialogPadre);
 	     	    }});
 		getContentPane().add(btnGenerar);
 		
@@ -307,11 +308,7 @@ public class GenerarAnuncio extends JDialog {
 	}
 		
 	
-	
-	
-	
-	
-	
+
 	public void clickBotonCerrar(ActionEvent evento)
 	{
 		dispose();
