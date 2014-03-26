@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 
 public class PrevisualizadorHTML extends JDialog
@@ -31,8 +32,7 @@ public class PrevisualizadorHTML extends JDialog
 
 	public PrevisualizadorHTML()
 	{
-		getContentPane().setLayout(new BorderLayout(0, 0));
-		  
+
 	}
 	  
 	  
@@ -47,53 +47,46 @@ public class PrevisualizadorHTML extends JDialog
 		contenidoMailHTML = "";
 		
 	    Document doc = kit.createDefaultDocument();
-	
 	    setModal(true);
 	    setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-	    
+        setSize(800, 600);
+
     	addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {
-        	//	cerrarEditor();
+        		cerrarEditor();
         	}
         });
-    	
-	    setSize(800, 600);
-	    setLocationRelativeTo(null);
-	    setTitle("Vista Previa del Mensaje");
-	       
+	    getContentPane().setLayout(new BorderLayout(0, 0));
+	    
 	    JEditorPane epnEditor = new JEditorPane();	       
 	    epnEditor.setEditable(false);
 	       
 	    JScrollPane scrEditor = new JScrollPane(epnEditor);
-	    scrEditor.setBounds(10, 10, 570, 270);
 	    epnEditor.setEditorKit(kit);
 	    epnEditor.setDocument(doc);
 	    epnEditor.setText("");
-	    getContentPane().add(scrEditor, BorderLayout.CENTER); 
-       
-	    JPanel pnlBotones = new JPanel();
-	    pnlBotones.setBounds(10, 320, 570, 35);   
-	   	pnlBotones.setLayout(null);
-	   
-	   	JButton btnAceptar = new JButton("Aceptar");
-	   	btnAceptar.setBounds(144, 5, 80, 25);
-	   	pnlBotones.add(btnAceptar);
-	   	btnAceptar.addActionListener(new ActionListener() {
-	   	public void actionPerformed(ActionEvent arg0) {
-	   		prepararContenidoPorMail(contenidoMailHTML);
-	   		}
-	   	});
- 
-	   	JButton btnCancelar = new JButton("Cancelar");
-	   	btnCancelar.setBounds(354, 5, 85, 25);
-	   	btnCancelar.addActionListener(new ActionListener() {
-	   	public void actionPerformed(ActionEvent arg0) {
-	   		//System.exit(0);
-	   		}
-	   	});
-	   	pnlBotones.add(btnCancelar);
-	   
-	    getContentPane().add(pnlBotones, BorderLayout.SOUTH);
+	    getContentPane().add(scrEditor);
+	    
+   		JPanel panel = new JPanel();
+   		getContentPane().add(panel, BorderLayout.SOUTH);
+   		panel.setLayout(new GridLayout(0, 2, 0, 0));
+   		
+   		JButton btnVolverModificar = new JButton("Volver y Modificar");
+   		btnVolverModificar.addActionListener(new ActionListener() {
+   			public void actionPerformed(ActionEvent arg0) {
+   				setModal(false);
+   				dispose();
+   			}
+   		});
+   		panel.add(btnVolverModificar, BorderLayout.EAST);
+   		
+   		JButton btnAceptarEnviar = new JButton("Aceptar y Enviar");
+   		btnAceptarEnviar.addActionListener(new ActionListener() {
+   			public void actionPerformed(ActionEvent e) {
+   				//
+   			}
+   		});
+   		panel.add(btnAceptarEnviar, BorderLayout.WEST);
 	   	
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         setVisible(true);
@@ -113,6 +106,8 @@ public class PrevisualizadorHTML extends JDialog
 	        		contenidoMailHTML += renglon;
 		   
 	   		epnEditor.setText(contenidoMailHTML);
+	   		
+
 	   	}
 	   	catch(FileNotFoundException fne)
 	   	{
@@ -150,8 +145,30 @@ public class PrevisualizadorHTML extends JDialog
 	  
 	  
 	  //-------------------------------------------------------------------
-	  private void prepararContenidoPorMail(String contenidoEnviar)
+	  public void prepararContenidoPorMail(String contenidoEnviar)
 	  {
 		  
 	  }
+	  
+	  
+	//-------------------------------------------------------------
+	public void cerrarEditor()
+	{
+		int rta = JOptionPane.showConfirmDialog(
+					this, 
+					"Está a punto de salir sin enviar el mensaje.\n"
+						+ "¿Desea salir y volver al editor de mensaje?\n"
+						+ "Si presiona NO se enviará el mensaje",
+					"ATENCIÓN",
+					JOptionPane.YES_NO_OPTION);
+				
+		switch(rta)
+		{
+		case(1): //finalizarEdicion();
+				 break;
+		case(0): setModal(false);
+				 dispose();
+				 break;
+		}
+	}
 }
