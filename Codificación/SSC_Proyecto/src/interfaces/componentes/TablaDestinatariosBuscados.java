@@ -54,8 +54,8 @@ public class TablaDestinatariosBuscados extends JTable {
 		columnaBoton = new TableColumn();
 		columnaBoton = getColumnModel().getColumn(3);
 		columnaBoton.setCellEditor(new interfaces.componentes.EditorCeldas(this));
-		columnaBoton.setPreferredWidth(10);
-		columnaBoton.setMaxWidth(10);
+		columnaBoton.setPreferredWidth(16);
+		columnaBoton.setMaxWidth(16);
 		
 		TableColumn columnaNombre;
 		columnaNombre = getColumn("Apellido");
@@ -67,7 +67,7 @@ public class TablaDestinatariosBuscados extends JTable {
 	}
 	
 	
-	//Agrega filas a la tabla de clientes buscados cuando se selecciona una especialidad
+	//Agrega filas a la tabla de clientes buscados según la especialidad seleccionada
 	public void agregarFila(Object [] fila)
 	{
 		modeloTablaDestinatarios.addRow(fila);
@@ -79,7 +79,6 @@ public class TablaDestinatariosBuscados extends JTable {
 						true));
 	}
 
-	//
 	public void definirTablaDestinatariosBuscados() {
 		columnaBoton
 				.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(

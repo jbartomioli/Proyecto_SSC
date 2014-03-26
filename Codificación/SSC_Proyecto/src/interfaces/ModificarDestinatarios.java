@@ -55,9 +55,7 @@ public class ModificarDestinatarios extends JDialog {
 
 
 
-	/**
-	 * Create the frame.
-	 */
+	//CONSTRUCTOR
 	public ModificarDestinatarios(JDialog padre) {
 		super(padre);
 		setResizable(false);
@@ -133,7 +131,7 @@ public class ModificarDestinatarios extends JDialog {
 				}
 			}
 		});
-		cmbEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"", "Endodoncia", "Ortodoncia", "Periodoncia", "Protesista", "Gnatología", "Odontología General", "Distribuidor"}));
+		cmbEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"", "Distribuidor", "Endodoncia", "Gnatología", "Odontología General", "Ortodoncia", "Periodoncia", "Protesista"}));
 		cmbEspecialidad.setBounds(92, 80, 111, 20);
 		getContentPane().add(cmbEspecialidad);
 		
