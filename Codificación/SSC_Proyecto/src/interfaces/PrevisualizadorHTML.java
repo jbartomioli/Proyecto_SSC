@@ -20,6 +20,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 
 public class PrevisualizadorHTML extends JDialog
@@ -27,13 +29,7 @@ public class PrevisualizadorHTML extends JDialog
 	private static final long serialVersionUID = 2483184216073019363L;
 	
 	private String contenidoMailHTML;
-
-
-
-	public PrevisualizadorHTML()
-	{
-
-	}
+	private JEditorPane epnEditor;
 	  
 	  
 	public PrevisualizadorHTML(String nombreArchivo, JDialog padre)
@@ -41,8 +37,6 @@ public class PrevisualizadorHTML extends JDialog
 		super(padre);
 		
 		HTMLEditorKit kit = new HTMLEditorKit();
-		        
-		File archivoHTML = new File(Configuraciones.DIR_MAILS+nombreArchivo);
 		
 		contenidoMailHTML = "";
 		
@@ -58,13 +52,13 @@ public class PrevisualizadorHTML extends JDialog
         });
 	    getContentPane().setLayout(new BorderLayout(0, 0));
 	    
-	    JEditorPane epnEditor = new JEditorPane();	       
+	    epnEditor = new JEditorPane();	  
 	    epnEditor.setEditable(false);
 	       
 	    JScrollPane scrEditor = new JScrollPane(epnEditor);
 	    epnEditor.setEditorKit(kit);
 	    epnEditor.setDocument(doc);
-	    epnEditor.setText("");
+	    leerArchivo(nombreArchivo);
 	    getContentPane().add(scrEditor);
 	    
    		JPanel panel = new JPanel();
@@ -87,14 +81,24 @@ public class PrevisualizadorHTML extends JDialog
    			}
    		});
    		panel.add(btnAceptarEnviar, BorderLayout.WEST);
-	   	
+	   	   		
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         setVisible(true);
-	   
         
+        
+	}
+	
+	
+	
+	
+	//-----------------------------------------------------------------------
+	public void leerArchivo(String nombreArchivo)
+	{
+		File archivoHTML = new File(Configuraciones.DIR_MAILS+nombreArchivo);
+		
 	   	FileReader fr = null;
 	   	BufferedReader br = null;
-	     
+	   	
 	   	try 
 	   	{
 	   		fr = new FileReader(archivoHTML);
@@ -105,9 +109,6 @@ public class PrevisualizadorHTML extends JDialog
 	   		while((renglon=br.readLine())!=null)
 	        		contenidoMailHTML += renglon;
 		   
-	   		epnEditor.setText(contenidoMailHTML);
-	   		
-
 	   	}
 	   	catch(FileNotFoundException fne)
 	   	{
@@ -140,8 +141,10 @@ public class PrevisualizadorHTML extends JDialog
         	{ 
         		e2.printStackTrace();
         	}
+        	
+        	epnEditor.setText(contenidoMailHTML);
      }
-}
+	}
 	  
 	  
 	  //-------------------------------------------------------------------

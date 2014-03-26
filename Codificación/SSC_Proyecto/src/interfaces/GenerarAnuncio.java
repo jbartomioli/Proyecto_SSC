@@ -204,7 +204,8 @@ public class GenerarAnuncio extends JDialog {
 		btnEnviar.setLocation(145, 608);
 		btnEnviar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	interfaces.PrevisualizadorHTML previsualizadorHTML = new interfaces.PrevisualizadorHTML("prueba.html", dialogPadre);
+	        	interfaces.PrevisualizadorHTML previsualizadorHTML = 
+	        			new interfaces.PrevisualizadorHTML("prueba.html", dialogPadre);
 	        }});
 		
 	    getContentPane().add(btnEnviar);
