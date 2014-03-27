@@ -64,7 +64,7 @@ public class ModificarDestinatarios extends JDialog {
 		getContentPane().setMaximumSize(new Dimension(1366, 668));
 		setMaximumSize(new Dimension(1366, 768));
 		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);
-		setLocationRelativeTo(null);		
+		//setLocationRelativeTo(null); AL PONER LA SENTENCIA EN EL BOTON NO HACE FALTA PONERLO ACÁ		
 		setTitle("Modificar Clientes Destinatarios");
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
@@ -196,7 +196,7 @@ public class ModificarDestinatarios extends JDialog {
 		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
 		
 		//FALTA COMPLETAR LA TABLA
-		tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatariosBuscados();
+		/*tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatariosBuscados();
 		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
@@ -205,7 +205,7 @@ public class ModificarDestinatarios extends JDialog {
 		agregarColumna = tblDestinatariosBuscados.getColumnModel().getColumn(3);
 		agregarColumna.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosBuscados));
 		agregarColumna.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(true));
-				
+	*/			
 		
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(819, 569);
