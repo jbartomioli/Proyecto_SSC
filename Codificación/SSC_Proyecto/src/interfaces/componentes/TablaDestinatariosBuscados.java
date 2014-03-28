@@ -30,10 +30,8 @@ public class TablaDestinatariosBuscados extends JTable {
 	}
 	
 	
-	//
 	public void completarTabla(Collection<negocio.Cliente> clientes)
-	{					
-		
+	{						
 		while(modeloTablaDestinatarios.getRowCount() > 0) 
 				modeloTablaDestinatarios.removeRow(0);
 		
@@ -49,8 +47,8 @@ public class TablaDestinatariosBuscados extends JTable {
 			modeloTablaProductos.setValueAt(productoActual.getExistenciaStock(), i, 2);
 			modeloTablaProductos.setValueAt(new Boolean(false), i, 3);
 			i++;
-		} */
-		
+		}
+		*/
 		columnaBoton = new TableColumn();
 		columnaBoton = getColumnModel().getColumn(3);
 		columnaBoton.setCellEditor(new interfaces.componentes.EditorCeldas(this));

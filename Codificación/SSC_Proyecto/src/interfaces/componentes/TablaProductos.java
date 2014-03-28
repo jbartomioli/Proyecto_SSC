@@ -23,7 +23,7 @@ public class TablaProductos extends JTable {
 		modeloTablaProductos.addColumn("");
 	}
 
-	//
+
 	public void completarTabla(Collection<negocio.Producto> productos) {
 
 		while (modeloTablaProductos.getRowCount() > 0)

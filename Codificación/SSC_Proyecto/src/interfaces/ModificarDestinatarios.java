@@ -185,6 +185,8 @@ public class ModificarDestinatarios extends JDialog {
 		agregarColumn = tblDestinatariosNuevos.getColumnModel().getColumn(3);
 		agregarColumn.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosNuevos));
 		agregarColumn.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(true));
+		agregarColumn.setPreferredWidth(16);
+		agregarColumn.setMaxWidth(16);
 		
 		
 		boxDestinatariosBuscados = Box.createHorizontalBox();
@@ -197,6 +199,7 @@ public class ModificarDestinatarios extends JDialog {
 		
 		//FALTA COMPLETAR LA TABLA
 		/*tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatariosBuscados();
+		tblDestinatariosBuscados.completarTabla(clientes);
 		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
@@ -205,8 +208,9 @@ public class ModificarDestinatarios extends JDialog {
 		agregarColumna = tblDestinatariosBuscados.getColumnModel().getColumn(3);
 		agregarColumna.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosBuscados));
 		agregarColumna.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(true));
-	*/			
-		
+		agregarColumna.setPreferredWidth(16);
+		agregarColumna.setMaxWidth(16);
+		*/
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(819, 569);
 		getContentPane().add(btnAceptar);
@@ -229,7 +233,7 @@ public class ModificarDestinatarios extends JDialog {
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{			
-						
+				
 		}
 	}
 	
