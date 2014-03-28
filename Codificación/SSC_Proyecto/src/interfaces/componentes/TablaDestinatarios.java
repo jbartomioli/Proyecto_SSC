@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 
-public class TablaDestinatariosBuscados extends JTable {
+public class TablaDestinatarios extends JTable {
 
 	private TableColumn columnaBoton;
 	private DefaultTableModel modeloTablaDestinatarios;
@@ -27,7 +27,7 @@ public class TablaDestinatariosBuscados extends JTable {
 	/**
 	 * Create the frame.
 	 */
-	public TablaDestinatariosBuscados() {
+	public TablaDestinatarios() {
 		modeloTablaDestinatarios = new DefaultTableModel(); 
 		modeloTablaDestinatarios.addColumn("Apellido"); 
 		modeloTablaDestinatarios.addColumn("Nombre"); 
@@ -45,8 +45,8 @@ public class TablaDestinatariosBuscados extends JTable {
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/BD_SSC", "root", "root");
 			Statement stm = conexion.createStatement();
 			
-			String SQL = "select apellido, nombre, especialidad from clientes where especialidad =" + especialidad;
-			System.out.println("SQL: " + especialidad);
+			String SQL = "select apellido, nombre, especialidad from clientes where especialidad = " + "'" + especialidad + "'";
+			System.out.println("SQL: " + SQL);
 			ResultSet rst = stm.executeQuery(SQL);
 			ResultSetMetaData rstMd = rst.getMetaData();
 			

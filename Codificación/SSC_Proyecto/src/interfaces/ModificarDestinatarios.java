@@ -25,6 +25,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.JTable;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Dimension;
@@ -51,7 +52,7 @@ public class ModificarDestinatarios extends JDialog {
 	private JLabel lblEspecialidad;
 	private JLabel lblImagen;
 	private JComboBox cmbEspecialidad;
-	private interfaces.componentes.TablaDestinatariosBuscados tblDestinatariosBuscados;
+	private interfaces.componentes.TablaDestinatarios tblDestinatariosBuscados;
 	private JTable tblDestinatariosNuevos;
 	private Box boxDestinatariosBuscados;
 	private Box boxDestinatariosNuevos;
@@ -96,15 +97,10 @@ public class ModificarDestinatarios extends JDialog {
 				
 		
 		cmbEspecialidad = new JComboBox();
-		cmbEspecialidad.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				Object esp = cmbEspecialidad.getSelectedItem();
-				String especialidad = String.valueOf(esp);
-				System.out.println("Especialidad: " + especialidad);
-			}
-		});
+		cmbEspecialidad.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent evento) {
+				clickComboEspecialidad(evento);}});
+		
 		cmbEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"", "Distribuidor", "Endodoncia", "Gnatología", "Odontología General", "Ortodoncia", "Periodoncia", "Protesista"}));
 		cmbEspecialidad.setBounds(92, 80, 111, 20);
 		getContentPane().add(cmbEspecialidad);
@@ -163,28 +159,28 @@ public class ModificarDestinatarios extends JDialog {
 		agregarColumn.setMaxWidth(16);
 		
 		
-		boxDestinatariosBuscados = Box.createHorizontalBox();
+		Box boxDestinatariosBuscados = Box.createHorizontalBox();
 		boxDestinatariosBuscados.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios por Especialidad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		boxDestinatariosBuscados.setBounds(520, 134, 488, 250);
 		getContentPane().add(boxDestinatariosBuscados);
 		
-		scrollDestinatariosBuscados = new JScrollPane();
+		JScrollPane scrollDestinatariosBuscados = new JScrollPane();
 		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
 		
 		//FALTA COMPLETAR LA TABLA
-	 /* tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatariosBuscados();
-		tblDestinatariosBuscados.completarTabla(especialidad);
+	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
 		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
 		
-		TableColumn agregarColumna;
+		/*TableColumn agregarColumna;
 		agregarColumna = tblDestinatariosBuscados.getColumnModel().getColumn(3);
 		agregarColumna.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosBuscados));
 		agregarColumna.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(true));
 		agregarColumna.setPreferredWidth(16);
 		agregarColumna.setMaxWidth(16);
-	*/	
+		*/
+		
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(819, 569);
 		getContentPane().add(btnAceptar);
@@ -207,7 +203,10 @@ public class ModificarDestinatarios extends JDialog {
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{			
+			Object esp = cmbEspecialidad.getSelectedItem();
+			String especialidad = String.valueOf(esp);
 			
+			tblDestinatariosBuscados.completarTabla(especialidad);
 		}
 	}
 	
