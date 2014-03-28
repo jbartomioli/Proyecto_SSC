@@ -1,5 +1,11 @@
 package interfaces.componentes;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.Vector;
 
@@ -30,25 +36,46 @@ public class TablaDestinatariosBuscados extends JTable {
 	}
 	
 	
-	public void completarTabla(Collection<negocio.Cliente> clientes)
+	public void completarTabla(String especialidad)
 	{						
-		while(modeloTablaDestinatarios.getRowCount() > 0) 
-				modeloTablaDestinatarios.removeRow(0);
-		
-		modeloTablaDestinatarios.setNumRows(clientes.size()); 
-
-		setModel(modeloTablaDestinatarios);
-		
-		/*int i = 0;
-		for(negocio.Producto productoActual : productos)
-		{
-			modeloTablaProductos.setValueAt(productoActual.getNombre(), i, 0); 
-			modeloTablaProductos.setValueAt(productoActual.getPrecioActual(), i, 1); 
-			modeloTablaProductos.setValueAt(productoActual.getExistenciaStock(), i, 2);
-			modeloTablaProductos.setValueAt(new Boolean(false), i, 3);
-			i++;
+		try 
+		{					
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/BD_SSC", "root", "root");
+			Statement stm = conexion.createStatement();
+			
+			String SQL = "select apellido, nombre, especialidad from clientes where especialidad =" + especialidad;
+			System.out.println("SQL: " + especialidad);
+			ResultSet rst = stm.executeQuery(SQL);
+			ResultSetMetaData rstMd = rst.getMetaData();
+			
+			int nroColumnas = rstMd.getColumnCount();
+			
+			while(rst.next())
+			{
+				Object [] fila = new Object [nroColumnas];
+				
+				for(int i = 0; i<nroColumnas; i++)
+				{
+					fila [i] = rst.getObject(i+1);
+				}
+				
+				this.agregarFila(fila);
+			}
+			
 		}
-		*/
+		
+		catch(ClassNotFoundException ce) 
+		{
+			ce.printStackTrace();
+		}
+		
+		catch(SQLException se) 
+		{
+			se.printStackTrace();
+		}
+		
 		columnaBoton = new TableColumn();
 		columnaBoton = getColumnModel().getColumn(3);
 		columnaBoton.setCellEditor(new interfaces.componentes.EditorCeldas(this));

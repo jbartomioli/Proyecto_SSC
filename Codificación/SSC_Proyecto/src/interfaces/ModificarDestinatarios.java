@@ -10,21 +10,28 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
 import java.awt.Color;
+
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.TableColumn;
 import javax.swing.JTable;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
 import javax.swing.UIManager;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.sql.*;
@@ -52,6 +59,7 @@ public class ModificarDestinatarios extends JDialog {
 	private JScrollPane scrollDestinatariosNuevos;
 	private interfaces.componentes.BotonesIconos btnAceptar;
 	private interfaces.componentes.BotonesIconos btnCancelar;
+	private String especialidad;
 
 
 
@@ -92,43 +100,9 @@ public class ModificarDestinatarios extends JDialog {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				try 
-				{
-					Class.forName("com.mysql.jdbc.Driver");
-					
-					Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/BD_SSC", "root", "root");
-					Statement stm = conexion.createStatement();
-					Object esp = cmbEspecialidad.getSelectedItem();
-					String especialidad = String.valueOf(esp);
-					String SQL = "select apellido, nombre, especialidad from clientes where especialidad =" + especialidad;
-					ResultSet rst = stm.executeQuery(SQL);
-					ResultSetMetaData rstMd = rst.getMetaData();
-					
-					int nroColumnas = rstMd.getColumnCount();
-					
-					while(rst.next())
-					{
-						Object [] fila = new Object [nroColumnas];
-						
-						for(int i = 0; i<nroColumnas; i++)
-						{
-							fila [i] = rst.getObject(i+1);
-						}
-						
-						tblDestinatariosBuscados.agregarFila(fila);
-					}
-					
-				}
-				
-				catch(ClassNotFoundException ce) 
-				{
-					ce.printStackTrace();
-				}
-				
-				catch(SQLException se) 
-				{
-					se.printStackTrace();
-				}
+				Object esp = cmbEspecialidad.getSelectedItem();
+				String especialidad = String.valueOf(esp);
+				System.out.println("Especialidad: " + especialidad);
 			}
 		});
 		cmbEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"", "Distribuidor", "Endodoncia", "Gnatología", "Odontología General", "Ortodoncia", "Periodoncia", "Protesista"}));
@@ -198,8 +172,8 @@ public class ModificarDestinatarios extends JDialog {
 		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
 		
 		//FALTA COMPLETAR LA TABLA
-		/*tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatariosBuscados();
-		tblDestinatariosBuscados.completarTabla(clientes);
+	 /* tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatariosBuscados();
+		tblDestinatariosBuscados.completarTabla(especialidad);
 		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
@@ -210,7 +184,7 @@ public class ModificarDestinatarios extends JDialog {
 		agregarColumna.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(true));
 		agregarColumna.setPreferredWidth(16);
 		agregarColumna.setMaxWidth(16);
-		*/
+	*/	
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(819, 569);
 		getContentPane().add(btnAceptar);
@@ -233,7 +207,7 @@ public class ModificarDestinatarios extends JDialog {
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{			
-				
+			
 		}
 	}
 	
