@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.Box;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,7 +27,9 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+
 import javax.swing.SwingConstants;
+
 import net.atlanticbb.tantlinger.shef.EditorHTML;
 
 
@@ -194,7 +198,10 @@ public class GenerarAnuncio extends JDialog {
 		btnGenerar.setLocation(22, 608);
 		btnGenerar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	EditorHTML editorHTML = new EditorHTML(dialogPadre);
+	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
+	        	@SuppressWarnings("unused")
+				EditorHTML editorHTML = new EditorHTML(dialogPadre);
+	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	     	    }});
 		getContentPane().add(btnGenerar);
 		
@@ -204,7 +211,8 @@ public class GenerarAnuncio extends JDialog {
 		btnEnviar.setLocation(145, 608);
 		btnEnviar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	interfaces.PrevisualizadorHTML previsualizadorHTML = 
+	        	@SuppressWarnings("unused")
+				interfaces.PrevisualizadorHTML previsualizadorHTML = 
 	        			new interfaces.PrevisualizadorHTML("prueba.html", dialogPadre);
 	        }});
 		

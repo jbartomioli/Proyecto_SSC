@@ -3,6 +3,7 @@ package interfaces;
 import javax.swing.JFrame;
 
 import java.awt.Color;
+import java.awt.Cursor;
 
 import javax.swing.JLabel;
 
@@ -11,6 +12,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JProgressBar;
 import javax.swing.ImageIcon;
+
 import java.awt.Toolkit;
 
 
@@ -29,13 +31,16 @@ public class PantallaBienvenida {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void inicializar(negocio.ControladorConfeccionarAnuncio controladorAnuncios) {
+	private void inicializar(negocio.ControladorConfeccionarAnuncio controladorAnuncios) 
+	{
 		frmInicio = new JFrame("SSC - Sistema de Seguimiento de Clientes");
+		frmInicio.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		frmInicio.setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"SSC_128.png"));
 		frmInicio.setBackground(Color.WHITE);
 		frmInicio.getContentPane().setBackground(Color.WHITE);
 		frmInicio.getContentPane().setLayout(null);
 		frmInicio.setUndecorated(true);
+		
 		
 		JLabel lblImagenSup = new JLabel("");
 		lblImagenSup.setBackground(Color.WHITE);
