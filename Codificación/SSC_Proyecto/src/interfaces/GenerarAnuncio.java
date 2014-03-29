@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
@@ -70,9 +72,15 @@ public class GenerarAnuncio extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CONFECCIONAR_32.png"));
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
+		
+    	addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent arg0) {
+        		cerrar_salir();
+        	}
+        });
 		
 		JLabel lblCategoria = new JLabel("Categor\u00EDa:");
 		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -182,7 +190,6 @@ public class GenerarAnuncio extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				//System.out.println("Hola mundo");
 				interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
 				modif.setLocationRelativeTo(dialogPadre);
 				modif.setVisible(true);
@@ -229,9 +236,15 @@ public class GenerarAnuncio extends JDialog {
 		btnCerrar.setLocation(817, 609);	
 		btnCerrar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	clickBotonCerrar(evento);}});
+	        	cerrar_salir();
+	        	}});
 			
 		getContentPane().add(btnCerrar);
+		
+		
+		
+		
+		
 	}
 
 	
@@ -279,11 +292,26 @@ public class GenerarAnuncio extends JDialog {
 					subcategoriaSeleccionada.getIdSubcategoria()));
 		}
 	}
-		
-	
 
-	public void clickBotonCerrar(ActionEvent evento)
+	
+	
+	//-------------------------------------------------------------
+	public void cerrar_salir()
 	{
-		dispose();
+		int rta = JOptionPane.showConfirmDialog(
+					this, 
+					"Está a punto de salir sin enviar el mensaje.\n"
+						+ "¿Desea salir y volver al menu principal?\n"
+						+ "Todo cambio que no haya guardado se perderá.",
+					"ATENCIÓN",
+					JOptionPane.YES_NO_OPTION);
+				
+		switch(rta)
+		{
+		case(1): //finalizarEdicion();
+				 break;
+		case(0): dispose();
+				 break;
+		}
 	}
 }

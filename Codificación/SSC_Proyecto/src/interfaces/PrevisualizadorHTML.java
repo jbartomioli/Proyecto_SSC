@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
+import javax.mail.MessagingException;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
@@ -13,15 +15,17 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 import utilidades.Configuraciones;
+import utilidades.MailPromocional;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.GridLayout;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 
 public class PrevisualizadorHTML extends JDialog
@@ -68,7 +72,6 @@ public class PrevisualizadorHTML extends JDialog
    		JButton btnVolverModificar = new JButton("Volver y Modificar");
    		btnVolverModificar.addActionListener(new ActionListener() {
    			public void actionPerformed(ActionEvent arg0) {
-   				setModal(false);
    				dispose();
    			}
    		});
@@ -77,7 +80,7 @@ public class PrevisualizadorHTML extends JDialog
    		JButton btnAceptarEnviar = new JButton("Aceptar y Enviar");
    		btnAceptarEnviar.addActionListener(new ActionListener() {
    			public void actionPerformed(ActionEvent e) {
-   				//
+   				preparar_enviar(contenidoMailHTML);
    			}
    		});
    		panel.add(btnAceptarEnviar, BorderLayout.WEST);
@@ -148,9 +151,41 @@ public class PrevisualizadorHTML extends JDialog
 	  
 	  
 	  //-------------------------------------------------------------------
-	  public void prepararContenidoPorMail(String contenidoEnviar)
+	  public void preparar_enviar(String contenidoEnviar)
 	  {
-		  
+		  MailPromocional mail = new MailPromocional();
+			
+//			"<html><head></head><body><p style=\"margin-top: 0\"><big>Prueba contenido html </big></p>"+
+//			"<p style=\"margin-top: 0\"></p><p style=\"margin-top: 0\">"+
+//			"<img src=\"CONFECCIONAR_300.png\">"+
+//			"</p><hr></body></html>";
+
+			try 
+			{
+	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
+				mail.enviarMail(contenidoEnviar,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, "prueba");
+				JOptionPane.showMessageDialog(
+						this,
+						"El mensaje ha sido enviado correctamente.",
+						"TAREA COMPLETADA CON ÉXITO",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+			catch (MessagingException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(
+						this,
+						"Se ha producido un error al intentar enviar el mensaje.\n"
+						+ "Inténtelo más tarde.",
+						"ERROR",
+						JOptionPane.ERROR_MESSAGE);
+			}
+			finally
+			{
+	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	        	dispose();
+			}
 	  }
 	  
 	  

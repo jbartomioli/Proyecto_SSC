@@ -139,8 +139,7 @@ public class EditorHTML extends JDialog
 		{
 		case(0): finalizarEdicion();
 				 break;
-		case(1): setModal(false);
-				 dispose();
+		case(1): dispose();
 				 break;
 		}
     }
@@ -177,7 +176,6 @@ public class EditorHTML extends JDialog
     	}
     	finally
     	{
-        	setModal(false);
         	dispose();
     	}
     }

@@ -38,7 +38,7 @@ public class Inicializacion
 		{
 			JOptionPane.showMessageDialog(
 					null, 
-					"Se ha producido un error al cargar el archivo de configuraciones\n"
+					"Se ha producido un error al cargar el archivo de configuraciones.\n"
 					+ "Verifique que el mismo esté correctamente ubicado en el directorio\n"
 					+ "de la aplicación.\n\n"
 					+ "El sistema no puede continuar...",
@@ -49,7 +49,16 @@ public class Inicializacion
 		{
 			JOptionPane.showMessageDialog(
 					null, 
-					"Se ha producido un error al leer el archivo de configuraciones\n\n"
+					"Se ha producido un error al leer el archivo de configuraciones.\n\n"
+					+ "El sistema no puede continuar...",
+					"ERROR",
+					JOptionPane.ERROR_MESSAGE);		
+		}
+		catch (NullPointerException npe)
+		{
+			JOptionPane.showMessageDialog(
+					null, 
+					"Se ha producido un error al coenectarse al servidor.\n\n"
 					+ "El sistema no puede continuar...",
 					"ERROR",
 					JOptionPane.ERROR_MESSAGE);		
