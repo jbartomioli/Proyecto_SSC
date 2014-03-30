@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 import javax.mail.MessagingException;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
@@ -14,14 +15,17 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 import utilidades.Configuraciones;
 import utilidades.MailPromocional;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 
@@ -36,6 +40,14 @@ public class PrevisualizadorHTML extends JDialog
 	public PrevisualizadorHTML(String nombreArchivo, JDialog padre)
 	{
 		super(padre);
+		setResizable(false);
+		setMinimumSize(new Dimension(800,600));
+		getContentPane().setMinimumSize(new Dimension(800, 600));
+		getContentPane().setMaximumSize(new Dimension(800, 600));
+		setMaximumSize(new Dimension(800, 600));
+		setLocationRelativeTo(null);
+		setTitle("Vista Previa de Contenido de E-Mail");
+		
 		
 		HTMLEditorKit kit = new HTMLEditorKit();
 		
@@ -43,7 +55,8 @@ public class PrevisualizadorHTML extends JDialog
 		
 	    Document doc = kit.createDefaultDocument();
 	    setModal(true);
-        setSize(800, 600);
+
+
 
     	addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {
@@ -83,6 +96,7 @@ public class PrevisualizadorHTML extends JDialog
 	   	   		
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         setVisible(true);
+
         
 	}
 	

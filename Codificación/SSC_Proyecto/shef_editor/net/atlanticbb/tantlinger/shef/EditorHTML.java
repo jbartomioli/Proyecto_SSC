@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 
@@ -33,9 +34,15 @@ public class EditorHTML extends JDialog
 	
 	private HTMLEditorPane editor = new HTMLEditorPane();
 	
-    public EditorHTML(JDialog dialogPadre)
+    public EditorHTML(JDialog padre)
     {
-    	super(dialogPadre);
+		super(padre);
+		setResizable(false);
+		setMinimumSize(new Dimension(800,600));
+		getContentPane().setMinimumSize(new Dimension(800, 600));
+		getContentPane().setMaximumSize(new Dimension(800, 600));
+		setMaximumSize(new Dimension(800, 600));
+		setLocationRelativeTo(null);
     	
     	cargarContenidoExistente();
     	
@@ -79,6 +86,7 @@ public class EditorHTML extends JDialog
         panel.add(btnCancelar);
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         setVisible(true);
+
     }
     
     

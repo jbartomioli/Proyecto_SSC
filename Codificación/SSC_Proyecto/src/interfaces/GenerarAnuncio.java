@@ -15,7 +15,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
@@ -35,8 +34,6 @@ import javax.swing.SwingConstants;
 
 import net.atlanticbb.tantlinger.shef.EditorHTML;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 
 
 public class GenerarAnuncio extends JDialog {

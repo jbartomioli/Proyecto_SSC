@@ -16,20 +16,20 @@ public class ProgresoTarea extends JDialog{
 	private JProgressBar progressBar;
 	
 	
-	public ProgresoTarea(JDialog dialogPadre, String mensajeProceso) 
+	public ProgresoTarea(JDialog padre, String mensajeProceso) 
 	{
-		super(dialogPadre);
-		setUndecorated(true);
-		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		//setLocation(dialogPadre.getX()+(dialogPadre.getWidth()/2), dialogPadre.getY()+(dialogPadre.getHeight()/2));
-		setAlwaysOnTop(true);
-		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		setMinimumSize(new Dimension(300, 200));
-		setMaximumSize(new Dimension(300, 200));
+		super(padre);
+		setResizable(false);
+		setMinimumSize(new Dimension(300,200));
 		getContentPane().setMinimumSize(new Dimension(300, 200));
 		getContentPane().setMaximumSize(new Dimension(300, 200));
-		setType(Type.POPUP);
-		setResizable(false);
+		setMaximumSize(new Dimension(300, 200));
+		setLocationRelativeTo(null);
+		
+		setUndecorated(true);
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		setAlwaysOnTop(true);
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
