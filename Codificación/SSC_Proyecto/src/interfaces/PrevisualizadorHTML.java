@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
 import javax.mail.MessagingException;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
@@ -15,10 +14,8 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
 import utilidades.Configuraciones;
 import utilidades.MailPromocional;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -46,7 +43,6 @@ public class PrevisualizadorHTML extends JDialog
 		
 	    Document doc = kit.createDefaultDocument();
 	    setModal(true);
-	    setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
         setSize(800, 600);
 
     	addWindowListener(new WindowAdapter() {
@@ -87,7 +83,6 @@ public class PrevisualizadorHTML extends JDialog
 	   	   		
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         setVisible(true);
-        
         
 	}
 	
@@ -163,7 +158,12 @@ public class PrevisualizadorHTML extends JDialog
 			try 
 			{
 	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
-				mail.enviarMail(contenidoEnviar,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, "prueba");
+	        	interfaces.componentes.ProgresoTarea progresoEnvio = new interfaces.componentes.ProgresoTarea(this,"Procesando Envío de E-Mails...");
+				progresoEnvio.avanceProgreso(50);
+				JOptionPane.showMessageDialog(null, "elo");
+	        	mail.enviarMail(contenidoEnviar,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, "prueba");
+				progresoEnvio.avanceProgreso(100);
+				progresoEnvio.dispose();
 				JOptionPane.showMessageDialog(
 						this,
 						"El mensaje ha sido enviado correctamente.",

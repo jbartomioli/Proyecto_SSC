@@ -15,6 +15,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
@@ -33,6 +34,9 @@ import java.awt.event.ItemEvent;
 import javax.swing.SwingConstants;
 
 import net.atlanticbb.tantlinger.shef.EditorHTML;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 
 public class GenerarAnuncio extends JDialog {
@@ -135,6 +139,13 @@ public class GenerarAnuncio extends JDialog {
 		
 		
 		tblProductosAnuncio = new interfaces.componentes.TablaProductos();
+//		tblProductosAnuncio.addPropertyChangeListener(new PropertyChangeListener() {
+//			public void propertyChange(PropertyChangeEvent arg0) {
+//				if(arg0.getPropertyName().equals("TableModel"))
+//					JOptionPane.showMessageDialog(null, "cambio");
+//					
+//			}
+//		});
 		tblProductosAnuncio.completarTabla(
 				controladorAux.seleccionarSubcategoria(
 						subcategoriaActual.getIdcategoria(),
@@ -218,9 +229,11 @@ public class GenerarAnuncio extends JDialog {
 		btnEnviar.setLocation(145, 608);
 		btnEnviar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
+	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
 	        	@SuppressWarnings("unused")
 				interfaces.PrevisualizadorHTML previsualizadorHTML = 
 	        			new interfaces.PrevisualizadorHTML("prueba.html", dialogPadre);
+	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	        }});
 		
 	    getContentPane().add(btnEnviar);
@@ -251,6 +264,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	// EVENTOS
+	//-------------------------------------------------------------------------------------------------
 	public void clickComboCategorias(ItemEvent evento)
 	{
 		if(evento.getStateChange() == ItemEvent.SELECTED)
@@ -277,7 +291,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	
-	
+	//----------------------------------------------------------------------------------------------
 	public void clickComboSubcategorias(ItemEvent evento)
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
