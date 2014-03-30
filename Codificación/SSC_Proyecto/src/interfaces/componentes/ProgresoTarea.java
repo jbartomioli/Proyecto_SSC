@@ -1,15 +1,14 @@
 package interfaces.componentes;
 
 import javax.swing.JDialog;
-import java.awt.Dialog.ModalExclusionType;
-import java.awt.Dialog.ModalityType;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import javax.swing.JProgressBar;
-import java.awt.Window.Type;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Cursor;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class ProgresoTarea extends JDialog{
 	
@@ -20,7 +19,9 @@ public class ProgresoTarea extends JDialog{
 	public ProgresoTarea(JDialog dialogPadre, String mensajeProceso) 
 	{
 		super(dialogPadre);
-		setLocation(dialogPadre.getX()+dialogPadre.getWidth()/2, dialogPadre.getY()+dialogPadre.getHeight()/2);
+		setUndecorated(true);
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		//setLocation(dialogPadre.getX()+(dialogPadre.getWidth()/2), dialogPadre.getY()+(dialogPadre.getHeight()/2));
 		setAlwaysOnTop(true);
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		setMinimumSize(new Dimension(300, 200));
@@ -30,17 +31,22 @@ public class ProgresoTarea extends JDialog{
 		setType(Type.POPUP);
 		setResizable(false);
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-		setUndecorated(true);
 		getContentPane().setLayout(null);
 		
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.setBounds(0, 0, 300, 200);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
 		JLabel lblNewLabel = new JLabel(mensajeProceso);
+		lblNewLabel.setBounds(10, 100, 280, 15);
+		panel.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(10, 79, 280, 14);
-		getContentPane().add(lblNewLabel);
 		
 		progressBar = new JProgressBar();
-		progressBar.setBounds(10, 104, 280, 26);
-		getContentPane().add(progressBar);
+		progressBar.setBounds(10, 124, 280, 30);
+		panel.add(progressBar);
 		setVisible(true);
 	}	
 	
@@ -50,5 +56,4 @@ public class ProgresoTarea extends JDialog{
 	{
 		progressBar.setValue(avance);
 	}
-
 }

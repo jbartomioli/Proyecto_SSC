@@ -160,10 +160,9 @@ public class PrevisualizadorHTML extends JDialog
 	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
 	        	interfaces.componentes.ProgresoTarea progresoEnvio = new interfaces.componentes.ProgresoTarea(this,"Procesando Envío de E-Mails...");
 				progresoEnvio.avanceProgreso(50);
-				JOptionPane.showMessageDialog(null, "elo");
 	        	mail.enviarMail(contenidoEnviar,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, "prueba");
 				progresoEnvio.avanceProgreso(100);
-				progresoEnvio.dispose();
+				//progresoEnvio.dispose();
 				JOptionPane.showMessageDialog(
 						this,
 						"El mensaje ha sido enviado correctamente.",
