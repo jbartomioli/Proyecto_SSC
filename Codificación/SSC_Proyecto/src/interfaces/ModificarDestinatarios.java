@@ -167,19 +167,11 @@ public class ModificarDestinatarios extends JDialog {
 		JScrollPane scrollDestinatariosBuscados = new JScrollPane();
 		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
 		
-		//FALTA COMPLETAR LA TABLA
+		
 	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
 		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
-		
-		/*TableColumn agregarColumna;
-		agregarColumna = tblDestinatariosBuscados.getColumnModel().getColumn(3);
-		agregarColumna.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosBuscados));
-		agregarColumna.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(true));
-		agregarColumna.setPreferredWidth(16);
-		agregarColumna.setMaxWidth(16);
-		*/
 		
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(819, 569);
@@ -206,7 +198,9 @@ public class ModificarDestinatarios extends JDialog {
 			Object esp = cmbEspecialidad.getSelectedItem();
 			String especialidad = String.valueOf(esp);
 			
-			tblDestinatariosBuscados.completarTabla(especialidad);
+			negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
+			
+			tblDestinatariosBuscados.completarTabla(catClie.buscarClientesPorEspecialidad(especialidad));
 		}
 	}
 	

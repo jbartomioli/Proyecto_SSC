@@ -36,44 +36,22 @@ public class TablaDestinatarios extends JTable {
 	}
 	
 	
-	public void completarTabla(String especialidad)
+	public void completarTabla(Collection<negocio.Cliente> arrClientes)
 	{						
-		try 
-		{					
-			Class.forName("com.mysql.jdbc.Driver");
-			
-			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/BD_SSC", "root", "root");
-			Statement stm = conexion.createStatement();
-			
-			String SQL = "select apellido, nombre, especialidad from clientes where especialidad = " + "'" + especialidad + "'";
-			System.out.println("SQL: " + SQL);
-			ResultSet rst = stm.executeQuery(SQL);
-			ResultSetMetaData rstMd = rst.getMetaData();
-			
-			int nroColumnas = rstMd.getColumnCount();
-			
-			while(rst.next())
-			{
-				Object [] fila = new Object [nroColumnas];
-				
-				for(int i = 0; i<nroColumnas; i++)
-				{
-					fila [i] = rst.getObject(i+1);
-				}
-				
-				this.agregarFila(fila);
-			}
-			
-		}
+		while (modeloTablaDestinatarios.getRowCount() > 0)
+			modeloTablaDestinatarios.removeRow(0);
 		
-		catch(ClassNotFoundException ce) 
-		{
-			ce.printStackTrace();
-		}
+		modeloTablaDestinatarios.setNumRows(arrClientes.size());
+
+		setModel(modeloTablaDestinatarios);
 		
-		catch(SQLException se) 
-		{
-			se.printStackTrace();
+		int i = 0;
+		for (negocio.Cliente clienteActual : arrClientes) {
+			modeloTablaDestinatarios.setValueAt(clienteActual.getApellido(), i, 0);
+			modeloTablaDestinatarios.setValueAt(clienteActual.getNombre(),	i, 1);
+			modeloTablaDestinatarios.setValueAt(clienteActual.getEspecialidad(), i, 2);
+			modeloTablaDestinatarios.setValueAt(new Boolean(false), i, 3);
+			i++;
 		}
 		
 		columnaBoton = new TableColumn();

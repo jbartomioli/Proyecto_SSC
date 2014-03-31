@@ -148,7 +148,7 @@ public class CatalogoClientes {
 	//LISTO
 	public Collection<negocio.Cliente> buscarClientes(boolean tipoCliente)
 	{
-		//SE CREA ARRAY DE CLIENTES DE NEGOCIO TEMPORA PARA AGREGAR CLIENTES
+		//SE CREA ARRAY DE CLIENTES DE NEGOCIO TEMPORAL PARA AGREGAR CLIENTES
 		Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
 
 		//SE RECORRE CADA CLIENTE DEL ARRAY
@@ -162,4 +162,20 @@ public class CatalogoClientes {
 		return arrClientesTemp;	
 	}
 	//---------------------------------------------------------------
+	
+	public Collection<negocio.Cliente> buscarClientesPorEspecialidad(String especialidad)
+	{
+		//SE CREA ARRAY DE CLIENTES DE NEGOCIO TEMPORAL PARA AGREGAR CLIENTES
+				Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
+
+				//SE RECORRE CADA CLIENTE DEL ARRAY
+				for(negocio.Cliente clienteNegocio : this.getClientes())
+				{
+					//SE AGREGAN TODOS LOS CLIENTES QUE PERTENECEN A LA ESPECIALIDAD INGRESADA
+					if(clienteNegocio.getEspecialidad() == especialidad)
+						arrClientesTemp.add(clienteNegocio);
+				}
+				//DEVUELVE EL ARRAY TEMPORAL
+				return arrClientesTemp;	
+	}
 }
