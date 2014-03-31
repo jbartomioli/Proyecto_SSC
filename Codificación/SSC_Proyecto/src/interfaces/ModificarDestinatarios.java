@@ -61,6 +61,7 @@ public class ModificarDestinatarios extends JDialog {
 	private interfaces.componentes.BotonesIconos btnAceptar;
 	private interfaces.componentes.BotonesIconos btnCancelar;
 	private String especialidad;
+	private negocio.CatalogoClientes catalogoAux;
 
 
 
@@ -169,6 +170,8 @@ public class ModificarDestinatarios extends JDialog {
 		
 		
 	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
+	    //REVISAR
+	    tblDestinatariosBuscados.completarTabla(catalogoAux.buscarClientesPorEspecialidad("Distribuidor"));
 		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
