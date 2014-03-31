@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 import javax.mail.MessagingException;
 import javax.swing.JDialog;
@@ -35,82 +36,20 @@ public class PrevisualizadorHTML extends JDialog
 	
 	private String contenidoMailHTML;
 	private JEditorPane epnEditor;
+	private File archivoHTML;
 	  
 	  
 	public PrevisualizadorHTML(String nombreArchivo, JDialog padre)
 	{
 		super(padre);
-		setResizable(false);
-		setMinimumSize(new Dimension(800,600));
-		getContentPane().setMinimumSize(new Dimension(800, 600));
-		getContentPane().setMaximumSize(new Dimension(800, 600));
-		setMaximumSize(new Dimension(800, 600));
-		setLocationRelativeTo(null);
-		setTitle("Vista Previa de Contenido de E-Mail");
 		
-		
-		HTMLEditorKit kit = new HTMLEditorKit();
-		
-		contenidoMailHTML = "";
-		
-	    Document doc = kit.createDefaultDocument();
-	    setModal(true);
-
-
-
-    	addWindowListener(new WindowAdapter() {
-        	public void windowClosing(WindowEvent arg0) {
-        		cerrarEditor();
-        	}
-        });
-	    getContentPane().setLayout(new BorderLayout(0, 0));
-	    
-	    epnEditor = new JEditorPane();	  
-	    epnEditor.setEditable(false);
-	       
-	    JScrollPane scrEditor = new JScrollPane(epnEditor);
-	    epnEditor.setEditorKit(kit);
-	    epnEditor.setDocument(doc);
-	    leerArchivo(nombreArchivo);
-	    getContentPane().add(scrEditor);
-	    
-   		JPanel panel = new JPanel();
-   		getContentPane().add(panel, BorderLayout.SOUTH);
-   		panel.setLayout(new GridLayout(0, 2, 0, 0));
-   		
-   		JButton btnVolverModificar = new JButton("Volver y Modificar");
-   		btnVolverModificar.addActionListener(new ActionListener() {
-   			public void actionPerformed(ActionEvent arg0) {
-   				dispose();
-   			}
-   		});
-   		panel.add(btnVolverModificar, BorderLayout.EAST);
-   		
-   		JButton btnAceptarEnviar = new JButton("Aceptar y Enviar");
-   		btnAceptarEnviar.addActionListener(new ActionListener() {
-   			public void actionPerformed(ActionEvent e) {
-   				preparar_enviar(contenidoMailHTML);
-   			}
-   		});
-   		panel.add(btnAceptarEnviar, BorderLayout.WEST);
-	   	   		
-        setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-        setVisible(true);
-
-        
-	}
-	
-	
-	
-	
-	//-----------------------------------------------------------------------
-	public void leerArchivo(String nombreArchivo)
-	{
-		File archivoHTML = new File(Configuraciones.DIR_MAILS+nombreArchivo);
+		archivoHTML = new File(Configuraciones.DIR_MAILS+nombreArchivo);
 		
 	   	FileReader fr = null;
 	   	BufferedReader br = null;
 	   	
+		contenidoMailHTML = "";
+
 	   	try 
 	   	{
 	   		fr = new FileReader(archivoHTML);
@@ -120,7 +59,62 @@ public class PrevisualizadorHTML extends JDialog
 		 
 	   		while((renglon=br.readLine())!=null)
 	        		contenidoMailHTML += renglon;
-		   
+	   		
+	   		setResizable(false);
+			setMinimumSize(new Dimension(800,600));
+			getContentPane().setMinimumSize(new Dimension(800, 600));
+			getContentPane().setMaximumSize(new Dimension(800, 600));
+			setMaximumSize(new Dimension(800, 600));
+			setLocationRelativeTo(null);
+			setTitle("Vista Previa de Contenido de E-Mail");
+			
+			HTMLEditorKit kit = new HTMLEditorKit();
+			
+		
+		    Document doc = kit.createDefaultDocument();
+		    setModal(true);
+
+
+
+	    	addWindowListener(new WindowAdapter() {
+	        	public void windowClosing(WindowEvent arg0) {
+	        		cerrarEditor();
+	        	}
+	        });
+		    getContentPane().setLayout(new BorderLayout(0, 0));
+		    
+		    epnEditor = new JEditorPane();	  
+		    epnEditor.setEditable(false);
+		       
+		    JScrollPane scrEditor = new JScrollPane(epnEditor);
+		    epnEditor.setEditorKit(kit);
+		    epnEditor.setDocument(doc);
+	   		epnEditor.setText(contenidoMailHTML);
+
+		    getContentPane().add(scrEditor);
+		    
+	   		JPanel panel = new JPanel();
+	   		getContentPane().add(panel, BorderLayout.SOUTH);
+	   		panel.setLayout(new GridLayout(0, 2, 0, 0));
+	   		
+	   		JButton btnVolverModificar = new JButton("Volver y Modificar");
+	   		btnVolverModificar.addActionListener(new ActionListener() {
+	   			public void actionPerformed(ActionEvent arg0) {
+	   				dispose();
+	   			}
+	   		});
+	   		panel.add(btnVolverModificar, BorderLayout.EAST);
+	   		
+	   		JButton btnAceptarEnviar = new JButton("Aceptar y Enviar");
+	   		btnAceptarEnviar.addActionListener(new ActionListener() {
+	   			public void actionPerformed(ActionEvent e) {
+	   				preparar_enviar(contenidoMailHTML);
+	   			}
+	   		});
+	   		panel.add(btnAceptarEnviar, BorderLayout.WEST);
+		   	   		
+	        setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+	        setVisible(true);
 	   	}
 	   	catch(FileNotFoundException fne)
 	   	{
@@ -132,7 +126,7 @@ public class PrevisualizadorHTML extends JDialog
 	   				JOptionPane.ERROR_MESSAGE);
 	   		dispose();
 	   	} 
-	   	catch (IOException e) 
+	   	catch (IOException ioe) 
 	   	{
 	   		JOptionPane.showMessageDialog(
 	   				null, 
@@ -147,14 +141,12 @@ public class PrevisualizadorHTML extends JDialog
         	try
         	{                    
         		if( null != fr )   
-        			fr.close();                  
+        			fr.close();
         	}
         	catch (Exception e2)
         	{ 
         		e2.printStackTrace();
         	}
-        	
-        	epnEditor.setText(contenidoMailHTML);
      }
 	}
 	  
@@ -162,26 +154,25 @@ public class PrevisualizadorHTML extends JDialog
 	  //-------------------------------------------------------------------
 	  public void preparar_enviar(String contenidoEnviar)
 	  {
-		  MailPromocional mail = new MailPromocional();
+		  	MailPromocional mail = new MailPromocional();
 			
-//			"<html><head></head><body><p style=\"margin-top: 0\"><big>Prueba contenido html </big></p>"+
-//			"<p style=\"margin-top: 0\"></p><p style=\"margin-top: 0\">"+
-//			"<img src=\"CONFECCIONAR_300.png\">"+
-//			"</p><hr></body></html>";
-
 			try 
-			{
+			{	
+				String asunto = obtenerAsunto(contenidoEnviar);
+				
 	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
 	        	interfaces.componentes.ProgresoTarea progresoEnvio = new interfaces.componentes.ProgresoTarea(this,"Procesando Envío de E-Mails...");
-				progresoEnvio.avanceProgreso(50);
-	        	mail.enviarMail(contenidoEnviar,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, "prueba");
+
+				mail.enviarMail(contenidoEnviar,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, asunto);
+				
 				progresoEnvio.avanceProgreso(100);
-				//progresoEnvio.dispose();
+				progresoEnvio.dispose();
 				JOptionPane.showMessageDialog(
 						this,
 						"El mensaje ha sido enviado correctamente.",
 						"TAREA COMPLETADA CON ÉXITO",
 						JOptionPane.INFORMATION_MESSAGE);
+				
 			}
 			catch (MessagingException e)
 			{
@@ -200,8 +191,17 @@ public class PrevisualizadorHTML extends JDialog
 	        	dispose();
 			}
 	  }
-	  
-	  
+
+	//---------------------------------------------------------------------
+	private String obtenerAsunto(String contenidoEnviar)
+	{
+		StringTokenizer st = new StringTokenizer(contenidoEnviar, "<h1>");
+		String asunto = st.nextToken();
+		
+		return asunto;
+	}
+
+
 	//-------------------------------------------------------------
 	public void cerrarEditor()
 	{
@@ -217,8 +217,7 @@ public class PrevisualizadorHTML extends JDialog
 		{
 		case(1): //finalizarEdicion();
 				 break;
-		case(0): setModal(false);
-				 dispose();
+		case(0): dispose();
 				 break;
 		}
 	}

@@ -33,6 +33,7 @@ import java.awt.event.ItemEvent;
 import javax.swing.SwingConstants;
 
 import net.atlanticbb.tantlinger.shef.EditorHTML;
+import javax.swing.JTextField;
 
 
 
@@ -54,6 +55,7 @@ public class GenerarAnuncio extends JDialog {
 		
 	
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
+	private JTextField txtAsunto;
 
 	/**
 	 * Create the frame.
@@ -85,7 +87,7 @@ public class GenerarAnuncio extends JDialog {
 		
 		JLabel lblCategoria = new JLabel("Categor\u00EDa:");
 		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCategoria.setBounds(20, 39, 77, 23);
+		lblCategoria.setBounds(10, 24, 77, 23);
 		getContentPane().add(lblCategoria);
 		
 		controladorAux = controladorAnuncios;
@@ -98,12 +100,12 @@ public class GenerarAnuncio extends JDialog {
 				clickComboCategorias(evento);}});
 		
 		lblCategoria.setLabelFor(cmbCategorias);
-		cmbCategorias.setBounds(97, 39, 200, 23);
+		cmbCategorias.setBounds(87, 24, 200, 23);
 		getContentPane().add(cmbCategorias);
 		
 		JLabel lblSubcategoria = new JLabel("Subcategor\u00EDa:");
 		lblSubcategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblSubcategoria.setBounds(320, 39, 97, 23);
+		lblSubcategoria.setBounds(310, 24, 97, 23);
 		getContentPane().add(lblSubcategoria);
 
 		categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
@@ -118,8 +120,20 @@ public class GenerarAnuncio extends JDialog {
 			}
 		});
 		lblSubcategoria.setLabelFor(cmbSubcategorias);
-		cmbSubcategorias.setBounds(420, 39, 196, 23);
+		cmbSubcategorias.setBounds(410, 24, 196, 23);
 		getContentPane().add(cmbSubcategorias);
+		
+		JLabel lblAsunto = new JLabel("T\u00EDtulo / Asunto:");
+		lblAsunto.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblAsunto.setBounds(10, 72, 110, 23);
+		getContentPane().add(lblAsunto);
+		
+		txtAsunto = new JTextField();
+		lblAsunto.setLabelFor(txtAsunto);
+		txtAsunto.setBounds(123, 73, 483, 20);
+		txtAsunto.setText("");
+		getContentPane().add(txtAsunto);
+		txtAsunto.setColumns(10);
 		
 		Box boxProductosAnuncio = Box.createHorizontalBox();
 		boxProductosAnuncio.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
@@ -213,11 +227,18 @@ public class GenerarAnuncio extends JDialog {
 		btnGenerar.setLocation(22, 608);
 		btnGenerar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
-	        	@SuppressWarnings("unused")
-				EditorHTML editorHTML = new EditorHTML(dialogPadre);
-	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-	     	    }});
+	        	if(txtAsunto.getText().equals(""))
+	        		JOptionPane.showMessageDialog(dialogPadre, "Debe completar el Asunto", "ATENCIÓN",JOptionPane.WARNING_MESSAGE);
+	        	else
+		        {
+		        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		        	@SuppressWarnings("unused")
+					EditorHTML editorHTML = new EditorHTML(dialogPadre, null, txtAsunto.getText());
+		        	if(txtAsunto.getText().equals(""))
+		        		txtAsunto.setEnabled(false);
+		        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		        }
+		        }});
 		getContentPane().add(btnGenerar);
 		
 		
@@ -229,7 +250,7 @@ public class GenerarAnuncio extends JDialog {
 	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
 	        	@SuppressWarnings("unused")
 				interfaces.PrevisualizadorHTML previsualizadorHTML = 
-	        			new interfaces.PrevisualizadorHTML("prueba.html", dialogPadre);
+	        			new interfaces.PrevisualizadorHTML("temporal.html", dialogPadre);
 	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	        }});
 		

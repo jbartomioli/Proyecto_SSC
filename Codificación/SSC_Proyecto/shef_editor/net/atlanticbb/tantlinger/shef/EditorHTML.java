@@ -34,7 +34,7 @@ public class EditorHTML extends JDialog
 	
 	private HTMLEditorPane editor = new HTMLEditorPane();
 	
-    public EditorHTML(JDialog padre)
+    public EditorHTML(JDialog padre, String productos, String asunto)
     {
 		super(padre);
 		setResizable(false);
@@ -44,7 +44,7 @@ public class EditorHTML extends JDialog
 		setMaximumSize(new Dimension(800, 600));
 		setLocationRelativeTo(null);
     	
-    	cargarContenidoExistente();
+    	inicializarContenido(asunto);
     	
     	setModal(true);
     	setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
@@ -92,9 +92,9 @@ public class EditorHTML extends JDialog
     
     
     //------------------------------------------------------
-    public void cargarContenidoExistente()
+    public void inicializarContenido(String asunto)
     {
-    	File archivoHTML = new File(Configuraciones.DIR_MAILS+"prueba.html");
+    	File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
 		
     	String contenidoMailHTML = "";
     	
@@ -112,16 +112,19 @@ public class EditorHTML extends JDialog
 	        		contenidoMailHTML += renglon;
 		   
 	   	}
-	   	catch(Exception e)
+	   	catch(IOException ioe)
 	   	{
-	   		e.printStackTrace();
+		   	contenidoMailHTML += "<h1>";
+		   	contenidoMailHTML += asunto;	
+		   	contenidoMailHTML += "</h1>";
+		   	contenidoMailHTML += "</br>";	
 	   	}
 	   	finally
 	   	{
         	try
         	{                    
         		if( null != fr )   
-        			fr.close();                  
+        			fr.close();    
         	}
         	catch (Exception e2)
         	{ 
@@ -160,7 +163,7 @@ public class EditorHTML extends JDialog
     	
     	try
     	{    		
-    		file = new FileWriter(Configuraciones.DIR_MAILS+"prueba.html");
+    		file = new FileWriter(Configuraciones.DIR_MAILS+"temporal.html");
     		
     		writer = new BufferedWriter(file);
     		writer.write(editor.getText(), 0, editor.getText().length());
