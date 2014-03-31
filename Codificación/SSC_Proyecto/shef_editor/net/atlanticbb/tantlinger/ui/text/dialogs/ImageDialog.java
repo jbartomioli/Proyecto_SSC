@@ -36,6 +36,9 @@ public class ImageDialog extends HTMLOptionDialog
         init();
     }
 
+    /**
+     * @wbp.parser.constructor
+     */
     public ImageDialog(Dialog parent)
     {
         super(parent, title, desc, icon);   
@@ -46,7 +49,7 @@ public class ImageDialog extends HTMLOptionDialog
     {
         imagePanel = new ImagePanel();
         setContentPane(imagePanel);
-        setSize(300, 345);
+        setSize(300, 360);
         setResizable(false);
     }
     

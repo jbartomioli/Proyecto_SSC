@@ -10,6 +10,7 @@ import java.awt.Insets;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -17,6 +18,12 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 import net.atlanticbb.tantlinger.ui.text.TextEditPopupManager;
+
+import javax.swing.JButton;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class ImageAttributesPanel extends HTMLAttributeEditorPanel
@@ -50,6 +57,7 @@ public class ImageAttributesPanel extends HTMLAttributeEditorPanel
     private JPanel attribPanel = null;
 
     private JPanel spacerPanel = null;
+    private JButton btnInsertarDesdeArchivo;
 
     /**
      * This is the default constructor
@@ -280,7 +288,7 @@ public class ImageAttributesPanel extends HTMLAttributeEditorPanel
         imgUrlLabel = new JLabel();
         imgUrlLabel.setText(i18n.str("image_url")); //$NON-NLS-1$
         this.setLayout(new GridBagLayout());
-        this.setSize(365, 188);
+        this.setSize(365, 210);
         //this.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createTitledBorder(null, "Image Properties", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, null), javax.swing.BorderFactory.createEmptyBorder(5,5,5,5)));
         this.add(imgUrlLabel, gridBagConstraints);
         this.add(getAltTextCB(), gridBagConstraints1);
@@ -674,8 +682,32 @@ public class ImageAttributesPanel extends HTMLAttributeEditorPanel
         if(spacerPanel == null)
         {
             spacerPanel = new JPanel();
+            spacerPanel.add(getBtnInsertarDesdeArchivo());
         }
         return spacerPanel;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //31/03/2014 - Javier Bartomioli
+    //adaptación para inserción desde fichero
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	private JButton getBtnInsertarDesdeArchivo() {
+		if (btnInsertarDesdeArchivo == null) {
+			btnInsertarDesdeArchivo = new JButton("Insertar Imagen Desde Archivo");
+			btnInsertarDesdeArchivo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFileChooser selector = new JFileChooser();
+
+					FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG, GIF y PNG", "jpeg", "jpg", "gif","png");
+					selector.setFileFilter(filter);
+					
+					int seleccion = selector.showOpenDialog(attribPanel);
+
+					imgUrlField.setText("file:"+selector.getSelectedFile().getAbsolutePath());
+					
+				}
+			});
+		}
+		return btnInsertarDesdeArchivo;
+	}
 }  //  @jve:decl-index=0:visual-constraint="10,10"

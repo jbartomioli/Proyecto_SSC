@@ -1,5 +1,6 @@
 package net.atlanticbb.tantlinger.shef;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,6 +23,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.swing.JMenu;
 
 
 public class EditorHTML extends JDialog
@@ -60,7 +63,8 @@ public class EditorHTML extends JDialog
         menuBar.add(editor.getFormatMenu());
         menuBar.add(editor.getInsertMenu());
         setJMenuBar(menuBar);
-
+        
+        
         setTitle("Editor de Contenido HTML de E-Mail");
         setSize(800, 600);
         getContentPane().add(editor);
@@ -83,6 +87,25 @@ public class EditorHTML extends JDialog
         		cerrarEditor();
         	}
         });
+//        
+//        JButton btnArchivo = new JButton("Archivo");
+//        btnArchivo.addActionListener(new ActionListener() {
+//        	public void actionPerformed(ActionEvent e) {
+//
+//            	JFileChooser selector = new JFileChooser();
+//            	int seleccion = selector.showOpenDialog(getContentPane().getParent());
+//            	
+//            	if (seleccion == JFileChooser.APPROVE_OPTION)
+//            	{
+//            	   String fichero = selector.getSelectedFile().getAbsolutePath();
+//            	   JOptionPane.showMessageDialog(getContentPane().getParent(), fichero);
+//            	   editor.setText(fichero);
+//            	}
+//            	
+//            	
+//        	}
+//        });
+//        panel.add(btnArchivo);
         panel.add(btnCancelar);
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         setVisible(true);
