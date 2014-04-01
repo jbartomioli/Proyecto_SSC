@@ -163,7 +163,9 @@ public class PrevisualizadorHTML extends JDialog
 	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
 	        	interfaces.componentes.ProgresoTarea progresoEnvio = new interfaces.componentes.ProgresoTarea(this,"Procesando Envío de E-Mails...");
 
-				mail.enviarMail(contenidoEnviar,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, asunto);
+	        	String contenidoProcesado = procesarImagenes(contenidoEnviar);
+	        	
+				mail.enviarMail(contenidoProcesado,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, asunto);
 				
 				progresoEnvio.avanceProgreso(100);
 				progresoEnvio.dispose();
@@ -191,6 +193,31 @@ public class PrevisualizadorHTML extends JDialog
 	        	dispose();
 			}
 	  }
+
+	  
+	  //-------------------------------------------------------------------
+	private String procesarImagenes(String contenidoEnviar) {
+		
+		int i;
+		for(i=0;i<contenidoEnviar.length()-1;i+=4)
+		{
+			String terna = contenidoEnviar.charAt(i)+""+contenidoEnviar.charAt(i+1)+""+contenidoEnviar.charAt(i+2)+""+contenidoEnviar.charAt(i+3); 
+			//System.out.print(terna);
+			if(terna.equals("<img"))
+			{
+				String codImg = "";
+				
+				for(int j = i; j<contenidoEnviar.length()-1;j++)
+					codImg += contenidoEnviar.charAt(j);
+				
+				i+=4;
+				
+				System.out.println(codImg);
+			}
+		}
+		return "";
+	}
+
 
 	//---------------------------------------------------------------------
 	private String obtenerAsunto(String contenidoEnviar)

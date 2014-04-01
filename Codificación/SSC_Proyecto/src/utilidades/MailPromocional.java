@@ -70,7 +70,7 @@ public class MailPromocional {
 		    };       
 		
 			Session sesionMail = Session.getDefaultInstance(this.propiedades, authenticator);
-			sesionMail.setDebug(true);
+			sesionMail.setDebug(false);
 		    
 			//SE CREA EL MENSAJE
 			MimeMessage mensaje = new MimeMessage(sesionMail);
