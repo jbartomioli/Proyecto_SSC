@@ -1,13 +1,6 @@
 package interfaces.componentes;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Collection;
-import java.util.Vector;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -69,12 +62,6 @@ public class TablaDestinatarios extends JTable {
 		columnaNombre1.setPreferredWidth(100);
 	}
 	
-	
-	//Agrega filas a la tabla de clientes buscados según la especialidad seleccionada
-	public void agregarFila(Object [] fila)
-	{
-		modeloTablaDestinatarios.addRow(fila);
-	}
 	
 	public void definirTablaDestinatariosAnuncio() {
 		columnaBoton

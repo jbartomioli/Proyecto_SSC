@@ -172,7 +172,7 @@ public class CatalogoClientes {
 				for(negocio.Cliente clienteNegocio : this.getClientes())
 				{
 					//SE AGREGAN TODOS LOS CLIENTES QUE PERTENECEN A LA ESPECIALIDAD INGRESADA
-					if(clienteNegocio.getEspecialidad() == especialidad)
+					if(clienteNegocio.getEspecialidad().equals(especialidad))
 						arrClientesTemp.add(clienteNegocio);
 				}
 				//DEVUELVE EL ARRAY TEMPORAL

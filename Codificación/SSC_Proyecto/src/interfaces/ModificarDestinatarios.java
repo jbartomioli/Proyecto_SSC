@@ -1,7 +1,6 @@
 package interfaces;
 
 
-
 import interfaces.componentes.BotonesIconos;
 
 import java.awt.SystemColor;
@@ -35,9 +34,7 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.sql.*;
-
-
+import javax.swing.JButton;
 
 
 public class ModificarDestinatarios extends JDialog {
@@ -73,8 +70,7 @@ public class ModificarDestinatarios extends JDialog {
 		getContentPane().setMinimumSize(new Dimension(1024, 668));
 		getContentPane().setMaximumSize(new Dimension(1366, 668));
 		setMaximumSize(new Dimension(1366, 768));
-		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);
-		//setLocationRelativeTo(null); AL PONER LA SENTENCIA EN EL BOTON NO HACE FALTA PONERLO ACÁ		
+		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);	
 		setTitle("Modificar Clientes Destinatarios");
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
@@ -123,12 +119,12 @@ public class ModificarDestinatarios extends JDialog {
 		getContentPane().add(txtBuscarDestinatarios);
 		
 		
-		lblImagen = new JLabel("");
+		/*lblImagen = new JLabel("");
 		lblImagen.setSize(new Dimension(32, 32));
 		lblImagen.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_32.png"));
-		lblImagen.setBounds(434, 72, 44, 36);
+		lblImagen.setBounds(455, 30, 44, 36);
 		getContentPane().add(lblImagen);
-		
+		*/
 		
 		boxDestinatariosNuevos = Box.createHorizontalBox();
 		boxDestinatariosNuevos.setBorder(new TitledBorder(null, "Destinatarios Anuncio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -171,9 +167,9 @@ public class ModificarDestinatarios extends JDialog {
 		
 	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
 	    //REVISAR
-	    tblDestinatariosBuscados.completarTabla(catalogoAux.buscarClientesPorEspecialidad("Distribuidor"));
-		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
-		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
+	    //tblDestinatariosBuscados.completarTabla(catalogoAux.buscarClientesPorEspecialidad("Distribuidor"));
+		//tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
+		//scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
 		
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
@@ -188,6 +184,11 @@ public class ModificarDestinatarios extends JDialog {
 		
 		btnCancelar.setLocation(918, 569);
 		getContentPane().add(btnCancelar);
+		
+		JButton btnBuscarDestinatario = new JButton("");
+		btnBuscarDestinatario.setIcon(new ImageIcon(ModificarDestinatarios.class.getResource("/resources/images/x16/find.png")));
+		btnBuscarDestinatario.setBounds(424, 80, 30, 19);
+		getContentPane().add(btnBuscarDestinatario);
 	}
 	
 	
@@ -212,5 +213,4 @@ public class ModificarDestinatarios extends JDialog {
 	{
 		dispose();
 	}
-	
 }
