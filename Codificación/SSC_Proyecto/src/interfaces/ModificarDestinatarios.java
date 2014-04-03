@@ -118,7 +118,7 @@ public class ModificarDestinatarios extends JDialog {
 		txtBuscarDestinatarios.setColumns(10);
 		getContentPane().add(txtBuscarDestinatarios);
 		
-		
+		//IMAGEN SACADA PARA PODER PARA COLOCAR UN BOTÓN QUE FACILITE LA BÚSQUEDA DE LOS CLIENTES
 		/*lblImagen = new JLabel("");
 		lblImagen.setSize(new Dimension(32, 32));
 		lblImagen.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_32.png"));
