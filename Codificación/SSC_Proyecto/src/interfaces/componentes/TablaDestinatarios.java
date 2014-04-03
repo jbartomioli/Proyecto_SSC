@@ -37,7 +37,7 @@ public class TablaDestinatarios extends JTable {
 		modeloTablaDestinatarios.setNumRows(arrClientes.size());
 
 		setModel(modeloTablaDestinatarios);
-		
+		System.out.println("Tamanio array clientes: " + arrClientes.size());
 		int i = 0;
 		for (negocio.Cliente clienteActual : arrClientes) {
 			modeloTablaDestinatarios.setValueAt(clienteActual.getApellido(), i, 0);

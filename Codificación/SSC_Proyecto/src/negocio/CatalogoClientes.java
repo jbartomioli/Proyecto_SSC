@@ -167,14 +167,15 @@ public class CatalogoClientes {
 	{
 		//SE CREA ARRAY DE CLIENTES DE NEGOCIO TEMPORAL PARA AGREGAR CLIENTES
 				Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
-
+				
 				//SE RECORRE CADA CLIENTE DEL ARRAY
-				for(negocio.Cliente clienteNegocio : this.getClientes())
+				for(negocio.Cliente clienteNegocio : this.clientes)
 				{
 					//SE AGREGAN TODOS LOS CLIENTES QUE PERTENECEN A LA ESPECIALIDAD INGRESADA
 					if(clienteNegocio.getEspecialidad().equals(especialidad))
 						arrClientesTemp.add(clienteNegocio);
 				}
+				
 				//DEVUELVE EL ARRAY TEMPORAL
 				return arrClientesTemp;	
 	}

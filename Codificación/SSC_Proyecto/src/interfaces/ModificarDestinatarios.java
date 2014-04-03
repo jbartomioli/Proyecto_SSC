@@ -34,7 +34,10 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+
 import javax.swing.JButton;
+
+import negocio.Cliente;
 
 
 public class ModificarDestinatarios extends JDialog {
@@ -47,7 +50,7 @@ public class ModificarDestinatarios extends JDialog {
 	private JTextField txtBuscarDestinatarios;
 	private JLabel lblBuscarDestinatarios;
 	private JLabel lblEspecialidad;
-	private JLabel lblImagen;
+	//private JLabel lblImagen;
 	private JComboBox cmbEspecialidad;
 	private interfaces.componentes.TablaDestinatarios tblDestinatariosBuscados;
 	private JTable tblDestinatariosNuevos;
@@ -57,8 +60,7 @@ public class ModificarDestinatarios extends JDialog {
 	private JScrollPane scrollDestinatariosNuevos;
 	private interfaces.componentes.BotonesIconos btnAceptar;
 	private interfaces.componentes.BotonesIconos btnCancelar;
-	private String especialidad;
-	private negocio.CatalogoClientes catalogoAux;
+	private negocio.ControladorConfeccionarAnuncio controladorAux;
 
 
 
@@ -166,10 +168,11 @@ public class ModificarDestinatarios extends JDialog {
 		
 		
 	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
-	    //REVISAR
-	    //tblDestinatariosBuscados.completarTabla(catalogoAux.buscarClientesPorEspecialidad("Distribuidor"));
-		//tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
-		//scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
+	    /////////////////////////REVISAR///////////////////////////////////////////////////////////
+	    ///////////////////////////////////////////////////////////////////////////////////////////
+	    tblDestinatariosBuscados.completarTabla(controladorAux.getCatalogoClientes().getClientes());
+		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
+		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
 		
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
@@ -202,7 +205,11 @@ public class ModificarDestinatarios extends JDialog {
 			Object esp = cmbEspecialidad.getSelectedItem();
 			String especialidad = String.valueOf(esp);
 			
+			negocio.Cliente cliente = new negocio.Cliente();
+			
 			negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
+			
+			catClie.obtenerClientes();
 			
 			tblDestinatariosBuscados.completarTabla(catClie.buscarClientesPorEspecialidad(especialidad));
 		}
