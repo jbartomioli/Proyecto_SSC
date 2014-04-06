@@ -13,7 +13,6 @@ import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.text.Document;
-import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -207,92 +206,58 @@ public class PrevisualizadorHTML extends JDialog
 		private String procesarImagenes(String contenidoEnviar)
 		    {
 		        String tagImg = "<img ";
+		        char tagImgCierre = '>';
+            	String atributoSrc = "src=";
+
 		        StringBuffer sb = new StringBuffer(contenidoEnviar);
 		        
 		        if(sb.indexOf(tagImg) != -1)
 		        {
 		            int i = sb.indexOf(tagImg);  		            
 		            
-		            while(i < contenidoEnviar.length() && i != -1)
+		            while(i < sb.length() && i != -1)
 			        {               		            
 		            	char tope = ' ';
 		            	String imagenCode = "";
 		            	int j = i;
 		            	
-		            	while(tope != '>')
+		            	while(tope != tagImgCierre)
 		            	{
-		            		imagenCode += contenidoEnviar.charAt(j);
+		            		imagenCode += sb.charAt(j);
 		            		++j;
-		            		tope = contenidoEnviar.charAt(j);
+		            		tope = sb.charAt(j);
 		            	}
 		            	
 		            	imagenCode += " >";
-		            	
-		            	System.out.println(imagenCode);
-		            	
-		            	String atributoSrc = "src=";
+		            			            	
 		            	StringBuffer sbSrc = new StringBuffer(imagenCode);
-		            	System.out.println(sbSrc.indexOf(atributoSrc));
 		            	
-		            	String srcOriginal = sbSrc.substring(sbSrc.indexOf(atributoSrc)+atributoSrc.length()).toString();
-        				System.out.println(srcOriginal);
+		            	String srcOriginal = sbSrc.substring(sbSrc.indexOf(atributoSrc)+atributoSrc.length());
         				
         				String depuracionInicial = srcOriginal.substring("\"file:".length());
-        				System.out.println(depuracionInicial);
         				
         				String depuracionFinal = depuracionInicial.substring(0,depuracionInicial.length()-3);			
-        				System.out.println(depuracionFinal);
         				
         				String rutaArchivo = depuracionFinal.replace('\\', '/');
-        				System.out.println(rutaArchivo);
         				
         				String imgEncriptado =  "data:image/png;base64,"+Base64.encodeFromFile(rutaArchivo).toString();
+        						    
+        				int iDelete = sb.indexOf(atributoSrc, i)+atributoSrc.length();
         				
+        				sb.delete(iDelete, sb.indexOf("\"",iDelete+1));	
         				
-        				System.out.println(imagenCode.length());
-		            	
-        				sb.delete(i, sb.indexOf(">",i));	
-        				System.out.println(i);
+        				String insertCadena = "\""+imgEncriptado;
 
-		            	sb.insert(i, "<img src=\""+imgEncriptado+"\" ");
+		            	sb.insert(iDelete, insertCadena);
 		            	
-		            	i = sb.indexOf(tagImg,(i+("<img src=\""+imgEncriptado+"\" ").length()));  
-		            	
-
+		            	int iInsert = i + insertCadena.length()+1;
+		            
+		            	i = sb.indexOf(tagImg,iInsert);
 			        }
 		            
 		        }
 	        
 	        return sb.toString();
-		
-		
-		
-		
-		
-        //String htmlText = "<H1>Prueba Adjuntos</H1><img src=\"cid:CONFECCIONAR_300.png\">";
-//        String htmlText = 
-//        		"<H1>Prueba Adjuntos</H1><img src=\"data:image/png;base64,"+
-//        		Base64.encodeFromFile("D:\\Proyecto_Final_SSC\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\CONFECCIONAR_300.png").toString()+"\"";
-		
-		
-		
-		
-		
-		
-			//String terna = contenidoEnviar.charAt(i)+""+contenidoEnviar.charAt(i+1)+""+contenidoEnviar.charAt(i+2)+""+contenidoEnviar.charAt(i+3); 
-			//System.out.print(terna);
-//			if(terna.equals("<img"))
-//			{
-//				String codImg = "";
-//				
-//				for(int j = i; j<contenidoEnviar.length()-1;j++)
-//					codImg += contenidoEnviar.charAt(j);
-//				
-//				i+=4;
-//				
-//				System.out.println(codImg);
-//			}
-//		}
 	}
 
 
