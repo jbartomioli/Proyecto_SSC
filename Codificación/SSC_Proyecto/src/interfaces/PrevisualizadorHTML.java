@@ -13,10 +13,12 @@ import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.text.Document;
+import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import net.atlanticbb.tantlinger.io.Base64;
 import utilidades.Configuraciones;
 import utilidades.MailPromocional;
 
@@ -28,6 +30,7 @@ import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 
 
 public class PrevisualizadorHTML extends JDialog
@@ -51,7 +54,7 @@ public class PrevisualizadorHTML extends JDialog
 		contenidoMailHTML = "";
 
 	   	try 
-	   	{
+	   	{	
 	   		fr = new FileReader(archivoHTML);
 	   		br = new BufferedReader(fr);
 			 
@@ -66,6 +69,7 @@ public class PrevisualizadorHTML extends JDialog
 			getContentPane().setMaximumSize(new Dimension(800, 600));
 			setMaximumSize(new Dimension(800, 600));
 			setLocationRelativeTo(null);
+			setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"ENVIAR_32.png"));
 			setTitle("Vista Previa de Contenido de E-Mail");
 			
 			HTMLEditorKit kit = new HTMLEditorKit();
@@ -162,12 +166,16 @@ public class PrevisualizadorHTML extends JDialog
 				
 	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
 	        	interfaces.componentes.ProgresoTarea progresoEnvio = new interfaces.componentes.ProgresoTarea(this,"Procesando Envío de E-Mails...");
-
+	        	
 	        	String contenidoProcesado = procesarImagenes(contenidoEnviar);
 	        	
-				mail.enviarMail(contenidoProcesado,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, asunto);
+	        	for(int i = 0; i<=20; i++)
+	        		progresoEnvio.avanceProgreso(i);
+	        	
+				mail.enviarMail(contenidoProcesado, new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, asunto);
 				
-				progresoEnvio.avanceProgreso(100);
+	        	for(int i = 20; i<=100; i++)
+	        		progresoEnvio.avanceProgreso(i);
 				progresoEnvio.dispose();
 				JOptionPane.showMessageDialog(
 						this,
@@ -178,7 +186,6 @@ public class PrevisualizadorHTML extends JDialog
 			}
 			catch (MessagingException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(
 						this,
@@ -189,6 +196,7 @@ public class PrevisualizadorHTML extends JDialog
 			}
 			finally
 			{
+				
 	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	        	dispose();
 			}
@@ -196,26 +204,95 @@ public class PrevisualizadorHTML extends JDialog
 
 	  
 	  //-------------------------------------------------------------------
-	private String procesarImagenes(String contenidoEnviar) {
+		private String procesarImagenes(String contenidoEnviar)
+		    {
+		        String tagImg = "<img ";
+		        StringBuffer sb = new StringBuffer(contenidoEnviar);
+		        
+		        if(sb.indexOf(tagImg) != -1)
+		        {
+		            int i = sb.indexOf(tagImg);  		            
+		            
+		            while(i < contenidoEnviar.length() && i != -1)
+			        {               		            
+		            	char tope = ' ';
+		            	String imagenCode = "";
+		            	int j = i;
+		            	
+		            	while(tope != '>')
+		            	{
+		            		imagenCode += contenidoEnviar.charAt(j);
+		            		++j;
+		            		tope = contenidoEnviar.charAt(j);
+		            	}
+		            	
+		            	imagenCode += " >";
+		            	
+		            	System.out.println(imagenCode);
+		            	
+		            	String atributoSrc = "src=";
+		            	StringBuffer sbSrc = new StringBuffer(imagenCode);
+		            	System.out.println(sbSrc.indexOf(atributoSrc));
+		            	
+		            	String srcOriginal = sbSrc.substring(sbSrc.indexOf(atributoSrc)+atributoSrc.length()).toString();
+        				System.out.println(srcOriginal);
+        				
+        				String depuracionInicial = srcOriginal.substring("\"file:".length());
+        				System.out.println(depuracionInicial);
+        				
+        				String depuracionFinal = depuracionInicial.substring(0,depuracionInicial.length()-3);			
+        				System.out.println(depuracionFinal);
+        				
+        				String rutaArchivo = depuracionFinal.replace('\\', '/');
+        				System.out.println(rutaArchivo);
+        				
+        				String imgEncriptado =  "data:image/png;base64,"+Base64.encodeFromFile(rutaArchivo).toString();
+        				
+        				
+        				System.out.println(imagenCode.length());
+		            	
+        				sb.delete(i, sb.indexOf(">",i));	
+        				System.out.println(i);
+
+		            	sb.insert(i, "<img src=\""+imgEncriptado+"\" ");
+		            	
+		            	i = sb.indexOf(tagImg,(i+("<img src=\""+imgEncriptado+"\" ").length()));  
+		            	
+
+			        }
+		            
+		        }
+	        
+	        return sb.toString();
 		
-		int i;
-		for(i=0;i<contenidoEnviar.length()-1;i+=4)
-		{
-			String terna = contenidoEnviar.charAt(i)+""+contenidoEnviar.charAt(i+1)+""+contenidoEnviar.charAt(i+2)+""+contenidoEnviar.charAt(i+3); 
+		
+		
+		
+		
+        //String htmlText = "<H1>Prueba Adjuntos</H1><img src=\"cid:CONFECCIONAR_300.png\">";
+//        String htmlText = 
+//        		"<H1>Prueba Adjuntos</H1><img src=\"data:image/png;base64,"+
+//        		Base64.encodeFromFile("D:\\Proyecto_Final_SSC\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\CONFECCIONAR_300.png").toString()+"\"";
+		
+		
+		
+		
+		
+		
+			//String terna = contenidoEnviar.charAt(i)+""+contenidoEnviar.charAt(i+1)+""+contenidoEnviar.charAt(i+2)+""+contenidoEnviar.charAt(i+3); 
 			//System.out.print(terna);
-			if(terna.equals("<img"))
-			{
-				String codImg = "";
-				
-				for(int j = i; j<contenidoEnviar.length()-1;j++)
-					codImg += contenidoEnviar.charAt(j);
-				
-				i+=4;
-				
-				System.out.println(codImg);
-			}
-		}
-		return "";
+//			if(terna.equals("<img"))
+//			{
+//				String codImg = "";
+//				
+//				for(int j = i; j<contenidoEnviar.length()-1;j++)
+//					codImg += contenidoEnviar.charAt(j);
+//				
+//				i+=4;
+//				
+//				System.out.println(codImg);
+//			}
+//		}
 	}
 
 

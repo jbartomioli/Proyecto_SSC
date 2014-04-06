@@ -1,12 +1,12 @@
 package net.atlanticbb.tantlinger.shef;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 
@@ -24,7 +24,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.swing.JMenu;
 
 
 public class EditorHTML extends JDialog
@@ -46,7 +45,8 @@ public class EditorHTML extends JDialog
 		getContentPane().setMaximumSize(new Dimension(800, 600));
 		setMaximumSize(new Dimension(800, 600));
 		setLocationRelativeTo(null);
-    	
+		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png"));
+		
     	inicializarContenido(asunto);
     	
     	setModal(true);
