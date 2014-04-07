@@ -137,9 +137,9 @@ public class EditorHTML extends JDialog
 	   	}
 	   	catch(IOException ioe)
 	   	{
-		   	contenidoMailHTML += "<h1>";
+		   	contenidoMailHTML += "<!--";
 		   	contenidoMailHTML += asunto;	
-		   	contenidoMailHTML += "</h1>";
+		   	contenidoMailHTML += "-->";
 		   	contenidoMailHTML += "</br>";	
 	   	}
 	   	finally

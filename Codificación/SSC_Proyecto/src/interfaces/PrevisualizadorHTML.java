@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 import javax.mail.MessagingException;
 import javax.swing.JDialog;
@@ -171,7 +170,7 @@ public class PrevisualizadorHTML extends JDialog
 	        	for(int i = 0; i<=20; i++)
 	        		progresoEnvio.avanceProgreso(i);
 	        	
-				mail.enviarMail(contenidoProcesado, new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, asunto);
+				mail.enviarMail(contenidoProcesado, new String []{"sscproyecto@gmail.com","javierbartomioli@gmail.com","jbartom@hotmail.com","jbartomioli@facebook.com"}, asunto);
 				
 	        	for(int i = 20; i<=100; i++)
 	        		progresoEnvio.avanceProgreso(i);
@@ -231,14 +230,19 @@ public class PrevisualizadorHTML extends JDialog
 		            	imagenCode += " >";
 		            			            	
 		            	StringBuffer sbSrc = new StringBuffer(imagenCode);
+		            	//System.out.println(imagenCode);
 		            	
 		            	String srcOriginal = sbSrc.substring(sbSrc.indexOf(atributoSrc)+atributoSrc.length());
-        				
+		            	//System.out.println(srcOriginal);
+		            	
         				String depuracionInicial = srcOriginal.substring("\"file:".length());
+		            	//System.out.println(depuracionInicial);
         				
-        				String depuracionFinal = depuracionInicial.substring(0,depuracionInicial.length()-3);			
-        				
+        				String depuracionFinal = depuracionInicial.substring(0,depuracionInicial.indexOf("\""));			
+		            	//System.out.println(depuracionFinal);
+
         				String rutaArchivo = depuracionFinal.replace('\\', '/');
+		            	//System.out.println(rutaArchivo);
         				
         				String imgEncriptado =  "data:image/png;base64,"+Base64.encodeFromFile(rutaArchivo).toString();
         						    
@@ -264,8 +268,16 @@ public class PrevisualizadorHTML extends JDialog
 	//---------------------------------------------------------------------
 	private String obtenerAsunto(String contenidoEnviar)
 	{
-		StringTokenizer st = new StringTokenizer(contenidoEnviar, "<h1>");
-		String asunto = st.nextToken();
+		String asunto = "";
+		int inicio = 0;
+		int fin = 0;
+		String tagInicio = "<!--";
+		String tagFin = "-->";
+		
+		inicio = contenidoEnviar.indexOf(tagInicio)+tagInicio.length();
+		fin = contenidoEnviar.indexOf(tagFin);
+		
+		asunto = contenidoEnviar.substring(inicio,fin);
 		
 		return asunto;
 	}

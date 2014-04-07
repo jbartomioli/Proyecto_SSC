@@ -84,8 +84,12 @@ public class MailPromocional {
 			//SE DEFINEN DESTINATARIOS
 			//mensaje.addRecipient(Message.RecipientType.TO, 
 			//	new InternetAddress(...));
-			mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(utilidades.Configuraciones.SMTP_USER));
 			
+			for(int i = 0 ; i<mailsDestinatarios.length ; i++)
+			{
+				mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(mailsDestinatarios[i]));
+			}
+						
 			
 			//SE DEFINE EL CONTENIDO DEL MAIL
 			MimeMultipart multipart = new MimeMultipart("related");
@@ -110,25 +114,6 @@ public class MailPromocional {
 		{
 			
 		}
-	}
-	//---------------------------------------------------------------
-
-	
-	/////////////////////////////////////////////////////////////////
-	//	//
-	/////////////////////////////////////////////////////////////////
-	private String concatenarDirecciones(String [] mailsDestinatarios)
-	{
-		String concatenacion = "";
-		int i = 0;
-		
-		concatenacion = mailsDestinatarios[0]+",";
-		
-		for(i=1; i<=mailsDestinatarios.length; i++)
-		{
-			concatenacion = concatenacion + "," + mailsDestinatarios[i];
-		}
-		return concatenacion;
 	}
 	//---------------------------------------------------------------
 }
