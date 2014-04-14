@@ -14,6 +14,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JDialog;
@@ -33,7 +35,11 @@ import java.awt.event.ItemEvent;
 import javax.swing.SwingConstants;
 
 import net.atlanticbb.tantlinger.shef.EditorHTML;
+
 import javax.swing.JTextField;
+
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
 
 
 
@@ -150,13 +156,6 @@ public class GenerarAnuncio extends JDialog {
 		
 		
 		tblProductosAnuncio = new interfaces.componentes.TablaProductos();
-//		tblProductosAnuncio.addPropertyChangeListener(new PropertyChangeListener() {
-//			public void propertyChange(PropertyChangeEvent arg0) {
-//				if(arg0.getPropertyName().equals("TableModel"))
-//					JOptionPane.showMessageDialog(null, "cambio");
-//					
-//			}
-//		});
 		tblProductosAnuncio.completarTabla(
 				controladorAux.seleccionarSubcategoria(
 						subcategoriaActual.getIdcategoria(),
@@ -195,7 +194,20 @@ public class GenerarAnuncio extends JDialog {
 		boxDestinatarios.add(scrollDestinatarios);
 		
 		tblDestinatarios = new interfaces.componentes.TablaClientesDestino();
+		//controladorAux.seleccionarProducto(100);
 		//tblDestinatarios.completarDatos(controladorAnuncios.getArrClientesInteresados());
+		tblProductosAnuncio.getModel().addTableModelListener(new TableModelListener() {
+			 public void tableChanged(TableModelEvent e) {
+				 //if(e.equals(TableModelEvent.INSERT))
+				 {
+					 int ultimaFila = tblProductosAnuncio.getModel().getRowCount()-1;
+					 JOptionPane.showMessageDialog(null, tblProductosAnuncio.getModel().getValueAt(ultimaFila, 1));
+					 //controladorAux.seleccionarProducto(tblProductosAnuncio.getModel().getValueAt(ultimaFila, 1));		 
+				 }
+					
+				 tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());		         
+		      }
+		});
 		scrollDestinatarios.setViewportView(tblDestinatarios);
 
 		final JDialog dialogPadre = this;
@@ -227,18 +239,8 @@ public class GenerarAnuncio extends JDialog {
 		btnGenerar.setLocation(22, 608);
 		btnGenerar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	if(txtAsunto.getText().equals(""))
-	        		JOptionPane.showMessageDialog(dialogPadre, "Debe completar el Asunto", "ATENCIÓN",JOptionPane.WARNING_MESSAGE);
-	        	else
-		        {
-		        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		        	@SuppressWarnings("unused")
-					EditorHTML editorHTML = new EditorHTML(dialogPadre, null, txtAsunto.getText());
-		        	if(txtAsunto.getText().equals(""))
-		        		txtAsunto.setEnabled(false);
-		        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		        }
-		        }});
+	        	action_generar(dialogPadre);
+	        	}});
 		getContentPane().add(btnGenerar);
 		
 		
@@ -325,6 +327,25 @@ public class GenerarAnuncio extends JDialog {
 		}
 	}
 
+	
+	//-------------------------------------------------------------
+	public void action_generar(JDialog dialogPadre)
+	{
+    	if(txtAsunto.getText().equals(""))
+    		JOptionPane.showMessageDialog(dialogPadre, "Debe completar el Asunto", "ATENCIÓN",JOptionPane.WARNING_MESSAGE);
+    	else 
+    		if(tblProductosAnuncio.getModel() == null)
+    			JOptionPane.showMessageDialog(dialogPadre, "Debe seleccionar los anuncios del mensaje", "ATENCIÓN",JOptionPane.WARNING_MESSAGE);	
+        	else
+	        {
+	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
+	        	@SuppressWarnings("unused")
+				EditorHTML editorHTML = new EditorHTML(dialogPadre, null, txtAsunto.getText());
+	        	if(txtAsunto.getText().equals(""))
+	        		txtAsunto.setEnabled(false);
+	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	        }
+	}
 	
 	
 	//-------------------------------------------------------------
