@@ -33,7 +33,7 @@ public class EditorCeldas extends AbstractCellEditor implements TableCellEditor,
     public void actionPerformed(ActionEvent e) {
         // mymodel t = (mymodel) jTable1.getModel();
         // t.addNewRecord();
-    	JOptionPane.showMessageDialog(null, "Presiona boton");
+    	//JOptionPane.showMessageDialog(null, "Presiona boton");
         fireEditingStopped();
     }
 
