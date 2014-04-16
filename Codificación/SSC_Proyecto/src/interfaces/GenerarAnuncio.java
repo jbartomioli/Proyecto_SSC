@@ -273,11 +273,7 @@ public class GenerarAnuncio extends JDialog {
 	        	}});
 			
 		getContentPane().add(btnCerrar);
-		
-		
-		
-		
-		
+			
 	}
 
 	

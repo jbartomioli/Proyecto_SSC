@@ -7,6 +7,7 @@ import java.awt.SystemColor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -20,6 +21,8 @@ import java.awt.Color;
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.TableColumn;
 import javax.swing.JTable;
 
@@ -169,7 +172,6 @@ public class ModificarDestinatarios extends JDialog {
 		
 	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
-		
 		
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(819, 569);
