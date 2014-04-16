@@ -63,7 +63,6 @@ public class ModificarDestinatarios extends JDialog {
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
 
 
-
 	//CONSTRUCTOR
 	public ModificarDestinatarios(JDialog padre) {
 		super(padre);
@@ -133,6 +132,9 @@ public class ModificarDestinatarios extends JDialog {
 		boxDestinatariosNuevos.setBounds(10, 134, 500, 250);
 		getContentPane().add(boxDestinatariosNuevos);
 		
+		/////////////////////////////////////////////////////////////////////////////////////////
+		/// EL SCROLL SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS ///
+		/////////////////////////////////////////////////////////////////////////////////////////
 		scrollDestinatariosNuevos = new JScrollPane();
 		boxDestinatariosNuevos.add(scrollDestinatariosNuevos);
 		
@@ -168,10 +170,6 @@ public class ModificarDestinatarios extends JDialog {
 		
 		
 	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
-	    /////////////////////////REVISAR///////////////////////////////////////////////////////////
-	    ///////////////////////////////////////////////////////////////////////////////////////////
-	    tblDestinatariosBuscados.completarTabla(controladorAux.getCatalogoClientes().getClientes());
-		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
 		
@@ -212,6 +210,8 @@ public class ModificarDestinatarios extends JDialog {
 			catClie.obtenerClientes();
 			
 			tblDestinatariosBuscados.completarTabla(catClie.buscarClientesPorEspecialidad(especialidad));
+			//Agrega el btn añadir a la tabla
+			tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		}
 	}
 	

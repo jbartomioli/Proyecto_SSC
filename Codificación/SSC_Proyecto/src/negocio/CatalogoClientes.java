@@ -163,6 +163,10 @@ public class CatalogoClientes {
 	}
 	//---------------------------------------------------------------
 	
+	
+	/////////////////////////////////////////////////////////////////
+	// BUSCA UN CLIENTE POR ESPECIALIDAD            			   //
+	/////////////////////////////////////////////////////////////////
 	public Collection<negocio.Cliente> buscarClientesPorEspecialidad(String especialidad)
 	{
 		//SE CREA ARRAY DE CLIENTES DE NEGOCIO TEMPORAL PARA AGREGAR CLIENTES
