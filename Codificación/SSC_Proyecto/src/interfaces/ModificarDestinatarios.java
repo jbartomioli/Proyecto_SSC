@@ -145,8 +145,6 @@ public class ModificarDestinatarios extends JDialog {
 				
 				Object[][] data = {
 					    {"Diaz", "Carolina", "Endodoncista", new Boolean(false)},
-					    {"Hulter", "Antonio", "Ortodoncista", new Boolean(true)},
-					    {"Ríos", "Damián", "Ortodoncista", new Boolean(false)}
 				};
 				
 		tblDestinatariosNuevos = new JTable(data, columnNames);
