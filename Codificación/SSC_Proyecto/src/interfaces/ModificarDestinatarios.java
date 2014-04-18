@@ -173,6 +173,14 @@ public class ModificarDestinatarios extends JDialog {
 	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
+		tblDestinatariosBuscados.getModel().addTableModelListener(new TableModelListener() {
+			public void tableChanged(TableModelEvent arg0) 
+			{
+				//System.out.println("Presiona botón");
+				//JOptionPane.showMessageDialog(null, "Presiona botón");
+			}
+		});
+		
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(819, 569);
 		getContentPane().add(btnAceptar);

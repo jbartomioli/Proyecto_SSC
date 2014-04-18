@@ -183,7 +183,6 @@ public class GenerarAnuncio extends JDialog {
 		tblProductos.definirTablaProductos();
 		scrollProductos.setViewportView(tblProductos);
 		
-
 		
 		Box boxDestinatarios = Box.createHorizontalBox();
 		boxDestinatarios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
