@@ -151,6 +151,16 @@ public class ModificarDestinatarios extends JDialog {
 				};
 				
 		tblDestinatariosNuevos = new JTable(data, columnNames);
+        ///////////Evento para agregar destinatarios a la lista de destino////////////
+		/////////////////////////////TERMINAR/////////////////////////////////////////
+		tblDestinatariosNuevos.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{
+				JOptionPane.showMessageDialog(null, "Presiona Botón para Eliminar");
+			}
+		});
+       //////////////////////////////////////////////////////////////////////////////
+       //////////////////////////////////////////////////////////////////////////////
 		scrollDestinatariosNuevos.setViewportView(tblDestinatariosNuevos);
 		
 		TableColumn agregarColumn;
@@ -173,13 +183,16 @@ public class ModificarDestinatarios extends JDialog {
 	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
-		tblDestinatariosBuscados.getModel().addTableModelListener(new TableModelListener() {
-			public void tableChanged(TableModelEvent arg0) 
+		///////////Evento para agregar destinatarios a la lista de destino////////////
+		/////////////////////////////TERMINAR/////////////////////////////////////////
+		tblDestinatariosBuscados.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) 
 			{
-				//System.out.println("Presiona botón");
-				//JOptionPane.showMessageDialog(null, "Presiona botón");
+				JOptionPane.showMessageDialog(null, "Presiona Botón para Agregar");
 			}
 		});
+		//////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////
 		
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(819, 569);
