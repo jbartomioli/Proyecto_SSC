@@ -23,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.JTable;
 
@@ -148,15 +149,21 @@ public class ModificarDestinatarios extends JDialog {
 				
 				Object[][] data = {
 					    {"Diaz", "Carolina", "Endodoncista", new Boolean(false)},
+					    {"Perez", "Claudio", "Distribuidor", new Boolean(false)},
 				};
 				
 		tblDestinatariosNuevos = new JTable(data, columnNames);
-        ///////////Evento para agregar destinatarios a la lista de destino////////////
+        ///////////Evento para eliminar destinatarios a la lista de destino////////////
 		/////////////////////////////TERMINAR/////////////////////////////////////////
 		tblDestinatariosNuevos.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{
-				JOptionPane.showMessageDialog(null, "Presiona Botón para Eliminar");
+				DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosBuscados.getModel();
+				int filaSeleccionada = tblDestinatariosBuscados.getSelectedRow();
+				JOptionPane.showMessageDialog(null, "Fila presionada: " + filaSeleccionada);
+			    if (filaSeleccionada >= 0)
+			         tableModel.removeRow(filaSeleccionada);
+				//JOptionPane.showMessageDialog(null, "Presiona Botón para Eliminar");
 			}
 		});
        //////////////////////////////////////////////////////////////////////////////
@@ -188,7 +195,13 @@ public class ModificarDestinatarios extends JDialog {
 		tblDestinatariosBuscados.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				JOptionPane.showMessageDialog(null, "Presiona Botón para Agregar");
+				int filaSeleccionada = tblDestinatariosBuscados.getSelectedRow();
+				Object [] fila=new Object[filaSeleccionada];
+				JOptionPane.showMessageDialog(null, "Fila presionada: " + fila);
+				DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosNuevos.getModel();
+			     if (filaSeleccionada >= 0)
+			          tableModel.addRow(fila);
+			     tblDestinatariosNuevos.setModel(tableModel);
 			}
 		});
 		//////////////////////////////////////////////////////////////////////////////

@@ -16,6 +16,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JDialog;
@@ -162,7 +163,7 @@ public class GenerarAnuncio extends JDialog {
 						subcategoriaActual.getIdSubcategoria()));
 		tblProductosAnuncio.definirTablaProductosAnuncio();
 		scrollProductosAnuncio.setViewportView(tblProductosAnuncio);
-	
+		
 		
 		Box boxProductos = Box.createHorizontalBox();
 		boxProductos.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
