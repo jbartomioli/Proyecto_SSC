@@ -31,6 +31,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -57,7 +58,7 @@ public class ModificarDestinatarios extends JDialog {
 	//private JLabel lblImagen;
 	private JComboBox cmbEspecialidad;
 	private interfaces.componentes.TablaDestinatarios tblDestinatariosBuscados;
-	private JTable tblDestinatariosNuevos;
+	private interfaces.componentes.TablaDestinatarios tblDestinatariosNuevos;
 	private Box boxDestinatariosBuscados;
 	private Box boxDestinatariosNuevos;
 	private JScrollPane scrollDestinatariosBuscados;
@@ -152,14 +153,18 @@ public class ModificarDestinatarios extends JDialog {
 					    {"Perez", "Claudio", "Distribuidor", new Boolean(false)},
 				};
 				
-		tblDestinatariosNuevos = new JTable(data, columnNames);
+		///////////////////////////////////////////////////////////////////////////////
+		////////////////////UTILIZAR COMPLETAR TABLA///////////////////////////////////		
+		//tblDestinatariosNuevos = new JTable(data, columnNames);//////////////////////
+				
+				
         ///////////Evento para eliminar destinatarios a la lista de destino////////////
 		/////////////////////////////TERMINAR/////////////////////////////////////////
 		tblDestinatariosNuevos.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{
-				DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosBuscados.getModel();
-				int filaSeleccionada = tblDestinatariosBuscados.getSelectedRow();
+				DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosNuevos.getModel();
+				int filaSeleccionada = tblDestinatariosNuevos.getSelectedRow();
 				JOptionPane.showMessageDialog(null, "Fila presionada: " + filaSeleccionada);
 			    if (filaSeleccionada >= 0)
 			         tableModel.removeRow(filaSeleccionada);
@@ -199,9 +204,9 @@ public class ModificarDestinatarios extends JDialog {
 				Object [] fila=new Object[filaSeleccionada];
 				JOptionPane.showMessageDialog(null, "Fila presionada: " + fila);
 				DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosNuevos.getModel();
-			     if (filaSeleccionada >= 0)
-			          tableModel.addRow(fila);
-			     tblDestinatariosNuevos.setModel(tableModel);
+			    if (filaSeleccionada >= 0)
+			        tableModel.addRow(fila);
+			    //tblDestinatariosNuevos.setModel(tableModel);
 			}
 		});
 		//////////////////////////////////////////////////////////////////////////////
