@@ -132,7 +132,7 @@ public class ModificarDestinatarios extends JDialog {
 		getContentPane().add(lblImagen);
 		*/
 		
-		boxDestinatariosNuevos = Box.createHorizontalBox();
+		Box boxDestinatariosNuevos = Box.createHorizontalBox();
 		boxDestinatariosNuevos.setBorder(new TitledBorder(null, "Destinatarios Anuncio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		boxDestinatariosNuevos.setBounds(10, 134, 500, 250);
 		getContentPane().add(boxDestinatariosNuevos);
@@ -140,47 +140,32 @@ public class ModificarDestinatarios extends JDialog {
 		/////////////////////////////////////////////////////////////////////////////////////////
 		/// EL SCROLL SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS ///
 		/////////////////////////////////////////////////////////////////////////////////////////
-		scrollDestinatariosNuevos = new JScrollPane();
+		JScrollPane scrollDestinatariosNuevos = new JScrollPane();
 		boxDestinatariosNuevos.add(scrollDestinatariosNuevos);
-		
-				String[] columnNames = {"Apellido",
-		                "Nombre",
-		                "Especialidad",
-		                ""};
-				
-				Object[][] data = {
-					    {"Diaz", "Carolina", "Endodoncista", new Boolean(false)},
-					    {"Perez", "Claudio", "Distribuidor", new Boolean(false)},
-				};
-				
 		///////////////////////////////////////////////////////////////////////////////
-		////////////////////UTILIZAR COMPLETAR TABLA///////////////////////////////////		
-		//tblDestinatariosNuevos = new JTable(data, columnNames);//////////////////////
+		tblDestinatariosNuevos = new interfaces.componentes.TablaDestinatarios();
+		scrollDestinatariosNuevos.setViewportView(tblDestinatariosNuevos);
+	
 				
-				
-        ///////////Evento para eliminar destinatarios a la lista de destino////////////
-		/////////////////////////////TERMINAR/////////////////////////////////////////
+        //Evento para eliminar destinatarios a la lista de destino
 		tblDestinatariosNuevos.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{
 				DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosNuevos.getModel();
 				int filaSeleccionada = tblDestinatariosNuevos.getSelectedRow();
-				JOptionPane.showMessageDialog(null, "Fila presionada: " + filaSeleccionada);
+				//JOptionPane.showMessageDialog(null, "Fila presionada: " + filaSeleccionada);
 			    if (filaSeleccionada >= 0)
 			         tableModel.removeRow(filaSeleccionada);
-				//JOptionPane.showMessageDialog(null, "Presiona Botón para Eliminar");
 			}
 		});
-       //////////////////////////////////////////////////////////////////////////////
-       //////////////////////////////////////////////////////////////////////////////
-		scrollDestinatariosNuevos.setViewportView(tblDestinatariosNuevos);
 		
-		TableColumn agregarColumn;
-		agregarColumn = tblDestinatariosNuevos.getColumnModel().getColumn(3);
-		agregarColumn.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosNuevos));
-		agregarColumn.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(true));
-		agregarColumn.setPreferredWidth(16);
-		agregarColumn.setMaxWidth(16);
+		
+		//TableColumn agregarColumn;
+		//agregarColumn = tblDestinatariosNuevos.getColumnModel().getColumn(3);
+		//agregarColumn.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosNuevos));
+		//agregarColumn.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(true));
+		//agregarColumn.setPreferredWidth(16);
+		//agregarColumn.setMaxWidth(16);
 		
 		
 		Box boxDestinatariosBuscados = Box.createHorizontalBox();
@@ -191,12 +176,11 @@ public class ModificarDestinatarios extends JDialog {
 		JScrollPane scrollDestinatariosBuscados = new JScrollPane();
 		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
 		
-		
 	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
 		///////////Evento para agregar destinatarios a la lista de destino////////////
-		/////////////////////////////TERMINAR/////////////////////////////////////////
+		//////////////////////////////REVISAR/////////////////////////////////////////
 		tblDestinatariosBuscados.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) 
 			{
@@ -232,8 +216,6 @@ public class ModificarDestinatarios extends JDialog {
 	}
 	
 	
-	
-	
 	// EVENTOS
 	public void clickComboEspecialidad(ItemEvent evento)
 	{		
@@ -248,7 +230,14 @@ public class ModificarDestinatarios extends JDialog {
 			
 			catClie.obtenerClientes();
 			
+			///////////////LA LINEA ES PARA PROBAR INSERCION Y ELIMINACION DE FILAS////////////////////
+			//////////////HAY QUE LLENAR LA TABLA CON LOS DATOS DE LA PANTALLA ANTERIOR////////////////
+			tblDestinatariosNuevos.completarTabla(catClie.buscarClientesPorEspecialidad(especialidad));
+			///////////////////////////////////////////////////////////////////////////////////////////
 			tblDestinatariosBuscados.completarTabla(catClie.buscarClientesPorEspecialidad(especialidad));
+			
+			//Agrega el btn eliminar a la tabla
+			tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
 			//Agrega el btn añadir a la tabla
 			tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		}
