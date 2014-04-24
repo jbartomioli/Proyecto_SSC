@@ -16,7 +16,6 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JDialog;
@@ -38,9 +37,6 @@ import javax.swing.SwingConstants;
 import net.atlanticbb.tantlinger.shef.EditorHTML;
 
 import javax.swing.JTextField;
-
-import java.awt.event.ContainerAdapter;
-import java.awt.event.ContainerEvent;
 
 
 

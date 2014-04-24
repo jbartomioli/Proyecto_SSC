@@ -7,7 +7,6 @@ import java.awt.SystemColor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -21,17 +20,12 @@ import java.awt.Color;
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.JTable;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -42,7 +36,6 @@ import java.awt.event.ItemEvent;
 
 import javax.swing.JButton;
 
-import negocio.Cliente;
 
 
 public class ModificarDestinatarios extends JDialog {
@@ -184,13 +177,14 @@ public class ModificarDestinatarios extends JDialog {
 		tblDestinatariosBuscados.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				int filaSeleccionada = tblDestinatariosBuscados.getSelectedRow();
-				Object [] fila=new Object[filaSeleccionada];
-				JOptionPane.showMessageDialog(null, "Fila presionada: " + fila);
 				DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosNuevos.getModel();
+				DefaultTableModel tableModel1 = (DefaultTableModel) tblDestinatariosBuscados.getModel();
+				int filaSeleccionada = tblDestinatariosBuscados.getSelectedRow();
+				java.util.Vector fila;
+				fila = (java.util.Vector) tableModel1.getDataVector().elementAt(filaSeleccionada);
+				
 			    if (filaSeleccionada >= 0)
 			        tableModel.addRow(fila);
-			    //tblDestinatariosNuevos.setModel(tableModel);
 			}
 		});
 		//////////////////////////////////////////////////////////////////////////////
@@ -223,8 +217,6 @@ public class ModificarDestinatarios extends JDialog {
 		{			
 			Object esp = cmbEspecialidad.getSelectedItem();
 			String especialidad = String.valueOf(esp);
-			
-			negocio.Cliente cliente = new negocio.Cliente();
 			
 			negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
 			
