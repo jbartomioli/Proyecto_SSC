@@ -154,12 +154,29 @@ public class GenerarAnuncio extends JDialog {
 		
 		
 		tblProductosAnuncio = new interfaces.componentes.TablaProductos();
-		tblProductosAnuncio.completarTabla(
+		/////////////////////////////////////////////////////////////////////////////////
+		/////////LA TABLA DEBE INICIALIZAR SIN FILAS. EL GET ES SOLO PARA PROBAR/////////
+		tblProductosAnuncio.completarTabla(controladorAux.getArrProductosPublicación());
+		/////////////////////////////////////////////////////////////////////////////////
+		tblProductosAnuncio.definirTablaProductosAnuncio();
+		/*tblProductosAnuncio.completarTabla(
 				controladorAux.seleccionarSubcategoria(
 						subcategoriaActual.getIdcategoria(),
 						subcategoriaActual.getIdSubcategoria()));
-		tblProductosAnuncio.definirTablaProductosAnuncio();
+		tblProductosAnuncio.definirTablaProductosAnuncio();*/
 		scrollProductosAnuncio.setViewportView(tblProductosAnuncio);
+		
+		//Evento para eliminar productos del anuncio
+		tblProductosAnuncio.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{
+				DefaultTableModel tableModel = (DefaultTableModel) tblProductosAnuncio.getModel();
+				int filaSeleccionada = tblProductosAnuncio.getSelectedRow();
+				//JOptionPane.showMessageDialog(null, "Fila presionada: " + filaSeleccionada);
+			    if (filaSeleccionada >= 0)
+			         tableModel.removeRow(filaSeleccionada);
+			}
+		});
 		
 		
 		Box boxProductos = Box.createHorizontalBox();
