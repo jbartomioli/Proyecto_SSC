@@ -172,8 +172,7 @@ public class ModificarDestinatarios extends JDialog {
 	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
-		///////////Evento para agregar destinatarios a la lista de destino////////////
-		//////////////////////////////REVISAR/////////////////////////////////////////
+		//Evento para agregar destinatarios a la lista de destino
 		tblDestinatariosBuscados.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) 
 			{
@@ -187,8 +186,7 @@ public class ModificarDestinatarios extends JDialog {
 			        tableModel.addRow(fila);
 			}
 		});
-		//////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////
+
 		
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(819, 569);

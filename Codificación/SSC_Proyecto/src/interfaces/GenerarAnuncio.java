@@ -16,6 +16,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JDialog;
@@ -179,6 +180,21 @@ public class GenerarAnuncio extends JDialog {
 						subcategoriaActual.getIdSubcategoria()));
 		tblProductos.definirTablaProductos();
 		scrollProductos.setViewportView(tblProductos);
+		
+		//Evento para agregar productos al anuncio
+		tblProductos.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent arg0) 
+					{
+						DefaultTableModel tableModel = (DefaultTableModel) tblProductosAnuncio.getModel();
+						DefaultTableModel tableModel1 = (DefaultTableModel) tblProductos.getModel();
+						int filaSeleccionada = tblProductos.getSelectedRow();
+						java.util.Vector fila;
+						fila = (java.util.Vector) tableModel1.getDataVector().elementAt(filaSeleccionada);
+						
+					    if (filaSeleccionada >= 0)
+					        tableModel.addRow(fila);
+					}
+				});
 		
 		
 		Box boxDestinatarios = Box.createHorizontalBox();
