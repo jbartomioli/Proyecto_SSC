@@ -32,6 +32,8 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.SwingConstants;
 
@@ -155,8 +157,9 @@ public class GenerarAnuncio extends JDialog {
 		
 		tblProductosAnuncio = new interfaces.componentes.TablaProductos();
 		/////////////////////////////////////////////////////////////////////////////////
-		/////////LA TABLA DEBE INICIALIZAR SIN FILAS. EL GET ES SOLO PARA PROBAR/////////
-		tblProductosAnuncio.completarTabla(controladorAux.getArrProductosPublicación());
+		////////////////////LA TABLA DEBE INICIALIZAR SIN FILAS./////////////////////////
+		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
+		tblProductosAnuncio.completarTabla(productos);
 		/////////////////////////////////////////////////////////////////////////////////
 		tblProductosAnuncio.definirTablaProductosAnuncio();
 		/*tblProductosAnuncio.completarTabla(
@@ -225,7 +228,11 @@ public class GenerarAnuncio extends JDialog {
 		tblDestinatarios = new interfaces.componentes.TablaClientesDestino();
 		//controladorAux.seleccionarProducto(100);
 		//tblDestinatarios.completarDatos(controladorAnuncios.getArrClientesInteresados());
-		tblProductosAnuncio.getModel().addTableModelListener(new TableModelListener() {
+		
+		////////////////////////////////////////////////////////////////////////////////////
+		//SAQUÉ EL TABLE MODE LISTENER PORQUE SI HAY 2 LISTENER NO FUNCIONA LA ELIMINACIÓN//
+		////////////////////////////////////////////////////////////////////////////////////
+		/*tblProductosAnuncio.getModel().addTableModelListener(new TableModelListener() {
 			 public void tableChanged(TableModelEvent e) {
 				 //if(e.equals(TableModelEvent.INSERT))
 				 {
@@ -236,7 +243,7 @@ public class GenerarAnuncio extends JDialog {
 					
 				 tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());		         
 		      }
-		});
+		});*/
 		scrollDestinatarios.setViewportView(tblDestinatarios);
 
 		final JDialog dialogPadre = this;
