@@ -36,7 +36,7 @@ public class EditorHTML extends JDialog
 	
 	private HTMLEditorPane editor = new HTMLEditorPane();
 	
-    public EditorHTML(JDialog padre, String productos, String asunto)
+    public EditorHTML(JDialog padre, String[] productos, String asunto)
     {
 		super(padre);
 		setResizable(false);
@@ -47,7 +47,7 @@ public class EditorHTML extends JDialog
 		setLocationRelativeTo(null);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png"));
 		
-    	inicializarContenido(asunto);
+    	inicializarContenido(asunto, productos);
     	
     	setModal(true);
     	setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
@@ -115,7 +115,7 @@ public class EditorHTML extends JDialog
     
     
     //------------------------------------------------------
-    public void inicializarContenido(String asunto)
+    public void inicializarContenido(String asunto, String[] productos)
     {
     	File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
 		
@@ -130,10 +130,10 @@ public class EditorHTML extends JDialog
 	   		br = new BufferedReader(fr);
 			 
 	   		String renglon = "";
-		 
+	   		
 	   		while((renglon=br.readLine())!=null)
-	        		contenidoMailHTML += renglon;
-		   
+		       		contenidoMailHTML += renglon;
+	   			   
 	   	}
 	   	catch(IOException ioe)
 	   	{
@@ -141,6 +141,16 @@ public class EditorHTML extends JDialog
 		   	contenidoMailHTML += asunto;	
 		   	contenidoMailHTML += "-->";
 		   	contenidoMailHTML += "</br>";	
+		   	
+		   	String renglon="";
+		   	
+	   		for(int i=0; i<productos.length;i++)
+	   		{
+	   			renglon = "<p>"+productos[i]+"</p></br>";
+
+        		contenidoMailHTML += renglon;
+	   		}
+		   	
 	   	}
 	   	finally
 	   	{
