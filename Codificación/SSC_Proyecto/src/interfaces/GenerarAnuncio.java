@@ -372,7 +372,13 @@ public class GenerarAnuncio extends JDialog {
 	        {
 	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
 	        	@SuppressWarnings("unused")
-				EditorHTML editorHTML = new EditorHTML(dialogPadre, null, txtAsunto.getText());
+	        	
+	        	String productos[] = new String[tblProductosAnuncio.getModel().getRowCount()];
+	        	
+	        	for(int i=0; i<tblProductosAnuncio.getModel().getRowCount();++i)
+	        		productos[i] = tblProductosAnuncio.getModel().getValueAt(i, 0).toString();
+
+				EditorHTML editorHTML = new EditorHTML(dialogPadre, productos, txtAsunto.getText());
 	        	if(txtAsunto.getText().equals(""))
 	        		txtAsunto.setEnabled(false);
 	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
