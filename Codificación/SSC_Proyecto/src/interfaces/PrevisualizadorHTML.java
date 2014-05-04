@@ -38,6 +38,8 @@ public class PrevisualizadorHTML extends JDialog
 	private String contenidoMailHTML;
 	private JEditorPane epnEditor;
 	private File archivoHTML;
+	private FileReader fr;
+	private BufferedReader br;
 	  
 	  
 	public PrevisualizadorHTML(String nombreArchivo, JDialog padre)
@@ -46,8 +48,8 @@ public class PrevisualizadorHTML extends JDialog
 		
 		archivoHTML = new File(Configuraciones.DIR_MAILS+nombreArchivo);
 		
-	   	FileReader fr = null;
-	   	BufferedReader br = null;
+	   	fr = null;
+	   	br = null;
 	   	
 		contenidoMailHTML = "";
 
@@ -110,7 +112,19 @@ public class PrevisualizadorHTML extends JDialog
 	   		JButton btnAceptarEnviar = new JButton("Aceptar y Enviar");
 	   		btnAceptarEnviar.addActionListener(new ActionListener() {
 	   			public void actionPerformed(ActionEvent e) {
-	   				preparar_enviar(contenidoMailHTML);
+	   				if(preparar_enviar(contenidoMailHTML))
+	   				{
+	   					try
+	   					{
+	   						if( null != fr ) 
+	   							fr.close();
+							archivoHTML.delete();
+						} 
+	   					catch (IOException e1) 
+						{
+							//e1.printStackTrace();
+						}
+	   				}
 	   			}
 	   		});
 	   		panel.add(btnAceptarEnviar, BorderLayout.WEST);
@@ -145,19 +159,20 @@ public class PrevisualizadorHTML extends JDialog
         		if( null != fr )   
         			fr.close();
         	}
-        	catch (Exception e2)
+        	catch (IOException e2)
         	{ 
-        		e2.printStackTrace();
+        		//e2.printStackTrace();
         	}
      }
 	}
 	  
 	  
 	  //-------------------------------------------------------------------
-	  public void preparar_enviar(String contenidoEnviar)
+	  public boolean preparar_enviar(String contenidoEnviar)
 	  {
 		  	MailPromocional mail = new MailPromocional();
-			
+			boolean resultado = false;
+		  	
 			try 
 			{	
 				String asunto = obtenerAsunto(contenidoEnviar);
@@ -180,6 +195,7 @@ public class PrevisualizadorHTML extends JDialog
 						"El mensaje ha sido enviado correctamente.",
 						"TAREA COMPLETADA CON ÉXITO",
 						JOptionPane.INFORMATION_MESSAGE);
+				resultado = true;
 				
 			}
 			catch (MessagingException e)
@@ -191,12 +207,13 @@ public class PrevisualizadorHTML extends JDialog
 						+ "Inténtelo más tarde.",
 						"ERROR",
 						JOptionPane.ERROR_MESSAGE);
+				resultado = false;
 			}
 			finally
 			{
-				
 	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	        	dispose();
+	        	return resultado;
 			}
 	  }
 

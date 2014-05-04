@@ -285,11 +285,7 @@ public class GenerarAnuncio extends JDialog {
 		btnEnviar.setLocation(145, 608);
 		btnEnviar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
-	        	@SuppressWarnings("unused")
-				interfaces.PrevisualizadorHTML previsualizadorHTML = 
-	        			new interfaces.PrevisualizadorHTML("temporal.html", dialogPadre);
-	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	        	action_enviar(dialogPadre);
 	        }});
 		
 	    getContentPane().add(btnEnviar);
@@ -364,29 +360,49 @@ public class GenerarAnuncio extends JDialog {
 	public void action_generar(JDialog dialogPadre)
 	{
     	if(txtAsunto.getText().equals(""))
-    		JOptionPane.showMessageDialog(dialogPadre, "Debe completar el Asunto", "ATENCIÓN",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane.showMessageDialog(dialogPadre, 
+    				"Debe completar el Asunto.", 
+    				"ATENCIÓN",
+    				JOptionPane.WARNING_MESSAGE);
     	else 
-    		if(tblProductosAnuncio.getModel() == null)
-    			JOptionPane.showMessageDialog(dialogPadre, "Debe seleccionar los anuncios del mensaje", "ATENCIÓN",JOptionPane.WARNING_MESSAGE);	
-        	else
-	        {
-	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
-	        	@SuppressWarnings("unused")
-	        	
-	        	String productos[][] = new String[tblProductosAnuncio.getModel().getRowCount()][2];
-	        	
-	        	for(int i=0; i<tblProductosAnuncio.getModel().getRowCount();++i)
-	        	{
-	        		productos[i][0] = tblProductosAnuncio.getModel().getValueAt(i, 0).toString();
-	        		productos[i][1] = tblProductosAnuncio.getModel().getValueAt(i, 1).toString();
-	        	}
-	        	
-	        	
-				EditorHTML editorHTML = new EditorHTML(dialogPadre, productos, txtAsunto.getText());
-	        	if(txtAsunto.getText().equals(""))
-	        		txtAsunto.setEnabled(false);
-	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-	        }
+    		if(tblProductosAnuncio.getModel().getRowCount() == 0)
+    			JOptionPane.showMessageDialog(dialogPadre, 
+    					"Debe Agregar al menos un producto.", 
+    					"ATENCIÓN",
+    					JOptionPane.WARNING_MESSAGE);
+	    	else 
+	    		if(tblProductosAnuncio.getModel() == null)
+	    			JOptionPane.showMessageDialog(dialogPadre, "Debe seleccionar los anuncios del mensaje", "ATENCIÓN",JOptionPane.WARNING_MESSAGE);	
+	        	else
+		        {
+		        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		        	@SuppressWarnings("unused")
+		        	
+		        	String productos[][] = new String[tblProductosAnuncio.getModel().getRowCount()][2];
+		        	
+		        	for(int i=0; i<tblProductosAnuncio.getModel().getRowCount();++i)
+		        	{
+		        		productos[i][0] = tblProductosAnuncio.getModel().getValueAt(i, 0).toString();
+		        		productos[i][1] = tblProductosAnuncio.getModel().getValueAt(i, 1).toString();
+		        	}
+		        	
+		        	
+					EditorHTML editorHTML = new EditorHTML(dialogPadre, productos, txtAsunto.getText());
+		        	if(txtAsunto.getText().equals(""))
+		        		txtAsunto.setEnabled(false);
+		        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		        }
+	}
+	
+	
+	//-------------------------------------------------------------
+	public void action_enviar(JDialog dialogPadre)
+	{
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+    	@SuppressWarnings("unused")
+		interfaces.PrevisualizadorHTML previsualizadorHTML = 
+    			new interfaces.PrevisualizadorHTML("temporal.html", dialogPadre);
+    	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	
 	
