@@ -36,7 +36,7 @@ public class EditorHTML extends JDialog
 	
 	private HTMLEditorPane editor = new HTMLEditorPane();
 	
-    public EditorHTML(JDialog padre, String[] productos, String asunto)
+    public EditorHTML(JDialog padre, String[][] productos, String asunto)
     {
 		super(padre);
 		setResizable(false);
@@ -115,7 +115,7 @@ public class EditorHTML extends JDialog
     
     
     //------------------------------------------------------
-    public void inicializarContenido(String asunto, String[] productos)
+    public void inicializarContenido(String asunto, String[][] productos)
     {
     	File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
 		
@@ -144,12 +144,22 @@ public class EditorHTML extends JDialog
 		   	
 		   	String renglon="";
 		   	
+		   	contenidoMailHTML="<table>"
+				   			+ "<tr>"
+				   			+ "<th>Producto</th>"
+				   			+ "<th>Precio Vigente</th>"
+				   			+ "</tr>";
+		   	
 	   		for(int i=0; i<productos.length;i++)
 	   		{
-	   			renglon = "<p>"+productos[i]+"</p></br>";
+	   			renglon = "<tr>"
+	   					+ "<td>"+productos[i][0]+"</td>"
+	   					+ "<td>"+productos[i][1]+"</td>"
+	   					+ "</tr>";
 
         		contenidoMailHTML += renglon;
 	   		}
+	   		contenidoMailHTML+="</table>";
 		   	
 	   	}
 	   	finally
