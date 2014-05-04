@@ -144,6 +144,9 @@ public class EditorHTML extends JDialog
 		   	
 		   	String renglon="";
 		   	
+		   	contenidoMailHTML+="<h1>Título del anuncio</h1>";
+		   	contenidoMailHTML+="<p>Párrafo 1</p>";
+		   	
 		   	contenidoMailHTML+="<table>"
 				   			+ "<tr>"
 				   			+ "<th>Producto</th>"
