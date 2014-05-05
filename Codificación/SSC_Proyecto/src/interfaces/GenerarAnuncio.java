@@ -200,7 +200,7 @@ public class GenerarAnuncio extends JDialog {
 						DefaultTableModel modeloTblProductos = (DefaultTableModel) tblProductos.getModel();
 						
 						int filaSeleccionada = tblProductos.getSelectedRow();
-						Vector fila;
+						Vector fila = new Vector(1);
 						fila = (Vector) modeloTblProductos.getDataVector().elementAt(filaSeleccionada);
 
 						if(modeloTblProductosAnuncio.getDataVector().contains(fila))
@@ -212,6 +212,12 @@ public class GenerarAnuncio extends JDialog {
 							if(filaSeleccionada >= 0)
 							{
 								modeloTblProductosAnuncio.addRow(fila);
+								negocio.CatalogoProductos catProductos = new negocio.CatalogoProductos();
+								String producto = fila.elementAt(0).toString().substring(10);
+								///////VER
+								System.out.println("Producto: " + producto);
+								
+								
 								//ACA ACTUALIZARIAMOS LA TABLA DE CLIENTES PERO, HAY QUE REVEER EL METODO DE BUSQUEDA
 								//YA QUE TARDA MUCHO Y NO ES MUY OPTIMO
 								//controladorAux.seleccionarProducto(100);
