@@ -69,5 +69,4 @@ public class TablaProductos extends JTable {
 				.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(
 						true));
 	}
-
 }

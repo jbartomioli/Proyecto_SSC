@@ -3,6 +3,8 @@ package interfaces;
  * PANTALLA CORRESPONDIENTE AL CU GENERAR ANUNCIO
  */
 
+import interfaces.componentes.TablaProductos;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -155,9 +157,7 @@ public class GenerarAnuncio extends JDialog {
 		
 		
 		tblProductosAnuncio = new interfaces.componentes.TablaProductos();
-		
 		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
-		
 		tblProductosAnuncio.completarTabla(productos);
 		tblProductosAnuncio.definirTablaProductosAnuncio();
 		scrollProductosAnuncio.setViewportView(tblProductosAnuncio);
@@ -403,6 +403,8 @@ public class GenerarAnuncio extends JDialog {
 		interfaces.PrevisualizadorHTML previsualizadorHTML = 
     			new interfaces.PrevisualizadorHTML("temporal.html", dialogPadre);
     	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    	
+    	limpiar_formulario();
 	}
 	
 	
@@ -424,5 +426,23 @@ public class GenerarAnuncio extends JDialog {
 		case(0): dispose();
 				 break;
 		}
+	}
+	
+	
+	//-----------------------------------------------------------------
+	public void limpiar_formulario()
+	{
+		cmbCategorias.setSelectedIndex(0);
+		cmbSubcategorias.setSelectedIndex(0);
+		txtAsunto.setText("");
+//		tblProductosAnuncio = new interfaces.componentes.TablaProductos();
+//		tblProductos = new interfaces.componentes.TablaProductos();
+//		tblDestinatarios = new interfaces.componentes.TablaClientesDestino();
+//		tblProductosAnuncio = new interfaces.componentes.TablaProductos();
+//		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
+//		tblProductosAnuncio.completarTabla(productos);
+//		tblProductosAnuncio.definirTablaProductosAnuncio();
+//		tblDestinatarios.limpiarTabla();
+		
 	}
 }
