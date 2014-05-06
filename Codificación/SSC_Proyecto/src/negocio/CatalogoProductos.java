@@ -162,6 +162,18 @@ public class CatalogoProductos
 		return productosSimilares;
 	}
 	//---------------------------------------------------------------
+	
+	public negocio.Producto obtenerProducto(String nombreProducto)
+	{		
+		//SE RECORRE CADA PRODUCTO DEL ARRAY
+		for(negocio.Producto productoNegocio: this.getProductos())
+		{
+			//SE EVALUA SI EL NOMBRE DEL PRODUCTO CONTIENE LA CADENA
+			if(productoNegocio.getNombre().contains(nombreProducto))
+				return productoNegocio;	
+		}
+		return null;
+	}
 
 	
 	/////////////////////////////////////////////////////////////////

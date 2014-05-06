@@ -38,6 +38,8 @@ import java.util.Vector;
 
 import javax.swing.SwingConstants;
 
+import negocio.CatalogoClientes;
+import negocio.Producto;
 import net.atlanticbb.tantlinger.shef.EditorHTML;
 
 import javax.swing.JTextField;
@@ -198,6 +200,7 @@ public class GenerarAnuncio extends JDialog {
 					{
 						DefaultTableModel modeloTblProductosAnuncio = (DefaultTableModel) tblProductosAnuncio.getModel();
 						DefaultTableModel modeloTblProductos = (DefaultTableModel) tblProductos.getModel();
+						//DefaultTableModel modeloTblDestinatarios = (DefaultTableModel) tblDestinatarios.getModel();
 						
 						int filaSeleccionada = tblProductos.getSelectedRow();
 						Vector fila = new Vector(1);
@@ -213,11 +216,19 @@ public class GenerarAnuncio extends JDialog {
 							{
 								modeloTblProductosAnuncio.addRow(fila);
 								negocio.CatalogoProductos catProductos = new negocio.CatalogoProductos();
-								String producto = fila.elementAt(0).toString().substring(10);
-								///////VER
-								System.out.println("Producto: " + producto);
+								negocio.CatalogoClientes catClientes = new negocio.CatalogoClientes();
+								Collection<negocio.Cliente> arrClientesProducto = new ArrayList<negocio.Cliente>();
+								String descProducto = fila.elementAt(0).toString().substring(0);
 								
+								catProductos.obtenerProductos();
+								negocio.Producto producto = catProductos.obtenerProducto(descProducto);
 								
+								catClientes.obtenerClientes();
+								arrClientesProducto = catClientes.obtenerClientesProducto(producto);
+								//////////////////////////////////////////////////////////////////////////////////
+								//VER PORQUÉ LA TABLA DESTINATARIOS SE PISA CON LOS CLIENTES AL ELEGIR PRODUCTOS//
+								//////////////////////////////////////////////////////////////////////////////////
+								tblDestinatarios.completarDatos(arrClientesProducto);
 								//ACA ACTUALIZARIAMOS LA TABLA DE CLIENTES PERO, HAY QUE REVEER EL METODO DE BUSQUEDA
 								//YA QUE TARDA MUCHO Y NO ES MUY OPTIMO
 								//controladorAux.seleccionarProducto(100);
