@@ -24,8 +24,7 @@ public class Inicializacion
 		try 
 		{	
 			controladorAnuncio = new negocio.ControladorConfeccionarAnuncio();
-			
-			
+						
 			try
 			{
 				configuraciones = new utilidades.Configuraciones();

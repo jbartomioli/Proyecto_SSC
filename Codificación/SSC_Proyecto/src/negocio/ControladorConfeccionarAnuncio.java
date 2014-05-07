@@ -168,6 +168,14 @@ public class ControladorConfeccionarAnuncio
 	public void setProductoModificar(negocio.Producto productoModificar) {
 		this.productoModificar = productoModificar;
 	}
+	
+	public negocio.CatalogoProductos getCatalogoProductos() {
+		return catalogoProductos;
+	}
+
+	public void setCatalogoProductos(negocio.CatalogoProductos catalogoProductos) {
+		this.catalogoProductos = catalogoProductos;
+	}
 	//---------------------------------------------------------------
 
 	
@@ -176,8 +184,8 @@ public class ControladorConfeccionarAnuncio
 	//***************************************************************
 	//* METODOS 													*
 	//***************************************************************
-	
-	
+
+
 	/////////////////////////////////////////////////////////////////
 	//
 	/////////////////////////////////////////////////////////////////
@@ -258,7 +266,13 @@ public class ControladorConfeccionarAnuncio
 		if (productoActual != null)
 		{
 			//
-			arrClientesInteresados = catalogoClientes.obtenerClientesProducto(productoActual);
+			//arrClientesInteresados = catalogoClientes.obtenerClientesProducto(productoActual);
+			for(negocio.Cliente clienteNegocio : catalogoClientes.obtenerClientesProducto(productoActual))
+			{
+				if(!arrClientesInteresados.contains(clienteNegocio))
+					arrClientesInteresados.add(clienteNegocio);
+			}
+			
 			
 			arrProductosPublicación.add(productoActual);
 		}

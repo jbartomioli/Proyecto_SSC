@@ -214,21 +214,25 @@ public class GenerarAnuncio extends JDialog {
 						else 
 							if(filaSeleccionada >= 0)
 							{
+								setCursor(new Cursor(Cursor.WAIT_CURSOR));
 								modeloTblProductosAnuncio.addRow(fila);
-								negocio.CatalogoProductos catProductos = new negocio.CatalogoProductos();
-								negocio.CatalogoClientes catClientes = new negocio.CatalogoClientes();
-								Collection<negocio.Cliente> arrClientesProducto = new ArrayList<negocio.Cliente>();
+								//los catalogos ya están en ctrl...
+								//negocio.CatalogoProductos catProductos = new negocio.CatalogoProductos();
+								//negocio.CatalogoClientes catClientes = new negocio.CatalogoClientes();
+								//Collection<negocio.Cliente> arrClientesProducto = new ArrayList<negocio.Cliente>();
+								
 								String descProducto = fila.elementAt(0).toString().substring(0);
 								
-								catProductos.obtenerProductos();
-								negocio.Producto producto = catProductos.obtenerProducto(descProducto);
+								//catProductos.obtenerProductos();
 								
-								catClientes.obtenerClientes();
-								arrClientesProducto = catClientes.obtenerClientesProducto(producto);
-								//////////////////////////////////////////////////////////////////////////////////
-								//VER PORQUÉ LA TABLA DESTINATARIOS SE PISA CON LOS CLIENTES AL ELEGIR PRODUCTOS//
-								//////////////////////////////////////////////////////////////////////////////////
-								tblDestinatarios.completarDatos(arrClientesProducto);
+								negocio.Producto producto = controladorAux.getCatalogoProductos().obtenerProducto(descProducto);
+								controladorAux.seleccionarProducto(producto.getIdProducto());
+								//catClientes.obtenerClientes();
+								//arrClientesProducto = catClientes.obtenerClientesProducto(producto);
+								
+								
+								tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
+								setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 								//ACA ACTUALIZARIAMOS LA TABLA DE CLIENTES PERO, HAY QUE REVEER EL METODO DE BUSQUEDA
 								//YA QUE TARDA MUCHO Y NO ES MUY OPTIMO
 								//controladorAux.seleccionarProducto(100);
