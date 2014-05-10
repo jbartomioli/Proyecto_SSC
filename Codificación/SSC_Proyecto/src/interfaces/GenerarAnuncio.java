@@ -168,7 +168,7 @@ public class GenerarAnuncio extends JDialog {
 			{
 				DefaultTableModel tableModel = (DefaultTableModel) tblProductosAnuncio.getModel();
 				int filaSeleccionada = tblProductosAnuncio.getSelectedRow();
-				//JOptionPane.showMessageDialog(null, "Fila presionada: " + filaSeleccionada);
+
 			    if (filaSeleccionada >= 0)
 			         tableModel.removeRow(filaSeleccionada);
 			}
@@ -216,20 +216,11 @@ public class GenerarAnuncio extends JDialog {
 							{
 								setCursor(new Cursor(Cursor.WAIT_CURSOR));
 								modeloTblProductosAnuncio.addRow(fila);
-								//los catalogos ya están en ctrl...
-								//negocio.CatalogoProductos catProductos = new negocio.CatalogoProductos();
-								//negocio.CatalogoClientes catClientes = new negocio.CatalogoClientes();
-								//Collection<negocio.Cliente> arrClientesProducto = new ArrayList<negocio.Cliente>();
-								
+																
 								String descProducto = fila.elementAt(0).toString().substring(0);
 								
-								//catProductos.obtenerProductos();
-								
 								negocio.Producto producto = controladorAux.getCatalogoProductos().obtenerProducto(descProducto);
-								controladorAux.seleccionarProducto(producto.getIdProducto());
-								//catClientes.obtenerClientes();
-								//arrClientesProducto = catClientes.obtenerClientesProducto(producto);
-								
+								controladorAux.seleccionarProducto(producto.getIdProducto());			
 								
 								tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
 								setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -269,6 +260,15 @@ public class GenerarAnuncio extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
+				/*REVISAR
+				DefaultTableModel destinatariosGenerar = (DefaultTableModel) tblDestinatarios.getModel();
+				int nroRow = destinatariosGenerar.getRowCount(), nroCol = destinatariosGenerar.getColumnCount();
+			    Object[][] tableData = new Object[nroRow][nroCol];
+			    for (int i = 0 ; i < nroRow ; i++)
+			        for (int j = 0 ; j < nroCol ; j++)
+			            tableData[i][j] = destinatariosGenerar.getValueAt(i,j);
+			    */
+				
 				interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
 				modif.setLocationRelativeTo(dialogPadre);
 				modif.setVisible(true);
@@ -299,12 +299,9 @@ public class GenerarAnuncio extends JDialog {
 		
 	    getContentPane().add(btnEnviar);
 	    
-
-		
 		btnGuardar = new interfaces.componentes.BotonesIconos("Guardar", utilidades.Configuraciones.IMG_ICONOS+"GUARDAR_32.png");
 		btnGuardar.setLocation(698, 609);
 		getContentPane().add(btnGuardar);
-		
 	
 		btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCerrar.setLocation(817, 609);	
