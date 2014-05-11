@@ -40,15 +40,19 @@ public class PrevisualizadorHTML extends JDialog
 	private File archivoHTML;
 	private FileReader fr;
 	private BufferedReader br;
-	private GenerarAnuncio padreAux;
+	private boolean aux;
 
 	  
-	public PrevisualizadorHTML(String nombreArchivo, GenerarAnuncio padre)
+	public PrevisualizadorHTML(interfaces.GenerarAnuncio padre)
 	{
 		super(padre);
+	}	
 		
-		padreAux = padre;
 		
+	@SuppressWarnings("finally")
+	public boolean inicializar(String nombreArchivo)
+	{
+				
 		archivoHTML = new File(Configuraciones.DIR_MAILS+nombreArchivo);
 		
 	   	fr = null;
@@ -58,6 +62,8 @@ public class PrevisualizadorHTML extends JDialog
 
 	   	try 
 	   	{	
+	   		aux = false;
+	   		
 	   		fr = new FileReader(archivoHTML);
 	   		br = new BufferedReader(fr);
 			 
@@ -77,7 +83,6 @@ public class PrevisualizadorHTML extends JDialog
 			
 			HTMLEditorKit kit = new HTMLEditorKit();
 			
-		
 		    Document doc = kit.createDefaultDocument();
 		    setModal(true);
 
@@ -122,12 +127,11 @@ public class PrevisualizadorHTML extends JDialog
 	   						if( null != fr ) 
 	   							fr.close();
 							archivoHTML.delete();
-							padreAux.limpiar_formulario();
-							
+							aux = true;
 						} 
 	   					catch (IOException e1) 
 						{
-							//e1.printStackTrace();
+							e1.printStackTrace();
 						}
 	   				}
 	   			}
@@ -156,6 +160,7 @@ public class PrevisualizadorHTML extends JDialog
 	   				"ERROR",
 	   				JOptionPane.ERROR_MESSAGE);
 	   		dispose();
+	   		
 	   	}
         finally
         {
@@ -166,14 +171,16 @@ public class PrevisualizadorHTML extends JDialog
         	}
         	catch (IOException e2)
         	{ 
-        		//e2.printStackTrace();
+        		e2.printStackTrace();
         	}
+        	return aux;
      }
 	}
 	  
 	  
 	  //-------------------------------------------------------------------
-	  public boolean preparar_enviar(String contenidoEnviar)
+	  @SuppressWarnings("finally")
+	public boolean preparar_enviar(String contenidoEnviar)
 	  {
 		  	MailPromocional mail = new MailPromocional();
 			boolean resultado = false;

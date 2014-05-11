@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +21,7 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.Box;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -31,8 +33,11 @@ import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
+
 import javax.swing.SwingConstants;
+
 import net.atlanticbb.tantlinger.shef.EditorHTML;
+
 import javax.swing.JTextField;
 
 
@@ -94,7 +99,8 @@ public class GenerarAnuncio extends JDialog {
 		
 		cmbCategorias.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
-				clickComboCategorias(evento);}});
+				clickComboCategorias(evento);
+				}});
 		
 		lblCategoria.setLabelFor(cmbCategorias);
 		cmbCategorias.setBounds(87, 24, 200, 23);
@@ -155,11 +161,7 @@ public class GenerarAnuncio extends JDialog {
 		tblProductosAnuncio.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{
-				DefaultTableModel tableModel = (DefaultTableModel) tblProductosAnuncio.getModel();
-				int filaSeleccionada = tblProductosAnuncio.getSelectedRow();
-
-			    if (filaSeleccionada >= 0)
-			         tableModel.removeRow(filaSeleccionada);
+				action_click_eliminar();
 			}
 		});
 		
@@ -187,37 +189,7 @@ public class GenerarAnuncio extends JDialog {
 		tblProductos.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent arg0) 
 					{
-						DefaultTableModel modeloTblProductosAnuncio = (DefaultTableModel) tblProductosAnuncio.getModel();
-						DefaultTableModel modeloTblProductos = (DefaultTableModel) tblProductos.getModel();
-						//DefaultTableModel modeloTblDestinatarios = (DefaultTableModel) tblDestinatarios.getModel();
-						
-						int filaSeleccionada = tblProductos.getSelectedRow();
-						Vector fila = new Vector(1);
-						fila = (Vector) modeloTblProductos.getDataVector().elementAt(filaSeleccionada);
-
-						if(modeloTblProductosAnuncio.getDataVector().contains(fila))
-							JOptionPane.showMessageDialog(null, 
-			    					"No puede agregar dos veces el mismo producto al anuncio.", 
-			    					"ATENCIÓN",
-			    					JOptionPane.WARNING_MESSAGE);
-						else 
-							if(filaSeleccionada >= 0)
-							{
-								setCursor(new Cursor(Cursor.WAIT_CURSOR));
-								modeloTblProductosAnuncio.addRow(fila);
-																
-								String descProducto = fila.elementAt(0).toString().substring(0);
-								
-								negocio.Producto producto = controladorAux.getCatalogoProductos().obtenerProducto(descProducto);
-								controladorAux.seleccionarProducto(producto.getIdProducto());			
-								
-								tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
-								setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-								//ACA ACTUALIZARIAMOS LA TABLA DE CLIENTES PERO, HAY QUE REVEER EL METODO DE BUSQUEDA
-								//YA QUE TARDA MUCHO Y NO ES MUY OPTIMO
-								//controladorAux.seleccionarProducto(100);
-								//tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());		
-							}
+						action_click_aniadir();
 					}
 				});
 		
@@ -305,9 +277,21 @@ public class GenerarAnuncio extends JDialog {
 
 	
 	
+
+
+
+
+
+
+
+
+
+
+
+
 	// EVENTOS
 	//-------------------------------------------------------------------------------------------------
-	public void clickComboCategorias(ItemEvent evento)
+	protected void clickComboCategorias(ItemEvent evento)
 	{
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{
@@ -334,7 +318,7 @@ public class GenerarAnuncio extends JDialog {
 
 	
 	//----------------------------------------------------------------------------------------------
-	public void clickComboSubcategorias(ItemEvent evento)
+	protected void clickComboSubcategorias(ItemEvent evento)
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{			
@@ -351,7 +335,7 @@ public class GenerarAnuncio extends JDialog {
 
 	
 	//-------------------------------------------------------------
-	public void action_generar(JDialog dialogPadre)
+	protected void action_generar(JDialog dialogPadre)
 	{
     	if(txtAsunto.getText().equals(""))
     		JOptionPane.showMessageDialog(dialogPadre, 
@@ -386,20 +370,72 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	//-------------------------------------------------------------
-	public void action_enviar(GenerarAnuncio dialogPadre)
+	protected void action_enviar(GenerarAnuncio dialogPadre)
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-    	@SuppressWarnings("unused")
 		interfaces.PrevisualizadorHTML previsualizadorHTML = 
-    			new interfaces.PrevisualizadorHTML("temporal.html", dialogPadre);
+    			new interfaces.PrevisualizadorHTML(dialogPadre);
+    	
+    	boolean limpiar = false;
+    	
+    	limpiar = previsualizadorHTML.inicializar("temporal.html");
     	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     	
-    	//limpiar_formulario();
+    	if(limpiar)
+    		limpiar_formulario();
+	}
+	
+	
+	//---------------------------------------------------------------
+	@SuppressWarnings("rawtypes")
+	protected void action_click_aniadir() 
+	{
+		DefaultTableModel modeloTblProductosAnuncio = (DefaultTableModel) tblProductosAnuncio.getModel();
+		DefaultTableModel modeloTblProductos = (DefaultTableModel) tblProductos.getModel();
+		//DefaultTableModel modeloTblDestinatarios = (DefaultTableModel) tblDestinatarios.getModel();
+		
+		int filaSeleccionada = tblProductos.getSelectedRow();
+		Vector fila = new Vector(1);
+		fila = (Vector) modeloTblProductos.getDataVector().elementAt(filaSeleccionada);
+
+		if(modeloTblProductosAnuncio.getDataVector().contains(fila))
+			JOptionPane.showMessageDialog(null, 
+					"No puede agregar dos veces el mismo producto al anuncio.", 
+					"ATENCIÓN",
+					JOptionPane.WARNING_MESSAGE);
+		else 
+			if(filaSeleccionada >= 0)
+			{
+				setCursor(new Cursor(Cursor.WAIT_CURSOR));
+				modeloTblProductosAnuncio.addRow(fila);
+												
+				String descProducto = fila.elementAt(0).toString().substring(0);
+				
+				negocio.Producto producto = controladorAux.getCatalogoProductos().obtenerProducto(descProducto);
+				controladorAux.seleccionarProducto(producto.getIdProducto());			
+				
+				tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
+				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				//ACA ACTUALIZARIAMOS LA TABLA DE CLIENTES PERO, HAY QUE REVEER EL METODO DE BUSQUEDA
+				//YA QUE TARDA MUCHO Y NO ES MUY OPTIMO	
+			}		
 	}
 	
 	
 	//-------------------------------------------------------------
-	public void cerrar_salir()
+	protected void action_click_eliminar() 
+	{
+		DefaultTableModel tableModel = (DefaultTableModel) tblProductosAnuncio.getModel();
+		int filaSeleccionada = tblProductosAnuncio.getSelectedRow();
+
+	    if (filaSeleccionada >= 0)
+	         tableModel.removeRow(filaSeleccionada);		
+	}
+	
+	
+	
+	//-------------------------------------------------------------
+	protected void cerrar_salir()
 	{
 		int rta = JOptionPane.showConfirmDialog(
 					this, 
@@ -421,7 +457,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	//-----------------------------------------------------------------
-	public void limpiar_formulario()
+	protected void limpiar_formulario()
 	{
 		cmbCategorias.setSelectedIndex(0);
 		cmbSubcategorias.setSelectedIndex(0);
