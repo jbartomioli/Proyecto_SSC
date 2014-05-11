@@ -3,8 +3,6 @@ package interfaces;
  * PANTALLA CORRESPONDIENTE AL CU GENERAR ANUNCIO
  */
 
-import interfaces.componentes.TablaProductos;
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -13,11 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -25,7 +20,6 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.Box;
-
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,13 +31,8 @@ import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
-
 import javax.swing.SwingConstants;
-
-import negocio.CatalogoClientes;
-import negocio.Producto;
 import net.atlanticbb.tantlinger.shef.EditorHTML;
-
 import javax.swing.JTextField;
 
 
@@ -245,7 +234,7 @@ public class GenerarAnuncio extends JDialog {
 		
 		scrollDestinatarios.setViewportView(tblDestinatarios);
 
-		final JDialog dialogPadre = this;
+		final GenerarAnuncio dialogPadre = this;
 		
 		JLabel lblModificarDestinatarios = new JLabel("Modificar Destinatarios");
 		lblModificarDestinatarios.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -397,7 +386,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	//-------------------------------------------------------------
-	public void action_enviar(JDialog dialogPadre)
+	public void action_enviar(GenerarAnuncio dialogPadre)
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
     	@SuppressWarnings("unused")
@@ -405,7 +394,7 @@ public class GenerarAnuncio extends JDialog {
     			new interfaces.PrevisualizadorHTML("temporal.html", dialogPadre);
     	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     	
-    	limpiar_formulario();
+    	//limpiar_formulario();
 	}
 	
 	

@@ -40,12 +40,14 @@ public class PrevisualizadorHTML extends JDialog
 	private File archivoHTML;
 	private FileReader fr;
 	private BufferedReader br;
-	
+	private GenerarAnuncio padreAux;
 
 	  
-	public PrevisualizadorHTML(String nombreArchivo, JDialog padre)
+	public PrevisualizadorHTML(String nombreArchivo, GenerarAnuncio padre)
 	{
 		super(padre);
+		
+		padreAux = padre;
 		
 		archivoHTML = new File(Configuraciones.DIR_MAILS+nombreArchivo);
 		
@@ -120,6 +122,8 @@ public class PrevisualizadorHTML extends JDialog
 	   						if( null != fr ) 
 	   							fr.close();
 							archivoHTML.delete();
+							padreAux.limpiar_formulario();
+							
 						} 
 	   					catch (IOException e1) 
 						{
