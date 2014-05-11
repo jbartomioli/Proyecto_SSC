@@ -40,4 +40,12 @@ public class TablaClientesDestino extends JTable {
 			i++;
 		} 
 	}
+	
+	public void limpiar_tabla()
+	{
+		DefaultTableModel modelo_temp = (DefaultTableModel) this.getModel();
+        int cant_filas = this.getRowCount()-1;
+        for(int i=0; i<=cant_filas; i++)
+        	modelo_temp.removeRow(0);
+	}
 }

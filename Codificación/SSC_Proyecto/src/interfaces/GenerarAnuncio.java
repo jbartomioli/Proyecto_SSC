@@ -424,7 +424,8 @@ public class GenerarAnuncio extends JDialog {
 		{
 		case(1): //finalizarEdicion();
 				 break;
-		case(0): dispose();
+		case(0): limpiar_formulario();
+				 dispose();
 				 break;
 		}
 	}
@@ -436,14 +437,9 @@ public class GenerarAnuncio extends JDialog {
 		cmbCategorias.setSelectedIndex(0);
 		cmbSubcategorias.setSelectedIndex(0);
 		txtAsunto.setText("");
-//		tblProductosAnuncio = new interfaces.componentes.TablaProductos();
-//		tblProductos = new interfaces.componentes.TablaProductos();
-//		tblDestinatarios = new interfaces.componentes.TablaClientesDestino();
-//		tblProductosAnuncio = new interfaces.componentes.TablaProductos();
-//		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
-//		tblProductosAnuncio.completarTabla(productos);
-//		tblProductosAnuncio.definirTablaProductosAnuncio();
-//		tblDestinatarios.limpiarTabla();
+		
+		tblProductosAnuncio.limpiar_tabla();
+		tblDestinatarios.limpiar_tabla();
 		
 	}
 }

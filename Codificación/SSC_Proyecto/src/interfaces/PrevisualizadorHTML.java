@@ -40,7 +40,8 @@ public class PrevisualizadorHTML extends JDialog
 	private File archivoHTML;
 	private FileReader fr;
 	private BufferedReader br;
-	  
+	
+
 	  
 	public PrevisualizadorHTML(String nombreArchivo, JDialog padre)
 	{
