@@ -30,6 +30,7 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
@@ -39,6 +40,8 @@ import javax.swing.SwingConstants;
 import net.atlanticbb.tantlinger.shef.EditorHTML;
 
 import javax.swing.JTextField;
+
+import utilidades.Configuraciones;
 
 
 
@@ -378,7 +381,12 @@ public class GenerarAnuncio extends JDialog {
     	
     	boolean limpiar = false;
     	
-    	limpiar = previsualizadorHTML.inicializar("temporal.html");
+    	String mailsClientes[] = new String[tblDestinatarios.getModel().getRowCount()];
+    	
+    	for(int i=0; i<tblDestinatarios.getModel().getRowCount();++i)
+    		mailsClientes[i] = tblDestinatarios.getModel().getValueAt(i, 2).toString();
+
+    	limpiar = previsualizadorHTML.inicializar("temporal.html", mailsClientes);
     	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     	
     	if(limpiar)
@@ -466,5 +474,21 @@ public class GenerarAnuncio extends JDialog {
 		tblProductosAnuncio.limpiar_tabla();
 		tblDestinatarios.limpiar_tabla();
 		
+		eliminar_temporal();
+		
+	}
+
+	//-----------------------------------------------------------------
+	private void eliminar_temporal() 
+	{
+		try
+			{
+				File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
+				archivoHTML.delete();
+			} 
+			catch (Exception e1) 
+			{
+				e1.printStackTrace();
+			}	
 	}
 }

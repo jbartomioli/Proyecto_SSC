@@ -41,7 +41,7 @@ public class PrevisualizadorHTML extends JDialog
 	private FileReader fr;
 	private BufferedReader br;
 	private boolean aux;
-
+	private String [] mailsClientes;
 	  
 	public PrevisualizadorHTML(interfaces.GenerarAnuncio padre)
 	{
@@ -50,9 +50,11 @@ public class PrevisualizadorHTML extends JDialog
 		
 		
 	@SuppressWarnings("finally")
-	public boolean inicializar(String nombreArchivo)
+	public boolean inicializar(String nombreArchivo, String [] mailsDestino)
 	{
-				
+		
+		mailsClientes = mailsDestino;
+		
 		archivoHTML = new File(Configuraciones.DIR_MAILS+nombreArchivo);
 		
 	   	fr = null;
@@ -120,20 +122,18 @@ public class PrevisualizadorHTML extends JDialog
 	   		JButton btnAceptarEnviar = new JButton("Aceptar y Enviar");
 	   		btnAceptarEnviar.addActionListener(new ActionListener() {
 	   			public void actionPerformed(ActionEvent e) {
-	   				if(preparar_enviar(contenidoMailHTML))
-	   				{
+	   				if(preparar_enviar(contenidoMailHTML, mailsClientes))
 	   					try
-	   					{
-	   						if( null != fr ) 
-	   							fr.close();
-							archivoHTML.delete();
-							aux = true;
-						} 
-	   					catch (IOException e1) 
-						{
-							e1.printStackTrace();
-						}
-	   				}
+		   				{
+		   					if( null != fr ) 
+		   						fr.close();
+		   					archivoHTML.delete();
+		   					aux = true;
+		   				} 
+		   				catch (IOException e1) 
+		   				{
+			   				e1.printStackTrace();
+			   			}	
 	   			}
 	   		});
 	   		panel.add(btnAceptarEnviar, BorderLayout.WEST);
@@ -180,7 +180,7 @@ public class PrevisualizadorHTML extends JDialog
 	  
 	  //-------------------------------------------------------------------
 	  @SuppressWarnings("finally")
-	public boolean preparar_enviar(String contenidoEnviar)
+	public boolean preparar_enviar(String contenidoEnviar, String [] mailsClientes)
 	  {
 		  	MailPromocional mail = new MailPromocional();
 			boolean resultado = false;
@@ -197,7 +197,7 @@ public class PrevisualizadorHTML extends JDialog
 	        	for(int i = 0; i<=20; i++)
 	        		progresoEnvio.avanceProgreso(i);
 	        	
-				mail.enviarMail(contenidoProcesado, new String []{"sscproyecto@gmail.com","javierbartomioli@gmail.com","jbartom@hotmail.com","jbartomioli@facebook.com"}, asunto);
+				mail.enviarMail(contenidoProcesado, mailsClientes, asunto);
 				
 	        	for(int i = 20; i<=100; i++)
 	        		progresoEnvio.avanceProgreso(i);
