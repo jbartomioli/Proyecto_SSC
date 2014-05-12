@@ -43,6 +43,8 @@ import javax.swing.JTextField;
 
 import utilidades.Configuraciones;
 
+import interfaces.ModificarDestinatarios;
+
 
 
 public class GenerarAnuncio extends JDialog {
@@ -226,11 +228,6 @@ public class GenerarAnuncio extends JDialog {
 			{
 				/*REVISAR
 				DefaultTableModel destinatariosGenerar = (DefaultTableModel) tblDestinatarios.getModel();
-				int nroRow = destinatariosGenerar.getRowCount(), nroCol = destinatariosGenerar.getColumnCount();
-			    Object[][] tableData = new Object[nroRow][nroCol];
-			    for (int i = 0 ; i < nroRow ; i++)
-			        for (int j = 0 ; j < nroCol ; j++)
-			            tableData[i][j] = destinatariosGenerar.getValueAt(i,j);
 			    */
 				
 				interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
