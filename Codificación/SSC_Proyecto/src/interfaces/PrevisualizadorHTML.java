@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.mail.MessagingException;
 import javax.swing.JDialog;
@@ -16,7 +18,6 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import net.atlanticbb.tantlinger.io.Base64;
 import utilidades.Configuraciones;
 import utilidades.MailPromocional;
 
@@ -42,6 +43,7 @@ public class PrevisualizadorHTML extends JDialog
 	private BufferedReader br;
 	private boolean aux;
 	private String [] mailsClientes;
+	private Collection<String> imagenes;
 	  
 	public PrevisualizadorHTML(interfaces.GenerarAnuncio padre)
 	{
@@ -54,6 +56,8 @@ public class PrevisualizadorHTML extends JDialog
 	{
 		
 		mailsClientes = mailsDestino;
+		
+		imagenes = new ArrayList<String>();
 		
 		archivoHTML = new File(Configuraciones.DIR_MAILS+nombreArchivo);
 		
@@ -104,7 +108,8 @@ public class PrevisualizadorHTML extends JDialog
 		    epnEditor.setEditorKit(kit);
 		    epnEditor.setDocument(doc);
 	   		epnEditor.setText(contenidoMailHTML);
-
+	   		
+	   		
 		    getContentPane().add(scrEditor);
 		    
 	   		JPanel panel = new JPanel();
@@ -197,7 +202,8 @@ public class PrevisualizadorHTML extends JDialog
 	        	for(int i = 0; i<=20; i++)
 	        		progresoEnvio.avanceProgreso(i);
 	        	
-				mail.enviarMail(contenidoProcesado, mailsClientes, asunto);
+	        	
+				mail.enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);
 				
 	        	for(int i = 20; i<=100; i++)
 	        		progresoEnvio.avanceProgreso(i);
@@ -230,9 +236,12 @@ public class PrevisualizadorHTML extends JDialog
 	  }
 
 	  
-	  //-------------------------------------------------------------------
+
+
+	//-------------------------------------------------------------------
 		private String procesarImagenes(String contenidoEnviar)
 		    {
+				int cidCont = 0;
 		        String tagImg = "<img ";
 		        char tagImgCierre = '>';
             	String atributoSrc = "src=";
@@ -267,31 +276,42 @@ public class PrevisualizadorHTML extends JDialog
         				String depuracionInicial = srcOriginal.substring("\"file:".length());
 		            	//System.out.println(depuracionInicial);
         				
+        				
         				String depuracionFinal = depuracionInicial.substring(0,depuracionInicial.indexOf("\""));			
 		            	//System.out.println(depuracionFinal);
 
+        				
         				String rutaArchivo = depuracionFinal.replace('\\', '/');
 		            	//System.out.println(rutaArchivo);
+        					
+        				imagenes.add(rutaArchivo);
         				
-        				String imgEncriptado =  "data:image/png;base64,"+Base64.encodeFromFile(rutaArchivo).toString();
-        						    
+        				//String imgEncriptado =  "data:image/jpeg;charset=utf-8;base64,"+Base64.encodeFromFile(rutaArchivo);//.toString();
+        				String imgInsertar = "cid:IMG"+cidCont;
+        				
+        				++cidCont;
+        				
         				int iDelete = sb.indexOf(atributoSrc, i)+atributoSrc.length();
         				
         				sb.delete(iDelete, sb.indexOf("\"",iDelete+1));	
         				
-        				String insertCadena = "\""+imgEncriptado;
+        				String insertCadena = "\""+imgInsertar;
 
 		            	sb.insert(iDelete, insertCadena);
 		            	
 		            	int iInsert = i + insertCadena.length()+1;
 		            
 		            	i = sb.indexOf(tagImg,iInsert);
+		            	
 			        }
 		            
 		        }
 	        
 	        return sb.toString();
 	}
+		
+		
+
 
 
 	//---------------------------------------------------------------------

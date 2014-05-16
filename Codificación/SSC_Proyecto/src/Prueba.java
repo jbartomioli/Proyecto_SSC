@@ -135,7 +135,7 @@ public class Prueba {
 //			"<img src=\"CONFECCIONAR_300.png\">"+
 //			"</p><hr></body></html>";
 
-			mail.enviarMail(contenido,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, "prueba");
+			//mail.enviarMail(contenido,new String []{"sscproyecto@gmail.com","sscproyecto@gmail.com"}, "prueba");
 			
 			/*
 			negocio.ParametrosNegocio param = new negocio.ParametrosNegocio();
