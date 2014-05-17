@@ -7,6 +7,7 @@ import java.awt.SystemColor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -33,6 +34,8 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.JButton;
 
@@ -220,9 +223,10 @@ public class ModificarDestinatarios extends JDialog {
 			
 			catClie.obtenerClientes();
 			
-			///////////////LA LINEA ES PARA PROBAR INSERCION Y ELIMINACION DE FILAS////////////////////
+			///////////////REVISAR PORQUE NO CARGA LA TABLA EN LA PANTALLA MODIFI DEST//////////////////
 			//////////////HAY QUE LLENAR LA TABLA CON LOS DATOS DE LA PANTALLA ANTERIOR////////////////
-			tblDestinatariosNuevos.completarTabla(catClie.buscarClientesPorEspecialidad(especialidad));
+			Collection<negocio.Cliente> arrClientes = new ArrayList<negocio.Cliente>();
+			tblDestinatariosNuevos.completarTabla(arrClientes);
 			///////////////////////////////////////////////////////////////////////////////////////////
 			tblDestinatariosBuscados.completarTabla(catClie.buscarClientesPorEspecialidad(especialidad));
 			
@@ -231,6 +235,12 @@ public class ModificarDestinatarios extends JDialog {
 			//Agrega el btn añadir a la tabla
 			tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		}
+	}
+	
+	public void completarDestinatarios(Collection<negocio.Cliente> clientes)
+	{
+		JOptionPane.showMessageDialog(null, "Cant clientes array: " + clientes.size());
+		tblDestinatariosNuevos.completarTabla(clientes);
 	}
 	
 	

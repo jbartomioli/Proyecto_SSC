@@ -229,8 +229,8 @@ public class GenerarAnuncio extends JDialog {
 				/*REVISAR
 				DefaultTableModel destinatariosGenerar = (DefaultTableModel) tblDestinatarios.getModel();
 			    */
-				
 				interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
+				
 				modif.setLocationRelativeTo(dialogPadre);
 				modif.setVisible(true);
 			}
@@ -274,17 +274,6 @@ public class GenerarAnuncio extends JDialog {
 		getContentPane().add(btnCerrar);
 			
 	}
-
-	
-	
-
-
-
-
-
-
-
-
 
 
 
@@ -421,6 +410,11 @@ public class GenerarAnuncio extends JDialog {
 				
 				tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				
+				final GenerarAnuncio dialogPadre = this;
+				////////REVISAR/////////
+				//interfaces.ModificarDestinatarios modificar = new interfaces.ModificarDestinatarios(dialogPadre);
+				//modificar.completarDestinatarios(controladorAux.getArrClientesInteresados());
 				//ACA ACTUALIZARIAMOS LA TABLA DE CLIENTES PERO, HAY QUE REVEER EL METODO DE BUSQUEDA
 				//YA QUE TARDA MUCHO Y NO ES MUY OPTIMO	
 			}		
