@@ -87,25 +87,6 @@ public class EditorHTML extends JDialog
         		cerrarEditor();
         	}
         });
-//        
-//        JButton btnArchivo = new JButton("Archivo");
-//        btnArchivo.addActionListener(new ActionListener() {
-//        	public void actionPerformed(ActionEvent e) {
-//
-//            	JFileChooser selector = new JFileChooser();
-//            	int seleccion = selector.showOpenDialog(getContentPane().getParent());
-//            	
-//            	if (seleccion == JFileChooser.APPROVE_OPTION)
-//            	{
-//            	   String fichero = selector.getSelectedFile().getAbsolutePath();
-//            	   JOptionPane.showMessageDialog(getContentPane().getParent(), fichero);
-//            	   editor.setText(fichero);
-//            	}
-//            	
-//            	
-//        	}
-//        });
-//        panel.add(btnArchivo);
         panel.add(btnCancelar);
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         setVisible(true);

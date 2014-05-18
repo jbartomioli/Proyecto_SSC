@@ -36,7 +36,7 @@ public class PrevisualizadorHTML extends JDialog
 {
 	private static final long serialVersionUID = 2483184216073019363L;
 	
-	private String contenidoMailHTML;
+	private String contenidoMailHTML = "";
 	private JEditorPane epnEditor;
 	private File archivoHTML;
 	private FileReader fr;
@@ -44,6 +44,8 @@ public class PrevisualizadorHTML extends JDialog
 	private boolean aux;
 	private String [] mailsClientes;
 	private Collection<String> imagenes;
+	private String encabezado_mail = "<html><body><img src=\"file:"+utilidades.Configuraciones.IMG_ENCABEZADO_MAIL+"\"/><br/><br/>";
+	private String pie_mail = "<img src=\"file:"+utilidades.Configuraciones.IMG_PIE_MAIL+"\"/></body></html>";
 	  
 	public PrevisualizadorHTML(interfaces.GenerarAnuncio padre)
 	{
@@ -64,10 +66,12 @@ public class PrevisualizadorHTML extends JDialog
 	   	fr = null;
 	   	br = null;
 	   	
-		contenidoMailHTML = "";
+
 
 	   	try 
 	   	{	
+			contenidoMailHTML += encabezado_mail;
+	   		
 	   		aux = false;
 	   		
 	   		fr = new FileReader(archivoHTML);
@@ -77,6 +81,8 @@ public class PrevisualizadorHTML extends JDialog
 		 
 	   		while((renglon=br.readLine())!=null)
 	        		contenidoMailHTML += renglon;
+	   		
+	   		contenidoMailHTML += pie_mail;
 	   		
 	   		setResizable(false);
 			setMinimumSize(new Dimension(800,600));
@@ -286,7 +292,6 @@ public class PrevisualizadorHTML extends JDialog
         					
         				imagenes.add(rutaArchivo);
         				
-        				//String imgEncriptado =  "data:image/jpeg;charset=utf-8;base64,"+Base64.encodeFromFile(rutaArchivo);//.toString();
         				String imgInsertar = "cid:IMG"+cidCont;
         				
         				++cidCont;

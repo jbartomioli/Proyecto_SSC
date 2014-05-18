@@ -93,41 +93,27 @@ public class MailPromocional {
 				mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(mailsDestinatarios[i]));
 			}
 						
-			
-			//SE DEFINE EL CONTENIDO DEL MAIL
-			//MimeMultipart multipart = new MimeMultipart("related");
-			
-			// first part  (the html)
-	        //BodyPart messageBodyPart = new MimeBodyPart();
 	        
-	        String cabecera = "<HTML><BODY><img src='cid:cidcabecera'/><br/><br/>";
-	        String pie = "<img src='cid:cidpie'/><br/><br/></BODY></HTML>";
-	        
-	        //messageBodyPart.setContent(cabecera,"text/html; charset=iso-8859-1");
-
-//	        messageBodyPart.setContent(htmlText, "text/html");
-	        //messageBodyPart.setContent(textoMensaje, "text/html; charset=iso-8859-1");
-	        
-	        //messageBodyPart.setContent(pie,"text/html; charset=iso-8859-1");
-	        
-	        addContent(cabecera+textoMensaje+pie);
+	        addContent(textoMensaje);
 	        
 	        int cidCont = 0;
 	        
 	        for(String imgString : imagenes)
 	        {	
-	        	addCID("IMG"+cidCont,imgString);
+	        	String cid = "IMG"+cidCont;
+	        	addCID(cid,imgString);
 	        	++cidCont;
+	        	addAttach(imgString,cid);
 	        }
 	        
-	        addCID("cidcabecera", "C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\recursos\\presentacion\\imgInicioInf.jpg");
-	        addCID("cidpie","C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\recursos\\presentacion\\imgInicioSup.jpg");
+	        //addCID("cidcabecera", "C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\recursos\\presentacion\\imgInicioInf.jpg");
+	       // addCID("cidpie","C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\recursos\\presentacion\\imgInicioSup.jpg");
 	        
 	        
 	        // enviar adjuntos
 	       // if (adjuntos!=null){
 	            //for (String adjunto : adjuntos) {
-	           //     addAttach("C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\recursos\\mails\\imagenes_mails\\SillonAbril2014.jpg"); //ruta donde se encuentra el fichero que queremos adjuntar.
+	           //     addAttach();
 	          //  }
 	      //  }
 	        
@@ -183,13 +169,14 @@ public class MailPromocional {
     }
 	
 	//---------------------------------------------------------------
-	public void addAttach(String pathname) throws Exception
+	public void addAttach(String pathname, String cid) throws Exception
     {
         File file = new File(pathname);
         BodyPart messageBodyPart = new MimeBodyPart();
         DataSource ds = new FileDataSource(file);
         messageBodyPart.setDataHandler(new DataHandler(ds));
-        messageBodyPart.setFileName(file.getName());
+        //messageBodyPart.setFileName(file.getName());
+        messageBodyPart.setFileName(cid+".JPG");
         messageBodyPart.setDisposition(Part.ATTACHMENT);
         this.multipart.addBodyPart(messageBodyPart);
     }

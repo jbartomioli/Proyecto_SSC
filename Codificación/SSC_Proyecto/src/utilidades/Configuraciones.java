@@ -21,6 +21,9 @@ public class Configuraciones{
 	public static String IMG_PRESENTACION;
 	public static String IMG_ANUNCIOS;
 	public static String IMG_ICONOS;
+	public static String IMG_ENCABEZADO_MAIL;
+	public static String IMG_PIE_MAIL;
+	
 	public static String DIR_MAILS;
 	//---------------------------------------------------------------
 
@@ -67,6 +70,9 @@ public class Configuraciones{
 			IMG_PRESENTACION = propiedades.getProperty("IMG_PRESENTACION").toString();
 			IMG_ANUNCIOS = propiedades.getProperty("IMG_ANUNCIOS").toString();
 			IMG_ICONOS = propiedades.getProperty("IMG_ICONOS").toString();
+			IMG_ENCABEZADO_MAIL = propiedades.getProperty("IMG_ENCABEZADO_MAIL").toString();
+			IMG_PIE_MAIL = propiedades.getProperty("IMG_PIE_MAIL").toString();
+			
 			DIR_MAILS = propiedades.getProperty("DIR_MAILS").toString();
 	}
 	//---------------------------------------------------------------
