@@ -43,9 +43,6 @@ import javax.swing.JTextField;
 
 import utilidades.Configuraciones;
 
-import interfaces.ModificarDestinatarios;
-
-
 
 public class GenerarAnuncio extends JDialog {
 	//SERIALIZABLE
@@ -59,7 +56,7 @@ public class GenerarAnuncio extends JDialog {
 	private interfaces.componentes.ComboSubcategorias cmbSubcategorias;
 	private negocio.Categoria categoria;
 	private interfaces.componentes.BotonesIconos btnGenerar;
-	private interfaces.componentes.BotonesIconos btnGuardar;
+//	private interfaces.componentes.BotonesIconos btnGuardar;
 	private interfaces.componentes.BotonesIconos btnEnviar;
 	private interfaces.componentes.BotonesIconos btnCerrar;
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
@@ -260,9 +257,9 @@ public class GenerarAnuncio extends JDialog {
 		
 	    getContentPane().add(btnEnviar);
 	    
-		btnGuardar = new interfaces.componentes.BotonesIconos("Guardar", utilidades.Configuraciones.IMG_ICONOS+"GUARDAR_32.png");
-		btnGuardar.setLocation(698, 609);
-		getContentPane().add(btnGuardar);
+//		btnGuardar = new interfaces.componentes.BotonesIconos("Guardar", utilidades.Configuraciones.IMG_ICONOS+"GUARDAR_32.png");
+//		btnGuardar.setLocation(698, 609);
+//		getContentPane().add(btnGuardar);
 	
 		btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCerrar.setLocation(817, 609);	
