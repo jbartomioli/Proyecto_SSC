@@ -36,6 +36,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Vector;
 
 import javax.swing.JButton;
 
@@ -133,15 +134,23 @@ public class ModificarDestinatarios extends JDialog {
 		boxDestinatariosNuevos.setBounds(10, 134, 500, 250);
 		getContentPane().add(boxDestinatariosNuevos);
 		
-		/////////////////////////////////////////////////////////////////////////////////////////
-		/// EL SCROLL SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS ///
-		/////////////////////////////////////////////////////////////////////////////////////////
 		JScrollPane scrollDestinatariosNuevos = new JScrollPane();
 		boxDestinatariosNuevos.add(scrollDestinatariosNuevos);
-		///////////////////////////////////////////////////////////////////////////////
+		
 		tblDestinatariosNuevos = new interfaces.componentes.TablaDestinatarios();
 		scrollDestinatariosNuevos.setViewportView(tblDestinatariosNuevos);
-	
+		
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//// LA TABLA SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS ////
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//tblDestinatariosNuevos.completarTabla(controladorAux.getArrClientesInteresados());
+		//Agrega el btn eliminar a la tabla
+		//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
+		//final GenerarAnuncio dialogPadre = this;
+		////////REVISAR/////////
+		//interfaces.ModificarDestinatarios modificar = new interfaces.ModificarDestinatarios(dialogPadre);
+		//modificar.completarDestinatarios();
+		///////////////////////////////////////////////////////////////////////////////
 				
         //Evento para eliminar destinatarios a la lista de destino
 		tblDestinatariosNuevos.addMouseListener(new MouseAdapter() {
@@ -222,25 +231,23 @@ public class ModificarDestinatarios extends JDialog {
 			negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
 			
 			catClie.obtenerClientes();
-			
-			///////////////REVISAR PORQUE NO CARGA LA TABLA EN LA PANTALLA MODIFI DEST//////////////////
-			//////////////HAY QUE LLENAR LA TABLA CON LOS DATOS DE LA PANTALLA ANTERIOR////////////////
-			Collection<negocio.Cliente> arrClientes = new ArrayList<negocio.Cliente>();
-			tblDestinatariosNuevos.completarTabla(arrClientes);
-			///////////////////////////////////////////////////////////////////////////////////////////
+					
 			tblDestinatariosBuscados.completarTabla(catClie.buscarClientesPorEspecialidad(especialidad));
 			
 			//Agrega el btn eliminar a la tabla
-			tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
+			//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
 			//Agrega el btn añadir a la tabla
 			tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 		}
 	}
 	
-	public void completarDestinatarios(Collection<negocio.Cliente> clientes)
+	public void completarDestinatarios()
 	{
-		JOptionPane.showMessageDialog(null, "Cant clientes array: " + clientes.size());
-		tblDestinatariosNuevos.completarTabla(clientes);
+		DefaultTableModel modelo = (DefaultTableModel) tblDestinatariosNuevos.getModel();
+		modelo.addRow((Vector) controladorAux.getArrClientesInteresados());
+		
+		//Agrega el btn eliminar a la tabla
+		//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
 	}
 	
 	
