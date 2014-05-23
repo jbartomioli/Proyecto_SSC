@@ -85,9 +85,6 @@ public class MailPromocional {
 			mensaje.setFrom(new InternetAddress(utilidades.Configuraciones.SMTP_USER));
 				
 			//SE DEFINEN DESTINATARIOS
-			//mensaje.addRecipient(Message.RecipientType.TO, 
-			//	new InternetAddress(...));
-			
 			for(int i = 0 ; i<mailsDestinatarios.length ; i++)
 			{
 				mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(mailsDestinatarios[i]));
@@ -106,35 +103,10 @@ public class MailPromocional {
 	        	addAttach(imgString,cid);
 	        }
 	        
-	        //addCID("cidcabecera", "C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\recursos\\presentacion\\imgInicioInf.jpg");
-	       // addCID("cidpie","C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\recursos\\presentacion\\imgInicioSup.jpg");
-	        
-	        
-	        // enviar adjuntos
-	       // if (adjuntos!=null){
-	            //for (String adjunto : adjuntos) {
-	           //     addAttach();
-	          //  }
-	      //  }
-	        
-	        
-	        // add it
-	        //multipart.addBodyPart(messageBodyPart);
-
-	        // put everything together
-	        //mensaje.setContent(multipart);
-			
-			//SE ENVIA EL MENSAJE
-			//Transport.send(mensaje);
-
-	        //Transport transport = sesionMail.getTransport();
-	       
 	        mensaje.setContent(multipart);
-	        //transport.connect();
+	        
 	        Transport.send(mensaje);
-	        //transport.sendMessage(mensaje, mensaje.getRecipients(Message.RecipientType.TO));
-	        //transport.close();
-				
+
 		}
 		catch(Exception e)
 		{

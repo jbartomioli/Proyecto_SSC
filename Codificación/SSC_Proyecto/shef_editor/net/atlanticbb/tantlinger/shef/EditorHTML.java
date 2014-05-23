@@ -35,6 +35,8 @@ public class EditorHTML extends JDialog
 	private static final long serialVersionUID = -523425622964525664L;
 	
 	private HTMLEditorPane editor = new HTMLEditorPane();
+	private String tagIniComentario = "<!--";
+	private String tagFinComentario = "-->";
 	
     public EditorHTML(JDialog padre, String[][] productos, String asunto)
     {
@@ -114,13 +116,15 @@ public class EditorHTML extends JDialog
 	   		
 	   		while((renglon=br.readLine())!=null)
 		       		contenidoMailHTML += renglon;
+	   		
+	   		contenidoMailHTML = modificarAsunto(contenidoMailHTML, asunto);
 	   			   
 	   	}
 	   	catch(IOException ioe)
 	   	{
-		   	contenidoMailHTML += "<!--";
+		   	contenidoMailHTML += tagIniComentario;
 		   	contenidoMailHTML += asunto;	
-		   	contenidoMailHTML += "-->";
+		   	contenidoMailHTML += tagFinComentario;
 		   	contenidoMailHTML += "</br>";	
 		   	
 		   	String renglon="";
@@ -132,18 +136,22 @@ public class EditorHTML extends JDialog
 				   			+ "<tr>"
 				   			+ "<th>Producto</th>"
 				   			+ "<th>Precio Vigente</th>"
+				   			//+ "<th>Precio Promocional</th>"
 				   			+ "</tr>";
 		   	
 	   		for(int i=0; i<productos.length;i++)
 	   		{
 	   			renglon = "<tr>"
 	   					+ "<td>"+productos[i][0]+"</td>"
-	   					+ "<td>"+productos[i][1]+"</td>"
+	   					+ "<td>$ "+productos[i][1]+"</td>"
+	   					//+ "<td>$ "+productos[i][2]+"</td>"
 	   					+ "</tr>";
 
         		contenidoMailHTML += renglon;
 	   		}
 	   		contenidoMailHTML+="</table>";
+	   		
+	   		contenidoMailHTML+="<p>Párrafo 2</p>";
 		   	
 	   	}
 	   	finally
@@ -162,8 +170,32 @@ public class EditorHTML extends JDialog
         
     }
     
-
     //-------------------------------------------------------------
+    private String modificarAsunto(String contenidoMailHTML, String asunto) 
+    {
+    	String asuntoAnterior;
+       
+        StringBuffer sb = new StringBuffer(contenidoMailHTML);
+
+        if(sb.indexOf(tagIniComentario) != -1)
+        {
+        	int i = sb.indexOf(tagIniComentario);
+        	int j = sb.indexOf(tagFinComentario);
+        	
+        	asuntoAnterior = sb.substring(i+tagIniComentario.length(), j);
+        	        	
+        	if(!asunto.equals(asuntoAnterior))
+        	{
+        		sb.delete(i,j+tagFinComentario.length());
+        		sb.insert(i,tagIniComentario+asunto+tagFinComentario);
+        	}
+        }
+        return sb.toString();
+    }
+
+
+
+	//-------------------------------------------------------------
     public void cerrarEditor()
     {
 		int rta = JOptionPane.showConfirmDialog(
