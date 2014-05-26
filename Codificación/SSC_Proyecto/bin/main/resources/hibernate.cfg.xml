@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/BD_SSC</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.password">root</property>
+  <property name="hibernate.show_sql">false</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+  <property name="current_session_context_class">thread</property>
+  <mapping class="entidades.Categorias" resource="entidades/Categorias.hbm.xml"/>
+  <mapping class="entidades.Clientes" resource="entidades/Clientes.hbm.xml"/>
+  <mapping class="entidades.LineaDePedido" resource="entidades/LineaDePedido.hbm.xml"/>
+  <mapping class="entidades.LineasDeVentas" resource="entidades/LineasDeVentas.hbm.xml"/>
+  <mapping class="entidades.ParametrosNegocio" resource="entidades/ParametrosNegocio.hbm.xml"/>
+  <mapping class="entidades.Pedidos" resource="entidades/Pedidos.hbm.xml"/>
+  <mapping class="entidades.Precios" resource="entidades/Precios.hbm.xml"/>
+  <mapping class="entidades.Productos" resource="entidades/Productos.hbm.xml"/>
+  <mapping class="entidades.Subcategorias" resource="entidades/Subcategorias.hbm.xml"/>
+  <mapping class="entidades.Ventas" resource="entidades/Ventas.hbm.xml"/>
+  <mapping class="entidades.Anuncios" resource="entidades/Anuncios.hbm.xml"/>
+  <!--   <mapping class="entidades.Categorias" resource="entidades/Categorias.hbm.xml"/>  
+   <mapping class="entidades." resource="entidades/.hbm.xml"/>  -->
+ </session-factory>
+</hibernate-configuration>

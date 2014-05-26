@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/01/2014 20:39:55 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="entidades.Pedidos" table="pedidos" catalog="BD_SSC">
+        <id name="idPedido" type="java.lang.Integer">
+            <column name="idPedido" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clientes" class="entidades.Clientes" fetch="select">
+            <column name="idCliente" />
+        </many-to-one>
+        <property name="total" type="java.lang.Float">
+            <column name="total" precision="9" scale="3" />
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="50" />
+        </property>
+        <set name="lineaDePedidos" table="lineaDePedido" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPedido" not-null="true" />
+            </key>
+            <one-to-many class="entidades.LineaDePedido" />
+        </set>
+    </class>
+</hibernate-mapping>

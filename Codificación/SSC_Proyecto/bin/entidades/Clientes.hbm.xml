@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/01/2014 20:39:55 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="entidades.Clientes" table="clientes" catalog="BD_SSC">
+        <id name="idCliente" type="java.lang.Integer">
+            <column name="idCliente" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="50" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+        <property name="especialidad" type="string">
+            <column name="especialidad" length="50" />
+        </property>
+        <property name="tipo" type="java.lang.Boolean">
+            <column name="tipo" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="50" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="20" />
+        </property>
+        <set name="ventases" table="ventas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCliente" />
+            </key>
+            <one-to-many class="entidades.Ventas" />
+        </set>
+        <set name="anuncioses" table="clientes_anuncios" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="idCliente" not-null="true" />
+            </key>
+            <many-to-many entity-name="entidades.Anuncios">
+                <column name="idAnuncio" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="pedidoses" table="pedidos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCliente" />
+            </key>
+            <one-to-many class="entidades.Pedidos" />
+        </set>
+    </class>
+</hibernate-mapping>

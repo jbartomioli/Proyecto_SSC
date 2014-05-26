@@ -143,12 +143,14 @@ public class ModificarDestinatarios extends JDialog {
 		//////////////////////////////////////////////////////////////////////////////////////////
 		//// LA TABLA SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS ////
 		//////////////////////////////////////////////////////////////////////////////////////////
-		//tblDestinatariosNuevos.completarTabla(controladorAux.getArrClientesInteresados());
+		//DefaultTableModel modelo = (DefaultTableModel) tblDestinatariosNuevos.getModel();
+		//modelo.addRow((Vector) controladorAux.getArrClientesInteresados());
+		//tblDestinatariosNuevos.completarTabla();
 		//Agrega el btn eliminar a la tabla
 		//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
 		//final GenerarAnuncio dialogPadre = this;
 		////////REVISAR/////////
-		//interfaces.ModificarDestinatarios modificar = new interfaces.ModificarDestinatarios(dialogPadre);
+		//interfaces.ModificarDestinatarios modificar = new interfaces.ModificarDestinatarios(padre);
 		//modificar.completarDestinatarios();
 		///////////////////////////////////////////////////////////////////////////////
 				
@@ -243,8 +245,8 @@ public class ModificarDestinatarios extends JDialog {
 	
 	public void completarDestinatarios()
 	{
-		DefaultTableModel modelo = (DefaultTableModel) tblDestinatariosNuevos.getModel();
-		modelo.addRow((Vector) controladorAux.getArrClientesInteresados());
+		//DefaultTableModel modelo = (DefaultTableModel) tblDestinatariosNuevos.getModel();
+		//modelo.addRow((Vector) controladorAux.getArrClientesInteresados());
 		
 		//Agrega el btn eliminar a la tabla
 		//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();

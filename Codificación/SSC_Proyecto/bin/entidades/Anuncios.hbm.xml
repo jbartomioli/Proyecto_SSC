@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/01/2014 20:39:55 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="entidades.Anuncios" table="anuncios" catalog="BD_SSC">
+        <id name="idAnuncio" type="java.lang.Integer">
+            <column name="idAnuncio" />
+            <generator class="identity" />
+        </id>
+        <property name="textoMensaje" type="string">
+            <column name="textoMensaje" length="1000" />
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="20" />
+        </property>
+        <property name="membrete" type="string">
+            <column name="membrete" length="500" />
+        </property>
+        <set name="productoses" table="productos_anuncios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idAnuncio" not-null="true" />
+            </key>
+            <many-to-many entity-name="entidades.Productos">
+                <column name="idProducto" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="clienteses" table="clientes_anuncios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idAnuncio" not-null="true" />
+            </key>
+            <many-to-many entity-name="entidades.Clientes">
+                <column name="idCliente" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
