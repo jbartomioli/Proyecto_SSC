@@ -66,7 +66,7 @@ public class ModificarDestinatarios extends JDialog {
 
 
 	//CONSTRUCTOR
-	public ModificarDestinatarios(JDialog padre) {
+	public ModificarDestinatarios(interfaces.GenerarAnuncio padre) {
 		super(padre);
 		setResizable(false);
 		setMinimumSize(new Dimension(1024, 668));
@@ -143,14 +143,12 @@ public class ModificarDestinatarios extends JDialog {
 		//////////////////////////////////////////////////////////////////////////////////////////
 		//// LA TABLA SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS ////
 		//////////////////////////////////////////////////////////////////////////////////////////
-		//DefaultTableModel modelo = (DefaultTableModel) tblDestinatariosNuevos.getModel();
-		//modelo.addRow((Vector) controladorAux.getArrClientesInteresados());
-		//tblDestinatariosNuevos.completarTabla();
+		tblDestinatariosNuevos.completarTabla(padre.controladorAux.getArrClientesInteresados());
 		//Agrega el btn eliminar a la tabla
-		//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
+		tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
 		//final GenerarAnuncio dialogPadre = this;
 		////////REVISAR/////////
-		//interfaces.ModificarDestinatarios modificar = new interfaces.ModificarDestinatarios(padre);
+		//interfaces.ModificarDestinatarios modificar = new interfaces.ModificarDestinatarios(dialogPadre);
 		//modificar.completarDestinatarios();
 		///////////////////////////////////////////////////////////////////////////////
 				
@@ -245,8 +243,8 @@ public class ModificarDestinatarios extends JDialog {
 	
 	public void completarDestinatarios()
 	{
-		//DefaultTableModel modelo = (DefaultTableModel) tblDestinatariosNuevos.getModel();
-		//modelo.addRow((Vector) controladorAux.getArrClientesInteresados());
+		DefaultTableModel modelo = (DefaultTableModel) tblDestinatariosNuevos.getModel();
+		modelo.addRow((Vector) controladorAux.getArrClientesInteresados());
 		
 		//Agrega el btn eliminar a la tabla
 		//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();

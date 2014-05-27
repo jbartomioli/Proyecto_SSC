@@ -138,7 +138,7 @@ public class PrevisualizadorHTML extends JDialog
 		   				{
 		   					if( null != fr ) 
 		   						fr.close();
-		   					archivoHTML.delete();
+		   					//archivoHTML.delete();
 		   					aux = true;
 		   				} 
 		   				catch (IOException e1) 

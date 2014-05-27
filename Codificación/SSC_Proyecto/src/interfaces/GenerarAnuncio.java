@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -21,7 +20,6 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.Box;
-
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,17 +28,16 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
-
 import javax.swing.SwingConstants;
-
 import net.atlanticbb.tantlinger.shef.EditorHTML;
-
 import javax.swing.JTextField;
-
 import utilidades.Configuraciones;
 
 
@@ -59,7 +56,7 @@ public class GenerarAnuncio extends JDialog {
 //	private interfaces.componentes.BotonesIconos btnGuardar;
 	private interfaces.componentes.BotonesIconos btnEnviar;
 	private interfaces.componentes.BotonesIconos btnCerrar;
-	private negocio.ControladorConfeccionarAnuncio controladorAux;
+	public negocio.ControladorConfeccionarAnuncio controladorAux;
 	private JTextField txtAsunto;
 
 	/**
@@ -362,18 +359,62 @@ public class GenerarAnuncio extends JDialog {
 		interfaces.PrevisualizadorHTML previsualizadorHTML = 
     			new interfaces.PrevisualizadorHTML(dialogPadre);
     	
-    	boolean limpiar = false;
+    	boolean enviado = false;
     	
     	String mailsClientes[] = new String[tblDestinatarios.getModel().getRowCount()];
     	
     	for(int i=0; i<tblDestinatarios.getModel().getRowCount();++i)
     		mailsClientes[i] = tblDestinatarios.getModel().getValueAt(i, 2).toString();
 
-    	limpiar = previsualizadorHTML.inicializar("temporal.html", mailsClientes);
+    	enviado = previsualizadorHTML.inicializar("temporal.html", mailsClientes);
     	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     	
-    	if(limpiar)
-    		limpiar_formulario();
+    	if(enviado)
+    	{    		
+    		FileReader fr = null;
+    		BufferedReader br = null;
+    		
+    		try
+    		{
+    			File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
+    			
+    		   	fr = new FileReader(archivoHTML);
+    		   	br = new BufferedReader(fr);
+    		   	
+    		   	String contenidoMailHTML = "";    		   		
+    		   	String renglon = "";
+    			 
+    		   	while((renglon=br.readLine())!=null)
+    		       		contenidoMailHTML += renglon;
+    		   	
+    		   	controladorAux.getAnuncioActual().setTextoMensaje(contenidoMailHTML);
+    		}
+    		catch(Exception e)
+    		{
+    			e.printStackTrace();
+    		}
+    		finally
+    		{
+            	try
+            	{                    
+            		if( null != fr )   
+            			fr.close();
+            		limpiar_formulario();
+            		eliminar_temporal();
+            	}
+            	catch (IOException e2)
+            	{ 
+            		e2.printStackTrace();
+            	}
+    		}
+    		
+    		controladorAux.finalizarCargaProducto();
+    		controladorAux.guardarAnuncio();   		
+    	}
+
+    		
+    	
+    	
 	}
 	
 	
@@ -457,8 +498,6 @@ public class GenerarAnuncio extends JDialog {
 		tblProductosAnuncio.limpiar_tabla();
 		tblDestinatarios.limpiar_tabla();
 		
-		eliminar_temporal();
-		
 	}
 
 	//-----------------------------------------------------------------
@@ -467,7 +506,8 @@ public class GenerarAnuncio extends JDialog {
 		try
 			{
 				File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
-				archivoHTML.delete();
+				if(archivoHTML.exists())
+					archivoHTML.delete();
 			} 
 			catch (Exception e1) 
 			{
