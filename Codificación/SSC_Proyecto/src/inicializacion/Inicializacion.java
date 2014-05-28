@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import org.hibernate.HibernateException;
+import org.hibernate.exception.JDBCConnectionException;
 
 
 public class Inicializacion 
@@ -71,7 +72,16 @@ public class Inicializacion
 		{
 			JOptionPane.showMessageDialog(
 					null, 
-					"Se ha producido un error al coenectarse al servidor.\n\n"
+					"Se ha producido un error al conectarse al servidor.\n\n"
+					+ "El sistema no puede continuar...",
+					"ERROR",
+					JOptionPane.ERROR_MESSAGE);	
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(
+					null, 
+					"Se ha producido un error grave.\n\n"
 					+ "El sistema no puede continuar...",
 					"ERROR",
 					JOptionPane.ERROR_MESSAGE);	

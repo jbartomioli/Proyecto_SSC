@@ -3,6 +3,8 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.swing.JOptionPane;
+
 public class ControladorConfeccionarAnuncio
 {
 	//***************************************************************
@@ -318,11 +320,11 @@ public class ControladorConfeccionarAnuncio
 	// Metodo DSD 1.2.1 //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public TipoMensaje redactarMensaje(String mensaje) 
+	public void redactarMensaje(String mensaje) 
 	{
 		anuncioActual.setTextoMensaje(mensaje);
 		
-		TipoMensaje datosMensaje=new TipoMensaje();
+		//TipoMensaje datosMensaje=new TipoMensaje();
 		
 		negocio.ParametrosNegocio parametroNegocio = new negocio.ParametrosNegocio();
 		parametroNegocio.obtenerParametrosNegocio();
@@ -331,19 +333,19 @@ public class ControladorConfeccionarAnuncio
 		///SALIDA
 		int i=0;
 		
-		for(negocio.Producto p : arrProductosPublicación)
-		{	
-			datosMensaje.arrDatosProductos[i][0]=Integer.toString(p.getIdProducto());
-			datosMensaje.arrDatosProductos[i][1]=p.getNombre();
-			datosMensaje.arrDatosProductos[i][2]=Double.toString(p.getPrecioActual());
-			datosMensaje.arrDatosProductos[i][3]=Double.toString(p.getPrecioPromocional());
-			i++;
-		}
-		
-		anuncioActual.setMembrete(parametroNegocio.getMembrete());
-		datosMensaje.setMembrete(parametroNegocio.getMembrete());
+//		for(negocio.Producto p : arrProductosPublicación)
+//		{	
+//			datosMensaje.arrDatosProductos[i][0]=Integer.toString(p.getIdProducto());
+//			datosMensaje.arrDatosProductos[i][1]=p.getNombre();
+//			datosMensaje.arrDatosProductos[i][2]=Double.toString(p.getPrecioActual());
+//			datosMensaje.arrDatosProductos[i][3]=Double.toString(p.getPrecioPromocional());
+//			i++;
+//		}
+//		
+//		anuncioActual.setMembrete(parametroNegocio.getMembrete());
+//		datosMensaje.setMembrete(parametroNegocio.getMembrete());
 
-		return datosMensaje;
+//		return datosMensaje;
 	}
 	//---------------------------------------------------------------
 

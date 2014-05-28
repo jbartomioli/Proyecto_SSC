@@ -2,8 +2,10 @@ package datos;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -135,12 +137,17 @@ public class CatalogoAnuncios
 			
 			
 			{//SETEO DE PRODUCTOS
+				Set<entidades.Productos> arrayProductos = new HashSet<entidades.Productos>(0);
+				
 				for(datos.Producto productoDatos : anuncioActual.getProductos())
 				{
 					entidades.Productos entProducto = new entidades.Productos();
 					
 					entProducto.setIdProducto(productoDatos.getIdProducto());
+					
+					arrayProductos.add(entProducto);
 				}
+				entAnuncio.setProductoses(arrayProductos);
 			}
 	         
 			//GUARDA EL ANUNCIO EN BD - INSERT

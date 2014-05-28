@@ -39,5 +39,6 @@
 	<classpathentry kind="var" path="LIB_EXT/sam/sam.jar"/>
 	<classpathentry kind="var" path="LIB_EXT/jtidy/jtidy-8.0.jar"/>
 	<classpathentry kind="var" path="LIB_EXT/JWSAntTasks/org-netbeans-modules-javawebstart-anttasks.jar"/>
+	<classpathentry kind="var" path="LIB_EXT"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

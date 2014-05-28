@@ -46,6 +46,8 @@ public class GenerarAnuncio extends JDialog {
 	private static final long serialVersionUID = 4454249604145639442L;
 	
 	//COMPONENTES
+	public negocio.ControladorConfeccionarAnuncio controladorAux;
+	
 	private interfaces.componentes.TablaProductos tblProductosAnuncio;
 	private interfaces.componentes.TablaClientesDestino tblDestinatarios;
 	private interfaces.componentes.TablaProductos tblProductos;
@@ -53,10 +55,8 @@ public class GenerarAnuncio extends JDialog {
 	private interfaces.componentes.ComboSubcategorias cmbSubcategorias;
 	private negocio.Categoria categoria;
 	private interfaces.componentes.BotonesIconos btnGenerar;
-//	private interfaces.componentes.BotonesIconos btnGuardar;
 	private interfaces.componentes.BotonesIconos btnEnviar;
 	private interfaces.componentes.BotonesIconos btnCerrar;
-	public negocio.ControladorConfeccionarAnuncio controladorAux;
 	private JTextField txtAsunto;
 
 	/**
@@ -252,10 +252,6 @@ public class GenerarAnuncio extends JDialog {
 	        }});
 		
 	    getContentPane().add(btnEnviar);
-	    
-//		btnGuardar = new interfaces.componentes.BotonesIconos("Guardar", utilidades.Configuraciones.IMG_ICONOS+"GUARDAR_32.png");
-//		btnGuardar.setLocation(698, 609);
-//		getContentPane().add(btnGuardar);
 	
 		btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCerrar.setLocation(817, 609);	
@@ -461,7 +457,8 @@ public class GenerarAnuncio extends JDialog {
 		int filaSeleccionada = tblProductosAnuncio.getSelectedRow();
 
 	    if (filaSeleccionada >= 0)
-	         tableModel.removeRow(filaSeleccionada);		
+	         tableModel.removeRow(filaSeleccionada);	
+	    //habria que agregar la eliminacion del producto del array del controlador
 	}
 	
 	

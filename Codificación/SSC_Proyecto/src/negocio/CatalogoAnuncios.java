@@ -97,24 +97,33 @@ public class CatalogoAnuncios
 		
 		
 		{//SETEO DE CLIENTES
+			Collection<datos.Cliente> arrayClientesDatos = new ArrayList<datos.Cliente>();
+
 			for(negocio.Cliente clienteNegocio : anuncioActual.getClientes())
 			{
 				datos.Cliente clienteDatos = new datos.Cliente();
 				
 				clienteDatos.setIdCliente(clienteNegocio.getIdCliente());
+				
+				arrayClientesDatos.add(clienteDatos);
 			}
+			anuncioTempDatos.setClientes(arrayClientesDatos);
 		}
 		
 		
 		{//SETEO DE PRODUCTOS
+			Collection<datos.Producto> arrayProductosDatos = new ArrayList<datos.Producto>();
+			
 			for(negocio.Producto productoNegocio : anuncioActual.getProductos())
 			{
 				datos.Producto productoDatos = new datos.Producto();
 				
-				productoDatos.setIdProducto(productoNegocio.getIdProducto());;
+				productoDatos.setIdProducto(productoNegocio.getIdProducto());
+				
+				arrayProductosDatos.add(productoDatos);
 			}
+			anuncioTempDatos.setProductos(arrayProductosDatos);
 		}
-		
 		
 		//SE CREA CATALOGO ANUNCIO DE DATOS PARA GUARDAR EL ANUNCIO
 		datos.CatalogoAnuncios ctgAnunciosDatos = new datos.CatalogoAnuncios();
