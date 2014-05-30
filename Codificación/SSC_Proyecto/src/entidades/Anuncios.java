@@ -60,7 +60,7 @@ public class Anuncios implements java.io.Serializable {
 		this.idAnuncio = idAnuncio;
 	}
 
-	@Column(name = "textoMensaje", length = 1000)
+	//@Column(name = "textoMensaje", length = 1000)
 	public String getTextoMensaje() {
 		return this.textoMensaje;
 	}

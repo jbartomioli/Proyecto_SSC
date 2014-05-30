@@ -126,6 +126,7 @@ public class CatalogoAnuncios
 		    entAnuncio.setMembrete(anuncioActual.getMembrete());
 			entAnuncio.setTextoMensaje(anuncioActual.getTextoMensaje());
 			
+			
 			{//SETEO DE CLIENTES
 				for(datos.Cliente clienteDatos : anuncioActual.getClientes())
 				{

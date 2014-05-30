@@ -9,7 +9,6 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import org.hibernate.HibernateException;
-import org.hibernate.exception.JDBCConnectionException;
 
 
 public class Inicializacion 

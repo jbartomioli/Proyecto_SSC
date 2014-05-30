@@ -291,9 +291,7 @@ public class ControladorConfeccionarAnuncio
 	public boolean finalizarCargaProducto() 
 	{
 		try
-		{
-			this.anuncioActual = new negocio.Anuncio();
-			
+		{			
 			//se setea estado
 			this.anuncioActual.setEstado("PENDIENTE");
 		
@@ -321,17 +319,17 @@ public class ControladorConfeccionarAnuncio
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public void redactarMensaje(String mensaje) 
-	{
-		anuncioActual.setTextoMensaje(mensaje);
-		
+	{		
+		this.anuncioActual.setTextoMensaje(mensaje);
+				
 		//TipoMensaje datosMensaje=new TipoMensaje();
 		
-		negocio.ParametrosNegocio parametroNegocio = new negocio.ParametrosNegocio();
-		parametroNegocio.obtenerParametrosNegocio();
+		//negocio.ParametrosNegocio parametroNegocio = new negocio.ParametrosNegocio();
+		//parametroNegocio.obtenerParametrosNegocio();
 		
 		
 		///SALIDA
-		int i=0;
+		//int i=0;
 		
 //		for(negocio.Producto p : arrProductosPublicación)
 //		{	

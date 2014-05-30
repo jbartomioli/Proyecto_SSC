@@ -383,7 +383,7 @@ public class GenerarAnuncio extends JDialog {
     		   	while((renglon=br.readLine())!=null)
     		       		contenidoMailHTML += renglon;
     		   	
-    		   	controladorAux.getAnuncioActual().setTextoMensaje(contenidoMailHTML);
+    		   	controladorAux.redactarMensaje(contenidoMailHTML);
     		}
     		catch(Exception e)
     		{
