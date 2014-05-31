@@ -2,10 +2,8 @@ package datos;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -127,7 +125,15 @@ public class CatalogoAnuncios
 			entAnuncio.setTextoMensaje(anuncioActual.getTextoMensaje());
 			
 			
-			{//SETEO DE CLIENTES
+			//GUARDA EL ANUNCIO EN BD - INSERT
+	        session.save(entAnuncio);
+			
+			Query query = session.createSQLQuery("SELECT MAX(idAnuncio) FROM anuncios");
+	        int maxIdAnuncio = Integer.parseInt(query.list().get(0).toString());
+	        
+			
+	        
+	        {//SETEO DE CLIENTES
 				for(datos.Cliente clienteDatos : anuncioActual.getClientes())
 				{
 					entidades.Clientes entCliente = new entidades.Clientes();
@@ -136,23 +142,21 @@ public class CatalogoAnuncios
 				}
 			}
 			
-			
-			{//SETEO DE PRODUCTOS
-				Set<entidades.Productos> arrayProductos = new HashSet<entidades.Productos>(0);
-				
+			{//SETEO DE PRODUCTOS				
 				for(datos.Producto productoDatos : anuncioActual.getProductos())
 				{
 					entidades.Productos entProducto = new entidades.Productos();
 					
 					entProducto.setIdProducto(productoDatos.getIdProducto());
-					
-					arrayProductos.add(entProducto);
+
+					query = session.createSQLQuery("INSERT INTO productos_anuncios (idProducto,idAnuncio) VALUES (:valor1, :valor2)");
+					query.setParameter("valor1", entProducto.getIdProducto());
+					query.setParameter("valor2", maxIdAnuncio);
+					query.executeUpdate();
 				}
-				entAnuncio.setProductoses(arrayProductos);
 			}
 	         
-			//GUARDA EL ANUNCIO EN BD - INSERT
-	        session.save(entAnuncio);
+
 	        
 	        //CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
