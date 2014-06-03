@@ -17,10 +17,6 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import utilidades.Configuraciones;
-import utilidades.MailPromocional;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -46,6 +42,8 @@ public class PrevisualizadorHTML extends JDialog
 	private Collection<String> imagenes;
 	private String encabezado_mail = "<html><body><img src=\"file:"+utilidades.Configuraciones.IMG_ENCABEZADO_MAIL+"\"/><br/><br/>";
 	private String pie_mail = "<img src=\"file:"+utilidades.Configuraciones.IMG_PIE_MAIL+"\"/></body></html>";
+	private interfaces.componentes.ProgresoTarea progresoEnvio;
+	private utilidades.MailPromocional mail;
 	  
 	public PrevisualizadorHTML(interfaces.GenerarAnuncio padre)
 	{
@@ -61,7 +59,7 @@ public class PrevisualizadorHTML extends JDialog
 		
 		imagenes = new ArrayList<String>();
 		
-		archivoHTML = new File(Configuraciones.DIR_MAILS+nombreArchivo);
+		archivoHTML = new File(utilidades.Configuraciones.DIR_MAILS+nombreArchivo);
 		
 	   	fr = null;
 	   	br = null;
@@ -97,6 +95,7 @@ public class PrevisualizadorHTML extends JDialog
 			
 		    Document doc = kit.createDefaultDocument();
 		    setModal(true);
+		    setModalityType(ModalityType.APPLICATION_MODAL);
 
 
 
@@ -138,7 +137,6 @@ public class PrevisualizadorHTML extends JDialog
 		   				{
 		   					if( null != fr ) 
 		   						fr.close();
-		   					//archivoHTML.delete();
 		   					aux = true;
 		   				} 
 		   				catch (IOException e1) 
@@ -193,32 +191,21 @@ public class PrevisualizadorHTML extends JDialog
 	  @SuppressWarnings("finally")
 	public boolean preparar_enviar(String contenidoEnviar, String [] mailsClientes)
 	  {
-		  	MailPromocional mail = new MailPromocional();
 			boolean resultado = false;
 		  	
 			try 
 			{	
 				String asunto = obtenerAsunto(contenidoEnviar);
 				
-	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
-	        	interfaces.componentes.ProgresoTarea progresoEnvio = new interfaces.componentes.ProgresoTarea(this,"Procesando Envío de E-Mails...");
-	        	
 	        	String contenidoProcesado = procesarImagenes(contenidoEnviar);
-	        	
-	        	for(int i = 0; i<=20; i++)
-	        		progresoEnvio.avanceProgreso(i);
-	        	
-	        	
-				mail.enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);
-				
-	        	for(int i = 20; i<=100; i++)
-	        		progresoEnvio.avanceProgreso(i);
-				progresoEnvio.dispose();
-				JOptionPane.showMessageDialog(
-						this,
-						"El mensaje ha sido enviado correctamente.",
-						"TAREA COMPLETADA CON ÉXITO",
-						JOptionPane.INFORMATION_MESSAGE);
+	        	      				
+	        	enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);
+   	
+//				JOptionPane.showMessageDialog(
+//						this,
+//						"El mensaje ha sido enviado correctamente.",
+//						"TAREA COMPLETADA CON ÉXITO",
+//						JOptionPane.INFORMATION_MESSAGE);
 				resultado = true;
 				
 			}
@@ -316,9 +303,6 @@ public class PrevisualizadorHTML extends JDialog
 	}
 		
 		
-
-
-
 	//---------------------------------------------------------------------
 	private String obtenerAsunto(String contenidoEnviar)
 	{
@@ -336,6 +320,32 @@ public class PrevisualizadorHTML extends JDialog
 		return asunto;
 	}
 
+	//---------------------------------------------------------------------
+	private void enviarMail(String contenidoProcesado, String[] mailsClientes, String asunto, Collection<String> imagenes) throws MessagingException 
+	{	
+    	setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		
+	  	mail = new utilidades.MailPromocional();
+
+    	progresoEnvio = new interfaces.componentes.ProgresoTarea(this,"Procesando Envío de E-Mails...");
+    	
+	    for (int i = 0; i <= 100; i++)
+	    {
+	      for (long j=0; j<10000; ++j)//modifica el numero segun la velidad q desees
+	      {
+	        //@SuppressWarnings("unused")
+			//String poop = " " + (j + i);
+	      }
+			progresoEnvio.avanceProgreso(i);
+			if(i==50)
+				mail.enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);
+	   }   	
+		//mail.enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);	
+    	
+    	//for(int i = 20; i<=100; i++)
+    	//	progresoEnvio.avanceProgreso(i);
+		
+   	}
 
 	//-------------------------------------------------------------
 	public void cerrarEditor()

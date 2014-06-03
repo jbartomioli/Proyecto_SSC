@@ -5,10 +5,10 @@ public class Observaciones {
 	 * Agregar campo Especialidad en la tabla de Modificar destinatarios
 	 * Buscar clientes utilizando la lupa en Modificar Destinatarios
 	 * Pantalla de Realizar seguimiento de Clientes
-	 * Detalles del mail
+	 * Detalles del mail --> CASI LISTO
 	 * Confeccionar encabezado y pie --> LISTO
 	 * Agregar pantalla para modificar precio de productos
 	 * Poner como no editable tabla de destinatarios
-	 * Guardado de histórico de anuncios
+	 * Guardado de histórico de anuncios --> SOLO FALTA GUARDAR LOS CLIENTES
 	 * Eliminar botón guardar  --> LISTO*/
 }
