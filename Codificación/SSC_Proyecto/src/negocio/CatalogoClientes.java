@@ -125,7 +125,7 @@ public class CatalogoClientes {
 	/////////////////////////////////////////////////////////////////
 	// BUSCA UN CLIENTE MEDIANTE SU NOMBRE Y APELLIDO			   //
 	/////////////////////////////////////////////////////////////////
-	//LISTO
+	//LISTO - REVISAR SI SE USA. SE AGREGO MÉTODO ALTERNATIVO DEBAJO
 	public negocio.Cliente buscarCliente(String nombre, String apellido)
 	{	
 		//SE RECORRE CADA CLIENTE DEL ARRAY
@@ -138,6 +138,28 @@ public class CatalogoClientes {
 		}
 		//EN CASO DE NO ENCONTRARLO DEVUELVE NULO
 		return null;
+	}
+	//---------------------------------------------------------------
+	
+	
+	/////////////////////////////////////////////////////////////////
+	// BUSCA UN CLIENTE MEDIANTE SUBSTRING DE SU NOMBRE O APELLIDO //
+	/////////////////////////////////////////////////////////////////
+	//LISTO
+	public Collection<negocio.Cliente> buscarClienteDescPcial(String descParcial)
+	{	
+		Collection<negocio.Cliente> arrClientesObtenidos = new ArrayList<negocio.Cliente>();
+		//SE RECORRE CADA CLIENTE DEL ARRAY
+		for(negocio.Cliente clienteNegocio : this.clientes)
+		{
+			//SI EL NOMBRE O EL APELLIDO COINCIDEN CON EL SUBSTRING INGRESADO AGREGA
+			//EL CLIENTE AL ARRAY
+			if ((clienteNegocio.getNombre().contains(descParcial))
+					|| (clienteNegocio.getApellido().contains(descParcial)))
+				arrClientesObtenidos.add(clienteNegocio);
+		}
+		//DEVUELVE EL ARRAY CON LOS CLIENTES
+		return arrClientesObtenidos;
 	}
 	//---------------------------------------------------------------	
 	

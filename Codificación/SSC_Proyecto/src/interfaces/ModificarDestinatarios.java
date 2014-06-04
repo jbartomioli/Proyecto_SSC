@@ -40,6 +40,8 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 
+import negocio.CatalogoClientes;
+
 
 
 public class ModificarDestinatarios extends JDialog {
@@ -201,6 +203,10 @@ public class ModificarDestinatarios extends JDialog {
 
 		
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+	        	clickBotonAceptar(evento);}});
+		
 		btnAceptar.setLocation(819, 569);
 		getContentPane().add(btnAceptar);
 		
@@ -214,6 +220,15 @@ public class ModificarDestinatarios extends JDialog {
 		getContentPane().add(btnCancelar);
 		
 		JButton btnBuscarDestinatario = new JButton("");
+		btnBuscarDestinatario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) 
+			{
+				//Evento para buscar destinatarios que coincidan con el string ingresado
+				//COMPLETARRRRRRR
+				//tblDestinatariosBuscados.completarTabla();
+				
+			}
+		});
 		btnBuscarDestinatario.setIcon(new ImageIcon(ModificarDestinatarios.class.getResource("/resources/images/x16/find.png")));
 		btnBuscarDestinatario.setBounds(424, 80, 30, 19);
 		getContentPane().add(btnBuscarDestinatario);
@@ -254,5 +269,10 @@ public class ModificarDestinatarios extends JDialog {
 	public void clickBotonCancelar(ActionEvent evento)
 	{
 		dispose();
+	}
+	
+	public void clickBotonAceptar(ActionEvent evento)
+	{
+		//Evento para llenar la tabla de destinatarios en la page de Generar Anuncio
 	}
 }
