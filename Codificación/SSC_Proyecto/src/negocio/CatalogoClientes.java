@@ -146,7 +146,7 @@ public class CatalogoClientes {
 	// BUSCA UN CLIENTE MEDIANTE SUBSTRING DE SU NOMBRE O APELLIDO //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public Collection<negocio.Cliente> buscarClienteDescPcial(String descParcial)
+	public Collection<negocio.Cliente> buscarClientesDescPcial(String descParcial)
 	{	
 		Collection<negocio.Cliente> arrClientesObtenidos = new ArrayList<negocio.Cliente>();
 		//SE RECORRE CADA CLIENTE DEL ARRAY
@@ -154,8 +154,8 @@ public class CatalogoClientes {
 		{
 			//SI EL NOMBRE O EL APELLIDO COINCIDEN CON EL SUBSTRING INGRESADO AGREGA
 			//EL CLIENTE AL ARRAY
-			if ((clienteNegocio.getNombre().contains(descParcial))
-					|| (clienteNegocio.getApellido().contains(descParcial)))
+			if ((clienteNegocio.getNombre().toUpperCase().contains(descParcial.toUpperCase()))
+					|| (clienteNegocio.getApellido().toUpperCase().contains(descParcial.toUpperCase())))
 				arrClientesObtenidos.add(clienteNegocio);
 		}
 		//DEVUELVE EL ARRAY CON LOS CLIENTES

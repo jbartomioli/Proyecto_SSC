@@ -41,6 +41,8 @@ import java.util.Vector;
 import javax.swing.JButton;
 
 import negocio.CatalogoClientes;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 
@@ -65,6 +67,7 @@ public class ModificarDestinatarios extends JDialog {
 	private interfaces.componentes.BotonesIconos btnAceptar;
 	private interfaces.componentes.BotonesIconos btnCancelar;
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
+	//private negocio.CatalogoClientes catClie;
 
 
 	//CONSTRUCTOR
@@ -108,6 +111,21 @@ public class ModificarDestinatarios extends JDialog {
 		getContentPane().add(cmbEspecialidad);
 		
 		txtBuscarDestinatarios = new JTextField();
+		txtBuscarDestinatarios.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent evento) {
+				//Busca clientes si el usuario presiona enter
+				if(evento.getKeyCode() == KeyEvent.VK_ENTER)
+				{
+					negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
+					
+					catClie.obtenerClientes();
+							
+					tblDestinatariosBuscados.completarTabla(catClie.buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
+					tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
+				}
+			}
+		});
 		txtBuscarDestinatarios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
@@ -224,9 +242,7 @@ public class ModificarDestinatarios extends JDialog {
 			public void actionPerformed(ActionEvent evento) 
 			{
 				//Evento para buscar destinatarios que coincidan con el string ingresado
-				//COMPLETARRRRRRR
-				//tblDestinatariosBuscados.completarTabla();
-				
+				clickBotonBuscar(evento);
 			}
 		});
 		btnBuscarDestinatario.setIcon(new ImageIcon(ModificarDestinatarios.class.getResource("/resources/images/x16/find.png")));
@@ -274,5 +290,15 @@ public class ModificarDestinatarios extends JDialog {
 	public void clickBotonAceptar(ActionEvent evento)
 	{
 		//Evento para llenar la tabla de destinatarios en la page de Generar Anuncio
+	}
+	
+	public void clickBotonBuscar(ActionEvent evento)
+	{
+		//Evento para llenar la tabla de destinatarios buscados desde la lupa
+		negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
+		
+		catClie.obtenerClientes();
+		tblDestinatariosBuscados.completarTabla(catClie.buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
+		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 	}
 }
