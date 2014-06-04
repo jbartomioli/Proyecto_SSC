@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-
 import javax.mail.MessagingException;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
@@ -17,6 +16,7 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -43,7 +43,6 @@ public class PrevisualizadorHTML extends JDialog
 	private String encabezado_mail = "<html><body><img src=\"file:"+utilidades.Configuraciones.IMG_ENCABEZADO_MAIL+"\"/><br/><br/>";
 	private String pie_mail = "<img src=\"file:"+utilidades.Configuraciones.IMG_PIE_MAIL+"\"/></body></html>";
 	private interfaces.componentes.ProgresoTarea progresoEnvio;
-	private utilidades.MailPromocional mail;
 	  
 	public PrevisualizadorHTML(interfaces.GenerarAnuncio padre)
 	{
@@ -95,10 +94,7 @@ public class PrevisualizadorHTML extends JDialog
 			
 		    Document doc = kit.createDefaultDocument();
 		    setModal(true);
-		    setModalityType(ModalityType.APPLICATION_MODAL);
-
-
-
+		    
 	    	addWindowListener(new WindowAdapter() {
 	        	public void windowClosing(WindowEvent arg0) {
 	        		cerrarEditor();
@@ -200,12 +196,7 @@ public class PrevisualizadorHTML extends JDialog
 	        	String contenidoProcesado = procesarImagenes(contenidoEnviar);
 	        	      				
 	        	enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);
-   	
-//				JOptionPane.showMessageDialog(
-//						this,
-//						"El mensaje ha sido enviado correctamente.",
-//						"TAREA COMPLETADA CON ÉXITO",
-//						JOptionPane.INFORMATION_MESSAGE);
+
 				resultado = true;
 				
 			}
@@ -220,6 +211,26 @@ public class PrevisualizadorHTML extends JDialog
 						JOptionPane.ERROR_MESSAGE);
 				resultado = false;
 			}
+			catch(FileNotFoundException fne)
+			{
+				JOptionPane.showMessageDialog(
+						this,
+						"Se ha producido un error al confeccionar el mensaje",
+						"ERROR",
+						JOptionPane.ERROR_MESSAGE);
+				resultado = false;
+			}			
+//			catch(AuthenticationFailedException afe)
+//	    	{
+//	    		JOptionPane.showMessageDialog(
+//	    				this, 
+//						"Se ha producido un error al intentar enviar el mensaje."
+//						+ "\nVerifique los datos de conexión o bien"
+//						+ "\nintente efectuar el envío más tarde.",
+//						"ERROR",
+//						JOptionPane.ERROR_MESSAGE);
+//	    		resultado = false;
+//	    	}
 			finally
 			{
 	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -320,31 +331,17 @@ public class PrevisualizadorHTML extends JDialog
 		return asunto;
 	}
 
+	
+	
+	
 	//---------------------------------------------------------------------
-	private void enviarMail(String contenidoProcesado, String[] mailsClientes, String asunto, Collection<String> imagenes) throws MessagingException 
+	private void enviarMail(String contenidoProcesado, String[] mailsClientes, String asunto, Collection<String> imagenes) throws Exception 
 	{	
     	setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		
-	  	mail = new utilidades.MailPromocional();
-
-    	progresoEnvio = new interfaces.componentes.ProgresoTarea(this,"Procesando Envío de E-Mails...");
+    	progresoEnvio = new interfaces.componentes.ProgresoTarea(this);
     	
-	    for (int i = 0; i <= 100; i++)
-	    {
-	      for (long j=0; j<10000; ++j)//modifica el numero segun la velidad q desees
-	      {
-	        //@SuppressWarnings("unused")
-			//String poop = " " + (j + i);
-	      }
-			progresoEnvio.avanceProgreso(i);
-			if(i==50)
-				mail.enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);
-	   }   	
-		//mail.enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);	
-    	
-    	//for(int i = 20; i<=100; i++)
-    	//	progresoEnvio.avanceProgreso(i);
-		
+    	progresoEnvio.procesar_envio_mail(contenidoProcesado, mailsClientes, asunto, imagenes);		
    	}
 
 	//-------------------------------------------------------------

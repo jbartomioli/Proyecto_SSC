@@ -230,11 +230,11 @@ public class EditorHTML extends JDialog
 	        writer.close();
 	        file.close();
     		
-        	JOptionPane.showMessageDialog(
-        			this,
-        			"Los cambios han sido guardados con éxito",
-        			"TAREA COMPLETA",
-        			JOptionPane.INFORMATION_MESSAGE);
+//        	JOptionPane.showMessageDialog(
+//        			this,
+//        			"Los cambios han sido guardados con éxito",
+//        			"TAREA COMPLETA",
+//        			JOptionPane.INFORMATION_MESSAGE);
     	}
     	catch(IOException ioe)
     	{

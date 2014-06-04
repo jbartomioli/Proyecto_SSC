@@ -9,7 +9,6 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -48,74 +47,63 @@ public class MailPromocional {
 	/////////////////////////////////////////////////////////////////
 	//	//
 	/////////////////////////////////////////////////////////////////
-	public void enviarMail(String textoMensaje, String [] mailsDestinatarios, String asuntoMail, Collection<String> imagenes) throws MessagingException
+	public void enviarMail(String textoMensaje, String [] mailsDestinatarios, String asuntoMail, Collection<String> imagenes) throws Exception
 	{
-		try
-		{
-			this.propiedades = System.getProperties();
 
-						
-			this.propiedades.put("mail.smtp.host", utilidades.Configuraciones.SMTP_HOST);
-			this.propiedades.put("mail.smtp.starttls.enable",utilidades.Configuraciones.SMTP_TTLS);
-			this.propiedades.put("mail.smtp.user", utilidades.Configuraciones.SMTP_USER);
-			this.propiedades.put("mail.smtp.port", utilidades.Configuraciones.SMTP_PORT);
-			this.propiedades.put("mail.smtp.auth", utilidades.Configuraciones.SMTP_AUTH);
-			
-			final String usuarioMail = utilidades.Configuraciones.SMTP_USER;
-			final String passMail = utilidades.Configuraciones.SMTP_PASS;
-			
-			javax.mail.Authenticator authenticator = new javax.mail.Authenticator()
-		    {
-		    protected javax.mail.PasswordAuthentication getPasswordAuthentication() 
-		        {
-		        return new javax.mail.PasswordAuthentication(usuarioMail,passMail);
-		        }
-		    };       
+		this.propiedades = System.getProperties();
+
+					
+		this.propiedades.put("mail.smtp.host", utilidades.Configuraciones.SMTP_HOST);
+		this.propiedades.put("mail.smtp.starttls.enable",utilidades.Configuraciones.SMTP_TTLS);
+		this.propiedades.put("mail.smtp.user", utilidades.Configuraciones.SMTP_USER);
+		this.propiedades.put("mail.smtp.port", utilidades.Configuraciones.SMTP_PORT);
+		this.propiedades.put("mail.smtp.auth", utilidades.Configuraciones.SMTP_AUTH);
 		
-			Session sesionMail = Session.getDefaultInstance(this.propiedades, authenticator);
-			sesionMail.setDebug(false);
-		    
-			//SE CREA EL MENSAJE
-			MimeMessage mensaje = new MimeMessage(sesionMail);
-			
-			//SE DEFINE EL ASUNTO DEL MAIL
-			mensaje.setSubject(asuntoMail);
-			
-			//SE DEFINE EL REMITENTE
-			mensaje.setFrom(new InternetAddress(utilidades.Configuraciones.SMTP_USER));
-				
-			//SE DEFINEN DESTINATARIOS
-			for(int i = 0 ; i<mailsDestinatarios.length ; i++)
-			{
-				mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(mailsDestinatarios[i]));
-			}
-						
-	        
-	        addContent(textoMensaje);
-	        
-	        int cidCont = 0;
-	        
-	        for(String imgString : imagenes)
-	        {	
-	        	String cid = "IMG"+cidCont;
-	        	addCID(cid,imgString);
-	        	++cidCont;
-	        	addAttach(imgString,cid);
+		final String usuarioMail = utilidades.Configuraciones.SMTP_USER;
+		final String passMail = utilidades.Configuraciones.SMTP_PASS;
+		
+		javax.mail.Authenticator authenticator = new javax.mail.Authenticator()
+	    {
+	    protected javax.mail.PasswordAuthentication getPasswordAuthentication() 
+	        {
+	        return new javax.mail.PasswordAuthentication(usuarioMail,passMail);
 	        }
-	        
-	        mensaje.setContent(multipart);
-	        
-	        Transport.send(mensaje);
-
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
+	    };       
+	
+		Session sesionMail = Session.getDefaultInstance(this.propiedades, authenticator);
+		sesionMail.setDebug(false);
+	    
+		//SE CREA EL MENSAJE
+		MimeMessage mensaje = new MimeMessage(sesionMail);
+		
+		//SE DEFINE EL ASUNTO DEL MAIL
+		mensaje.setSubject(asuntoMail);
+		
+		//SE DEFINE EL REMITENTE
+		mensaje.setFrom(new InternetAddress(utilidades.Configuraciones.SMTP_USER));
 			
+		//SE DEFINEN DESTINATARIOS
+		for(int i = 0 ; i<mailsDestinatarios.length ; i++)
+		{
+			mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(mailsDestinatarios[i]));
 		}
+					
+        
+        addContent(textoMensaje);
+        
+        int cidCont = 0;
+        
+        for(String imgString : imagenes)
+        {	
+        	String cid = "IMG"+cidCont;
+        	addCID(cid,imgString);
+        	++cidCont;
+        	addAttach(imgString,cid);
+        }
+        
+        mensaje.setContent(multipart);
+        
+        Transport.send(mensaje);
 	}
 	
 	
