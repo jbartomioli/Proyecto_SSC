@@ -23,8 +23,8 @@ public class TablaClientesDestino extends JTable {
 	public void completarDatos(Collection<negocio.Cliente> clientes)
 	{
 		modeloTablaClientes = new DefaultTableModel(); 
-		modeloTablaClientes.addColumn("Nombre"); 
 		modeloTablaClientes.addColumn("Apellido"); 
+		modeloTablaClientes.addColumn("Nombre"); 
 		modeloTablaClientes.addColumn("E-mail");
 		
 		modeloTablaClientes.setNumRows(clientes.size()); 
@@ -34,8 +34,8 @@ public class TablaClientesDestino extends JTable {
 		int i = 0;
 		for(negocio.Cliente clienteActual : clientes)
 		{
-			modeloTablaClientes.setValueAt(clienteActual.getNombre(), i, 0); 
-			modeloTablaClientes.setValueAt(clienteActual.getApellido(), i, 1);
+			modeloTablaClientes.setValueAt(clienteActual.getApellido(), i, 0);
+			modeloTablaClientes.setValueAt(clienteActual.getNombre(), i, 1);
 			modeloTablaClientes.setValueAt(clienteActual.getEmail(), i, 2);
 			i++;
 		} 
@@ -47,5 +47,11 @@ public class TablaClientesDestino extends JTable {
         int cant_filas = this.getRowCount()-1;
         for(int i=0; i<=cant_filas; i++)
         	modelo_temp.removeRow(0);
+	}
+	
+	//No permite editar las celdas de la tabla
+	public boolean isCellEditable(int rowIndex, int vColIndex)
+	{
+		return false;
 	}
 }

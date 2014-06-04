@@ -284,7 +284,21 @@ public class ModificarDestinatarios extends JDialog {
 	
 	public void clickBotonCancelar(ActionEvent evento)
 	{
-		dispose();
+		int rta = JOptionPane.showConfirmDialog(
+				this, 
+				"¿Desea salir y volver a la pantalla Generar Anuncio?\n"
+					+ "Todo cambio que no haya guardado se perderá.",
+				"ATENCIÓN",
+				JOptionPane.YES_NO_OPTION);
+			
+		switch(rta)
+		{
+		case(1): //finalizarEdicion();
+			break;
+		case(0): limpiar_formulario();
+			 dispose();
+			 break;
+		}
 	}
 	
 	public void clickBotonAceptar(ActionEvent evento)
@@ -300,5 +314,18 @@ public class ModificarDestinatarios extends JDialog {
 		catClie.obtenerClientes();
 		tblDestinatariosBuscados.completarTabla(catClie.buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
 		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
+	}
+	
+	
+		
+	//-----------------------------------------------------------------
+	protected void limpiar_formulario()
+	{
+		cmbEspecialidad.setSelectedIndex(0);
+		txtBuscarDestinatarios.setText("");
+			
+		tblDestinatariosBuscados.limpiar_tabla();
+		tblDestinatariosNuevos.limpiar_tabla();
+		
 	}
 }

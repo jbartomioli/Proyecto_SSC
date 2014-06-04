@@ -407,10 +407,6 @@ public class GenerarAnuncio extends JDialog {
     		controladorAux.finalizarCargaProducto();
     		controladorAux.guardarAnuncio();   		
     	}
-
-    		
-    	
-    	
 	}
 	
 	
