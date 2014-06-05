@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+
 import javax.mail.MessagingException;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
@@ -42,7 +43,6 @@ public class PrevisualizadorHTML extends JDialog
 	private Collection<String> imagenes;
 	private String encabezado_mail = "<html><body><img src=\"file:"+utilidades.Configuraciones.IMG_ENCABEZADO_MAIL+"\"/><br/><br/>";
 	private String pie_mail = "<img src=\"file:"+utilidades.Configuraciones.IMG_PIE_MAIL+"\"/></body></html>";
-	private interfaces.componentes.ProgresoTarea progresoEnvio;
 	  
 	public PrevisualizadorHTML(interfaces.GenerarAnuncio padre)
 	{
@@ -89,11 +89,15 @@ public class PrevisualizadorHTML extends JDialog
 			setLocationRelativeTo(null);
 			setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"ENVIAR_32.png"));
 			setTitle("Vista Previa de Contenido de E-Mail");
+//		    setModal(true);
+//		    setModalityType(ModalityType.APPLICATION_MODAL);
+//		    setModalExclusionType(ModalExclusionType.NO_EXCLUDE);
+			setModalityType(ModalityType.APPLICATION_MODAL);
+			setModal(true);
 			
 			HTMLEditorKit kit = new HTMLEditorKit();
 			
 		    Document doc = kit.createDefaultDocument();
-		    setModal(true);
 		    
 	    	addWindowListener(new WindowAdapter() {
 	        	public void windowClosing(WindowEvent arg0) {
@@ -194,9 +198,11 @@ public class PrevisualizadorHTML extends JDialog
 				String asunto = obtenerAsunto(contenidoEnviar);
 				
 	        	String contenidoProcesado = procesarImagenes(contenidoEnviar);
-	        	      				
-	        	enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);
-
+	        	
+	        	interfaces.componentes.ProgresoTarea progresoEnvio = new interfaces.componentes.ProgresoTarea(this);
+	        	
+	        	progresoEnvio.procesar_envio_mail(contenidoProcesado, mailsClientes, asunto, imagenes);		
+	        		        	
 				resultado = true;
 				
 			}
@@ -220,21 +226,22 @@ public class PrevisualizadorHTML extends JDialog
 						JOptionPane.ERROR_MESSAGE);
 				resultado = false;
 			}			
-//			catch(AuthenticationFailedException afe)
+//			catch(Exception afe)
 //	    	{
-//	    		JOptionPane.showMessageDialog(
-//	    				this, 
-//						"Se ha producido un error al intentar enviar el mensaje."
-//						+ "\nVerifique los datos de conexión o bien"
-//						+ "\nintente efectuar el envío más tarde.",
-//						"ERROR",
-//						JOptionPane.ERROR_MESSAGE);
+//				afe.printStackTrace();
+////	    		JOptionPane.showMessageDialog(
+////	    				this, 
+////						"Se ha producido un error al intentar enviar el mensaje."
+////						+ "\nVerifique los datos de conexión o bien"
+////						+ "\nintente efectuar el envío más tarde.",
+////						"ERROR",
+////						JOptionPane.ERROR_MESSAGE);
 //	    		resultado = false;
 //	    	}
 			finally
 			{
 	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-	        	dispose();
+	        	//dispose();
 	        	return resultado;
 			}
 	  }
@@ -333,16 +340,6 @@ public class PrevisualizadorHTML extends JDialog
 
 	
 	
-	
-	//---------------------------------------------------------------------
-	private void enviarMail(String contenidoProcesado, String[] mailsClientes, String asunto, Collection<String> imagenes) throws Exception 
-	{	
-    	setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		
-    	progresoEnvio = new interfaces.componentes.ProgresoTarea(this);
-    	
-    	progresoEnvio.procesar_envio_mail(contenidoProcesado, mailsClientes, asunto, imagenes);		
-   	}
 
 	//-------------------------------------------------------------
 	public void cerrarEditor()

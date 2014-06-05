@@ -31,6 +31,12 @@ public class ProgresoTarea extends JDialog{
 	public ProgresoTarea(JDialog padre) 
 	{
 		super(padre);
+	}
+	
+	public void inicializarElementos()
+	{
+		final JDialog padre = (JDialog) this.getParent();
+		
 		setResizable(false);
 		setMinimumSize(new Dimension(300,200));
 		getContentPane().setMinimumSize(new Dimension(300, 200));
@@ -39,9 +45,6 @@ public class ProgresoTarea extends JDialog{
 		setLocationRelativeTo(null);
 		
 		setUndecorated(true);
-		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		setAlwaysOnTop(true);
-		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -69,6 +72,7 @@ public class ProgresoTarea extends JDialog{
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
+				padre.dispose();
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -76,39 +80,36 @@ public class ProgresoTarea extends JDialog{
 		btnAceptar.setEnabled(false);
 		panel.add(btnAceptar);
 		
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-				
 		setVisible(true);
-
 	}	
 	
 	
 	//-----------------------------------------------------------
 	public void procesar_envio_mail(String contenidoProcesado, String[] mailsClientes, String asunto, Collection<String> imagenes) throws Exception
 	{
-		setModal(true);
-		
-		avanceProgreso(20);
-		
+		inicializarElementos();
+
 		lblProceso.setText("Procesando Envío de E-Mails...");
 		
+		setVisible(true);
+		
+	    for (int i = 0; i < 80; i++)
+	    {
+	      for (long j=0; j<100000; ++j)//modifica el numero segun la velidad q desees
+	      {
+			String poop = " " + (j + i);
+	       //System.out.println(poop);
+	      }
+			progressBar.setValue(i);	
+        //si no quieres q muestre nada, solo la barra
+	    }
+		    
 		utilidades.MailPromocional mail = new utilidades.MailPromocional();
 		
 		mail.enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);
-		
-		avanceProgreso(100);
-		
+				
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		btnAceptar.setEnabled(true);
 		lblCompleto.setText("Tarea Completa");
-		
-		setModal(false);
-	}
-	
-	
-	//-----------------------------------------------------------
-	public void avanceProgreso(int avance)
-	{
-		progressBar.setValue(avance);	
 	}
 }

@@ -51,8 +51,10 @@ public class EditorHTML extends JDialog
 		
     	inicializarContenido(asunto, productos);
     	
-    	setModal(true);
-    	setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+//    	setModal(true);
+//    	setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+		setModalityType(ModalityType.APPLICATION_MODAL);
+		setModal(true);
     	
     	addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {
