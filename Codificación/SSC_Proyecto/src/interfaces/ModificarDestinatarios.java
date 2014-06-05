@@ -160,17 +160,11 @@ public class ModificarDestinatarios extends JDialog {
 		tblDestinatariosNuevos = new interfaces.componentes.TablaDestinatarios();
 		scrollDestinatariosNuevos.setViewportView(tblDestinatariosNuevos);
 		
-		//////////////////////////////////////////////////////////////////////////////////////////
-		//// LA TABLA SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS ////
-		//////////////////////////////////////////////////////////////////////////////////////////
+		// LA TABLA SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS
 		tblDestinatariosNuevos.completarTabla(padre.controladorAux.getArrClientesInteresados());
 		//Agrega el btn eliminar a la tabla
 		tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
-		//final GenerarAnuncio dialogPadre = this;
-		////////REVISAR/////////
-		//interfaces.ModificarDestinatarios modificar = new interfaces.ModificarDestinatarios(dialogPadre);
-		//modificar.completarDestinatarios();
-		///////////////////////////////////////////////////////////////////////////////
+		
 				
         //Evento para eliminar destinatarios a la lista de destino
 		tblDestinatariosNuevos.addMouseListener(new MouseAdapter() {
@@ -184,15 +178,7 @@ public class ModificarDestinatarios extends JDialog {
 			}
 		});
 		
-		
-		//TableColumn agregarColumn;
-		//agregarColumn = tblDestinatariosNuevos.getColumnModel().getColumn(3);
-		//agregarColumn.setCellEditor(new interfaces.componentes.EditorCeldas(tblDestinatariosNuevos));
-		//agregarColumn.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(true));
-		//agregarColumn.setPreferredWidth(16);
-		//agregarColumn.setMaxWidth(16);
-		
-		
+			
 		Box boxDestinatariosBuscados = Box.createHorizontalBox();
 		boxDestinatariosBuscados.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios por Especialidad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		boxDestinatariosBuscados.setBounds(520, 134, 488, 250);
