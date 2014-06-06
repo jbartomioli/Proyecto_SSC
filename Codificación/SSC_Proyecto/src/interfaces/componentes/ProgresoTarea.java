@@ -80,6 +80,9 @@ public class ProgresoTarea extends JDialog{
 		btnAceptar.setEnabled(false);
 		panel.add(btnAceptar);
 		
+		setModalExclusionType(ModalExclusionType.TOOLKIT_EXCLUDE);
+		setModal(true);
+		
 		setVisible(true);
 	}	
 	
@@ -88,7 +91,7 @@ public class ProgresoTarea extends JDialog{
 	public void procesar_envio_mail(String contenidoProcesado, String[] mailsClientes, String asunto, Collection<String> imagenes) throws Exception
 	{
 		inicializarElementos();
-
+		
 		lblProceso.setText("Procesando Envío de E-Mails...");
 		
 		setVisible(true);
@@ -104,11 +107,8 @@ public class ProgresoTarea extends JDialog{
         //si no quieres q muestre nada, solo la barra
 	    }
 		    
-		utilidades.MailPromocional mail = new utilidades.MailPromocional();
 		
-		mail.enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);
 				
-		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		btnAceptar.setEnabled(true);
 		lblCompleto.setText("Tarea Completa");
 	}

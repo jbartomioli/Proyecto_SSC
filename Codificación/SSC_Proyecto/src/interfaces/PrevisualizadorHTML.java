@@ -89,9 +89,6 @@ public class PrevisualizadorHTML extends JDialog
 			setLocationRelativeTo(null);
 			setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"ENVIAR_32.png"));
 			setTitle("Vista Previa de Contenido de E-Mail");
-//		    setModal(true);
-//		    setModalityType(ModalityType.APPLICATION_MODAL);
-//		    setModalExclusionType(ModalExclusionType.NO_EXCLUDE);
 			setModalityType(ModalityType.APPLICATION_MODAL);
 			setModal(true);
 			
@@ -195,13 +192,15 @@ public class PrevisualizadorHTML extends JDialog
 		  	
 			try 
 			{	
+				setCursor(new Cursor(Cursor.WAIT_CURSOR));
+				
 				String asunto = obtenerAsunto(contenidoEnviar);
 				
 	        	String contenidoProcesado = procesarImagenes(contenidoEnviar);
 	        	
-	        	interfaces.componentes.ProgresoTarea progresoEnvio = new interfaces.componentes.ProgresoTarea(this);
-	        	
-	        	progresoEnvio.procesar_envio_mail(contenidoProcesado, mailsClientes, asunto, imagenes);		
+	        	utilidades.MailPromocional mail = new utilidades.MailPromocional();
+	    		
+	    		mail.enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);
 	        		        	
 				resultado = true;
 				
@@ -226,22 +225,10 @@ public class PrevisualizadorHTML extends JDialog
 						JOptionPane.ERROR_MESSAGE);
 				resultado = false;
 			}			
-//			catch(Exception afe)
-//	    	{
-//				afe.printStackTrace();
-////	    		JOptionPane.showMessageDialog(
-////	    				this, 
-////						"Se ha producido un error al intentar enviar el mensaje."
-////						+ "\nVerifique los datos de conexión o bien"
-////						+ "\nintente efectuar el envío más tarde.",
-////						"ERROR",
-////						JOptionPane.ERROR_MESSAGE);
-//	    		resultado = false;
-//	    	}
 			finally
 			{
 	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-	        	//dispose();
+	        	dispose();
 	        	return resultado;
 			}
 	  }
