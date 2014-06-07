@@ -49,7 +49,7 @@ public class GenerarAnuncio extends JDialog {
 	public negocio.ControladorConfeccionarAnuncio controladorAux;
 	
 	private interfaces.componentes.TablaProductos tblProductosAnuncio;
-	public interfaces.componentes.TablaClientesDestino tblDestinatarios;
+	private interfaces.componentes.TablaClientesDestino tblDestinatarios;
 	private interfaces.componentes.TablaProductos tblProductos;
 	private interfaces.componentes.ComboCategorias cmbCategorias;
 	private interfaces.componentes.ComboSubcategorias cmbSubcategorias;
