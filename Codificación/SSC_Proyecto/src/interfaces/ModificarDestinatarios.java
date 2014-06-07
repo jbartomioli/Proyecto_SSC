@@ -41,6 +41,7 @@ import java.util.Vector;
 import javax.swing.JButton;
 
 import negocio.CatalogoClientes;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -290,6 +291,10 @@ public class ModificarDestinatarios extends JDialog {
 	public void clickBotonAceptar(ActionEvent evento)
 	{
 		//Evento para llenar la tabla de destinatarios en la page de Generar Anuncio
+		//interfaces.GenerarAnuncio generar = new interfaces.GenerarAnuncio(new javax.swing.JFrame(), true, controladorAux);
+		//generar.tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
+		//generar.setVisible(true);
+		//dispose();
 	}
 	
 	public void clickBotonBuscar(ActionEvent evento)
