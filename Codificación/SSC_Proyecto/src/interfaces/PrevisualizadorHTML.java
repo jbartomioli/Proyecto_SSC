@@ -27,7 +27,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import javax.swing.BoxLayout;
 
 
 public class PrevisualizadorHTML extends JDialog
@@ -76,17 +75,17 @@ public class PrevisualizadorHTML extends JDialog
 	    
 	    JPanel panelInferior = new JPanel();
    		getContentPane().add(panelInferior, BorderLayout.SOUTH);
-   		panelInferior.setLayout(new BorderLayout(0, 0));
+   		panelInferior.setLayout(new GridLayout(0, 2, 0, 0));
    		
    		JPanel panelBotones = new JPanel();
-   		panelInferior.add(panelBotones, BorderLayout.WEST);
-   		panelBotones.setLayout(new BorderLayout(0, 0));
+   		panelInferior.add(panelBotones);
+   		panelBotones.setLayout(new GridLayout(0, 2, 0, 0));
    		
    		JButton btnVolverModificar = new JButton("Volver y Modificar");
-   		panelBotones.add(btnVolverModificar,  BorderLayout.WEST);
+   		panelBotones.add(btnVolverModificar);
    		
    		JButton btnAceptarEnviar = new JButton("Aceptar y Enviar");
-   		panelBotones.add(btnAceptarEnviar, BorderLayout.EAST);
+   		panelBotones.add(btnAceptarEnviar);
    		btnAceptarEnviar.addActionListener(new ActionListener() {
    			public void actionPerformed(ActionEvent e) {
    				if(preparar_enviar(contenidoMailHTML, mailsClientes))
@@ -109,10 +108,11 @@ public class PrevisualizadorHTML extends JDialog
    		});
    		
    		JPanel panelBarra = new JPanel();
-   		panelInferior.add(panelBarra,  BorderLayout.EAST);
-   		panelBarra.setLayout(new BorderLayout(0, 0));
+   		panelInferior.add(panelBarra);
+   		panelBarra.setLayout(new GridLayout(0, 1, 0, 0));
    		
    		barraProgreso = new JProgressBar(0,100);
+   		barraProgreso.setStringPainted(true);
    		panelBarra.add(barraProgreso);
    		barraProgreso.setValue(0);
    		
@@ -218,9 +218,9 @@ public class PrevisualizadorHTML extends JDialog
 				
 	        	String contenidoProcesado = procesarImagenes(contenidoEnviar);
 	        	
-	        	new Thread(new interfaces.utilidades.TrabajoEnvioMail(2000, contenidoProcesado, mailsClientes, asunto, imagenes)).start();
+	        	new Thread(new interfaces.utilidades.TrabajoEnvioMail(0, contenidoProcesado, mailsClientes, asunto, imagenes)).start();
 	        	
-	        	new Thread(new interfaces.utilidades.HiloEnviarBarra(this, this.barraProgreso, 2000)).start();
+	        	new Thread(new interfaces.utilidades.HiloEnviarBarra(this, this.barraProgreso, 200)).start();
 	        	        		        	
 				resultado = true;
 			}
