@@ -47,6 +47,7 @@ public class Principal extends JFrame {
 	private interfaces.GenerarAnuncio generarAnuncio;
 	private JMenuItem mntConfeccionar;
 	private JMenuItem mntSeguimiento;
+	private JMenuItem mntPrecios;
 	private JMenu mnuAyuda;
 	private JMenuItem mntContenidoAyuda;
 	private JMenuItem mntAcerca;
@@ -117,6 +118,12 @@ public class Principal extends JFrame {
 		mntSeguimiento.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SEGUIMIENTO_16.png"));
 		mnuOperaciones.add(mntSeguimiento);
 		
+		/////////////////////////////////////////////////////////////////////////////////////////
+		//REVISAR
+		mntPrecios = new JMenuItem("Modificar Precios");
+		mntPrecios.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"PRECIO_16.png"));
+		mnuOperaciones.add(mntPrecios);
+		/////////////////////////////////////////////////////////////////////////////////////////
 
 		mnuAyuda = new JMenu("Ayuda");
 		mnuAyuda.setMnemonic('u');
