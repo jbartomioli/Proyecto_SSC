@@ -27,6 +27,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import javax.swing.BoxLayout;
 
 
 public class PrevisualizadorHTML extends JDialog
@@ -35,6 +36,7 @@ public class PrevisualizadorHTML extends JDialog
 	
 	private String contenidoMailHTML = "";
 	private JEditorPane epnEditor;
+	private JScrollPane scrEditor;
 	private File archivoHTML;
 	private FileReader fr;
 	private BufferedReader br;
@@ -48,8 +50,74 @@ public class PrevisualizadorHTML extends JDialog
 	public PrevisualizadorHTML(interfaces.GenerarAnuncio padre)
 	{
 		super(padre);
-	}	
 		
+   		setResizable(false);
+		setMinimumSize(new Dimension(800,600));
+		getContentPane().setMinimumSize(new Dimension(800, 600));
+		getContentPane().setMaximumSize(new Dimension(800, 600));
+		setMaximumSize(new Dimension(800, 600));
+		setLocationRelativeTo(null);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"ENVIAR_32.png"));
+		setTitle("Vista Previa de Contenido de E-Mail");
+		setModalityType(ModalityType.APPLICATION_MODAL);
+		setModal(true);
+		
+		addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent arg0) {
+        		cerrarEditor();
+        	}
+        });
+	    getContentPane().setLayout(new BorderLayout(0, 0));
+	    
+	    epnEditor = new JEditorPane();	  
+	    epnEditor.setEditable(false);
+	       
+	    scrEditor = new JScrollPane(epnEditor);
+	    
+	    JPanel panelInferior = new JPanel();
+   		getContentPane().add(panelInferior, BorderLayout.SOUTH);
+   		panelInferior.setLayout(new BorderLayout(0, 0));
+   		
+   		JPanel panelBotones = new JPanel();
+   		panelInferior.add(panelBotones, BorderLayout.WEST);
+   		panelBotones.setLayout(new BorderLayout(0, 0));
+   		
+   		JButton btnVolverModificar = new JButton("Volver y Modificar");
+   		panelBotones.add(btnVolverModificar,  BorderLayout.WEST);
+   		
+   		JButton btnAceptarEnviar = new JButton("Aceptar y Enviar");
+   		panelBotones.add(btnAceptarEnviar, BorderLayout.EAST);
+   		btnAceptarEnviar.addActionListener(new ActionListener() {
+   			public void actionPerformed(ActionEvent e) {
+   				if(preparar_enviar(contenidoMailHTML, mailsClientes))
+   					try
+	   				{
+	   					if( null != fr ) 
+	   						fr.close();
+	   					aux = true;
+	   				} 
+	   				catch (IOException e1) 
+	   				{
+		   				e1.printStackTrace();
+		   			}	
+   			}
+   		});
+   		btnVolverModificar.addActionListener(new ActionListener() {
+   			public void actionPerformed(ActionEvent arg0) {
+   				dispose();
+   			}
+   		});
+   		
+   		JPanel panelBarra = new JPanel();
+   		panelInferior.add(panelBarra,  BorderLayout.EAST);
+   		panelBarra.setLayout(new BorderLayout(0, 0));
+   		
+   		barraProgreso = new JProgressBar(0,100);
+   		panelBarra.add(barraProgreso);
+   		barraProgreso.setValue(0);
+   		
+        setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+	}	
 		
 	@SuppressWarnings("finally")
 	public boolean inicializar(String nombreArchivo, String [] mailsDestino)
@@ -82,32 +150,13 @@ public class PrevisualizadorHTML extends JDialog
 	   		
 	   		contenidoMailHTML += pie_mail;
 	   		
-	   		setResizable(false);
-			setMinimumSize(new Dimension(800,600));
-			getContentPane().setMinimumSize(new Dimension(800, 600));
-			getContentPane().setMaximumSize(new Dimension(800, 600));
-			setMaximumSize(new Dimension(800, 600));
-			setLocationRelativeTo(null);
-			setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"ENVIAR_32.png"));
-			setTitle("Vista Previa de Contenido de E-Mail");
-			setModalityType(ModalityType.APPLICATION_MODAL);
-			setModal(true);
+
 			
 			HTMLEditorKit kit = new HTMLEditorKit();
 			
 		    Document doc = kit.createDefaultDocument();
 		    
-	    	addWindowListener(new WindowAdapter() {
-	        	public void windowClosing(WindowEvent arg0) {
-	        		cerrarEditor();
-	        	}
-	        });
-		    getContentPane().setLayout(new BorderLayout(0, 0));
-		    
-		    epnEditor = new JEditorPane();	  
-		    epnEditor.setEditable(false);
-		       
-		    JScrollPane scrEditor = new JScrollPane(epnEditor);
+	    	
 		    epnEditor.setEditorKit(kit);
 		    epnEditor.setDocument(doc);
 	   		epnEditor.setText(contenidoMailHTML);
@@ -115,42 +164,7 @@ public class PrevisualizadorHTML extends JDialog
 	   		
 		    getContentPane().add(scrEditor);
 		    
-	   		JPanel panel = new JPanel();
-	   		getContentPane().add(panel, BorderLayout.SOUTH);
-	   		panel.setLayout(new GridLayout(0, 2, 0, 0));
 	   		
-	   		JButton btnVolverModificar = new JButton("Volver y Modificar");
-	   		btnVolverModificar.addActionListener(new ActionListener() {
-	   			public void actionPerformed(ActionEvent arg0) {
-	   				dispose();
-	   			}
-	   		});
-	   		panel.add(btnVolverModificar, BorderLayout.EAST);
-	   		
-	   		JButton btnAceptarEnviar = new JButton("Aceptar y Enviar");
-	   		btnAceptarEnviar.addActionListener(new ActionListener() {
-	   			public void actionPerformed(ActionEvent e) {
-	   				if(preparar_enviar(contenidoMailHTML, mailsClientes))
-	   					try
-		   				{
-		   					if( null != fr ) 
-		   						fr.close();
-		   					aux = true;
-		   				} 
-		   				catch (IOException e1) 
-		   				{
-			   				e1.printStackTrace();
-			   			}	
-	   			}
-	   		});
-	   		panel.add(btnAceptarEnviar, BorderLayout.WEST);
-		   	   		
-	   		barraProgreso = new JProgressBar(0,100);
-	   		barraProgreso.setValue(0);
-
-	   		panel.add(barraProgreso, BorderLayout.SOUTH);
-	   		
-	        setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 	        setVisible(true);
 	   	}
 	   	catch(FileNotFoundException fne)
