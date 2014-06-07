@@ -101,7 +101,5 @@ public class PantallaBienvenida {
 		prgBarraProgreso.setValue(100);  
 		
 	    frmInicio.dispose();
-		
-
 	}
 }

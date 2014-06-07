@@ -9,6 +9,7 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -47,7 +48,7 @@ public class MailPromocional {
 	/////////////////////////////////////////////////////////////////
 	//	//
 	/////////////////////////////////////////////////////////////////
-	public void enviarMail(String textoMensaje, String [] mailsDestinatarios, String asuntoMail, Collection<String> imagenes) throws Exception
+	public void enviarMail(String textoMensaje, String [] mailsDestinatarios, String asuntoMail, Collection<String> imagenes) throws MessagingException
 	{
 
 		this.propiedades = System.getProperties();
@@ -89,7 +90,10 @@ public class MailPromocional {
 		}
 					
         
-        addContent(textoMensaje);
+
+		addContent(textoMensaje);
+
+
         
         int cidCont = 0;
         
@@ -109,7 +113,7 @@ public class MailPromocional {
 	
 	
 	//---------------------------------------------------------------
-	public void addCID(String cidname,String pathname) throws Exception
+	public void addCID(String cidname,String pathname) throws MessagingException
     {
         DataSource fds = new FileDataSource(pathname);
         BodyPart messageBodyPart = new MimeBodyPart();
@@ -119,7 +123,7 @@ public class MailPromocional {
     }
 	
 	//---------------------------------------------------------------
-	public void addContent(String htmlText) throws Exception
+	public void addContent(String htmlText) throws MessagingException
     {
         // first part (the html)
         BodyPart messageBodyPart = new MimeBodyPart();
@@ -129,7 +133,7 @@ public class MailPromocional {
     }
 	
 	//---------------------------------------------------------------
-	public void addAttach(String pathname, String cid) throws Exception
+	public void addAttach(String pathname, String cid) throws MessagingException
     {
         File file = new File(pathname);
         BodyPart messageBodyPart = new MimeBodyPart();

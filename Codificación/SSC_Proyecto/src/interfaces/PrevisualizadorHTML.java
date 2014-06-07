@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.mail.MessagingException;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
@@ -40,6 +40,7 @@ public class PrevisualizadorHTML extends JDialog
 	private BufferedReader br;
 	private boolean aux;
 	private String [] mailsClientes;
+	private JProgressBar barraProgreso;
 	private Collection<String> imagenes;
 	private String encabezado_mail = "<html><body><img src=\"file:"+utilidades.Configuraciones.IMG_ENCABEZADO_MAIL+"\"/><br/><br/>";
 	private String pie_mail = "<img src=\"file:"+utilidades.Configuraciones.IMG_PIE_MAIL+"\"/></body></html>";
@@ -144,6 +145,11 @@ public class PrevisualizadorHTML extends JDialog
 	   		});
 	   		panel.add(btnAceptarEnviar, BorderLayout.WEST);
 		   	   		
+	   		barraProgreso = new JProgressBar(0,100);
+	   		barraProgreso.setValue(0);
+
+	   		panel.add(barraProgreso, BorderLayout.SOUTH);
+	   		
 	        setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 	        setVisible(true);
 	   	}
@@ -198,37 +204,35 @@ public class PrevisualizadorHTML extends JDialog
 				
 	        	String contenidoProcesado = procesarImagenes(contenidoEnviar);
 	        	
-	        	utilidades.MailPromocional mail = new utilidades.MailPromocional();
-	    		
-	    		mail.enviarMail(contenidoProcesado, mailsClientes, asunto, imagenes);
-	        		        	
+	        	new Thread(new interfaces.utilidades.TrabajoEnvioMail(2000, contenidoProcesado, mailsClientes, asunto, imagenes)).start();
+	        	
+	        	new Thread(new interfaces.utilidades.HiloEnviarBarra(this, this.barraProgreso, 2000)).start();
+	        	        		        	
 				resultado = true;
-				
 			}
-			catch (MessagingException e)
-			{
-				e.printStackTrace();
-				JOptionPane.showMessageDialog(
-						this,
-						"Se ha producido un error al intentar enviar el mensaje.\n"
-						+ "Inténtelo más tarde.",
-						"ERROR",
-						JOptionPane.ERROR_MESSAGE);
-				resultado = false;
-			}
-			catch(FileNotFoundException fne)
-			{
-				JOptionPane.showMessageDialog(
-						this,
-						"Se ha producido un error al confeccionar el mensaje",
-						"ERROR",
-						JOptionPane.ERROR_MESSAGE);
-				resultado = false;
-			}			
+//			catch (MessagingException e)
+//			{
+//				e.printStackTrace();
+//				JOptionPane.showMessageDialog(
+//						this,
+//						"Se ha producido un error al intentar enviar el mensaje.\n"
+//						+ "Inténtelo más tarde.",
+//						"ERROR",
+//						JOptionPane.ERROR_MESSAGE);
+//				resultado = false;
+//			}
+//			catch(FileNotFoundException fne)
+//			{
+//				JOptionPane.showMessageDialog(
+//						this,
+//						"Se ha producido un error al confeccionar el mensaje",
+//						"ERROR",
+//						JOptionPane.ERROR_MESSAGE);
+//				resultado = false;
+//			}			
 			finally
 			{
-	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-	        	dispose();
+	        	//dispose();
 	        	return resultado;
 			}
 	  }
