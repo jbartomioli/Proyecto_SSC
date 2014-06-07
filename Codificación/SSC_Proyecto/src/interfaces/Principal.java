@@ -121,7 +121,7 @@ public class Principal extends JFrame {
 		/////////////////////////////////////////////////////////////////////////////////////////
 		//REVISAR
 		mntPrecios = new JMenuItem("Modificar Precios");
-		mntPrecios.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"PRECIO_16.png"));
+		//mntPrecios.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"PRECIO_16.png"));
 		mnuOperaciones.add(mntPrecios);
 		/////////////////////////////////////////////////////////////////////////////////////////
 
