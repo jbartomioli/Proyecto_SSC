@@ -291,10 +291,12 @@ public class ModificarDestinatarios extends JDialog {
 	public void clickBotonAceptar(ActionEvent evento)
 	{
 		//Evento para llenar la tabla de destinatarios en la page de Generar Anuncio
+		//negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
+		//catClie.obtenerClientes();
 		//interfaces.GenerarAnuncio generar = new interfaces.GenerarAnuncio(new javax.swing.JFrame(), true, controladorAux);
 		//generar.tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
 		//generar.setVisible(true);
-		//dispose();
+		dispose();
 	}
 	
 	public void clickBotonBuscar(ActionEvent evento)

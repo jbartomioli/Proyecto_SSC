@@ -464,8 +464,7 @@ public class GenerarAnuncio extends JDialog {
 	{
 		int rta = JOptionPane.showConfirmDialog(
 					this, 
-					"Está a punto de salir sin enviar el mensaje.\n"
-						+ "¿Desea salir y volver al menu principal?\n"
+					"¿Desea salir y volver al menu principal?\n"
 						+ "Todo cambio que no haya guardado se perderá.",
 					"ATENCIÓN",
 					JOptionPane.YES_NO_OPTION);
@@ -507,4 +506,5 @@ public class GenerarAnuncio extends JDialog {
 				e1.printStackTrace();
 			}	
 	}
+	
 }

@@ -45,6 +45,7 @@ public class Principal extends JFrame {
 	private JMenuItem mntSalir;
 	private JMenu mnuOperaciones;
 	private interfaces.GenerarAnuncio generarAnuncio;
+	private interfaces.Precios modificarPrecios;
 	private JMenuItem mntConfeccionar;
 	private JMenuItem mntSeguimiento;
 	private JMenuItem mntPrecios;
@@ -120,10 +121,18 @@ public class Principal extends JFrame {
 		
 		/////////////////////////////////////////////////////////////////////////////////////////
 		//REVISAR
-		mntPrecios = new JMenuItem("Modificar Precios");
-		//mntPrecios.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"PRECIO_16.png"));
-		mnuOperaciones.add(mntPrecios);
+		//modificarPrecios = new interfaces.Precios(this, true, controladorAnuncios);
 		/////////////////////////////////////////////////////////////////////////////////////////
+		
+		mntPrecios = new JMenuItem("Modificar Precios");
+		mntPrecios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				modificarPrecios.setVisible(true);							
+			}
+		});
+		mntPrecios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
+		mntPrecios.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"PRECIO_16.png"));
+		mnuOperaciones.add(mntPrecios);
 
 		mnuAyuda = new JMenu("Ayuda");
 		mnuAyuda.setMnemonic('u');
