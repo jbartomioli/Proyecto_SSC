@@ -5,10 +5,6 @@ import java.util.Collection;
 import javax.mail.MessagingException;
 
 
-/**
- * @web http://www.jc-mouse.net
- * @author Mouse
- */
 public class TrabajoEnvioMail implements Runnable{
     
     public static boolean band=false;    

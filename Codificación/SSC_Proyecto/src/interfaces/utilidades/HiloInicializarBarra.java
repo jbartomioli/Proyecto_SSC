@@ -5,7 +5,7 @@ import javax.swing.JDialog;
 import javax.swing.JProgressBar;
 
 
-public class HiloEnviarBarra implements Runnable
+public class HiloInicializarBarra implements Runnable
 {
 
     private JProgressBar jProgressBar;
@@ -13,8 +13,10 @@ public class HiloEnviarBarra implements Runnable
     private int value = 0;
     private JDialog dialog;
 
-   
-    public HiloEnviarBarra(JDialog dialog, JProgressBar jProgressBar , int value )
+    /**
+     * Constructor de clase
+     */
+    public HiloInicializarBarra(JDialog dialog, JProgressBar jProgressBar , int value )
     {
         this.jProgressBar = jProgressBar;
         this.value = value;
@@ -26,10 +28,10 @@ public class HiloEnviarBarra implements Runnable
     {
         i=1;        
         //mientra el trabajo en paralelo no finalice el jProgressBar continuara su animacion una y otra vez
-        while( !TrabajoEnvioMail.band )
+        while( !TrabajoInicializar.band )
         {
             //si llega al limite 100 comienza otra vez desde 1, sino incrementa i en +1
-            i = (i > 100) ? 1 : i+1;
+            i = (i > 89) ? 90 : i+1;
             
             jProgressBar.setValue(i);
             jProgressBar.repaint();  
@@ -43,11 +45,11 @@ public class HiloEnviarBarra implements Runnable
             	System.err.println( e.getMessage() ); 
             }            
             //si el trabajo en paralelo a terminado
-            if( TrabajoEnvioMail.band )
+            if( TrabajoInicializar.band )
             {
                 jProgressBar.setValue(100);
-                dialog.dispose();
                 dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                dialog.dispose();             
                 break;//rompe ciclo
             }            
         }
