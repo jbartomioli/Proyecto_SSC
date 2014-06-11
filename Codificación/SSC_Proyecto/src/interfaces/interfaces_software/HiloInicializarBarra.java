@@ -1,4 +1,4 @@
-package interfaces.utilidades;
+package interfaces.interfaces_software;
 import java.awt.Cursor;
 
 import javax.swing.JDialog;

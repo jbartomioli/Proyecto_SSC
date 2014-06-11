@@ -1,11 +1,11 @@
-package interfaces.utilidades;
+package interfaces.interfaces_software;
 import java.awt.Cursor;
 
 import javax.swing.JDialog;
 import javax.swing.JProgressBar;
 
 
-public class HiloEnviarBarra implements Runnable
+public class HiloBarraAniadir implements Runnable
 {
 
     private JProgressBar jProgressBar;
@@ -14,7 +14,7 @@ public class HiloEnviarBarra implements Runnable
     private JDialog dialog;
 
    
-    public HiloEnviarBarra(JDialog dialog, JProgressBar jProgressBar , int value )
+    public HiloBarraAniadir(JDialog dialog, JProgressBar jProgressBar , int value )
     {
         this.jProgressBar = jProgressBar;
         this.value = value;

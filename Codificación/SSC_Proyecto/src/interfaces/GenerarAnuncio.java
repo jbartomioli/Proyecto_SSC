@@ -53,6 +53,7 @@ public class GenerarAnuncio extends JDialog {
 	private interfaces.componentes.TablaProductos tblProductos;
 	private interfaces.componentes.ComboCategorias cmbCategorias;
 	private interfaces.componentes.ComboSubcategorias cmbSubcategorias;
+	private JLabel lblModificarDestinatarios;
 	private negocio.Categoria categoria;
 	private interfaces.componentes.BotonesIconos btnGenerar;
 	private interfaces.componentes.BotonesIconos btnEnviar;
@@ -186,7 +187,7 @@ public class GenerarAnuncio extends JDialog {
 		tblProductos.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent arg0) 
 					{
-						action_click_aniadir();
+						action_click_aniadir_producto();
 					}
 				});
 		
@@ -205,7 +206,7 @@ public class GenerarAnuncio extends JDialog {
 
 		final GenerarAnuncio dialogPadre = this;
 		
-		JLabel lblModificarDestinatarios = new JLabel("Modificar Destinatarios");
+		lblModificarDestinatarios = new JLabel("Modificar Destinatarios");
 		lblModificarDestinatarios.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblModificarDestinatarios.setForeground(SystemColor.inactiveCaptionText);
 		lblModificarDestinatarios.setBorder(new BevelBorder(0));
@@ -221,15 +222,19 @@ public class GenerarAnuncio extends JDialog {
 				/*REVISAR
 				DefaultTableModel destinatariosGenerar = (DefaultTableModel) tblDestinatarios.getModel();
 			    */
-				interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
-				modif.setLocationRelativeTo(dialogPadre);
-				modif.setVisible(true);
+				if(lblModificarDestinatarios.isEnabled())
+				{
+					interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
+					modif.setLocationRelativeTo(dialogPadre);
+					modif.setVisible(true);
+				}
 			}
 		});
 		lblModificarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblModificarDestinatarios.setBounds(324, 583, 150, 14);
+		lblModificarDestinatarios.setEnabled(false);
 		getContentPane().add(lblModificarDestinatarios);
-		
+
 
 		btnGenerar = new interfaces.componentes.BotonesIconos("Modificar Contenido", utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png");
 		btnGenerar.setText("Generar");
@@ -410,7 +415,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	//---------------------------------------------------------------
 	@SuppressWarnings("rawtypes")
-	protected void action_click_aniadir() 
+	protected void action_click_aniadir_producto() 
 	{
 		DefaultTableModel modeloTblProductosAnuncio = (DefaultTableModel) tblProductosAnuncio.getModel();
 		DefaultTableModel modeloTblProductos = (DefaultTableModel) tblProductos.getModel();
@@ -437,9 +442,10 @@ public class GenerarAnuncio extends JDialog {
 				controladorAux.seleccionarProducto(producto.getIdProducto());			
 				
 				tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
+				if(tblDestinatarios.getModel().getRowCount()>0)
+					lblModificarDestinatarios.setEnabled(true);
+				
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-				//ACA ACTUALIZARIAMOS LA TABLA DE CLIENTES PERO, HAY QUE REVEER EL METODO DE BUSQUEDA
-				//YA QUE TARDA MUCHO Y NO ES MUY OPTIMO	
 			}		
 	}
 	
@@ -484,6 +490,7 @@ public class GenerarAnuncio extends JDialog {
 		cmbCategorias.setSelectedIndex(0);
 		cmbSubcategorias.setSelectedIndex(0);
 		txtAsunto.setText("");
+		lblModificarDestinatarios.setEnabled(false);
 		
 		tblProductosAnuncio.limpiar_tabla();
 		tblDestinatarios.limpiar_tabla();

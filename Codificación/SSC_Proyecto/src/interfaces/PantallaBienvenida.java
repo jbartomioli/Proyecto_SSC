@@ -90,8 +90,8 @@ public class PantallaBienvenida extends JDialog{
 		setVisible(true);
 		setLocationRelativeTo(null);
 		
-    	new Thread(new interfaces.utilidades.TrabajoInicializar()).start();
+    	new Thread(new interfaces.interfaces_software.TrabajoInicializar()).start();
     	
-    	new Thread(new interfaces.utilidades.HiloInicializarBarra(this, prgBarraProgreso, 150)).start();        		
+    	new Thread(new interfaces.interfaces_software.HiloInicializarBarra(this, prgBarraProgreso, 150)).start();        		
 	}
 }
