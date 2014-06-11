@@ -59,9 +59,7 @@ public class GenerarAnuncio extends JDialog {
 	private interfaces.componentes.BotonesIconos btnCerrar;
 	private JTextField txtAsunto;
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public GenerarAnuncio(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios)
 	{
 		

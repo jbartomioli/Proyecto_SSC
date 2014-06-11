@@ -1,5 +1,5 @@
 package interfaces;
-
+//PANTALLA CORRESPONDIENTE AL CU CONFECCIONAR ANUNCIOS
 
 import interfaces.componentes.BotonesIconos;
 
@@ -13,15 +13,11 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-
 import java.awt.Color;
 
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
@@ -35,26 +31,15 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Vector;
 
 import javax.swing.JButton;
-
-import negocio.CatalogoClientes;
-import negocio.CatalogoProductos;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-
-
 public class Precios extends JDialog {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1068385037676479263L;
+	
+	private static final long serialVersionUID = 1L;
 
 	private JTextField txtBuscarProductos;
 	private interfaces.componentes.ComboCategorias cmbCategorias;
@@ -68,7 +53,8 @@ public class Precios extends JDialog {
 
 
 	//CONSTRUCTOR
-	public Precios(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios) {
+	public Precios(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios) 
+	{
 		super(padre);
 		setResizable(false);
 		setMinimumSize(new Dimension(1024, 668));
@@ -134,7 +120,7 @@ public class Precios extends JDialog {
 		txtBuscarProductos.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent evento) {
-				//Busca clientes si el usuario presiona enter
+				//Busca productos si el usuario presiona enter
 				if(evento.getKeyCode() == KeyEvent.VK_ENTER)
 				{
 					negocio.CatalogoProductos catProd = new negocio.CatalogoProductos();
@@ -142,10 +128,11 @@ public class Precios extends JDialog {
 					catProd.obtenerProductos();
 							
 					tblProductos.completarTabla(catProd.buscarProducto(txtBuscarProductos.getText()));
-					tblProductos.definirTablaProductos();
+					//tblProductos.definirTablaProductos();
 				}
 			}
 		});
+		
 		txtBuscarProductos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
@@ -160,7 +147,6 @@ public class Precios extends JDialog {
 		txtBuscarProductos.setBounds(677, 87, 141, 20);
 		txtBuscarProductos.setColumns(10);
 		getContentPane().add(txtBuscarProductos);
-		
 			
 		Box boxPrecios = Box.createHorizontalBox();
 		boxPrecios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Precios Productos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -170,22 +156,8 @@ public class Precios extends JDialog {
 		JScrollPane scrollPrecios = new JScrollPane();
 		boxPrecios.add(scrollPrecios);
 		
-		scrollPrecios.setViewportView(tblProductos);
-			
-				
-        //Evento para eliminar destinatarios a la lista de destino
-		tblProductos.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) 
-			{
-				DefaultTableModel tableModel = (DefaultTableModel) tblProductos.getModel();
-				int filaSeleccionada = tblProductos.getSelectedRow();
-				//JOptionPane.showMessageDialog(null, "Fila presionada: " + filaSeleccionada);
-			    if (filaSeleccionada >= 0)
-			         tableModel.removeRow(filaSeleccionada);
-			}
-		});
-
-		
+		scrollPrecios.setViewportView(tblProductos);	
+						
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
@@ -193,7 +165,6 @@ public class Precios extends JDialog {
 		
 		btnAceptar.setLocation(324, 569);
 		getContentPane().add(btnAceptar);
-		
 		
 		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -203,19 +174,18 @@ public class Precios extends JDialog {
 		btnCancelar.setLocation(424, 569);
 		getContentPane().add(btnCancelar);
 		
-		JButton btnBuscarDestinatario = new JButton("");
-		btnBuscarDestinatario.addActionListener(new ActionListener() {
+		JButton btnBuscarProducto = new JButton("");
+		btnBuscarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) 
 			{
 				//Evento para buscar destinatarios que coincidan con el string ingresado
 				clickBotonBuscar(evento);
 			}
 		});
-		btnBuscarDestinatario.setIcon(new ImageIcon(Precios.class.getResource("/resources/images/x16/find.png")));
-		btnBuscarDestinatario.setBounds(818, 87, 30, 19);
-		getContentPane().add(btnBuscarDestinatario);
-	}
-	
+		btnBuscarProducto.setIcon(new ImageIcon(Precios.class.getResource("/resources/images/x16/find.png")));
+		btnBuscarProducto.setBounds(818, 87, 30, 19);
+		getContentPane().add(btnBuscarProducto);
+	}	
 	
 	// EVENTOS
 	public void clickComboCategorias(ItemEvent evento)
@@ -259,16 +229,6 @@ public class Precios extends JDialog {
 	}
 
 	
-	public void completarDestinatarios()
-	{
-		DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
-		modelo.addRow((Vector) controladorAux.getArrClientesInteresados());
-		
-		//Agrega el btn eliminar a la tabla
-		//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
-	}
-	
-	
 	public void clickBotonCancelar(ActionEvent evento)
 	{
 		int rta = JOptionPane.showConfirmDialog(
@@ -290,25 +250,19 @@ public class Precios extends JDialog {
 	
 	public void clickBotonAceptar(ActionEvent evento)
 	{
-		//Evento para llenar la tabla de destinatarios en la page de Generar Anuncio
-		//negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
-		//catClie.obtenerClientes();
-		//interfaces.GenerarAnuncio generar = new interfaces.GenerarAnuncio(new javax.swing.JFrame(), true, controladorAux);
-		//generar.tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
-		//generar.setVisible(true);
+		//Evento para guardar los datos
 		dispose();
 	}
 	
 	public void clickBotonBuscar(ActionEvent evento)
 	{
-		//Evento para llenar la tabla de destinatarios buscados desde la lupa
+		//Evento para llenar la tabla de productos buscados desde la lupa
 		negocio.CatalogoProductos catProd = new negocio.CatalogoProductos();
 		
 		catProd.obtenerProductos();
 		tblProductos.completarTabla(catProd.buscarProducto(txtBuscarProductos.getText()));
 		tblProductos.definirTablaProductos();
 	}
-	
 	
 		
 	//-----------------------------------------------------------------

@@ -155,7 +155,7 @@ public class CatalogoProductos
 		for(negocio.Producto productoNegocio: this.getProductos())
 		{
 			//SE EVALUA SI EL NOMBRE DEL PRODUCTO CONTIENE LA CADENA
-			if(productoNegocio.getNombre().contains(descParcial))
+			if(productoNegocio.getNombre().toUpperCase().contains(descParcial.toUpperCase()))
 				productosSimilares.add(productoNegocio);
 		}
 		//SE DEVUELVE EL ARRAY

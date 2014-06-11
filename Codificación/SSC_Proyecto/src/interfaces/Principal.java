@@ -98,7 +98,6 @@ public class Principal extends JFrame {
 		mnuArchivo.add(mntSalir);
 		
 		
-		//
 		mnuOperaciones = new JMenu("Operaciones");
 		mnuOperaciones.setMnemonic('O');
 		mnuBarraMenu.add(mnuOperaciones);

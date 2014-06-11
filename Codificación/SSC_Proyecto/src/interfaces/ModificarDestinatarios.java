@@ -34,13 +34,9 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Vector;
 
 import javax.swing.JButton;
-
-import negocio.CatalogoClientes;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -49,9 +45,6 @@ import java.awt.event.KeyEvent;
 
 public class ModificarDestinatarios extends JDialog {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1068385037676479263L;
 
 	private JTextField txtBuscarDestinatarios;
