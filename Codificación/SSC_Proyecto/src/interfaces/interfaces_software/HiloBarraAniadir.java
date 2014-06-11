@@ -12,13 +12,15 @@ public class HiloBarraAniadir implements Runnable
     private int i = 1;
     private int value = 0;
     private JDialog dialog;
+    private Thread trabajo;
 
    
-    public HiloBarraAniadir(JDialog dialog, JProgressBar jProgressBar , int value )
+    public HiloBarraAniadir(Thread trabajo, JDialog dialog, JProgressBar jProgressBar , int value )
     {
         this.jProgressBar = jProgressBar;
         this.value = value;
         this.dialog = dialog;
+        this.trabajo = trabajo;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class HiloBarraAniadir implements Runnable
     {
         i=1;        
         //mientra el trabajo en paralelo no finalice el jProgressBar continuara su animacion una y otra vez
-        while( !TrabajoEnvioMail.band )
+        while( trabajo.isAlive() )
         {
             //si llega al limite 100 comienza otra vez desde 1, sino incrementa i en +1
             i = (i > 100) ? 1 : i+1;
@@ -43,10 +45,11 @@ public class HiloBarraAniadir implements Runnable
             	System.err.println( e.getMessage() ); 
             }            
             //si el trabajo en paralelo a terminado
-            if( TrabajoEnvioMail.band )
+            if( !trabajo.isAlive() )
             {
                 jProgressBar.setValue(100);
-                dialog.dispose();
+                jProgressBar.repaint();
+                //dialog.dispose();
                 dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 break;//rompe ciclo
             }            

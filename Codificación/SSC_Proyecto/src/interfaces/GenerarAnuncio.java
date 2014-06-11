@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +21,7 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.Box;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -35,10 +37,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
+
 import javax.swing.SwingConstants;
+
 import net.atlanticbb.tantlinger.shef.EditorHTML;
+
 import javax.swing.JTextField;
+
 import utilidades.Configuraciones;
+
+import javax.swing.JProgressBar;
 
 
 public class GenerarAnuncio extends JDialog {
@@ -59,6 +67,7 @@ public class GenerarAnuncio extends JDialog {
 	private interfaces.componentes.BotonesIconos btnEnviar;
 	private interfaces.componentes.BotonesIconos btnCerrar;
 	private JTextField txtAsunto;
+	private JProgressBar prgProgresoAniadir;
 
 	
 	public GenerarAnuncio(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios)
@@ -194,7 +203,7 @@ public class GenerarAnuncio extends JDialog {
 		
 		Box boxDestinatarios = Box.createHorizontalBox();
 		boxDestinatarios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		boxDestinatarios.setBounds(10, 380, 464, 192);
+		boxDestinatarios.setBounds(10, 361, 464, 192);
 		getContentPane().add(boxDestinatarios);
 		
 		JScrollPane scrollDestinatarios = new JScrollPane();
@@ -231,7 +240,7 @@ public class GenerarAnuncio extends JDialog {
 			}
 		});
 		lblModificarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblModificarDestinatarios.setBounds(324, 583, 150, 14);
+		lblModificarDestinatarios.setBounds(324, 558, 150, 19);
 		lblModificarDestinatarios.setEnabled(false);
 		getContentPane().add(lblModificarDestinatarios);
 
@@ -264,6 +273,11 @@ public class GenerarAnuncio extends JDialog {
 	        	}});
 			
 		getContentPane().add(btnCerrar);
+		
+		prgProgresoAniadir = new JProgressBar();
+		prgProgresoAniadir.setStringPainted(true);
+		prgProgresoAniadir.setBounds(10, 558, 304, 19);
+		getContentPane().add(prgProgresoAniadir);
 			
 	}
 
@@ -433,19 +447,23 @@ public class GenerarAnuncio extends JDialog {
 		else 
 			if(filaSeleccionada >= 0)
 			{
-				setCursor(new Cursor(Cursor.WAIT_CURSOR));
+				
 				modeloTblProductosAnuncio.addRow(fila);
 												
 				String descProducto = fila.elementAt(0).toString().substring(0);
 				
 				negocio.Producto producto = controladorAux.getCatalogoProductos().obtenerProducto(descProducto);
-				controladorAux.seleccionarProducto(producto.getIdProducto());			
 				
-				tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
-				if(tblDestinatarios.getModel().getRowCount()>0)
-					lblModificarDestinatarios.setEnabled(true);
+				Thread hiloTrabajoAniadir = new Thread( new TabajoAniadirProducto(producto.getIdProducto()));
+				hiloTrabajoAniadir.start();
+		    	
+				//new Thread(new TabajoAniadirProducto(producto.getIdProducto())).start();
+		    	
+				new Thread(new interfaces.interfaces_software.HiloBarraAniadir(hiloTrabajoAniadir, this, prgProgresoAniadir, 500)).start();   
 				
-				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				//controladorAux.seleccionarProducto(producto.getIdProducto());			
+				
+				
 			}		
 	}
 	
@@ -494,6 +512,7 @@ public class GenerarAnuncio extends JDialog {
 		
 		tblProductosAnuncio.limpiar_tabla();
 		tblDestinatarios.limpiar_tabla();
+		prgProgresoAniadir.setValue(0);
 		
 	}
 
@@ -512,4 +531,69 @@ public class GenerarAnuncio extends JDialog {
 			}	
 	}
 	
+	
+	//------------------------------------------------------------------
+	private void desactivar_botones()
+	{
+		setEnabled(false);
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		btnCerrar.setEnabled(false);
+		btnEnviar.setEnabled(false);
+		btnGenerar.setEnabled(false);
+		lblModificarDestinatarios.setEnabled(false);
+	}
+	
+	
+	//------------------------------------------------------------------
+	private void activar_botones()
+	{
+		btnCerrar.setEnabled(true);
+		btnEnviar.setEnabled(true);
+		btnGenerar.setEnabled(true);
+		lblModificarDestinatarios.setEnabled(true);
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		setEnabled(true);
+	}
+	
+	
+	
+	
+	public class TabajoAniadirProducto implements Runnable{
+	    
+	   // public static boolean band=false;
+	    private int idProducto;
+
+	    
+	    public TabajoAniadirProducto(int idProducto)
+	    {
+	    	this.idProducto = idProducto;
+	    }
+	    
+	    @Override
+	    public void run()
+	    {			
+	        try
+	        {		
+	        	desactivar_botones();
+	        	
+	        	controladorAux.seleccionarProducto(this.idProducto);		
+	        	
+	        	tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
+
+	        	Thread.sleep( 1000 );
+	        }
+	        catch (InterruptedException e)
+	        {
+	            System.err.println( e.getMessage() );
+	        }
+	        finally
+	        {
+				if(tblDestinatarios.getModel().getRowCount()>0)
+					lblModificarDestinatarios.setEnabled(true);
+				
+				activar_botones();
+	        }
+	    }
+	    
+	}
 }
