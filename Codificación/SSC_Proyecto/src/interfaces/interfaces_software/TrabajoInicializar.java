@@ -7,13 +7,11 @@ import org.hibernate.HibernateException;
 
 public class TrabajoInicializar implements Runnable{
     
-    public static boolean band=false;    
     private negocio.ControladorConfeccionarAnuncio ctrlAnuncios;
 	//private negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento;
 	//private negocio.ControladorRegistrarPedidoCliente controladorPedido;
 
 
-    
     public TrabajoInicializar()
     {
     	this.ctrlAnuncios = new negocio.ControladorConfeccionarAnuncio();
@@ -21,9 +19,7 @@ public class TrabajoInicializar implements Runnable{
     
     @Override
     public void run()
-    {
-        band=false;
-		
+    {		
         try
         {		
         	ctrlAnuncios.inicializarCatalogos();
@@ -67,7 +63,6 @@ public class TrabajoInicializar implements Runnable{
 		}
         finally
         {
-        	band=true;
         }
     }
     

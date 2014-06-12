@@ -218,9 +218,10 @@ public class PrevisualizadorHTML extends JDialog
 				
 	        	String contenidoProcesado = procesarImagenes(contenidoEnviar);
 	        	
-	        	new Thread(new interfaces.interfaces_software.TrabajoEnvioMail(0, contenidoProcesado, mailsClientes, asunto, imagenes)).start();
+	        	Thread trabajoEnvio = new Thread(new interfaces.interfaces_software.TrabajoEnvioMail(0, contenidoProcesado, mailsClientes, asunto, imagenes));
+	        	trabajoEnvio.start();
 	        	
-	        	new Thread(new interfaces.interfaces_software.HiloEnviarBarra(this, this.barraProgreso, 200)).start();
+	        	new Thread(new interfaces.interfaces_software.HiloBarraProgreso(trabajoEnvio, this, this.barraProgreso, 200, true)).start();
 	        	        		        	
 				resultado = true;
 			}

@@ -7,7 +7,6 @@ import javax.mail.MessagingException;
 
 public class TrabajoEnvioMail implements Runnable{
     
-    public static boolean band=false;    
     private String textoMensaje;
     private String [] mailsDestinatarios;
     private String asuntoMail;
@@ -31,7 +30,6 @@ public class TrabajoEnvioMail implements Runnable{
     @Override
     public void run()
     {
-        band=false;
     	utilidades.MailPromocional mail = new utilidades.MailPromocional();
 		
         try
@@ -51,7 +49,6 @@ public class TrabajoEnvioMail implements Runnable{
 		}
         finally
         {
-        	band=true;
         }
     }
     

@@ -455,15 +455,9 @@ public class GenerarAnuncio extends JDialog {
 				negocio.Producto producto = controladorAux.getCatalogoProductos().obtenerProducto(descProducto);
 				
 				Thread hiloTrabajoAniadir = new Thread( new TabajoAniadirProducto(producto.getIdProducto()));
-				hiloTrabajoAniadir.start();
+				hiloTrabajoAniadir.start();		    	
 		    	
-				//new Thread(new TabajoAniadirProducto(producto.getIdProducto())).start();
-		    	
-				new Thread(new interfaces.interfaces_software.HiloBarraAniadir(hiloTrabajoAniadir, this, prgProgresoAniadir, 500)).start();   
-				
-				//controladorAux.seleccionarProducto(producto.getIdProducto());			
-				
-				
+				new Thread(new interfaces.interfaces_software.HiloBarraProgreso(hiloTrabajoAniadir, this, prgProgresoAniadir, 500, false)).start();   
 			}		
 	}
 	
@@ -559,9 +553,8 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	public class TabajoAniadirProducto implements Runnable{
-	    
-	   // public static boolean band=false;
-	    private int idProducto;
+		
+		private int idProducto;
 
 	    
 	    public TabajoAniadirProducto(int idProducto)

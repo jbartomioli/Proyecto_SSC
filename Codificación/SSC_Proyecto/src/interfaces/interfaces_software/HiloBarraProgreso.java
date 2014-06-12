@@ -5,7 +5,7 @@ import javax.swing.JDialog;
 import javax.swing.JProgressBar;
 
 
-public class HiloBarraAniadir implements Runnable
+public class HiloBarraProgreso implements Runnable
 {
 
     private JProgressBar jProgressBar;
@@ -13,14 +13,16 @@ public class HiloBarraAniadir implements Runnable
     private int value = 0;
     private JDialog dialog;
     private Thread trabajo;
+    private boolean ocultarDialog;
 
    
-    public HiloBarraAniadir(Thread trabajo, JDialog dialog, JProgressBar jProgressBar , int value )
+    public HiloBarraProgreso(Thread trabajo, JDialog dialog, JProgressBar jProgressBar , int value, boolean ocultarDialog )
     {
         this.jProgressBar = jProgressBar;
         this.value = value;
         this.dialog = dialog;
         this.trabajo = trabajo;
+        this.ocultarDialog = ocultarDialog;
     }
 
     @Override
@@ -49,7 +51,8 @@ public class HiloBarraAniadir implements Runnable
             {
                 jProgressBar.setValue(100);
                 jProgressBar.repaint();
-                //dialog.dispose();
+                if(ocultarDialog)
+                	dialog.dispose();
                 dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 break;//rompe ciclo
             }            
