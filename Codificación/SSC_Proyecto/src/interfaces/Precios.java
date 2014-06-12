@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import java.awt.Font;
-
 import java.awt.Color;
 
 import javax.swing.Box;
@@ -23,6 +22,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Toolkit;
@@ -37,8 +39,9 @@ import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+
 public class Precios extends JDialog {
-	
+	//SERIALIZABLE
 	private static final long serialVersionUID = 1L;
 
 	private JTextField txtBuscarProductos;
@@ -61,14 +64,20 @@ public class Precios extends JDialog {
 		getContentPane().setMinimumSize(new Dimension(1024, 668));
 		getContentPane().setMaximumSize(new Dimension(1366, 668));
 		setMaximumSize(new Dimension(1366, 768));
-		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);	
+		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);
+		setLocationRelativeTo(null);
 		setTitle("Modificar Precios");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CLIENTES_32.png"));
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
-		setBounds(100, 100, 450, 300);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CLIENTES_32.png"));
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
+		
+		addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent arg0) {
+        		cerrar_salir();
+        	}
+        });
 		
 	
 		JLabel lblPrecios = new JLabel("Modificar Precios");
@@ -79,10 +88,11 @@ public class Precios extends JDialog {
 		
 				
 		JLabel lblCategoria = new JLabel("Categoría:");
-		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCategoria.setBounds(20, 87, 77, 23);
 		getContentPane().add(lblCategoria);
 				
+		controladorAux = controladorAnuncios;
 		
 		cmbCategorias = new interfaces.componentes.ComboCategorias();
 		cmbCategorias.completarDatos(controladorAux.getCatalogoCategorias().getCategorias());
@@ -154,9 +164,21 @@ public class Precios extends JDialog {
 		getContentPane().add(boxPrecios);
 		
 		JScrollPane scrollPrecios = new JScrollPane();
+		scrollPrecios.setAlignmentY(Component.TOP_ALIGNMENT);
+		scrollPrecios.setAlignmentX(Component.LEFT_ALIGNMENT);
 		boxPrecios.add(scrollPrecios);
 		
-		scrollPrecios.setViewportView(tblProductos);	
+		scrollPrecios.setViewportView(tblProductos);
+		
+		negocio.SubCategoria subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
+		
+		tblProductos = new interfaces.componentes.TablaProductos();
+		tblProductos.completarTabla(
+				controladorAux.seleccionarSubcategoria(
+						subcategoriaActual.getIdcategoria(), 
+						subcategoriaActual.getIdSubcategoria()));
+		tblProductos.definirTablaProductos();
+		scrollPrecios.setViewportView(tblProductos);
 						
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -233,10 +255,10 @@ public class Precios extends JDialog {
 	{
 		int rta = JOptionPane.showConfirmDialog(
 				this, 
-				"¿Desea salir y volver a la pantalla Generar Anuncio?\n"
-					+ "Todo cambio que no haya guardado se perderá.",
-				"ATENCIÓN",
-				JOptionPane.YES_NO_OPTION);
+				"¿Desea salir y volver al menu principal?\n"
+						+ "Todo cambio que no haya guardado se perderá.",
+					"ATENCIÓN",
+					JOptionPane.YES_NO_OPTION);
 			
 		switch(rta)
 		{
@@ -273,4 +295,25 @@ public class Precios extends JDialog {
 			
 		tblProductos.limpiar_tabla();
 	}
+	
+	
+	//-------------------------------------------------------------
+		protected void cerrar_salir()
+		{
+			int rta = JOptionPane.showConfirmDialog(
+						this, 
+						"¿Desea salir y volver al menu principal?\n"
+							+ "Todo cambio que no haya guardado se perderá.",
+						"ATENCIÓN",
+						JOptionPane.YES_NO_OPTION);
+					
+			switch(rta)
+			{
+			case(1): //finalizarEdicion();
+					 break;
+			case(0): limpiar_formulario();
+					 dispose();
+					 break;
+			}
+		}
 }

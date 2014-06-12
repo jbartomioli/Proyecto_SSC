@@ -120,7 +120,7 @@ public class Principal extends JFrame {
 		
 		/////////////////////////////////////////////////////////////////////////////////////////
 		//REVISAR
-		//modificarPrecios = new interfaces.Precios(this, true, controladorAnuncios);
+		modificarPrecios = new interfaces.Precios(this, true, controladorAnuncios);
 		/////////////////////////////////////////////////////////////////////////////////////////
 		
 		mntPrecios = new JMenuItem("Modificar Precios");
