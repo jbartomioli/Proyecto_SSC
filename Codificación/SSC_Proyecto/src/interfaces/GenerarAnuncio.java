@@ -78,10 +78,10 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	//------------------------------------------------------------------
-	public GenerarAnuncio(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios)
+	public GenerarAnuncio(Frame framePadre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios)
 	{
 		
-		super(padre);
+		super(framePadre);
 		setResizable(false);
 		setMinimumSize(new Dimension(1024, 668));
 		getContentPane().setMinimumSize(new Dimension(1024, 668));
@@ -114,8 +114,8 @@ public class GenerarAnuncio extends JDialog {
 		
 		cmbCategorias.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
-				clickComboCategorias(evento);
-				}});
+				click_combo_categorias(evento);
+			}});
 		
 		lblCategoria.setLabelFor(cmbCategorias);
 		cmbCategorias.setBounds(87, 24, 200, 23);
@@ -134,7 +134,7 @@ public class GenerarAnuncio extends JDialog {
 		
 		cmbSubcategorias.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
-				clickComboSubcategorias(evento);
+				click_combo_subcategorias(evento);
 			}
 		});
 		lblSubcategoria.setLabelFor(cmbSubcategorias);
@@ -235,17 +235,12 @@ public class GenerarAnuncio extends JDialog {
 		lblModificarDestinatarios.setBackground(UIManager.getColor("Button.disabledForeground"));
 		lblModificarDestinatarios.setForeground(new Color(8,98,235));
 		lblModificarDestinatarios.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
+			@SuppressWarnings("unused")
+			public void mouseClicked() 
 			{
-				/*REVISAR
-				DefaultTableModel destinatariosGenerar = (DefaultTableModel) tblDestinatarios.getModel();
-			    */
 				if(lblModificarDestinatarios.isEnabled())
 				{
-					interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
-					modif.setLocationRelativeTo(dialogPadre);
-					modif.setVisible(true);
+					click_label_modificar_destinatarios(dialogPadre);
 				}
 			}
 		});
@@ -294,9 +289,10 @@ public class GenerarAnuncio extends JDialog {
 
 
 
+
 	// EVENTOS
 	//-------------------------------------------------------------------------------------------------
-	protected void clickComboCategorias(ItemEvent evento)
+	protected void click_combo_categorias(ItemEvent evento)
 	{
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{
@@ -323,7 +319,7 @@ public class GenerarAnuncio extends JDialog {
 
 	
 	//----------------------------------------------------------------------------------------------
-	protected void clickComboSubcategorias(ItemEvent evento)
+	protected void click_combo_subcategorias(ItemEvent evento)
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{			
@@ -436,7 +432,7 @@ public class GenerarAnuncio extends JDialog {
     	}
 	}
 	
-	
+
 	//---------------------------------------------------------------
 	@SuppressWarnings("rawtypes")
 	protected void click_aniadir_producto() 
@@ -483,6 +479,14 @@ public class GenerarAnuncio extends JDialog {
 	    //habria que agregar la eliminacion del producto del array del controlador
 	}
 	
+	
+	//-------------------------------------------------------------
+	protected void click_label_modificar_destinatarios(interfaces.GenerarAnuncio dialogPadre) 
+	{
+		interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
+		modif.setLocationRelativeTo(dialogPadre);
+		modif.setVisible(true);	
+	}
 	
 	
 	//-------------------------------------------------------------
@@ -561,7 +565,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	
-	
+	//------------------------------------------------------------------------------------------
 	public class TabajoAniadirProducto implements Runnable{
 		
 		private int idProducto;

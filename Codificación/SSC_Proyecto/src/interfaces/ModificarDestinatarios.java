@@ -43,15 +43,15 @@ import java.awt.event.KeyEvent;
 
 public class ModificarDestinatarios extends JDialog {
 
-	private static final long serialVersionUID = -1068385037676479263L;
-
+	private static final long serialVersionUID = -6385198300914272668L;
+	
 	private JTextField txtBuscarDestinatarios;
 	private JLabel lblBuscarDestinatarios;
 	private JLabel lblEspecialidad;
 	private JComboBox<String> cmbEspecialidad;
 	private String[] especialidades = {"", "Distribuidor", "Endodoncia", "Gnatología", "Odontología General", "Ortodoncia", "Periodoncia", "Protesista"};
-	private interfaces.componentes.TablaDestinatarios tblDestinatariosBuscados;
-	private interfaces.componentes.TablaDestinatarios tblDestinatariosNuevos;
+	private interfaces.componentes.TablaModificarDestinatarios tblDestinatariosBuscados;
+	private interfaces.componentes.TablaModificarDestinatarios tblDestinatariosNuevos;
 	private interfaces.componentes.BotonesIconos btnAceptar;
 	private interfaces.componentes.BotonesIconos btnCancelar;
 	
@@ -132,7 +132,7 @@ public class ModificarDestinatarios extends JDialog {
 		JScrollPane scrollDestinatariosNuevos = new JScrollPane();
 		boxDestinatariosNuevos.add(scrollDestinatariosNuevos);
 		
-		tblDestinatariosNuevos = new interfaces.componentes.TablaDestinatarios();
+		tblDestinatariosNuevos = new interfaces.componentes.TablaModificarDestinatarios();
 		scrollDestinatariosNuevos.setViewportView(tblDestinatariosNuevos);
 		
 		// LA TABLA SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS
@@ -159,7 +159,7 @@ public class ModificarDestinatarios extends JDialog {
 		JScrollPane scrollDestinatariosBuscados = new JScrollPane();
 		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
 		
-	    tblDestinatariosBuscados = new interfaces.componentes.TablaDestinatarios();
+	    tblDestinatariosBuscados = new interfaces.componentes.TablaModificarDestinatarios();
 		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
 		
 		//Evento para agregar destinatarios a la lista de destino

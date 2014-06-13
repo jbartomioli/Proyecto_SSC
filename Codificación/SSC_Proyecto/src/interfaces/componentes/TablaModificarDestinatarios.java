@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 
-public class TablaDestinatarios extends JTable {
+public class TablaModificarDestinatarios extends JTable {
 
 	private TableColumn columnaBoton;
 	private DefaultTableModel modeloTablaDestinatarios;
@@ -20,7 +20,7 @@ public class TablaDestinatarios extends JTable {
 	/**
 	 * Create the frame.
 	 */
-	public TablaDestinatarios() {
+	public TablaModificarDestinatarios() {
 		modeloTablaDestinatarios = new DefaultTableModel(); 
 		modeloTablaDestinatarios.addColumn("Apellido"); 
 		modeloTablaDestinatarios.addColumn("Nombre"); 
