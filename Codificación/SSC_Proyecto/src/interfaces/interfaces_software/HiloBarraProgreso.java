@@ -33,10 +33,14 @@ public class HiloBarraProgreso implements Runnable
         while( trabajo.isAlive() )
         {
             //si llega al limite 100 comienza otra vez desde 1, sino incrementa i en +1
-            i = (i > 100) ? 1 : i+1;
-            
-            jProgressBar.setValue(i);
-            jProgressBar.repaint();  
+        	
+        	if(i<=74)
+        	{
+        		++i;
+                jProgressBar.setValue(i);
+                jProgressBar.repaint();  
+        	}            
+
             //retardo en milisegundos
             try
             {

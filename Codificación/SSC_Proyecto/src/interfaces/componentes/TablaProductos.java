@@ -55,6 +55,11 @@ public class TablaProductos extends JTable {
 		TableColumn columnaNombre;
 		columnaNombre = getColumn("Producto");
 		columnaNombre.setPreferredWidth(275);
+		
+		for(int j=0; j<getColumnModel().getColumnCount(); ++j)
+			getColumnModel().getColumn(j).setResizable(false);
+		
+		getTableHeader().setReorderingAllowed(false);
 	}
 
 	//

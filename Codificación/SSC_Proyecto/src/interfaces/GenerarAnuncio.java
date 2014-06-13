@@ -194,7 +194,7 @@ public class GenerarAnuncio extends JDialog {
 		
 		//Evento para agregar productos al anuncio
 		tblProductos.addMouseListener(new MouseAdapter() {
-					public void mouseClicked(MouseEvent arg0) 
+					public void mouseClicked(MouseEvent me) 
 					{
 						action_click_aniadir_producto();
 					}
@@ -587,6 +587,5 @@ public class GenerarAnuncio extends JDialog {
 				activar_botones();
 	        }
 	    }
-	    
-	}
+	}    
 }

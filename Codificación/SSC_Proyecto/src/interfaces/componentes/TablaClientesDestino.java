@@ -39,6 +39,11 @@ public class TablaClientesDestino extends JTable {
 			modeloTablaClientes.setValueAt(clienteActual.getEmail(), i, 2);
 			i++;
 		} 
+		
+		for(int j=0; j<getColumnModel().getColumnCount(); ++j)
+			getColumnModel().getColumn(j).setResizable(false);
+		
+		getTableHeader().setReorderingAllowed(false);
 	}
 	
 	public void limpiar_tabla()

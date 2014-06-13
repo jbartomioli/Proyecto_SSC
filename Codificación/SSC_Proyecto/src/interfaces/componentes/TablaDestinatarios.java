@@ -59,6 +59,12 @@ public class TablaDestinatarios extends JTable {
 		TableColumn columnaNombre1;
 		columnaNombre1 = getColumn("Nombre");
 		columnaNombre1.setPreferredWidth(100);
+		
+		for(int j=0; j<getColumnModel().getColumnCount(); ++j)
+			getColumnModel().getColumn(j).setResizable(false);
+		
+		getTableHeader().setReorderingAllowed(false);
+		
 	}
 	
 	

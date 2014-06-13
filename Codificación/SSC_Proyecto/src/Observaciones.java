@@ -10,5 +10,10 @@ public class Observaciones {
 	 * Agregar pantalla para modificar precio de productos --> CASI LISTO
 	 * Poner como no editable tabla de destinatarios --> LISTO
 	 * Guardado de histórico de anuncios --> SOLO FALTA GUARDAR LOS CLIENTES
-	 * Eliminar botón guardar  --> LISTO*/
+	 * Eliminar botón guardar  --> LISTO
+	 * 
+	 * Notas: del formulario de modificacion de destinatarios falta editar
+	 * los destinatarios y validar la carga, por ejemplo puedo agregar dos veces
+	 * el mismo destinatario...
+	 * */
 }
