@@ -54,22 +54,30 @@ public class GenerarAnuncio extends JDialog {
 	private static final long serialVersionUID = 4454249604145639442L;
 	
 	//COMPONENTES
-	public negocio.ControladorConfeccionarAnuncio controladorAux;
-	
+	private negocio.ControladorConfeccionarAnuncio controladorAux;
+	private negocio.Categoria categoria;
 	private interfaces.componentes.TablaProductos tblProductosAnuncio;
 	private interfaces.componentes.TablaClientesDestino tblDestinatarios;
 	private interfaces.componentes.TablaProductos tblProductos;
 	private interfaces.componentes.ComboCategorias cmbCategorias;
 	private interfaces.componentes.ComboSubcategorias cmbSubcategorias;
-	private JLabel lblModificarDestinatarios;
-	private negocio.Categoria categoria;
 	private interfaces.componentes.BotonesIconos btnGenerar;
 	private interfaces.componentes.BotonesIconos btnEnviar;
 	private interfaces.componentes.BotonesIconos btnCerrar;
+	private JLabel lblModificarDestinatarios;
 	private JTextField txtAsunto;
 	private JProgressBar prgProgresoAniadir;
 
 	
+	//------------------------------------------------------------------
+	public negocio.ControladorConfeccionarAnuncio getControlador()
+	{
+		return controladorAux;
+	}
+	//------------------------------------------------------------------
+	
+	
+	//------------------------------------------------------------------
 	public GenerarAnuncio(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios)
 	{
 		

@@ -19,7 +19,8 @@ public class EditorCeldas extends AbstractCellEditor implements TableCellEditor,
 	Boolean currentValue;
     JButton button;
     protected static final String EDIT = "edit";
-    private JTable table;
+    @SuppressWarnings("unused")
+	private JTable table;
 
     public EditorCeldas(JTable table) {
         button = new JButton();

@@ -4,8 +4,6 @@ package interfaces;
 import interfaces.componentes.BotonesIconos;
 
 import java.awt.SystemColor;
-
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -50,23 +48,19 @@ public class ModificarDestinatarios extends JDialog {
 	private JTextField txtBuscarDestinatarios;
 	private JLabel lblBuscarDestinatarios;
 	private JLabel lblEspecialidad;
-	//private JLabel lblImagen;
-	private JComboBox cmbEspecialidad;
+	private JComboBox<String> cmbEspecialidad;
+	private String[] especialidades = {"", "Distribuidor", "Endodoncia", "Gnatología", "Odontología General", "Ortodoncia", "Periodoncia", "Protesista"};
 	private interfaces.componentes.TablaDestinatarios tblDestinatariosBuscados;
 	private interfaces.componentes.TablaDestinatarios tblDestinatariosNuevos;
-	private Box boxDestinatariosBuscados;
-	private Box boxDestinatariosNuevos;
-	private JScrollPane scrollDestinatariosBuscados;
-	private JScrollPane scrollDestinatariosNuevos;
 	private interfaces.componentes.BotonesIconos btnAceptar;
 	private interfaces.componentes.BotonesIconos btnCancelar;
-	private negocio.ControladorConfeccionarAnuncio controladorAux;
-	//private negocio.CatalogoClientes catClie;
+	
 
 
 	//CONSTRUCTOR
-	public ModificarDestinatarios(interfaces.GenerarAnuncio padre) {
-		super(padre);
+	public ModificarDestinatarios(final interfaces.GenerarAnuncio dialogPadre) 
+	{
+		super(dialogPadre);
 		setResizable(false);
 		setMinimumSize(new Dimension(1024, 668));
 		getContentPane().setMinimumSize(new Dimension(1024, 668));
@@ -91,37 +85,31 @@ public class ModificarDestinatarios extends JDialog {
 				
 		lblEspecialidad = new JLabel("Especialidad:");
 		lblEspecialidad.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEspecialidad.setBounds(10, 83, 86, 14);
+		lblEspecialidad.setBounds(10, 83, 83, 14);
 		getContentPane().add(lblEspecialidad);
 				
 		
-		cmbEspecialidad = new JComboBox();
+		cmbEspecialidad = new JComboBox<String>();
 		cmbEspecialidad.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
-				clickComboEspecialidad(evento);}});
+				click_combo_especialidad(dialogPadre, evento);}
+			});
 		
-		cmbEspecialidad.setModel(new DefaultComboBoxModel(new String[] {"", "Distribuidor", "Endodoncia", "Gnatología", "Odontología General", "Ortodoncia", "Periodoncia", "Protesista"}));
+		cmbEspecialidad.setModel(new DefaultComboBoxModel<String>(especialidades));
 		cmbEspecialidad.setBounds(92, 80, 111, 20);
 		getContentPane().add(cmbEspecialidad);
 		
 		txtBuscarDestinatarios = new JTextField();
 		txtBuscarDestinatarios.addKeyListener(new KeyAdapter() {
-			@Override
 			public void keyPressed(KeyEvent evento) {
 				//Busca clientes si el usuario presiona enter
 				if(evento.getKeyCode() == KeyEvent.VK_ENTER)
 				{
-					negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
-					
-					catClie.obtenerClientes();
-							
-					tblDestinatariosBuscados.completarTabla(catClie.buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
-					tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
+					buscar_cliente_textField(dialogPadre);
 				}
 			}
-		});
+		});		
 		txtBuscarDestinatarios.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
 				txtBuscarDestinatarios.setText("");
@@ -131,17 +119,10 @@ public class ModificarDestinatarios extends JDialog {
 		txtBuscarDestinatarios.setForeground(Color.GRAY);
 		txtBuscarDestinatarios.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtBuscarDestinatarios.setText("ingrese apellido o nombre...");
-		txtBuscarDestinatarios.setBounds(283, 80, 141, 20);
+		txtBuscarDestinatarios.setBounds(270, 80, 154, 20);
 		txtBuscarDestinatarios.setColumns(10);
 		getContentPane().add(txtBuscarDestinatarios);
 		
-		//IMAGEN SACADA PARA PODER PARA COLOCAR UN BOTÓN QUE FACILITE LA BÚSQUEDA DE LOS CLIENTES
-		/*lblImagen = new JLabel("");
-		lblImagen.setSize(new Dimension(32, 32));
-		lblImagen.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_32.png"));
-		lblImagen.setBounds(455, 30, 44, 36);
-		getContentPane().add(lblImagen);
-		*/
 		
 		Box boxDestinatariosNuevos = Box.createHorizontalBox();
 		boxDestinatariosNuevos.setBorder(new TitledBorder(null, "Destinatarios Anuncio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -155,20 +136,17 @@ public class ModificarDestinatarios extends JDialog {
 		scrollDestinatariosNuevos.setViewportView(tblDestinatariosNuevos);
 		
 		// LA TABLA SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS
-		tblDestinatariosNuevos.completarTabla(padre.controladorAux.getArrClientesInteresados());
+		tblDestinatariosNuevos.completarTabla(dialogPadre.getControlador().getArrClientesInteresados());
 		//Agrega el btn eliminar a la tabla
 		tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
 		
 				
         //Evento para eliminar destinatarios a la lista de destino
 		tblDestinatariosNuevos.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) 
+			public void mouseClicked(MouseEvent me) 
 			{
-				DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosNuevos.getModel();
-				int filaSeleccionada = tblDestinatariosNuevos.getSelectedRow();
-				//JOptionPane.showMessageDialog(null, "Fila presionada: " + filaSeleccionada);
-			    if (filaSeleccionada >= 0)
-			         tableModel.removeRow(filaSeleccionada);
+				if(tblDestinatariosNuevos.columnAtPoint(me.getPoint())==3)
+					click_eliminar_destinatario();
 			}
 		});
 		
@@ -186,16 +164,10 @@ public class ModificarDestinatarios extends JDialog {
 		
 		//Evento para agregar destinatarios a la lista de destino
 		tblDestinatariosBuscados.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) 
+			public void mouseClicked(MouseEvent me) 
 			{
-				DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosNuevos.getModel();
-				DefaultTableModel tableModel1 = (DefaultTableModel) tblDestinatariosBuscados.getModel();
-				int filaSeleccionada = tblDestinatariosBuscados.getSelectedRow();
-				java.util.Vector fila;
-				fila = (java.util.Vector) tableModel1.getDataVector().elementAt(filaSeleccionada);
-				
-			    if (filaSeleccionada >= 0)
-			        tableModel.addRow(fila);
+				if(tblDestinatariosBuscados.columnAtPoint(me.getPoint())==3)
+					click_aniadir_destinatario();
 			}
 		});
 
@@ -203,7 +175,8 @@ public class ModificarDestinatarios extends JDialog {
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-	        	clickBotonAceptar(evento);}});
+	        	click_boton_aceptar();}
+			});
 		
 		btnAceptar.setLocation(819, 569);
 		getContentPane().add(btnAceptar);
@@ -212,38 +185,32 @@ public class ModificarDestinatarios extends JDialog {
 		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-	        	clickBotonCancelar(evento);}});
-		
+	        	click_boton_cancelar();}
+			});
 		btnCancelar.setLocation(918, 569);
 		getContentPane().add(btnCancelar);
 		
-		JButton btnBuscarDestinatario = new JButton("");
+		
+		JButton btnBuscarDestinatario = new BotonesIconos("",utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_16.png");
 		btnBuscarDestinatario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evento) 
-			{
-				//Evento para buscar destinatarios que coincidan con el string ingresado
-				clickBotonBuscar(evento);
-			}
-		});
-		btnBuscarDestinatario.setIcon(new ImageIcon(ModificarDestinatarios.class.getResource("/resources/images/x16/find.png")));
-		btnBuscarDestinatario.setBounds(424, 80, 30, 19);
+			public void actionPerformed(ActionEvent evento) {
+				click_boton_buscar(dialogPadre);}
+			});
+		btnBuscarDestinatario.setBounds(434, 80, 30, 20);
 		getContentPane().add(btnBuscarDestinatario);
 	}
 	
 	
 	// EVENTOS
-	public void clickComboEspecialidad(ItemEvent evento)
+	//-------------------------------------------------------------------------------------------------------
+	public void click_combo_especialidad(interfaces.GenerarAnuncio dialogPadre, ItemEvent evento)
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{			
 			Object esp = cmbEspecialidad.getSelectedItem();
 			String especialidad = String.valueOf(esp);
-			
-			negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
-			
-			catClie.obtenerClientes();
 					
-			tblDestinatariosBuscados.completarTabla(catClie.buscarClientesPorEspecialidad(especialidad));
+			tblDestinatariosBuscados.completarTabla(dialogPadre.getControlador().getCatalogoClientes().buscarClientesPorEspecialidad(especialidad));
 			
 			//Agrega el btn eliminar a la tabla
 			//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
@@ -252,17 +219,46 @@ public class ModificarDestinatarios extends JDialog {
 		}
 	}
 	
-	public void completarDestinatarios()
+	
+	//-------------------------------------------------------------------------------------------------------
+	@SuppressWarnings("rawtypes")
+	public void completarDestinatarios(interfaces.GenerarAnuncio dialogPadre)
 	{
 		DefaultTableModel modelo = (DefaultTableModel) tblDestinatariosNuevos.getModel();
-		modelo.addRow((Vector) controladorAux.getArrClientesInteresados());
+		modelo.addRow((Vector) dialogPadre.getControlador().getArrClientesInteresados());
 		
 		//Agrega el btn eliminar a la tabla
 		//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
 	}
 	
 	
-	public void clickBotonCancelar(ActionEvent evento)
+	//-------------------------------------------------------------------------------------------------------
+	public void click_eliminar_destinatario()
+	{
+		DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosNuevos.getModel();
+		int filaSeleccionada = tblDestinatariosNuevos.getSelectedRow();
+	    if (filaSeleccionada >= 0)
+	         tableModel.removeRow(filaSeleccionada);
+	}
+	
+	
+	//-------------------------------------------------------------------------------------------------------
+	@SuppressWarnings("rawtypes")
+	public void click_aniadir_destinatario()
+	{
+		DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosNuevos.getModel();
+		DefaultTableModel tableModel1 = (DefaultTableModel) tblDestinatariosBuscados.getModel();
+		int filaSeleccionada = tblDestinatariosBuscados.getSelectedRow();
+		java.util.Vector fila;
+		fila = (java.util.Vector) tableModel1.getDataVector().elementAt(filaSeleccionada);
+		
+	    if (filaSeleccionada >= 0)
+	        tableModel.addRow(fila);
+	}
+	
+	
+	//-------------------------------------------------------------------------------------------------------
+	public void click_boton_cancelar()
 	{
 		int rta = JOptionPane.showConfirmDialog(
 				this, 
@@ -273,7 +269,7 @@ public class ModificarDestinatarios extends JDialog {
 			
 		switch(rta)
 		{
-		case(1): //finalizarEdicion();
+		case(1):
 			break;
 		case(0): limpiar_formulario();
 			 dispose();
@@ -281,7 +277,9 @@ public class ModificarDestinatarios extends JDialog {
 		}
 	}
 	
-	public void clickBotonAceptar(ActionEvent evento)
+	
+	//-------------------------------------------------------------------------------------------------------
+	public void click_boton_aceptar()
 	{
 		//Evento para llenar la tabla de destinatarios en la page de Generar Anuncio
 		//negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
@@ -292,19 +290,26 @@ public class ModificarDestinatarios extends JDialog {
 		dispose();
 	}
 	
-	public void clickBotonBuscar(ActionEvent evento)
+	
+	//-------------------------------------------------------------------------------------------------------
+	public void click_boton_buscar(interfaces.GenerarAnuncio dialogPadre)
 	{
 		//Evento para llenar la tabla de destinatarios buscados desde la lupa
-		negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
-		
-		catClie.obtenerClientes();
-		tblDestinatariosBuscados.completarTabla(catClie.buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
+		tblDestinatariosBuscados.completarTabla(dialogPadre.getControlador().getCatalogoClientes().buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
 		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 	}
 	
 	
+	
+	//-------------------------------------------------------------------------------------------------------
+	private void buscar_cliente_textField(interfaces.GenerarAnuncio dialogPadre) 
+	{
+		tblDestinatariosBuscados.completarTabla(dialogPadre.getControlador().getCatalogoClientes().buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
+		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
+	}
+	
 		
-	//-----------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
 	protected void limpiar_formulario()
 	{
 		cmbEspecialidad.setSelectedIndex(0);
@@ -312,6 +317,5 @@ public class ModificarDestinatarios extends JDialog {
 			
 		tblDestinatariosBuscados.limpiar_tabla();
 		tblDestinatariosNuevos.limpiar_tabla();
-		
 	}
 }
