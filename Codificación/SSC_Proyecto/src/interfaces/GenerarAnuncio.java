@@ -177,7 +177,7 @@ public class GenerarAnuncio extends JDialog {
 			public void mouseClicked(MouseEvent me) 
 			{
 				if(tblProductosAnuncio.columnAtPoint(me.getPoint())==3)
-					action_click_eliminar();
+					click_eliminar_producto();
 			}
 		});
 		
@@ -206,7 +206,7 @@ public class GenerarAnuncio extends JDialog {
 					public void mouseClicked(MouseEvent me) 
 					{
 						if(tblProductos.columnAtPoint(me.getPoint())==3)
-							action_click_aniadir_producto();
+							click_aniadir_producto();
 					}
 				});
 		
@@ -439,7 +439,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	//---------------------------------------------------------------
 	@SuppressWarnings("rawtypes")
-	protected void action_click_aniadir_producto() 
+	protected void click_aniadir_producto() 
 	{
 		DefaultTableModel modeloTblProductosAnuncio = (DefaultTableModel) tblProductosAnuncio.getModel();
 		DefaultTableModel modeloTblProductos = (DefaultTableModel) tblProductos.getModel();
@@ -473,7 +473,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	//-------------------------------------------------------------
-	protected void action_click_eliminar() 
+	protected void click_eliminar_producto() 
 	{
 		DefaultTableModel tableModel = (DefaultTableModel) tblProductosAnuncio.getModel();
 		int filaSeleccionada = tblProductosAnuncio.getSelectedRow();

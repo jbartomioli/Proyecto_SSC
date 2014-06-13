@@ -246,14 +246,23 @@ public class ModificarDestinatarios extends JDialog {
 	@SuppressWarnings("rawtypes")
 	public void click_aniadir_destinatario()
 	{
-		DefaultTableModel tableModel = (DefaultTableModel) tblDestinatariosNuevos.getModel();
-		DefaultTableModel tableModel1 = (DefaultTableModel) tblDestinatariosBuscados.getModel();
+		DefaultTableModel modeloTblDestNuevos = (DefaultTableModel) tblDestinatariosNuevos.getModel();
+		DefaultTableModel modeloTblDestBusc = (DefaultTableModel) tblDestinatariosBuscados.getModel();
+		
 		int filaSeleccionada = tblDestinatariosBuscados.getSelectedRow();
 		java.util.Vector fila;
-		fila = (java.util.Vector) tableModel1.getDataVector().elementAt(filaSeleccionada);
-		
-	    if (filaSeleccionada >= 0)
-	        tableModel.addRow(fila);
+		fila = (java.util.Vector) modeloTblDestBusc.getDataVector().elementAt(filaSeleccionada);
+		  
+	    if(modeloTblDestNuevos.getDataVector().contains(fila))
+			JOptionPane.showMessageDialog(null, 
+					"No puede agregar dos veces al mismo cliente.", 
+					"ATENCIÓN",
+					JOptionPane.WARNING_MESSAGE);
+		else 
+			if(filaSeleccionada >= 0)
+			{
+				modeloTblDestNuevos.addRow(fila);
+			}
 	}
 	
 	
