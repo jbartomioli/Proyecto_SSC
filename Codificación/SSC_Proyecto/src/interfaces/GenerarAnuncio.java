@@ -166,9 +166,10 @@ public class GenerarAnuncio extends JDialog {
 		
 		//Evento para eliminar productos del anuncio
 		tblProductosAnuncio.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) 
+			public void mouseClicked(MouseEvent me) 
 			{
-				action_click_eliminar();
+				if(tblProductos.columnAtPoint(me.getPoint())==3)
+					action_click_eliminar();
 			}
 		});
 		
@@ -196,7 +197,8 @@ public class GenerarAnuncio extends JDialog {
 		tblProductos.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent me) 
 					{
-						action_click_aniadir_producto();
+						if(tblProductos.columnAtPoint(me.getPoint())==3)
+							action_click_aniadir_producto();
 					}
 				});
 		
