@@ -168,7 +168,7 @@ public class GenerarAnuncio extends JDialog {
 		tblProductosAnuncio.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) 
 			{
-				if(tblProductos.columnAtPoint(me.getPoint())==3)
+				if(tblProductosAnuncio.columnAtPoint(me.getPoint())==3)
 					action_click_eliminar();
 			}
 		});
