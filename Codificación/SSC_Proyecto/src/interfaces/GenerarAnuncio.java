@@ -235,8 +235,7 @@ public class GenerarAnuncio extends JDialog {
 		lblModificarDestinatarios.setBackground(UIManager.getColor("Button.disabledForeground"));
 		lblModificarDestinatarios.setForeground(new Color(8,98,235));
 		lblModificarDestinatarios.addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("unused")
-			public void mouseClicked() 
+			public void mouseClicked(MouseEvent me) 
 			{
 				if(lblModificarDestinatarios.isEnabled())
 				{
