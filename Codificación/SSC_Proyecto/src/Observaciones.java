@@ -11,6 +11,9 @@ public class Observaciones {
 	 * Poner como no editable tabla de destinatarios --> LISTO
 	 * Guardado de histórico de anuncios --> SOLO FALTA GUARDAR LOS CLIENTES
 	 * Eliminar botón guardar  --> LISTO
+	 * Precios modificar, en generar, solo promocional.
+	 * precios modificar principal los dos.
+	 * tabla boton quitar en modificar precio.
 	 * 
 	 * Notas: del formulario de modificacion de destinatarios falta editar
 	 * los destinatarios y validar la carga, por ejemplo puedo agregar dos veces
