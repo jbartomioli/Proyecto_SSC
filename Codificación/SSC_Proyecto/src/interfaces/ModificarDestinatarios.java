@@ -4,6 +4,7 @@ package interfaces;
 import interfaces.componentes.BotonesIconos;
 
 import java.awt.SystemColor;
+
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -20,6 +21,7 @@ import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
@@ -175,7 +177,8 @@ public class ModificarDestinatarios extends JDialog {
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-	        	click_boton_aceptar();}
+	        		click_boton_aceptar(dialogPadre);
+	        	}
 			});
 		
 		btnAceptar.setLocation(819, 569);
@@ -288,14 +291,25 @@ public class ModificarDestinatarios extends JDialog {
 	
 	
 	//-------------------------------------------------------------------------------------------------------
-	public void click_boton_aceptar()
-	{
-		//Evento para llenar la tabla de destinatarios en la page de Generar Anuncio
-		//negocio.CatalogoClientes catClie = new negocio.CatalogoClientes();
-		//catClie.obtenerClientes();
-		//interfaces.GenerarAnuncio generar = new interfaces.GenerarAnuncio(new javax.swing.JFrame(), true, controladorAux);
-		//generar.tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
-		//generar.setVisible(true);
+	public void click_boton_aceptar(interfaces.GenerarAnuncio dialogPadre)
+	{		
+		DefaultTableModel modelo = new DefaultTableModel();
+		
+		modelo.addColumn("Apellido"); 
+		modelo.addColumn("Nombre"); 
+		modelo.addColumn("Mail"); 
+		
+//		modelo.setNumRows(tblDestinatariosNuevos.getRowCount());
+		
+//		for(int i=0; i<tblDestinatariosNuevos.getRowCount()+1; ++i)
+//		{
+//			modelo.setValueAt(tblDestinatariosNuevos.getValueAt(i, 0),i,0);
+//			modelo.setValueAt(tblDestinatariosNuevos.getValueAt(i, 1),i,1);
+//			modelo.setValueAt(tblDestinatariosNuevos.getValueAt(i, 2),i,2);
+//		}
+				
+		dialogPadre.actualizarClientesDestinatarios(modelo);
+		
 		dispose();
 	}
 	

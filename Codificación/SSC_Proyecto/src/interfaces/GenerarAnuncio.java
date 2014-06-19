@@ -15,6 +15,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JDialog;
@@ -73,6 +74,15 @@ public class GenerarAnuncio extends JDialog {
 	public negocio.ControladorConfeccionarAnuncio getControlador()
 	{
 		return controladorAux;
+	}
+
+	
+	
+
+	public void actualizarClientesDestinatarios(TableModel nuevoModelo)
+	{
+		//actualizar array interesados
+		tblDestinatarios.setModel(nuevoModelo);
 	}
 	//------------------------------------------------------------------
 	
