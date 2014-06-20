@@ -52,6 +52,8 @@ public class Principal extends JFrame {
 	private JMenu mnuAyuda;
 	private JMenuItem mntContenidoAyuda;
 	private JMenuItem mntAcerca;
+	private JMenu mnuOpciones;
+	private JMenuItem mntConfiguracion;
 	private interfaces.Acerca acerca;
 	
 	//CONSTRUCTOR
@@ -132,6 +134,15 @@ public class Principal extends JFrame {
 		mntPrecios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
 		mntPrecios.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"PRECIO_16.png"));
 		mnuOperaciones.add(mntPrecios);
+		
+		mnuOpciones = new JMenu("Opciones");
+		mnuOpciones.setMnemonic('c');
+		mnuBarraMenu.add(mnuOpciones);
+		
+		mntConfiguracion = new JMenuItem("Configuraci\u00F3n");
+		mntConfiguracion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
+		mntConfiguracion.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFIGURACION_16.png"));
+		mnuOpciones.add(mntConfiguracion);
 
 		mnuAyuda = new JMenu("Ayuda");
 		mnuAyuda.setMnemonic('u');
