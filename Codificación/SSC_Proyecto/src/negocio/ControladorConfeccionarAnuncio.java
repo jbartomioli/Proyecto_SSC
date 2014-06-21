@@ -530,11 +530,7 @@ public class ControladorConfeccionarAnuncio
 		return arrDatos;
 	}
 
-	
-	
-	
-	
-	
+
 	
 	//***************************************************************
 	// SUBCLASES SALIDA DE DATOS 									*

@@ -16,7 +16,8 @@ public class TablaProductos extends JTable {
 	 */
 	private static final long serialVersionUID = -6350468692762393156L;
 
-	public TablaProductos() {
+	public TablaProductos() 
+	{
 		modeloTablaProductos = new DefaultTableModel();
 		modeloTablaProductos.addColumn("Producto");
 		modeloTablaProductos.addColumn("Precio");
@@ -96,7 +97,8 @@ public class TablaProductos extends JTable {
 	public boolean isCellEditable(int row, int col) 
 	{
 	    //Solo permite editar las columnas Precio y Precio promocional 
-		switch (col) {
+		switch (col) 
+		{
 	         case 1:
 	         case 2:
 	             return true;

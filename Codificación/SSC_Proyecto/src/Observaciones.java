@@ -12,8 +12,8 @@ public class Observaciones {
 	 * Guardado de histórico de anuncios --> SOLO FALTA GUARDAR LOS CLIENTES
 	 * Eliminar botón guardar  --> LISTO
 	 * Precios modificar, en generar, solo promocional.
-	 * precios modificar principal los dos.
-	 * tabla boton quitar en modificar precio.
+	 * precios modificar principal los dos. --> LISTO
+	 * tabla boton quitar en modificar precio. --> LISTO
 	 * 
 	 * Notas: del formulario de modificacion de destinatarios falta editar
 	 * los destinatarios y validar la carga, por ejemplo puedo agregar dos veces

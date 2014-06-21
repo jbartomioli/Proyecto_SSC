@@ -115,10 +115,10 @@ public class SubCategoria
             	productoDatos.setNombre(utilidades.Utilidades.utf8_decode(entProducto.getNombre()));
             
             	//SE CREA ARRAY DE PRECIOS DE DATOS PARA AGREGAR CADA PRECIO
-            	Collection<datos.Precio> preciosProductoDatos = new ArrayList<datos.Precio>();
+            	//Collection<datos.Precio> preciosProductoDatos = new ArrayList<datos.Precio>();
 
             	//SE RECORRE CADA PRECIO
-            	for(entidades.Precios entPreciosProducto : entProducto.getPrecioses())
+            	/*for(entidades.Precios entPreciosProducto : entProducto.getPrecioses())
             	{
             		//SE CREA OBJETO PRECIO DE DATOS PARA SETEOS
             		datos.Precio precioDatos = new datos.Precio();
@@ -135,7 +135,20 @@ public class SubCategoria
             	}
             	
             	//SE SETEAN LOS PRECIOS EN EL PRODUCTO
-            	productoDatos.setPrecios(preciosProductoDatos);
+            	productoDatos.setPrecios(preciosProductoDatos);*/
+            	
+            	datos.Precio precioDatos = new datos.Precio();
+        		entidades.Precios entPreciosProducto = new entidades.Precios();
+        		
+        		//SE SETEAN LOS DATOS
+        		precioDatos.setFechaDesde(entPreciosProducto.getFechaDesde());
+        		precioDatos.setFechaHasta(entPreciosProducto.getFechaHasta());
+        		precioDatos.setIdPrecio(entPreciosProducto.getId().getIdPrecio());
+        		precioDatos.setPrecio(entPreciosProducto.getPrecio());
+        		precioDatos.setPrecioPromocional(entPreciosProducto.getPrecioPromocional());
+        		
+        		//SE SETEAN LOS PRECIOS EN EL PRODUCTO
+        		productoDatos.setPrecios(precioDatos);
             	
             	
             	//SE AGREGA EL PRODUCTO AL ARRAY
