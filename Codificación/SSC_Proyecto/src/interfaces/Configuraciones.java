@@ -38,6 +38,7 @@ public class Configuraciones extends JDialog
 	private JTextField txtUsuario;
 	private JPasswordField pflPass;
 	private JComboBox<String> cmbModoDepuracion;
+	private JTextField txtBD;
 	
 	public Configuraciones(JFrame framePadre) 
 	{
@@ -47,7 +48,6 @@ public class Configuraciones extends JDialog
 		getContentPane().setMinimumSize(new Dimension(500, 500));
 		getContentPane().setMaximumSize(new Dimension(500, 500));
 		setMaximumSize(new Dimension(500, 500));
-		//setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);
 		setLocationRelativeTo(null);
 		setTitle("Configuraciones Generales");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CONFIGURACION_32.png"));
@@ -126,14 +126,23 @@ public class Configuraciones extends JDialog
 		pflPass.setBounds(324, 59, 140, 20);
 		panelBD.add(pflPass);
 		
+		JLabel lblBD = new JLabel("Base de Datos:");
+		lblBD.setBounds(10, 103, 111, 14);
+		panelBD.add(lblBD);
+		
+		txtBD = new JTextField();
+		txtBD.setBounds(131, 100, 86, 20);
+		panelBD.add(txtBD);
+		txtBD.setColumns(10);
+		
 		JLabel lblModoDepuracion = new JLabel("Modo Depuraci\u00F3n:");
-		lblModoDepuracion.setBounds(10, 103, 111, 14);
+		lblModoDepuracion.setBounds(294, 103, 111, 14);
 		panelBD.add(lblModoDepuracion);
 		
 		cmbModoDepuracion = new JComboBox<String>();
 		cmbModoDepuracion.setModel(new DefaultComboBoxModel<String>(new String[] {"SI", "NO"}));
 		cmbModoDepuracion.setSelectedIndex(0);
-		cmbModoDepuracion.setBounds(131, 100, 49, 20);
+		cmbModoDepuracion.setBounds(415, 100, 49, 20);
 		panelBD.add(cmbModoDepuracion);
 		
 		JPanel panelFile = new JPanel();
@@ -158,6 +167,9 @@ public class Configuraciones extends JDialog
 		utilidades.LeerHibernateCFG archivoXML = new utilidades.LeerHibernateCFG();
 		
 		HashMap<String, String> propiedades = archivoXML.getElementos();
+		
+		
+		String urlDB = propiedades.get("hibernate.connection.url");
 		
 		txtURL.setText(propiedades.get("hibernate.connection.url"));
 		txtUsuario.setText(propiedades.get("hibernate.connection.username"));
