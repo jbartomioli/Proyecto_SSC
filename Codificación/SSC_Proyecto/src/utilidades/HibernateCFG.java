@@ -15,6 +15,7 @@ public class HibernateCFG
 {
 	private HashMap<String,String> elementos;
 	private File xmlFile;
+	private String urlFile = "C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\src\\main\\resources\\hibernate.cfg.xml";
 	
 	
 	
@@ -34,7 +35,7 @@ public class HibernateCFG
 	//-----------------------------------------------------------
 	public void leerConfiguraciones()
 	{
-		xmlFile = new File( "C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\src\\main\\resources\\hibernate.cfg.xml" );
+		xmlFile = new File(urlFile);
 	    SAXBuilder builder = new SAXBuilder();
   
 		try
