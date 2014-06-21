@@ -138,6 +138,10 @@ public class Precios extends JDialog {
 					catProd.obtenerProductos();
 							
 					tblProductos.completarTabla(catProd.buscarProducto(txtBuscarProductos.getText()));
+					//Oculta la columna del botón
+					tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
+					tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
+					tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
 					//tblProductos.definirTablaProductos();
 				}
 			}
@@ -179,6 +183,10 @@ public class Precios extends JDialog {
 						subcategoriaActual.getIdSubcategoria()));
 		tblProductos.definirTablaProductos();
 		scrollPrecios.setViewportView(tblProductos);
+		//Oculta la columna del botón
+		tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
+		tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
+		tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
 						
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -231,6 +239,10 @@ public class Precios extends JDialog {
 			tblProductos.completarTabla(controladorAux.seleccionarSubcategoria(
 					subcategoriaSeleccionada.getIdcategoria(),
 					subcategoriaSeleccionada.getIdSubcategoria()));
+			//Oculta la columna del botón
+			tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
+			tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
+			tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
 		}
 	}
 	
@@ -247,6 +259,10 @@ public class Precios extends JDialog {
 			tblProductos.completarTabla(controladorAux.seleccionarSubcategoria(
 					subcategoriaSeleccionada.getIdcategoria(),
 					subcategoriaSeleccionada.getIdSubcategoria()));
+			//Oculta la columna del botón
+			tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
+			tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
+			tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
 		}
 	}
 
@@ -284,6 +300,10 @@ public class Precios extends JDialog {
 		catProd.obtenerProductos();
 		tblProductos.completarTabla(catProd.buscarProducto(txtBuscarProductos.getText()));
 		tblProductos.definirTablaProductos();
+		
+		tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
+		tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
+		tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
 	}
 	
 		

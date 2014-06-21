@@ -194,7 +194,7 @@ public class GenerarAnuncio extends JDialog {
 		
 		Box boxProductos = Box.createHorizontalBox();
 		boxProductos.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		boxProductos.setBounds(504, 106, 400, 466);
+		boxProductos.setBounds(504, 106, 400, 446);
 		getContentPane().add(boxProductos);
 		
 		JScrollPane scrollProductos = new JScrollPane();
