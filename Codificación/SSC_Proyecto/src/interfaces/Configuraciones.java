@@ -11,7 +11,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
@@ -22,8 +21,7 @@ import java.util.StringTokenizer;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
 
 
 
@@ -38,8 +36,11 @@ public class Configuraciones extends JDialog
 	private JTextField txtPuerto;
 	private JTextField txtUsuario;
 	private JPasswordField pflPass;
-	private JComboBox<String> cmbModoDepuracion;
 	private JTextField txtBD;
+	private JCheckBox chkModoDepuracion; 
+	private HashMap<String, String> propiedades;
+	utilidades.HibernateCFG archivoXML;
+
 	
 	public Configuraciones(JFrame framePadre) 
 	{
@@ -73,7 +74,7 @@ public class Configuraciones extends JDialog
 		btnAceptar.setLocation(294, 397);	
 		btnAceptar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	
+	        	action_aceptar();
 	        	}});
 		getContentPane().add(btnAceptar);
 		
@@ -136,15 +137,9 @@ public class Configuraciones extends JDialog
 		panelBD.add(txtBD);
 		txtBD.setColumns(10);
 		
-		JLabel lblModoDepuracion = new JLabel("Modo Depuraci\u00F3n:");
-		lblModoDepuracion.setBounds(294, 103, 111, 14);
-		panelBD.add(lblModoDepuracion);
-		
-		cmbModoDepuracion = new JComboBox<String>();
-		cmbModoDepuracion.setModel(new DefaultComboBoxModel<String>(new String[] {"SI", "NO"}));
-		cmbModoDepuracion.setSelectedIndex(0);
-		cmbModoDepuracion.setBounds(415, 100, 49, 20);
-		panelBD.add(cmbModoDepuracion);
+		chkModoDepuracion = new JCheckBox("Modo Depuraci\u00F3n");
+		chkModoDepuracion.setBounds(324, 99, 140, 23);
+		panelBD.add(chkModoDepuracion);
 		
 		JPanel panelFile = new JPanel();
 		panelFile.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Archivos", TitledBorder.LEADING, TitledBorder.TOP, null, Color.DARK_GRAY));
@@ -154,10 +149,9 @@ public class Configuraciones extends JDialog
 		JPanel panelMail = new JPanel();
 		panelMail.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Mail", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
 		panelMail.setBounds(10, 265, 474, 54);
-		getContentPane().add(panelMail);
+		getContentPane().add(panelMail);	
 		
 		inicializar();
-		
 	}
 	
 	
@@ -165,9 +159,12 @@ public class Configuraciones extends JDialog
 	//-------------------------------------------------------------
 	protected void inicializar()
 	{
-		utilidades.LeerHibernateCFG archivoXML = new utilidades.LeerHibernateCFG();
+		repaint();
 		
-		HashMap<String, String> propiedades = archivoXML.getElementos();
+		archivoXML = new utilidades.HibernateCFG();
+		archivoXML.leerConfiguraciones();
+		
+		propiedades = archivoXML.getElementos();
 		
 		String urlDB = propiedades.get("hibernate.connection.url");
 		
@@ -186,30 +183,50 @@ public class Configuraciones extends JDialog
 		txtUsuario.setText(propiedades.get("hibernate.connection.username"));
 		pflPass.setText(propiedades.get("hibernate.connection.password"));
 		txtBD.setText(tokens[3].substring(tokens[3].indexOf('/')+1));
-		if(propiedades.get("hibernate.show_sql").equals(true))
-			cmbModoDepuracion.setSelectedItem(0);
+		if(propiedades.get("hibernate.show_sql").equals("true"))
+			chkModoDepuracion.setSelected(true);
 		else
-			cmbModoDepuracion.setSelectedIndex(1);
+			chkModoDepuracion.setSelected(false);
 	}
 	
 	
 	//-------------------------------------------------------------
+	@SuppressWarnings("deprecation")
+	protected void action_aceptar()
+	{
+		propiedades.put("hibernate.connection.username", txtUsuario.getText());
+		propiedades.put("hibernate.connection.password", pflPass.getText());
+		if(chkModoDepuracion.isSelected())
+			propiedades.put("hibernate.show_sql", "true");
+		else
+			propiedades.put("hibernate.show_sql", "false");
+		
+		String urlDB = "jdbc:mysql://"+txtURL.getText()+":"+txtPuerto.getText()+"/"+txtBD;
+		propiedades.put("hibernate.connection.url", urlDB);
+		
+		archivoXML.guardarConfiguraciones(propiedades);
+		
+	}
+	
+	//-------------------------------------------------------------
 	protected void cerrar_salir()
 	{
-		int rta = JOptionPane.showConfirmDialog(
-					this, 
-					"¿Desea salir y volver al menu principal?\n"
-						+ "Todo cambio que no haya guardado se perderá.",
-					"ATENCIÓN",
-					JOptionPane.YES_NO_OPTION);
-				
-		switch(rta)
-		{
-		case(1): //finalizarEdicion();
-				 break;
-		case(0): //limpiar_formulario();
-				 dispose();
-				 break;
-		}
+		dispose();
+		 
+//		int rta = JOptionPane.showConfirmDialog(
+//					this, 
+//					"¿Desea salir y volver al menu principal?\n"
+//						+ "Todo cambio que no haya guardado se perderá.",
+//					"ATENCIÓN",
+//					JOptionPane.YES_NO_OPTION);
+//				
+//		switch(rta)
+//		{
+//		case(1): //finalizarEdicion();
+//				 break;
+//		case(0): //limpiar_formulario();
+//				 dispose();
+//				 break;
+	
 	}
 }

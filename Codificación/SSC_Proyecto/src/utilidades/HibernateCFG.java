@@ -11,16 +11,33 @@ import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 
 
-public class LeerHibernateCFG
+public class HibernateCFG
 {
-	HashMap<String,String> elementos;
+	private HashMap<String,String> elementos;
+	private File xmlFile;
 	
 	
-	public LeerHibernateCFG()
+	
+	public HibernateCFG()
 	{
+		this.elementos = new HashMap<String, String>();
+	}
+	
+	
+	//-----------------------------------------------------------
+	public HashMap<String, String> getElementos()
+	{
+		return this.elementos;
+	}
+	
+	
+	//-----------------------------------------------------------
+	public void leerConfiguraciones()
+	{
+		xmlFile = new File( "C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\src\\main\\resources\\hibernate.cfg.xml" );
 	    SAXBuilder builder = new SAXBuilder();
-	    File xmlFile = new File( "C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\src\\main\\resources\\hibernate.cfg.xml" );
-	    try
+  
+		try
 	    {
 	        Document document = (Document) builder.build( xmlFile );
 	 
@@ -30,8 +47,6 @@ public class LeerHibernateCFG
 	 
 	        @SuppressWarnings("rawtypes")
 			List propiedades = sessionFactory.getChildren("property");
-	        
-	        elementos = new HashMap<String,String>();
 	        	        
 	        for (int i = 0; i < propiedades.size(); i++)
 	        {
@@ -49,9 +64,10 @@ public class LeerHibernateCFG
 	    }
 	}
 	
-	//-----------------------------------------------------------
-	public HashMap<String, String> getElementos()
+	
+	//-------------------------------------------------------------
+	public void guardarConfiguraciones(HashMap<String, String> propiedades)
 	{
-		return this.elementos;
+		System.out.print(propiedades.get("hibernate.show_sql"));
 	}
 }
