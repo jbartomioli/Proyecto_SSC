@@ -46,6 +46,7 @@ public class Principal extends JFrame {
 	private JMenu mnuOperaciones;
 	private interfaces.GenerarAnuncio generarAnuncio;
 	private interfaces.Precios modificarPrecios;
+	private interfaces.Configuraciones configuraciones;
 	private JMenuItem mntConfeccionar;
 	private JMenuItem mntSeguimiento;
 	private JMenuItem mntPrecios;
@@ -142,6 +143,15 @@ public class Principal extends JFrame {
 		mntConfiguracion = new JMenuItem("Configuraci\u00F3n");
 		mntConfiguracion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		mntConfiguracion.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFIGURACION_16.png"));
+		
+		configuraciones = new interfaces.Configuraciones(this);
+		
+		mntConfiguracion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				configuraciones.setVisible(true);
+			}
+		});
+		
 		mnuOpciones.add(mntConfiguracion);
 
 		mnuAyuda = new JMenu("Ayuda");
@@ -180,7 +190,7 @@ public class Principal extends JFrame {
 	}
 	
 	
-	
+	//-----------------------------------------------------------------------------------------------
 	public void cerrando()
 	{
 		int rta;
