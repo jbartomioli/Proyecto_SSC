@@ -18,6 +18,7 @@ import javax.swing.border.LineBorder;
 
 import java.awt.Color;
 import java.util.HashMap;
+import java.util.StringTokenizer;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -168,15 +169,27 @@ public class Configuraciones extends JDialog
 		
 		HashMap<String, String> propiedades = archivoXML.getElementos();
 		
-		
 		String urlDB = propiedades.get("hibernate.connection.url");
 		
-		txtURL.setText(propiedades.get("hibernate.connection.url"));
+		StringTokenizer tokenizer = new StringTokenizer(urlDB,":");
+		String[] tokens = new String[tokenizer.countTokens()];
+		int i = 0;
+		
+		while (tokenizer.hasMoreTokens())
+		{
+			tokens[i] = tokenizer.nextToken();
+			i++;
+		}
+		
+		txtURL.setText(tokens[2].substring(2));
+		txtPuerto.setText(tokens[3].substring(0, tokens[3].indexOf('/')));
 		txtUsuario.setText(propiedades.get("hibernate.connection.username"));
 		pflPass.setText(propiedades.get("hibernate.connection.password"));
-		cmbModoDepuracion.setSelectedItem(propiedades.get("hibernate.show_sql"));
-		
-		
+		txtBD.setText(tokens[3].substring(tokens[3].indexOf('/')+1));
+		if(propiedades.get("hibernate.show_sql").equals(true))
+			cmbModoDepuracion.setSelectedItem(0);
+		else
+			cmbModoDepuracion.setSelectedIndex(1);
 	}
 	
 	
