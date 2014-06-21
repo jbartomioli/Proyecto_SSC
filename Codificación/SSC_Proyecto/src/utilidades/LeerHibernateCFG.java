@@ -2,6 +2,7 @@ package utilidades;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.jdom.Document;         
@@ -12,7 +13,7 @@ import org.jdom.input.SAXBuilder;
 
 public class LeerHibernateCFG
 {
-	String elementos[];
+	HashMap<String,String> elementos;
 	
 	
 	public LeerHibernateCFG()
@@ -30,12 +31,12 @@ public class LeerHibernateCFG
 	        @SuppressWarnings("rawtypes")
 			List propiedades = sessionFactory.getChildren("property");
 	        
-	        elementos = new String[propiedades.size()];
+	        elementos = new HashMap<String,String>();
 	        	        
 	        for (int i = 0; i < propiedades.size(); i++)
 	        {
-	            Element propiedad = (Element) propiedades.get(i);
-	            elementos[i] = propiedad.getValue();
+	        	Element propiedad = (Element) propiedades.get(i);
+	        	elementos.put(propiedad.getAttributeValue("name").toString(), propiedad.getValue().toString());
 	        }
 	    }
 	    catch ( IOException io )
@@ -49,7 +50,7 @@ public class LeerHibernateCFG
 	}
 	
 	//-----------------------------------------------------------
-	public String[] getElementos()
+	public HashMap<String, String> getElementos()
 	{
 		return this.elementos;
 	}

@@ -17,13 +17,14 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
+import java.util.HashMap;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-import utilidades.LeerHibernateCFG;
+
 
 public class Configuraciones extends JDialog
 {
@@ -36,6 +37,7 @@ public class Configuraciones extends JDialog
 	private JTextField txtPuerto;
 	private JTextField txtUsuario;
 	private JPasswordField pflPass;
+	private JComboBox<String> cmbModoDepuracion;
 	
 	public Configuraciones(JFrame framePadre) 
 	{
@@ -70,7 +72,7 @@ public class Configuraciones extends JDialog
 		btnAceptar.setLocation(294, 397);	
 		btnAceptar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	inicializar();
+	        	
 	        	}});
 		getContentPane().add(btnAceptar);
 		
@@ -128,7 +130,7 @@ public class Configuraciones extends JDialog
 		lblModoDepuracion.setBounds(10, 103, 111, 14);
 		panelBD.add(lblModoDepuracion);
 		
-		JComboBox<String> cmbModoDepuracion = new JComboBox<String>();
+		cmbModoDepuracion = new JComboBox<String>();
 		cmbModoDepuracion.setModel(new DefaultComboBoxModel<String>(new String[] {"SI", "NO"}));
 		cmbModoDepuracion.setSelectedIndex(0);
 		cmbModoDepuracion.setBounds(131, 100, 49, 20);
@@ -144,6 +146,7 @@ public class Configuraciones extends JDialog
 		panelMail.setBounds(10, 265, 474, 54);
 		getContentPane().add(panelMail);
 		
+		inicializar();
 		
 	}
 	
@@ -154,9 +157,13 @@ public class Configuraciones extends JDialog
 	{
 		utilidades.LeerHibernateCFG archivoXML = new utilidades.LeerHibernateCFG();
 		
-		String[] propiedades = archivoXML.getElementos();
+		HashMap<String, String> propiedades = archivoXML.getElementos();
 		
-		txtURL.setText(propiedades[0]);
+		txtURL.setText(propiedades.get("hibernate.connection.url"));
+		txtUsuario.setText(propiedades.get("hibernate.connection.username"));
+		pflPass.setText(propiedades.get("hibernate.connection.password"));
+		cmbModoDepuracion.setSelectedItem(propiedades.get("hibernate.show_sql"));
+		
 		
 	}
 	
