@@ -201,7 +201,7 @@ public class Configuraciones extends JDialog
 		else
 			propiedades.put("hibernate.show_sql", "false");
 		
-		String urlDB = "jdbc:mysql://"+txtURL.getText()+":"+txtPuerto.getText()+"/"+txtBD;
+		String urlDB = "jdbc:mysql://"+txtURL.getText()+":"+txtPuerto.getText()+"/"+txtBD.getText();
 		propiedades.put("hibernate.connection.url", urlDB);
 		
 		archivoXML.guardarConfiguraciones(propiedades);
