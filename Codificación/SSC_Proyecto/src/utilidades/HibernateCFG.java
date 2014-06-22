@@ -10,7 +10,6 @@ import org.jdom.Document;
 import org.jdom.Element;         
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
-import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
 
@@ -70,6 +69,7 @@ public class HibernateCFG
 	
 	
 	//-------------------------------------------------------------
+	@SuppressWarnings("rawtypes")
 	public void guardarConfiguraciones(HashMap<String, String> propiedadesNuevas)
 	{
 		xmlFile = new File(urlFile);
@@ -80,32 +80,22 @@ public class HibernateCFG
 			Document document = (Document) builder.build(xmlFile);
 			Element hibernateConfig = document.getRootElement();
 	 
-			Element sessionFactory = hibernateConfig.getChild("session-factory");
-			//sessionFactory.getChild("property").getAttribute("hibernate.connection.url").setValue(propiedadesNuevas.get("hibernate.connection.url"));
-			
-			System.out.println(sessionFactory.getChild("property"));
+			Element sessionFactory = hibernateConfig.getChild("session-factory");			
 
 			List propiedades = (List) sessionFactory.getChildren("property");
 			
-	 
+			for (int i = 0; i < propiedades.size(); i++)
+	        {
+	        	Element propiedad = (Element) propiedades.get(i);
+	        	
+	        	String contenido = propiedadesNuevas.get(propiedad.getAttributeValue("name"));
+	        		
+	        	propiedad.setText(contenido);
+	        }
+			
 			XMLOutputter xmlOutput = new XMLOutputter();
 	 
-			xmlOutput.output(document, new FileWriter(urlFile));
-			
-	 	 			
-//	        propiedades.setAttribute("hibernate.connection.url",propiedadesNuevas.get("hibernate.connection.url"));
-//	        propiedades.setAttribute("hibernate.connection.url",propiedadesNuevas.get("hibernate.connection.url"));
-//	        propiedades.setAttribute("hibernate.connection.username",propiedadesNuevas.get("hibernate.connection.username"));
-//	        propiedades.setAttribute("hibernate.connection.password",propiedadesNuevas.get("hibernate.connection.password"));
-//	        propiedades.setAttribute("hibernate.show_sql",propiedadesNuevas.get("hibernate.show_sql"));
-	        
-	       // for (int i = 0; i < propiedades.size(); i++)
-	        {
-	        	//Element propiedad = (Element) propiedades.get(i);
-	        	//elementos.put(propiedad.getAttributeValue("name").toString(), propiedad.getValue().toString());
-	        }
-	        
-	       
+			xmlOutput.output(document, new FileWriter(urlFile));        
 	    }
 	    catch ( IOException io )
 	    {

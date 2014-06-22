@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -204,29 +205,19 @@ public class Configuraciones extends JDialog
 		String urlDB = "jdbc:mysql://"+txtURL.getText()+":"+txtPuerto.getText()+"/"+txtBD.getText();
 		propiedades.put("hibernate.connection.url", urlDB);
 		
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		
 		archivoXML.guardarConfiguraciones(propiedades);
+		
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		
+		dispose();
 		
 	}
 	
 	//-------------------------------------------------------------
 	protected void cerrar_salir()
 	{
-		dispose();
-		 
-//		int rta = JOptionPane.showConfirmDialog(
-//					this, 
-//					"¿Desea salir y volver al menu principal?\n"
-//						+ "Todo cambio que no haya guardado se perderá.",
-//					"ATENCIÓN",
-//					JOptionPane.YES_NO_OPTION);
-//				
-//		switch(rta)
-//		{
-//		case(1): //finalizarEdicion();
-//				 break;
-//		case(0): //limpiar_formulario();
-//				 dispose();
-//				 break;
-	
+		dispose();	
 	}
 }
