@@ -41,25 +41,28 @@ public class TrabajoInicializar implements Runnable{
 					"Se ha producido un error grave.\n\n"
 					+ "El sistema no puede continuar...",
 					"ERROR",
-					JOptionPane.ERROR_MESSAGE);		
+					JOptionPane.ERROR_MESSAGE);	
+			npe.printStackTrace();
 		}
 		catch(HibernateException he)
 		{
 			JOptionPane.showMessageDialog(
 					null, 
 					"Se ha producido un error al conectarse al servidor.\n\n"
-					+ "El sistema no puede continuar...",
+					+ "El sistema no puede continuar...\n",
 					"ERROR",
 					JOptionPane.ERROR_MESSAGE);	
+			he.printStackTrace();
 		}
 		catch(Exception e)
 		{
 			JOptionPane.showMessageDialog(
 					null, 
 					"Se ha producido un error grave.\n\n"
-					+ "El sistema no puede continuar...",
+					+ "El sistema no puede continuar...\n",
 					"ERROR",
 					JOptionPane.ERROR_MESSAGE);	
+			e.printStackTrace();
 		}
         finally
         {

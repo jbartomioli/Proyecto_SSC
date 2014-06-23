@@ -146,6 +146,7 @@ public class Configuraciones extends JDialog
 		panelFile.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Archivos", TitledBorder.LEADING, TitledBorder.TOP, null, Color.DARK_GRAY));
 		panelFile.setBounds(10, 200, 474, 54);
 		getContentPane().add(panelFile);
+		panelFile.setLayout(null);
 		
 		JPanel panelMail = new JPanel();
 		panelMail.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Mail", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
