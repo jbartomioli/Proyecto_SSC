@@ -23,7 +23,7 @@ public class ControladorRegistrarPedidoCliente
 	//***************************************************************
 	//* CONSTRUCTOR													*
 	//***************************************************************
-	public ControladorRegistrarPedidoCliente() 
+	public ControladorRegistrarPedidoCliente() throws Exception 
 	{
 		this.cc = new negocio.CatalogoClientes();
 		this.cc.obtenerClientes();

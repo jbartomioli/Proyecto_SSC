@@ -89,7 +89,7 @@ public class SubCategoria
 	// OBTIENE TODOS LOS PRODUCTOS DE UNA SUBCATEGORIA ESPECIFICA  //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerProductos()
+	public void obtenerProductos() throws Exception
 	{
 		//SE CREA SUBCATEGORIA DE DATOS PARA OBTENER LOS DATOS LA BD
 		datos.SubCategoria subcategoriaDatos = new datos.SubCategoria();

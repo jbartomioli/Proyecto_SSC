@@ -34,16 +34,6 @@ public class TrabajoInicializar implements Runnable{
         {
             //System.err.println( e.getMessage() );
         }
-		catch (NullPointerException npe)
-		{
-			JOptionPane.showMessageDialog(
-					null, 
-					"Se ha producido un error grave.\n\n"
-					+ "El sistema no puede continuar...",
-					"ERROR",
-					JOptionPane.ERROR_MESSAGE);	
-			npe.printStackTrace();
-		}
 		catch(HibernateException he)
 		{
 			JOptionPane.showMessageDialog(

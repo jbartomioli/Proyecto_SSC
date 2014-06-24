@@ -3,8 +3,6 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.swing.JOptionPane;
-
 public class ControladorConfeccionarAnuncio
 {
 	//***************************************************************
@@ -191,7 +189,7 @@ public class ControladorConfeccionarAnuncio
 	/////////////////////////////////////////////////////////////////
 	//
 	/////////////////////////////////////////////////////////////////
-	public void inicializarCatalogos()
+	public void inicializarCatalogos() throws Exception
 	{
 		this.catalogoCategorias.obtenerCategorias();
 		this.catalogoSubCategorias.obtenerSubCategorias();
@@ -232,7 +230,7 @@ public class ControladorConfeccionarAnuncio
 	// Metodo DSD 1.1.2 - DSD 1.7.3 							   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public Collection<negocio.Producto> seleccionarSubcategoria(int idCategoria, int idSubCategoria) 
+	public Collection<negocio.Producto> seleccionarSubcategoria(int idCategoria, int idSubCategoria) throws Exception 
 	{
 		negocio.SubCategoria subCatActual = new negocio.SubCategoria();
 		
@@ -305,7 +303,6 @@ public class ControladorConfeccionarAnuncio
 		}
 		catch (Exception e)
 		{
-			//DEPURACION
 			e.printStackTrace();
 			return false;
 		}
@@ -321,29 +318,6 @@ public class ControladorConfeccionarAnuncio
 	public void redactarMensaje(String mensaje) 
 	{		
 		this.anuncioActual.setTextoMensaje(mensaje);
-				
-		//TipoMensaje datosMensaje=new TipoMensaje();
-		
-		//negocio.ParametrosNegocio parametroNegocio = new negocio.ParametrosNegocio();
-		//parametroNegocio.obtenerParametrosNegocio();
-		
-		
-		///SALIDA
-		//int i=0;
-		
-//		for(negocio.Producto p : arrProductosPublicación)
-//		{	
-//			datosMensaje.arrDatosProductos[i][0]=Integer.toString(p.getIdProducto());
-//			datosMensaje.arrDatosProductos[i][1]=p.getNombre();
-//			datosMensaje.arrDatosProductos[i][2]=Double.toString(p.getPrecioActual());
-//			datosMensaje.arrDatosProductos[i][3]=Double.toString(p.getPrecioPromocional());
-//			i++;
-//		}
-//		
-//		anuncioActual.setMembrete(parametroNegocio.getMembrete());
-//		datosMensaje.setMembrete(parametroNegocio.getMembrete());
-
-//		return datosMensaje;
 	}
 	//---------------------------------------------------------------
 
@@ -423,8 +397,6 @@ public class ControladorConfeccionarAnuncio
 		catalogoProductos.actualizarPrecioPromProducto(productoModificar, nuevoPrecio);
 
 		anuncioActual.actualizarProducto(productoModificar);
-
-		//return null;
 	}
 	//---------------------------------------------------------------
 	
@@ -614,55 +586,4 @@ public class ControladorConfeccionarAnuncio
 
 	}
 	//---------------------------------------------------------------
-	
-		
-	/////////////////////////////////////////////////////////////////
-	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.2.1 				   //
-	/////////////////////////////////////////////////////////////////
-	private class TipoMensaje 
-	{
-		private String membrete;
-		private String[][] arrDatosProductos;
-
-		
-		//CONSTRUCTOR
-		public TipoMensaje() 
-		{
-			this.membrete = "";
-			this.arrDatosProductos = new String[arrProductosPublicación.size()][3];
-		}
-
-
-		@SuppressWarnings("unused")
-		public String getMembrete() 
-		{
-			return membrete;
-		}
-
-
-		public void setMembrete(String membrete) 
-		{
-			this.membrete = membrete;
-		}
-
-
-		@SuppressWarnings("unused")
-		public String[][] getArrDatosProductos() 
-		{
-			return arrDatosProductos;
-		}
-
-
-		@SuppressWarnings("unused")
-		public void setArrDatosProductos(String[][] arrDatosProductos) 
-		{
-			this.arrDatosProductos = arrDatosProductos;
-		}
-		
-	}
-	//---------------------------------------------------------------
-	
-	//////////////////////////////////////////////////////////////////////////////////
-	//REVISAR Y GENERAR SUBCLASES SALIDA PARA DATOS EN PANTALLA METODOS ANTERIORES //
-	//////////////////////////////////////////////////////////////////////////////////
 }

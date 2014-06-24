@@ -49,7 +49,7 @@ public class CatalogoProductos
 	// Setea los productos y sus datos en el array del catalogo    //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerProductos()
+	public void obtenerProductos() throws Exception
 	{
 		//SE CREA INSTANCIA DEL CATALOGO DE DATOS
 		datos.CatalogoProductos ctgDatos = new datos.CatalogoProductos();		

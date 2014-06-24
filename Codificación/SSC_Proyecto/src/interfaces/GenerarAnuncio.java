@@ -88,7 +88,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	//------------------------------------------------------------------
-	public GenerarAnuncio(Frame framePadre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios)
+	public GenerarAnuncio(Frame framePadre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
 	{
 		
 		super(framePadre);
@@ -124,7 +124,12 @@ public class GenerarAnuncio extends JDialog {
 		
 		cmbCategorias.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
-				click_combo_categorias(evento);
+				try {
+					click_combo_categorias(evento);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}});
 		
 		lblCategoria.setLabelFor(cmbCategorias);
@@ -144,7 +149,12 @@ public class GenerarAnuncio extends JDialog {
 		
 		cmbSubcategorias.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
-				click_combo_subcategorias(evento);
+				try {
+					click_combo_subcategorias(evento);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		lblSubcategoria.setLabelFor(cmbSubcategorias);
@@ -186,7 +196,7 @@ public class GenerarAnuncio extends JDialog {
 		tblProductosAnuncio.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) 
 			{
-				if(tblProductosAnuncio.columnAtPoint(me.getPoint())==3)
+				if(tblProductosAnuncio.columnAtPoint(me.getPoint())==4)
 					click_eliminar_producto();
 			}
 		});
@@ -215,7 +225,7 @@ public class GenerarAnuncio extends JDialog {
 		tblProductos.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent me) 
 					{
-						if(tblProductos.columnAtPoint(me.getPoint())==3)
+						if(tblProductos.columnAtPoint(me.getPoint())==4)
 							click_aniadir_producto();
 					}
 				});
@@ -301,7 +311,7 @@ public class GenerarAnuncio extends JDialog {
 
 	// EVENTOS
 	//-------------------------------------------------------------------------------------------------
-	protected void click_combo_categorias(ItemEvent evento)
+	protected void click_combo_categorias(ItemEvent evento) throws Exception
 	{
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{
@@ -328,7 +338,7 @@ public class GenerarAnuncio extends JDialog {
 
 	
 	//----------------------------------------------------------------------------------------------
-	protected void click_combo_subcategorias(ItemEvent evento)
+	protected void click_combo_subcategorias(ItemEvent evento) throws Exception
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{			

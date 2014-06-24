@@ -59,7 +59,7 @@ public class HiloBarraProgreso implements Runnable
                 	dialog.dispose();
                 dialog.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 break;//rompe ciclo
-            }            
+            }                       	
         }
     }
 

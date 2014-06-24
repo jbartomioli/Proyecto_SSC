@@ -56,7 +56,7 @@ public class Precios extends JDialog {
 
 
 	//CONSTRUCTOR
-	public Precios(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios) 
+	public Precios(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception 
 	{
 		super(padre);
 		setResizable(false);
@@ -99,7 +99,12 @@ public class Precios extends JDialog {
 		
 		cmbCategorias.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
-				clickComboCategorias(evento);
+				try {
+					clickComboCategorias(evento);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				}});
 		
 		lblCategoria.setLabelFor(cmbCategorias);
@@ -119,7 +124,12 @@ public class Precios extends JDialog {
 		
 		cmbSubcategorias.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
-				clickComboSubcategorias(evento);
+				try {
+					clickComboSubcategorias(evento);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		lblSubcategoria.setLabelFor(cmbSubcategorias);
@@ -135,7 +145,12 @@ public class Precios extends JDialog {
 				{
 					negocio.CatalogoProductos catProd = new negocio.CatalogoProductos();
 					
-					catProd.obtenerProductos();
+					try {
+						catProd.obtenerProductos();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 							
 					tblProductos.completarTabla(catProd.buscarProducto(txtBuscarProductos.getText()));
 					//Oculta la columna del botón
@@ -218,7 +233,7 @@ public class Precios extends JDialog {
 	}	
 	
 	// EVENTOS
-	public void clickComboCategorias(ItemEvent evento)
+	public void clickComboCategorias(ItemEvent evento) throws Exception
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{
@@ -247,7 +262,7 @@ public class Precios extends JDialog {
 	}
 	
 	
-	protected void clickComboSubcategorias(ItemEvent evento)
+	protected void clickComboSubcategorias(ItemEvent evento) throws Exception
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{			
@@ -297,7 +312,12 @@ public class Precios extends JDialog {
 		//Evento para llenar la tabla de productos buscados desde la lupa
 		negocio.CatalogoProductos catProd = new negocio.CatalogoProductos();
 		
-		catProd.obtenerProductos();
+		try {
+			catProd.obtenerProductos();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		tblProductos.completarTabla(catProd.buscarProducto(txtBuscarProductos.getText()));
 		tblProductos.definirTablaProductos();
 		

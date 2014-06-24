@@ -40,7 +40,7 @@ public class Configuraciones extends JDialog
 	private JTextField txtBD;
 	private JCheckBox chkModoDepuracion; 
 	private HashMap<String, String> propiedades;
-	utilidades.HibernateCFG archivoXML;
+	private utilidades.HibernateCFG archivoXML;
 
 	
 	public Configuraciones(JFrame framePadre) 
@@ -58,6 +58,8 @@ public class Configuraciones extends JDialog
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
+		
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		
 		addWindowListener(new WindowAdapter() {
 	    	public void windowClosing(WindowEvent arg0) {

@@ -58,7 +58,7 @@ public class Principal extends JFrame {
 	private interfaces.Acerca acerca;
 	
 	//CONSTRUCTOR
-	public Principal(negocio.ControladorConfeccionarAnuncio controladorAnuncios) 
+	public Principal(negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception 
 	{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"SSC_128.png"));
 		setMinimumSize(new Dimension(800, 600));

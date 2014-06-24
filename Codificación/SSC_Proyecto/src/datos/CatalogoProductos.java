@@ -52,7 +52,7 @@ public class CatalogoProductos
 	// OBTIENE TODOS LOS PRODUCTOS Y SU SUBCATEGORIA Y PRECIOS     //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public Collection<datos.Producto> obtenerProductos()
+	public Collection<datos.Producto> obtenerProductos() throws Exception
 	{
 		Session session = null;	
 		
@@ -145,12 +145,6 @@ public class CatalogoProductos
 			}			
         session.getTransaction().commit();
 	}
-	 
-	catch(Exception ex)
-	{
-		ex.printStackTrace();
-	}
-	 
 	finally
 	{
 	 	session.close();

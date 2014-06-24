@@ -21,7 +21,6 @@ import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;

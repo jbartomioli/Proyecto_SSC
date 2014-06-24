@@ -95,7 +95,8 @@ public class HibernateCFG
 			
 			XMLOutputter xmlOutput = new XMLOutputter();
 	 
-			xmlOutput.output(document, new FileWriter(urlFile));        
+			xmlOutput.output(document, new FileWriter(urlFile)); 
+			
 	    }
 	    catch ( IOException io )
 	    {

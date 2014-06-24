@@ -81,7 +81,7 @@ public class SubCategoria
 	// 	OBTIENE LOS PRODUCTOS DE UNA SUBCATEGORIA ESPECIFICA	   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerProductos(int idSubcategoria, int idCategoria) 
+	public void obtenerProductos(int idSubcategoria, int idCategoria) throws Exception
 	{
 		Session session = null;	
 		
@@ -157,13 +157,7 @@ public class SubCategoria
             
             //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
-		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
+		}		 
 		finally
 		{
 		 	session.close();

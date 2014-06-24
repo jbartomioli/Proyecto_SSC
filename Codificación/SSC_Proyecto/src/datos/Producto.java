@@ -1,8 +1,5 @@
 package datos;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.hibernate.Session;
 
 public class Producto 
