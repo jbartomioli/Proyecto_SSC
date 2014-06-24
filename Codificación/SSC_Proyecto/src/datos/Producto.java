@@ -1,5 +1,8 @@
 package datos;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.hibernate.Session;
 
 public class Producto 
@@ -12,8 +15,8 @@ public class Producto
 	private String nombre;
 	private int existenciaStock;
 	private datos.SubCategoria subcategoria;
-	//private Collection<datos.Precio> precios;
-	private datos.Precio precios;
+	private Collection<datos.Precio> precios;
+	//private datos.Precio precios;
 	//---------------------------------------------------------------
 
 	
@@ -27,8 +30,8 @@ public class Producto
 		this.nombre = "";
 		this.existenciaStock = 0;
 		this.subcategoria = new SubCategoria();
-		//this.precios = new ArrayList<datos.Precio>();
-		this.precios = new datos.Precio();
+		this.precios = new ArrayList<datos.Precio>();
+		//this.precios = new datos.Precio();
 	}
 	//---------------------------------------------------------------
 
@@ -86,7 +89,7 @@ public class Producto
 		this.subcategoria = subcategoria;
 	}
 
-	/*public Collection<datos.Precio> getPrecios() 
+	public Collection<datos.Precio> getPrecios() 
 	{
 		return precios;
 	}
@@ -94,9 +97,9 @@ public class Producto
 	public void setPrecios(Collection<datos.Precio> precios) 
 	{
 		this.precios = precios;
-	}*/
+	}
 	
-	public datos.Precio getPrecios() 
+	/*public datos.Precio getPrecios() 
 	{
 		return precios;
 	}
@@ -104,7 +107,7 @@ public class Producto
 	public void setPrecios(datos.Precio precios) 
 	{
 		this.precios = precios;
-	}
+	}*/
 	//---------------------------------------------------------------
 
 

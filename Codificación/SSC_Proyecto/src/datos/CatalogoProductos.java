@@ -103,10 +103,10 @@ public class CatalogoProductos
 	        	{//SETEO DE LOS PRECIOS DEL PRODUCTO
 	        		
 	        		//ARRAY TEMPORAL DE PRECIOS
-	        		//Collection<datos.Precio> preciosArrTemp = new ArrayList<datos.Precio>();
+	        		Collection<datos.Precio> preciosArrTemp = new ArrayList<datos.Precio>();
 	        		
 	        		//SE OBTIENE CADA PRECIO DEL PRODUCTO
-	        		/*for(entidades.Precios entPrecio: entProducto.getPrecioses())
+	        		for(entidades.Precios entPrecio: entProducto.getPrecioses())
 	        		{	
 	        			//PRECIO TEMPORAL PARA SETEO DE DATOS
 	        			datos.Precio precioDato = new datos.Precio();
@@ -123,10 +123,10 @@ public class CatalogoProductos
 	        		}
 	        		
 	        		//SE SETEAN LOS PRECIOS EN EL PRODUCTO
-	        		productoDatos.setPrecios(preciosArrTemp);*/
+	        		productoDatos.setPrecios(preciosArrTemp);
 	        		
 	        		//PRECIO TEMPORAL PARA SETEO DE DATOS
-        			datos.Precio precioDato = new datos.Precio();
+        			/*datos.Precio precioDato = new datos.Precio();
 	        		entidades.Precios entPrecio = new entidades.Precios();
 	        		
 	        		//SETEO DE DATOS DE PRECIO
@@ -137,7 +137,7 @@ public class CatalogoProductos
         			precioDato.setPrecioPromocional(entPrecio.getPrecioPromocional());
         			
         			//SE SETEAN LOS PRECIOS EN EL PRODUCTO
-	        		productoDatos.setPrecios(precioDato);
+	        		productoDatos.setPrecios(precioDato);*/
 	        	}
 	        				
 	        	//SE AGREGA EL PRODUCTO SETEADO EN EL ARRAY DEL CATALOGO

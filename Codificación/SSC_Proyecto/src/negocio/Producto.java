@@ -1,5 +1,8 @@
 package negocio;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 
 
 public class Producto 
@@ -12,8 +15,8 @@ public class Producto
 	private String nombre;
 	private int existenciaStock;
 	private negocio.SubCategoria subCategoria;
-	//private Collection<negocio.Precio> precios;
-	private negocio.Precio precios;
+	private Collection<negocio.Precio> precios;
+	//private negocio.Precio precios;
 	//---------------------------------------------------------------
 
 
@@ -28,8 +31,8 @@ public class Producto
 		this.nombre = "";
 		this.existenciaStock = 0;
 		this.subCategoria = new negocio.SubCategoria();
-		//this.precios = new ArrayList<negocio.Precio>();
-		this.precios = new negocio.Precio();
+		this.precios = new ArrayList<negocio.Precio>();
+		//this.precios = new negocio.Precio();
 	}
 	//---------------------------------------------------------------
 
@@ -88,7 +91,7 @@ public class Producto
 		this.subCategoria = subCategoria;
 	}
 
-	/*public Collection<negocio.Precio> getPrecios() 
+	public Collection<negocio.Precio> getPrecios() 
 	{
 		return precios;
 	}
@@ -96,9 +99,9 @@ public class Producto
 	public void setPrecios(Collection<negocio.Precio> precios) 
 	{
 		this.precios = precios;
-	}*/
+	}
 	
-	public negocio.Precio getPrecios() 
+	/*public negocio.Precio getPrecios() 
 	{
 		return precios;
 	}
@@ -106,7 +109,7 @@ public class Producto
 	public void setPrecios(negocio.Precio precios) 
 	{
 		this.precios = precios;
-	}
+	}*/
 	
 	
 	public String toString()
@@ -184,7 +187,7 @@ public class Producto
 	public negocio.Precio getPrecioVigente()
 	{
 		//SE RECORRE EL HISTORICO DE PRECIOS
-		/*for(negocio.Precio precioNegocio: this.getPrecios())
+		for(negocio.Precio precioNegocio: this.getPrecios())
 		{
 			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
 			//ES EL PRECIO VIGENTE
@@ -195,13 +198,13 @@ public class Producto
 				continue;
 		}
 		//FINALMENTE SI NO TIENE PRECIO DEVUELVE NULO
-		return null;*/
+		return null;
 		
-		negocio.Precio precioNegocio = new negocio.Precio();
+		/*negocio.Precio precioNegocio = new negocio.Precio();
 		
 		precioNegocio = this.getPrecios();
 		
-		return precioNegocio;
+		return precioNegocio;*/
 	}
 	//---------------------------------------------------------------
 	
