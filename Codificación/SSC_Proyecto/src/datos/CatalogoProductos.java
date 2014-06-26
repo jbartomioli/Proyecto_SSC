@@ -118,6 +118,7 @@ public class CatalogoProductos
 	        			precioDato.setPrecio(entPrecio.getPrecio());
 	        			precioDato.setPrecioPromocional(entPrecio.getPrecioPromocional());
 	        			
+	        			
 	        			//SE AGREGA EL PRECIO AL ARRAY TEMPORAL
 	        			preciosArrTemp.add(precioDato);
 	        		}

@@ -131,7 +131,7 @@ public class Producto
 	public float getPrecioActual()
 	{		
 		//SE RECORRE EL HISTORICO DE PRECIOS
-		/*for(negocio.Precio precioNegocio: this.getPrecios())
+		for(negocio.Precio precioNegocio: this.getPrecios())
 		{
 			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
 			//ES EL PRECIO VIGENTE
@@ -142,11 +142,11 @@ public class Producto
 				continue;
 		}
 		//FINALMENTE SI NO TIENE PRECIO DEVUELVE NULO
-		return 0;*/
+		return 0;
 		
-		negocio.Precio precioNegocio = new negocio.Precio();
+		//negocio.Precio precioNegocio = new negocio.Precio();
 		
-		return precioNegocio.getPrecio();
+		//return precioNegocio.getPrecio();
 	}
 	//---------------------------------------------------------------
 	
@@ -159,7 +159,7 @@ public class Producto
 	public float getPrecioPromocional()
 	{
 		//SE RECORRE EL HISTORICO DE PRECIOS
-		/*for(negocio.Precio precioNegocio: this.getPrecios())
+		for(negocio.Precio precioNegocio: this.getPrecios())
 		{
 			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
 			//ES EL PRECIO PROMOCIONAL VIGENTE
@@ -170,11 +170,11 @@ public class Producto
 				continue;
 		}
 		//FINALMENTE SI NO TIENE PRECIO DEVUELVE 0
-		return 0;*/
+		return 0;
 		
-		negocio.Precio precioNegocio = new negocio.Precio();
+		//negocio.Precio precioNegocio = new negocio.Precio();
 		
-		return precioNegocio.getPrecioPromocional();
+		//return precioNegocio.getPrecioPromocional();
 	}
 	//---------------------------------------------------------------
 	

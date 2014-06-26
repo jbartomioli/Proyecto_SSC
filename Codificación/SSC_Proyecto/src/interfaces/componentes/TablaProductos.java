@@ -39,12 +39,9 @@ public class TablaProductos extends JTable {
 		int i = 0;
 		for (negocio.Producto productoActual : productos) {
 			modeloTablaProductos.setValueAt(productoActual.getNombre(), i, 0);
-			modeloTablaProductos.setValueAt(productoActual.getPrecioActual(),
-					i, 1);
-			modeloTablaProductos.setValueAt(productoActual.getPrecioPromocional(),
-					i, 2);
-			modeloTablaProductos.setValueAt(
-					productoActual.getExistenciaStock(), i, 3);
+			modeloTablaProductos.setValueAt(productoActual.getPrecioActual(),i, 1);
+			modeloTablaProductos.setValueAt(productoActual.getPrecioPromocional(),i, 2);
+			modeloTablaProductos.setValueAt(productoActual.getExistenciaStock(), i, 3);
 			modeloTablaProductos.setValueAt(new Boolean(false), i, 4);
 			i++;
 		}
