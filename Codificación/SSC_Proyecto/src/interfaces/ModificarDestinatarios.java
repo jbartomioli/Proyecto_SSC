@@ -21,6 +21,7 @@ import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
@@ -146,7 +147,7 @@ public class ModificarDestinatarios extends JDialog {
 		tblDestinatariosNuevos.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) 
 			{
-				if(tblDestinatariosNuevos.columnAtPoint(me.getPoint())==3)
+				if(tblDestinatariosNuevos.columnAtPoint(me.getPoint())==4)
 					click_eliminar_destinatario();
 			}
 		});
@@ -167,7 +168,7 @@ public class ModificarDestinatarios extends JDialog {
 		tblDestinatariosBuscados.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) 
 			{
-				if(tblDestinatariosBuscados.columnAtPoint(me.getPoint())==3)
+				if(tblDestinatariosBuscados.columnAtPoint(me.getPoint())==4)
 					click_aniadir_destinatario();
 			}
 		});
@@ -292,21 +293,10 @@ public class ModificarDestinatarios extends JDialog {
 	//-------------------------------------------------------------------------------------------------------
 	public void click_boton_aceptar(interfaces.GenerarAnuncio dialogPadre)
 	{		
-		DefaultTableModel modelo = new DefaultTableModel();
+		TableModel modelo = new DefaultTableModel();
 		
-		modelo.addColumn("Apellido"); 
-		modelo.addColumn("Nombre"); 
-		modelo.addColumn("Mail"); 
+		modelo = tblDestinatariosNuevos.getModel();
 		
-//		modelo.setNumRows(tblDestinatariosNuevos.getRowCount());
-		
-//		for(int i=0; i<tblDestinatariosNuevos.getRowCount()+1; ++i)
-//		{
-//			modelo.setValueAt(tblDestinatariosNuevos.getValueAt(i, 0),i,0);
-//			modelo.setValueAt(tblDestinatariosNuevos.getValueAt(i, 1),i,1);
-//			modelo.setValueAt(tblDestinatariosNuevos.getValueAt(i, 2),i,2);
-//		}
-				
 		dialogPadre.actualizarClientesDestinatarios(modelo);
 		
 		dispose();

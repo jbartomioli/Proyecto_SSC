@@ -22,6 +22,7 @@ public class TablaModificarDestinatarios extends JTable {
 	 */
 	public TablaModificarDestinatarios() {
 		modeloTablaDestinatarios = new DefaultTableModel(); 
+		modeloTablaDestinatarios.addColumn("ID");
 		modeloTablaDestinatarios.addColumn("Apellido"); 
 		modeloTablaDestinatarios.addColumn("Nombre"); 
 		modeloTablaDestinatarios.addColumn("Especialidad"); 
@@ -39,15 +40,21 @@ public class TablaModificarDestinatarios extends JTable {
 		setModel(modeloTablaDestinatarios);
 		int i = 0;
 		for (negocio.Cliente clienteActual : arrClientes) {
-			modeloTablaDestinatarios.setValueAt(clienteActual.getApellido(), i, 0);
-			modeloTablaDestinatarios.setValueAt(clienteActual.getNombre(),	i, 1);
-			modeloTablaDestinatarios.setValueAt(clienteActual.getEspecialidad(), i, 2);
-			modeloTablaDestinatarios.setValueAt(new Boolean(false), i, 3);
+			modeloTablaDestinatarios.setValueAt(clienteActual.getIdCliente(), i, 0);
+			modeloTablaDestinatarios.setValueAt(clienteActual.getApellido(), i, 1);
+			modeloTablaDestinatarios.setValueAt(clienteActual.getNombre(),	i, 2);
+			modeloTablaDestinatarios.setValueAt(clienteActual.getEspecialidad(), i, 3);
+			modeloTablaDestinatarios.setValueAt(new Boolean(false), i, 4);
 			i++;
 		}
 		
+		getColumn("ID").setWidth(0);
+		getColumn("ID").setMaxWidth(0);
+		getColumn("ID").setMinWidth(0);
+		getColumn("ID").setPreferredWidth(0);
+		
 		columnaBoton = new TableColumn();
-		columnaBoton = getColumnModel().getColumn(3);
+		columnaBoton = getColumnModel().getColumn(4);
 		columnaBoton.setCellEditor(new interfaces.componentes.EditorCeldas(this));
 		columnaBoton.setPreferredWidth(16);
 		columnaBoton.setMaxWidth(16);

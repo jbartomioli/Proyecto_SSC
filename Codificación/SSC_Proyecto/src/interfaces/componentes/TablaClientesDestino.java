@@ -17,16 +17,15 @@ public class TablaClientesDestino extends JTable {
 	
 	public TablaClientesDestino()
 	{
-		
+		modeloTablaClientes = new DefaultTableModel(); 
+		modeloTablaClientes.addColumn("ID");
+		modeloTablaClientes.addColumn("Apellido"); 
+		modeloTablaClientes.addColumn("Nombre"); 
+		modeloTablaClientes.addColumn("E-mail");
 	}
 	
 	public void completarDatos(Collection<negocio.Cliente> clientes)
 	{
-		modeloTablaClientes = new DefaultTableModel(); 
-		modeloTablaClientes.addColumn("Apellido"); 
-		modeloTablaClientes.addColumn("Nombre"); 
-		modeloTablaClientes.addColumn("E-mail");
-		
 		modeloTablaClientes.setNumRows(clientes.size()); 
 		
 		setModel(modeloTablaClientes);
@@ -34,16 +33,23 @@ public class TablaClientesDestino extends JTable {
 		int i = 0;
 		for(negocio.Cliente clienteActual : clientes)
 		{
-			modeloTablaClientes.setValueAt(clienteActual.getApellido(), i, 0);
-			modeloTablaClientes.setValueAt(clienteActual.getNombre(), i, 1);
-			modeloTablaClientes.setValueAt(clienteActual.getEmail(), i, 2);
+			modeloTablaClientes.setValueAt(clienteActual.getIdCliente(), i, 0);
+			modeloTablaClientes.setValueAt(clienteActual.getApellido(), i, 1);
+			modeloTablaClientes.setValueAt(clienteActual.getNombre(), i, 2);
+			modeloTablaClientes.setValueAt(clienteActual.getEmail(), i, 3);
 			i++;
 		} 
+		
+		getColumn("ID").setWidth(0);
+		getColumn("ID").setMaxWidth(0);
+		getColumn("ID").setMinWidth(0);
+		getColumn("ID").setPreferredWidth(0);
 		
 		for(int j=0; j<getColumnModel().getColumnCount(); ++j)
 			getColumnModel().getColumn(j).setResizable(false);
 		
 		getTableHeader().setReorderingAllowed(false);
+		
 	}
 	
 	public void limpiar_tabla()
