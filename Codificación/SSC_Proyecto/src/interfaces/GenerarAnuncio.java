@@ -390,9 +390,9 @@ public class GenerarAnuncio extends JDialog {
 	        	
 	        	for(int i=0; i<tblProductosAnuncio.getModel().getRowCount();++i)
 	        	{
-	        		productos[i][0] = tblProductosAnuncio.getModel().getValueAt(i, 1).toString();
-	        		productos[i][1] = tblProductosAnuncio.getModel().getValueAt(i, 2).toString();
-	        		productos[i][2] = tblProductosAnuncio.getModel().getValueAt(i, 3).toString();
+	        		productos[i][0] = tblProductosAnuncio.getModel().getValueAt(i, 0).toString();
+	        		productos[i][1] = tblProductosAnuncio.getModel().getValueAt(i, 1).toString();
+	        		productos[i][2] = tblProductosAnuncio.getModel().getValueAt(i, 2).toString();
 	        	}
 	        		        	
 				@SuppressWarnings("unused")
@@ -416,7 +416,7 @@ public class GenerarAnuncio extends JDialog {
     	String mailsClientes[] = new String[tblDestinatarios.getModel().getRowCount()];
     	
     	for(int i=0; i<tblDestinatarios.getModel().getRowCount();++i)
-    		mailsClientes[i] = tblDestinatarios.getModel().getValueAt(i, 2).toString();
+    		mailsClientes[i] = tblDestinatarios.getModel().getValueAt(i, 3).toString();
 
     	enviado = previsualizadorHTML.inicializar("temporal.html", mailsClientes);
     	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
