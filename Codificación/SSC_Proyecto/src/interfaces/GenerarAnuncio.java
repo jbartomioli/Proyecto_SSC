@@ -390,9 +390,9 @@ public class GenerarAnuncio extends JDialog {
 	        	
 	        	for(int i=0; i<tblProductosAnuncio.getModel().getRowCount();++i)
 	        	{
-	        		productos[i][0] = tblProductosAnuncio.getModel().getValueAt(i, 0).toString();
-	        		productos[i][1] = tblProductosAnuncio.getModel().getValueAt(i, 1).toString();
-	        		productos[i][2] = tblProductosAnuncio.getModel().getValueAt(i, 2).toString();
+	        		productos[i][0] = tblProductosAnuncio.getModel().getValueAt(i, 1).toString();
+	        		productos[i][1] = tblProductosAnuncio.getModel().getValueAt(i, 2).toString();
+	        		productos[i][2] = tblProductosAnuncio.getModel().getValueAt(i, 3).toString();
 	        	}
 	        		        	
 				@SuppressWarnings("unused")
