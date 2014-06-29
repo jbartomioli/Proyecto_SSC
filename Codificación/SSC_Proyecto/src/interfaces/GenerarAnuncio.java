@@ -80,19 +80,21 @@ public class GenerarAnuncio extends JDialog {
 	
 
 	public void actualizarClientesDestinatarios(TableModel nuevoModelo)
-	{	
-		int cantFilasModelo = nuevoModelo.getRowCount();
-				
-		for(negocio.Cliente clienteActual : controladorAux.getArrClientesInteresados())
+	{			
+		String[] idClientesModif = new String[nuevoModelo.getRowCount()];
+		
+		controladorAux.getArrClientesInteresados().clear();
+		
+		for(int j=0; j<nuevoModelo.getRowCount(); j++)
+			idClientesModif[j] = nuevoModelo.getValueAt(j,0).toString();
+		
+		for(int i=0; i<idClientesModif.length; i++)
 		{
-			for(int i=0; i<cantFilasModelo; i++)
-				if(clienteActual.getIdCliente() == Integer.parseInt(nuevoModelo.getValueAt(i, 0).toString()))
-					continue;
-				else
-				{
-					//if(i==cantFilasModelo-1)
-						//controladorAux.getArrClientesInteresados().remove(clienteActual);
-				}
+			negocio.Cliente clienteActual = new negocio.Cliente();
+			
+			clienteActual = controladorAux.getCatalogoClientes().buscarCliente(Integer.parseInt(idClientesModif[i]));
+			
+			controladorAux.getArrClientesInteresados().add(clienteActual);
 		}
 		
 		tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());

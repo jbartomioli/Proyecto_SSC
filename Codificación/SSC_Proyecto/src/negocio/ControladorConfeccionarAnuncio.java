@@ -406,26 +406,26 @@ public class ControladorConfeccionarAnuncio
 	// Metodo DSD 1.6.1 (no modifica, solo muestra los posibles clientes a modificar) //
 	////////////////////////////////////////////////////////////////////////////////////
 	//LISTO
-	public String[][] modificarClientesDestinatarios() 
+	public void modificarClientesDestinatarios() 
 	{
-		Collection<negocio.Cliente> arrClientes = new ArrayList<negocio.Cliente>();
+		//Collection<negocio.Cliente> arrClientes = new ArrayList<negocio.Cliente>();
 
-		arrClientes = anuncioActual.getClientes();
+		//arrClientes = anuncioActual.getClientes();
 
-		//SALIDA
-		String[][] arrDatos = new String[arrClientes.size()][2];
-
-		int i = 0;
-
-		for (negocio.Cliente c : arrClientes) 
-		{
-			arrDatos[i][0] = Integer.toString(c.getIdCliente());
-			arrDatos[i][1] = c.getNombre();
-			arrDatos[i][2] = c.getApellido();
-			i++;
-		}
-
-		return arrDatos;
+//		//SALIDA
+//		String[][] arrDatos = new String[arrClientes.size()][2];
+//
+//		int i = 0;
+//
+//		for (negocio.Cliente c : arrClientes) 
+//		{
+//			arrDatos[i][0] = Integer.toString(c.getIdCliente());
+//			arrDatos[i][1] = c.getNombre();
+//			arrDatos[i][2] = c.getApellido();
+//			i++;
+//		}
+//
+//		return arrDatos;
 	}
 	//---------------------------------------------------------------
 
@@ -503,87 +503,4 @@ public class ControladorConfeccionarAnuncio
 	}
 
 
-	
-	//***************************************************************
-	// SUBCLASES SALIDA DE DATOS 									*
-	//***************************************************************
-	
-	/////////////////////////////////////////////////////////////////
-	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.1.1 y 1.1.2		   //
-	/////////////////////////////////////////////////////////////////
-	public class SalidaDatos
-	{
-		private String descripcion;
-		private String id;
-		
-		public SalidaDatos()
-		{
-			this.descripcion = "";
-			this.id = "";
-		}
-
-		
-		public String getDescripcion() {
-			return descripcion;
-		}
-
-		public void setDescripcion(String descripcion) {
-			this.descripcion = descripcion;
-		}
-
-		
-		public String getId() {
-			return id;
-		}
-
-		public void setId(String id) {
-			this.id = id;
-		}	
-	}
-	//---------------------------------------------------------------
-	
-	
-	/////////////////////////////////////////////////////////////////
-	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 1.1.3 y 1.1.7		   //
-	/////////////////////////////////////////////////////////////////
-	public class SalidaDatosSeleccionaProductos
-	{
-		private String stock;
-		private String precio;
-		private String[][] clientes;
-		
-		public SalidaDatosSeleccionaProductos()
-		{
-			this.stock = "";
-			this.precio = "";
-			this.clientes = new String[arrClientesInteresados.size()][3];
-		}
-
-		public String getStock() {
-			return stock;
-		}
-
-		public void setStock(String stock) {
-			this.stock = stock;
-		}
-
-		public String getPrecio() {
-			return precio;
-		}
-
-		public void setPrecio(String precio) {
-			this.precio = precio;
-		}
-
-		public String[][] getClientes() {
-			return clientes;
-		}
-
-		public void setClientes(String[][] clientes) {
-			this.clientes = clientes;
-		}
-
-
-	}
-	//---------------------------------------------------------------
 }
