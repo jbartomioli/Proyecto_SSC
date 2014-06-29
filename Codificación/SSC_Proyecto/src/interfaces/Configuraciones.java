@@ -182,11 +182,11 @@ public class Configuraciones extends JDialog
 			i++;
 		}
 		
-		txtURL.setText(tokens[2].substring(2));
-		txtPuerto.setText(tokens[3].substring(0, tokens[3].indexOf('/')));
+		//txtURL.setText(tokens[2].substring(2));
+		//txtPuerto.setText(tokens[3].substring(0, tokens[3].indexOf('/')));
 		txtUsuario.setText(propiedades.get("hibernate.connection.username"));
 		pflPass.setText(propiedades.get("hibernate.connection.password"));
-		txtBD.setText(tokens[3].substring(tokens[3].indexOf('/')+1));
+		//txtBD.setText(tokens[3].substring(tokens[3].indexOf('/')+1));
 		if(propiedades.get("hibernate.show_sql").equals("true"))
 			chkModoDepuracion.setSelected(true);
 		else

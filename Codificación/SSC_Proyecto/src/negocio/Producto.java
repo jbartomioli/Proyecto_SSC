@@ -217,7 +217,7 @@ public class Producto
 	public void setPrecioPromocional(float nuevoPrecio)
 	{
 		//SE RECORRE EL HISTORICO DE PRECIOS
-		/*for(negocio.Precio precioNegocio: this.precios)
+		for(negocio.Precio precioNegocio: this.precios)
 		{
 			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
 			//ES EL PRECIO VIGENTE
@@ -242,9 +242,9 @@ public class Producto
 				//SE CORTA LA ITERACION
 				break;
 			}
-		}*/
+		}
 		
-		negocio.Precio precioNegocio = new negocio.Precio();
+		/*negocio.Precio precioNegocio = new negocio.Precio();
 		
 		//SE MODIFICA EL PRECIO DEL PRODUCTO
 		precioNegocio.setPrecioPromocional(nuevoPrecio);
@@ -260,7 +260,7 @@ public class Producto
 		precioDatos.setPrecioPromocional(nuevoPrecio);
 		
 		//SE GUARDA EN BD
-		productoDatos.setPrecioPromocional(precioDatos);
+		productoDatos.setPrecioPromocional(precioDatos);*/
 	}
 	//---------------------------------------------------------------
 

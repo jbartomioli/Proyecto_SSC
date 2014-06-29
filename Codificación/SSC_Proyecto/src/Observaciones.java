@@ -11,7 +11,7 @@ public class Observaciones {
 	 * Poner como no editable tabla de destinatarios --> LISTO
 	 * Guardado de histórico de anuncios --> SOLO FALTA GUARDAR LOS CLIENTES
 	 * Eliminar botón guardar  --> LISTO
-	 * Precios modificar, en generar, solo promocional.
+	 * Precios modificar, en generar, solo promocional. --> LISTO
 	 * precios modificar principal los dos. --> LISTO
 	 * tabla boton quitar en modificar precio. --> LISTO
 	 * 

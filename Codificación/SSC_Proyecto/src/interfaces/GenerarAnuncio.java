@@ -57,9 +57,9 @@ public class GenerarAnuncio extends JDialog {
 	//COMPONENTES
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
 	private negocio.Categoria categoria;
-	private interfaces.componentes.TablaProductos tblProductosAnuncio;
+	private interfaces.componentes.TablaProductosAnuncio tblProductosAnuncio;
 	private interfaces.componentes.TablaClientesDestino tblDestinatarios;
-	private interfaces.componentes.TablaProductos tblProductos;
+	private interfaces.componentes.TablaProductosAnuncio tblProductos;
 	private interfaces.componentes.ComboCategorias cmbCategorias;
 	private interfaces.componentes.ComboSubcategorias cmbSubcategorias;
 	private interfaces.componentes.BotonesIconos btnGenerar;
@@ -200,7 +200,7 @@ public class GenerarAnuncio extends JDialog {
 		negocio.SubCategoria subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		
 		
-		tblProductosAnuncio = new interfaces.componentes.TablaProductos();
+		tblProductosAnuncio = new interfaces.componentes.TablaProductosAnuncio();
 		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
 		tblProductosAnuncio.completarTabla(productos);
 		tblProductosAnuncio.definirTablaProductosAnuncio();
@@ -227,7 +227,7 @@ public class GenerarAnuncio extends JDialog {
 		boxProductos.add(scrollProductos);
 		
 
-		tblProductos = new interfaces.componentes.TablaProductos();
+		tblProductos = new interfaces.componentes.TablaProductosAnuncio();
 		tblProductos.completarTabla(
 				controladorAux.seleccionarSubcategoria(
 						subcategoriaActual.getIdcategoria(), 
