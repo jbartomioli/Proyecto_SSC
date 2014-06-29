@@ -463,7 +463,8 @@ public class GenerarAnuncio extends JDialog {
     		}
     		
     		controladorAux.finalizarCargaProducto();
-    		controladorAux.guardarAnuncio();   		
+    		controladorAux.guardarAnuncio();   
+    		limpiar_objetos_temporales();
     	}
 	}
 	
@@ -539,6 +540,7 @@ public class GenerarAnuncio extends JDialog {
 		case(1): //finalizarEdicion();
 				 break;
 		case(0): limpiar_formulario();
+				 limpiar_objetos_temporales();
 				 dispose();
 				 break;
 		}
@@ -557,6 +559,15 @@ public class GenerarAnuncio extends JDialog {
 		tblDestinatarios.limpiar_tabla();
 		prgProgresoAniadir.setValue(0);
 		
+	}
+	
+	
+	//-----------------------------------------------------------------
+	private void limpiar_objetos_temporales()
+	{
+		controladorAux.getArrClientesInteresados().clear();
+		controladorAux.getArrProductosPublicación().clear();
+		controladorAux.setAnuncioActual(new negocio.Anuncio()); 
 	}
 
 	//-----------------------------------------------------------------

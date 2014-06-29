@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -128,9 +130,15 @@ public class CatalogoAnuncios
 			//GUARDA EL ANUNCIO EN BD - INSERT
 	        session.save(entAnuncio);
 			
-			Query query = session.createSQLQuery("SELECT MAX(idAnuncio) FROM anuncios");
-	        int maxIdAnuncio = Integer.parseInt(query.list().get(0).toString());
+	        session.getTransaction().commit();
 	        
+	        
+	        session.beginTransaction();
+			Query query = session.createSQLQuery("SELECT MAX(idAnuncio) FROM anuncios");
+	        int maxIdAnuncio = 0;
+			maxIdAnuncio = Integer.parseInt(query.list().get(0).toString());
+	        
+			JOptionPane.showMessageDialog(null,maxIdAnuncio);
 			
 	        
 	        {//SETEO DE CLIENTES
