@@ -80,7 +80,7 @@ public class CatalogoAnuncios
 	// GUARDA EL ANUNCIO EN LA BD								   //
 	/////////////////////////////////////////////////////////////////
 	//VER
-	public void guardarAnuncio(negocio.Anuncio anuncioActual)
+	public void guardarAnuncio(negocio.Anuncio anuncioActual) throws Exception
 	{
 		//SE AGREGA EL NUEVO ANUNCIO EN EL ARRAY
 		this.anuncios.add(anuncioActual);

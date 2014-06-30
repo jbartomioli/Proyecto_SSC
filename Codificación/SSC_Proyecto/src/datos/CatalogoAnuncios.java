@@ -107,7 +107,7 @@ public class CatalogoAnuncios
 	// GUARDA EL NUEVO ANUNCIO EN LA BD							   //
 	/////////////////////////////////////////////////////////////////
 	//VER
-	public void guardarAnuncio(datos.Anuncio anuncioActual)
+	public void guardarAnuncio(datos.Anuncio anuncioActual) throws Exception
 	{
 		Session session = null;	
 		
@@ -147,6 +147,11 @@ public class CatalogoAnuncios
 					entidades.Clientes entCliente = new entidades.Clientes();
 					
 					entCliente.setIdCliente(clienteDatos.getIdCliente());
+					
+					query = session.createSQLQuery("INSERT INTO clientes_anuncios (idCliente,idAnuncio) VALUES (:cliente, :anuncio)");
+					query.setParameter("cliente", entCliente.getIdCliente());
+					query.setParameter("anuncio", maxIdAnuncio);
+					query.executeUpdate();
 				}
 			}
 			
@@ -157,9 +162,9 @@ public class CatalogoAnuncios
 					
 					entProducto.setIdProducto(productoDatos.getIdProducto());
 
-					query = session.createSQLQuery("INSERT INTO productos_anuncios (idProducto,idAnuncio) VALUES (:valor1, :valor2)");
-					query.setParameter("valor1", entProducto.getIdProducto());
-					query.setParameter("valor2", maxIdAnuncio);
+					query = session.createSQLQuery("INSERT INTO productos_anuncios (idProducto,idAnuncio) VALUES (:producto, :anuncio)");
+					query.setParameter("producto", entProducto.getIdProducto());
+					query.setParameter("anuncio", maxIdAnuncio);
 					query.executeUpdate();
 				}
 			}
@@ -169,13 +174,7 @@ public class CatalogoAnuncios
 	        //CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		   
-		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
+		}		 
 		finally
 		{
 		 	session.close();
