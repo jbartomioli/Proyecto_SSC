@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -137,8 +135,6 @@ public class CatalogoAnuncios
 			Query query = session.createSQLQuery("SELECT MAX(idAnuncio) FROM anuncios");
 	        int maxIdAnuncio = 0;
 			maxIdAnuncio = Integer.parseInt(query.list().get(0).toString());
-	        
-			JOptionPane.showMessageDialog(null,maxIdAnuncio);
 			
 	        
 	        {//SETEO DE CLIENTES

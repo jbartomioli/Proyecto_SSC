@@ -475,7 +475,7 @@ public class GenerarAnuncio extends JDialog {
 	{
 		DefaultTableModel modeloTblProductosAnuncio = (DefaultTableModel) tblProductosAnuncio.getModel();
 		DefaultTableModel modeloTblProductos = (DefaultTableModel) tblProductos.getModel();
-		//DefaultTableModel modeloTblDestinatarios = (DefaultTableModel) tblDestinatarios.getModel();
+
 		
 		int filaSeleccionada = tblProductos.getSelectedRow();
 		Vector fila = new Vector(1);
@@ -513,6 +513,7 @@ public class GenerarAnuncio extends JDialog {
 	    if (filaSeleccionada >= 0)
 	         tableModel.removeRow(filaSeleccionada);	
 	    //habria que agregar la eliminacion del producto del array del controlador
+	    //ATENCION!
 	}
 	
 	

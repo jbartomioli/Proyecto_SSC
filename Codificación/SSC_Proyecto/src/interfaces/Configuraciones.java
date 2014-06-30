@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
@@ -41,6 +42,7 @@ public class Configuraciones extends JDialog
 	private JCheckBox chkModoDepuracion; 
 	private HashMap<String, String> propiedades;
 	private utilidades.HibernateCFG archivoXML;
+	private JPasswordField pflPassRep;
 
 	
 	public Configuraciones(JFrame framePadre) 
@@ -92,7 +94,7 @@ public class Configuraciones extends JDialog
 		
 		JPanel panelBD = new JPanel();
 		panelBD.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Base de Datos", TitledBorder.LEFT, TitledBorder.TOP, null, Color.DARK_GRAY));
-		panelBD.setBounds(10, 45, 474, 144);
+		panelBD.setBounds(10, 45, 474, 135);
 		getContentPane().add(panelBD);
 		panelBD.setLayout(null);
 		
@@ -115,44 +117,49 @@ public class Configuraciones extends JDialog
 		txtPuerto.setColumns(10);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(10, 62, 71, 14);
+		lblUsuario.setBounds(10, 54, 71, 14);
 		panelBD.add(lblUsuario);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(81, 59, 111, 20);
+		txtUsuario.setBounds(81, 51, 111, 20);
 		panelBD.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		JLabel lblPass = new JLabel("Contrase\u00F1a:");
-		lblPass.setBounds(235, 62, 86, 14);
+		lblPass.setBounds(235, 54, 86, 14);
 		panelBD.add(lblPass);
 		
 		pflPass = new JPasswordField();
-		pflPass.setBounds(324, 59, 140, 20);
+		pflPass.setBounds(324, 51, 140, 20);
 		panelBD.add(pflPass);
 		
+		pflPassRep = new JPasswordField();
+		pflPassRep.setText((String) null);
+		pflPassRep.setBounds(324, 79, 140, 20);
+		panelBD.add(pflPassRep);
+		
 		JLabel lblBD = new JLabel("Base de Datos:");
-		lblBD.setBounds(10, 103, 111, 14);
+		lblBD.setBounds(10, 82, 111, 14);
 		panelBD.add(lblBD);
 		
 		txtBD = new JTextField();
-		txtBD.setBounds(131, 100, 86, 20);
+		txtBD.setBounds(131, 79, 86, 20);
 		panelBD.add(txtBD);
 		txtBD.setColumns(10);
 		
 		chkModoDepuracion = new JCheckBox("Modo Depuraci\u00F3n");
-		chkModoDepuracion.setBounds(324, 99, 140, 23);
+		chkModoDepuracion.setBounds(10, 103, 140, 23);
 		panelBD.add(chkModoDepuracion);
 		
 		JPanel panelFile = new JPanel();
 		panelFile.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Archivos", TitledBorder.LEADING, TitledBorder.TOP, null, Color.DARK_GRAY));
-		panelFile.setBounds(10, 200, 474, 54);
+		panelFile.setBounds(10, 191, 474, 54);
 		getContentPane().add(panelFile);
 		panelFile.setLayout(null);
 		
 		JPanel panelMail = new JPanel();
 		panelMail.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Mail", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
-		panelMail.setBounds(10, 265, 474, 54);
+		panelMail.setBounds(10, 256, 474, 130);
 		getContentPane().add(panelMail);	
 		
 		inicializar();
@@ -164,6 +171,8 @@ public class Configuraciones extends JDialog
 	protected void inicializar()
 	{
 		repaint();
+		
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		
 		archivoXML = new utilidades.HibernateCFG();
 		archivoXML.leerConfiguraciones();
@@ -186,6 +195,7 @@ public class Configuraciones extends JDialog
 		txtPuerto.setText(tokens[3].substring(0, tokens[3].indexOf('/')));
 		txtUsuario.setText(propiedades.get("hibernate.connection.username"));
 		pflPass.setText(propiedades.get("hibernate.connection.password"));
+		pflPassRep.setText(propiedades.get("hibernate.connection.password"));
 		txtBD.setText(tokens[3].substring(tokens[3].indexOf('/')+1));
 		if(propiedades.get("hibernate.show_sql").equals("true"))
 			chkModoDepuracion.setSelected(true);
@@ -198,29 +208,81 @@ public class Configuraciones extends JDialog
 	@SuppressWarnings("deprecation")
 	protected void action_aceptar()
 	{
-		propiedades.put("hibernate.connection.username", txtUsuario.getText());
-		propiedades.put("hibernate.connection.password", pflPass.getText());
-		if(chkModoDepuracion.isSelected())
-			propiedades.put("hibernate.show_sql", "true");
-		else
-			propiedades.put("hibernate.show_sql", "false");
-		
-		String urlDB = "jdbc:mysql://"+txtURL.getText()+":"+txtPuerto.getText()+"/"+txtBD.getText();
-		propiedades.put("hibernate.connection.url", urlDB);
-		
-		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		
-		archivoXML.guardarConfiguraciones(propiedades);
-		
-		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		
-		dispose();
+		if(validar_formulario())
+		{
+			propiedades.put("hibernate.connection.username", txtUsuario.getText());
+			propiedades.put("hibernate.connection.password", pflPass.getText());
+			if(chkModoDepuracion.isSelected())
+				propiedades.put("hibernate.show_sql", "true");
+			else
+				propiedades.put("hibernate.show_sql", "false");
+			
+			String urlDB = "jdbc:mysql://"+txtURL.getText()+":"+txtPuerto.getText()+"/"+txtBD.getText();
+			propiedades.put("hibernate.connection.url", urlDB);
+			
+			setCursor(new Cursor(Cursor.WAIT_CURSOR));
+			
+			archivoXML.guardarConfiguraciones(propiedades);
+						
+			cerrar_salir();
+		}
 		
 	}
+
+	
+	
+	//-------------------------------------------------------------
+	@SuppressWarnings("deprecation")
+	protected boolean validar_formulario()
+	{
+		boolean rta = true;
+		String mensaje = "";
+		
+		if(txtURL.getText().equals(""))
+		{
+			mensaje += "El campo de servidor no puede estar vacío\n";
+			rta = false;
+		}
+
+		if(txtPuerto.getText().equals(""))
+		{
+			mensaje += "El campo de puerto no puede estar vacío\n";
+			rta = false;
+		}
+		
+		if(txtUsuario.getText().equals(""))
+		{
+			mensaje += "El campo de usuario no puede estar vacío\n";
+			rta = false;
+		}
+
+		if(txtBD.getText().equals(""))
+			mensaje += "El campo de base de datos no puede estar vacío\n";
+		
+		if(pflPass.getText().equals(""))
+		{
+			mensaje += "El campo de contraseña no puede estar vacío\n";
+			rta = false;
+		}
+		
+		if(!pflPass.getText().equals(pflPassRep.getText()))
+		{
+			mensaje += "Las contraseñas no coinciden";
+			rta = false;
+		}
+		
+		if(!rta)
+			JOptionPane.showMessageDialog(this, mensaje, "ATENCIÓN", JOptionPane.WARNING_MESSAGE);
+		
+		return rta;
+	}
+	
 	
 	//-------------------------------------------------------------
 	protected void cerrar_salir()
 	{
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
 		dispose();	
 	}
 }
