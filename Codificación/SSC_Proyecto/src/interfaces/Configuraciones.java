@@ -43,6 +43,14 @@ public class Configuraciones extends JDialog
 	private HashMap<String, String> propiedades;
 	private utilidades.HibernateCFG archivoXML;
 	private JPasswordField pflPassRep;
+	private JTextField txtServerSmtp;
+	private JTextField txtPuertoSmtp;
+	private JPasswordField psfPassSmtp;
+	private JPasswordField psfPassSmtpRep;
+	private JTextField txtMail;
+	private JCheckBox chkModoDepuracionSmtp;
+	private JCheckBox chkAutenticacionSmtp;
+	private JCheckBox chkTtlsSmtp;
 
 	
 	public Configuraciones(JFrame framePadre) 
@@ -73,24 +81,6 @@ public class Configuraciones extends JDialog
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblTitulo.setBounds(10, 11, 281, 23);
 		getContentPane().add(lblTitulo);
-		
-		
-		interfaces.componentes.BotonesIconos btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar", utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
-		btnAceptar.setLocation(294, 397);	
-		btnAceptar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent evento) {
-	        	action_aceptar();
-	        	}});
-		getContentPane().add(btnAceptar);
-		
-		
-		interfaces.componentes.BotonesIconos btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
-		btnCerrar.setLocation(394, 397);	
-		btnCerrar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent evento) {
-	        	cerrar_salir();
-	        	}});
-		getContentPane().add(btnCerrar);
 		
 		JPanel panelBD = new JPanel();
 		panelBD.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Base de Datos", TitledBorder.LEFT, TitledBorder.TOP, null, Color.DARK_GRAY));
@@ -161,6 +151,76 @@ public class Configuraciones extends JDialog
 		panelMail.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Mail", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
 		panelMail.setBounds(10, 256, 474, 130);
 		getContentPane().add(panelMail);	
+		panelMail.setLayout(null);
+		
+		JLabel lblServidorSmtp = new JLabel("Servidor SMTP:");
+		lblServidorSmtp.setBounds(10, 21, 94, 14);
+		panelMail.add(lblServidorSmtp);
+		
+		txtServerSmtp = new JTextField();
+		txtServerSmtp.setBounds(112, 18, 181, 20);
+		panelMail.add(txtServerSmtp);
+		txtServerSmtp.setColumns(10);
+		
+		JLabel lblPuertoSmtp = new JLabel("Puerto:");
+		lblPuertoSmtp.setBounds(318, 21, 46, 14);
+		panelMail.add(lblPuertoSmtp);
+		
+		txtPuertoSmtp = new JTextField();
+		txtPuertoSmtp.setBounds(378, 18, 86, 20);
+		panelMail.add(txtPuertoSmtp);
+		txtPuertoSmtp.setColumns(10);
+		
+		JLabel lblMail = new JLabel("Direcci\u00F3n Mail:");
+		lblMail.setBounds(10, 49, 94, 14);
+		panelMail.add(lblMail);
+		
+		txtMail = new JTextField();
+		txtMail.setBounds(112, 46, 128, 20);
+		panelMail.add(txtMail);
+		txtMail.setColumns(10);
+		
+		chkAutenticacionSmtp = new JCheckBox("Autenticaci\u00F3n");
+		chkAutenticacionSmtp.setBounds(10, 97, 136, 23);
+		panelMail.add(chkAutenticacionSmtp);
+		
+		JLabel lblPassSmtp = new JLabel("Contrase\u00F1a: ");
+		lblPassSmtp.setBounds(250, 49, 75, 14);
+		panelMail.add(lblPassSmtp);
+		
+		psfPassSmtp = new JPasswordField();
+		psfPassSmtp.setBounds(328, 46, 136, 20);
+		panelMail.add(psfPassSmtp);
+		
+		psfPassSmtpRep = new JPasswordField();
+		psfPassSmtpRep.setBounds(328, 72, 136, 20);
+		panelMail.add(psfPassSmtpRep);
+		
+		chkModoDepuracionSmtp = new JCheckBox("Modo Depuraci\u00F3n");
+		chkModoDepuracionSmtp.setBounds(10, 71, 136, 23);
+		panelMail.add(chkModoDepuracionSmtp);
+		
+		chkTtlsSmtp = new JCheckBox("TTLS");
+		chkTtlsSmtp.setBounds(146, 97, 94, 23);
+		panelMail.add(chkTtlsSmtp);
+		
+		
+		interfaces.componentes.BotonesIconos btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar", utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
+		btnAceptar.setLocation(294, 397);	
+		btnAceptar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent evento) {
+	        	action_aceptar();
+	        	}});
+		getContentPane().add(btnAceptar);
+		
+		
+		interfaces.componentes.BotonesIconos btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		btnCerrar.setLocation(394, 397);	
+		btnCerrar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent evento) {
+	        	cerrar_salir();
+	        	}});
+		getContentPane().add(btnCerrar);
 		
 		inicializar();
 	}
@@ -201,6 +261,30 @@ public class Configuraciones extends JDialog
 			chkModoDepuracion.setSelected(true);
 		else
 			chkModoDepuracion.setSelected(false);
+		
+		
+		txtServerSmtp.setText(utilidades.Configuraciones.SMTP_HOST);
+		txtPuertoSmtp.setText(utilidades.Configuraciones.SMTP_PORT);
+		txtMail.setText(utilidades.Configuraciones.SMTP_USER);
+		psfPassSmtp.setText(utilidades.Configuraciones.SMTP_PASS);
+		psfPassSmtpRep.setText(utilidades.Configuraciones.SMTP_PASS);
+		
+		if(utilidades.Configuraciones.SMTP_DEBUG == true)
+			chkModoDepuracionSmtp.setSelected(true);
+		else
+			chkModoDepuracionSmtp.setSelected(false);
+		
+		
+		if(utilidades.Configuraciones.SMTP_AUTH.equals("true"))
+			chkAutenticacionSmtp.setSelected(true);
+		else
+			chkAutenticacionSmtp.setSelected(false);
+		
+		if(utilidades.Configuraciones.SMTP_TTLS.equals("true"))
+			chkTtlsSmtp.setSelected(true);
+		else
+			chkTtlsSmtp.setSelected(false);
+		
 	}
 	
 	

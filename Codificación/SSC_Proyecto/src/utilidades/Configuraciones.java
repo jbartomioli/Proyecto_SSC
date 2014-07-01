@@ -22,6 +22,7 @@ public class Configuraciones{
 	public static String SMTP_USER;
 	public static String SMTP_PASS;
 	public static String SMTP_TTLS;
+	public static boolean SMTP_DEBUG;
 	
 	//CONFIGURACIONES DIRECTORIOS
 	public static String IMG_PRESENTACION;
@@ -81,13 +82,7 @@ public class Configuraciones{
 			buscarArchivo.setVisible(true);
 			propiedades.load(new FileInputStream(buscarArchivo.getSelectedFile()));
 		}
-			
-		SMTP_HOST = propiedades.getProperty("SMTP_HOST").toString();
-		SMTP_PORT = propiedades.getProperty("SMTP_PORT").toString();
-		SMTP_AUTH = propiedades.getProperty("SMTP_AUTH").toString();
-		SMTP_USER = propiedades.getProperty("SMTP_USER").toString();
-		SMTP_PASS = propiedades.getProperty("SMTP_PASS").toString();
-		SMTP_TTLS = propiedades.getProperty("SMTP_TTLS").toString();
+		
 		
 		IMG_PRESENTACION = propiedades.getProperty("IMG_PRESENTACION").toString();
 		IMG_ANUNCIOS = propiedades.getProperty("IMG_ANUNCIOS").toString();
@@ -96,6 +91,17 @@ public class Configuraciones{
 		IMG_PIE_MAIL = propiedades.getProperty("IMG_PIE_MAIL").toString();
 		
 		DIR_MAILS = propiedades.getProperty("DIR_MAILS").toString();
+		
+		
+		SMTP_HOST = propiedades.getProperty("SMTP_HOST").toString();
+		SMTP_PORT = propiedades.getProperty("SMTP_PORT").toString();
+		SMTP_AUTH = propiedades.getProperty("SMTP_AUTH").toString();
+		SMTP_USER = propiedades.getProperty("SMTP_USER").toString();
+		SMTP_PASS = propiedades.getProperty("SMTP_PASS").toString();
+		SMTP_TTLS = propiedades.getProperty("SMTP_TTLS").toString();
+		SMTP_DEBUG = propiedades.getProperty("SMTP_DEBUG").toString()=="true"?true:false;
+		
+
 	}
 	//---------------------------------------------------------------
 }
