@@ -100,18 +100,7 @@ public class Producto
 	{
 		this.precios = precios;
 	}
-	
-	/*public negocio.Precio getPrecios() 
-	{
-		return precios;
-	}
-
-	public void setPrecios(negocio.Precio precios) 
-	{
-		this.precios = precios;
-	}*/
-	
-	
+		
 	public String toString()
 	{
 		return nombre;
@@ -208,8 +197,6 @@ public class Producto
 	}
 	//---------------------------------------------------------------
 	
-	
-	
 	/////////////////////////////////////////////////////////////////
 	// DEFINE EL NUEVO PRECIO PROMOCIONAL DEL PRODUCTO			   //
 	/////////////////////////////////////////////////////////////////
@@ -243,24 +230,42 @@ public class Producto
 				break;
 			}
 		}
-		
-		/*negocio.Precio precioNegocio = new negocio.Precio();
-		
-		//SE MODIFICA EL PRECIO DEL PRODUCTO
-		precioNegocio.setPrecioPromocional(nuevoPrecio);
-		
-		//SE CREA OBJETO PRODUCTO DE DATOS PARA ACTUALIZAR EN LA BD
-		datos.Producto productoDatos = new datos.Producto();
-		
-		//SE CREA OBJETO PRECIO DE DATOS PARA SETEOS
-		datos.Precio precioDatos = new datos.Precio();
-		
-		//SE SETEAN LOS DATOS NECESARIOS
-		precioDatos.setIdPrecio(precioNegocio.getIdPrecio());
-		precioDatos.setPrecioPromocional(nuevoPrecio);
-		
-		//SE GUARDA EN BD
-		productoDatos.setPrecioPromocional(precioDatos);*/
+	}
+	//---------------------------------------------------------------
+	
+	/////////////////////////////////////////////////////////////////
+	// DEFINE EL NUEVO PRECIO VIGENTE DEL PRODUCTO  			   //
+	/////////////////////////////////////////////////////////////////
+	//LISTO
+	public void setPrecio(float nuevoPrecio)
+	{
+		//SE RECORRE EL HISTORICO DE PRECIOS
+		for(negocio.Precio precioNegocio: this.precios)
+		{
+			//SI LA FECHA HASTA ES NULA EL PRECIO ACTUAL
+			//ES EL PRECIO VIGENTE
+			if (precioNegocio.getFechaHasta() == null)
+			{
+				//SE MODIFICA EL PRECIO DEL PRODUCTO
+				precioNegocio.setPrecio(nuevoPrecio);
+
+				//SE CREA OBJETO PRODUCTO DE DATOS PARA ACTUALIZAR EN LA BD
+				datos.Producto productoDatos = new datos.Producto();
+
+				//SE CREA OBJETO PRECIO DE DATOS PARA SETEOS
+				datos.Precio precioDatos = new datos.Precio();
+
+				//SE SETEAN LOS DATOS NECESARIOS
+				precioDatos.setIdPrecio(precioNegocio.getIdPrecio());
+				precioDatos.setPrecioPromocional(nuevoPrecio);
+
+				//SE GUARDA EN BD
+				productoDatos.setPrecioPromocional(precioDatos);
+
+				//SE CORTA LA ITERACION
+				break;
+			}
+		}
 	}
 	//---------------------------------------------------------------
 

@@ -8,6 +8,7 @@ import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -17,6 +18,7 @@ import java.awt.Color;
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
@@ -35,6 +37,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 
 import javax.swing.JButton;
+
+import datos.CatalogoProductos;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -202,13 +206,21 @@ public class Precios extends JDialog {
 		tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
 		tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
 		tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
+		
+		tblProductos.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent me) 
+			{
+				if(tblProductos.columnAtPoint(me.getPoint())==5)
+					click_modificar_precio();
+			}
+		});
 						
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
 	        	clickBotonAceptar(evento);}});
 		
-		btnAceptar.setLocation(324, 569);
+		btnAceptar.setLocation(320, 569);
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
@@ -216,7 +228,7 @@ public class Precios extends JDialog {
 			public void actionPerformed(ActionEvent evento) {
 	        	clickBotonCancelar(evento);}});
 		
-		btnCancelar.setLocation(424, 569);
+		btnCancelar.setLocation(420, 569);
 		getContentPane().add(btnCancelar);
 		
 		JButton btnBuscarProducto = new JButton("");
@@ -274,10 +286,6 @@ public class Precios extends JDialog {
 			tblProductos.completarTabla(controladorAux.seleccionarSubcategoria(
 					subcategoriaSeleccionada.getIdcategoria(),
 					subcategoriaSeleccionada.getIdSubcategoria()));
-			//Oculta la columna del botón
-			tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
-			tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
-			tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
 		}
 	}
 
@@ -355,5 +363,50 @@ public class Precios extends JDialog {
 					 dispose();
 					 break;
 			}
+		}
+		
+		protected void click_modificar_precio()
+		{
+			DefaultTableModel tableModel = (DefaultTableModel) tblProductos.getModel();
+			String idProductoStr;
+			int idProductoInt;
+			int filaSeleccionada = tblProductos.getSelectedRow();
+		    if (filaSeleccionada >= 0)
+		    {
+		    	idProductoStr = tableModel.getValueAt(filaSeleccionada, 0).toString();
+		    	idProductoInt = Integer.parseInt(idProductoStr);
+		    	//JOptionPane.showConfirmDialog(this, idProductoInt, "ATENCION", JOptionPane.YES_NO_OPTION);
+		    	
+		    	negocio.Producto productoSeleccionado = new negocio.Producto();
+	        	negocio.CatalogoProductos catProd = new negocio.CatalogoProductos();
+	        	
+	        	productoSeleccionado = catProd.buscarProducto(idProductoInt);
+	        	String nomProd = productoSeleccionado.getNombre();
+	        	System.out.println("Nombre producto: "+nomProd);
+	        	//REVISAR PORQUE NO APARECE EN CONSOLA EL NOMBRE DEL PRODUCTO
+		    	JTextField precioVigente = new JTextField(5);
+		    	precioVigente.setText(tableModel.getValueAt(filaSeleccionada, 2).toString());
+		    	precioVigente.setForeground(Color.GRAY);
+		        JTextField precioPromocional = new JTextField(5);
+		        precioPromocional.setText(tableModel.getValueAt(filaSeleccionada, 3).toString());
+		    	precioPromocional.setForeground(Color.GRAY);
+		    	
+		        JPanel panelPrecio = new JPanel();
+		        panelPrecio.add(new JLabel("Precio Vigente:"));
+		        panelPrecio.add(precioVigente);
+		        panelPrecio.add(Box.createHorizontalStrut(15)); // a spacer
+		        panelPrecio.add(new JLabel("Precio Promocional:"));
+		        panelPrecio.add(precioPromocional);
+		        
+		        int rta = JOptionPane.showConfirmDialog(null, panelPrecio, 
+		                "Ingrese el/los nuevo/s precio/s", JOptionPane.OK_CANCEL_OPTION);
+		        
+		        if (rta == JOptionPane.OK_OPTION) {
+		            //Guardar Precio
+		        	productoSeleccionado.setPrecio(Float.parseFloat(precioVigente.getText()));
+		        	productoSeleccionado.setPrecioPromocional(Float.parseFloat(precioPromocional.getText()));
+		         }
+		    }
+		    	
 		}
 }

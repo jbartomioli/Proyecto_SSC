@@ -21,6 +21,7 @@ public class TablaProductos extends JTable {
 	public TablaProductos() 
 	{
 		modeloTablaProductos = new DefaultTableModel();
+		modeloTablaProductos.addColumn("Id");
 		modeloTablaProductos.addColumn("Producto");
 		modeloTablaProductos.addColumn("Precio");
 		modeloTablaProductos.addColumn("Precio promocional");
@@ -40,17 +41,18 @@ public class TablaProductos extends JTable {
 
 		int i = 0;
 		for (negocio.Producto productoActual : productos) {
-			modeloTablaProductos.setValueAt(productoActual.getNombre(), i, 0);
-			modeloTablaProductos.setValueAt(productoActual.getPrecioActual(),i, 1);
-			modeloTablaProductos.setValueAt(productoActual.getPrecioPromocional(),i, 2);
-			modeloTablaProductos.setValueAt(productoActual.getExistenciaStock(), i, 3);
-			modeloTablaProductos.setValueAt(new Boolean(false), i, 4);
+			modeloTablaProductos.setValueAt(productoActual.getIdProducto(), i, 0);
+			modeloTablaProductos.setValueAt(productoActual.getNombre(), i, 1);
+			modeloTablaProductos.setValueAt(productoActual.getPrecioActual(),i, 2);
+			modeloTablaProductos.setValueAt(productoActual.getPrecioPromocional(),i, 3);
+			modeloTablaProductos.setValueAt(productoActual.getExistenciaStock(), i, 4);
+			modeloTablaProductos.setValueAt(new Boolean(false), i, 5);
 			i++;
 		}
 
 		
 			columnaBoton = new TableColumn();
-			columnaBoton = getColumnModel().getColumn(4);
+			columnaBoton = getColumnModel().getColumn(5);
 			columnaBoton
 					.setCellEditor(new interfaces.componentes.EditorCeldas(this));
 			columnaBoton.setPreferredWidth(16);
@@ -65,6 +67,10 @@ public class TablaProductos extends JTable {
 		columnaPrecio = getColumn("Precio promocional");
 		columnaPrecio.setPreferredWidth(150);
 		
+		this.getColumn(this.getColumnName(0)).setWidth(0);
+		this.getColumn(this.getColumnName(0)).setMinWidth(0);
+		this.getColumn(this.getColumnName(0)).setMaxWidth(0);
+		
 		for(int j=0; j<getColumnModel().getColumnCount(); ++j)
 			getColumnModel().getColumn(j).setResizable(false);
 		
@@ -72,16 +78,16 @@ public class TablaProductos extends JTable {
 	}
 
 	//
-	public void definirTablaProductosAnuncio() {
+	/*public void definirTablaProductosAnuncio() {
 		columnaBoton
 				.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(
 						true));
-	}
+	}*/
 
 	//
 	public void definirTablaProductos() {
 		columnaBoton
-				.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(
+				.setCellRenderer(new interfaces.componentes.RendererBotonCeldaModificar(
 						true));
 	}
 	
@@ -98,8 +104,7 @@ public class TablaProductos extends JTable {
 	    //Solo permite editar las columnas Precio y Precio promocional 
 		switch (col) 
 		{
-	         case 1:
-	         case 2:
+	         case 5:
 	             return true;
 	         default:
 	             return false;
