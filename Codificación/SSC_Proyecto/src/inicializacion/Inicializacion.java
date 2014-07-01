@@ -29,15 +29,12 @@ public class Inicializacion
 		{
 			JOptionPane.showMessageDialog(
 					null, 
-					"Se ha producido un error al cargar el archivo de configuraciones.\n"
-					+ "Verifique que el mismo esté correctamente ubicado en el directorio\n"
-					+ "de la aplicación.\n\n"
+					"Se ha producido un error al leer el archivo de configuraciones.\n\n"
 					+ "El sistema no puede continuar...\n",
 					"ERROR",
 					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
-
-		} 
+		}
 		catch (IOException e) 
 		{
 			JOptionPane.showMessageDialog(

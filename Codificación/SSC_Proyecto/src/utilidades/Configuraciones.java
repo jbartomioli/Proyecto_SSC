@@ -3,6 +3,8 @@ package utilidades;
 import java.util.*;
 import java.io.*;
 
+
+
 public class Configuraciones{
 	
 	
@@ -54,26 +56,39 @@ public class Configuraciones{
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE LOS DATOS DE CONFIGURACIONES DEL ARCHIVO DE CONFIG. //
 	/////////////////////////////////////////////////////////////////
-	public static void obtenerConfiguraciones() throws IOException, FileNotFoundException
+	public static void obtenerConfiguraciones() throws FileNotFoundException, IOException
 	{
-			Properties propiedades = new Properties();
-			
+		Properties propiedades = new Properties();
+
 			propiedades.load(new FileInputStream("configuraciones.ini"));
+	
+//		catch(FileNotFoundException fne)
+//		{
+//			JFileChooser buscarArchivo = new JFileChooser();
+//			
+//			FileNameExtensionFilter filter = new FileNameExtensionFilter("ini","INI");
+//			buscarArchivo.setFileFilter(filter);			
+//			
+//			//int seleccion = selector.showOpenDialog(attribPanel);
+//			
+//			buscarArchivo.setVisible(true);
+//			propiedades.load(new FileInputStream(buscarArchivo.getSelectedFile()));
+//		}
 			
-			SMTP_HOST = propiedades.getProperty("SMTP_HOST").toString();
-			SMTP_PORT = propiedades.getProperty("SMTP_PORT").toString();
-			SMTP_AUTH = propiedades.getProperty("SMTP_AUTH").toString();
-			SMTP_USER = propiedades.getProperty("SMTP_USER").toString();
-			SMTP_PASS = propiedades.getProperty("SMTP_PASS").toString();
-			SMTP_TTLS = propiedades.getProperty("SMTP_TTLS").toString();
-			
-			IMG_PRESENTACION = propiedades.getProperty("IMG_PRESENTACION").toString();
-			IMG_ANUNCIOS = propiedades.getProperty("IMG_ANUNCIOS").toString();
-			IMG_ICONOS = propiedades.getProperty("IMG_ICONOS").toString();
-			IMG_ENCABEZADO_MAIL = propiedades.getProperty("IMG_ENCABEZADO_MAIL").toString();
-			IMG_PIE_MAIL = propiedades.getProperty("IMG_PIE_MAIL").toString();
-			
-			DIR_MAILS = propiedades.getProperty("DIR_MAILS").toString();
+		SMTP_HOST = propiedades.getProperty("SMTP_HOST").toString();
+		SMTP_PORT = propiedades.getProperty("SMTP_PORT").toString();
+		SMTP_AUTH = propiedades.getProperty("SMTP_AUTH").toString();
+		SMTP_USER = propiedades.getProperty("SMTP_USER").toString();
+		SMTP_PASS = propiedades.getProperty("SMTP_PASS").toString();
+		SMTP_TTLS = propiedades.getProperty("SMTP_TTLS").toString();
+		
+		IMG_PRESENTACION = propiedades.getProperty("IMG_PRESENTACION").toString();
+		IMG_ANUNCIOS = propiedades.getProperty("IMG_ANUNCIOS").toString();
+		IMG_ICONOS = propiedades.getProperty("IMG_ICONOS").toString();
+		IMG_ENCABEZADO_MAIL = propiedades.getProperty("IMG_ENCABEZADO_MAIL").toString();
+		IMG_PIE_MAIL = propiedades.getProperty("IMG_PIE_MAIL").toString();
+		
+		DIR_MAILS = propiedades.getProperty("DIR_MAILS").toString();
 	}
 	//---------------------------------------------------------------
 }
