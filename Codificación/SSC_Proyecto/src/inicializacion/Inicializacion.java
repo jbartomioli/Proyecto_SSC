@@ -3,7 +3,6 @@ package inicializacion;
  * INICIALIZACION DE LA APLICACION
  */
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
@@ -25,16 +24,7 @@ public class Inicializacion
 			
 			
 		}
-		catch (FileNotFoundException e) 
-		{
-			JOptionPane.showMessageDialog(
-					null, 
-					"Se ha producido un error al leer el archivo de configuraciones.\n\n"
-					+ "El sistema no puede continuar...\n",
-					"ERROR",
-					JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-		}
+
 		catch (IOException e) 
 		{
 			JOptionPane.showMessageDialog(

@@ -3,6 +3,10 @@ package utilidades;
 import java.util.*;
 import java.io.*;
 
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 
 public class Configuraciones{
@@ -33,7 +37,7 @@ public class Configuraciones{
 	//***************************************************************
 	//* CONSTRUCTOR													*
 	//***************************************************************
-	public Configuraciones() throws FileNotFoundException, IOException
+	public Configuraciones() throws IOException
 	{
 		obtenerConfiguraciones();
 	}
@@ -56,24 +60,27 @@ public class Configuraciones{
 	/////////////////////////////////////////////////////////////////
 	// OBTIENE LOS DATOS DE CONFIGURACIONES DEL ARCHIVO DE CONFIG. //
 	/////////////////////////////////////////////////////////////////
-	public static void obtenerConfiguraciones() throws FileNotFoundException, IOException
+	public static void obtenerConfiguraciones() throws IOException
 	{
 		Properties propiedades = new Properties();
 
+		try
+		{
 			propiedades.load(new FileInputStream("configuraciones.ini"));
-	
-//		catch(FileNotFoundException fne)
-//		{
-//			JFileChooser buscarArchivo = new JFileChooser();
-//			
-//			FileNameExtensionFilter filter = new FileNameExtensionFilter("ini","INI");
-//			buscarArchivo.setFileFilter(filter);			
-//			
-//			//int seleccion = selector.showOpenDialog(attribPanel);
-//			
-//			buscarArchivo.setVisible(true);
-//			propiedades.load(new FileInputStream(buscarArchivo.getSelectedFile()));
-//		}
+		}
+		catch(FileNotFoundException fne)
+		{
+			JFileChooser buscarArchivo = new JFileChooser();
+					
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("ini","INI");
+			buscarArchivo.setFileFilter(filter);
+			
+			@SuppressWarnings("unused")
+			int seleccion = buscarArchivo.showOpenDialog(new JDialog());
+						
+			buscarArchivo.setVisible(true);
+			propiedades.load(new FileInputStream(buscarArchivo.getSelectedFile()));
+		}
 			
 		SMTP_HOST = propiedades.getProperty("SMTP_HOST").toString();
 		SMTP_PORT = propiedades.getProperty("SMTP_PORT").toString();
