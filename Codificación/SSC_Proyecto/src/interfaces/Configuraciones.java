@@ -20,6 +20,8 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -37,12 +39,12 @@ public class Configuraciones extends JDialog
 	private JTextField txtURL;
 	private JTextField txtPuerto;
 	private JTextField txtUsuario;
-	private JPasswordField pflPass;
+	private JPasswordField psfPass;
 	private JTextField txtBD;
 	private JCheckBox chkModoDepuracion; 
 	private HashMap<String, String> propiedades;
 	private utilidades.HibernateCFG archivoXML;
-	private JPasswordField pflPassRep;
+	private JPasswordField psfPassRep;
 	private JTextField txtServerSmtp;
 	private JTextField txtPuertoSmtp;
 	private JPasswordField psfPassSmtp;
@@ -119,14 +121,14 @@ public class Configuraciones extends JDialog
 		lblPass.setBounds(235, 54, 86, 14);
 		panelBD.add(lblPass);
 		
-		pflPass = new JPasswordField();
-		pflPass.setBounds(324, 51, 140, 20);
-		panelBD.add(pflPass);
+		psfPass = new JPasswordField();
+		psfPass.setBounds(324, 51, 140, 20);
+		panelBD.add(psfPass);
 		
-		pflPassRep = new JPasswordField();
-		pflPassRep.setText((String) null);
-		pflPassRep.setBounds(324, 79, 140, 20);
-		panelBD.add(pflPassRep);
+		psfPassRep = new JPasswordField();
+		psfPassRep.setText((String) null);
+		psfPassRep.setBounds(324, 79, 140, 20);
+		panelBD.add(psfPassRep);
 		
 		JLabel lblBD = new JLabel("Base de Datos:");
 		lblBD.setBounds(10, 82, 111, 14);
@@ -254,8 +256,8 @@ public class Configuraciones extends JDialog
 		txtURL.setText(tokens[2].substring(2));
 		txtPuerto.setText(tokens[3].substring(0, tokens[3].indexOf('/')));
 		txtUsuario.setText(propiedades.get("hibernate.connection.username"));
-		pflPass.setText(propiedades.get("hibernate.connection.password"));
-		pflPassRep.setText(propiedades.get("hibernate.connection.password"));
+		psfPass.setText(propiedades.get("hibernate.connection.password"));
+		psfPassRep.setText(propiedades.get("hibernate.connection.password"));
 		txtBD.setText(tokens[3].substring(tokens[3].indexOf('/')+1));
 		if(propiedades.get("hibernate.show_sql").equals("true"))
 			chkModoDepuracion.setSelected(true);
@@ -295,7 +297,7 @@ public class Configuraciones extends JDialog
 		if(validar_formulario())
 		{
 			propiedades.put("hibernate.connection.username", txtUsuario.getText());
-			propiedades.put("hibernate.connection.password", pflPass.getText());
+			propiedades.put("hibernate.connection.password", psfPass.getText());
 			if(chkModoDepuracion.isSelected())
 				propiedades.put("hibernate.show_sql", "true");
 			else
@@ -343,18 +345,48 @@ public class Configuraciones extends JDialog
 		if(txtBD.getText().equals(""))
 			mensaje += "El campo de base de datos no puede estar vacío\n";
 		
-		if(pflPass.getText().equals(""))
+		if(psfPass.getText().equals(""))
 		{
-			mensaje += "El campo de contraseña no puede estar vacío\n";
+			mensaje += "El campo de contraseña de base de datos no puede estar vacío\n";
 			rta = false;
 		}
 		
-		if(!pflPass.getText().equals(pflPassRep.getText()))
+		if(!psfPass.getText().equals(psfPassRep.getText()))
 		{
-			mensaje += "Las contraseñas no coinciden";
+			mensaje += "Las contraseñas de base de datos no coinciden\n";
 			rta = false;
 		}
 		
+		if(txtServerSmtp.getText().equals(""))
+		{
+			mensaje += "El campo de servidor SMTP no puede estar vacio\n";
+			rta = false;
+		}
+			
+		if(txtPuertoSmtp.getText().equals(""))
+		{
+			mensaje += "El campo de puerto SMTP no puede estar vacio\n";
+			rta = false;
+		}
+		
+		if(!validar_mail(txtMail.getText()))
+		{
+			mensaje += "El campo de mail no es válido\n";
+			rta = false;
+		}
+		
+		if(psfPassSmtp.getText().equals(""))
+		{
+			mensaje += "El campo de contraseña de mail no puede estar vacío\n";
+			rta = false;
+		}
+		
+		if(!psfPassSmtpRep.getText().equals(psfPassSmtp.getText()))
+		{
+			mensaje += "Las contraseñas de mail no coinciden\n";
+			rta = false;
+		}
+			
 		if(!rta)
 			JOptionPane.showMessageDialog(this, mensaje, "ATENCIÓN", JOptionPane.WARNING_MESSAGE);
 		
@@ -369,4 +401,17 @@ public class Configuraciones extends JDialog
 
 		dispose();	
 	}
+	
+	//-------------------------------------------------------------
+	protected boolean validar_mail(String mail)
+    {
+		String patron_mail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        // Compiles the given regular expression into a pattern.
+        Pattern patron = Pattern.compile(patron_mail);
+ 
+        // Match the given input against this pattern
+        Matcher matcher = patron.matcher(mail);
+        return matcher.matches();
+ 
+    }
 }
