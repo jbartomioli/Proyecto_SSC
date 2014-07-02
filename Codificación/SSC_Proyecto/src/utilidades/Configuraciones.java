@@ -100,8 +100,44 @@ public class Configuraciones{
 		SMTP_PASS = propiedades.getProperty("SMTP_PASS").toString();
 		SMTP_TTLS = propiedades.getProperty("SMTP_TTLS").toString();
 		SMTP_DEBUG = propiedades.getProperty("SMTP_DEBUG").toString()=="true"?true:false;
-		
-
 	}
+	
+	
 	//---------------------------------------------------------------
+	public static void guardar_modificaciones_mail(HashMap<String, String> atributosMail)
+	{
+		SMTP_HOST = atributosMail.get("SMTP_HOST");
+		SMTP_PORT = atributosMail.get("SMTP_PORT");
+		SMTP_AUTH = atributosMail.get("SMTP_AUTH");
+		SMTP_USER = atributosMail.get("SMTP_USER");
+		SMTP_PASS = atributosMail.get("SMTP_PASS");
+		SMTP_TTLS = atributosMail.get("SMTP_TTLS");
+		SMTP_DEBUG = atributosMail.get("SMTP_DEBUG")=="true"?true:false;
+		
+		Properties propiedades = new Properties();
+		
+		
+		try
+		{
+			propiedades.load(new FileInputStream("configuraciones.ini"));
+		
+			propiedades.setProperty("SMTP_HOST", atributosMail.get("SMTP_HOST"));
+			propiedades.setProperty("SMTP_PORT",atributosMail.get("SMTP_PORT"));
+			propiedades.setProperty("SMTP_AUTH",atributosMail.get("SMTP_AUTH"));
+			propiedades.setProperty("SMTP_USER",atributosMail.get("SMTP_USER"));		
+			propiedades.setProperty("SMTP_PASS",atributosMail.get("SMTP_PASS"));
+			propiedades.setProperty("SMTP_TTLS",atributosMail.get("SMTP_TTLS"));
+			propiedades.setProperty("SMTP_DEBUG",atributosMail.get("SMTP_DEBUG"));
+			
+			propiedades.store(new FileOutputStream("configuraciones.ini"), "");
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			
+		}
+	}
 }

@@ -29,6 +29,7 @@ import javax.swing.JCheckBox;
 
 
 
+
 public class Configuraciones extends JDialog
 {
 	
@@ -309,6 +310,31 @@ public class Configuraciones extends JDialog
 			setCursor(new Cursor(Cursor.WAIT_CURSOR));
 			
 			archivoXML.guardarConfiguraciones(propiedades);
+			
+			HashMap<String, String> atributosMail = new HashMap<String, String>();
+			
+			atributosMail.put("SMTP_HOST", txtServerSmtp.getText());
+			atributosMail.put("SMTP_PORT", txtPuertoSmtp.getText());
+			
+			if(chkAutenticacionSmtp.isSelected())
+				atributosMail.put("SMTP_AUTH", "true");
+			else
+				atributosMail.put("SMTP_AUTH", "false");
+			
+			atributosMail.put("SMTP_USER", txtMail.getText());
+			atributosMail.put("SMTP_PASS", psfPassSmtp.getText());
+			
+			if(chkTtlsSmtp.isSelected())
+				atributosMail.put("SMTP_TTLS", "true");
+			else
+				atributosMail.put("SMTP_TTLS", "false");
+			
+			if(chkTtlsSmtp.isSelected())
+				atributosMail.put("SMTP_DEBUG", "true");
+			else
+				atributosMail.put("SMTP_DEBUG", "false");
+			
+			utilidades.Configuraciones.guardar_modificaciones_mail(atributosMail);
 						
 			cerrar_salir();
 		}
@@ -406,10 +432,8 @@ public class Configuraciones extends JDialog
 	protected boolean validar_mail(String mail)
     {
 		String patron_mail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        // Compiles the given regular expression into a pattern.
         Pattern patron = Pattern.compile(patron_mail);
  
-        // Match the given input against this pattern
         Matcher matcher = patron.matcher(mail);
         return matcher.matches();
  
