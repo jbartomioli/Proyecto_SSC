@@ -32,6 +32,8 @@ public class Configuraciones{
 	public static String IMG_PIE_MAIL;
 	
 	public static String DIR_MAILS;
+	
+	public static String URL_FILE = "configuraciones.ini";
 	//---------------------------------------------------------------
 
 
@@ -67,7 +69,11 @@ public class Configuraciones{
 
 		try
 		{
-			propiedades.load(new FileInputStream("configuraciones.ini"));
+			File archivo = new File("configuraciones.ini");
+			
+			URL_FILE = archivo.getAbsolutePath();
+			
+			propiedades.load(new FileInputStream(URL_FILE));
 		}
 		catch(FileNotFoundException fne)
 		{
@@ -80,7 +86,8 @@ public class Configuraciones{
 			int seleccion = buscarArchivo.showOpenDialog(new JDialog());
 						
 			buscarArchivo.setVisible(true);
-			propiedades.load(new FileInputStream(buscarArchivo.getSelectedFile()));
+			URL_FILE = buscarArchivo.getSelectedFile().getAbsolutePath();
+			propiedades.load(new FileInputStream(URL_FILE));
 		}
 		
 		
@@ -116,7 +123,6 @@ public class Configuraciones{
 		
 		Properties propiedades = new Properties();
 		
-		
 		try
 		{
 			propiedades.load(new FileInputStream("configuraciones.ini"));
@@ -135,9 +141,11 @@ public class Configuraciones{
 		{
 			e.printStackTrace();
 		}
-		finally
-		{
-			
-		}
+	}
+	
+	//---------------------------------------------------------------
+	public static void modificar_url_archivo_config(String urlFile)
+	{
+		URL_FILE = urlFile;
 	}
 }

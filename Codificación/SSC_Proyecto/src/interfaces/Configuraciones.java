@@ -9,13 +9,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.Color;
 import java.util.HashMap;
@@ -26,6 +29,7 @@ import java.util.regex.Pattern;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JCheckBox;
+import javax.swing.JButton;
 
 
 
@@ -54,6 +58,7 @@ public class Configuraciones extends JDialog
 	private JCheckBox chkModoDepuracionSmtp;
 	private JCheckBox chkAutenticacionSmtp;
 	private JCheckBox chkTtlsSmtp;
+	private JTextField txtUbicacionFile;
 
 	
 	public Configuraciones(JFrame framePadre) 
@@ -85,6 +90,11 @@ public class Configuraciones extends JDialog
 		lblTitulo.setBounds(10, 11, 281, 23);
 		getContentPane().add(lblTitulo);
 		
+		JLabel imagen = new JLabel();
+		imagen.setBounds(452, 11, 32, 32);
+		imagen.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFIGURACION_32.png"));
+		getContentPane().add(imagen);
+		
 		JPanel panelBD = new JPanel();
 		panelBD.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Base de Datos", TitledBorder.LEFT, TitledBorder.TOP, null, Color.DARK_GRAY));
 		panelBD.setBounds(10, 45, 474, 135);
@@ -92,16 +102,16 @@ public class Configuraciones extends JDialog
 		panelBD.setLayout(null);
 		
 		JLabel lblURL = new JLabel("Servidor:");
-		lblURL.setBounds(10, 25, 71, 14);
+		lblURL.setBounds(10, 25, 61, 14);
 		panelBD.add(lblURL);
 		
 		txtURL = new JTextField();
-		txtURL.setBounds(81, 22, 209, 20);
+		txtURL.setBounds(72, 22, 218, 20);
 		panelBD.add(txtURL);
 		txtURL.setColumns(10);
 		
 		JLabel lblPuerto = new JLabel("Puerto:");
-		lblPuerto.setBounds(318, 25, 58, 14);
+		lblPuerto.setBounds(324, 25, 52, 14);
 		panelBD.add(lblPuerto);
 		
 		txtPuerto = new JTextField();
@@ -110,33 +120,33 @@ public class Configuraciones extends JDialog
 		txtPuerto.setColumns(10);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(10, 54, 71, 14);
+		lblUsuario.setBounds(10, 54, 61, 14);
 		panelBD.add(lblUsuario);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(81, 51, 111, 20);
+		txtUsuario.setBounds(72, 51, 120, 20);
 		panelBD.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		JLabel lblPass = new JLabel("Contrase\u00F1a:");
-		lblPass.setBounds(235, 54, 86, 14);
+		lblPass.setBounds(261, 54, 69, 14);
 		panelBD.add(lblPass);
 		
 		psfPass = new JPasswordField();
-		psfPass.setBounds(324, 51, 140, 20);
+		psfPass.setBounds(338, 51, 126, 20);
 		panelBD.add(psfPass);
 		
 		psfPassRep = new JPasswordField();
 		psfPassRep.setText((String) null);
-		psfPassRep.setBounds(324, 79, 140, 20);
+		psfPassRep.setBounds(338, 79, 126, 20);
 		panelBD.add(psfPassRep);
 		
 		JLabel lblBD = new JLabel("Base de Datos:");
-		lblBD.setBounds(10, 82, 111, 14);
+		lblBD.setBounds(10, 82, 86, 14);
 		panelBD.add(lblBD);
 		
 		txtBD = new JTextField();
-		txtBD.setBounds(131, 79, 86, 20);
+		txtBD.setBounds(99, 79, 111, 20);
 		panelBD.add(txtBD);
 		txtBD.setColumns(10);
 		
@@ -146,9 +156,28 @@ public class Configuraciones extends JDialog
 		
 		JPanel panelFile = new JPanel();
 		panelFile.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Archivos", TitledBorder.LEADING, TitledBorder.TOP, null, Color.DARK_GRAY));
-		panelFile.setBounds(10, 191, 474, 54);
+		panelFile.setBounds(10, 185, 474, 68);
 		getContentPane().add(panelFile);
 		panelFile.setLayout(null);
+		
+		JLabel lblUbicacin = new JLabel("Ubicaci\u00F3n:");
+		lblUbicacin.setBounds(10, 26, 65, 16);
+		panelFile.add(lblUbicacin);
+		
+		txtUbicacionFile = new JTextField();
+		txtUbicacionFile.setBounds(74, 24, 255, 20);
+		panelFile.add(txtUbicacionFile);
+		txtUbicacionFile.setColumns(10);
+		
+		JButton btnBuscarArchivo = new JButton("Buscar Archivo");
+		btnBuscarArchivo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				buscar_archivo();
+			}
+		});
+		btnBuscarArchivo.setBounds(341, 21, 121, 26);
+		panelFile.add(btnBuscarArchivo);
 		
 		JPanel panelMail = new JPanel();
 		panelMail.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Mail", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
@@ -161,12 +190,12 @@ public class Configuraciones extends JDialog
 		panelMail.add(lblServidorSmtp);
 		
 		txtServerSmtp = new JTextField();
-		txtServerSmtp.setBounds(112, 18, 181, 20);
+		txtServerSmtp.setBounds(105, 18, 198, 20);
 		panelMail.add(txtServerSmtp);
 		txtServerSmtp.setColumns(10);
 		
 		JLabel lblPuertoSmtp = new JLabel("Puerto:");
-		lblPuertoSmtp.setBounds(318, 21, 46, 14);
+		lblPuertoSmtp.setBounds(328, 21, 51, 14);
 		panelMail.add(lblPuertoSmtp);
 		
 		txtPuertoSmtp = new JTextField();
@@ -175,11 +204,11 @@ public class Configuraciones extends JDialog
 		txtPuertoSmtp.setColumns(10);
 		
 		JLabel lblMail = new JLabel("Direcci\u00F3n Mail:");
-		lblMail.setBounds(10, 49, 94, 14);
+		lblMail.setBounds(10, 49, 86, 14);
 		panelMail.add(lblMail);
 		
 		txtMail = new JTextField();
-		txtMail.setBounds(112, 46, 128, 20);
+		txtMail.setBounds(105, 46, 135, 20);
 		panelMail.add(txtMail);
 		txtMail.setColumns(10);
 		
@@ -188,15 +217,15 @@ public class Configuraciones extends JDialog
 		panelMail.add(chkAutenticacionSmtp);
 		
 		JLabel lblPassSmtp = new JLabel("Contrase\u00F1a: ");
-		lblPassSmtp.setBounds(250, 49, 75, 14);
+		lblPassSmtp.setBounds(258, 49, 72, 14);
 		panelMail.add(lblPassSmtp);
 		
 		psfPassSmtp = new JPasswordField();
-		psfPassSmtp.setBounds(328, 46, 136, 20);
+		psfPassSmtp.setBounds(338, 46, 126, 20);
 		panelMail.add(psfPassSmtp);
 		
 		psfPassSmtpRep = new JPasswordField();
-		psfPassSmtpRep.setBounds(328, 72, 136, 20);
+		psfPassSmtpRep.setBounds(338, 72, 126, 20);
 		panelMail.add(psfPassSmtpRep);
 		
 		chkModoDepuracionSmtp = new JCheckBox("Modo Depuraci\u00F3n");
@@ -264,6 +293,10 @@ public class Configuraciones extends JDialog
 			chkModoDepuracion.setSelected(true);
 		else
 			chkModoDepuracion.setSelected(false);
+		
+		
+		txtUbicacionFile.setText(utilidades.Configuraciones.URL_FILE);
+		
 		
 		
 		txtServerSmtp.setText(utilidades.Configuraciones.SMTP_HOST);
@@ -335,6 +368,8 @@ public class Configuraciones extends JDialog
 				atributosMail.put("SMTP_DEBUG", "false");
 			
 			utilidades.Configuraciones.guardar_modificaciones_mail(atributosMail);
+			
+			utilidades.Configuraciones.modificar_url_archivo_config(txtUbicacionFile.getText());;
 						
 			cerrar_salir();
 		}
@@ -356,9 +391,9 @@ public class Configuraciones extends JDialog
 			rta = false;
 		}
 
-		if(txtPuerto.getText().equals(""))
+		if(!validar_puerto(txtPuerto.getText()))
 		{
-			mensaje += "El campo de puerto no puede estar vacío\n";
+			mensaje += "El campo de puerto de BD no es válido\n";
 			rta = false;
 		}
 		
@@ -383,15 +418,21 @@ public class Configuraciones extends JDialog
 			rta = false;
 		}
 		
+		if(txtUbicacionFile.getText().equals(""))
+		{
+			mensaje += "El campo de ubicación del archivo de configuraciones no puede ser nulo\n";
+			rta = false;
+		}	
+		
 		if(txtServerSmtp.getText().equals(""))
 		{
 			mensaje += "El campo de servidor SMTP no puede estar vacio\n";
 			rta = false;
 		}
 			
-		if(txtPuertoSmtp.getText().equals(""))
+		if(!validar_puerto(txtPuertoSmtp.getText()))
 		{
-			mensaje += "El campo de puerto SMTP no puede estar vacio\n";
+			mensaje += "El campo de puerto SMTP no es válido\n";
 			rta = false;
 		}
 		
@@ -436,6 +477,39 @@ public class Configuraciones extends JDialog
  
         Matcher matcher = patron.matcher(mail);
         return matcher.matches();
- 
     }
+	
+	
+	//-------------------------------------------------------------
+	protected boolean validar_puerto(String puerto)
+    {
+		String patron_puerto = "\\d{1,5}";
+        Pattern patron = Pattern.compile(patron_puerto);
+ 
+        Matcher matcher = patron.matcher(puerto);
+        return matcher.matches();
+    }
+	
+	//-------------------------------------------------------------
+	protected void buscar_archivo()
+	{
+		try
+		{
+			JFileChooser buscarArchivo = new JFileChooser();
+			
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("ini","INI");
+			buscarArchivo.setFileFilter(filter);
+			
+			@SuppressWarnings("unused")
+			int seleccion = buscarArchivo.showOpenDialog(this);
+						
+			buscarArchivo.setVisible(true);
+			String urlArchivo = buscarArchivo.getSelectedFile().getAbsolutePath();
+			txtUbicacionFile.setText(urlArchivo);
+		}
+		catch(Exception fne)
+		{
+			
+		}
+	}
 }
