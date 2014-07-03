@@ -56,6 +56,8 @@ public class Precios extends JDialog {
 	private interfaces.componentes.BotonesIconos btnAceptar;
 	private interfaces.componentes.BotonesIconos btnCancelar;
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
+	private negocio.Producto productoSeleccionado;
+	private negocio.CatalogoProductos catProd;
 	//private negocio.CatalogoClientes catClie;
 
 
@@ -368,21 +370,19 @@ public class Precios extends JDialog {
 		protected void click_modificar_precio()
 		{
 			DefaultTableModel tableModel = (DefaultTableModel) tblProductos.getModel();
-			String idProductoStr;
 			int idProductoInt;
 			int filaSeleccionada = tblProductos.getSelectedRow();
+			
 		    if (filaSeleccionada >= 0)
 		    {
-		    	idProductoStr = tableModel.getValueAt(filaSeleccionada, 0).toString();
-		    	idProductoInt = Integer.parseInt(idProductoStr);
-		    	//JOptionPane.showConfirmDialog(this, idProductoInt, "ATENCION", JOptionPane.YES_NO_OPTION);
+		    	idProductoInt = Integer.parseInt(tableModel.getValueAt(filaSeleccionada, 0).toString());
+		    	//JOptionPane.showConfirmDialog(this, idProductoInt, "ATENCION", JOptionPane.YES_NO_OPTION);	
+		    	productoSeleccionado = new negocio.Producto();
+	        	catProd = new negocio.CatalogoProductos();
 		    	
-		    	negocio.Producto productoSeleccionado = new negocio.Producto();
-	        	negocio.CatalogoProductos catProd = new negocio.CatalogoProductos();
-	        	
-	        	productoSeleccionado = catProd.buscarProducto(idProductoInt);
-	        	String nomProd = productoSeleccionado.getNombre();
-	        	System.out.println("Nombre producto: "+nomProd);
+		    	productoSeleccionado = catProd.buscarProducto(idProductoInt);
+	        	//JOptionPane.showConfirmDialog(this, productoSeleccionado.getCodProducto(), "ATENCION", JOptionPane.YES_NO_OPTION);
+	       
 	        	//REVISAR PORQUE NO APARECE EN CONSOLA EL NOMBRE DEL PRODUCTO
 		    	JTextField precioVigente = new JTextField(5);
 		    	precioVigente.setText(tableModel.getValueAt(filaSeleccionada, 2).toString());
@@ -394,7 +394,7 @@ public class Precios extends JDialog {
 		        JPanel panelPrecio = new JPanel();
 		        panelPrecio.add(new JLabel("Precio Vigente:"));
 		        panelPrecio.add(precioVigente);
-		        panelPrecio.add(Box.createHorizontalStrut(15)); // a spacer
+		        panelPrecio.add(Box.createHorizontalStrut(15));
 		        panelPrecio.add(new JLabel("Precio Promocional:"));
 		        panelPrecio.add(precioPromocional);
 		        
@@ -403,8 +403,8 @@ public class Precios extends JDialog {
 		        
 		        if (rta == JOptionPane.OK_OPTION) {
 		            //Guardar Precio
-		        	productoSeleccionado.setPrecio(Float.parseFloat(precioVigente.getText()));
-		        	productoSeleccionado.setPrecioPromocional(Float.parseFloat(precioPromocional.getText()));
+		        	//productoSeleccionado.setPrecio(Float.parseFloat(precioVigente.getText()));
+		        	//productoSeleccionado.setPrecioPromocional(Float.parseFloat(precioPromocional.getText()));
 		         }
 		    }
 		    	
