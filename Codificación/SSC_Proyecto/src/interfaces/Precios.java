@@ -398,14 +398,15 @@ public class Precios extends JDialog {
 		        panelPrecio.add(new JLabel("Precio Promocional:"));
 		        panelPrecio.add(precioPromocional);
 		        
-		        int rta = JOptionPane.showConfirmDialog(null, panelPrecio, 
+		        /*int rta = JOptionPane.showConfirmDialog(null, panelPrecio, 
 		                "Ingrese el/los nuevo/s precio/s", JOptionPane.OK_CANCEL_OPTION);
 		        
-		        if (rta == JOptionPane.OK_OPTION) {
+		        if (rta == JOptionPane.OK_OPTION) 
+		        {
 		            //Guardar Precio
-		        	//productoSeleccionado.setPrecio(Float.parseFloat(precioVigente.getText()));
-		        	//productoSeleccionado.setPrecioPromocional(Float.parseFloat(precioPromocional.getText()));
-		         }
+		        	productoSeleccionado.setPrecio(Float.parseFloat(precioVigente.getText()));
+		        	productoSeleccionado.setPrecioPromocional(Float.parseFloat(precioPromocional.getText()));
+		         }*/
 		    }
 		    	
 		}

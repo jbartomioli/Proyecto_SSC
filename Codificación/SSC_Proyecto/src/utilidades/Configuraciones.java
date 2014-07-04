@@ -106,7 +106,7 @@ public class Configuraciones{
 		SMTP_USER = propiedades.getProperty("SMTP_USER").toString();
 		SMTP_PASS = propiedades.getProperty("SMTP_PASS").toString();
 		SMTP_TTLS = propiedades.getProperty("SMTP_TTLS").toString();
-		SMTP_DEBUG = propiedades.getProperty("SMTP_DEBUG").toString()=="true"?true:false;
+		//SMTP_DEBUG = propiedades.getProperty("SMTP_DEBUG").toString()=="true"?true:false;
 	}
 	
 	
