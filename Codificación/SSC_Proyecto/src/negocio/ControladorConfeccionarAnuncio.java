@@ -469,37 +469,22 @@ public class ControladorConfeccionarAnuncio
 	// Metodo 1.7.1 											   //
 	/////////////////////////////////////////////////////////////////
 	//FALTA COMPLETAR
-	public String[][] eliminarProducto(int idProducto) 
+	public void eliminarProducto(int idProducto) 
 	{
 		negocio.Producto productoActual = new negocio.Producto();
-		Collection<negocio.Cliente> arrClientesEliminar = new ArrayList<negocio.Cliente>();
+		//Collection<negocio.Cliente> arrClientesEliminar = new ArrayList<negocio.Cliente>();
 
 		
 		productoActual = catalogoProductos.buscarProducto(idProducto);
 
-		arrClientesEliminar = catalogoClientes.obtenerClientesProducto(productoActual);
+		//arrClientesEliminar = catalogoClientes.obtenerClientesProducto(productoActual);
 
 		//VALIDAR QUE EL CLIENTE NO TENGA OTRO PRODUCTO
 		//ES DECIR, SI ELIMINAMOS UN CLIENTE QUE SEA UN POSIBLE INTERESADO DE OTRO
 		//PRODUCTO DEL ANUNCIO
-		arrClientesInteresados.remove(arrClientesEliminar);
-
-		//SALIDA
-		String[][] arrDatos = new String[arrClientesInteresados.size()][2];
-
-		int i = 0;
-
-		for (negocio.Cliente c : arrClientesInteresados) 
-		{
-			arrDatos[i][0] = Integer.toString(c.getIdCliente());
-			arrDatos[i][1] = c.getNombre();
-			arrDatos[i][2] = c.getApellido();
-			i++;
-		}
+		//arrClientesInteresados.remove(arrClientesEliminar);
 
 		arrProductosPublicación.remove(productoActual);
-
-		return arrDatos;
 	}
 
 

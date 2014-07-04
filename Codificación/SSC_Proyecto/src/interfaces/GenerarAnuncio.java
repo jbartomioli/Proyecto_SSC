@@ -212,7 +212,7 @@ public class GenerarAnuncio extends JDialog {
 		tblProductosAnuncio.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) 
 			{
-				if(tblProductosAnuncio.columnAtPoint(me.getPoint())==4)
+				if(tblProductosAnuncio.columnAtPoint(me.getPoint())==5)
 					click_eliminar_producto();
 			}
 		});
@@ -241,7 +241,7 @@ public class GenerarAnuncio extends JDialog {
 		tblProductos.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent me) 
 					{
-						if(tblProductos.columnAtPoint(me.getPoint())==4)
+						if(tblProductos.columnAtPoint(me.getPoint())==5)
 							click_aniadir_producto();
 					}
 				});
@@ -492,9 +492,9 @@ public class GenerarAnuncio extends JDialog {
 				
 				modeloTblProductosAnuncio.addRow(fila);
 												
-				String descProducto = fila.elementAt(0).toString().substring(0);
+				int idProducto = Integer.parseInt(fila.elementAt(0).toString());
 				
-				negocio.Producto producto = controladorAux.getCatalogoProductos().obtenerProducto(descProducto);
+				negocio.Producto producto = controladorAux.getCatalogoProductos().buscarProducto(idProducto);
 				
 				Thread hiloTrabajoAniadir = new Thread( new TabajoAniadirProducto(producto.getIdProducto()));
 				hiloTrabajoAniadir.start();		    	
@@ -511,9 +511,11 @@ public class GenerarAnuncio extends JDialog {
 		int filaSeleccionada = tblProductosAnuncio.getSelectedRow();
 
 	    if (filaSeleccionada >= 0)
-	         tableModel.removeRow(filaSeleccionada);	
-	    //habria que agregar la eliminacion del producto del array del controlador
-	    //ATENCION!
+	    {
+	    	JOptionPane.showMessageDialog(null,tblProductosAnuncio.getModel().getValueAt(filaSeleccionada,0));
+	    	controladorAux.eliminarProducto(Integer.parseInt(tblProductosAnuncio.getModel().getValueAt(filaSeleccionada,0).toString()));
+	    	tableModel.removeRow(filaSeleccionada);	
+	    }	    
 	}
 	
 	

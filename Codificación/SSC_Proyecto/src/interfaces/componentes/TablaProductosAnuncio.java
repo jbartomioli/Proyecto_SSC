@@ -19,6 +19,7 @@ public class TablaProductosAnuncio extends JTable
 	public TablaProductosAnuncio() 
 	{
 		modeloTablaProductos = new DefaultTableModel();
+		modeloTablaProductos.addColumn("ID");
 		modeloTablaProductos.addColumn("Producto");
 		modeloTablaProductos.addColumn("Precio");
 		modeloTablaProductos.addColumn("Precio promocional");
@@ -38,21 +39,26 @@ public class TablaProductosAnuncio extends JTable
 
 		int i = 0;
 		for (negocio.Producto productoActual : productos) {
-			modeloTablaProductos.setValueAt(productoActual.getNombre(), i, 0);
-			modeloTablaProductos.setValueAt(productoActual.getPrecioActual(),i, 1);
-			modeloTablaProductos.setValueAt(productoActual.getPrecioPromocional(),i, 2);
-			modeloTablaProductos.setValueAt(productoActual.getExistenciaStock(), i, 3);
-			modeloTablaProductos.setValueAt(new Boolean(false), i, 4);
+			modeloTablaProductos.setValueAt(productoActual.getIdProducto(), i, 0);
+			modeloTablaProductos.setValueAt(productoActual.getNombre(), i, 1);
+			modeloTablaProductos.setValueAt(productoActual.getPrecioActual(),i, 2);
+			modeloTablaProductos.setValueAt(productoActual.getPrecioPromocional(),i, 3);
+			modeloTablaProductos.setValueAt(productoActual.getExistenciaStock(), i, 4);
+			modeloTablaProductos.setValueAt(new Boolean(false), i, 5);
 			i++;
 		}
 
 		
-			columnaBoton = new TableColumn();
-			columnaBoton = getColumnModel().getColumn(4);
-			columnaBoton
-					.setCellEditor(new interfaces.componentes.EditorCeldas(this));
-			columnaBoton.setPreferredWidth(16);
-			columnaBoton.setMaxWidth(16);
+		getColumn("ID").setWidth(0);
+		getColumn("ID").setMaxWidth(0);
+		getColumn("ID").setMinWidth(0);
+		getColumn("ID").setPreferredWidth(0);
+		
+		columnaBoton = new TableColumn();
+		columnaBoton = getColumnModel().getColumn(5);
+		columnaBoton.setCellEditor(new interfaces.componentes.EditorCeldas(this));
+		columnaBoton.setPreferredWidth(16);
+		columnaBoton.setMaxWidth(16);
 		
 
 		TableColumn columnaNombre;
