@@ -51,7 +51,7 @@ public class ModificarDestinatarios extends JDialog {
 	private JLabel lblBuscarDestinatarios;
 	private JLabel lblEspecialidad;
 	private JComboBox<String> cmbEspecialidad;
-	private String[] especialidades = {"", "Distribuidor", "Endodoncia", "Gnatología", "Odontología General", "Ortodoncia", "Periodoncia", "Protesista"};
+	private String[] especialidades = {"", "Distribuidor", "Endodoncia", "Gnatologia", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
 	private interfaces.componentes.TablaModificarDestinatarios tblDestinatariosBuscados;
 	private interfaces.componentes.TablaModificarDestinatarios tblDestinatariosNuevos;
 	private interfaces.componentes.BotonesIconos btnAceptar;
@@ -98,7 +98,7 @@ public class ModificarDestinatarios extends JDialog {
 			});
 		
 		cmbEspecialidad.setModel(new DefaultComboBoxModel<String>(especialidades));
-		cmbEspecialidad.setBounds(92, 80, 111, 20);
+		cmbEspecialidad.setBounds(92, 80, 154, 20);
 		getContentPane().add(cmbEspecialidad);
 		
 		txtBuscarDestinatarios = new JTextField();

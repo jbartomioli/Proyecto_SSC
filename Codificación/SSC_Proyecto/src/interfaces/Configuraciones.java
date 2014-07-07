@@ -86,8 +86,9 @@ public class Configuraciones extends JDialog
 	    });
 		
 		JLabel lblTitulo = new JLabel("Configuraciones Generales de Programa");
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTitulo.setBounds(10, 11, 281, 23);
+		lblTitulo.setForeground(Color.BLACK);
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblTitulo.setBounds(10, 11, 374, 23);
 		getContentPane().add(lblTitulo);
 		
 		JLabel imagen = new JLabel();
