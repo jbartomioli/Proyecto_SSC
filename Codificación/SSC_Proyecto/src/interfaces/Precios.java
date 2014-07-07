@@ -213,7 +213,12 @@ public class Precios extends JDialog {
 			public void mouseClicked(MouseEvent me) 
 			{
 				if(tblProductos.columnAtPoint(me.getPoint())==5)
-					click_modificar_precio();
+					try {
+						click_modificar_precio();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}
 		});
 						
@@ -367,7 +372,7 @@ public class Precios extends JDialog {
 			}
 		}
 		
-		protected void click_modificar_precio()
+		protected void click_modificar_precio() throws Exception
 		{
 			DefaultTableModel tableModel = (DefaultTableModel) tblProductos.getModel();
 			int idProductoInt;
@@ -375,12 +380,13 @@ public class Precios extends JDialog {
 			
 		    if (filaSeleccionada >= 0)
 		    {
-		    	idProductoInt = Integer.parseInt(tableModel.getValueAt(filaSeleccionada, 0).toString());
-		    	//JOptionPane.showConfirmDialog(this, idProductoInt, "ATENCION", JOptionPane.YES_NO_OPTION);	
+		    	idProductoInt = Integer.parseInt(tableModel.getValueAt(filaSeleccionada, 0).toString());	
 		    	productoSeleccionado = new negocio.Producto();
 	        	catProd = new negocio.CatalogoProductos();
+	        	catProd.obtenerProductos();
 		    	
 		    	productoSeleccionado = catProd.buscarProducto(idProductoInt);
+		    	System.out.print(productoSeleccionado.getIdProducto());
 	        	//JOptionPane.showConfirmDialog(this, productoSeleccionado.getCodProducto(), "ATENCION", JOptionPane.YES_NO_OPTION);
 	       
 	        	//REVISAR PORQUE NO APARECE EN CONSOLA EL NOMBRE DEL PRODUCTO
@@ -398,15 +404,16 @@ public class Precios extends JDialog {
 		        panelPrecio.add(new JLabel("Precio Promocional:"));
 		        panelPrecio.add(precioPromocional);
 		        
-		        /*int rta = JOptionPane.showConfirmDialog(null, panelPrecio, 
+		        int rta = JOptionPane.showConfirmDialog(null, panelPrecio, 
 		                "Ingrese el/los nuevo/s precio/s", JOptionPane.OK_CANCEL_OPTION);
 		        
 		        if (rta == JOptionPane.OK_OPTION) 
 		        {
-		            //Guardar Precio
-		        	productoSeleccionado.setPrecio(Float.parseFloat(precioVigente.getText()));
-		        	productoSeleccionado.setPrecioPromocional(Float.parseFloat(precioPromocional.getText()));
-		         }*/
+		            //Guardar Precio - TERMINAR DE HACER EL GUARDADO
+		        	//productoSeleccionado.setPrecio(Float.parseFloat(precioVigente.getText()));
+		        	//productoSeleccionado.setPrecioPromocional(Float.parseFloat(precioPromocional.getText()));
+		        	catProd.actualizarPrecioPromProducto(productoSeleccionado, Float.parseFloat(precioPromocional.getText()));
+		         }
 		    }
 		    	
 		}
