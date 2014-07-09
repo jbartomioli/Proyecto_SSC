@@ -17,25 +17,19 @@ import java.awt.Toolkit;
 
 public class PantallaBienvenida extends JDialog{
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4594499879058708929L;
+	
+	private JProgressBar prgBarraProgreso;
+	
 
 	/**
-	 * Create the application.
+	 * CONSTRUCTOR
 	 */
 	public PantallaBienvenida() 
 	{
-		inicializar();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void inicializar() 
-	{
+		/**
+		 * FORMULARIO BASE
+		 */
 		setTitle("SSC - Sistema de Seguimiento de Clientes");
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"SSC_128.png"));
@@ -44,13 +38,18 @@ public class PantallaBienvenida extends JDialog{
 		getContentPane().setLayout(null);
 		setUndecorated(true);
 		
-		
+		/**
+		 * IMAGEN SUPERIOR
+		 */
 		JLabel lblImagenSup = new JLabel("");
 		lblImagenSup.setBackground(Color.WHITE);
 		lblImagenSup.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_PRESENTACION+"imgInicioSup.jpg"));
 		lblImagenSup.setBounds(0, 0, 400, 81);
 		getContentPane().add(lblImagenSup);
 		
+		/**
+		 * TITULO PRINCIPAL
+		 */
 		JLabel lblTitulo = new JLabel("Sistema de Seguimiento");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Tw Cen MT", Font.PLAIN, 30));
@@ -69,17 +68,27 @@ public class PantallaBienvenida extends JDialog{
 		lblTitulo3.setBounds(0, 159, 400, 24);
 		getContentPane().add(lblTitulo3);
 		
+		/**
+		 * TEXTO AL PIE
+		 */
 		JLabel lblTitulo4 = new JLabel("Todos los derechos reservados");
 		lblTitulo4.setFont(new Font("Tahoma", Font.ITALIC, 9));
 		lblTitulo4.setBounds(10, 260, 131, 14);
 		getContentPane().add(lblTitulo4);
 		
+		/**
+		 * IMAGEN INFERIOR
+		 */
 		JLabel lblImagenInf = new JLabel("");
 		lblImagenInf.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_PRESENTACION+"imgInicioInf.jpg"));
 		lblImagenInf.setBounds(0, 194, 400, 81);
 		getContentPane().add(lblImagenInf);
 		
-		JProgressBar prgBarraProgreso = new JProgressBar();
+		
+		/**
+		 * BARRA DE PROGRESO
+		 */
+		prgBarraProgreso = new JProgressBar();
 		
 		prgBarraProgreso.setBackground(Color.WHITE);
 		prgBarraProgreso.setBounds(0, 276, 400, 24);
@@ -90,9 +99,21 @@ public class PantallaBienvenida extends JDialog{
 		setVisible(true);
 		setLocationRelativeTo(null);
 		
+		/**
+		 * INICIAR OPERACIONES
+		 */
+		iniciar_trabajos();	
+}
+
+
+
+	
+	//---------------------------------------------------------
+	protected void iniciar_trabajos()
+	{
     	Thread trabajoInicializar = new Thread(new interfaces.interfaces_software.TrabajoInicializar());
     	trabajoInicializar.start();
     	
-    	new Thread(new interfaces.interfaces_software.HiloBarraProgreso(trabajoInicializar, this, prgBarraProgreso, 200, true)).start();        		
+    	new Thread(new interfaces.interfaces_software.HiloBarraProgreso(trabajoInicializar, this, prgBarraProgreso, 200, true)).start(); 
 	}
 }

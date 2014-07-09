@@ -51,24 +51,30 @@ public class ModificarDestinatarios extends JDialog {
 	private JLabel lblBuscarDestinatarios;
 	private JLabel lblEspecialidad;
 	private JComboBox<String> cmbEspecialidad;
-	private String[] especialidades = {"", "Distribuidor", "Endodoncia", "Gnatologia", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
+	private String[] especialidades = {"Seleccione...", "Distribuidor", "Endodoncia", "Gnatologia", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
 	private interfaces.componentes.TablaModificarDestinatarios tblDestinatariosBuscados;
 	private interfaces.componentes.TablaModificarDestinatarios tblDestinatariosNuevos;
 	private interfaces.componentes.BotonesIconos btnAceptar;
-	private interfaces.componentes.BotonesIconos btnCancelar;
-	
+	private interfaces.componentes.BotonesIconos btnCancelar;	
+	private JButton btnBuscarDestinatario;
 
 
-	//CONSTRUCTOR
+	/**
+	 * CONSTRUCTOR
+	 * @param dialogPadre
+	 */
 	public ModificarDestinatarios(final interfaces.GenerarAnuncio dialogPadre) 
 	{
+		/**
+		 * FORMULARIO BASE
+		 */
 		super(dialogPadre);
 		setResizable(false);
-		setMinimumSize(new Dimension(1024, 668));
-		getContentPane().setMinimumSize(new Dimension(1024, 668));
-		getContentPane().setMaximumSize(new Dimension(1366, 668));
-		setMaximumSize(new Dimension(1366, 768));
-		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);	
+		setMinimumSize(new Dimension(1024, 460));
+		getContentPane().setMinimumSize(new Dimension(1024, 460));
+		getContentPane().setMaximumSize(new Dimension(1366, 460));
+		setMaximumSize(new Dimension(1366, 460));
+		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);	
 		setTitle("Modificar Clientes Destinatarios");
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
@@ -78,30 +84,114 @@ public class ModificarDestinatarios extends JDialog {
 		getContentPane().setLayout(null);
 		
 	
+		/**
+		 * TITULO
+		 */
 		lblBuscarDestinatarios = new JLabel("Buscar destinatarios");
 		lblBuscarDestinatarios.setForeground(Color.DARK_GRAY);
-		lblBuscarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblBuscarDestinatarios.setBounds(10, 30, 341, 29);
+		lblBuscarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblBuscarDestinatarios.setBounds(10, 11, 236, 29);
 		getContentPane().add(lblBuscarDestinatarios);
+			
 		
-				
+		/**
+		 * LABEL BUSCADOR
+		 */
 		lblEspecialidad = new JLabel("Especialidad:");
 		lblEspecialidad.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEspecialidad.setBounds(10, 83, 83, 14);
+		lblEspecialidad.setBounds(10, 54, 83, 14);
 		getContentPane().add(lblEspecialidad);
-				
 		
-		cmbEspecialidad = new JComboBox<String>();
-		cmbEspecialidad.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent evento) {
-				click_combo_especialidad(dialogPadre, evento);}
-			});
-		
+		/**
+		 * COMBO ESPECIALIDADES
+		 */
+		cmbEspecialidad = new JComboBox<String>();		
 		cmbEspecialidad.setModel(new DefaultComboBoxModel<String>(especialidades));
-		cmbEspecialidad.setBounds(92, 80, 154, 20);
+		cmbEspecialidad.setBounds(92, 51, 154, 20);
 		getContentPane().add(cmbEspecialidad);
 		
+		
+		/**
+		 * BUSCADOR NOMBRE
+		 */
 		txtBuscarDestinatarios = new JTextField();
+		txtBuscarDestinatarios.setForeground(Color.GRAY);
+		txtBuscarDestinatarios.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtBuscarDestinatarios.setText("Ingrese apellido o nombre...");
+		txtBuscarDestinatarios.setBounds(270, 51, 154, 20);
+		txtBuscarDestinatarios.setColumns(10);
+		getContentPane().add(txtBuscarDestinatarios);
+		
+		
+		/**
+		 * TABLA DESTINATARIOS SELECCIONADOS
+		 */
+		Box boxDestinatariosNuevos = Box.createHorizontalBox();
+		boxDestinatariosNuevos.setBorder(new TitledBorder(null, "Destinatarios Anuncio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		boxDestinatariosNuevos.setBounds(10, 82, 500, 264);
+		getContentPane().add(boxDestinatariosNuevos);
+		
+		JScrollPane scrollDestinatariosNuevos = new JScrollPane();
+		boxDestinatariosNuevos.add(scrollDestinatariosNuevos);
+		
+		tblDestinatariosNuevos = new interfaces.componentes.TablaModificarDestinatarios();
+		scrollDestinatariosNuevos.setViewportView(tblDestinatariosNuevos);
+		
+		
+		/**
+		 * TABLA DESTINATARIOS BUSCADOS
+		 */
+		Box boxDestinatariosBuscados = Box.createHorizontalBox();
+		boxDestinatariosBuscados.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios por Especialidad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		boxDestinatariosBuscados.setBounds(520, 82, 488, 264);
+		getContentPane().add(boxDestinatariosBuscados);
+		
+		JScrollPane scrollDestinatariosBuscados = new JScrollPane();
+		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
+		
+	    tblDestinatariosBuscados = new interfaces.componentes.TablaModificarDestinatarios();
+		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
+		
+		
+		/**
+		 * BOTON ACEPTAR
+		 */
+		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");		
+		btnAceptar.setLocation(819, 357);
+		getContentPane().add(btnAceptar);
+		
+		
+		/**
+		 * BOTON CANCELAR
+		 */
+		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		btnCancelar.setLocation(918, 357);
+		getContentPane().add(btnCancelar);
+		
+		
+		/**
+		 * BOTON BUSCADOR
+		 */
+		btnBuscarDestinatario = new BotonesIconos("",utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_16.png");
+		btnBuscarDestinatario.setBounds(434, 51, 30, 20);
+		getContentPane().add(btnBuscarDestinatario);
+		
+		/**
+		 * INICIALIZACION DE CONTROLES
+		 */
+		inicializar(dialogPadre);
+	}
+	
+	
+	
+	//-------------------------------------------------------------------------
+	protected void inicializar(final interfaces.GenerarAnuncio dialogPadre)
+	{
+		cmbEspecialidad.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent evento) {
+				click_combo_especialidad(dialogPadre, evento);}});
+		
+		
 		txtBuscarDestinatarios.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent evento) {
 				//Busca clientes si el usuario presiona enter
@@ -111,6 +201,7 @@ public class ModificarDestinatarios extends JDialog {
 				}
 			}
 		});		
+		
 		txtBuscarDestinatarios.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) 
 			{
@@ -118,90 +209,45 @@ public class ModificarDestinatarios extends JDialog {
 				txtBuscarDestinatarios.setForeground(SystemColor.black);
 			}
 		});
-		txtBuscarDestinatarios.setForeground(Color.GRAY);
-		txtBuscarDestinatarios.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtBuscarDestinatarios.setText("ingrese apellido o nombre...");
-		txtBuscarDestinatarios.setBounds(270, 80, 154, 20);
-		txtBuscarDestinatarios.setColumns(10);
-		getContentPane().add(txtBuscarDestinatarios);
 		
-		
-		Box boxDestinatariosNuevos = Box.createHorizontalBox();
-		boxDestinatariosNuevos.setBorder(new TitledBorder(null, "Destinatarios Anuncio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		boxDestinatariosNuevos.setBounds(10, 134, 500, 250);
-		getContentPane().add(boxDestinatariosNuevos);
-		
-		JScrollPane scrollDestinatariosNuevos = new JScrollPane();
-		boxDestinatariosNuevos.add(scrollDestinatariosNuevos);
-		
-		tblDestinatariosNuevos = new interfaces.componentes.TablaModificarDestinatarios();
-		scrollDestinatariosNuevos.setViewportView(tblDestinatariosNuevos);
 		
 		// LA TABLA SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS
 		tblDestinatariosNuevos.completarTabla(dialogPadre.getControlador().getArrClientesInteresados());
 		//Agrega el btn eliminar a la tabla
 		tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
-		
 				
-        //Evento para eliminar destinatarios a la lista de destino
+						
+		//Evento para eliminar destinatarios a la lista de destino
 		tblDestinatariosNuevos.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) 
-			{
-				if(tblDestinatariosNuevos.columnAtPoint(me.getPoint())==4)
-					click_eliminar_destinatario();
-			}
-		});
-		
-			
-		Box boxDestinatariosBuscados = Box.createHorizontalBox();
-		boxDestinatariosBuscados.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios por Especialidad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		boxDestinatariosBuscados.setBounds(520, 134, 488, 250);
-		getContentPane().add(boxDestinatariosBuscados);
-		
-		JScrollPane scrollDestinatariosBuscados = new JScrollPane();
-		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
-		
-	    tblDestinatariosBuscados = new interfaces.componentes.TablaModificarDestinatarios();
-		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
-		
+					{
+						if(tblDestinatariosNuevos.columnAtPoint(me.getPoint())==4)
+							click_eliminar_destinatario();
+					}
+				});
+				
+				
 		//Evento para agregar destinatarios a la lista de destino
 		tblDestinatariosBuscados.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) 
-			{
-				if(tblDestinatariosBuscados.columnAtPoint(me.getPoint())==4)
-					click_aniadir_destinatario();
-			}
-		});
+					{
+						if(tblDestinatariosBuscados.columnAtPoint(me.getPoint())==4)
+							click_aniadir_destinatario();
+					}});
 
-		
-		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-	        		click_boton_aceptar(dialogPadre);
-	        	}
-			});
-		
-		btnAceptar.setLocation(819, 569);
-		getContentPane().add(btnAceptar);
-		
-		
-		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		       		click_boton_aceptar(dialogPadre);}});
+				
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-	        	click_boton_cancelar();}
-			});
-		btnCancelar.setLocation(918, 569);
-		getContentPane().add(btnCancelar);
-		
-		
-		JButton btnBuscarDestinatario = new BotonesIconos("",utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_16.png");
+		        	click_boton_cancelar();}});
+				
 		btnBuscarDestinatario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-				click_boton_buscar(dialogPadre);}
-			});
-		btnBuscarDestinatario.setBounds(434, 80, 30, 20);
-		getContentPane().add(btnBuscarDestinatario);
+					click_boton_buscar(dialogPadre);}});
 	}
+	
 	
 	
 	// EVENTOS

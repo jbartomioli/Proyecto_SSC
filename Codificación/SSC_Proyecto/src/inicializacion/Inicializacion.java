@@ -10,9 +10,11 @@ import javax.swing.JOptionPane;
 
 public class Inicializacion 
 {
+	/**
+	 * CONSTRUCTO
+	 */
 	public Inicializacion() 
-	{
-					
+	{			
 		try
 		{
 			@SuppressWarnings("unused")
@@ -20,11 +22,8 @@ public class Inicializacion
 
 			//
 			@SuppressWarnings("unused")
-			interfaces.PantallaBienvenida pantallaInicio = new interfaces.PantallaBienvenida();
-			
-			
+			interfaces.PantallaBienvenida pantallaInicio = new interfaces.PantallaBienvenida();	
 		}
-
 		catch (IOException e) 
 		{
 			JOptionPane.showMessageDialog(
@@ -37,12 +36,19 @@ public class Inicializacion
 		}
 		finally
 		{
-			//limpieza de memoria
+			/**
+			 * LIMPIEZA DE VARIABLES
+			 */
 			Runtime garbage = Runtime.getRuntime();
 			garbage.gc();
 		}
 	}
 	
+	/**
+	 * 
+	 * PRINCIPAL
+	 * @param args
+	 */
 	public static void main(String [] args)
 	{		
 		new Inicializacion();

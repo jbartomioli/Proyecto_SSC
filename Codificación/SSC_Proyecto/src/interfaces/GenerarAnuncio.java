@@ -595,7 +595,6 @@ public class GenerarAnuncio extends JDialog {
 
 	    if (filaSeleccionada >= 0)
 	    {
-	    	JOptionPane.showMessageDialog(null,tblProductosAnuncio.getModel().getValueAt(filaSeleccionada,0));
 	    	controladorAux.eliminarProducto(Integer.parseInt(tblProductosAnuncio.getModel().getValueAt(filaSeleccionada,0).toString()));
 	    	tableModel.removeRow(filaSeleccionada);	
 	    }	    
