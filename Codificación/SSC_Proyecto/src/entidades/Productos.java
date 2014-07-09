@@ -148,5 +148,4 @@ public class Productos implements java.io.Serializable {
 	public void setLineaDePedidos(Set<LineaDePedido> lineaDePedidos) {
 		this.lineaDePedidos = lineaDePedidos;
 	}
-
 }

@@ -238,7 +238,7 @@ public class CatalogoProductos
 	// ACTUALIZA EL PRECIO PROMOCIONAL MODIFICADO EN EL ARRAY PROD.//
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void actualizarPrecioPromProducto(negocio.Producto productoModificar,float nuevoPrecio)
+	public void actualizarPrecioPromProducto(negocio.Producto productoModificar, float nuevoPrecio)
 	{
 		//SE RECORRE CADA PRODUCTO DEL ARRAY
 		for(negocio.Producto productoNegocio : this.productos)
@@ -249,10 +249,11 @@ public class CatalogoProductos
 			{
 				//SE SETEA EL PRECIO EN EL PRODUCTO ACTUAL
 				productoNegocio.setPrecioPromocional(nuevoPrecio);
-				
+						
 				//SE CREA OBJETO PRODUCTO DE DATOS PARA SETEO DE DATOS
 				datos.Producto productoModifDatos = new datos.Producto();
 				
+			
 				//SE SETEAN LOS DATOS NECESARIOS
 				productoModifDatos.setIdProducto(productoNegocio.getIdProducto());
 				

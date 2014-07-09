@@ -410,8 +410,6 @@ public class Precios extends JDialog {
 		        if (rta == JOptionPane.OK_OPTION) 
 		        {
 		            //Guardar Precio - TERMINAR DE HACER EL GUARDADO
-		        	//productoSeleccionado.setPrecio(Float.parseFloat(precioVigente.getText()));
-		        	//productoSeleccionado.setPrecioPromocional(Float.parseFloat(precioPromocional.getText()));
 		        	catProd.actualizarPrecioPromProducto(productoSeleccionado, Float.parseFloat(precioPromocional.getText()));
 		         }
 		    }

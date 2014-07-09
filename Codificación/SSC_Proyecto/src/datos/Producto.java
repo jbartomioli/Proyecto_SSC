@@ -98,16 +98,6 @@ public class Producto
 	{
 		this.precios = precios;
 	}
-	
-	/*public datos.Precio getPrecios() 
-	{
-		return precios;
-	}
-
-	public void setPrecios(datos.Precio precios) 
-	{
-		this.precios = precios;
-	}*/
 	//---------------------------------------------------------------
 
 
