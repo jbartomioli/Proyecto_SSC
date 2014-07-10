@@ -38,6 +38,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Vector;
 
 import javax.swing.SwingConstants;
@@ -471,15 +472,20 @@ public class GenerarAnuncio extends JDialog {
 	        {
 	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
 	        	
-	        	String productos[][] = new String[tblProductosAnuncio.getModel().getRowCount()][3];
+	        	HashMap<String, String> producto = new HashMap<String, String>();
 	        	
+	        	Collection<HashMap<String, String>> productos = new ArrayList<HashMap<String,String>>();
+	        		        	
 	        	for(int i=0; i<tblProductosAnuncio.getModel().getRowCount();++i)
 	        	{
-	        		productos[i][0] = tblProductosAnuncio.getModel().getValueAt(i, 0).toString();
-	        		productos[i][1] = tblProductosAnuncio.getModel().getValueAt(i, 1).toString();
-	        		productos[i][2] = tblProductosAnuncio.getModel().getValueAt(i, 2).toString();
+	        		producto.put("ID", tblProductosAnuncio.getModel().getValueAt(i, 0).toString());
+	        		producto.put("DESCRIPCION", tblProductosAnuncio.getModel().getValueAt(i, 1).toString());
+	        		producto.put("VIGENTE", tblProductosAnuncio.getModel().getValueAt(i, 2).toString());
+	        		producto.put("PROMOCIONAL", tblProductosAnuncio.getModel().getValueAt(i, 3).toString());
+	        		
+	        		productos.add(producto);
 	        	}
-	        		        	
+	        		        		        	
 				@SuppressWarnings("unused")
 				EditorHTML editorHTML = new EditorHTML(dialogPadre, productos, txtAsunto.getText());
 	        	if(txtAsunto.getText().equals(""))
