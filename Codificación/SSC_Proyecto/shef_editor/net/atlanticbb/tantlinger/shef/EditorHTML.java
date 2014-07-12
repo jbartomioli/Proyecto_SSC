@@ -23,23 +23,38 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
 
 
 
 public class EditorHTML extends JDialog
 {
 
-	/**
-	 * 
-	 */
+	/***************
+	 * SERIALIZABLE
+	 ***************/
 	private static final long serialVersionUID = -523425622964525664L;
 	
+	/************************
+	 * COMPONENTES/VARIABLES
+	 ************************/
 	private HTMLEditorPane editor = new HTMLEditorPane();
 	private String tagIniComentario = "<!--";
 	private String tagFinComentario = "-->";
 	
-    public EditorHTML(JDialog padre, String[][] productos, String asunto)
+	
+	/*********************
+	 * CONSTRUCTOR
+	 * @param padre
+	 * @param productos
+	 * @param asunto
+	 *********************/
+    public EditorHTML(JDialog padre,Collection<HashMap<String, String>> productos, String asunto)
     {
+    	/*******************
+    	 * FORMULARIO BASE
+    	 *******************/
 		super(padre);
 		setResizable(false);
 		setMinimumSize(new Dimension(800,600));
@@ -49,10 +64,11 @@ public class EditorHTML extends JDialog
 		setLocationRelativeTo(null);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png"));
 		
+		/**************
+		 * INICIALIZAR
+		 **************/
     	inicializarContenido(asunto, productos);
     	
-//    	setModal(true);
-//    	setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
     	
@@ -62,21 +78,33 @@ public class EditorHTML extends JDialog
         	}
         });
         
+    	/*************
+    	 * BARRA MENU
+    	 *************/
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(editor.getEditMenu());
         menuBar.add(editor.getFormatMenu());
         menuBar.add(editor.getInsertMenu());
         setJMenuBar(menuBar);
         
-        
         setTitle("Editor de Contenido HTML de E-Mail");
         setSize(800, 600);
+        
+        /**********
+         * EDITOR
+         **********/
         getContentPane().add(editor);
         
+        /****************
+         * PANEL BOTONES
+         ****************/
         JPanel panel = new JPanel();
         editor.add(panel, BorderLayout.SOUTH);
         panel.setLayout(new GridLayout(0, 2, 0, 0));
         
+        /******************
+         * BOTON FINALIZAR
+         ******************/
         JButton btnFinalizarEdicion = new JButton("Finalizar Edici\u00F3n");
         btnFinalizarEdicion.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -85,6 +113,9 @@ public class EditorHTML extends JDialog
         });
         panel.add(btnFinalizarEdicion);
         
+        /*****************
+         * BOTON CANCELAR
+         *****************/
         JButton btnCancelar = new JButton("Cancelar");
         btnCancelar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -100,7 +131,7 @@ public class EditorHTML extends JDialog
     
     
     //------------------------------------------------------
-    public void inicializarContenido(String asunto, String[][] productos)
+    public void inicializarContenido(String asunto, Collection<HashMap<String, String>> productos)
     {
     	File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
 		
@@ -136,17 +167,17 @@ public class EditorHTML extends JDialog
 		   	
 		   	contenidoMailHTML+="<table>"
 				   			+ "<tr>"
+				   			+ "<th>Cod.</th>"
 				   			+ "<th>Producto</th>"
 				   			+ "<th>Precio Vigente</th>"
-				   			//+ "<th>Precio Promocional</th>"
 				   			+ "</tr>";
 		   	
-	   		for(int i=0; i<productos.length;i++)
+	   		for(HashMap<String, String> productoActual: productos)
 	   		{
 	   			renglon = "<tr>"
-	   					+ "<td>"+productos[i][0]+"</td>"
-	   					+ "<td>$ "+productos[i][1]+"</td>"
-	   					//+ "<td>$ "+productos[i][2]+"</td>"
+	   					+ "<td>"+productoActual.get("ID")+"</td>"
+	   					+ "<td>"+productoActual.get("DESCRIPCION")+"</td>"
+	   					+ "<td>$ "+productoActual.get("PROMOCIONAL")+"</td>"
 	   					+ "</tr>";
 
         		contenidoMailHTML += renglon;
