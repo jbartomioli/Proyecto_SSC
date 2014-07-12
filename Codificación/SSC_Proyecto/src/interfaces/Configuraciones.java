@@ -37,10 +37,15 @@ import javax.swing.JButton;
 public class Configuraciones extends JDialog
 {
 	
-	/**
-	 * 
-	 */
+	/****************
+	 * SERIALIZABLE 
+	 ****************/
 	private static final long serialVersionUID = 5183774197207425835L;
+	
+	
+	/***************
+	 * COMPONENTES 
+	 ***************/
 	private JTextField txtURL;
 	private JTextField txtPuerto;
 	private JTextField txtUsuario;
@@ -61,8 +66,15 @@ public class Configuraciones extends JDialog
 	private JTextField txtUbicacionFile;
 
 	
+	/*********************
+	 * CONSTRUCTOR       
+	 * @param framePadre 
+	 *********************/
 	public Configuraciones(JFrame framePadre) 
 	{
+		/*******************
+		 * FORMULARIO BASE 
+		 *******************/
 		super(framePadre);
 		setResizable(false);
 		setMinimumSize(new Dimension(500,500));
@@ -85,23 +97,35 @@ public class Configuraciones extends JDialog
 	    	}
 	    });
 		
+		/**********
+		 * TITULO 
+		 **********/
 		JLabel lblTitulo = new JLabel("Configuraciones Generales de Programa");
 		lblTitulo.setForeground(Color.BLACK);
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitulo.setBounds(10, 11, 374, 23);
 		getContentPane().add(lblTitulo);
 		
+		/********** 
+		 * IMAGEN 
+		 **********/
 		JLabel imagen = new JLabel();
 		imagen.setBounds(452, 11, 32, 32);
 		imagen.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFIGURACION_32.png"));
 		getContentPane().add(imagen);
 		
+		/**********************
+		 * PANEL BASE DE DATOS 
+		 **********************/
 		JPanel panelBD = new JPanel();
 		panelBD.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Base de Datos", TitledBorder.LEFT, TitledBorder.TOP, null, Color.DARK_GRAY));
 		panelBD.setBounds(10, 45, 474, 135);
 		getContentPane().add(panelBD);
 		panelBD.setLayout(null);
 		
+		/*********
+		 * URL BD
+		 *********/
 		JLabel lblURL = new JLabel("Servidor:");
 		lblURL.setBounds(10, 25, 61, 14);
 		panelBD.add(lblURL);
@@ -111,6 +135,9 @@ public class Configuraciones extends JDialog
 		panelBD.add(txtURL);
 		txtURL.setColumns(10);
 		
+		/************
+		 * PUERTO BD
+		 ************/
 		JLabel lblPuerto = new JLabel("Puerto:");
 		lblPuerto.setBounds(324, 25, 52, 14);
 		panelBD.add(lblPuerto);
@@ -120,6 +147,9 @@ public class Configuraciones extends JDialog
 		panelBD.add(txtPuerto);
 		txtPuerto.setColumns(10);
 		
+		/*************
+		 * USUARIO BD
+		 *************/
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setBounds(10, 54, 61, 14);
 		panelBD.add(lblUsuario);
@@ -129,6 +159,9 @@ public class Configuraciones extends JDialog
 		panelBD.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
+		/**********
+		 * PASS BD
+		 **********/
 		JLabel lblPass = new JLabel("Contrase\u00F1a:");
 		lblPass.setBounds(261, 54, 69, 14);
 		panelBD.add(lblPass);
@@ -136,12 +169,15 @@ public class Configuraciones extends JDialog
 		psfPass = new JPasswordField();
 		psfPass.setBounds(338, 51, 126, 20);
 		panelBD.add(psfPass);
-		
+
 		psfPassRep = new JPasswordField();
 		psfPassRep.setText((String) null);
 		psfPassRep.setBounds(338, 79, 126, 20);
 		panelBD.add(psfPassRep);
-		
+
+		/****************
+		 * BASE DE DATOS
+		 ****************/
 		JLabel lblBD = new JLabel("Base de Datos:");
 		lblBD.setBounds(10, 82, 86, 14);
 		panelBD.add(lblBD);
@@ -151,16 +187,26 @@ public class Configuraciones extends JDialog
 		panelBD.add(txtBD);
 		txtBD.setColumns(10);
 		
+		/*************
+		 * DEPURACION
+		 *************/
 		chkModoDepuracion = new JCheckBox("Modo Depuraci\u00F3n");
 		chkModoDepuracion.setBounds(10, 103, 140, 23);
 		panelBD.add(chkModoDepuracion);
 		
+		
+		/*****************
+		 * PANEL ARCHIVOS
+		 *****************/
 		JPanel panelFile = new JPanel();
 		panelFile.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Archivos", TitledBorder.LEADING, TitledBorder.TOP, null, Color.DARK_GRAY));
 		panelFile.setBounds(10, 185, 474, 68);
 		getContentPane().add(panelFile);
 		panelFile.setLayout(null);
 		
+		/************
+		 * UBICACION
+		 ************/
 		JLabel lblUbicacin = new JLabel("Ubicaci\u00F3n:");
 		lblUbicacin.setBounds(10, 26, 65, 16);
 		panelFile.add(lblUbicacin);
@@ -170,6 +216,9 @@ public class Configuraciones extends JDialog
 		panelFile.add(txtUbicacionFile);
 		txtUbicacionFile.setColumns(10);
 		
+		/*****************
+		 * BUSCAR ARCHIVO
+		 *****************/
 		JButton btnBuscarArchivo = new JButton("Buscar Archivo");
 		btnBuscarArchivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
@@ -180,12 +229,19 @@ public class Configuraciones extends JDialog
 		btnBuscarArchivo.setBounds(341, 21, 121, 26);
 		panelFile.add(btnBuscarArchivo);
 		
+		
+		/*************
+		 * PANEL MAIL
+		 *************/
 		JPanel panelMail = new JPanel();
 		panelMail.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Mail", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
 		panelMail.setBounds(10, 256, 474, 130);
 		getContentPane().add(panelMail);	
 		panelMail.setLayout(null);
 		
+		/***********
+		 * SERVIDOR
+		 ***********/
 		JLabel lblServidorSmtp = new JLabel("Servidor SMTP:");
 		lblServidorSmtp.setBounds(10, 21, 94, 14);
 		panelMail.add(lblServidorSmtp);
@@ -195,6 +251,9 @@ public class Configuraciones extends JDialog
 		panelMail.add(txtServerSmtp);
 		txtServerSmtp.setColumns(10);
 		
+		/**************
+		 * PUERTO SMTP
+		 **************/
 		JLabel lblPuertoSmtp = new JLabel("Puerto:");
 		lblPuertoSmtp.setBounds(328, 21, 51, 14);
 		panelMail.add(lblPuertoSmtp);
@@ -204,6 +263,9 @@ public class Configuraciones extends JDialog
 		panelMail.add(txtPuertoSmtp);
 		txtPuertoSmtp.setColumns(10);
 		
+		/*******
+		 * MAIL
+		 *******/
 		JLabel lblMail = new JLabel("Direcci\u00F3n Mail:");
 		lblMail.setBounds(10, 49, 86, 14);
 		panelMail.add(lblMail);
@@ -213,6 +275,10 @@ public class Configuraciones extends JDialog
 		panelMail.add(txtMail);
 		txtMail.setColumns(10);
 		
+		
+		/****************
+		 * AUTENTICACION
+		 ****************/
 		chkAutenticacionSmtp = new JCheckBox("Autenticaci\u00F3n");
 		chkAutenticacionSmtp.setBounds(10, 97, 136, 23);
 		panelMail.add(chkAutenticacionSmtp);
@@ -221,6 +287,9 @@ public class Configuraciones extends JDialog
 		lblPassSmtp.setBounds(258, 49, 72, 14);
 		panelMail.add(lblPassSmtp);
 		
+		/***********
+		 * PASSWORD
+		 ***********/
 		psfPassSmtp = new JPasswordField();
 		psfPassSmtp.setBounds(338, 46, 126, 20);
 		panelMail.add(psfPassSmtp);
@@ -229,16 +298,27 @@ public class Configuraciones extends JDialog
 		psfPassSmtpRep.setBounds(338, 72, 126, 20);
 		panelMail.add(psfPassSmtpRep);
 		
+		
+		/*************
+		 * DEPURACION
+		 *************/
 		chkModoDepuracionSmtp = new JCheckBox("Modo Depuraci\u00F3n");
 		chkModoDepuracionSmtp.setBounds(10, 71, 136, 23);
 		panelMail.add(chkModoDepuracionSmtp);
 		
+		/******
+		 * SSL
+		 ******/
 		chkTtlsSmtp = new JCheckBox("TTLS");
 		chkTtlsSmtp.setBounds(146, 97, 94, 23);
 		panelMail.add(chkTtlsSmtp);
 		
 		
-		interfaces.componentes.BotonesIconos btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar", utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
+		/****************
+		 * BOTON ACEPTAR
+		 ****************/
+		interfaces.componentes.BotonesIconos btnAceptar = 
+				new interfaces.componentes.BotonesIconos("Aceptar", utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(294, 397);	
 		btnAceptar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
@@ -247,7 +327,11 @@ public class Configuraciones extends JDialog
 		getContentPane().add(btnAceptar);
 		
 		
-		interfaces.componentes.BotonesIconos btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		/*****************
+		 * BOTON CANCELAR
+		 *****************/
+		interfaces.componentes.BotonesIconos btnCerrar = 
+				new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCerrar.setLocation(394, 397);	
 		btnCerrar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
@@ -255,9 +339,12 @@ public class Configuraciones extends JDialog
 	        	}});
 		getContentPane().add(btnCerrar);
 		
+		
+		/**********************************
+		 * INICIALIZACIONES DE COMPONENTES
+		 **********************************/
 		inicializar();
 	}
-	
 	
 	
 	//-------------------------------------------------------------
@@ -376,8 +463,6 @@ public class Configuraciones extends JDialog
 		}
 		
 	}
-
-	
 	
 	//-------------------------------------------------------------
 	@SuppressWarnings("deprecation")

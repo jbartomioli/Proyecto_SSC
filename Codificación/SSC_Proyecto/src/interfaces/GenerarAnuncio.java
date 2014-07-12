@@ -1,5 +1,5 @@
 package interfaces;
-/*
+/**
  * PANTALLA CORRESPONDIENTE AL CU GENERAR ANUNCIO
  */
 
@@ -53,10 +53,15 @@ import javax.swing.JProgressBar;
 
 
 public class GenerarAnuncio extends JDialog {
-	//SERIALIZABLE
+	/****************
+	 * SERIALIZABLE
+	 ****************/
 	private static final long serialVersionUID = 4454249604145639442L;
 	
-	//COMPONENTES
+	
+	/**************
+	 * COMPONENTES
+	 **************/
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
 	private negocio.Categoria categoria;
 	private interfaces.componentes.TablaProductosAnuncio tblProductosAnuncio;
@@ -74,13 +79,17 @@ public class GenerarAnuncio extends JDialog {
 	private JScrollPane scrollProductos;
 
 	
-	//------------------------------------------------------------------
+
+	/***********
+	 * METODOS
+	 * @return
+	 ***********/
+	//-------------------------------------------------------------------
 	public negocio.ControladorConfeccionarAnuncio getControlador()
 	{
 		return controladorAux;
 	}
 
-		
 	//-------------------------------------------------------------------
 	public void actualizarClientesDestinatarios(TableModel nuevoModelo)
 	{			
@@ -105,8 +114,13 @@ public class GenerarAnuncio extends JDialog {
 	}
 	
 	
-	
-	//CONSTRUCTOR
+	/*******************************
+	 * CONSTRUCTOR
+	 * @param framePadre
+	 * @param modal
+	 * @param controladorAnuncios
+	 * @throws Exception
+	 *******************************/
 	public GenerarAnuncio(Frame framePadre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
 	{
 		/***************************************************************
@@ -133,54 +147,61 @@ public class GenerarAnuncio extends JDialog {
         	}
         });
 		
+    	/*********
+    	 * TITULO
+    	 *********/
+    	JLabel lblTitulo = new JLabel("Generar Anuncio");
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblTitulo.setBounds(10, 11, 304, 23);
+		getContentPane().add(lblTitulo);
     	
-    	/***************************************************************
+    	/*************
     	 * CATEGORIAS 
-    	 ***************************************************************/
+    	 *************/
 		JLabel lblCategoria = new JLabel("Categor\u00EDa:");
 		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCategoria.setBounds(10, 24, 77, 23);
+		lblCategoria.setBounds(10, 38, 77, 23);
 		getContentPane().add(lblCategoria);
 
 		cmbCategorias = new interfaces.componentes.ComboCategorias();
 		lblCategoria.setLabelFor(cmbCategorias);
-		cmbCategorias.setBounds(87, 24, 200, 23);
+		cmbCategorias.setBounds(87, 38, 200, 23);
 		getContentPane().add(cmbCategorias);
 		
 		
-		/**************************************************************
+		/****************
 		 * SUBCATEGORIAS
-		 **************************************************************/
+		 ****************/
 		JLabel lblSubcategoria = new JLabel("Subcategor\u00EDa:");
 		lblSubcategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblSubcategoria.setBounds(310, 24, 97, 23);
+		lblSubcategoria.setBounds(310, 38, 97, 23);
 		getContentPane().add(lblSubcategoria);
 
 		cmbSubcategorias = new interfaces.componentes.ComboSubcategorias();
 		lblSubcategoria.setLabelFor(cmbSubcategorias);
-		cmbSubcategorias.setBounds(410, 24, 196, 23);
+		cmbSubcategorias.setBounds(410, 38, 196, 23);
 		getContentPane().add(cmbSubcategorias);
 		
 		
-		/**************************************************************
+		/*********
 		 * ASUNTO
-		 **************************************************************/
-		JLabel lblAsunto = new JLabel("T\u00EDtulo / Asunto:");
+		 *********/
+		JLabel lblAsunto = new JLabel("Asunto:");
 		lblAsunto.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAsunto.setBounds(10, 72, 110, 23);
+		lblAsunto.setBounds(10, 72, 77, 23);
 		getContentPane().add(lblAsunto);
 		
 		txtAsunto = new JTextField();
 		lblAsunto.setLabelFor(txtAsunto);
-		txtAsunto.setBounds(123, 73, 483, 20);
+		txtAsunto.setBounds(87, 73, 519, 20);
 		txtAsunto.setText("");
 		getContentPane().add(txtAsunto);
 		txtAsunto.setColumns(10);
 		
 		
-		/***************************************************************
+		/*******************************
 		 * TABLA PRODUCTOS DEL ANUNCIO
-		 ***************************************************************/
+		 *******************************/
 		Box boxProductosAnuncio = Box.createHorizontalBox();
 		boxProductosAnuncio.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
 		boxProductosAnuncio.setBounds(10, 106, 464, 244);
@@ -193,9 +214,9 @@ public class GenerarAnuncio extends JDialog {
 	
 		
 		
-		/****************************************************************
+		/****************************
 		 * TABLA PRODUCTOS A AGREGAR
-		 ****************************************************************/
+		 ****************************/
 		Box boxProductos = Box.createHorizontalBox();
 		boxProductos.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
 		boxProductos.setBounds(484, 106, 430, 446);
@@ -210,9 +231,9 @@ public class GenerarAnuncio extends JDialog {
 		scrollProductos.setViewportView(tblProductos);
 	
 		
-		/****************************************************************
+		/**********************
 		 * TABLA DESTINATARIOS
-		 ****************************************************************/
+		 **********************/
 		Box boxDestinatarios = Box.createHorizontalBox();
 		boxDestinatarios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
 		boxDestinatarios.setBounds(10, 361, 464, 192);
@@ -225,9 +246,9 @@ public class GenerarAnuncio extends JDialog {
 		scrollDestinatarios.setViewportView(tblDestinatarios);
 
 		
-		/****************************************************************
+		/*********************************
 		 * BOTON MODIFICAR DESTINATARIOS
-		 ****************************************************************/
+		 *********************************/
 		lblModificarDestinatarios = new JLabel("Modificar Destinatarios");
 		lblModificarDestinatarios.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblModificarDestinatarios.setForeground(SystemColor.inactiveCaptionText);
@@ -243,44 +264,44 @@ public class GenerarAnuncio extends JDialog {
 		getContentPane().add(lblModificarDestinatarios);
 
 		
-		/****************************************************************
+		/*************************
 		 * BOTON GENERAR ANUNCIO
-		 ****************************************************************/
+		 *************************/
 		btnGenerar = new interfaces.componentes.BotonesIconos("Modificar Contenido", utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png");
 		btnGenerar.setText("Generar");
 		btnGenerar.setLocation(22, 608);
 		getContentPane().add(btnGenerar);
 			
 		
-		/****************************************************************
+		/****************
 		 * BOTON ENVIAR
-		 ****************************************************************/
+		 ****************/
 		btnEnviar = new interfaces.componentes.BotonesIconos("Enviar Mail", utilidades.Configuraciones.IMG_ICONOS+"ENVIAR_32.png");
 		btnEnviar.setText("Enviar");
 		btnEnviar.setLocation(145, 608);		
 	    getContentPane().add(btnEnviar);
 	
 				
-		/***************************************************************
+		/****************
 		 * BOTON CERRAR
-		 ***************************************************************/
+		 ****************/
 		btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCerrar.setLocation(817, 609);				
 		getContentPane().add(btnCerrar);		
 		
 		
-		/***************************************************************
+		/*********************
 		 * BARRA DE PROGRESO
-		 ***************************************************************/
+		 *********************/
 		prgProgresoAniadir = new JProgressBar();
 		prgProgresoAniadir.setStringPainted(true);
 		prgProgresoAniadir.setBounds(10, 558, 304, 19);
 		getContentPane().add(prgProgresoAniadir);
 		
 		
-		/***************************************************************
+		/************************
 		 * INICIALIZAR CONTROLES
-		 ***************************************************************/
+		 ************************/
 		inicializar(controladorAnuncios);		
 	}
 
@@ -472,12 +493,12 @@ public class GenerarAnuncio extends JDialog {
 	        {
 	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
 	        	
-	        	HashMap<String, String> producto = new HashMap<String, String>();
-	        	
 	        	Collection<HashMap<String, String>> productos = new ArrayList<HashMap<String,String>>();
 	        		        	
 	        	for(int i=0; i<tblProductosAnuncio.getModel().getRowCount();++i)
 	        	{
+	        		HashMap<String, String> producto = new HashMap<String, String>();
+	        		
 	        		producto.put("ID", tblProductosAnuncio.getModel().getValueAt(i, 0).toString());
 	        		producto.put("DESCRIPCION", tblProductosAnuncio.getModel().getValueAt(i, 1).toString());
 	        		producto.put("VIGENTE", tblProductosAnuncio.getModel().getValueAt(i, 2).toString());

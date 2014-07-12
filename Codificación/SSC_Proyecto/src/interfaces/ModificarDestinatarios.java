@@ -89,7 +89,7 @@ public class ModificarDestinatarios extends JDialog {
 		 */
 		lblBuscarDestinatarios = new JLabel("Buscar destinatarios");
 		lblBuscarDestinatarios.setForeground(Color.DARK_GRAY);
-		lblBuscarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblBuscarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblBuscarDestinatarios.setBounds(10, 11, 236, 29);
 		getContentPane().add(lblBuscarDestinatarios);
 			
