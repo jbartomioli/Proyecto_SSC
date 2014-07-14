@@ -224,7 +224,10 @@ public class Producto
 				precioDatos.setPrecioPromocional(nuevoPrecio);
 				
 				//SE GUARDA EN BD
-				productoDatos.setPrecioPromocional(precioDatos);
+				/**
+				 * 
+				 */
+				productoDatos.setPrecioPromocional(precioDatos, this.idProducto);
 								
 				//SE CORTA LA ITERACION
 				break;
@@ -260,7 +263,10 @@ public class Producto
 				precioDatos.setPrecioPromocional(nuevoPrecio);
 
 				//SE GUARDA EN BD
-				productoDatos.setPrecioPromocional(precioDatos);
+				/**
+				 * 
+				 */
+				productoDatos.setPrecioPromocional(precioDatos, this.idProducto);
 
 				//SE CORTA LA ITERACION
 				break;

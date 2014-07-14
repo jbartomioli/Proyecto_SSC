@@ -386,7 +386,6 @@ public class Precios extends JDialog {
 	        	catProd.obtenerProductos();
 		    	
 		    	productoSeleccionado = catProd.buscarProducto(idProductoInt);
-		    	System.out.print(productoSeleccionado.getIdProducto());
 	        	//JOptionPane.showConfirmDialog(this, productoSeleccionado.getCodProducto(), "ATENCION", JOptionPane.YES_NO_OPTION);
 	       
 	        	//REVISAR PORQUE NO APARECE EN CONSOLA EL NOMBRE DEL PRODUCTO
@@ -409,7 +408,7 @@ public class Precios extends JDialog {
 		        
 		        if (rta == JOptionPane.OK_OPTION) 
 		        {
-		            //Guardar Precio - TERMINAR DE HACER EL GUARDADO
+		            //Guardar Precio - TERMINAR DE HACER EL GUARDADOS			    	
 		        	catProd.actualizarPrecioPromProducto(productoSeleccionado, Float.parseFloat(precioPromocional.getText()));
 		         }
 		    }

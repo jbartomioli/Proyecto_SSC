@@ -265,7 +265,10 @@ public class CatalogoProductos
 					precioDatos.setIdPrecio(productoNegocio.getPrecioVigente().getIdPrecio());
 					
 					//SE GUARDA EN BD LA MODIFICACION DEL PRECIO DEL PRODUCTO
-					productoModifDatos.setPrecioPromocional(precioDatos);
+					/**
+					 * 
+					 */
+					productoModifDatos.setPrecioPromocional(precioDatos, productoNegocio.getIdProducto());
 				}
 			}
 		}

@@ -110,7 +110,7 @@ public class Producto
 	// DEFINE EL NUEVO PRECIO PROMOCIONAL DEL PRODUCTO			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void setPrecioPromocional(datos.Precio nuevoPrecio)
+	public void setPrecioPromocional(datos.Precio nuevoPrecio, int idProducto)
 	{
 		Session session = null;	
 		
@@ -121,11 +121,21 @@ public class Producto
 			
 			//SE CREA OBJETO PRECIO DE ENTIDADES PARA SETEAR Y ACTUALIZAR
 			entidades.Precios entPrecio = new entidades.Precios();
+			entidades.PreciosId entPrecioId = new entidades.PreciosId();
+			
 		    
-		    //SE BUSCA EL PRECIO A ACTUALIZAR
+		    //SE BUSCA EL PRECIO A ACTUALIZAR			
+			entPrecioId.setIdPrecio(nuevoPrecio.getIdPrecio());
+			entPrecioId.setIdProducto(idProducto);
+			
 			entPrecio = (entidades.Precios) 
-		    		session.get(entidades.Precios.class, nuevoPrecio.getIdPrecio()); 
-		    			
+		    		session.get(entidades.Precios.class, entPrecioId); 
+		    		
+			/**
+			 * 
+			 */
+			System.out.println(entPrecio.toString());
+			
 			//SE SETEA EL NUEVO PRECIO
 			entPrecio.setPrecioPromocional(nuevoPrecio.getPrecioPromocional());
 					
