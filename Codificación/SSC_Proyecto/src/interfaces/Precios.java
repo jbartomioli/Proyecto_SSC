@@ -66,16 +66,17 @@ public class Precios extends JDialog {
 	{
 		super(padre);
 		setResizable(false);
-		setMinimumSize(new Dimension(1024, 668));
-		getContentPane().setMinimumSize(new Dimension(1024, 668));
-		getContentPane().setMaximumSize(new Dimension(1366, 668));
-		setMaximumSize(new Dimension(1366, 768));
-		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);
+		setMinimumSize(new Dimension(1024, 460));
+		getContentPane().setMinimumSize(new Dimension(1024, 460));
+		getContentPane().setMaximumSize(new Dimension(1366, 460));
+		setMaximumSize(new Dimension(1366, 460));
+		setSize(889, 460);
 		setLocationRelativeTo(null);
 		setTitle("Modificar Precios");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CLIENTES_32.png"));
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
+		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -227,7 +228,7 @@ public class Precios extends JDialog {
 			public void actionPerformed(ActionEvent evento) {
 	        	clickBotonAceptar(evento);}});
 		
-		btnAceptar.setLocation(320, 569);
+		btnAceptar.setLocation(543, 315);
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
@@ -235,7 +236,7 @@ public class Precios extends JDialog {
 			public void actionPerformed(ActionEvent evento) {
 	        	clickBotonCancelar(evento);}});
 		
-		btnCancelar.setLocation(420, 569);
+		btnCancelar.setLocation(643, 315);
 		getContentPane().add(btnCancelar);
 		
 		JButton btnBuscarProducto = new JButton("");

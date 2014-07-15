@@ -3,6 +3,8 @@ package interfaces.componentes;
 import java.util.Collection;
 
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -68,6 +70,14 @@ public class TablaProductosAnuncio extends JTable
 		TableColumn columnaPrecio;
 		columnaPrecio = getColumn("Precio promocional");
 		columnaPrecio.setPreferredWidth(150);
+		
+		DefaultTableCellRenderer AlinearNumero = new DefaultTableCellRenderer();
+		AlinearNumero.setHorizontalAlignment(SwingConstants.RIGHT);
+		//Alinea los valores numéricos a la derecha
+		this.getColumnModel().getColumn(2).setCellRenderer(AlinearNumero);
+		this.getColumnModel().getColumn(3).setCellRenderer(AlinearNumero);
+		this.getColumnModel().getColumn(4).setCellRenderer(AlinearNumero);
+		
 		
 		for(int j=0; j<getColumnModel().getColumnCount(); ++j)
 			getColumnModel().getColumn(j).setResizable(false);
