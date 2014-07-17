@@ -131,9 +131,6 @@ public class Producto
 			entPrecio = (entidades.Precios) 
 		    		session.get(entidades.Precios.class, entPrecioId); 
 		    		
-			/**
-			 * 
-			 */
 			System.out.println(entPrecio.toString());
 			
 			//SE SETEA EL NUEVO PRECIO

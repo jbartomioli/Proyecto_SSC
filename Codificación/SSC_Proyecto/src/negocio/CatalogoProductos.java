@@ -253,7 +253,6 @@ public class CatalogoProductos
 				//SE CREA OBJETO PRODUCTO DE DATOS PARA SETEO DE DATOS
 				datos.Producto productoModifDatos = new datos.Producto();
 				
-			
 				//SE SETEAN LOS DATOS NECESARIOS
 				productoModifDatos.setIdProducto(productoNegocio.getIdProducto());
 				

@@ -389,7 +389,6 @@ public class Precios extends JDialog {
 		    	productoSeleccionado = catProd.buscarProducto(idProductoInt);
 	        	//JOptionPane.showConfirmDialog(this, productoSeleccionado.getCodProducto(), "ATENCION", JOptionPane.YES_NO_OPTION);
 	       
-	        	//REVISAR PORQUE NO APARECE EN CONSOLA EL NOMBRE DEL PRODUCTO
 		    	JTextField precioVigente = new JTextField(5);
 		    	precioVigente.setText(tableModel.getValueAt(filaSeleccionada, 2).toString());
 		    	precioVigente.setForeground(Color.GRAY);
