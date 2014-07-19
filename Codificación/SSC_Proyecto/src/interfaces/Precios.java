@@ -62,15 +62,15 @@ public class Precios extends JDialog {
 
 
 	//CONSTRUCTOR
-	public Precios(Frame padre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception 
+	public Precios(Frame padre, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception 
 	{
 		super(padre);
-		setResizable(false);
-		setMinimumSize(new Dimension(1024, 460));
+		setResizable(true);
+		setMinimumSize(new Dimension(890, 460));
 		getContentPane().setMinimumSize(new Dimension(1024, 460));
 		getContentPane().setMaximumSize(new Dimension(1366, 460));
 		setMaximumSize(new Dimension(1366, 460));
-		setSize(889, 460);
+		setSize(812, 460);
 		setLocationRelativeTo(null);
 		setTitle("Modificar Precios");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CLIENTES_32.png"));
@@ -180,7 +180,7 @@ public class Precios extends JDialog {
 		txtBuscarProductos.setForeground(Color.GRAY);
 		txtBuscarProductos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtBuscarProductos.setText("ingrese descripcion...");
-		txtBuscarProductos.setBounds(677, 87, 141, 20);
+		txtBuscarProductos.setBounds(536, 143, 141, 20);
 		txtBuscarProductos.setColumns(10);
 		getContentPane().add(txtBuscarProductos);
 			
@@ -248,7 +248,7 @@ public class Precios extends JDialog {
 			}
 		});
 		btnBuscarProducto.setIcon(new ImageIcon(Precios.class.getResource("/resources/images/x16/find.png")));
-		btnBuscarProducto.setBounds(818, 87, 30, 19);
+		btnBuscarProducto.setBounds(680, 143, 30, 19);
 		getContentPane().add(btnBuscarProducto);
 	}	
 	
@@ -300,21 +300,8 @@ public class Precios extends JDialog {
 	
 	public void clickBotonCancelar(ActionEvent evento)
 	{
-		int rta = JOptionPane.showConfirmDialog(
-				this, 
-				"¿Desea salir y volver al menu principal?\n"
-						+ "Todo cambio que no haya guardado se perderá.",
-					"ATENCIÓN",
-					JOptionPane.YES_NO_OPTION);
-			
-		switch(rta)
-		{
-		case(1): //finalizarEdicion();
-			break;
-		case(0): limpiar_formulario();
-			 dispose();
-			 break;
-		}
+		limpiar_formulario();
+		dispose();
 	}
 	
 	public void clickBotonAceptar(ActionEvent evento)
@@ -356,21 +343,8 @@ public class Precios extends JDialog {
 	//-------------------------------------------------------------
 		protected void cerrar_salir()
 		{
-			int rta = JOptionPane.showConfirmDialog(
-						this, 
-						"¿Desea salir y volver al menu principal?\n"
-							+ "Todo cambio que no haya guardado se perderá.",
-						"ATENCIÓN",
-						JOptionPane.YES_NO_OPTION);
-					
-			switch(rta)
-			{
-			case(1): //finalizarEdicion();
-					 break;
-			case(0): limpiar_formulario();
-					 dispose();
-					 break;
-			}
+			limpiar_formulario();
+			dispose();
 		}
 		
 		protected void click_modificar_precio() throws Exception

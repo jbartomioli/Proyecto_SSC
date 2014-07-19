@@ -3,7 +3,6 @@ package interfaces;
  * PANTALLA CORRESPONDIENTE AL CU GENERAR ANUNCIO
  */
 
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -73,6 +72,7 @@ public class GenerarAnuncio extends JDialog {
 	private interfaces.componentes.BotonesIconos btnEnviar;
 	private interfaces.componentes.BotonesIconos btnCerrar;
 	private JLabel lblModificarDestinatarios;
+	private JLabel lblModificarPrecios;
 	private JTextField txtAsunto;
 	private JProgressBar prgProgresoAniadir;
 	private JScrollPane scrollProductosAnuncio;
@@ -262,6 +262,24 @@ public class GenerarAnuncio extends JDialog {
 		lblModificarDestinatarios.setBounds(324, 558, 150, 19);
 		lblModificarDestinatarios.setEnabled(false);
 		getContentPane().add(lblModificarDestinatarios);
+		
+		
+		/****************************
+		* BOTON MODIFICAR PRECIOS
+		****************************/
+		lblModificarPrecios = new JLabel("Modificar Precios");
+		lblModificarPrecios.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModificarPrecios.setForeground(SystemColor.inactiveCaptionText);
+		lblModificarPrecios.setBorder(new BevelBorder(0));
+				
+		// Cambia el tipo de cursor al posarlo sobre el link
+		lblModificarPrecios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblModificarPrecios.setBackground(UIManager.getColor("Button.disabledForeground"));
+		lblModificarPrecios.setForeground(new Color(8,98,235));
+		lblModificarPrecios.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblModificarPrecios.setBounds(324, 580, 150, 19);
+		lblModificarPrecios.setEnabled(true);
+		getContentPane().add(lblModificarPrecios);
 
 		
 		/*************************
@@ -394,6 +412,28 @@ public class GenerarAnuncio extends JDialog {
 				if(lblModificarDestinatarios.isEnabled())
 				{
 					click_label_modificar_destinatarios(dialogPadre);
+				}
+			}
+		});
+		
+		
+
+		/**************************************************************
+		 * LABEL MODIFICAR PRECIOS
+		 ***************************************************************/
+		lblModificarPrecios.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent me) 
+			{
+				if(lblModificarPrecios.isEnabled())
+				{
+					try
+					{
+						click_label_modificar_precios(dialogPadre);
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
 				}
 			}
 		});
@@ -636,6 +676,14 @@ public class GenerarAnuncio extends JDialog {
 		modif.setVisible(true);	
 	}
 	
+	
+	//-------------------------------------------------------------
+	protected void click_label_modificar_precios(interfaces.GenerarAnuncio dialogPadre) throws Exception
+	{
+		//interfaces.Precios precios = new interfaces.Precios(dialogPadre, controladorAux);
+		//precios.setLocationRelativeTo(dialogPadre);
+		//precios.setVisible(true);	
+	}
 	
 	//-------------------------------------------------------------
 	protected void cerrar_salir()
