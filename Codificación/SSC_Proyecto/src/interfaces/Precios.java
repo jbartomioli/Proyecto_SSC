@@ -1,6 +1,7 @@
 package interfaces;
-//PANTALLA CORRESPONDIENTE AL CU CONFECCIONAR ANUNCIOS
-
+/**
+ * PANTALLA DE MODIFICACION DE PRECIOS
+ */
 import interfaces.componentes.BotonesIconos;
 
 import java.awt.SystemColor;
@@ -43,10 +44,11 @@ import java.awt.event.KeyEvent;
 
 public class Precios extends JDialog {
 	
-	/**
-	 * 
-	 */
+	/****************
+	 * SERIALIZABLE
+	 ****************/
 	private static final long serialVersionUID = -7981551557460343338L;
+	
 	
 	/**************
 	 * COMPONENTES
@@ -61,12 +63,14 @@ public class Precios extends JDialog {
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
 	private negocio.Producto productoSeleccionado;
 	private negocio.CatalogoProductos catProd;
+	private negocio.SubCategoria subcategoriaActual;
+	private JButton btnBuscarProducto;
 
 
-	//CONSTRUCTOR PARA JFrame
-	/**
+	/****************************
+	 * CONSTRUCTOR JFRAME
 	 * @wbp.parser.constructor
-	 */
+	 ****************************/
 	public Precios(Frame padre, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception 
 	{
 		super(padre);
@@ -74,11 +78,12 @@ public class Precios extends JDialog {
 		controladorAux = controladorAnuncios;
 		
 		inicializar();
-
 	}
 	
 	
-	//CONSTRUCTOR PARA JDialog
+	/****************************
+	 * CONSTRUCTOR JDIALOG
+	 ****************************/
 	public Precios(JDialog padre, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
 	{
 		super(padre);
@@ -88,15 +93,21 @@ public class Precios extends JDialog {
 		inicializar();
 	}
 	
-	// EVENTOS
-	public void inicializar()
+
+	/**********************
+	 * INICIALIZACION GUI
+	 **********************/
+	private void inicializar()
 	{
+		/******************
+		 * FORMULARIO BASE
+		 ******************/
 		setResizable(false);
 		setMinimumSize(new Dimension(650, 460));
 		getContentPane().setMinimumSize(new Dimension(650, 460));
 		getContentPane().setMaximumSize(new Dimension(650, 460));
 		setMaximumSize(new Dimension(650, 460));
-		setSize(890, 440);
+		setSize(650, 460);
 		setTitle("Modificar Precios");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CLIENTES_32.png"));
 		setModalityType(ModalityType.APPLICATION_MODAL);
@@ -112,36 +123,35 @@ public class Precios extends JDialog {
         });
 		
 	
+		/*********
+		 * TITULO
+		 *********/
 		JLabel lblPrecios = new JLabel("Modificar Precios");
+		lblPrecios.setLabelFor(this);
 		lblPrecios.setForeground(Color.DARK_GRAY);
 		lblPrecios.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblPrecios.setBounds(10, 11, 341, 20);
 		getContentPane().add(lblPrecios);
 		
 				
+		/*************
+		 * CATEGORIAS
+		 *************/
 		JLabel lblCategoria = new JLabel("Categoría:");
 		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCategoria.setBounds(10, 43, 77, 23);
 		getContentPane().add(lblCategoria);
 				
-		
 		cmbCategorias = new interfaces.componentes.ComboCategorias();
-		cmbCategorias.completarDatos(controladorAux.getCatalogoCategorias().getCategorias());
-		
-		cmbCategorias.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent evento) {
-				try {
-					clickComboCategorias(evento);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				}});
 		
 		lblCategoria.setLabelFor(cmbCategorias);
 		cmbCategorias.setBounds(87, 43, 200, 23);
 		getContentPane().add(cmbCategorias);
 		
+		
+		/****************
+		 * SUBCATEGORIAS
+		 ****************/
 		JLabel lblSubcategoria = new JLabel("Subcategoria:");
 		lblSubcategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblSubcategoria.setBounds(334, 43, 97, 23);
@@ -150,24 +160,95 @@ public class Precios extends JDialog {
 		categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
 		
 		cmbSubcategorias = new interfaces.componentes.ComboSubcategorias();
-		cmbSubcategorias.completarDatos(
-				controladorAux.seleccionarCategoria(categoria.getIdCategoria()));
-		
-		cmbSubcategorias.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent evento) {
-				try {
-					clickComboSubcategorias(evento);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
 		lblSubcategoria.setLabelFor(cmbSubcategorias);
 		cmbSubcategorias.setBounds(434, 43, 196, 23);
 		getContentPane().add(cmbSubcategorias);
 		
+		
+		
+		/***********
+		 * BUSCADOR
+		 ***********/
 		txtBuscarProductos = new JTextField();
+		txtBuscarProductos.setForeground(Color.GRAY);
+		txtBuscarProductos.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtBuscarProductos.setText("Ingrese Descripci\u00F3n...");
+		txtBuscarProductos.setBounds(20, 88, 411, 20);
+		txtBuscarProductos.setColumns(10);
+		getContentPane().add(txtBuscarProductos);
+		
+		btnBuscarProducto = new JButton("");
+		btnBuscarProducto.setIcon(new ImageIcon(Precios.class.getResource("/resources/images/x16/find.png")));
+		btnBuscarProducto.setBounds(444, 89, 30, 19);
+		getContentPane().add(btnBuscarProducto);
+		
+		
+		/******************
+		 * TABLA PRODUCTOS
+		 ******************/
+		Box boxPrecios = Box.createHorizontalBox();
+		boxPrecios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Precios Productos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		boxPrecios.setBounds(10, 120, 622, 222);
+		getContentPane().add(boxPrecios);
+		
+		JScrollPane scrollPrecios = new JScrollPane();
+		scrollPrecios.setAlignmentY(Component.TOP_ALIGNMENT);
+		scrollPrecios.setAlignmentX(Component.LEFT_ALIGNMENT);
+		boxPrecios.add(scrollPrecios);
+		
+		scrollPrecios.setViewportView(tblProductos);
+				
+		tblProductos = new interfaces.componentes.TablaProductos();
+		scrollPrecios.setViewportView(tblProductos);
+		
+	
+		
+		/****************
+		 * BOTON ACEPTAR			
+		 ****************/
+		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
+		btnAceptar.setLocation(440, 354);
+		getContentPane().add(btnAceptar);
+		
+		
+		
+		/******************
+		 * BOTON CANCELAR
+		 ******************/
+		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		btnCancelar.setLocation(540, 354);
+		getContentPane().add(btnCancelar);
+	}
+	
+	
+	
+	/**********************************
+	 * INICIALIZACION COMPONENTES GUI
+	 **********************************/
+	protected void inicializar_componentes()
+	{
+		cmbCategorias.completarDatos(controladorAux.getCatalogoCategorias().getCategorias());
+		cmbCategorias.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent evento) {
+				try {
+					click_combo_categorias(evento);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				}});
+		
+		cmbSubcategorias.completarDatos(controladorAux.seleccionarCategoria(categoria.getIdCategoria()));
+		cmbSubcategorias.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent evento) {
+				try {
+					click_combo_subcategorias(evento);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		
 		txtBuscarProductos.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent evento) {
@@ -179,7 +260,6 @@ public class Precios extends JDialog {
 					try {
 						catProd.obtenerProductos();
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 							
@@ -201,39 +281,21 @@ public class Precios extends JDialog {
 				txtBuscarProductos.setForeground(SystemColor.black);
 			}
 		});
-		txtBuscarProductos.setForeground(Color.GRAY);
-		txtBuscarProductos.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtBuscarProductos.setText("ingrese descripcion...");
-		txtBuscarProductos.setBounds(10, 88, 421, 20);
-		txtBuscarProductos.setColumns(10);
-		getContentPane().add(txtBuscarProductos);
-			
-		Box boxPrecios = Box.createHorizontalBox();
-		boxPrecios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Precios Productos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		boxPrecios.setBounds(10, 120, 622, 222);
-		getContentPane().add(boxPrecios);
 		
-		JScrollPane scrollPrecios = new JScrollPane();
-		scrollPrecios.setAlignmentY(Component.TOP_ALIGNMENT);
-		scrollPrecios.setAlignmentX(Component.LEFT_ALIGNMENT);
-		boxPrecios.add(scrollPrecios);
 		
-		scrollPrecios.setViewportView(tblProductos);
+		subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		
-		negocio.SubCategoria subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		
-		tblProductos = new interfaces.componentes.TablaProductos();
 		try {
 			tblProductos.completarTabla(
 					controladorAux.seleccionarSubcategoria(
 							subcategoriaActual.getIdcategoria(), 
 							subcategoriaActual.getIdSubcategoria()));
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		tblProductos.definirTablaProductos();
-		scrollPrecios.setViewportView(tblProductos);
+		
 		//Oculta la columna del botón
 		tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
 		tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
@@ -246,43 +308,37 @@ public class Precios extends JDialog {
 					try {
 						click_modificar_precio();
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 			}
 		});
-						
-		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
+		
+		
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-	        	clickBotonAceptar(evento);}});
+	        	click_boton_aceptar(evento);}});
 		
-		btnAceptar.setLocation(440, 354);
-		getContentPane().add(btnAceptar);
-		
-		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-	        	clickBotonCancelar(evento);}});
+	        	click_boton_cancelar(evento);}});
 		
-		btnCancelar.setLocation(540, 354);
-		getContentPane().add(btnCancelar);
 		
-		JButton btnBuscarProducto = new JButton("");
 		btnBuscarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) 
 			{
 				//Evento para buscar destinatarios que coincidan con el string ingresado
-				clickBotonBuscar(evento);
+				click_boton_buscar(evento);
 			}
 		});
-		btnBuscarProducto.setIcon(new ImageIcon(Precios.class.getResource("/resources/images/x16/find.png")));
-		btnBuscarProducto.setBounds(444, 89, 30, 19);
-		getContentPane().add(btnBuscarProducto);
+		
+		inicializar_componentes();
+
 	}
 
-	
-	public void clickComboCategorias(ItemEvent evento) throws Exception
+	/**********
+	 * EVENTOS
+	 **********/
+	protected void click_combo_categorias(ItemEvent evento) throws Exception
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{
@@ -311,7 +367,7 @@ public class Precios extends JDialog {
 	}
 	
 	
-	protected void clickComboSubcategorias(ItemEvent evento) throws Exception
+	protected void click_combo_subcategorias(ItemEvent evento) throws Exception
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{			
@@ -327,19 +383,19 @@ public class Precios extends JDialog {
 	}
 
 	
-	public void clickBotonCancelar(ActionEvent evento)
+	public void click_boton_cancelar(ActionEvent evento)
 	{
 		limpiar_formulario();
 		dispose();
 	}
 	
-	public void clickBotonAceptar(ActionEvent evento)
+	public void click_boton_aceptar(ActionEvent evento)
 	{
 		//Evento para guardar los datos
 		dispose();
 	}
 	
-	public void clickBotonBuscar(ActionEvent evento)
+	public void click_boton_buscar(ActionEvent evento)
 	{
 		//Evento para llenar la tabla de productos buscados desde la lupa
 		negocio.CatalogoProductos catProd = new negocio.CatalogoProductos();
@@ -347,7 +403,6 @@ public class Precios extends JDialog {
 		try {
 			catProd.obtenerProductos();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		tblProductos.completarTabla(catProd.buscarProducto(txtBuscarProductos.getText()));
