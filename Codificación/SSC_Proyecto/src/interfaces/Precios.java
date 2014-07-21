@@ -156,9 +156,7 @@ public class Precios extends JDialog {
 		lblSubcategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblSubcategoria.setBounds(334, 43, 97, 23);
 		getContentPane().add(lblSubcategoria);
-		
-		categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
-		
+				
 		cmbSubcategorias = new interfaces.componentes.ComboSubcategorias();
 		lblSubcategoria.setLabelFor(cmbSubcategorias);
 		cmbSubcategorias.setBounds(434, 43, 196, 23);
@@ -243,6 +241,9 @@ public class Precios extends JDialog {
 					e.printStackTrace();
 				}
 				}});
+		
+		
+		categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
 		
 		cmbSubcategorias.completarDatos(controladorAux.seleccionarCategoria(categoria.getIdCategoria()));
 		cmbSubcategorias.addItemListener(new ItemListener() {
