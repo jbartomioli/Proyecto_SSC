@@ -37,9 +37,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 
 import javax.swing.JButton;
-
-import datos.CatalogoProductos;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -67,6 +64,9 @@ public class Precios extends JDialog {
 
 
 	//CONSTRUCTOR PARA JFrame
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public Precios(Frame padre, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception 
 	{
 		super(padre);
@@ -91,12 +91,12 @@ public class Precios extends JDialog {
 	// EVENTOS
 	public void inicializar()
 	{
-		setResizable(true);
-		setMinimumSize(new Dimension(890, 460));
-		getContentPane().setMinimumSize(new Dimension(1024, 460));
-		getContentPane().setMaximumSize(new Dimension(1366, 460));
-		setMaximumSize(new Dimension(1366, 460));
-		setSize(812, 460);
+		setResizable(false);
+		setMinimumSize(new Dimension(650, 460));
+		getContentPane().setMinimumSize(new Dimension(650, 460));
+		getContentPane().setMaximumSize(new Dimension(650, 460));
+		setMaximumSize(new Dimension(650, 460));
+		setSize(890, 440);
 		setTitle("Modificar Precios");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CLIENTES_32.png"));
 		setModalityType(ModalityType.APPLICATION_MODAL);
@@ -114,14 +114,14 @@ public class Precios extends JDialog {
 	
 		JLabel lblPrecios = new JLabel("Modificar Precios");
 		lblPrecios.setForeground(Color.DARK_GRAY);
-		lblPrecios.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblPrecios.setBounds(10, 30, 341, 29);
+		lblPrecios.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblPrecios.setBounds(10, 11, 341, 20);
 		getContentPane().add(lblPrecios);
 		
 				
 		JLabel lblCategoria = new JLabel("Categoría:");
 		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCategoria.setBounds(20, 87, 77, 23);
+		lblCategoria.setBounds(10, 43, 77, 23);
 		getContentPane().add(lblCategoria);
 				
 		
@@ -139,12 +139,12 @@ public class Precios extends JDialog {
 				}});
 		
 		lblCategoria.setLabelFor(cmbCategorias);
-		cmbCategorias.setBounds(97, 87, 200, 23);
+		cmbCategorias.setBounds(87, 43, 200, 23);
 		getContentPane().add(cmbCategorias);
 		
 		JLabel lblSubcategoria = new JLabel("Subcategoria:");
 		lblSubcategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblSubcategoria.setBounds(324, 87, 97, 23);
+		lblSubcategoria.setBounds(334, 43, 97, 23);
 		getContentPane().add(lblSubcategoria);
 		
 		categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
@@ -164,7 +164,7 @@ public class Precios extends JDialog {
 			}
 		});
 		lblSubcategoria.setLabelFor(cmbSubcategorias);
-		cmbSubcategorias.setBounds(424, 87, 196, 23);
+		cmbSubcategorias.setBounds(434, 43, 196, 23);
 		getContentPane().add(cmbSubcategorias);
 		
 		txtBuscarProductos = new JTextField();
@@ -204,13 +204,13 @@ public class Precios extends JDialog {
 		txtBuscarProductos.setForeground(Color.GRAY);
 		txtBuscarProductos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtBuscarProductos.setText("ingrese descripcion...");
-		txtBuscarProductos.setBounds(536, 143, 141, 20);
+		txtBuscarProductos.setBounds(10, 88, 421, 20);
 		txtBuscarProductos.setColumns(10);
 		getContentPane().add(txtBuscarProductos);
 			
 		Box boxPrecios = Box.createHorizontalBox();
 		boxPrecios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Precios Productos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		boxPrecios.setBounds(10, 134, 500, 250);
+		boxPrecios.setBounds(10, 120, 622, 222);
 		getContentPane().add(boxPrecios);
 		
 		JScrollPane scrollPrecios = new JScrollPane();
@@ -257,7 +257,7 @@ public class Precios extends JDialog {
 			public void actionPerformed(ActionEvent evento) {
 	        	clickBotonAceptar(evento);}});
 		
-		btnAceptar.setLocation(543, 315);
+		btnAceptar.setLocation(440, 354);
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
@@ -265,7 +265,7 @@ public class Precios extends JDialog {
 			public void actionPerformed(ActionEvent evento) {
 	        	clickBotonCancelar(evento);}});
 		
-		btnCancelar.setLocation(643, 315);
+		btnCancelar.setLocation(540, 354);
 		getContentPane().add(btnCancelar);
 		
 		JButton btnBuscarProducto = new JButton("");
@@ -277,7 +277,7 @@ public class Precios extends JDialog {
 			}
 		});
 		btnBuscarProducto.setIcon(new ImageIcon(Precios.class.getResource("/resources/images/x16/find.png")));
-		btnBuscarProducto.setBounds(680, 143, 30, 19);
+		btnBuscarProducto.setBounds(444, 89, 30, 19);
 		getContentPane().add(btnBuscarProducto);
 	}
 
