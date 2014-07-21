@@ -218,6 +218,13 @@ public class Precios extends JDialog {
 		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCancelar.setLocation(540, 354);
 		getContentPane().add(btnCancelar);
+		
+		
+		/********************************
+		 * INICIALIZACION DE COMPONENTES
+		 ********************************/
+		inicializar_componentes();
+
 	}
 	
 	
@@ -331,7 +338,6 @@ public class Precios extends JDialog {
 			}
 		});
 		
-		inicializar_componentes();
 
 	}
 
