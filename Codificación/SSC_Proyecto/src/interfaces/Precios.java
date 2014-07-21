@@ -64,7 +64,7 @@ public class Precios extends JDialog {
 	private negocio.Producto productoSeleccionado;
 	private negocio.CatalogoProductos catProd;
 	private negocio.SubCategoria subcategoriaActual;
-	private JButton btnBuscarProducto;
+	private interfaces.componentes.BotonesIconos btnBuscarProducto;
 
 
 	/****************************
@@ -175,8 +175,7 @@ public class Precios extends JDialog {
 		txtBuscarProductos.setColumns(10);
 		getContentPane().add(txtBuscarProductos);
 		
-		btnBuscarProducto = new JButton("");
-		btnBuscarProducto.setIcon(new ImageIcon(Precios.class.getResource("/resources/images/x16/find.png")));
+		btnBuscarProducto = new BotonesIconos("",utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_16.png");
 		btnBuscarProducto.setBounds(444, 89, 30, 19);
 		getContentPane().add(btnBuscarProducto);
 		
