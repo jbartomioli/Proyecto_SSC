@@ -6,7 +6,6 @@ import interfaces.componentes.BotonesIconos;
 
 import java.awt.SystemColor;
 
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -37,7 +36,6 @@ import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 
-import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
