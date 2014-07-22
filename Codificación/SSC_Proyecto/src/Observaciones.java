@@ -7,7 +7,7 @@ public class Observaciones {
 	 * Pantalla de Realizar seguimiento de Clientes --> FALTA
 	 * Detalles del mail --> CASI LISTO
 	 * Confeccionar encabezado y pie --> LISTO
-	 * Agregar pantalla para modificar precio de productos --> CASI LISTO
+	 * Agregar pantalla para modificar precio de productos --> LISTO
 	 * Poner como no editable tabla de destinatarios --> LISTO
 	 * Guardado de histórico de anuncios --> LISTO
 	 * Eliminar botón guardar  --> LISTO

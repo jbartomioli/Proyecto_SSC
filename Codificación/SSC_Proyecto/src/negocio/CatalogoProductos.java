@@ -111,23 +111,6 @@ public class CatalogoProductos
         		
         		//SE SETEAN LOS PRECIOS EN EL PRODUCTO
         		productoNegocio.setPrecios(preciosArrTemp);
-        		
-        		//PRECIO TEMPORAL PARA SETEO DE DATOS
-    			/*negocio.Precio precioProducto = new negocio.Precio();
-    			datos.Precio prodDato = new datos.Precio();
-    			
-    			prodDato = productoDato.getPrecios();
-    			
-    			//SETEO DE DATOS DE PRECIO
-    			precioProducto.setIdPrecio(prodDato.getIdPrecio());
-    			precioProducto.setFechaDesde(prodDato.getFechaDesde());
-    			precioProducto.setFechaHasta(prodDato.getFechaHasta());
-    			precioProducto.setPrecio(prodDato.getPrecio());
-    			precioProducto.setPrecioPromocional(prodDato.getPrecioPromocional());
-        		
-        		//SE SETEAN LOS PRECIOS EN EL PRODUCTO
-        		//productoNegocio.setPrecios(preciosArrTemp);
-    			productoNegocio.setPrecios(precioProducto);*/
         	}
         				
         	//SE AGREGA EL PRODUCTO SETEADO EN EL ARRAY DEL CATALOGO
@@ -190,6 +173,27 @@ public class CatalogoProductos
 		}
 		return null;
 	}
+	
+	/////////////////////////////////////////////////////////////////
+	// BUSCA UN PRODUCTO POR SU SUBCATEGORIA					   //
+	/////////////////////////////////////////////////////////////////
+	public Collection<negocio.Producto> obtenerProductoSubCategoria(String descSubCateg)
+	{		
+		//SE CREA COLECCION DE PRODUCTOS PARA AGREGAR LOS QUE PERTENECEN A LA SUBCATEGORIA
+		Collection<negocio.Producto> productosSubCateg = new ArrayList<negocio.Producto>();
+				
+		//SE RECORRE CADA PRODUCTO DEL ARRAY
+		for(negocio.Producto productoNegocio: this.getProductos())
+		{
+			System.out.println("Categ: " + productoNegocio.getSubCategoria().getIdcategoria() + " " + "Subcateg: " + productoNegocio.getSubCategoria().getIdSubcategoria());
+			//SE EVALUA SI EL NOMBRE DEL PRODUCTO CONTIENE LA CADENA
+			if(productoNegocio.getSubCategoria().getDescripcion().contains(descSubCateg))
+				productosSubCateg.add(productoNegocio);
+				
+		}
+		System.out.println("Array de prod subcateg: " + productosSubCateg.size());
+		return productosSubCateg;
+	}
 
 	
 	/////////////////////////////////////////////////////////////////
@@ -234,6 +238,46 @@ public class CatalogoProductos
 	}
 	//---------------------------------------------------------------
 
+	
+	/////////////////////////////////////////////////////////////////
+	// ACTUALIZA EL PRECIO MODIFICADO EN EL ARRAY PROD.			   //
+	/////////////////////////////////////////////////////////////////
+	//LISTO
+	public void actualizarPrecioProducto(negocio.Producto productoModificar, float nuevoPrecio)
+	{
+		//SE RECORRE CADA PRODUCTO DEL ARRAY
+		for(negocio.Producto productoNegocio : this.productos)
+		{
+			//SE COMPARAN LOS PRODUCTOS POR SU ID
+			//SI SON IGUALES DE ACTUALIZA EL PRECIO DEL PRODUCTO EN EL ARRAY
+			if(productoNegocio.getIdProducto()==productoModificar.getIdProducto())
+			{
+				//SE SETEA EL PRECIO EN EL PRODUCTO ACTUAL
+				productoNegocio.setPrecio(nuevoPrecio);
+					
+				//SE CREA OBJETO PRODUCTO DE DATOS PARA SETEO DE DATOS
+				datos.Producto productoModifDatos = new datos.Producto();
+				
+				//SE SETEAN LOS DATOS NECESARIOS
+				productoModifDatos.setIdProducto(productoNegocio.getIdProducto());
+				
+				{//SE CREA OBJETO PRECIO DE DATOS PARA SETEARLO EN EL PRODUCTO
+					datos.Precio precioDatos = new datos.Precio();
+					
+					//SE SETEAN LOS DATOS NECESARIOS DEL PRECIO
+					precioDatos.setPrecio(productoNegocio.getPrecioVigente().getPrecioPromocional());
+					precioDatos.setIdPrecio(productoNegocio.getPrecioVigente().getIdPrecio());
+						
+					//SE GUARDA EN BD LA MODIFICACION DEL PRECIO DEL PRODUCTO
+					/**
+					 * 
+					 */
+					productoModifDatos.setPrecioPromocional(precioDatos, productoNegocio.getIdProducto());
+				}
+			}
+		}	
+	}
+	
 	/////////////////////////////////////////////////////////////////
 	// ACTUALIZA EL PRECIO PROMOCIONAL MODIFICADO EN EL ARRAY PROD.//
 	/////////////////////////////////////////////////////////////////

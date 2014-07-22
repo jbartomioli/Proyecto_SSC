@@ -107,6 +107,55 @@ public class Producto
 	//***************************************************************
 	
 	/////////////////////////////////////////////////////////////////
+	// DEFINE EL NUEVO PRECIO VIGENTE DEL PRODUCTO				   //
+	/////////////////////////////////////////////////////////////////
+	//LISTO
+	public void setPrecio(datos.Precio nuevoPrecio, int idProducto)
+	{
+		Session session = null;	
+
+		try
+		{
+			session = utilidades.HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+
+			//SE CREA OBJETO PRECIO DE ENTIDADES PARA SETEAR Y ACTUALIZAR
+			entidades.Precios entPrecio = new entidades.Precios();
+			entidades.PreciosId entPrecioId = new entidades.PreciosId();
+
+
+			//SE BUSCA EL PRECIO A ACTUALIZAR			
+			entPrecioId.setIdPrecio(nuevoPrecio.getIdPrecio());
+			entPrecioId.setIdProducto(idProducto);
+
+			entPrecio = (entidades.Precios) 
+					session.get(entidades.Precios.class, entPrecioId); 
+
+			System.out.println(entPrecio.toString());
+
+			//SE SETEA EL NUEVO PRECIO
+			entPrecio.setPrecio(nuevoPrecio.getPrecio());
+
+			//SE ACTUALIZA EL PRODUCTO EN BD
+			session.update(entPrecio); 
+
+			//SE CONFIRMA TRANSACCION
+			session.getTransaction().commit();
+
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+
+		finally
+		{
+			session.close();
+		}	
+	}
+	
+	
+	/////////////////////////////////////////////////////////////////
 	// DEFINE EL NUEVO PRECIO PROMOCIONAL DEL PRODUCTO			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO

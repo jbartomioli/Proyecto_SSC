@@ -472,6 +472,12 @@ public class Precios extends JDialog {
 		        {
 		            //Guardar Precio - TERMINAR DE HACER EL GUARDADOS			    	
 		        	catProd.actualizarPrecioPromProducto(productoSeleccionado, Float.parseFloat(precioPromocional.getText()));
+		        	catProd.actualizarPrecioProducto(productoSeleccionado, Float.parseFloat(precioVigente.getText()));
+		        	
+		        	negocio.SubCategoria subcategoriaActual = new negocio.SubCategoria();
+		        	subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
+		        	
+		        	tblProductos.completarTabla(catProd.obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
 		         }
 		    }
 		    	
