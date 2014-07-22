@@ -260,13 +260,13 @@ public class Producto
 
 				//SE SETEAN LOS DATOS NECESARIOS
 				precioDatos.setIdPrecio(precioNegocio.getIdPrecio());
-				precioDatos.setPrecioPromocional(nuevoPrecio);
+				precioDatos.setPrecio(nuevoPrecio);
 
 				//SE GUARDA EN BD
 				/**
 				 * 
 				 */
-				productoDatos.setPrecioPromocional(precioDatos, this.idProducto);
+				productoDatos.setPrecio(precioDatos, this.idProducto);
 
 				//SE CORTA LA ITERACION
 				break;

@@ -72,6 +72,12 @@ public class Precio
 		this.precio = precio;
 	}
 	
+	public void setPrecios(float precio, float precioProm) 
+	{
+		this.precio = precio;
+		this.precioPromocional = precioProm;
+	}
+	
 	public float getPrecioPromocional()
 	{
 		return precioPromocional;

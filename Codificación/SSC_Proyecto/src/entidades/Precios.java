@@ -110,5 +110,10 @@ public class Precios implements java.io.Serializable {
 	public void setPrecioPromocional(Float precioPromocional) {
 		this.precioPromocional = precioPromocional;
 	}
+	
+	public void setPrecios(Float precio, Float precioProm) {
+		this.precio = precio;
+		this.precioPromocional = precioProm;
+	}
 
 }

@@ -238,6 +238,46 @@ public class CatalogoProductos
 	}
 	//---------------------------------------------------------------
 
+/////////////////////////////////////////////////////////////////
+// ACTUALIZA EL PRECIO MODIFICADO EN EL ARRAY PROD.			   //
+/////////////////////////////////////////////////////////////////
+//LISTO
+public void actualizarPreciosProducto(negocio.Producto productoModificar, float nuevoPrecio, float nuevoPrecioProm)
+{
+//SE RECORRE CADA PRODUCTO DEL ARRAY
+for(negocio.Producto productoNegocio : this.productos)
+{
+//SE COMPARAN LOS PRODUCTOS POR SU ID
+//SI SON IGUALES DE ACTUALIZA EL PRECIO DEL PRODUCTO EN EL ARRAY
+if(productoNegocio.getIdProducto()==productoModificar.getIdProducto())
+{
+//SE SETEA EL PRECIO EN EL PRODUCTO ACTUAL
+productoNegocio.setPrecio(nuevoPrecio);
+productoNegocio.setPrecioPromocional(nuevoPrecioProm);
+
+//SE CREA OBJETO PRODUCTO DE DATOS PARA SETEO DE DATOS
+datos.Producto productoModifDatos = new datos.Producto();
+
+//SE SETEAN LOS DATOS NECESARIOS
+productoModifDatos.setIdProducto(productoNegocio.getIdProducto());
+
+{//SE CREA OBJETO PRECIO DE DATOS PARA SETEARLO EN EL PRODUCTO
+datos.Precio precioDatos = new datos.Precio();
+
+//SE SETEAN LOS DATOS NECESARIOS DEL PRECIO
+precioDatos.setPrecios(productoNegocio.getPrecioActual(), productoNegocio.getPrecioVigente().getPrecioPromocional());
+precioDatos.setIdPrecio(productoNegocio.getPrecioVigente().getIdPrecio());
+
+//SE GUARDA EN BD LA MODIFICACION DEL PRECIO DEL PRODUCTO
+/**
+* 
+*/
+productoModifDatos.setPrecios(precioDatos, productoNegocio.getIdProducto());
+}
+}
+}	
+}
+	
 	
 	/////////////////////////////////////////////////////////////////
 	// ACTUALIZA EL PRECIO MODIFICADO EN EL ARRAY PROD.			   //
