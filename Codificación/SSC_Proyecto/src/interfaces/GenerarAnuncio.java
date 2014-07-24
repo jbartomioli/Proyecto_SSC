@@ -531,6 +531,8 @@ public class GenerarAnuncio extends JDialog {
     					JOptionPane.WARNING_MESSAGE);
         	else
 	        {
+        		eliminar_temporal();
+        		
 	        	setCursor(new Cursor(Cursor.WAIT_CURSOR));
 	        	
 	        	Collection<HashMap<String, String>> productos = new ArrayList<HashMap<String,String>>();
@@ -579,7 +581,7 @@ public class GenerarAnuncio extends JDialog {
     		BufferedReader br = null;
     		
     		try
-    		{
+    		{      			
     			File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
     			
     		   	fr = new FileReader(archivoHTML);

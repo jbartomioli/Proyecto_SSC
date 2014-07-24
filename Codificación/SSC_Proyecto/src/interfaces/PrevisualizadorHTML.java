@@ -45,9 +45,19 @@ public class PrevisualizadorHTML extends JDialog
 	private Collection<String> imagenes;
 	private String encabezado_mail = "<html><body><img src=\"file:"+utilidades.Configuraciones.IMG_ENCABEZADO_MAIL+"\"/><br/><br/>";
 	private String pie_mail = "<img src=\"file:"+utilidades.Configuraciones.IMG_PIE_MAIL+"\"/></body></html>";
-	  
+	private JButton btnVolverModificar;
+	private JButton btnAceptarEnviar;
+
+	
+	/****************
+	 * CONSTRUCTOR
+	 * @param padre
+	 ****************/
 	public PrevisualizadorHTML(interfaces.GenerarAnuncio padre)
 	{
+		/******************
+		 * FORMULARIO BASE
+		 ******************/
 		super(padre);
 		
    		setResizable(false);
@@ -68,11 +78,19 @@ public class PrevisualizadorHTML extends JDialog
         });
 	    getContentPane().setLayout(new BorderLayout(0, 0));
 	    
+	    /**
+	     * EDITOR
+	     */
+	    
 	    epnEditor = new JEditorPane();	  
 	    epnEditor.setEditable(false);
 	       
 	    scrEditor = new JScrollPane(epnEditor);
 	    
+	    
+	    /**
+	     * PANEL BOTONES
+	     */
 	    JPanel panelInferior = new JPanel();
    		getContentPane().add(panelInferior, BorderLayout.SOUTH);
    		panelInferior.setLayout(new GridLayout(0, 2, 0, 0));
@@ -81,10 +99,17 @@ public class PrevisualizadorHTML extends JDialog
    		panelInferior.add(panelBotones);
    		panelBotones.setLayout(new GridLayout(0, 2, 0, 0));
    		
-   		JButton btnVolverModificar = new JButton("Volver y Modificar");
+   		/**
+   		 * BOTON MODIFICAR
+   		 */
+   		btnVolverModificar = new JButton("Volver y Modificar");
    		panelBotones.add(btnVolverModificar);
    		
-   		JButton btnAceptarEnviar = new JButton("Aceptar y Enviar");
+   		
+   		/**
+   		 * BOTON ENVIAR
+   		 */
+   		btnAceptarEnviar = new JButton("Aceptar y Enviar");
    		panelBotones.add(btnAceptarEnviar);
    		btnAceptarEnviar.addActionListener(new ActionListener() {
    			public void actionPerformed(ActionEvent e) {
@@ -107,6 +132,9 @@ public class PrevisualizadorHTML extends JDialog
    			}
    		});
    		
+   		/**
+   		 * PANEL BARRA PROGRESO
+   		 */
    		JPanel panelBarra = new JPanel();
    		panelInferior.add(panelBarra);
    		panelBarra.setLayout(new GridLayout(0, 1, 0, 0));
@@ -119,6 +147,13 @@ public class PrevisualizadorHTML extends JDialog
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 	}	
 		
+	
+	/**
+	 * INICIALIZACION
+	 * @param nombreArchivo
+	 * @param mailsDestino
+	 * @return
+	 */
 	@SuppressWarnings("finally")
 	public boolean inicializar(String nombreArchivo, String [] mailsDestino)
 	{
@@ -202,29 +237,31 @@ public class PrevisualizadorHTML extends JDialog
         	return aux;
      }
 	}
-	  
-	  
-	  //-------------------------------------------------------------------
-	  @SuppressWarnings("finally")
+
+	
+	//---------------------------------------------------------------------
+	@SuppressWarnings("finally")
 	public boolean preparar_enviar(String contenidoEnviar, String [] mailsClientes)
-	  {
-			boolean resultado = false;
-		  	
-			try 
-			{	
-				setCursor(new Cursor(Cursor.WAIT_CURSOR));
-				
-				String asunto = obtenerAsunto(contenidoEnviar);
-				
-	        	String contenidoProcesado = procesarImagenes(contenidoEnviar);
-	        	
-	        	Thread trabajoEnvio = new Thread(new interfaces.interfaces_software.TrabajoEnvioMail(0, contenidoProcesado, mailsClientes, asunto, imagenes));
-	        	trabajoEnvio.start();
-	        	
-	        	new Thread(new interfaces.interfaces_software.HiloBarraProgreso(trabajoEnvio, this, this.barraProgreso, 200, true)).start();
-	        	        		        	
-				resultado = true;
-			}
+	{
+		boolean resultado = false;
+	  	
+		try 
+		{	
+			setCursor(new Cursor(Cursor.WAIT_CURSOR));
+			
+			desactivar_controles();
+			
+			String asunto = obtenerAsunto(contenidoEnviar);
+			
+	    	String contenidoProcesado = procesarImagenes(contenidoEnviar);
+	    	
+	    	Thread trabajoEnvio = new Thread(new interfaces.interfaces_software.TrabajoEnvioMail(0, contenidoProcesado, mailsClientes, asunto, imagenes));
+	    	trabajoEnvio.start();
+	    	
+	    	new Thread(new interfaces.interfaces_software.HiloBarraProgreso(trabajoEnvio, this, this.barraProgreso, 200, true)).start();
+	    	        		        	
+			resultado = true;
+		}
 //			catch (MessagingException e)
 //			{
 //				e.printStackTrace();
@@ -245,88 +282,84 @@ public class PrevisualizadorHTML extends JDialog
 //						JOptionPane.ERROR_MESSAGE);
 //				resultado = false;
 //			}			
-			finally
-			{
-	        	//dispose();
-	        	return resultado;
-			}
-	  }
-
-	  
-
-
-	//-------------------------------------------------------------------
-		private String procesarImagenes(String contenidoEnviar)
-		    {
-				int cidCont = 0;
-		        String tagImg = "<img ";
-		        char tagImgCierre = '>';
-            	String atributoSrc = "src=";
-
-		        StringBuffer sb = new StringBuffer(contenidoEnviar);
-		        
-		        if(sb.indexOf(tagImg) != -1)
-		        {
-		            int i = sb.indexOf(tagImg);  		            
-		            
-		            while(i < sb.length() && i != -1)
-			        {               		            
-		            	char tope = ' ';
-		            	String imagenCode = "";
-		            	int j = i;
-		            	
-		            	while(tope != tagImgCierre)
-		            	{
-		            		imagenCode += sb.charAt(j);
-		            		++j;
-		            		tope = sb.charAt(j);
-		            	}
-		            	
-		            	imagenCode += " >";
-		            			            	
-		            	StringBuffer sbSrc = new StringBuffer(imagenCode);
-		            	//System.out.println(imagenCode);
-		            	
-		            	String srcOriginal = sbSrc.substring(sbSrc.indexOf(atributoSrc)+atributoSrc.length());
-		            	//System.out.println(srcOriginal);
-		            	
-        				String depuracionInicial = srcOriginal.substring("\"file:".length());
-		            	//System.out.println(depuracionInicial);
-        				
-        				
-        				String depuracionFinal = depuracionInicial.substring(0,depuracionInicial.indexOf("\""));			
-		            	//System.out.println(depuracionFinal);
-
-        				
-        				String rutaArchivo = depuracionFinal.replace('\\', '/');
-		            	//System.out.println(rutaArchivo);
-        					
-        				imagenes.add(rutaArchivo);
-        				
-        				String imgInsertar = "cid:IMG"+cidCont;
-        				
-        				++cidCont;
-        				
-        				int iDelete = sb.indexOf(atributoSrc, i)+atributoSrc.length();
-        				
-        				sb.delete(iDelete, sb.indexOf("\"",iDelete+1));	
-        				
-        				String insertCadena = "\""+imgInsertar;
-
-		            	sb.insert(iDelete, insertCadena);
-		            	
-		            	int iInsert = i + insertCadena.length()+1;
-		            
-		            	i = sb.indexOf(tagImg,iInsert);
-		            	
-			        }
-		            
-		        }
-	        
-	        return sb.toString();
+		finally
+		{
+	    	return resultado;
+		}
 	}
-		
-		
+
+	
+	//---------------------------------------------------------------------
+	private String procesarImagenes(String contenidoEnviar)
+	{
+		int cidCont = 0;
+	    String tagImg = "<img ";
+	    char tagImgCierre = '>';
+		String atributoSrc = "src=";
+	
+	    StringBuffer sb = new StringBuffer(contenidoEnviar);
+	    
+	    if(sb.indexOf(tagImg) != -1)
+	    {
+	    	int i = sb.indexOf(tagImg);  		            
+	        
+	        while(i < sb.length() && i != -1)
+	        {               		            
+	        	char tope = ' ';
+	        	String imagenCode = "";
+	        	int j = i;
+	        	
+	        	while(tope != tagImgCierre)
+	        	{
+	        		imagenCode += sb.charAt(j);
+	        		++j;
+	        		tope = sb.charAt(j);
+	        	}
+	        	
+	        	imagenCode += " >";
+	        			            	
+	        	StringBuffer sbSrc = new StringBuffer(imagenCode);
+	        	//System.out.println(imagenCode);
+	        	
+	        	String srcOriginal = sbSrc.substring(sbSrc.indexOf(atributoSrc)+atributoSrc.length());
+	        	//System.out.println(srcOriginal);
+	        	
+				String depuracionInicial = srcOriginal.substring("\"file:".length());
+	        	//System.out.println(depuracionInicial);
+				
+				
+				String depuracionFinal = depuracionInicial.substring(0,depuracionInicial.indexOf("\""));			
+	        	//System.out.println(depuracionFinal);
+	
+				
+				String rutaArchivo = depuracionFinal.replace('\\', '/');
+	        	//System.out.println(rutaArchivo);
+					
+				imagenes.add(rutaArchivo);
+				
+				String imgInsertar = "cid:IMG"+cidCont;
+				
+				++cidCont;
+				
+				int iDelete = sb.indexOf(atributoSrc, i)+atributoSrc.length();
+				
+				sb.delete(iDelete, sb.indexOf("\"",iDelete+1));	
+				
+				String insertCadena = "\""+imgInsertar;
+	
+	        	sb.insert(iDelete, insertCadena);
+	        	
+	        	int iInsert = i + insertCadena.length()+1;
+	        
+	        	i = sb.indexOf(tagImg,iInsert);
+	        	
+	        }
+	        
+	    }      
+	   return sb.toString();
+	}
+	
+	
 	//---------------------------------------------------------------------
 	private String obtenerAsunto(String contenidoEnviar)
 	{
@@ -335,19 +368,17 @@ public class PrevisualizadorHTML extends JDialog
 		int fin = 0;
 		String tagInicio = "<!--";
 		String tagFin = "-->";
-		
+				
 		inicio = contenidoEnviar.indexOf(tagInicio)+tagInicio.length();
 		fin = contenidoEnviar.indexOf(tagFin);
-		
+				
 		asunto = contenidoEnviar.substring(inicio,fin);
-		
+				
 		return asunto;
 	}
-
 	
 	
-
-	//-------------------------------------------------------------
+	//---------------------------------------------------------------------
 	public void cerrarEditor()
 	{
 		int rta = JOptionPane.showConfirmDialog(
@@ -365,5 +396,14 @@ public class PrevisualizadorHTML extends JDialog
 		case(0): dispose();
 				 break;
 		}
+	}
+	
+	
+	//---------------------------------------------------------------------
+	private void desactivar_controles() 
+	{
+		btnAceptarEnviar.setEnabled(false);
+		btnVolverModificar.setEnabled(false);
+		setEnabled(false);
 	}
 }
