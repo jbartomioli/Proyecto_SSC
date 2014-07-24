@@ -90,6 +90,7 @@ public class GenerarAnuncio extends JDialog {
 		return controladorAux;
 	}
 
+	
 	//-------------------------------------------------------------------
 	public void actualizarClientesDestinatarios(TableModel nuevoModelo)
 	{			
@@ -325,7 +326,11 @@ public class GenerarAnuncio extends JDialog {
 
 
 	
-	//---------------------------------------------------------------------------
+	/*********************************
+	 * INICIALIZACION DE COMPONENTES
+	 * @param controladorAnuncios
+	 * @throws Exception
+	 *********************************/
 	protected void inicializar(negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
 	{
 		controladorAux = controladorAnuncios;
@@ -468,8 +473,12 @@ public class GenerarAnuncio extends JDialog {
 
 
 
-	// EVENTOS
-	//-------------------------------------------------------------------------------------------------
+	/********************
+	 * EVENTOS
+	 * @param evento
+	 * @throws Exception
+	 ********************/
+	//-------------------------------------------------------------------
 	protected void click_combo_categorias(ItemEvent evento) throws Exception
 	{
 		if(evento.getStateChange() == ItemEvent.SELECTED)
@@ -498,7 +507,7 @@ public class GenerarAnuncio extends JDialog {
 	
 
 	
-	//----------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------
 	protected void click_combo_subcategorias(ItemEvent evento) throws Exception
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
@@ -515,7 +524,8 @@ public class GenerarAnuncio extends JDialog {
 	}
 
 	
-	//-------------------------------------------------------------
+	
+	//-------------------------------------------------------------------
 	protected void action_generar(JDialog dialogPadre)
 	{
     	if(txtAsunto.getText().equals(""))
@@ -558,7 +568,8 @@ public class GenerarAnuncio extends JDialog {
 	}
 	
 	
-	//-------------------------------------------------------------
+	
+	//-------------------------------------------------------------------
 	protected void action_enviar(GenerarAnuncio dialogPadre)
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
@@ -620,8 +631,9 @@ public class GenerarAnuncio extends JDialog {
     	}
 	}
 	
+	
 
-	//---------------------------------------------------------------
+	//-------------------------------------------------------------------
 	@SuppressWarnings("rawtypes")
 	protected void click_aniadir_producto() 
 	{
@@ -656,7 +668,8 @@ public class GenerarAnuncio extends JDialog {
 	}
 	
 	
-	//-------------------------------------------------------------
+	
+	//-------------------------------------------------------------------
 	protected void click_eliminar_producto() 
 	{
 		DefaultTableModel tableModel = (DefaultTableModel) tblProductosAnuncio.getModel();
@@ -670,7 +683,8 @@ public class GenerarAnuncio extends JDialog {
 	}
 	
 	
-	//-------------------------------------------------------------
+	
+	//-------------------------------------------------------------------
 	protected void click_label_modificar_destinatarios(interfaces.GenerarAnuncio dialogPadre) 
 	{
 		interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
@@ -679,7 +693,8 @@ public class GenerarAnuncio extends JDialog {
 	}
 	
 	
-	//-------------------------------------------------------------
+	
+	//-------------------------------------------------------------------
 	protected void click_label_modificar_precios(interfaces.GenerarAnuncio dialogPadre) throws Exception
 	{
 		interfaces.Precios precios = new interfaces.Precios(dialogPadre, controladorAux);
@@ -687,29 +702,19 @@ public class GenerarAnuncio extends JDialog {
 		precios.setVisible(true);	
 	}
 	
-	//-------------------------------------------------------------
+	
+	
+	//-------------------------------------------------------------------
 	protected void cerrar_salir()
 	{
-		int rta = JOptionPane.showConfirmDialog(
-					this, 
-					"¿Desea salir y volver al menu principal?\n"
-						+ "Todo cambio que no haya guardado se perderá.",
-					"ATENCIÓN",
-					JOptionPane.YES_NO_OPTION);
-				
-		switch(rta)
-		{
-		case(1): //finalizarEdicion();
-				 break;
-		case(0): limpiar_formulario();
-				 limpiar_objetos_temporales();
-				 dispose();
-				 break;
-		}
+		limpiar_formulario();
+		limpiar_objetos_temporales();
+		dispose();
 	}
 	
 	
-	//-----------------------------------------------------------------
+	
+	//-------------------------------------------------------------------
 	protected void limpiar_formulario()
 	{
 		cmbCategorias.setSelectedIndex(0);
@@ -724,15 +729,18 @@ public class GenerarAnuncio extends JDialog {
 	}
 	
 	
-	//-----------------------------------------------------------------
+	
+	//-------------------------------------------------------------------
 	private void limpiar_objetos_temporales()
 	{
 		controladorAux.getArrClientesInteresados().clear();
 		controladorAux.getArrProductosPublicación().clear();
 		controladorAux.setAnuncioActual(new negocio.Anuncio()); 
 	}
-
-	//-----------------------------------------------------------------
+	
+	
+	
+	//-------------------------------------------------------------------
 	private void eliminar_temporal() 
 	{
 		try
@@ -748,7 +756,8 @@ public class GenerarAnuncio extends JDialog {
 	}
 	
 	
-	//------------------------------------------------------------------
+	
+	//-------------------------------------------------------------------
 	private void desactivar_botones()
 	{
 		setEnabled(false);
@@ -760,7 +769,8 @@ public class GenerarAnuncio extends JDialog {
 	}
 	
 	
-	//------------------------------------------------------------------
+	
+	//-------------------------------------------------------------------
 	private void activar_botones()
 	{
 		btnCerrar.setEnabled(true);
@@ -773,7 +783,7 @@ public class GenerarAnuncio extends JDialog {
 	
 	
 	
-	//------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------
 	public class TabajoAniadirProducto implements Runnable{
 		
 		private int idProducto;
