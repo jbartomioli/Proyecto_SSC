@@ -107,7 +107,7 @@ public class Precios extends JDialog {
 		setMaximumSize(new Dimension(650, 460));
 		setSize(650, 460);
 		setTitle("Modificar Precios");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CLIENTES_32.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"PRECIO_32.png"));
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
 		setBounds(100, 100, 450, 300);

@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class Inicializacion 
 {
 	/**
-	 * CONSTRUCTO
+	 * CONSTRUCTOR
 	 */
 	public Inicializacion() 
 	{			

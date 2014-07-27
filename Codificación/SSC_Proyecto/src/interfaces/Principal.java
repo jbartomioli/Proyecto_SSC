@@ -1,7 +1,7 @@
 package interfaces;
-/*
+/***************************************
  * INTERFAZ PRINCIPAL DE LA APLICACION
- */
+ ***************************************/
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,15 +29,21 @@ import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.KeyAdapter;
 
 
 
 public class Principal extends JFrame {
 
-	//SERIALIZABLE
+	/***************
+	 * SERIALIZABLE
+	 ***************/
 	private static final long serialVersionUID = 3856238941350632345L;
 	
-	//COMPONENTES
+
+	/**************
+	 * COMPONENTES
+	 **************/
 	private JPanel cntContenedor;
 	private JLabel lblImagenfondo;
 	private JMenuBar mnuBarraMenu;
@@ -57,9 +63,17 @@ public class Principal extends JFrame {
 	private JMenuItem mntConfiguracion;
 	private interfaces.Acerca acerca;
 	
-	//CONSTRUCTOR
+
+	/*******************************
+	 * CONSTRUCTOR
+	 * @param controladorAnuncios
+	 * @throws Exception
+	 *******************************/
 	public Principal(negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception 
 	{
+		/**
+		 * FORMULARIO BASE
+		 */
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"SSC_128.png"));
 		setMinimumSize(new Dimension(800, 600));
 		setSize(getToolkit().getScreenSize());
@@ -67,12 +81,26 @@ public class Principal extends JFrame {
         setLocationRelativeTo(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);		
 		
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) 
+			{
+				if(arg0.getKeyCode()==KeyEvent.VK_ESCAPE)
+					cerrando();
+			}
+		});
         
+		/**
+		 * CONTENEDOR
+		 */
         cntContenedor = new JPanel();
         cntContenedor.setBackground(Color.WHITE);
         cntContenedor.setLayout(null);
 		
 		
+        /**
+         * IMAGEN DE FONDO
+         */
 		lblImagenfondo = new JLabel("");
 		lblImagenfondo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblImagenfondo.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -82,10 +110,16 @@ public class Principal extends JFrame {
 		lblImagenfondo.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_PRESENTACION+"imgFondo.jpg"));
 
 		
+		/**
+		 * BARRA MENU
+		 */
 		mnuBarraMenu = new JMenuBar();
 		setJMenuBar(mnuBarraMenu);
 		
 		
+		/**
+		 * MENU 1: ARCHIVO
+		 */
 		mnuArchivo = new JMenu("Archivo");
 		mnuArchivo.setMnemonic('A');
 		mnuBarraMenu.add(mnuArchivo);
@@ -100,7 +134,9 @@ public class Principal extends JFrame {
 		});
 		mnuArchivo.add(mntSalir);
 		
-		
+		/**
+		 * MENU 2: OPERACIONES
+		 */
 		mnuOperaciones = new JMenu("Operaciones");
 		mnuOperaciones.setMnemonic('O');
 		mnuBarraMenu.add(mnuOperaciones);
@@ -140,6 +176,9 @@ public class Principal extends JFrame {
 		mnuOpciones.setMnemonic('c');
 		mnuBarraMenu.add(mnuOpciones);
 		
+		/**
+		 * MENU 3: OPCIONES
+		 */
 		mntConfiguracion = new JMenuItem("Configuraci\u00F3n");
 		mntConfiguracion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		mntConfiguracion.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFIGURACION_16.png"));
@@ -154,6 +193,9 @@ public class Principal extends JFrame {
 		
 		mnuOpciones.add(mntConfiguracion);
 
+		/**
+		 * MENU 5: AYUDA
+		 */
 		mnuAyuda = new JMenu("Ayuda");
 		mnuAyuda.setMnemonic('u');
 		mnuBarraMenu.add(mnuAyuda);
@@ -190,7 +232,10 @@ public class Principal extends JFrame {
 	}
 	
 	
-	//-----------------------------------------------------------------------------------------------
+	/**
+	 * EVENTOS
+	 */
+	//------------------------------------------------
 	public void cerrando()
 	{
 		int rta;
