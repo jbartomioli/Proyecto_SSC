@@ -160,8 +160,7 @@ public class Precios extends JDialog {
 		cmbSubcategorias.setBounds(434, 43, 196, 23);
 		getContentPane().add(cmbSubcategorias);
 		
-		
-		
+				
 		/***********
 		 * BUSCADOR
 		 ***********/
@@ -196,16 +195,14 @@ public class Precios extends JDialog {
 		tblProductos = new interfaces.componentes.TablaProductos();
 		scrollPrecios.setViewportView(tblProductos);
 		
-	
-		
+			
 		/****************
 		 * BOTON ACEPTAR			
 		 ****************/
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(440, 354);
 		getContentPane().add(btnAceptar);
-		
-		
+				
 		
 		/******************
 		 * BOTON CANCELAR
@@ -222,8 +219,7 @@ public class Precios extends JDialog {
 
 	}
 	
-	
-	
+		
 	/**********************************
 	 * INICIALIZACION COMPONENTES GUI
 	 **********************************/

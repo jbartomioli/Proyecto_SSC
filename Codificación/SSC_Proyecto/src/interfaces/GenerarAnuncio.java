@@ -213,8 +213,7 @@ public class GenerarAnuncio extends JDialog {
 		scrollProductosAnuncio.setAlignmentX(Component.LEFT_ALIGNMENT);
 		boxProductosAnuncio.add(scrollProductosAnuncio);
 	
-		
-		
+				
 		/****************************
 		 * TABLA PRODUCTOS A AGREGAR
 		 ****************************/
@@ -324,7 +323,6 @@ public class GenerarAnuncio extends JDialog {
 		inicializar(controladorAnuncios);		
 	}
 
-
 	
 	/*********************************
 	 * INICIALIZACION DE COMPONENTES
@@ -349,7 +347,6 @@ public class GenerarAnuncio extends JDialog {
 				}
 			}});
 		
-		
 
 		/***************************************************************
 		 * COMBO SUBCATEGORIAS
@@ -368,7 +365,6 @@ public class GenerarAnuncio extends JDialog {
 		});
 		
 		
-
 		/***************************************************************
 		 * TABLA PRODUCTOS ANUNCIO
 		 ***************************************************************/
@@ -421,7 +417,6 @@ public class GenerarAnuncio extends JDialog {
 			}
 		});
 		
-		
 
 		/**************************************************************
 		 * LABEL MODIFICAR PRECIOS
@@ -472,7 +467,6 @@ public class GenerarAnuncio extends JDialog {
 	}
 
 
-
 	/********************
 	 * EVENTOS
 	 * @param evento
@@ -500,8 +494,6 @@ public class GenerarAnuncio extends JDialog {
 			tblProductos.completarTabla(controladorAux.seleccionarSubcategoria(
 					subcategoriaSeleccionada.getIdcategoria(),
 					subcategoriaSeleccionada.getIdSubcategoria()));
-			
-			
 		}
 	}
 	
@@ -754,7 +746,6 @@ public class GenerarAnuncio extends JDialog {
 				e1.printStackTrace();
 			}	
 	}
-	
 	
 	
 	//-------------------------------------------------------------------
