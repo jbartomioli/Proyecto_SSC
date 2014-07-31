@@ -62,6 +62,7 @@ public class Principal extends JFrame {
 	private JMenu mnuOpciones;
 	private JMenuItem mntConfiguracion;
 	private interfaces.Acerca acerca;
+	private interfaces.Ayuda ayuda;
 	
 
 	/*******************************
@@ -198,26 +199,38 @@ public class Principal extends JFrame {
 		 */
 		mnuAyuda = new JMenu("Ayuda");
 		mnuAyuda.setMnemonic('u');
+			
 		mnuBarraMenu.add(mnuAyuda);
 		
 		mntContenidoAyuda = new JMenuItem("Contenidos");
 		mntContenidoAyuda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
+		
+		ayuda = new interfaces.Ayuda(this,true);
+		
+		mntContenidoAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ayuda.setVisible(true);
+			}
+		});
+		
 		mnuAyuda.add(mntContenidoAyuda);
 		mntContenidoAyuda.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"AYUDA_16.png"));
 		
 		mntAcerca = new JMenuItem("Acerca de SSC");
-		mntAcerca.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ACERCA_16.png"));
+		mntAcerca.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ACERCA_16.png"));	
 		
 		acerca = new interfaces.Acerca(this, true);
-
+		
 		mntAcerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				acerca.setVisible(true);
 			}
+			
 		});
 		mntAcerca.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, InputEvent.ALT_MASK));
-		mnuAyuda.add(mntAcerca);
 		
+		mnuAyuda.add(mntAcerca);
+			
 		setContentPane(cntContenedor);
 		
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
