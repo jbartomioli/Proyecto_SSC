@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
@@ -205,11 +206,13 @@ public class Principal extends JFrame {
 		mntContenidoAyuda = new JMenuItem("Contenidos");
 		mntContenidoAyuda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 		
-		ayuda = new interfaces.Ayuda(this,true);
+		ayuda = new interfaces.Ayuda();
 		
 		mntContenidoAyuda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ayuda.setVisible(true);
+				setCursor(new Cursor(Cursor.WAIT_CURSOR));
+				ayuda.openURL("http://192.168.1.103");
+				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		
