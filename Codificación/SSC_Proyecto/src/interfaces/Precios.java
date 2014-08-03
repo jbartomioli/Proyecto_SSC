@@ -3,23 +3,17 @@ package interfaces;
  * PANTALLA DE MODIFICACION DE PRECIOS
  */
 import interfaces.componentes.BotonesIconos;
-
 import java.awt.SystemColor;
-
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-
 import java.awt.Font;
 import java.awt.Color;
-
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -455,6 +449,8 @@ public class Precios extends JDialog {
 			int idProductoInt;
 			int filaSeleccionada = tblProductos.getSelectedRow();
 			
+			interfaces.componentes.JPanelPrecios panelPrecio = new interfaces.componentes.JPanelPrecios();
+			
 		    if (filaSeleccionada >= 0)
 		    {
 		    	idProductoInt = Integer.parseInt(tableModel.getValueAt(filaSeleccionada, 0).toString());	
@@ -462,26 +458,37 @@ public class Precios extends JDialog {
 		    	
 		    	productoSeleccionado = controladorPrecios.getCatalogoProductos().buscarProducto(idProductoInt);
 	       
-		    	JTextField precioVigente = new JTextField(5);
-		    	precioVigente.setText(tableModel.getValueAt(filaSeleccionada, 2).toString());
-		    	precioVigente.setForeground(Color.GRAY);
-		        JTextField precioPromocional = new JTextField(5);
-		        precioPromocional.setText(tableModel.getValueAt(filaSeleccionada, 3).toString());
-		    	precioPromocional.setForeground(Color.GRAY);
+//		    	MaskFormatter mascara = new MaskFormatter("###.##");
+//		    	JFormattedTextField precioVigente = new JFormattedTextField(mascara);
 		    	
-		        JPanel panelPrecio = new JPanel();
-		        panelPrecio.add(new JLabel("Precio Vigente:"));
-		        panelPrecio.add(precioVigente);
-		        panelPrecio.add(Box.createHorizontalStrut(15));
-		        panelPrecio.add(new JLabel("Precio Promocional:"));
-		        panelPrecio.add(precioPromocional);
+//		    	precioVigente.setValue(tableModel.getValueAt(filaSeleccionada, 2));
+//		    	precioVigente.setForeground(Color.GRAY);
 		        
-		        int rta = JOptionPane.showConfirmDialog(null, panelPrecio, "Ingrese el/los nuevo/s precio/s", JOptionPane.OK_CANCEL_OPTION);
+//		    	JFormattedTextField precioPromocional = new JFormattedTextField(mascara);
+//		        precioPromocional.setValue(tableModel.getValueAt(filaSeleccionada, 3));
+//		    	precioPromocional.setForeground(Color.GRAY);
+		    	
+//		        JPanel panelPrecio = new JPanel();
+//		        panelPrecio.add(new JLabel("Precio Vigente:"));
+//		        panelPrecio.add(precioVigente);
+//		        panelPrecio.add(Box.createHorizontalStrut(15));
+//		        panelPrecio.add(new JLabel("Precio Promocional:"));
+//		        panelPrecio.add(precioPromocional);
+		    	
+		    	panelPrecio.setPrecioVigente(Float.parseFloat(tableModel.getValueAt(filaSeleccionada, 2).toString()));
+		    	panelPrecio.setPrecioPromocional(Float.parseFloat(tableModel.getValueAt(filaSeleccionada, 3).toString()));
+
+		        
+		        int rta = JOptionPane.showConfirmDialog(this, panelPrecio, "Ingrese el/los nuevo/s precio/s", JOptionPane.OK_CANCEL_OPTION);
 		        
 		        if (rta == JOptionPane.OK_OPTION) 
 		        {
 		            //GUARDA NUEVOS PECIOS		    	
-		        	controladorPrecios.getCatalogoProductos().actualizarPreciosProducto(productoSeleccionado, Float.parseFloat(precioVigente.getText()), Float.parseFloat(precioPromocional.getText()));
+		        	controladorPrecios.getCatalogoProductos().actualizarPreciosProducto(
+		        			productoSeleccionado, 
+		        			panelPrecio.getPrecioVigente(),
+		        			panelPrecio.getPrecioPromocional());
+		        	
 		        	negocio.SubCategoria subcategoriaActual = new negocio.SubCategoria();
 		        	subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		        	
