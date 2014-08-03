@@ -161,7 +161,7 @@ public class Principal extends JFrame {
 		
 		/////////////////////////////////////////////////////////////////////////////////////////
 		//REVISAR
-		modificarPrecios = new interfaces.Precios(this, controladorAnuncios);
+		modificarPrecios = new interfaces.Precios(this);
 		/////////////////////////////////////////////////////////////////////////////////////////
 		
 		mntPrecios = new JMenuItem("Modificar Precios");
@@ -211,7 +211,7 @@ public class Principal extends JFrame {
 		mntContenidoAyuda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setCursor(new Cursor(Cursor.WAIT_CURSOR));
-				ayuda.openURL("http://192.168.1.103");
+				ayuda.openURL("D:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\recursos\\ayuda\\index.html");
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});

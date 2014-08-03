@@ -129,7 +129,7 @@ public class Producto
 			entPrecio = (entidades.Precios) 
 					session.get(entidades.Precios.class, entPrecioId); 
 
-			System.out.println(entPrecio.toString());
+			//System.out.println(entPrecio.toString());
 
 			//SE SETEA EL NUEVO PRECIO
 			entPrecio.setPrecios(nuevoPrecio.getPrecio(), nuevoPrecio.getPrecioPromocional());
@@ -178,7 +178,7 @@ public class Producto
 			entPrecio = (entidades.Precios) 
 					session.get(entidades.Precios.class, entPrecioId); 
 
-			System.out.println(entPrecio.toString());
+			//System.out.println(entPrecio.toString());
 
 			//SE SETEA EL NUEVO PRECIO
 			entPrecio.setPrecio(nuevoPrecio.getPrecio());
@@ -227,7 +227,7 @@ public class Producto
 			entPrecio = (entidades.Precios) 
 		    		session.get(entidades.Precios.class, entPrecioId); 
 		    		
-			System.out.println(entPrecio.toString());
+			//System.out.println(entPrecio.toString());
 			
 			//SE SETEA EL NUEVO PRECIO
 			entPrecio.setPrecioPromocional(nuevoPrecio.getPrecioPromocional());
