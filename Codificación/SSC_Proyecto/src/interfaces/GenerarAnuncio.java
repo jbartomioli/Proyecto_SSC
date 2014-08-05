@@ -690,7 +690,6 @@ public class GenerarAnuncio extends JDialog {
 	//-------------------------------------------------------------------
 	protected void click_label_modificar_precios(interfaces.GenerarAnuncio dialogPadre) throws Exception
 	{
-		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		interfaces.Precios precios = new interfaces.Precios(dialogPadre, controladorAux);
 		precios.setLocationRelativeTo(dialogPadre);
 		precios.setVisible(true);

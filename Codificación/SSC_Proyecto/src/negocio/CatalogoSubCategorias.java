@@ -94,4 +94,20 @@ public class CatalogoSubCategorias
 		return null;
 	}
 	//---------------------------------------------------------------
+	
+	
+	public void actualizarProducto(negocio.Producto productoModif)
+	{
+		for(negocio.SubCategoria subcategoriaActual : this.getSubcategorias())
+		{
+			for(negocio.Producto productoActual : subcategoriaActual.getProductos())
+			{
+				if(productoActual.getIdProducto() == productoModif.getIdProducto())
+				{
+					productoActual.setPrecioPromocional(productoModif.getPrecioPromocional());
+					productoActual.setPrecio(productoModif.getPrecioActual());
+				}
+			}
+		}
+	}
 }

@@ -21,7 +21,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Toolkit;
@@ -113,7 +112,6 @@ public class Precios extends JDialog {
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
-		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
 		
 		addWindowListener(new WindowAdapter() {
@@ -489,6 +487,11 @@ public class Precios extends JDialog {
 		        			productoSeleccionado, 
 		        			panelPrecio.getPrecioVigente(),
 		        			panelPrecio.getPrecioPromocional());
+		        	
+		        	productoSeleccionado.setPrecioPromocional(panelPrecio.getPrecioPromocional());
+		        	productoSeleccionado.setPrecio(panelPrecio.getPrecioVigente());
+		        	
+		        	controladorPrecios.getCatalogoSubcategorias().actualizarProducto(productoSeleccionado);
 		        	
 		        	negocio.SubCategoria subcategoriaActual = new negocio.SubCategoria();
 		        	subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
