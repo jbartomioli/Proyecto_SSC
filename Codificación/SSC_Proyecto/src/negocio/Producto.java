@@ -260,9 +260,6 @@ public class Producto
 				precioDatos.setPrecio(nuevoPrecio);
 
 				//SE GUARDA EN BD
-				/**
-				 * 
-				 */
 				productoDatos.setPrecio(precioDatos, this.idProducto);
 
 				//SE CORTA LA ITERACION

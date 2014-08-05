@@ -68,6 +68,7 @@ public class Precios extends JDialog {
 		super(padre);
 		setLocationRelativeTo(padre);
 		controladorPrecios = new negocio.ControladorModificarPrecios();
+
 		controladorPrecios.inicializarCatalogos();
 		inicializar();
 	}
@@ -429,7 +430,7 @@ public class Precios extends JDialog {
 	{
 		cmbCategorias.setSelectedIndex(0);
 		txtBuscarProductos.setText("");
-			
+
 		tblProductos.limpiar_tabla();
 	}
 	
@@ -483,7 +484,7 @@ public class Precios extends JDialog {
 		        
 		        if (rta == JOptionPane.OK_OPTION) 
 		        {
-		            //GUARDA NUEVOS PECIOS		    	
+		            //GUARDA NUEVOS PRECIOS		    	
 		        	controladorPrecios.getCatalogoProductos().actualizarPreciosProducto(
 		        			productoSeleccionado, 
 		        			panelPrecio.getPrecioVigente(),
@@ -492,10 +493,11 @@ public class Precios extends JDialog {
 		        	negocio.SubCategoria subcategoriaActual = new negocio.SubCategoria();
 		        	subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		        	
-		        	tblProductos.completarTabla(controladorPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
-		        	
+		        	tblProductos.completarTabla(
+		        			controladorPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
+			        
 		        	repaint();
-		         }
+		        }
 		    }
 		    	
 		}

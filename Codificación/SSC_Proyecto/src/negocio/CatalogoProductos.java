@@ -254,7 +254,7 @@ public class CatalogoProductos
 				//SE SETEA EL PRECIO EN EL PRODUCTO ACTUAL
 				productoNegocio.setPrecio(nuevoPrecio);
 				productoNegocio.setPrecioPromocional(nuevoPrecioProm);
-				
+								
 				//SE CREA OBJETO PRODUCTO DE DATOS PARA SETEO DE DATOS
 				datos.Producto productoModifDatos = new datos.Producto();
 				
