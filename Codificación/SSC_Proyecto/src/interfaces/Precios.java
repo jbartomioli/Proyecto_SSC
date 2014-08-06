@@ -445,8 +445,9 @@ public class Precios extends JDialog {
 		protected void click_modificar_precio() throws Exception
 		{
 			DefaultTableModel tableModel = (DefaultTableModel) tblProductos.getModel();
-			int idProductoInt;
-			int filaSeleccionada = tblProductos.getSelectedRow();
+			int idProductoInt = 0;
+			int filaSeleccionada = -1;
+			filaSeleccionada = tblProductos.getSelectedRow();
 			
 			interfaces.componentes.JPanelPrecios panelPrecio = new interfaces.componentes.JPanelPrecios();
 			
@@ -456,29 +457,12 @@ public class Precios extends JDialog {
 		    	productoSeleccionado = new negocio.Producto();
 		    	
 		    	productoSeleccionado = controladorPrecios.getCatalogoProductos().buscarProducto(idProductoInt);
-	       
-//		    	MaskFormatter mascara = new MaskFormatter("###.##");
-//		    	JFormattedTextField precioVigente = new JFormattedTextField(mascara);
-		    	
-//		    	precioVigente.setValue(tableModel.getValueAt(filaSeleccionada, 2));
-//		    	precioVigente.setForeground(Color.GRAY);
-		        
-//		    	JFormattedTextField precioPromocional = new JFormattedTextField(mascara);
-//		        precioPromocional.setValue(tableModel.getValueAt(filaSeleccionada, 3));
-//		    	precioPromocional.setForeground(Color.GRAY);
-		    	
-//		        JPanel panelPrecio = new JPanel();
-//		        panelPrecio.add(new JLabel("Precio Vigente:"));
-//		        panelPrecio.add(precioVigente);
-//		        panelPrecio.add(Box.createHorizontalStrut(15));
-//		        panelPrecio.add(new JLabel("Precio Promocional:"));
-//		        panelPrecio.add(precioPromocional);
 		    	
 		    	panelPrecio.setPrecioVigente(Float.parseFloat(tableModel.getValueAt(filaSeleccionada, 2).toString()));
 		    	panelPrecio.setPrecioPromocional(Float.parseFloat(tableModel.getValueAt(filaSeleccionada, 3).toString()));
 
-		        
-		        int rta = JOptionPane.showConfirmDialog(this, panelPrecio, "Ingrese el/los nuevo/s precio/s", JOptionPane.OK_CANCEL_OPTION);
+		        int rta = 0;
+		        rta = JOptionPane.showConfirmDialog(this, panelPrecio, "Ingrese el/los nuevo/s precio/s", JOptionPane.OK_CANCEL_OPTION);
 		        
 		        if (rta == JOptionPane.OK_OPTION) 
 		        {
@@ -499,8 +483,9 @@ public class Precios extends JDialog {
 		        	tblProductos.completarTabla(
 		        			controladorPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
 			        
-		        	repaint();
+		        	//repaint();
 		        }
+		        
 		    }
 		    	
 		}
