@@ -361,26 +361,27 @@ public class Configuraciones extends JDialog
 		
 		String urlDB = propiedades.get("hibernate.connection.url");
 		
-		StringTokenizer tokenizer = new StringTokenizer(urlDB,":");
-		String[] tokens = new String[tokenizer.countTokens()];
-		int i = 0;
+//		StringTokenizer tokenizer = new StringTokenizer(urlDB,":");
+//		String[] tokens = new String[tokenizer.countTokens()];
+//		int i = 0;
+//		
+//		while (tokenizer.hasMoreTokens())
+//		{
+//			tokens[i] = tokenizer.nextToken();
+//			i++;
+//		}
 		
-		while (tokenizer.hasMoreTokens())
-		{
-			tokens[i] = tokenizer.nextToken();
-			i++;
-		}
-		
-		txtURL.setText(tokens[2].substring(2));
-		txtPuerto.setText(tokens[3].substring(0, tokens[3].indexOf('/')));
+//		txtURL.setText(tokens[2].substring(2));
+		txtURL.setText("192.168.1.103");
+		txtPuerto.setText("3306");
 		txtUsuario.setText(propiedades.get("hibernate.connection.username"));
 		psfPass.setText(propiedades.get("hibernate.connection.password"));
 		psfPassRep.setText(propiedades.get("hibernate.connection.password"));
-		txtBD.setText(tokens[3].substring(tokens[3].indexOf('/')+1));
-		if(propiedades.get("hibernate.show_sql").equals("true"))
+		txtBD.setText("BD_SSC");
+//		if(propiedades.get("hibernate.show_sql").equals("true"))
 			chkModoDepuracion.setSelected(true);
-		else
-			chkModoDepuracion.setSelected(false);
+//		else
+//			chkModoDepuracion.setSelected(false);
 		
 		
 		txtUbicacionFile.setText(utilidades.Configuraciones.URL_FILE);
