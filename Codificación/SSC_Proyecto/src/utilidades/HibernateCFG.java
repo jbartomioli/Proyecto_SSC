@@ -18,7 +18,7 @@ public class HibernateCFG
 	private HashMap<String,String> elementos;
 	private File xmlFile;
 	//private String urlFile = "C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\src\\main\\resources\\hibernate.cfg.xml";
-	private String urlFile = "src\\main\\resources\\hibernate.cfg.xml";
+	private String urlFile = "bin\\main\\resources\\hibernate.cfg.xml";
 	
 	
 	public HibernateCFG()
