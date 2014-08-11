@@ -195,6 +195,19 @@ public class Precios extends JDialog {
 		tblProductos = new interfaces.componentes.TablaProductos();
 		scrollPrecios.setViewportView(tblProductos);
 		
+		tblProductos.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent mePrecio)
+			{
+				if(tblProductos.columnAtPoint(mePrecio.getPoint())==5)
+					try {
+						click_modificar_precio();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+			}
+		});
+		
+		
 			
 		/****************
 		 * BOTON ACEPTAR			
@@ -307,17 +320,7 @@ public class Precios extends JDialog {
 		tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
 		tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
 		
-		tblProductos.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent me) 
-			{
-				if(tblProductos.columnAtPoint(me.getPoint())==5)
-					try {
-						click_modificar_precio();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-			}
-		});
+
 		
 		
 		btnAceptar.addActionListener(new ActionListener() {
@@ -482,10 +485,7 @@ public class Precios extends JDialog {
 		        	
 		        	tblProductos.completarTabla(
 		        			controladorPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
-			        
-		        	//repaint();
 		        }
-		        
 		    }
 		    	
 		}
