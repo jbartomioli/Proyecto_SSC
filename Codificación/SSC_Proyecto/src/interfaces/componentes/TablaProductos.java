@@ -11,6 +11,8 @@ import javax.swing.table.TableColumn;
 public class TablaProductos extends JTable {
 
 	private TableColumn columnaBoton;
+	private TableColumn columnaPrecio;
+	private TableColumn columnaPrecioPromocional;
 	private DefaultTableModel modeloTablaProductos;
 
 	/**
@@ -51,21 +53,21 @@ public class TablaProductos extends JTable {
 		}
 
 		
-			columnaBoton = new TableColumn();
-			columnaBoton = getColumnModel().getColumn(5);
-			columnaBoton
-					.setCellEditor(new interfaces.componentes.EditorCeldas(this));
-			columnaBoton.setPreferredWidth(16);
-			columnaBoton.setMaxWidth(16);
+		columnaBoton = new TableColumn();
+		columnaBoton = getColumnModel().getColumn(5);
+		columnaBoton.setCellEditor(new interfaces.componentes.EditorCeldas(this));
+		columnaBoton.setPreferredWidth(16);
+		columnaBoton.setMaxWidth(16);
 		
 
 		TableColumn columnaNombre;
 		columnaNombre = getColumn("Producto");
 		columnaNombre.setPreferredWidth(275);
 		
-		TableColumn columnaPrecio;
-		columnaPrecio = getColumn("Precio promocional");
-		columnaPrecio.setPreferredWidth(150);
+		columnaPrecio = getColumn("Precio");
+
+		columnaPrecioPromocional = getColumn("Precio promocional");
+		columnaPrecioPromocional.setPreferredWidth(150);
 		
 		this.getColumn(this.getColumnName(0)).setWidth(0);
 		this.getColumn(this.getColumnName(0)).setMinWidth(0);
@@ -82,20 +84,16 @@ public class TablaProductos extends JTable {
 			getColumnModel().getColumn(j).setResizable(false);
 		
 		getTableHeader().setReorderingAllowed(false);
+		
+		columnaPrecio.setCellRenderer(new interfaces.componentes.FormatoPrecioTabla());
+		columnaPrecioPromocional.setCellRenderer(new interfaces.componentes.FormatoPrecioTabla());
 	}
 
-	//
-	/*public void definirTablaProductosAnuncio() {
-		columnaBoton
-				.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(
-						true));
-	}*/
+	
 
 	//
 	public void definirTablaProductos() {
-		columnaBoton
-				.setCellRenderer(new interfaces.componentes.RendererBotonCeldaModificar(
-						true));
+		columnaBoton.setCellRenderer(new interfaces.componentes.RendererBotonCeldaModificar(true));
 	}
 	
 	public void limpiar_tabla()
