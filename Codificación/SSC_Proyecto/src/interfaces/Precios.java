@@ -3,17 +3,22 @@ package interfaces;
  * PANTALLA DE MODIFICACION DE PRECIOS
  */
 import interfaces.componentes.BotonesIconos;
+
 import java.awt.SystemColor;
+
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Color;
+
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -21,6 +26,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Toolkit;
@@ -50,7 +56,6 @@ public class Precios extends JDialog {
 	private negocio.Categoria categoria;
 	private interfaces.componentes.TablaProductos tblProductos;
 	private interfaces.componentes.BotonesIconos btnAceptar;
-	private interfaces.componentes.BotonesIconos btnCancelar;
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
 	private negocio.ControladorModificarPrecios controladorPrecios;
 	private negocio.Producto productoSeleccionado;
@@ -213,16 +218,8 @@ public class Precios extends JDialog {
 		 * BOTON ACEPTAR			
 		 ****************/
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
-		btnAceptar.setLocation(440, 354);
+		btnAceptar.setLocation(540, 357);
 		getContentPane().add(btnAceptar);
-				
-		
-		/******************
-		 * BOTON CANCELAR
-		 ******************/
-		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
-		btnCancelar.setLocation(540, 354);
-		getContentPane().add(btnCancelar);
 		
 		
 		/********************************
@@ -327,16 +324,14 @@ public class Precios extends JDialog {
 			public void actionPerformed(ActionEvent evento) {
 	        	click_boton_aceptar(evento);}});
 		
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evento) {
-	        	click_boton_cancelar(evento);}});
-		
 		
 		btnBuscarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) 
 			{
 				//Evento para buscar destinatarios que coincidan con el string ingresado
+				setCursor(new Cursor(Cursor.WAIT_CURSOR));
 				click_boton_buscar(evento);
+				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		
@@ -388,13 +383,6 @@ public class Precios extends JDialog {
 					subcategoriaSeleccionada.getIdcategoria(),
 					subcategoriaSeleccionada.getIdSubcategoria()));
 		}
-	}
-
-	
-	public void click_boton_cancelar(ActionEvent evento)
-	{
-		limpiar_formulario();
-		dispose();
 	}
 	
 	public void click_boton_aceptar(ActionEvent evento)
