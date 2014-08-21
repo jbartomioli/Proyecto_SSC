@@ -6,10 +6,12 @@ import interfaces.componentes.BotonesIconos;
 
 import java.awt.SystemColor;
 
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.KeyStroke;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -117,8 +119,7 @@ public class Precios extends JDialog {
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
-
-		
+	
 		addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {
         		cerrar_salir();
@@ -126,6 +127,8 @@ public class Precios extends JDialog {
         });
 		
 	
+		addEscapeListenerWindowDialog();
+		
 		/*********
 		 * TITULO
 		 *********/
@@ -270,16 +273,10 @@ public class Precios extends JDialog {
 					{
 						controladorPrecios.getCatalogoProductos().obtenerProductos();
 						
-						tblProductos.completarTabla(controladorPrecios.getCatalogoProductos().buscarProducto(txtBuscarProductos.getText()));
-						//Oculta la columna del botón
-						tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
-						tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
-						tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
-						//tblProductos.definirTablaProductos();
+						tblProductos.completarTabla(controladorPrecios.getCatalogoProductos().buscarProducto(txtBuscarProductos.getText()));			
 					} 
 					catch (Exception e)
 					{
-						/////////////////////////////////////////////////////////////////////////////////////////////////
 						e.printStackTrace();
 					}
 				}
@@ -310,12 +307,10 @@ public class Precios extends JDialog {
 		{
 			e1.printStackTrace();
 		}
-		tblProductos.definirTablaProductos();
 		
-		//Oculta la columna del botón
-		tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
-		tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
-		tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
+		tblProductos.definirTablaProductos();
+		tblProductos.ocultar_columna(4);
+
 		
 
 		
@@ -341,6 +336,23 @@ public class Precios extends JDialog {
 	/**********
 	 * EVENTOS
 	 **********/
+	//
+	protected void addEscapeListenerWindowDialog() 
+	{
+	 ActionListener escAction = new ActionListener() 
+	 {
+		 @Override
+		 public void actionPerformed(ActionEvent e) 
+		 {
+			 cerrar_salir();
+		 }
+	 };
+	 getRootPane().registerKeyboardAction(
+			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	}
+	
+	
+	
 	protected void click_combo_categorias(ItemEvent evento) throws Exception
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
@@ -362,10 +374,6 @@ public class Precios extends JDialog {
 			tblProductos.completarTabla(controladorPrecios.seleccionarSubcategoria(
 					subcategoriaSeleccionada.getIdcategoria(),
 					subcategoriaSeleccionada.getIdSubcategoria()));
-			//Oculta la columna del botón
-			tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
-			tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
-			tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
 		}
 	}
 	
@@ -400,10 +408,6 @@ public class Precios extends JDialog {
 			
 			tblProductos.completarTabla(controladorPrecios.getCatalogoProductos().buscarProducto(txtBuscarProductos.getText()));
 			tblProductos.definirTablaProductos();
-			
-			tblProductos.getColumn(tblProductos.getColumnName(4)).setWidth(0);
-			tblProductos.getColumn(tblProductos.getColumnName(4)).setMinWidth(0);
-			tblProductos.getColumn(tblProductos.getColumnName(4)).setMaxWidth(0);
 			
 		} 
 		catch (Exception e)
@@ -472,7 +476,8 @@ public class Precios extends JDialog {
 		        	subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		        	
 		        	tblProductos.completarTabla(
-		        			controladorPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
+		        		controladorPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
+		        	
 		        }
 		    }
 		    	

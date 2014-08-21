@@ -8,11 +8,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
+import javax.swing.KeyStroke;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.JButton;
@@ -20,6 +22,7 @@ import javax.swing.JPanel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
@@ -58,8 +61,7 @@ public class PrevisualizadorHTML extends JDialog
 		/******************
 		 * FORMULARIO BASE
 		 ******************/
-		super(padre);
-		
+		super(padre);		
    		setResizable(false);
 		setMinimumSize(new Dimension(800,600));
 		getContentPane().setMinimumSize(new Dimension(800, 600));
@@ -73,9 +75,13 @@ public class PrevisualizadorHTML extends JDialog
 		
 		addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {
-        		cerrarEditor();
+        		cerrar_salir();
         	}
         });
+		
+		addEscapeListenerWindowDialog();
+		
+		
 	    getContentPane().setLayout(new BorderLayout(0, 0));
 	    
 	    /**
@@ -239,6 +245,23 @@ public class PrevisualizadorHTML extends JDialog
 	}
 
 	
+	//
+	//
+	protected void addEscapeListenerWindowDialog() 
+	{
+	 ActionListener escAction = new ActionListener() 
+	 {
+		 @Override
+		 public void actionPerformed(ActionEvent e) 
+		 {
+			 cerrar_salir();
+		 }
+	 };
+	 getRootPane().registerKeyboardAction(
+			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	}
+	
+	
 	//---------------------------------------------------------------------
 	@SuppressWarnings("finally")
 	public boolean preparar_enviar(String contenidoEnviar, String [] mailsClientes)
@@ -379,7 +402,7 @@ public class PrevisualizadorHTML extends JDialog
 	
 	
 	//---------------------------------------------------------------------
-	public void cerrarEditor()
+	public void cerrar_salir()
 	{
 		int rta = JOptionPane.showConfirmDialog(
 					this, 

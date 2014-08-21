@@ -30,7 +30,7 @@ public class TablaProductos extends JTable {
 		modeloTablaProductos.addColumn("Stock");
 		modeloTablaProductos.addColumn("");
 	}
-
+	
 
 	public void completarTabla(Collection<negocio.Producto> productos) {
 
@@ -69,9 +69,7 @@ public class TablaProductos extends JTable {
 		columnaPrecioPromocional = getColumn("Precio promocional");
 		columnaPrecioPromocional.setPreferredWidth(150);
 		
-		this.getColumn(this.getColumnName(0)).setWidth(0);
-		this.getColumn(this.getColumnName(0)).setMinWidth(0);
-		this.getColumn(this.getColumnName(0)).setMaxWidth(0);
+		this.ocultar_columna(0);
 		
 		DefaultTableCellRenderer AlinearNumero = new DefaultTableCellRenderer();
 		AlinearNumero.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -90,7 +88,18 @@ public class TablaProductos extends JTable {
 	}
 
 	
+	//
+	public void ocultar_columna(int nroColumna)
+	{
+		this.getColumn(this.getColumnName(nroColumna)).setWidth(0);
+		this.getColumn(this.getColumnName(nroColumna)).setMinWidth(0);
+		this.getColumn(this.getColumnName(nroColumna)).setMaxWidth(0);
+	}
+	
 
+	
+	
+	
 	//
 	public void definirTablaProductos() {
 		columnaBoton.setCellRenderer(new interfaces.componentes.RendererBotonCeldaModificar(true));

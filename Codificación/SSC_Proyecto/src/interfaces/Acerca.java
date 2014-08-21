@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JLabel;
 
@@ -19,9 +20,11 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import javax.swing.JComponent;
 import javax.swing.JTextPane;
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
+import javax.swing.KeyStroke;
 
 
 public class Acerca extends JDialog {
@@ -57,6 +60,8 @@ public class Acerca extends JDialog {
 		setResizable(false);
 		getContentPane().setLayout(null);
 		
+		addEscapeListenerWindowDialog();
+
 		
 		/**
 		 * PANEL SUPERIOR
@@ -145,7 +150,7 @@ public class Acerca extends JDialog {
 		pnlContenido.add(btnAceptar);
 		btnAceptar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	clickBotonCerrar(evento);
+	        	click_boton_cerrar();
 	        }
 	      });
 	}
@@ -154,8 +159,24 @@ public class Acerca extends JDialog {
 	
 	
 	//EVENTOS	
+	
+	//
+	protected void addEscapeListenerWindowDialog() 
+	{
+	 ActionListener escAction = new ActionListener() 
+	 {
+		 @Override
+		 public void actionPerformed(ActionEvent e) 
+		 {
+			 click_boton_cerrar();
+		 }
+	 };
+	 getRootPane().registerKeyboardAction(
+			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	}
+	
 	//EVENTO BOTON ACEPTAR
-	private void clickBotonCerrar(ActionEvent evento)
+	private void click_boton_cerrar()
 	{
 		dispose();
 	}
