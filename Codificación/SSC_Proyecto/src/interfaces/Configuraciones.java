@@ -6,16 +6,19 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -96,6 +99,8 @@ public class Configuraciones extends JDialog
 	    		cerrar_salir();
 	    	}
 	    });
+		
+		addEscapeListenerWindowDialog();
 		
 		/**********
 		 * TITULO 
@@ -361,27 +366,26 @@ public class Configuraciones extends JDialog
 		
 		String urlDB = propiedades.get("hibernate.connection.url");
 		
-//		StringTokenizer tokenizer = new StringTokenizer(urlDB,":");
-//		String[] tokens = new String[tokenizer.countTokens()];
-//		int i = 0;
-//		
-//		while (tokenizer.hasMoreTokens())
-//		{
-//			tokens[i] = tokenizer.nextToken();
-//			i++;
-//		}
+		StringTokenizer tokenizer = new StringTokenizer(urlDB,":");
+		String[] tokens = new String[tokenizer.countTokens()];
+		int i = 0;
 		
-//		txtURL.setText(tokens[2].substring(2));
-		txtURL.setText("192.168.1.103");
-		txtPuerto.setText("3306");
+		while (tokenizer.hasMoreTokens())
+		{
+			tokens[i] = tokenizer.nextToken();
+			i++;
+		}
+		
+		txtURL.setText(tokens[2].substring(2));
+		txtPuerto.setText(tokens[3].substring(0, tokens[3].indexOf('/')));
 		txtUsuario.setText(propiedades.get("hibernate.connection.username"));
 		psfPass.setText(propiedades.get("hibernate.connection.password"));
 		psfPassRep.setText(propiedades.get("hibernate.connection.password"));
-		txtBD.setText("BD_SSC");
-//		if(propiedades.get("hibernate.show_sql").equals("true"))
+		txtBD.setText(tokens[3].substring(tokens[3].indexOf('/')+1));
+		if(propiedades.get("hibernate.show_sql").equals("true"))
 			chkModoDepuracion.setSelected(true);
-//		else
-//			chkModoDepuracion.setSelected(false);
+		else
+			chkModoDepuracion.setSelected(false);
 		
 		
 		txtUbicacionFile.setText(utilidades.Configuraciones.URL_FILE);
@@ -412,6 +416,20 @@ public class Configuraciones extends JDialog
 		
 	}
 	
+	//
+	protected void addEscapeListenerWindowDialog() 
+	{
+	 ActionListener escAction = new ActionListener() 
+	 {
+		 @Override
+		 public void actionPerformed(ActionEvent e) 
+		 {
+			 cerrar_salir();
+		 }
+	 };
+	 getRootPane().registerKeyboardAction(
+			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	}
 	
 	//-------------------------------------------------------------
 	@SuppressWarnings("deprecation")
@@ -598,5 +616,5 @@ public class Configuraciones extends JDialog
 		{
 			
 		}
-	}
+	}	
 }
