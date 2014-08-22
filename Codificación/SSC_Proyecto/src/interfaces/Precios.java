@@ -58,7 +58,7 @@ public class Precios extends JDialog {
 	private negocio.Categoria categoria;
 	private interfaces.componentes.TablaProductos tblProductos;
 	private interfaces.componentes.BotonesIconos btnAceptar;
-	private negocio.ControladorConfeccionarAnuncio controladorAux;
+	//private negocio.ControladorConfeccionarAnuncio controladorAux;
 	private negocio.ControladorModificarPrecios controladorPrecios;
 	private negocio.Producto productoSeleccionado;
 	private negocio.SubCategoria subcategoriaActual;
@@ -87,12 +87,12 @@ public class Precios extends JDialog {
 	{
 		super(padre);
 		setLocationRelativeTo(padre);
-		controladorAux = controladorAnuncios;
+		//controladorAux = controladorAnuncios;
 		controladorPrecios = new negocio.ControladorModificarPrecios();
 
-		controladorPrecios.setCatalogoCategorias(controladorAux.getCatalogoCategorias());
-		controladorPrecios.setCatalogoProductos(controladorAux.getCatalogoProductos());
-		controladorPrecios.setCatalogoSubcategorias(controladorAux.getCatalogoSubCategorias());
+		controladorPrecios.setCatalogoCategorias(controladorAnuncios.getCatalogoCategorias());
+		controladorPrecios.setCatalogoProductos(controladorAnuncios.getCatalogoProductos());
+		controladorPrecios.setCatalogoSubcategorias(controladorAnuncios.getCatalogoSubCategorias());
 		
 		inicializar();
 	}
@@ -310,9 +310,6 @@ public class Precios extends JDialog {
 		
 		tblProductos.definirTablaProductos();
 		tblProductos.ocultar_columna(4);
-
-		
-
 		
 		
 		btnAceptar.addActionListener(new ActionListener() {

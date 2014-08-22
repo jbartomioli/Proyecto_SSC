@@ -167,7 +167,7 @@ public class Principal extends JFrame {
 		mntPrecios = new JMenuItem("Modificar Precios");
 		mntPrecios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				modificarPrecios.setVisible(true);	
+				modificarPrecios.setVisible(true);
 				modificarPrecios.inicializar_componentes();
 			}
 		});

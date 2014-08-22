@@ -59,9 +59,7 @@ public class ControladorModificarPrecios
 		this.catalogoSubcategorias.obtenerSubCategorias();
 		this.catalogoProductos.obtenerProductos();
 	}
-	
-	
-	
+		
 	
 
 	public Collection<negocio.SubCategoria> seleccionarCategoria(int idCategoria) 
