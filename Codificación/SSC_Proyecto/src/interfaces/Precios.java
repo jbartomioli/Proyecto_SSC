@@ -76,7 +76,7 @@ public class Precios extends JDialog {
 		controladorPrecios = new negocio.ControladorModificarPrecios();
 
 		controladorPrecios.inicializarCatalogos();
-		inicializar();
+		inicializar(null);
 	}
 	
 	
@@ -94,14 +94,14 @@ public class Precios extends JDialog {
 		controladorPrecios.setCatalogoProductos(controladorAnuncios.getCatalogoProductos());
 		controladorPrecios.setCatalogoSubcategorias(controladorAnuncios.getCatalogoSubCategorias());
 		
-		inicializar();
+		inicializar(controladorAnuncios);
 	}
 	
 
 	/**********************
 	 * INICIALIZACION GUI
 	 **********************/
-	private void inicializar()
+	private void inicializar(final negocio.ControladorConfeccionarAnuncio controladorAnuncios)
 	{
 		/******************
 		 * FORMULARIO BASE
@@ -207,9 +207,23 @@ public class Precios extends JDialog {
 			public void mouseClicked(MouseEvent mePrecio)
 			{
 				if(tblProductos.columnAtPoint(mePrecio.getPoint())==5)
-					try {
-						click_modificar_precio();
-					} catch (Exception e) {
+					try 
+					{
+						click_modificar_precio(controladorAnuncios);
+					} 
+//					catch(NullPointerException npe)
+//					{
+//						try 
+//						{
+//							click_modificar_precio(null);
+//						} 
+//						catch(Exception e)
+//						{
+//							e.printStackTrace();
+//						}
+//					}
+					catch(Exception e)
+					{
 						e.printStackTrace();
 					}
 			}
@@ -314,7 +328,7 @@ public class Precios extends JDialog {
 		
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-	        	click_boton_aceptar(evento);}});
+	        	click_boton_aceptar();}});
 		
 		
 		btnBuscarProducto.addActionListener(new ActionListener() {
@@ -322,7 +336,7 @@ public class Precios extends JDialog {
 			{
 				//Evento para buscar destinatarios que coincidan con el string ingresado
 				setCursor(new Cursor(Cursor.WAIT_CURSOR));
-				click_boton_buscar(evento);
+				click_boton_buscar();
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -390,13 +404,13 @@ public class Precios extends JDialog {
 		}
 	}
 	
-	public void click_boton_aceptar(ActionEvent evento)
+	public void click_boton_aceptar()
 	{
 		//Evento para guardar los datos
 		dispose();
 	}
 	
-	public void click_boton_buscar(ActionEvent evento)
+	public void click_boton_buscar()
 	{
 		//Evento para llenar la tabla de productos buscados desde la lupa
 		try 
@@ -434,7 +448,7 @@ public class Precios extends JDialog {
 		
 		
 		
-		protected void click_modificar_precio() throws Exception
+		protected void click_modificar_precio(negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
 		{
 			DefaultTableModel tableModel = (DefaultTableModel) tblProductos.getModel();
 			int idProductoInt = 0;
@@ -474,7 +488,7 @@ public class Precios extends JDialog {
 		        	
 		        	tblProductos.completarTabla(
 		        		controladorPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
-		        	
+		        
 		        }
 		    }
 		    	
