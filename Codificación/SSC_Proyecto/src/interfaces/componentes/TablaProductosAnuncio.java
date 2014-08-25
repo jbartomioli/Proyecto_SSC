@@ -110,12 +110,12 @@ public class TablaProductosAnuncio extends JTable
 	public boolean isCellEditable(int row, int col) 
 	{
 	    //Solo permite editar la columna Precio promocional 
-		switch (col) 
-		{
-	         case 2:
-	             return true;
-	         default:
+//		switch (col) 
+//		{
+//	         case 2:
+//	             return true;
+//	         default:
 	             return false;
-	      }
+//	      }
 	}
 }

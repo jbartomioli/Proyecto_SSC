@@ -1,8 +1,6 @@
 package interfaces.componentes;
 
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.SystemColor;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFormattedTextField;

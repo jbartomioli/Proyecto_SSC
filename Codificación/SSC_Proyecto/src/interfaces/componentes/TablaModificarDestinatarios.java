@@ -94,5 +94,10 @@ public class TablaModificarDestinatarios extends JTable {
         for(int i=0; i<=cant_filas; i++)
         	modelo_temp.removeRow(0);
 	}
+	
+	public boolean isCellEditable(int row, int col) 
+	{
+		return false;
+	}
 
 }
