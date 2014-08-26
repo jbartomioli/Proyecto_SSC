@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC 
-	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-	"file:///C:\Proyecto_SSC\Codificación\SSC_Proyecto\src\main\resources\hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+     "file:///G:\Mis documentos\Facultad\5to año\Proyecto\Sistema de seguimiento de clientes\Codificación\Codificación\SSC_Proyecto\src\main\resources\hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://192.168.1.103:3306/BD_SSC</property>
-  <property name="hibernate.connection.username">ssc_acceso</property>
-  <property name="hibernate.connection.password">zLvSUVUaDnWFNKzG</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/BD_SSC</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.password">root</property>
   <property name="hibernate.show_sql">false</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
   <property name="current_session_context_class">thread</property>
