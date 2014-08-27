@@ -35,6 +35,8 @@ import java.awt.Toolkit;
 
 import javax.swing.UIManager;
 
+import negocio.CatalogoProductos;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
@@ -127,7 +129,7 @@ public class Precios extends JDialog {
         });
 		
 	
-		addEscapeListenerWindowDialog();
+		addEscapeListenerWindowDialog();	
 		
 		/*********
 		 * TITULO
@@ -405,8 +407,7 @@ public class Precios extends JDialog {
 	}
 	
 	public void click_boton_aceptar()
-	{
-		//Evento para guardar los datos
+	{		
 		dispose();
 	}
 	
@@ -485,12 +486,11 @@ public class Precios extends JDialog {
 		        	
 		        	negocio.SubCategoria subcategoriaActual = new negocio.SubCategoria();
 		        	subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
-		        	
+		       		        	
 		        	tblProductos.completarTabla(
 		        		controladorPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
 		        
 		        }
 		    }
-		    	
 		}
 }
