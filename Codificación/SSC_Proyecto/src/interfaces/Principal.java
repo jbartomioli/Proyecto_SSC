@@ -64,6 +64,12 @@ public class Principal extends JFrame {
 	private JMenuItem mntConfiguracion;
 	private interfaces.Acerca acerca;
 	private interfaces.Ayuda ayuda;
+
+
+	private JMenuItem mntImportar;
+
+
+	private ImportarDatos importarDatos;
 	
 
 	/*******************************
@@ -126,6 +132,19 @@ public class Principal extends JFrame {
 		mnuArchivo.setMnemonic('A');
 		mnuBarraMenu.add(mnuArchivo);
 		
+		importarDatos = new interfaces.ImportarDatos(this);
+		
+		mntImportar = new JMenuItem("Importar Datos");
+		mntImportar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
+		mntImportar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"IMPORTAR_16.png"));
+		mntImportar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				importarDatos.setVisible(true);
+			}
+		});
+		mnuArchivo.add(mntImportar);
+		
+				
 		mntSalir = new JMenuItem("Salir...");
 		mntSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
 		mntSalir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_16.png"));
@@ -159,10 +178,7 @@ public class Principal extends JFrame {
 		mntSeguimiento.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SEGUIMIENTO_16.png"));
 		mnuOperaciones.add(mntSeguimiento);
 		
-		/////////////////////////////////////////////////////////////////////////////////////////
-		//REVISAR
 		modificarPrecios = new interfaces.Precios(this);
-		/////////////////////////////////////////////////////////////////////////////////////////
 		
 		mntPrecios = new JMenuItem("Modificar Precios");
 		mntPrecios.addActionListener(new ActionListener() {
