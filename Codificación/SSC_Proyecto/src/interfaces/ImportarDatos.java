@@ -11,15 +11,6 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.SessionFactory.SessionFactoryOptions;
-import org.hibernate.metadata.ClassMetadata;
-
-import com.mysql.jdbc.DatabaseMetaData;
-
-import entidades.Clientes;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -27,7 +18,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
+import java.util.Collection;
 
 
 public class ImportarDatos extends JDialog
@@ -122,9 +113,19 @@ public class ImportarDatos extends JDialog
 			public void actionPerformed(ActionEvent evento) {
 	       		click_boton_aceptar();}});
 		
-		tblImportacion.completarDatos();
-		tblImportacion.definirTablaImportacion();
+		utilidades.ListarTablas listar = new utilidades.ListarTablas();
 		
+
+		try
+		{
+			Collection<String> tablas = listar.obtenerNombresTablas();
+    		tblImportacion.completarDatos(tablas);
+    		tblImportacion.definirTablaImportacion();	
+        }
+		catch(Exception e)
+		{
+			
+		}
 	}
 	
 	

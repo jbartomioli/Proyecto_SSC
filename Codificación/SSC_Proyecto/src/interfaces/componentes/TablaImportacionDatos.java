@@ -1,6 +1,8 @@
 package interfaces.componentes;
 
 
+import java.util.Collection;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -27,20 +29,22 @@ public class TablaImportacionDatos extends JTable {
 		modeloTablaImportacion.addColumn("");
 	}
 	
-	public void completarDatos()
+	public void completarDatos(Collection<String> nombresTablas)
 	{
 		
-		modeloTablaImportacion.setNumRows(4); 
+		modeloTablaImportacion.setNumRows(nombresTablas.size()); 
 		
 		setModel(modeloTablaImportacion);
 
-		int i = 0;
-		for(;i<4;++i)
+		int i=0;
+		
+		for(String elemento : nombresTablas)
 		{
-			modeloTablaImportacion.setValueAt("01", i, 0);
-			modeloTablaImportacion.setValueAt("Clientes", i, 1);
+			modeloTablaImportacion.setValueAt(i, i, 0);
+			modeloTablaImportacion.setValueAt(elemento, i, 1);
 			modeloTablaImportacion.setValueAt("C:\\Escritorio\\Clientes.csv", i, 2);		
 			modeloTablaImportacion.setValueAt(new Boolean(false), i, 3);
+			++i;
 		} 
 		
 		getColumn("ID").setWidth(0);
