@@ -23,12 +23,13 @@ public class RendererBotonCeldaModificar extends JLabel implements TableCellRend
         this.isBordered = isBordered;
     }
 
+    
     public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) 
     {
         // Muestra el Boton en cada fila del JTable ProductosAnuncio.
-    	JButton botonAniadir = new JButton();
-    	botonAniadir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"MODIFICAR_16.png"));
+    	JButton botonModificar = new JButton();
+    	botonModificar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"MODIFICAR_16.png"));
     	
-    	return botonAniadir; //new JButton();
+    	return botonModificar; //new JButton();
     }
 }

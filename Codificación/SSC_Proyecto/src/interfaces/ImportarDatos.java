@@ -2,11 +2,23 @@ package interfaces;
 
 import interfaces.componentes.BotonesIconos;
 
+import javax.swing.Box;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
+import javax.swing.border.TitledBorder;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.SessionFactory.SessionFactoryOptions;
+import org.hibernate.metadata.ClassMetadata;
+
+import com.mysql.jdbc.DatabaseMetaData;
+
+import entidades.Clientes;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,6 +27,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
 
 
 public class ImportarDatos extends JDialog
@@ -25,8 +38,15 @@ public class ImportarDatos extends JDialog
 	 */
 	private static final long serialVersionUID = -1861553205753683189L;
 	private JLabel lblImportarDatos;
-	private BotonesIconos btnAceptar;
+	private interfaces.componentes.BotonesIconos btnAceptar;
+	private interfaces.componentes.TablaImportacionDatos tblImportacion;
 
+
+	
+	/**
+	 * 
+	 * @param dialogPadre
+	 */
 	public ImportarDatos(JFrame dialogPadre) 
 	{
 		/**
@@ -62,8 +82,27 @@ public class ImportarDatos extends JDialog
 		
 		
 		/**
+		 * TABLAS
+		 */
+		Box boxTablas = Box.createHorizontalBox();
+		boxTablas.setBorder(new TitledBorder(null, "Tablas a Importar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		boxTablas.setBounds(10, 52, 772, 292);
+		getContentPane().add(boxTablas);
+		
+		JScrollPane scrollTablas = new JScrollPane();
+		boxTablas.add(scrollTablas);
+		
+		tblImportacion = new interfaces.componentes.TablaImportacionDatos();
+		scrollTablas.setViewportView(tblImportacion);
+		
+		
+				
+		/**
 		 * BOTON ACEPTAR
 		 */
+		BotonesIconos btnProcesar = new BotonesIconos("Procesar", utilidades.Configuraciones.IMG_ICONOS+"IMPORTAR_32.png");
+		btnProcesar.setBounds(590, 356, 90, 60);
+		getContentPane().add(btnProcesar);
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");		
 		btnAceptar.setLocation(692, 356);
 		getContentPane().add(btnAceptar);
@@ -73,11 +112,19 @@ public class ImportarDatos extends JDialog
 		
 	}
 	
+	
+	/**
+	 * 
+	 */
 	protected void inicializar()
 	{
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
 	       		click_boton_aceptar();}});
+		
+		tblImportacion.completarDatos();
+		tblImportacion.definirTablaImportacion();
+		
 	}
 	
 	
