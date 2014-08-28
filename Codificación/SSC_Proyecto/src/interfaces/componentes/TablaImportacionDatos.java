@@ -42,7 +42,7 @@ public class TablaImportacionDatos extends JTable {
 		{
 			modeloTablaImportacion.setValueAt(i, i, 0);
 			modeloTablaImportacion.setValueAt(elemento, i, 1);
-			modeloTablaImportacion.setValueAt("C:\\Escritorio\\Clientes.csv", i, 2);		
+			modeloTablaImportacion.setValueAt("C:\\TMP\\"+elemento+".csv", i, 2);		
 			modeloTablaImportacion.setValueAt(new Boolean(false), i, 3);
 			++i;
 		} 
@@ -58,18 +58,18 @@ public class TablaImportacionDatos extends JTable {
 		columnaBoton.setPreferredWidth(16);
 		columnaBoton.setMaxWidth(16);
 		
-//		TableColumn columnaNombre;
-//		columnaNombre = getColumn("Apellido");
-//		columnaNombre.setPreferredWidth(100);
-//		
-//		TableColumn columnaNombre1;
-//		columnaNombre1 = getColumn("Nombre");
-//		columnaNombre1.setPreferredWidth(100);
+		TableColumn columnaNombre;
+		columnaNombre = getColumn("Tabla");
+		columnaNombre.setPreferredWidth(30);
 		
-//		for(int j=0; j<getColumnModel().getColumnCount(); ++j)
-//			getColumnModel().getColumn(j).setResizable(false);
+		TableColumn columnaArchivo;
+		columnaArchivo = getColumn("Ruta de Archivo de Origen de Datos");
+		columnaArchivo.setPreferredWidth(200);
 		
-//		getTableHeader().setReorderingAllowed(false);
+		for(int j=0; j<getColumnModel().getColumnCount(); ++j)
+			getColumnModel().getColumn(j).setResizable(false);
+		
+		getTableHeader().setReorderingAllowed(false);
 		
 	}
 	
