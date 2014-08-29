@@ -31,6 +31,7 @@ public class ImportarDatos extends JDialog
 	private JLabel lblImportarDatos;
 	private interfaces.componentes.BotonesIconos btnAceptar;
 	private interfaces.componentes.TablaImportacionDatos tblImportacion;
+	private BotonesIconos btnProcesar;
 
 
 	
@@ -89,11 +90,16 @@ public class ImportarDatos extends JDialog
 		
 				
 		/**
-		 * BOTON ACEPTAR
+		 * BOTON PROCESAR
 		 */
-		BotonesIconos btnProcesar = new BotonesIconos("Procesar", utilidades.Configuraciones.IMG_ICONOS+"IMPORTAR_32.png");
+		btnProcesar = new BotonesIconos("Procesar", utilidades.Configuraciones.IMG_ICONOS+"IMPORTAR_32.png");
 		btnProcesar.setBounds(590, 356, 90, 60);
 		getContentPane().add(btnProcesar);
+		
+		
+		/**
+		 * BOTON ACEPTAR
+		 */
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");		
 		btnAceptar.setLocation(692, 356);
 		getContentPane().add(btnAceptar);
@@ -109,13 +115,19 @@ public class ImportarDatos extends JDialog
 	 */
 	protected void inicializar()
 	{
+		btnProcesar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+	       		click_boton_procesar();}});
+		
+		
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
 	       		click_boton_aceptar();}});
 		
+		
+		
 		utilidades.ListarTablas listar = new utilidades.ListarTablas();
 		
-
 		try
 		{
 			Collection<String> tablas = listar.obtenerNombresTablas();
@@ -143,6 +155,16 @@ public class ImportarDatos extends JDialog
 	 getRootPane().registerKeyboardAction(
 			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 	}
+	
+	//-------------------------------------------------------------------------------------------------------
+	public void click_boton_procesar()
+	{		
+		utilidades.ListarDirectorio listarDir = new utilidades.ListarDirectorio();
+		System.out.println(listarDir.obtenerArchivos());
+		
+		dispose();
+	}
+	
 	
 	//-------------------------------------------------------------------------------------------------------
 	public void click_boton_aceptar()
