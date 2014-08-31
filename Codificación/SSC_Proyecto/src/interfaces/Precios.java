@@ -35,8 +35,6 @@ import java.awt.Toolkit;
 
 import javax.swing.UIManager;
 
-import negocio.CatalogoProductos;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;

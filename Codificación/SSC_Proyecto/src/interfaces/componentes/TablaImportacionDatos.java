@@ -29,20 +29,19 @@ public class TablaImportacionDatos extends JTable {
 		modeloTablaImportacion.addColumn("");
 	}
 	
-	public void completarDatos(Collection<String> nombresTablas)
+	public void completarNombreTablas(Collection<String> tablas)
 	{
 		
-		modeloTablaImportacion.setNumRows(nombresTablas.size()); 
+		modeloTablaImportacion.setNumRows(tablas.size()); 
 		
 		setModel(modeloTablaImportacion);
 
 		int i=0;
 		
-		for(String elemento : nombresTablas)
+		for(String elemento : tablas)
 		{
 			modeloTablaImportacion.setValueAt(i, i, 0);
 			modeloTablaImportacion.setValueAt(elemento, i, 1);
-			modeloTablaImportacion.setValueAt("C:\\TMP\\"+elemento+".csv", i, 2);		
 			modeloTablaImportacion.setValueAt(new Boolean(false), i, 3);
 			++i;
 		} 
@@ -76,6 +75,24 @@ public class TablaImportacionDatos extends JTable {
 	
 	
 	//
+	public void completarRutaArchivos(String dirRaiz, Collection<String> tablas, Collection<String> archivos)
+	{
+		int i=0;
+		for(String tablaActual : tablas)
+		{
+			for(String archivoActual : archivos)
+			{
+				if(tablaActual.equals(archivoActual.substring(0, archivoActual.length()-4)))
+				{
+					modeloTablaImportacion.setValueAt(dirRaiz+archivoActual, i, 2);
+				}
+			}
+			i++;
+		}
+	}
+	
+	
+	//
 	public void definirTablaImportacion() {
 		columnaBoton
 				.setCellRenderer(new interfaces.componentes.RendererBotonCeldaModificar(
@@ -83,15 +100,7 @@ public class TablaImportacionDatos extends JTable {
 	}
 	
 	
-	
-//	public void limpiar_tabla()
-//	{
-//		DefaultTableModel modelo_temp = (DefaultTableModel) this.getModel();
-//        int cant_filas = this.getRowCount()-1;
-//        for(int i=0; i<=cant_filas; i++)
-//        	modelo_temp.removeRow(0);
-//	}
-	
+
 	//No permite editar las celdas de la tabla
 	public boolean isCellEditable(int rowIndex, int vColIndex)
 	{

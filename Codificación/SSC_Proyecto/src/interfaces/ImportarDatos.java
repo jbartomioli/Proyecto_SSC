@@ -18,6 +18,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -32,6 +33,7 @@ public class ImportarDatos extends JDialog
 	private interfaces.componentes.BotonesIconos btnAceptar;
 	private interfaces.componentes.TablaImportacionDatos tblImportacion;
 	private BotonesIconos btnProcesar;
+	private String dirRaiz = "C:\\TMP\\";
 
 
 	
@@ -125,19 +127,26 @@ public class ImportarDatos extends JDialog
 	       		click_boton_aceptar();}});
 		
 		
+		utilidades.ListarTablas listarTablas = new utilidades.ListarTablas();
+		Collection<String> tablas = listarTablas.obtenerNombresTablas(); 
 		
-		utilidades.ListarTablas listar = new utilidades.ListarTablas();
+		tblImportacion.completarNombreTablas(tablas);
+		tblImportacion.definirTablaImportacion();
+
+		
+		Collection<String> archivos = new ArrayList<String>();
+		utilidades.ArchivosDatos listarDir = new utilidades.ArchivosDatos();
+		archivos = listarDir.obtenerArchivos(dirRaiz);
 		
 		try
-		{
-			Collection<String> tablas = listar.obtenerNombresTablas();
-    		tblImportacion.completarDatos(tablas);
-    		tblImportacion.definirTablaImportacion();	
-        }
+		{			
+			listarDir.leerArchivos(dirRaiz, archivos);
+			tblImportacion.completarRutaArchivos(dirRaiz, tablas, archivos);
+		}
 		catch(Exception e)
 		{
-			
-		}
+			e.printStackTrace();
+		} 
 	}
 	
 	
@@ -159,9 +168,6 @@ public class ImportarDatos extends JDialog
 	//-------------------------------------------------------------------------------------------------------
 	public void click_boton_procesar()
 	{		
-		utilidades.ListarDirectorio listarDir = new utilidades.ListarDirectorio();
-		System.out.println(listarDir.obtenerArchivos());
-		
 		dispose();
 	}
 	
