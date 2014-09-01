@@ -142,6 +142,8 @@ public class ImportarDatos extends JDialog
 		{			
 			listarDir.leerArchivos(dirRaiz, archivos);
 			tblImportacion.completarRutaArchivos(dirRaiz, tablas, archivos);
+			
+			utilidades.LectorCSV lectorCSV = new utilidades.LectorCSV(dirRaiz,archivos);
 		}
 		catch(Exception e)
 		{
