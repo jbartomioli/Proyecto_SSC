@@ -6,14 +6,21 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,8 +28,15 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import negocio.ControladorConfeccionarAnuncio;
 
 public class SeguimientoDeClientes extends JDialog
 {
@@ -31,11 +45,12 @@ public class SeguimientoDeClientes extends JDialog
 	 ****************/
 	private static final long serialVersionUID = 4454249604145639431L;
 	
+	private negocio.ControladorConfeccionarAnuncio controladorAux;
 	private JTextField txtBuscarCliente;
-	private JLabel lblBuscarCliente;
 	private JLabel lblEspecialidad;
 	private JComboBox<String> cmbEspecialidad;
 	private String[] especialidades = {"Seleccione...", "Distribuidor", "Endodoncia", "Gnatologia", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
+	private interfaces.componentes.TablaModificarDestinatarios tblDestinatariosBuscados;
 	private interfaces.componentes.BotonesIconos btnAceptar;	
 	private JButton btnBuscarCliente;
 	
@@ -44,7 +59,7 @@ public class SeguimientoDeClientes extends JDialog
 	 * CONSTRUCTOR
 	 * @param dialogPadre
 	 */
-	public SeguimientoDeClientes(Frame framePadre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
+	public SeguimientoDeClientes(Frame framePadre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorSeguimiento) throws Exception
 	{
 		/***************************************************************
 		 * FORMULARIO BASE
@@ -125,6 +140,60 @@ public class SeguimientoDeClientes extends JDialog
 		btnBuscarCliente = new BotonesIconos("",utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_16.png");
 		btnBuscarCliente.setBounds(434, 51, 30, 20);
 		getContentPane().add(btnBuscarCliente);
+		
+		/**
+		 * TABLA DESTINATARIOS BUSCADOS
+		 */
+		Box boxDestinatariosBuscados = Box.createHorizontalBox();
+		boxDestinatariosBuscados.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios por Especialidad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		boxDestinatariosBuscados.setBounds(10, 106, 464, 244);
+		getContentPane().add(boxDestinatariosBuscados);
+		
+		JScrollPane scrollDestinatariosBuscados = new JScrollPane();
+		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
+		
+	    tblDestinatariosBuscados = new interfaces.componentes.TablaModificarDestinatarios();
+		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
+		
+		inicializar(controladorSeguimiento);
+	}
+	
+	
+	/*********************************
+	 * INICIALIZACION DE COMPONENTES
+	 * @param controladorAnuncios
+	 * @throws Exception
+	 *********************************/
+	protected void inicializar(final negocio.ControladorConfeccionarAnuncio controladorSeguimiento) throws Exception
+	{
+		controladorAux = controladorSeguimiento;
+		
+		cmbEspecialidad.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent evento) {
+				click_combo_especialidad(controladorSeguimiento, evento);}});
+		
+		
+		txtBuscarCliente.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent evento) {
+				//Busca clientes si el usuario presiona enter
+				if(evento.getKeyCode() == KeyEvent.VK_ENTER)
+				{
+					buscar_cliente_textField(controladorSeguimiento);
+				}
+			}
+		});		
+		
+		txtBuscarCliente.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				txtBuscarCliente.setText("");
+				txtBuscarCliente.setForeground(SystemColor.black);
+			}
+		});
+		
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+		       		click_boton_aceptar();}});
 	}
 	
 	
@@ -177,5 +246,35 @@ public class SeguimientoDeClientes extends JDialog
 			dispose();
 		}
 		
+		
+		//-------------------------------------------------------------------------------------------------------
+		public void click_combo_especialidad(negocio.ControladorConfeccionarAnuncio controladorSeguimiento, ItemEvent evento)
+		{		
+			if(evento.getStateChange() == ItemEvent.SELECTED)
+			{			
+				Object esp = cmbEspecialidad.getSelectedItem();
+				String especialidad = String.valueOf(esp);
+						
+				tblDestinatariosBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesPorEspecialidad(especialidad));
+				
+				//Agrega el btn eliminar a la tabla
+				//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
+				//Agrega el btn añadir a la tabla
+				tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
+			}
+		}
+		
+		
+		//-------------------------------------------------------------------------------------------------------
+		private void buscar_cliente_textField(negocio.ControladorConfeccionarAnuncio controladorSeguimiento) 
+		{
+			tblDestinatariosBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesDescPcial(txtBuscarCliente.getText()));
+			tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
+		}
+		
+		public void click_boton_aceptar()
+		{				
+			dispose();
+		}
 		
 }
