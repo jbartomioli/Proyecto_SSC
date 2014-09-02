@@ -8,7 +8,6 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
-import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -33,10 +32,7 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
-import negocio.ControladorConfeccionarAnuncio;
+import javax.swing.JPanel;
 
 public class SeguimientoDeClientes extends JDialog
 {
@@ -44,7 +40,6 @@ public class SeguimientoDeClientes extends JDialog
 	 * SERIALIZABLE
 	 ****************/
 	private static final long serialVersionUID = 4454249604145639431L;
-	
 	private negocio.ControladorConfeccionarAnuncio controladorAux;
 	private JTextField txtBuscarCliente;
 	private JLabel lblEspecialidad;
@@ -53,6 +48,12 @@ public class SeguimientoDeClientes extends JDialog
 	private interfaces.componentes.TablaModificarDestinatarios tblClientesBuscados;
 	private interfaces.componentes.BotonesIconos btnAceptar;	
 	private JButton btnBuscarCliente;
+	private JPanel pnlClienteSeleccionado;
+	private JLabel lblApellidoNombre;
+	private JLabel lblEmail;
+	private JLabel lblEspecialidad_1;
+	private JLabel lblDireccin;
+	private JLabel lblTelfono;
 	
 	
 	/**
@@ -154,6 +155,46 @@ public class SeguimientoDeClientes extends JDialog
 		
 	    tblClientesBuscados = new interfaces.componentes.TablaModificarDestinatarios();
 		scrollClientesBuscados.setViewportView(tblClientesBuscados);
+		
+		
+		/**********************
+		 * TABLA DESTINATARIOS
+		 **********************/
+		Box boxDestinatarios = Box.createHorizontalBox();
+		boxDestinatarios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cliente seleccionado", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
+		boxDestinatarios.setBounds(10, 371, 464, 198);
+		getContentPane().add(boxDestinatarios);
+		
+		pnlClienteSeleccionado = new JPanel();
+		boxDestinatarios.add(pnlClienteSeleccionado);
+		pnlClienteSeleccionado.setLayout(null);
+		
+		lblApellidoNombre = new JLabel("Apellido y Nombre:");
+		lblApellidoNombre.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblApellidoNombre.setBounds(10, 11, 109, 21);
+		pnlClienteSeleccionado.add(lblApellidoNombre);
+		
+		lblEmail = new JLabel("E-mail:");
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblEmail.setBounds(10, 43, 46, 21);
+		pnlClienteSeleccionado.add(lblEmail);
+		
+		lblEspecialidad_1 = new JLabel("Especialidad:");
+		lblEspecialidad_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblEspecialidad_1.setBounds(10, 75, 77, 21);
+		pnlClienteSeleccionado.add(lblEspecialidad_1);
+		
+		lblDireccin = new JLabel("Direcci\u00F3n:");
+		lblDireccin.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblDireccin.setBounds(10, 107, 77, 21);
+		pnlClienteSeleccionado.add(lblDireccin);
+		
+		lblTelfono = new JLabel("Tel\u00E9fono:");
+		lblTelfono.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblTelfono.setBounds(10, 138, 58, 21);
+		pnlClienteSeleccionado.add(lblTelfono);
+		
+		
 		
 		inicializar(controladorSeguimiento);
 	}
@@ -276,5 +317,4 @@ public class SeguimientoDeClientes extends JDialog
 		{				
 			dispose();
 		}
-		
 }
