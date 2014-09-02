@@ -50,7 +50,7 @@ public class SeguimientoDeClientes extends JDialog
 	private JLabel lblEspecialidad;
 	private JComboBox<String> cmbEspecialidad;
 	private String[] especialidades = {"Seleccione...", "Distribuidor", "Endodoncia", "Gnatologia", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
-	private interfaces.componentes.TablaModificarDestinatarios tblDestinatariosBuscados;
+	private interfaces.componentes.TablaModificarDestinatarios tblClientesBuscados;
 	private interfaces.componentes.BotonesIconos btnAceptar;	
 	private JButton btnBuscarCliente;
 	
@@ -130,7 +130,7 @@ public class SeguimientoDeClientes extends JDialog
 		 * BOTON ACEPTAR
 		 */
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");		
-		btnAceptar.setLocation(817, 609);
+		btnAceptar.setLocation(1200, 609);
 		getContentPane().add(btnAceptar);
 		
 		
@@ -142,18 +142,18 @@ public class SeguimientoDeClientes extends JDialog
 		getContentPane().add(btnBuscarCliente);
 		
 		/**
-		 * TABLA DESTINATARIOS BUSCADOS
+		 * TABLA CLIENTES BUSCADOS
 		 */
-		Box boxDestinatariosBuscados = Box.createHorizontalBox();
-		boxDestinatariosBuscados.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios por Especialidad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		boxDestinatariosBuscados.setBounds(10, 106, 464, 244);
-		getContentPane().add(boxDestinatariosBuscados);
+		Box boxClientesBuscados = Box.createHorizontalBox();
+		boxClientesBuscados.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Clientes por Especialidad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		boxClientesBuscados.setBounds(10, 106, 464, 244);
+		getContentPane().add(boxClientesBuscados);
 		
-		JScrollPane scrollDestinatariosBuscados = new JScrollPane();
-		boxDestinatariosBuscados.add(scrollDestinatariosBuscados);
+		JScrollPane scrollClientesBuscados = new JScrollPane();
+		boxClientesBuscados.add(scrollClientesBuscados);
 		
-	    tblDestinatariosBuscados = new interfaces.componentes.TablaModificarDestinatarios();
-		scrollDestinatariosBuscados.setViewportView(tblDestinatariosBuscados);
+	    tblClientesBuscados = new interfaces.componentes.TablaModificarDestinatarios();
+		scrollClientesBuscados.setViewportView(tblClientesBuscados);
 		
 		inicializar(controladorSeguimiento);
 	}
@@ -255,12 +255,12 @@ public class SeguimientoDeClientes extends JDialog
 				Object esp = cmbEspecialidad.getSelectedItem();
 				String especialidad = String.valueOf(esp);
 						
-				tblDestinatariosBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesPorEspecialidad(especialidad));
+				tblClientesBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesPorEspecialidad(especialidad));
 				
 				//Agrega el btn eliminar a la tabla
 				//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
 				//Agrega el btn añadir a la tabla
-				tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
+				tblClientesBuscados.definirTablaDestinatariosBuscados();
 			}
 		}
 		
@@ -268,8 +268,8 @@ public class SeguimientoDeClientes extends JDialog
 		//-------------------------------------------------------------------------------------------------------
 		private void buscar_cliente_textField(negocio.ControladorConfeccionarAnuncio controladorSeguimiento) 
 		{
-			tblDestinatariosBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesDescPcial(txtBuscarCliente.getText()));
-			tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
+			tblClientesBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesDescPcial(txtBuscarCliente.getText()));
+			tblClientesBuscados.definirTablaDestinatariosBuscados();
 		}
 		
 		public void click_boton_aceptar()
