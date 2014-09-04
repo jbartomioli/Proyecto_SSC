@@ -32,6 +32,7 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 
 public class SeguimientoDeClientes extends JDialog
@@ -54,6 +55,11 @@ public class SeguimientoDeClientes extends JDialog
 	private JLabel lblEspecialidad_1;
 	private JLabel lblDireccin;
 	private JLabel lblTelfono;
+	private JLabel lblApNomSelec;
+	private JLabel lblMailSelec;
+	private JLabel lblEspecSelec;
+	private JLabel lblDirSelec;
+	private JLabel lblTelSelec;
 	
 	
 	/**
@@ -170,30 +176,64 @@ public class SeguimientoDeClientes extends JDialog
 		pnlClienteSeleccionado.setLayout(null);
 		
 		lblApellidoNombre = new JLabel("Apellido y Nombre:");
-		lblApellidoNombre.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblApellidoNombre.setBounds(10, 11, 109, 21);
+		lblApellidoNombre.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblApellidoNombre.setBounds(10, 11, 121, 21);
 		pnlClienteSeleccionado.add(lblApellidoNombre);
 		
 		lblEmail = new JLabel("E-mail:");
-		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEmail.setBounds(10, 43, 46, 21);
+		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblEmail.setBounds(10, 75, 48, 21);
 		pnlClienteSeleccionado.add(lblEmail);
 		
 		lblEspecialidad_1 = new JLabel("Especialidad:");
-		lblEspecialidad_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEspecialidad_1.setBounds(10, 75, 77, 21);
+		lblEspecialidad_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblEspecialidad_1.setBounds(10, 43, 85, 21);
 		pnlClienteSeleccionado.add(lblEspecialidad_1);
 		
 		lblDireccin = new JLabel("Direcci\u00F3n:");
-		lblDireccin.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDireccin.setBounds(10, 107, 77, 21);
+		lblDireccin.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblDireccin.setBounds(10, 107, 66, 21);
 		pnlClienteSeleccionado.add(lblDireccin);
 		
 		lblTelfono = new JLabel("Tel\u00E9fono:");
-		lblTelfono.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblTelfono.setBounds(10, 138, 58, 21);
+		lblTelfono.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTelfono.setBounds(10, 138, 66, 21);
 		pnlClienteSeleccionado.add(lblTelfono);
 		
+		lblApNomSelec = new JLabel("apNomSelec");
+		lblApNomSelec.setForeground(Color.DARK_GRAY);
+		lblApNomSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblApNomSelec.setBounds(141, 11, 221, 21);
+		lblApNomSelec.setVisible(false);
+		pnlClienteSeleccionado.add(lblApNomSelec);
+		
+		lblMailSelec = new JLabel("mailSelec");
+		lblMailSelec.setForeground(Color.DARK_GRAY);
+		lblMailSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblMailSelec.setBounds(68, 75, 294, 21);
+		lblMailSelec.setVisible(false);
+		pnlClienteSeleccionado.add(lblMailSelec);
+		
+		lblEspecSelec = new JLabel("especSelec");
+		lblEspecSelec.setForeground(Color.DARK_GRAY);
+		lblEspecSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblEspecSelec.setBounds(105, 43, 257, 21);
+		lblEspecSelec.setVisible(false);
+		pnlClienteSeleccionado.add(lblEspecSelec);
+		
+		lblDirSelec = new JLabel("dirSelec");
+		lblDirSelec.setForeground(Color.DARK_GRAY);
+		lblDirSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblDirSelec.setBounds(86, 107, 276, 21);
+		lblDirSelec.setVisible(false);
+		pnlClienteSeleccionado.add(lblDirSelec);
+		
+		lblTelSelec = new JLabel("telSelec");
+		lblTelSelec.setForeground(Color.DARK_GRAY);
+		lblTelSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblTelSelec.setBounds(86, 138, 276, 21);
+		lblTelSelec.setVisible(false);
+		pnlClienteSeleccionado.add(lblTelSelec);
 		
 		
 		inicializar(controladorSeguimiento);
@@ -231,6 +271,14 @@ public class SeguimientoDeClientes extends JDialog
 				txtBuscarCliente.setForeground(SystemColor.black);
 			}
 		});
+		
+		//Evento seleccionar destinatario de la lista
+		tblClientesBuscados.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent me)
+			{
+				if(tblClientesBuscados.columnAtPoint(me.getPoint())==4)
+					click_seleccionar_destinatario();
+				}});
 		
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
@@ -316,5 +364,35 @@ public class SeguimientoDeClientes extends JDialog
 		public void click_boton_aceptar()
 		{				
 			dispose();
+		}
+		
+		
+		//-------------------------------------------------------------------------------------------------------
+		@SuppressWarnings("rawtypes")
+		public void click_seleccionar_destinatario()
+		{
+			DefaultTableModel modeloClientesBuscados = (DefaultTableModel) tblClientesBuscados.getModel();
+			
+			int filaSeleccionada = tblClientesBuscados.getSelectedRow();
+			java.util.Vector fila;
+			fila = (java.util.Vector) modeloClientesBuscados.getDataVector().elementAt(filaSeleccionada);
+			  
+		    if(filaSeleccionada >= 0)
+			{
+		    	int idCliente = Integer.parseInt(fila.elementAt(0).toString());
+		    	negocio.Cliente cliente = controladorAux.getCatalogoClientes().buscarCliente(idCliente);
+				
+		    	lblApNomSelec.setText(cliente.getApellido() + ", " + cliente.getNombre());
+				lblEspecSelec.setText(cliente.getEspecialidad());
+				lblMailSelec.setText(cliente.getEmail());
+				lblDirSelec.setText(cliente.getDireccion());
+				lblTelSelec.setText(cliente.getTelefono());
+				
+				lblApNomSelec.setVisible(true);
+				lblEspecSelec.setVisible(true);
+				lblMailSelec.setVisible(true);
+				lblDirSelec.setVisible(true);
+				lblTelSelec.setVisible(true);
+			}
 		}
 }
