@@ -600,6 +600,8 @@ public class Configuraciones extends JDialog
 	{
 		try
 		{
+			setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
 			JFileChooser buscarArchivo = new JFileChooser();
 			
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("ini","INI");
@@ -612,9 +614,13 @@ public class Configuraciones extends JDialog
 			String urlArchivo = buscarArchivo.getSelectedFile().getAbsolutePath();
 			txtUbicacionFile.setText(urlArchivo);
 		}
-		catch(Exception fne)
+		catch(Exception e)
 		{
 			
+		}
+		finally
+		{
+			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		}
 	}	
 }

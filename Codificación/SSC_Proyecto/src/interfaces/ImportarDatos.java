@@ -5,19 +5,24 @@ import interfaces.componentes.BotonesIconos;
 import javax.swing.Box;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -143,7 +148,19 @@ public class ImportarDatos extends JDialog
 			listarDir.leerArchivos(dirRaiz, archivos);
 			tblImportacion.completarRutaArchivos(dirRaiz, tablas, archivos);
 			
+			@SuppressWarnings("unused")
 			utilidades.LectorCSV lectorCSV = new utilidades.LectorCSV(dirRaiz,archivos);
+			
+			//Evento para eliminar productos del anuncio
+			tblImportacion.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent me) 
+				{
+					if(tblImportacion.columnAtPoint(me.getPoint())==3)
+					{
+						click_editar_ruta();
+					}
+				}
+			});
 		}
 		catch(Exception e)
 		{
@@ -178,5 +195,39 @@ public class ImportarDatos extends JDialog
 	public void click_boton_aceptar()
 	{		
 		dispose();
+	}
+	
+	
+	//-------------------------------------------------------------------------------------------------------
+	public void click_editar_ruta()
+	{	
+		int nroFila = tblImportacion.getSelectedRow();
+		
+		try
+		{
+			setCursor(new Cursor(Cursor.WAIT_CURSOR));
+			
+			JFileChooser buscarArchivo = new JFileChooser();
+			
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("csv","CSV");
+			buscarArchivo.setFileFilter(filter);
+			
+			@SuppressWarnings("unused")
+			int seleccion = buscarArchivo.showOpenDialog(this);
+						
+			buscarArchivo.setVisible(true);
+			String urlArchivo = buscarArchivo.getSelectedFile().getAbsolutePath();
+			
+			tblImportacion.setValueAt(urlArchivo, nroFila, 2);
+		}
+		catch(NullPointerException npe)
+		{
+			tblImportacion.setValueAt(tblImportacion.getValueAt(nroFila, 2), nroFila, 2);
+		}
+		finally
+		{
+			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		}
+	
 	}
 }

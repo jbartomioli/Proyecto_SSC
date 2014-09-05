@@ -50,7 +50,8 @@ public class ArchivosDatos
 				FileReader fr = new FileReader(archivo);
 				BufferedReader br = new BufferedReader(fr);
 		        
-		        String lineaLectura = new String();   
+		        @SuppressWarnings("unused")
+				String lineaLectura = new String();   
 		         
 		        while((lineaLectura = br.readLine()) != null)
 		        {
