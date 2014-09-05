@@ -27,9 +27,9 @@ public class LectorCSV
 		        	for(int i=0; i<cantCampos; i++)
 		        	{
 		        		String campo = contenidoArchivo.get(i);
-		        		System.out.println(campo);
+		        		//System.out.println(campo);
 		        	}
-		        	System.out.println("");
+		        	//System.out.println("");
 	            	
 		        }
 	         
