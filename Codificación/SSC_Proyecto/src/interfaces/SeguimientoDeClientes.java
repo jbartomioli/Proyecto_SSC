@@ -5,7 +5,12 @@ import interfaces.componentes.BotonesIconos;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -18,6 +23,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.ImageObserver;
+import java.text.AttributedCharacterIterator;
+import java.text.DecimalFormat;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -34,6 +42,12 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
+
+import negocio.Venta;
+
+import org.hibernate.mapping.Collection;
+
+import java.awt.Component;
 
 public class SeguimientoDeClientes extends JDialog
 {
@@ -53,13 +67,15 @@ public class SeguimientoDeClientes extends JDialog
 	private JLabel lblApellidoNombre;
 	private JLabel lblEmail;
 	private JLabel lblEspecialidad_1;
-	private JLabel lblDireccin;
+	private JLabel lblDireccion;
 	private JLabel lblTelfono;
+	private JLabel lblTotalVentas;
 	private JLabel lblApNomSelec;
 	private JLabel lblMailSelec;
 	private JLabel lblEspecSelec;
 	private JLabel lblDirSelec;
 	private JLabel lblTelSelec;
+	private JLabel lblTotVtasSelec;
 	
 	
 	/**
@@ -168,7 +184,7 @@ public class SeguimientoDeClientes extends JDialog
 		 **********************/
 		Box boxDestinatarios = Box.createHorizontalBox();
 		boxDestinatarios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cliente seleccionado", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		boxDestinatarios.setBounds(10, 371, 464, 198);
+		boxDestinatarios.setBounds(10, 371, 464, 235);
 		getContentPane().add(boxDestinatarios);
 		
 		pnlClienteSeleccionado = new JPanel();
@@ -190,51 +206,62 @@ public class SeguimientoDeClientes extends JDialog
 		lblEspecialidad_1.setBounds(10, 43, 85, 21);
 		pnlClienteSeleccionado.add(lblEspecialidad_1);
 		
-		lblDireccin = new JLabel("Direcci\u00F3n:");
-		lblDireccin.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblDireccin.setBounds(10, 107, 66, 21);
-		pnlClienteSeleccionado.add(lblDireccin);
+		lblDireccion = new JLabel("Direcci\u00F3n:");
+		lblDireccion.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblDireccion.setBounds(10, 107, 66, 21);
+		pnlClienteSeleccionado.add(lblDireccion);
 		
 		lblTelfono = new JLabel("Tel\u00E9fono:");
 		lblTelfono.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblTelfono.setBounds(10, 138, 66, 21);
 		pnlClienteSeleccionado.add(lblTelfono);
 		
+		lblTotalVentas = new JLabel("Total por ventas:");
+		lblTotalVentas.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblTotalVentas.setBounds(10, 182, 129, 21);
+		pnlClienteSeleccionado.add(lblTotalVentas);
+		
 		lblApNomSelec = new JLabel("apNomSelec");
 		lblApNomSelec.setForeground(Color.DARK_GRAY);
 		lblApNomSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblApNomSelec.setBounds(141, 11, 221, 21);
+		lblApNomSelec.setBounds(134, 11, 221, 21);
 		lblApNomSelec.setVisible(false);
 		pnlClienteSeleccionado.add(lblApNomSelec);
 		
 		lblMailSelec = new JLabel("mailSelec");
 		lblMailSelec.setForeground(Color.DARK_GRAY);
 		lblMailSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMailSelec.setBounds(68, 75, 294, 21);
+		lblMailSelec.setBounds(59, 75, 294, 21);
 		lblMailSelec.setVisible(false);
 		pnlClienteSeleccionado.add(lblMailSelec);
 		
 		lblEspecSelec = new JLabel("especSelec");
 		lblEspecSelec.setForeground(Color.DARK_GRAY);
 		lblEspecSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEspecSelec.setBounds(105, 43, 257, 21);
+		lblEspecSelec.setBounds(96, 43, 257, 21);
 		lblEspecSelec.setVisible(false);
 		pnlClienteSeleccionado.add(lblEspecSelec);
 		
 		lblDirSelec = new JLabel("dirSelec");
 		lblDirSelec.setForeground(Color.DARK_GRAY);
 		lblDirSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDirSelec.setBounds(86, 107, 276, 21);
+		lblDirSelec.setBounds(78, 107, 276, 21);
 		lblDirSelec.setVisible(false);
 		pnlClienteSeleccionado.add(lblDirSelec);
 		
 		lblTelSelec = new JLabel("telSelec");
 		lblTelSelec.setForeground(Color.DARK_GRAY);
 		lblTelSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblTelSelec.setBounds(86, 138, 276, 21);
+		lblTelSelec.setBounds(77, 138, 276, 21);
 		lblTelSelec.setVisible(false);
 		pnlClienteSeleccionado.add(lblTelSelec);
 		
+		lblTotVtasSelec = new JLabel("telSelec");
+		lblTotVtasSelec.setForeground(Color.RED);
+		lblTotVtasSelec.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblTotVtasSelec.setBounds(134, 182, 276, 21);
+		lblTotVtasSelec.setVisible(false);
+		pnlClienteSeleccionado.add(lblTotVtasSelec);	
 		
 		inicializar(controladorSeguimiento);
 	}
@@ -381,18 +408,22 @@ public class SeguimientoDeClientes extends JDialog
 			{
 		    	int idCliente = Integer.parseInt(fila.elementAt(0).toString());
 		    	negocio.Cliente cliente = controladorAux.getCatalogoClientes().buscarCliente(idCliente);
-				
+		    	
+		    	cliente.obtenerVentas();
+		    	
 		    	lblApNomSelec.setText(cliente.getApellido() + ", " + cliente.getNombre());
 				lblEspecSelec.setText(cliente.getEspecialidad());
 				lblMailSelec.setText(cliente.getEmail());
 				lblDirSelec.setText(cliente.getDireccion());
 				lblTelSelec.setText(cliente.getTelefono());
+				lblTotVtasSelec.setText(String.valueOf(DecimalFormat.getCurrencyInstance().format(cliente.obtenerTotalVentas())));
 				
 				lblApNomSelec.setVisible(true);
 				lblEspecSelec.setVisible(true);
 				lblMailSelec.setVisible(true);
 				lblDirSelec.setVisible(true);
 				lblTelSelec.setVisible(true);
+				lblTotVtasSelec.setVisible(true);
 			}
 		}
 }

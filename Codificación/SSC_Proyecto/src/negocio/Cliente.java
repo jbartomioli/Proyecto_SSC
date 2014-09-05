@@ -198,4 +198,20 @@ public class Cliente
 		return false;
 	}
 	//---------------------------------------------------------------
+	
+	
+	/////////////////////////////////////////////////////////////////
+	// OBTIENE TODAS LAS VENTAS EFECTUADAS A UN CLIENTE ESPECIFICO  //
+	/////////////////////////////////////////////////////////////////
+	//LISTO
+	public double obtenerTotalVentas()
+	{
+		double totalVentas = 0;
+		for(negocio.Venta ventaNegocio: this.ventas)
+		{
+			totalVentas = totalVentas + ventaNegocio.getTotal();
+		}
+		
+		return totalVentas;
+	}
 }
