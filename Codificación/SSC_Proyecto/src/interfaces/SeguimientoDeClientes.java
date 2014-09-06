@@ -24,8 +24,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.ImageObserver;
+import java.sql.Date;
 import java.text.AttributedCharacterIterator;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -36,6 +39,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
@@ -43,11 +47,11 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 
-import negocio.Venta;
-
-import org.hibernate.mapping.Collection;
-
+import java.util.Collection;
 import java.awt.Component;
+
+import javax.swing.JLayeredPane;
+import javax.swing.border.LineBorder;
 
 public class SeguimientoDeClientes extends JDialog
 {
@@ -76,7 +80,18 @@ public class SeguimientoDeClientes extends JDialog
 	private JLabel lblDirSelec;
 	private JLabel lblTelSelec;
 	private JLabel lblTotVtasSelec;
+	private JLabel lblTitulo;
+	private Box boxClientesBuscados;
+	private Box boxClienteSeleccionado;
+	private JScrollPane scrollClientesBuscados;
 	
+	// INICIO VARIABLES GRAFICO DE LINEAS //
+	private JLayeredPane layerGrafico;
+	private JPanel pnlGrafico;
+	private JTable tblVentasCliente;
+	private DefaultTableModel modelVentasCliente;
+	private Collection<negocio.Venta> ventasCliente;
+	// FIN VARIABLES GRAFICO LINEAS //
 	
 	/**
 	 * CONSTRUCTOR
@@ -114,7 +129,7 @@ public class SeguimientoDeClientes extends JDialog
 		/*********
     	 * TITULO
     	 *********/
-    	JLabel lblTitulo = new JLabel("Seguimiento de Clientes");
+    	lblTitulo = new JLabel("Seguimiento de Clientes");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitulo.setBounds(10, 11, 304, 23);
 		getContentPane().add(lblTitulo);
@@ -167,28 +182,28 @@ public class SeguimientoDeClientes extends JDialog
 		/**
 		 * TABLA CLIENTES BUSCADOS
 		 */
-		Box boxClientesBuscados = Box.createHorizontalBox();
+		boxClientesBuscados = Box.createHorizontalBox();
 		boxClientesBuscados.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Clientes por Especialidad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		boxClientesBuscados.setBounds(10, 106, 464, 244);
 		getContentPane().add(boxClientesBuscados);
 		
-		JScrollPane scrollClientesBuscados = new JScrollPane();
+		scrollClientesBuscados = new JScrollPane();
 		boxClientesBuscados.add(scrollClientesBuscados);
 		
 	    tblClientesBuscados = new interfaces.componentes.TablaModificarDestinatarios();
 		scrollClientesBuscados.setViewportView(tblClientesBuscados);
 		
 		
-		/**********************
-		 * TABLA DESTINATARIOS
-		 **********************/
-		Box boxDestinatarios = Box.createHorizontalBox();
-		boxDestinatarios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cliente seleccionado", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		boxDestinatarios.setBounds(10, 371, 464, 235);
-		getContentPane().add(boxDestinatarios);
+		/**
+		 * TABLA CLIENTE SELECCIONADO
+		 */
+		boxClienteSeleccionado = Box.createHorizontalBox();
+		boxClienteSeleccionado.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cliente seleccionado", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
+		boxClienteSeleccionado.setBounds(10, 371, 464, 235);
+		getContentPane().add(boxClienteSeleccionado);
 		
 		pnlClienteSeleccionado = new JPanel();
-		boxDestinatarios.add(pnlClienteSeleccionado);
+		boxClienteSeleccionado.add(pnlClienteSeleccionado);
 		pnlClienteSeleccionado.setLayout(null);
 		
 		lblApellidoNombre = new JLabel("Apellido y Nombre:");
@@ -262,6 +277,25 @@ public class SeguimientoDeClientes extends JDialog
 		lblTotVtasSelec.setBounds(134, 182, 276, 21);
 		lblTotVtasSelec.setVisible(false);
 		pnlClienteSeleccionado.add(lblTotVtasSelec);	
+		
+		
+		// INICIO GRAFICO DE LINEAS //
+		layerGrafico = new JLayeredPane();
+		layerGrafico.setBorder(new TitledBorder(null, "Ventas por Mes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		layerGrafico.setBounds(658, 115, 632, 392);
+		getContentPane().add(layerGrafico);
+		
+		pnlGrafico = new JPanel();
+		pnlGrafico.setBounds(10, 11, 612, 370);
+		layerGrafico.add(pnlGrafico);
+		
+		tblVentasCliente = new JTable();
+		
+		modelVentasCliente = (DefaultTableModel) tblVentasCliente.getModel();
+		modelVentasCliente.addColumn("Mes Venta");
+		modelVentasCliente.addColumn("Importe");
+				
+		//FIN GRAFICO DE LINEAS //
 		
 		inicializar(controladorSeguimiento);
 	}
@@ -424,6 +458,28 @@ public class SeguimientoDeClientes extends JDialog
 				lblDirSelec.setVisible(true);
 				lblTelSelec.setVisible(true);
 				lblTotVtasSelec.setVisible(true);
+				
+				// INICIO GRAFICO DE LINEAS //
+				ventasCliente = new ArrayList<negocio.Venta>();
+				ventasCliente = cliente.getVentas();
+				
+				if(ventasCliente.isEmpty() == false)
+				{
+					int i = 0;
+					for(negocio.Venta ventaActual : ventasCliente)
+					{
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(ventaActual.getFechaVenta());
+						int month = cal.get(Calendar.MONTH);
+						
+						modelVentasCliente.setValueAt(month, i, 0);
+						modelVentasCliente.setValueAt(ventaActual.getTotal(), i, 1);
+						
+						i++;
+					}
+				}
+				
+				// FIN GRAFICO DE LINEAS //
 			}
 		}
 }
