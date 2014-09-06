@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 import com.csvreader.CsvReader;
  
  
@@ -30,6 +33,9 @@ public class LectorCSV
 	         
         			String sql = "INSERT INTO "+e.getKey()+" VALUES (";
         			
+        			utilidades.MetadatosBD camposTabla = new utilidades.MetadatosBD();
+        			camposTabla.obtenerCamposTabla(e.getKey().toString());
+        			
 			        while (contenidoArchivo.readRecord())
 			        {
 			        	int cantCampos = contenidoArchivo.getColumnCount();
@@ -38,15 +44,40 @@ public class LectorCSV
 			        	{
 			        		String campo = contenidoArchivo.get(i);
 			        		
-			        		sql += campo + ",";
+			        		if(i!=cantCampos-1)
+			        			sql += "" + campo + ",";
+			        		else	
+			        			sql += "" + campo + " );";
 			        		
 			        		//System.out.println(campo);
 			        	}
 			        	
-			        	sql += " );";
-			        	
 		        		System.out.println(sql);
 			        	
+//		        		Session session = null;	
+		        		
+		        		try
+		        		{
+//		        		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+//		        		    session.beginTransaction();
+//		        		    
+//		        			Query query = session.createSQLQuery(sql);
+//		    				query.setParameter("producto", entProducto.getIdProducto());
+//							query.setParameter("anuncio", maxIdAnuncio);
+//							query.executeUpdate();
+//
+//		        	        session.getTransaction().commit();
+		        		}
+		        		catch(Exception ee)
+		        		{
+//		        			ee.printStackTrace();
+		        		}
+		        		finally
+		        		{
+//		        		 	session.close();
+		        		}	
+		        		
+		        		
 	//		        	switch(archivo)
 	//		        	{
 	//		        		case 1: ;

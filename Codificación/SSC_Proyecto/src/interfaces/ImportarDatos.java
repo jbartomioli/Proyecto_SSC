@@ -133,7 +133,7 @@ public class ImportarDatos extends JDialog
 	       		click_boton_aceptar();}});
 		
 		
-		utilidades.ListarTablas listarTablas = new utilidades.ListarTablas();
+		utilidades.MetadatosBD listarTablas = new utilidades.MetadatosBD();
 		Collection<String> tablas = listarTablas.obtenerNombresTablas(); 
 		
 		tblImportacion.completarNombreTablas(tablas);
