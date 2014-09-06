@@ -25,6 +25,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 
 public class ImportarDatos extends JDialog
@@ -148,9 +149,6 @@ public class ImportarDatos extends JDialog
 			listarDir.leerArchivos(dirRaiz, archivos);
 			tblImportacion.completarRutaArchivos(dirRaiz, tablas, archivos);
 			
-			@SuppressWarnings("unused")
-			utilidades.LectorCSV lectorCSV = new utilidades.LectorCSV(dirRaiz,archivos);
-			
 			//Evento para eliminar productos del anuncio
 			tblImportacion.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent me) 
@@ -187,7 +185,22 @@ public class ImportarDatos extends JDialog
 	//-------------------------------------------------------------------------------------------------------
 	public void click_boton_procesar()
 	{		
-		dispose();
+		HashMap<String, String> tablas_archivos = new HashMap<String, String>();
+		
+		for(int i=0; i<tblImportacion.getRowCount();++i)
+		{
+			try
+			{
+				tablas_archivos.put(tblImportacion.getValueAt(i, 1).toString(),tblImportacion.getValueAt(i, 2).toString());
+			}
+			catch(NullPointerException npe)
+			{
+				tablas_archivos.put(tblImportacion.getValueAt(i, 1).toString(),"");
+			}				
+		}
+		
+		@SuppressWarnings("unused")
+		utilidades.LectorCSV lectorCSV = new utilidades.LectorCSV(tablas_archivos);
 	}
 	
 	
