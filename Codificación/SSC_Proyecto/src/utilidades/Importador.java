@@ -13,30 +13,38 @@ import org.hibernate.Session;
 import com.csvreader.CsvReader;
  
  
-public class LectorCSV
+public class Importador
 {
  
     @SuppressWarnings("rawtypes")
-	public LectorCSV(HashMap<String, String> tablas_archivos) 
+	public Importador(HashMap<String, String> tablas_archivos) 
     {
         try 
         {     
-        	Iterator it = tablas_archivos.entrySet().iterator();
-        	while (it.hasNext())
+        	Iterator it_tablas = tablas_archivos.entrySet().iterator();
+        	while (it_tablas.hasNext())
         	{
-        		Map.Entry e = (Map.Entry)it.next();
+        		Map.Entry entryTablas = (Map.Entry)it_tablas.next();
         		
-        		if(!e.getValue().toString().equals(""))
+        		if(!entryTablas.getValue().toString().equals(""))
         		{
-        			CsvReader contenidoArchivo = new CsvReader(e.getValue().toString());
+        			CsvReader contenidoArchivo = new CsvReader(entryTablas.getValue().toString());
         			contenidoArchivo.readHeaders();
-	         
-        			String sql = "INSERT INTO "+e.getKey()+" VALUES (";
         			
         			utilidades.MetadatosBD camposTabla = new utilidades.MetadatosBD();
-        			camposTabla.obtenerCamposTabla(e.getKey().toString());
+        			String[][] campos_tabla = camposTabla.obtenerCamposTabla(entryTablas.getKey().toString());
         			
-			        while (contenidoArchivo.readRecord())
+        			String sql = "INSERT INTO "+entryTablas.getKey()+" ( ";
+        			
+        			for(int j=0; j<campos_tabla.length; j++)
+        			{
+        				if(j<campos_tabla.length-1)
+        					sql += campos_tabla[j][0]+", ";
+        				else
+        					sql += campos_tabla[j][0]+" ) VALUES (";
+        			}
+        				
+        			while (contenidoArchivo.readRecord())
 			        {
 			        	int cantCampos = contenidoArchivo.getColumnCount();
 			        	
@@ -45,9 +53,9 @@ public class LectorCSV
 			        		String campo = contenidoArchivo.get(i);
 			        		
 			        		if(i!=cantCampos-1)
-			        			sql += "" + campo + ",";
+			        			sql += " "+campo+",";
 			        		else	
-			        			sql += "" + campo + " );";
+			        			sql += " "+campo+" );";
 			        		
 			        		//System.out.println(campo);
 			        	}

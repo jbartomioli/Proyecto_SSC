@@ -60,12 +60,11 @@ public class MetadatosBD
   }
 	
 	
-	public HashMap<String, String> obtenerCamposTabla(String nombreTabla)
+	public String[][] obtenerCamposTabla(String nombreTabla)
 	{
 		Connection conexion = null;
-		HashMap<String, String> camposTabla = new HashMap<String, String>();
-				
-	    try 
+
+		try 
 	    {
 	    	utilidades.HibernateCFG archivoXML = new utilidades.HibernateCFG();
 			archivoXML.leerConfiguraciones();
@@ -77,17 +76,29 @@ public class MetadatosBD
 	    		  propiedades.get("hibernate.connection.url"),
 	    		  propiedades.get("hibernate.connection.username"),
 	    		  propiedades.get("hibernate.connection.password"));
-	      
+	    
+
 			DatabaseMetaData meta = conexion.getMetaData();
 			ResultSet res = meta.getColumns(null, null, nombreTabla, null);
 	      
-			while (res.next()) 
+			res.last();
+			int cantidad = res.getRow();
+			res.first();
+			
+			String[][] camposTabla = new String[cantidad][2];
+			
+			camposTabla[0][0] = res.getString("COLUMN_NAME");
+			camposTabla[0][1] = res.getString("TYPE_NAME");
+			
+			int i=1;
+			while(res.next()) 
 			{
-				camposTabla.put(res.getString("COLUMN_NAME"), res.getString("TYPE_NAME"));
-				System.out.println(nombreTabla+" "+camposTabla.get(res.getString("COLUMN_NAME"))+" "+res.getString("COLUMN_NAME"));
-			}
+				camposTabla[i][0] = res.getString("COLUMN_NAME");
+				camposTabla[i][1] = res.getString("TYPE_NAME");		
+				i++;
+			}				
 			res.close();
-	
+
 			conexion.close();
 	      
 			return camposTabla;

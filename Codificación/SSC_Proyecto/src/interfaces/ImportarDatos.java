@@ -199,8 +199,10 @@ public class ImportarDatos extends JDialog
 			}				
 		}
 		
+		
+		
 		@SuppressWarnings("unused")
-		utilidades.LectorCSV lectorCSV = new utilidades.LectorCSV(tablas_archivos);
+		utilidades.Importador importador = new utilidades.Importador(tablas_archivos);
 	}
 	
 	
