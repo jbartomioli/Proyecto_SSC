@@ -282,11 +282,11 @@ public class SeguimientoDeClientes extends JDialog
 		// INICIO GRAFICO DE LINEAS //
 		layerGrafico = new JLayeredPane();
 		layerGrafico.setBorder(new TitledBorder(null, "Ventas por Mes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		layerGrafico.setBounds(658, 115, 632, 392);
+		layerGrafico.setBounds(656, 106, 632, 392);
 		getContentPane().add(layerGrafico);
 		
 		pnlGrafico = new JPanel();
-		pnlGrafico.setBounds(10, 11, 612, 370);
+		pnlGrafico.setBounds(10, 21, 612, 360);
 		layerGrafico.add(pnlGrafico);
 		
 		tblVentasCliente = new JTable();
@@ -407,9 +407,6 @@ public class SeguimientoDeClientes extends JDialog
 						
 				tblClientesBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesPorEspecialidad(especialidad));
 				
-				//Agrega el btn eliminar a la tabla
-				//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
-				//Agrega el btn añadir a la tabla
 				tblClientesBuscados.definirTablaDestinatariosBuscados();
 			}
 		}
@@ -463,18 +460,21 @@ public class SeguimientoDeClientes extends JDialog
 				ventasCliente = new ArrayList<negocio.Venta>();
 				ventasCliente = cliente.getVentas();
 				
+				modelVentasCliente.setNumRows(ventasCliente.size());
+				
 				if(ventasCliente.isEmpty() == false)
 				{
 					int i = 0;
+					
+					System.out.println("Ventas totales: " + ventasCliente.size());
+					
 					for(negocio.Venta ventaActual : ventasCliente)
-					{
-						Calendar cal = Calendar.getInstance();
-						cal.setTime(ventaActual.getFechaVenta());
-						int month = cal.get(Calendar.MONTH);
-						
-						modelVentasCliente.setValueAt(month, i, 0);
+					{						
+						System.out.println("Fecha: " + ventaActual.getFechaVenta());
+						//modelVentasCliente.setValueAt(month, i, 0);
+						//System.out.println("Mes: " + month);
 						modelVentasCliente.setValueAt(ventaActual.getTotal(), i, 1);
-						
+						System.out.println("Total Venta: " + ventaActual.getTotal());
 						i++;
 					}
 				}
