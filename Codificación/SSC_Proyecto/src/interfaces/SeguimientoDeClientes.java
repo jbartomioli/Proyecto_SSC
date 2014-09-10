@@ -29,7 +29,6 @@ import java.text.AttributedCharacterIterator;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -470,13 +469,14 @@ public class SeguimientoDeClientes extends JDialog
 					
 					for(negocio.Venta ventaActual : ventasCliente)
 					{						
-						System.out.println("Fecha: " + ventaActual.getFechaVenta());
-						//modelVentasCliente.setValueAt(month, i, 0);
-						//System.out.println("Mes: " + month);
+						String fecha = ventaActual.getFechaVenta().toString().substring(0, 10);
+						modelVentasCliente.setValueAt(fecha, i, 0);
 						modelVentasCliente.setValueAt(ventaActual.getTotal(), i, 1);
-						System.out.println("Total Venta: " + ventaActual.getTotal());
+						//System.out.println("Total Venta: " + ventaActual.getTotal());
 						i++;
 					}
+					
+					
 				}
 				
 				// FIN GRAFICO DE LINEAS //
