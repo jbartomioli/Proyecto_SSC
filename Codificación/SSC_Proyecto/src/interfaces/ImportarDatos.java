@@ -184,7 +184,9 @@ public class ImportarDatos extends JDialog
 	
 	//-------------------------------------------------------------------------------------------------------
 	public void click_boton_procesar()
-	{		
+	{	
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		
 		HashMap<String, String> tablas_archivos = new HashMap<String, String>();
 		
 		for(int i=0; i<tblImportacion.getRowCount();++i)
@@ -203,6 +205,8 @@ public class ImportarDatos extends JDialog
 		
 		@SuppressWarnings("unused")
 		utilidades.Importador importador = new utilidades.Importador(tablas_archivos);
+		
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	
 	
