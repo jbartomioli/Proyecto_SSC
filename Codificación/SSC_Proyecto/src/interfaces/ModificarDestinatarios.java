@@ -44,7 +44,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
-
 public class ModificarDestinatarios extends JDialog {
 
 	private static final long serialVersionUID = -6385198300914272668L;

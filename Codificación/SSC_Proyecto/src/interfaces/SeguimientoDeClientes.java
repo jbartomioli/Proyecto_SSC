@@ -5,12 +5,7 @@ import interfaces.componentes.BotonesIconos;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -23,12 +18,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.ImageObserver;
-import java.sql.Date;
-import java.text.AttributedCharacterIterator;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -47,10 +39,21 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 
 import java.util.Collection;
-import java.awt.Component;
 
 import javax.swing.JLayeredPane;
-import javax.swing.border.LineBorder;
+
+
+
+
+//INICIO IMPORTS PARA GRAFICAR
+//SOLO UTILES PARA GRAFICOS DE LINEAS
+import org.jfree.chart.*;
+import org.jfree.chart.renderer.xy.XYSplineRenderer;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.axis.*;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.xy.*;
+//FIN IMPORTS PARA GRAFICAR
 
 public class SeguimientoDeClientes extends JDialog
 {
@@ -459,6 +462,15 @@ public class SeguimientoDeClientes extends JDialog
 				ventasCliente = new ArrayList<negocio.Venta>();
 				ventasCliente = cliente.getVentas();
 				
+				ChartPanel panel;
+				JFreeChart chart = null;
+				XYSplineRenderer renderer = new XYSplineRenderer();
+				XYSeriesCollection dataSet = new XYSeriesCollection();
+				ValueAxis x = new DateAxis("Fecha venta");
+				ValueAxis y = new NumberAxis("Monto venta");
+				TimeSeries serie = new TimeSeries("Datos");
+				XYPlot plot;
+				
 				modelVentasCliente.setNumRows(ventasCliente.size());
 				
 				if(ventasCliente.isEmpty() == false)
@@ -470,11 +482,14 @@ public class SeguimientoDeClientes extends JDialog
 					for(negocio.Venta ventaActual : ventasCliente)
 					{						
 						String fecha = ventaActual.getFechaVenta().toString().substring(0, 10);
+						//VER ERROR DE ADD
+						//serie.add(ventaActual.getFechaVenta(), ventaActual.getTotal());
 						modelVentasCliente.setValueAt(fecha, i, 0);
 						modelVentasCliente.setValueAt(ventaActual.getTotal(), i, 1);
 						//System.out.println("Total Venta: " + ventaActual.getTotal());
 						i++;
 					}
+					
 					
 					
 				}
