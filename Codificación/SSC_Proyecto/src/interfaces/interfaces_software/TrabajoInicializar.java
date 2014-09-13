@@ -7,14 +7,14 @@ import org.hibernate.HibernateException;
 
 public class TrabajoInicializar implements Runnable{
     
-    private negocio.ControladorConfeccionarAnuncio ctrlAnuncios;
+//    private negocio.ControladorConfeccionarAnuncio ctrlAnuncios;
 	//private negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento;
 	//private negocio.ControladorRegistrarPedidoCliente controladorPedido;
 
 
     public TrabajoInicializar()
     {
-    	this.ctrlAnuncios = new negocio.ControladorConfeccionarAnuncio();
+    	
     }
     
     @Override
@@ -22,11 +22,11 @@ public class TrabajoInicializar implements Runnable{
     {		
         try
         {		
-        	ctrlAnuncios.inicializarCatalogos();
+        	//ctrlAnuncios.inicializarCatalogos();
         	
         	//
 			@SuppressWarnings("unused")
-			interfaces.Principal principal = new interfaces.Principal(ctrlAnuncios);
+			interfaces.Principal principal = new interfaces.Principal();
         	
         	Thread.sleep( 1000 );
         }

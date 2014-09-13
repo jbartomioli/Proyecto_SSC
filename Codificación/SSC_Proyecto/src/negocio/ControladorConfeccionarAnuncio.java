@@ -485,6 +485,4 @@ public class ControladorConfeccionarAnuncio
 
 		arrProductosPublicación.remove(productoActual);
 	}
-
-
 }

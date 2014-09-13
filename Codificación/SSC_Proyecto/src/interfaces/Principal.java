@@ -78,7 +78,7 @@ public class Principal extends JFrame {
 	 * @param controladorAnuncios
 	 * @throws Exception
 	 *******************************/
-	public Principal(negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception 
+	public Principal() throws Exception 
 	{
 		/**
 		 * FORMULARIO BASE
@@ -164,13 +164,14 @@ public class Principal extends JFrame {
 		mnuBarraMenu.add(mnuOperaciones);
 		
 
-		generarAnuncio = new interfaces.GenerarAnuncio(this, true, controladorAnuncios);
-
+		generarAnuncio = new interfaces.GenerarAnuncio(this, true);
 		
 		
 		mntConfeccionar = new JMenuItem("Confeccionar Anuncio");
 		mntConfeccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				generarAnuncio.actualizar();
 				generarAnuncio.setVisible(true);
 			}
 		});
@@ -178,12 +179,13 @@ public class Principal extends JFrame {
 		mntConfeccionar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFECCIONAR_16.png"));
 		mnuOperaciones.add(mntConfeccionar);
 	
-		seguimientoClientes = new interfaces.SeguimientoDeClientes(this, true, controladorAnuncios);
+		//OJOOO!!!! USAR CONTROLADOR DE SEGUIMIENTO.
+		//seguimientoClientes = new interfaces.SeguimientoDeClientes(this, true, controladorAnuncios);
 		
 		mntSeguimiento = new JMenuItem("Realizar Seguimiento de Cliente");
 		mntSeguimiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				seguimientoClientes.setVisible(true);							
+				//seguimientoClientes.setVisible(true);							
 			}
 		});
 		mntSeguimiento.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SEGUIMIENTO_16.png"));

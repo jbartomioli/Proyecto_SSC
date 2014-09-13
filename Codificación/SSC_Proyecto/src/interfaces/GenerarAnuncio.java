@@ -42,15 +42,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Vector;
-
 import javax.swing.SwingConstants;
-
 import net.atlanticbb.tantlinger.shef.EditorHTML;
-
 import javax.swing.JTextField;
-
-import utilidades.Configuraciones;
-
 import javax.swing.JProgressBar;
 
 
@@ -64,7 +58,7 @@ public class GenerarAnuncio extends JDialog {
 	/**************
 	 * COMPONENTES
 	 **************/
-	private negocio.ControladorConfeccionarAnuncio controladorAux;
+	private negocio.ControladorConfeccionarAnuncio controlador;
 	private negocio.Categoria categoria;
 	private interfaces.componentes.TablaProductosAnuncio tblProductosAnuncio;
 	private interfaces.componentes.TablaClientesDestino tblDestinatarios;
@@ -90,7 +84,7 @@ public class GenerarAnuncio extends JDialog {
 	//-------------------------------------------------------------------
 	public negocio.ControladorConfeccionarAnuncio getControlador()
 	{
-		return controladorAux;
+		return controlador;
 	}
 
 	
@@ -99,7 +93,7 @@ public class GenerarAnuncio extends JDialog {
 	{			
 		String[] idClientesModif = new String[nuevoModelo.getRowCount()];
 		
-		controladorAux.getArrClientesInteresados().clear();
+		controlador.getArrClientesInteresados().clear();
 		
 		for(int j=0; j<nuevoModelo.getRowCount(); j++)
 			idClientesModif[j] = nuevoModelo.getValueAt(j,0).toString();
@@ -108,12 +102,12 @@ public class GenerarAnuncio extends JDialog {
 		{
 			negocio.Cliente clienteActual = new negocio.Cliente();
 			
-			clienteActual = controladorAux.getCatalogoClientes().buscarCliente(Integer.parseInt(idClientesModif[i]));
+			clienteActual = controlador.getCatalogoClientes().buscarCliente(Integer.parseInt(idClientesModif[i]));
 			
-			controladorAux.getArrClientesInteresados().add(clienteActual);
+			controlador.getArrClientesInteresados().add(clienteActual);
 		}
 		
-		tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
+		tblDestinatarios.completarDatos(controlador.getArrClientesInteresados());
 		
 	}
 	
@@ -125,7 +119,7 @@ public class GenerarAnuncio extends JDialog {
 	 * @param controladorAnuncios
 	 * @throws Exception
 	 *******************************/
-	public GenerarAnuncio(Frame framePadre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
+	public GenerarAnuncio(Frame framePadre, boolean modal) throws Exception
 	{
 		/***************************************************************
 		 * FORMULARIO BASE
@@ -327,36 +321,41 @@ public class GenerarAnuncio extends JDialog {
 		/************************
 		 * INICIALIZAR CONTROLES
 		 ************************/
-		try
-		{
-			inicializar(controladorAnuncios);		
-		}
-		catch(NullPointerException npe)
-		{
-			JOptionPane.showMessageDialog(null, 
-					"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde ....",
-					"ATENCIÓN",
-					JOptionPane.INFORMATION_MESSAGE);
-			dispose();
-			//npe.printStackTrace();
-		}
+		
 	}
 
-	
-	/*********************************
-	 * INICIALIZACION DE COMPONENTES
-	 * @param controladorAnuncios
-	 * @throws Exception
-	 *********************************/
-	protected void inicializar(negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
+	//
+	public void actualizar()
 	{
-		controladorAux = controladorAnuncios;
-		final GenerarAnuncio dialogPadre = this;
+		try
+		{
+			this.inicializar();
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	}	
+	
+	//
+	protected void inicializar() throws Exception
+	{
+		final interfaces.GenerarAnuncio dialogPadre = this;
+		
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
+		try
+		{
+			controlador = new negocio.ControladorConfeccionarAnuncio();
+			controlador.inicializarCatalogos();
+		
+		
 
 		/***************************************************************
 		 * COMBO CATEGORIAS
 		 ***************************************************************/
-		cmbCategorias.completarDatos(controladorAux.getCatalogoCategorias().getCategorias());
+		cmbCategorias.completarDatos(controlador.getCatalogoCategorias().getCategorias());
 		cmbCategorias.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
 				try {
@@ -371,7 +370,7 @@ public class GenerarAnuncio extends JDialog {
 		 * COMBO SUBCATEGORIAS
 		 ***************************************************************/
 		categoria = (negocio.Categoria) cmbCategorias.getSelectedItem();
-		cmbSubcategorias.completarDatos(controladorAux.seleccionarCategoria(categoria.getIdCategoria()));
+		cmbSubcategorias.completarDatos(controlador.seleccionarCategoria(categoria.getIdCategoria()));
 		
 		cmbSubcategorias.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
@@ -408,7 +407,7 @@ public class GenerarAnuncio extends JDialog {
 		 /***************************************************************
 		  * TABLA PRODUCTOS
 		  ***************************************************************/		 
-		tblProductos.completarTabla(controladorAux.seleccionarSubcategoria(
+		tblProductos.completarTabla(controlador.seleccionarSubcategoria(
 				subcategoriaActual.getIdcategoria(), 
 				subcategoriaActual.getIdSubcategoria()));
 		tblProductos.definirTablaProductos();
@@ -484,6 +483,17 @@ public class GenerarAnuncio extends JDialog {
 	        public void actionPerformed(ActionEvent evento) {
 	        	cerrar_salir();
 	        	}});
+		}
+		catch(NullPointerException npe)
+		{
+			JOptionPane.showMessageDialog(null, 
+					"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde ....",
+					"ATENCIÓN",
+					JOptionPane.INFORMATION_MESSAGE);
+			dispose();
+			//npe.printStackTrace();
+		}
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 
 
@@ -521,14 +531,14 @@ public class GenerarAnuncio extends JDialog {
 			categoria.obtenerSubCategorias();
 			
 			cmbSubcategorias.completarDatos(
-					controladorAux.seleccionarCategoria(categoria.getIdCategoria()));	
+					controlador.seleccionarCategoria(categoria.getIdCategoria()));	
 			
 			negocio.SubCategoria subcategoriaSeleccionada = new negocio.SubCategoria();
 			
 			subcategoriaSeleccionada = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 			subcategoriaSeleccionada.obtenerProductos();
 						
-			tblProductos.completarTabla(controladorAux.seleccionarSubcategoria(
+			tblProductos.completarTabla(controlador.seleccionarSubcategoria(
 					subcategoriaSeleccionada.getIdcategoria(),
 					subcategoriaSeleccionada.getIdSubcategoria()));
 		}
@@ -546,7 +556,7 @@ public class GenerarAnuncio extends JDialog {
 			subcategoriaSeleccionada = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 			subcategoriaSeleccionada.obtenerProductos();
 			
-			tblProductos.completarTabla(controladorAux.seleccionarSubcategoria(
+			tblProductos.completarTabla(controlador.seleccionarSubcategoria(
 					subcategoriaSeleccionada.getIdcategoria(),
 					subcategoriaSeleccionada.getIdSubcategoria()));
 		}
@@ -622,7 +632,7 @@ public class GenerarAnuncio extends JDialog {
     		
     		try
     		{      			
-    			File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
+    			File archivoHTML = new File(utilidades.Configuraciones.DIR_MAILS+"temporal.html");
     			
     		   	fr = new FileReader(archivoHTML);
     		   	br = new BufferedReader(fr);
@@ -633,7 +643,7 @@ public class GenerarAnuncio extends JDialog {
     		   	while((renglon=br.readLine())!=null)
     		       		contenidoMailHTML += renglon;
     		   	
-    		   	controladorAux.redactarMensaje(contenidoMailHTML);
+    		   	controlador.redactarMensaje(contenidoMailHTML);
     		}
     		catch(Exception e)
     		{
@@ -654,8 +664,8 @@ public class GenerarAnuncio extends JDialog {
             	}
     		}
     		
-    		controladorAux.finalizarCargaProducto();
-    		controladorAux.guardarAnuncio();   
+    		controlador.finalizarCargaProducto();
+    		controlador.guardarAnuncio();   
     		limpiar_objetos_temporales();
     	}
 	}
@@ -687,7 +697,7 @@ public class GenerarAnuncio extends JDialog {
 												
 				int idProducto = Integer.parseInt(fila.elementAt(0).toString());
 				
-				negocio.Producto producto = controladorAux.getCatalogoProductos().buscarProducto(idProducto);
+				negocio.Producto producto = controlador.getCatalogoProductos().buscarProducto(idProducto);
 				
 				Thread hiloTrabajoAniadir = new Thread( new TabajoAniadirProducto(producto.getIdProducto()));
 				hiloTrabajoAniadir.start();		    	
@@ -706,7 +716,7 @@ public class GenerarAnuncio extends JDialog {
 
 	    if (filaSeleccionada >= 0)
 	    {
-	    	controladorAux.eliminarProducto(Integer.parseInt(tblProductosAnuncio.getModel().getValueAt(filaSeleccionada,0).toString()));
+	    	controlador.eliminarProducto(Integer.parseInt(tblProductosAnuncio.getModel().getValueAt(filaSeleccionada,0).toString()));
 	    	tableModel.removeRow(filaSeleccionada);	
 	    }	    
 	}
@@ -726,7 +736,7 @@ public class GenerarAnuncio extends JDialog {
 	//-------------------------------------------------------------------
 	protected void click_label_modificar_precios(interfaces.GenerarAnuncio dialogPadre) throws Exception
 	{
-		interfaces.Precios precios = new interfaces.Precios(dialogPadre, controladorAux);
+		interfaces.Precios precios = new interfaces.Precios(dialogPadre, controlador);
 		precios.setLocationRelativeTo(dialogPadre);
 		precios.setVisible(true);
 	}
@@ -738,6 +748,7 @@ public class GenerarAnuncio extends JDialog {
 	{
 		limpiar_formulario();
 		limpiar_objetos_temporales();
+		controlador = new negocio.ControladorConfeccionarAnuncio();
 		dispose();
 	}
 	
@@ -762,9 +773,9 @@ public class GenerarAnuncio extends JDialog {
 	//-------------------------------------------------------------------
 	private void limpiar_objetos_temporales()
 	{
-		controladorAux.getArrClientesInteresados().clear();
-		controladorAux.getArrProductosPublicación().clear();
-		controladorAux.setAnuncioActual(new negocio.Anuncio()); 
+		controlador.getArrClientesInteresados().clear();
+		controlador.getArrProductosPublicación().clear();
+		controlador.setAnuncioActual(new negocio.Anuncio()); 
 	}
 	
 	
@@ -774,7 +785,7 @@ public class GenerarAnuncio extends JDialog {
 	{
 		try
 			{
-				File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
+				File archivoHTML = new File(utilidades.Configuraciones.DIR_MAILS+"temporal.html");
 				if(archivoHTML.exists())
 					archivoHTML.delete();
 			} 
@@ -829,9 +840,9 @@ public class GenerarAnuncio extends JDialog {
 	        {		
 	        	desactivar_botones();
 	        	
-	        	controladorAux.seleccionarProducto(this.idProducto);		
+	        	controlador.seleccionarProducto(this.idProducto);		
 	        	
-	        	tblDestinatarios.completarDatos(controladorAux.getArrClientesInteresados());
+	        	tblDestinatarios.completarDatos(controlador.getArrClientesInteresados());
 
 	        	Thread.sleep( 1000 );
 	        }
@@ -848,4 +859,6 @@ public class GenerarAnuncio extends JDialog {
 	        }
 	    }
 	}    
+	
+
 }
