@@ -242,7 +242,19 @@ public class Precios extends JDialog {
 		/********************************
 		 * INICIALIZACION DE COMPONENTES
 		 ********************************/
-		inicializar_componentes();
+		try
+		{
+			inicializar_componentes();
+		}
+		catch(NullPointerException npe)
+		{
+			JOptionPane.showMessageDialog(null, 
+					"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde ....",
+					"ATENCIÓN",
+					JOptionPane.INFORMATION_MESSAGE);
+			dispose();
+			//npe.printStackTrace();
+		}
 
 	}
 	

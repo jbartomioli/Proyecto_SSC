@@ -163,7 +163,10 @@ public class Principal extends JFrame {
 		mnuOperaciones.setMnemonic('O');
 		mnuBarraMenu.add(mnuOperaciones);
 		
+
 		generarAnuncio = new interfaces.GenerarAnuncio(this, true, controladorAnuncios);
+
+		
 		
 		mntConfeccionar = new JMenuItem("Confeccionar Anuncio");
 		mntConfeccionar.addActionListener(new ActionListener() {

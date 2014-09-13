@@ -3,6 +3,7 @@ package utilidades;
 import java.io.FileNotFoundException;
 import java.io.IOException;
  
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -19,29 +20,30 @@ public class Importador
     @SuppressWarnings("rawtypes")
 	public Importador(HashMap<String, String> tablas_archivos) 
     {
-        try 
-        {     
-        	Iterator it_tablas = tablas_archivos.entrySet().iterator();
-        	while (it_tablas.hasNext())
-        	{
-        		Map.Entry entryTablas = (Map.Entry)it_tablas.next();
-        		
-        		if(!entryTablas.getValue().toString().equals(""))
-        		{
-        			Session session = null;	
-        			
-        			CsvReader contenidoArchivo = new CsvReader(entryTablas.getValue().toString());
-        			contenidoArchivo.readHeaders();
-        			
-	        		try
-	        		{
-	        			session = utilidades.HibernateUtil.getSessionFactory().openSession();
-	        			session.beginTransaction();
-        		    
-	        			Query fk_off = session.createSQLQuery("SET FOREIGN_KEY_CHECKS=0");
-	        			fk_off.executeUpdate();
+		Session session = null;	
 
-	        			utilidades.MetadatosBD camposTabla = new utilidades.MetadatosBD();
+    	try
+    	{
+			session = utilidades.HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+	    
+			Query fk_off = session.createSQLQuery("SET FOREIGN_KEY_CHECKS=0");
+			fk_off.executeUpdate();
+    	
+    	
+	        try 
+	        {     
+	        	Iterator it_tablas = tablas_archivos.entrySet().iterator();
+	        	while (it_tablas.hasNext())
+	        	{
+	        		Map.Entry entryTablas = (Map.Entry)it_tablas.next();
+	        		
+	        		if(!entryTablas.getValue().toString().equals(""))
+	        		{        			
+	        			CsvReader contenidoArchivo = new CsvReader(entryTablas.getValue().toString());
+	        			contenidoArchivo.readHeaders();
+	        			
+		        		utilidades.MetadatosBD camposTabla = new utilidades.MetadatosBD();
 	        			String[][] campos_tabla = camposTabla.obtenerCamposTabla(entryTablas.getKey().toString());
 	        			
 	        			String sql_inicio = "INSERT INTO "+entryTablas.getKey()+" ( ";
@@ -69,7 +71,7 @@ public class Importador
 				        		if(campos_tabla[i][1].equals("VARCHAR") || campos_tabla[i][1].equals("LONGTEXT"))
 				        			sql += " \""+campo+"\", ";
 				        		else
-				        			if(campos_tabla[i][1].equals("DATETIME"))
+				        			if(campos_tabla[i][1].equals("DATETIME") && !campo.equals("NULL"))
 				        				sql += " \'"+campo+"\', ";
 				        			else
 				        				sql += " "+campo+", "; 		
@@ -86,32 +88,33 @@ public class Importador
 				        }
 	        			
 		        		System.out.println(sql);
-	
-	        			Query fk_on = session.createSQLQuery("SET FOREIGN_KEY_CHECKS=1");
-	        			fk_on.executeUpdate();
-						
-	        			session.getTransaction().commit();
+
+		        		
+			        	contenidoArchivo.close();
 	        		}
-	        		catch(Exception ee)
-	        		{
-		        		ee.printStackTrace();
-	        		}
-	        		finally
-	        		{
-	        			session.close();
-	        		}	
-	        		
-	        		contenidoArchivo.close();
-        		}
-        	}
-        } 
-        catch (FileNotFoundException e) 
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+	        	}
+	        } 
+	        catch (FileNotFoundException e) 
+	        {
+	            e.printStackTrace();
+	        }
+	        catch (IOException e)
+	        {
+	            e.printStackTrace();
+	        }
+
+			Query fk_on = session.createSQLQuery("SET FOREIGN_KEY_CHECKS=1");
+			fk_on.executeUpdate();
+			
+			session.getTransaction().commit();
+    	}	
+    	catch(Exception e)
+    	{
+    		
+    	}
+		finally
+		{
+			session.close();
+		}	
     }
 }

@@ -327,7 +327,19 @@ public class GenerarAnuncio extends JDialog {
 		/************************
 		 * INICIALIZAR CONTROLES
 		 ************************/
-		inicializar(controladorAnuncios);		
+		try
+		{
+			inicializar(controladorAnuncios);		
+		}
+		catch(NullPointerException npe)
+		{
+			JOptionPane.showMessageDialog(null, 
+					"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde ....",
+					"ATENCIÓN",
+					JOptionPane.INFORMATION_MESSAGE);
+			dispose();
+			//npe.printStackTrace();
+		}
 	}
 
 	
