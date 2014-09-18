@@ -11,7 +11,7 @@ public class ControladorRealizarSeguimientoCliente
 	//***************************************************************
 	//* ATRIBUTOS													*
 	//***************************************************************
-	private negocio.CatalogoClientes cc;
+	private negocio.CatalogoClientes catalogoClientes;
 	//---------------------------------------------------------------
 
 
@@ -20,8 +20,8 @@ public class ControladorRealizarSeguimientoCliente
 	//***************************************************************
 	public ControladorRealizarSeguimientoCliente() 
 	{
-		this.cc = new negocio.CatalogoClientes();
-		this.cc.obtenerClientes();
+		this.catalogoClientes = new negocio.CatalogoClientes();
+		this.catalogoClientes.obtenerClientes();
 	}
 	//---------------------------------------------------------------
 
@@ -29,14 +29,14 @@ public class ControladorRealizarSeguimientoCliente
 	//***************************************************************
 	//* GETTES & SETTERS											*
 	//***************************************************************
-	public negocio.CatalogoClientes getCc() 
+	public negocio.CatalogoClientes getCatalogoClientes() 
 	{
-		return cc;
+		return catalogoClientes;
 	}
 
-	public void setCc(negocio.CatalogoClientes cc) 
+	public void setCatalogoClientes(negocio.CatalogoClientes catalogoClientes) 
 	{
-		this.cc = cc;
+		this.catalogoClientes = catalogoClientes;
 	}
 	//---------------------------------------------------------------
 
@@ -60,7 +60,7 @@ public class ControladorRealizarSeguimientoCliente
 		DatosSalidaSeguimiento salidaObj = new DatosSalidaSeguimiento();
 		
 		//se busca al cliente por su idCliente		
-		cliente = cc.buscarCliente(idCliente);
+		cliente = catalogoClientes.buscarCliente(idCliente);
 		
 		//si el cliente no es nulo
 		if (cliente != null)
@@ -112,7 +112,7 @@ public class ControladorRealizarSeguimientoCliente
 		
 		DatosSalidaSeguimiento salidaObj = new DatosSalidaSeguimiento();
 				
-		cliente = cc.buscarCliente(apellido,nombre);
+		cliente = catalogoClientes.buscarCliente(apellido,nombre);
 		
 		
 		if (cliente != null)
@@ -160,7 +160,7 @@ public class ControladorRealizarSeguimientoCliente
 		
 		Collection<DatosSalidaSeguimiento> salida = new ArrayList<DatosSalidaSeguimiento>();
 		
-		arrClientesTemp = cc.buscarClientes(tipoCliente);
+		arrClientesTemp = catalogoClientes.buscarClientes(tipoCliente);
 		
 		if(arrClientesTemp != null)
 		{

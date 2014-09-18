@@ -26,6 +26,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.KeyStroke;
 
+import negocio.ControladorRealizarSeguimientoCliente;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.WindowAdapter;
@@ -179,8 +181,8 @@ public class Principal extends JFrame {
 		mntConfeccionar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFECCIONAR_16.png"));
 		mnuOperaciones.add(mntConfeccionar);
 	
-		//OJOOO!!!! USAR CONTROLADOR DE SEGUIMIENTO.
-		//seguimientoClientes = new interfaces.SeguimientoDeClientes(this, true, controladorAnuncios);
+		//ControladorRealizarSeguimientoCliente controladorSeguimiento = new ControladorRealizarSeguimientoCliente();
+		//seguimientoClientes = new interfaces.SeguimientoDeClientes(this, true, controladorSeguimiento);
 		
 		mntSeguimiento = new JMenuItem("Realizar Seguimiento de Cliente");
 		mntSeguimiento.addActionListener(new ActionListener() {

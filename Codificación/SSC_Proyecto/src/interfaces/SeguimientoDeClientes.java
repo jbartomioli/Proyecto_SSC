@@ -43,8 +43,6 @@ import java.util.Collection;
 import javax.swing.JLayeredPane;
 
 
-
-
 //INICIO IMPORTS PARA GRAFICAR
 //SOLO UTILES PARA GRAFICOS DE LINEAS
 import org.jfree.chart.*;
@@ -61,7 +59,7 @@ public class SeguimientoDeClientes extends JDialog
 	 * SERIALIZABLE
 	 ****************/
 	private static final long serialVersionUID = 4454249604145639431L;
-	private negocio.ControladorConfeccionarAnuncio controladorAux;
+	private negocio.ControladorRealizarSeguimientoCliente controladorAux;
 	private JTextField txtBuscarCliente;
 	private JLabel lblEspecialidad;
 	private JComboBox<String> cmbEspecialidad;
@@ -99,7 +97,7 @@ public class SeguimientoDeClientes extends JDialog
 	 * CONSTRUCTOR
 	 * @param dialogPadre
 	 */
-	public SeguimientoDeClientes(Frame framePadre, boolean modal, negocio.ControladorConfeccionarAnuncio controladorSeguimiento) throws Exception
+	public SeguimientoDeClientes(Frame framePadre, boolean modal, negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento) throws Exception
 	{
 		/***************************************************************
 		 * FORMULARIO BASE
@@ -308,7 +306,7 @@ public class SeguimientoDeClientes extends JDialog
 	 * @param controladorAnuncios
 	 * @throws Exception
 	 *********************************/
-	protected void inicializar(final negocio.ControladorConfeccionarAnuncio controladorSeguimiento) throws Exception
+	protected void inicializar(final negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento) throws Exception
 	{
 		controladorAux = controladorSeguimiento;
 		
@@ -400,7 +398,7 @@ public class SeguimientoDeClientes extends JDialog
 		
 		
 		//-------------------------------------------------------------------------------------------------------
-		public void click_combo_especialidad(negocio.ControladorConfeccionarAnuncio controladorSeguimiento, ItemEvent evento)
+		public void click_combo_especialidad(negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento, ItemEvent evento)
 		{		
 			if(evento.getStateChange() == ItemEvent.SELECTED)
 			{			
@@ -415,7 +413,7 @@ public class SeguimientoDeClientes extends JDialog
 		
 		
 		//-------------------------------------------------------------------------------------------------------
-		private void buscar_cliente_textField(negocio.ControladorConfeccionarAnuncio controladorSeguimiento) 
+		private void buscar_cliente_textField(negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento) 
 		{
 			tblClientesBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesDescPcial(txtBuscarCliente.getText()));
 			tblClientesBuscados.definirTablaDestinatariosBuscados();
