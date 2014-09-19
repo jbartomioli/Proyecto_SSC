@@ -166,15 +166,18 @@ public class Principal extends JFrame {
 		mnuBarraMenu.add(mnuOperaciones);
 		
 
-		generarAnuncio = new interfaces.GenerarAnuncio(this, true);
+		
 		
 		
 		mntConfeccionar = new JMenuItem("Confeccionar Anuncio");
 		mntConfeccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-				generarAnuncio.actualizar();
-				generarAnuncio.setVisible(true);
+				try {
+					action_confeccionar();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		mntConfeccionar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
@@ -282,7 +285,20 @@ public class Principal extends JFrame {
 	
 	/**
 	 * EVENTOS
+	 * @throws Exception 
 	 */
+	protected void action_confeccionar() throws Exception
+	{
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		generarAnuncio = new interfaces.GenerarAnuncio(this, true);
+		generarAnuncio.actualizar();
+		generarAnuncio.setVisible(true);
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	}
+	
+	
+	
+	
 	//------------------------------------------------
 	public void cerrando()
 	{

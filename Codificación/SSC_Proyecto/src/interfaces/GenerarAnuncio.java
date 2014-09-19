@@ -42,8 +42,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Vector;
+
 import javax.swing.SwingConstants;
+
 import net.atlanticbb.tantlinger.shef.EditorHTML;
+
 import javax.swing.JTextField;
 import javax.swing.JProgressBar;
 
@@ -447,7 +450,7 @@ public class GenerarAnuncio extends JDialog {
 					try
 					{
 						click_label_modificar_precios(dialogPadre);
-						repaint();
+						//repaint();
 					}
 					catch (Exception e)
 					{
@@ -749,6 +752,12 @@ public class GenerarAnuncio extends JDialog {
 		limpiar_formulario();
 		limpiar_objetos_temporales();
 		controlador = new negocio.ControladorConfeccionarAnuncio();
+		try {
+			finalize();
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		dispose();
 	}
 	
