@@ -84,6 +84,8 @@ public class ModificarDestinatarios extends JDialog {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
+		setLocationRelativeTo(dialogPadre);
+
 	
 		addEscapeListenerWindowDialog();
 		

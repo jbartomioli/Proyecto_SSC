@@ -45,6 +45,7 @@ import java.util.Vector;
 
 import javax.swing.SwingConstants;
 
+import negocio.SubCategoria;
 import net.atlanticbb.tantlinger.shef.EditorHTML;
 
 import javax.swing.JTextField;
@@ -77,6 +78,9 @@ public class GenerarAnuncio extends JDialog {
 	private JProgressBar prgProgresoAniadir;
 	private JScrollPane scrollProductosAnuncio;
 	private JScrollPane scrollProductos;
+
+
+	private SubCategoria subcategoriaActual;
 
 	
 
@@ -389,7 +393,8 @@ public class GenerarAnuncio extends JDialog {
 		/***************************************************************
 		 * TABLA PRODUCTOS ANUNCIO
 		 ***************************************************************/
-		negocio.SubCategoria subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
+		//negocio.SubCategoria subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
+		subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
 		
 		tblProductosAnuncio = new interfaces.componentes.TablaProductosAnuncio();
@@ -443,6 +448,7 @@ public class GenerarAnuncio extends JDialog {
 		 * LABEL MODIFICAR PRECIOS
 		 ***************************************************************/
 		lblModificarPrecios.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("unused")
 			public void mouseClicked(MouseEvent me) 
 			{
 				if(lblModificarPrecios.isEnabled())
@@ -730,7 +736,6 @@ public class GenerarAnuncio extends JDialog {
 	protected void click_label_modificar_destinatarios(interfaces.GenerarAnuncio dialogPadre) 
 	{
 		interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
-		modif.setLocationRelativeTo(dialogPadre);
 		modif.setVisible(true);	
 	}
 	
@@ -740,8 +745,13 @@ public class GenerarAnuncio extends JDialog {
 	protected void click_label_modificar_precios(interfaces.GenerarAnuncio dialogPadre) throws Exception
 	{
 		interfaces.Precios precios = new interfaces.Precios(dialogPadre, controlador);
-		precios.setLocationRelativeTo(dialogPadre);
 		precios.setVisible(true);
+		
+		tblProductos.limpiar_tabla();
+		negocio.SubCategoria subAux = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
+			tblProductos.completarTabla(controlador.seleccionarSubcategoria(
+					subAux.getIdcategoria(), 
+					subAux.getIdSubcategoria()));
 	}
 	
 	
