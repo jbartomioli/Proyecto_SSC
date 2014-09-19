@@ -58,7 +58,6 @@ public class Precios extends JDialog {
 	private negocio.Categoria categoria;
 	private interfaces.componentes.TablaProductos tblProductos;
 	private interfaces.componentes.BotonesIconos btnAceptar;
-	//private negocio.ControladorConfeccionarAnuncio controladorAux;
 	private negocio.ControladorModificarPrecios controladorPrecios;
 	private negocio.Producto productoSeleccionado;
 	private negocio.SubCategoria subcategoriaActual;

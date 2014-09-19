@@ -43,6 +43,9 @@ import java.util.Collection;
 import javax.swing.JLayeredPane;
 
 
+
+import negocio.ControladorRealizarSeguimientoCliente;
+
 //INICIO IMPORTS PARA GRAFICAR
 //SOLO UTILES PARA GRAFICOS DE LINEAS
 import org.jfree.chart.*;
@@ -59,7 +62,12 @@ public class SeguimientoDeClientes extends JDialog
 	 * SERIALIZABLE
 	 ****************/
 	private static final long serialVersionUID = 4454249604145639431L;
-	private negocio.ControladorRealizarSeguimientoCliente controladorAux;
+	
+	
+	/**************
+	 * COMPONENTES
+	 **************/
+	private negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento;
 	private JTextField txtBuscarCliente;
 	private JLabel lblEspecialidad;
 	private JComboBox<String> cmbEspecialidad;
@@ -97,7 +105,7 @@ public class SeguimientoDeClientes extends JDialog
 	 * CONSTRUCTOR
 	 * @param dialogPadre
 	 */
-	public SeguimientoDeClientes(Frame framePadre, boolean modal, negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento) throws Exception
+	public SeguimientoDeClientes(Frame framePadre, boolean modal) throws Exception
 	{
 		/***************************************************************
 		 * FORMULARIO BASE
@@ -116,6 +124,9 @@ public class SeguimientoDeClientes extends JDialog
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
+		
+		controladorSeguimiento = new ControladorRealizarSeguimientoCliente();
+		controladorSeguimiento.inicializarCatalogo();
 		
 		addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {
@@ -307,9 +318,7 @@ public class SeguimientoDeClientes extends JDialog
 	 * @throws Exception
 	 *********************************/
 	protected void inicializar(final negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento) throws Exception
-	{
-		controladorAux = controladorSeguimiento;
-		
+	{		
 		cmbEspecialidad.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
 				click_combo_especialidad(controladorSeguimiento, evento);}});
@@ -438,7 +447,7 @@ public class SeguimientoDeClientes extends JDialog
 		    if(filaSeleccionada >= 0)
 			{
 		    	int idCliente = Integer.parseInt(fila.elementAt(0).toString());
-		    	negocio.Cliente cliente = controladorAux.getCatalogoClientes().buscarCliente(idCliente);
+		    	negocio.Cliente cliente = controladorSeguimiento.getCatalogoClientes().buscarCliente(idCliente);
 		    	
 		    	cliente.obtenerVentas();
 		    	
