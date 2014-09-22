@@ -448,7 +448,6 @@ public class GenerarAnuncio extends JDialog {
 		 * LABEL MODIFICAR PRECIOS
 		 ***************************************************************/
 		lblModificarPrecios.addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("unused")
 			public void mouseClicked(MouseEvent me) 
 			{
 				if(lblModificarPrecios.isEnabled())
@@ -456,7 +455,7 @@ public class GenerarAnuncio extends JDialog {
 					try
 					{
 						click_label_modificar_precios(dialogPadre);
-						//repaint();
+						repaint();
 					}
 					catch (Exception e)
 					{
@@ -692,16 +691,23 @@ public class GenerarAnuncio extends JDialog {
 		int filaSeleccionada = tblProductos.getSelectedRow();
 		Vector fila = new Vector(1);
 		fila = (Vector) modeloTblProductos.getDataVector().elementAt(filaSeleccionada);
+		
+		boolean aux = false;
 
-		if(modeloTblProductosAnuncio.getDataVector().contains(fila))
-			JOptionPane.showMessageDialog(null, 
-					"No puede agregar dos veces el mismo producto al anuncio.", 
-					"ATENCIÓN",
-					JOptionPane.WARNING_MESSAGE);
-		else 
-			if(filaSeleccionada >= 0)
+		for(int i=0; i<tblProductosAnuncio.getRowCount(); ++i)
+		{
+			if(tblProductosAnuncio.getValueAt(i, 0) == tblProductos.getValueAt(filaSeleccionada,0))
+			{ 
+				JOptionPane.showMessageDialog(null, 
+						"No puede agregar dos veces el mismo producto al anuncio.", 
+						"ATENCIÓN",
+						JOptionPane.WARNING_MESSAGE);
+				aux = true;
+			}
+		}
+		
+		if(!aux && filaSeleccionada >= 0)
 			{
-				
 				modeloTblProductosAnuncio.addRow(fila);
 												
 				int idProducto = Integer.parseInt(fila.elementAt(0).toString());
@@ -712,7 +718,7 @@ public class GenerarAnuncio extends JDialog {
 				hiloTrabajoAniadir.start();		    	
 		    	
 				new Thread(new interfaces.interfaces_software.HiloBarraProgreso(hiloTrabajoAniadir, this, prgProgresoAniadir, 500, false)).start();   
-			}		
+			}	
 	}
 	
 	

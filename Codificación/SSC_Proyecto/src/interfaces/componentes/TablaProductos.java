@@ -67,6 +67,10 @@ public class TablaProductos extends JTable {
 		columnaPrecio = getColumn("Precio");
 
 		columnaPrecioPromocional = getColumn("Precio promocional");
+		columnaPrecioPromocional.setCellEditor(new interfaces.componentes.EditorCeldasMonto(this));
+		columnaPrecioPromocional.setCellRenderer(new interfaces.componentes.RendererFormatoPrecioTabla(false));
+
+
 		columnaPrecioPromocional.setPreferredWidth(150);
 		
 		this.ocultar_columna(0);
@@ -83,8 +87,8 @@ public class TablaProductos extends JTable {
 		
 		getTableHeader().setReorderingAllowed(false);
 		
-		columnaPrecio.setCellRenderer(new interfaces.componentes.FormatoPrecioTabla());
-		columnaPrecioPromocional.setCellRenderer(new interfaces.componentes.FormatoPrecioTabla());
+
+
 	}
 
 	
@@ -101,7 +105,8 @@ public class TablaProductos extends JTable {
 	
 	
 	//
-	public void definirTablaProductos() {
+	public void definirTablaProductos() 
+	{
 		columnaBoton.setCellRenderer(new interfaces.componentes.RendererBotonCeldaModificar(true));
 	}
 	

@@ -179,12 +179,12 @@ public class Principal extends JFrame {
 		mntConfeccionar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFECCIONAR_16.png"));
 		mnuOperaciones.add(mntConfeccionar);
 	
-		//seguimientoClientes = new interfaces.SeguimientoDeClientes(this, true);
+		seguimientoClientes = new interfaces.SeguimientoDeClientes(this, true);
 		
 		mntSeguimiento = new JMenuItem("Realizar Seguimiento de Cliente");
 		mntSeguimiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//seguimientoClientes.setVisible(true);							
+				seguimientoClientes.setVisible(true);							
 			}
 		});
 		mntSeguimiento.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SEGUIMIENTO_16.png"));
