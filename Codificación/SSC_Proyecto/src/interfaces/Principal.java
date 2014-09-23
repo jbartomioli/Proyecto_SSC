@@ -62,12 +62,10 @@ public class Principal extends JFrame {
 	private JMenuItem mntContenidoAyuda;
 	private JMenuItem mntAcerca;
 	private JMenu mnuOpciones;
+	private JMenuItem mntImportar;
 	private JMenuItem mntConfiguracion;
 	private interfaces.Acerca acerca;
 	private interfaces.Ayuda ayuda;
-
-
-	private JMenuItem mntImportar;
 
 
 	private ImportarDatos importarDatos;
@@ -162,7 +160,6 @@ public class Principal extends JFrame {
 		mnuOperaciones = new JMenu("Operaciones");
 		mnuOperaciones.setMnemonic('O');
 		mnuBarraMenu.add(mnuOperaciones);	
-		
 		
 		mntConfeccionar = new JMenuItem("Confeccionar Anuncio");
 		mntConfeccionar.addActionListener(new ActionListener() {

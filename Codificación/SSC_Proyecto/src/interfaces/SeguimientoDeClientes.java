@@ -126,7 +126,6 @@ public class SeguimientoDeClientes extends JDialog
 		getContentPane().setLayout(null);
 		
 		controladorSeguimiento = new ControladorRealizarSeguimientoCliente();
-		controladorSeguimiento.inicializarCatalogo();
 		
 		addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {
@@ -136,15 +135,13 @@ public class SeguimientoDeClientes extends JDialog
 		
 		addEscapeListenerWindowDialog();
 		
-		
 		/*********
     	 * TITULO
     	 *********/
-    	lblTitulo = new JLabel("Seguimiento de Clientes");
+		lblTitulo = new JLabel("Seguimiento de Clientes");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitulo.setBounds(10, 11, 304, 23);
 		getContentPane().add(lblTitulo);
-		
 		
 		/**
 		 * LABEL BUSCADOR
@@ -162,7 +159,6 @@ public class SeguimientoDeClientes extends JDialog
 		cmbEspecialidad.setBounds(92, 51, 154, 20);
 		getContentPane().add(cmbEspecialidad);
 		
-		
 		/**
 		 * BUSCADOR NOMBRE
 		 */
@@ -174,7 +170,6 @@ public class SeguimientoDeClientes extends JDialog
 		txtBuscarCliente.setColumns(10);
 		getContentPane().add(txtBuscarCliente);
 		
-		
 		/**
 		 * BOTON ACEPTAR
 		 */
@@ -182,14 +177,13 @@ public class SeguimientoDeClientes extends JDialog
 		btnAceptar.setLocation(1200, 609);
 		getContentPane().add(btnAceptar);
 		
-		
 		/**
 		 * BOTON BUSCADOR
 		 */
 		btnBuscarCliente = new BotonesIconos("",utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_16.png");
 		btnBuscarCliente.setBounds(434, 51, 30, 20);
 		getContentPane().add(btnBuscarCliente);
-		
+
 		/**
 		 * TABLA CLIENTES BUSCADOS
 		 */
@@ -203,7 +197,6 @@ public class SeguimientoDeClientes extends JDialog
 		
 	    tblClientesBuscados = new interfaces.componentes.TablaModificarDestinatarios();
 		scrollClientesBuscados.setViewportView(tblClientesBuscados);
-		
 		
 		/**
 		 * TABLA CLIENTE SELECCIONADO
@@ -288,7 +281,6 @@ public class SeguimientoDeClientes extends JDialog
 		lblTotVtasSelec.setBounds(134, 182, 276, 21);
 		lblTotVtasSelec.setVisible(false);
 		pnlClienteSeleccionado.add(lblTotVtasSelec);	
-		
 		
 		// INICIO GRAFICO DE LINEAS //
 		layerGrafico = new JLayeredPane();
