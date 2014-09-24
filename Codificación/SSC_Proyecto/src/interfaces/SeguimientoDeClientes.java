@@ -42,10 +42,6 @@ import java.util.Collection;
 
 import javax.swing.JLayeredPane;
 
-
-
-import negocio.ControladorRealizarSeguimientoCliente;
-
 //INICIO IMPORTS PARA GRAFICAR
 //SOLO UTILES PARA GRAFICOS DE LINEAS
 import org.jfree.chart.*;
@@ -125,7 +121,7 @@ public class SeguimientoDeClientes extends JDialog
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		controladorSeguimiento = new ControladorRealizarSeguimientoCliente();
+		controladorSeguimiento = new negocio.ControladorRealizarSeguimientoCliente();
 		
 		addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {
