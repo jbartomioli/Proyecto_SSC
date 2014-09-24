@@ -750,7 +750,7 @@ public class GenerarAnuncio extends JDialog {
 	//-------------------------------------------------------------------
 	protected void click_label_modificar_precios(interfaces.GenerarAnuncio dialogPadre) throws Exception
 	{
-		interfaces.Precios precios = new interfaces.Precios(dialogPadre, controlador);
+		interfaces.ModificarPrecios precios = new interfaces.ModificarPrecios(dialogPadre, controlador);
 		precios.setVisible(true);
 		
 		tblProductos.limpiar_tabla();

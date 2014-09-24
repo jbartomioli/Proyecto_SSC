@@ -52,7 +52,7 @@ public class Principal extends JFrame {
 	private JMenuItem mntSalir;
 	private JMenu mnuOperaciones;
 	private interfaces.GenerarAnuncio generarAnuncio;
-	private interfaces.Precios modificarPrecios;
+	private interfaces.ModificarPrecios modificarPrecios;
 	private interfaces.Configuraciones configuraciones;
 	private interfaces.SeguimientoDeClientes seguimientoClientes;
 	private JMenuItem mntConfeccionar;
@@ -187,7 +187,7 @@ public class Principal extends JFrame {
 		mntSeguimiento.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SEGUIMIENTO_16.png"));
 		mnuOperaciones.add(mntSeguimiento);
 		
-		modificarPrecios = new interfaces.Precios(this);
+		modificarPrecios = new interfaces.ModificarPrecios(this);
 		
 		mntPrecios = new JMenuItem("Modificar Precios");
 		mntPrecios.addActionListener(new ActionListener() {

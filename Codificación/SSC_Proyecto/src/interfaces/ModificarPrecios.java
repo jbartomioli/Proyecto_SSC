@@ -41,7 +41,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
-public class Precios extends JDialog {
+public class ModificarPrecios extends JDialog {
 	
 	/****************
 	 * SERIALIZABLE
@@ -68,7 +68,7 @@ public class Precios extends JDialog {
 	 * CONSTRUCTOR JFRAME
 	 * @wbp.parser.constructor
 	 ****************************/
-	public Precios(Frame padre) throws Exception 
+	public ModificarPrecios(Frame padre) throws Exception 
 	{
 		super(padre);
 		setLocationRelativeTo(padre);
@@ -82,7 +82,7 @@ public class Precios extends JDialog {
 	/****************************
 	 * CONSTRUCTOR JDIALOG
 	 ****************************/
-	public Precios(JDialog padre, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
+	public ModificarPrecios(JDialog padre, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
 	{
 		super(padre);
 		setLocationRelativeTo(padre);
