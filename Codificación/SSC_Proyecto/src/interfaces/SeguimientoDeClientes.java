@@ -19,7 +19,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -94,7 +94,7 @@ public class SeguimientoDeClientes extends JDialog
 	private JPanel pnlGrafico;
 	private JTable tblVentasCliente;
 	private DefaultTableModel modelVentasCliente;
-	private Collection<negocio.Venta> ventasCliente;
+	//private Collection<negocio.Venta> ventasCliente;
 	// FIN VARIABLES GRAFICO LINEAS //
 	
 	/**
@@ -454,6 +454,7 @@ public class SeguimientoDeClientes extends JDialog
 				lblTotVtasSelec.setVisible(true);
 				
 				// INICIO GRAFICO DE LINEAS //
+				/*
 				ventasCliente = new ArrayList<negocio.Venta>();
 				ventasCliente = cliente.getVentas();
 				
@@ -488,8 +489,9 @@ public class SeguimientoDeClientes extends JDialog
 					
 					
 				}
-				
+				*/
 				// FIN GRAFICO DE LINEAS //
+				 
 			}
 		}
 }
