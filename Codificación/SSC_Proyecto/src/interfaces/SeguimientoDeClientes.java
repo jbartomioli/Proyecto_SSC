@@ -101,7 +101,7 @@ public class SeguimientoDeClientes extends JDialog
 	 * CONSTRUCTOR
 	 * @param dialogPadre
 	 */
-	public SeguimientoDeClientes(Frame framePadre, boolean modal) throws Exception
+	public SeguimientoDeClientes(Frame framePadre) throws Exception
 	{
 		/***************************************************************
 		 * FORMULARIO BASE
