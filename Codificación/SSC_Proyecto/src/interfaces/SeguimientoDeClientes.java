@@ -454,21 +454,36 @@ public class SeguimientoDeClientes extends JDialog
 				lblTotVtasSelec.setVisible(true);
 				
 				// INICIO GRAFICO DE LINEAS //
+				//ventasCliente = new ArrayList<negocio.Venta>();
+				//ventasCliente = cliente.getVentas();
 				/*
-				ventasCliente = new ArrayList<negocio.Venta>();
-				ventasCliente = cliente.getVentas();
+				JTable datos = new JTable();
 				
+				datos.setValueAt(1, 1, 1);
+				datos.setValueAt(5, 1, 2);
+				datos.setValueAt(2, 2, 1);
+				datos.setValueAt(3, 2, 2);
+				datos.setValueAt(3, 3, 1);
+				datos.setValueAt(9, 3, 2);
+
 				ChartPanel panel;
 				JFreeChart chart = null;
 				XYSplineRenderer renderer = new XYSplineRenderer();
 				XYSeriesCollection dataSet = new XYSeriesCollection();
-				ValueAxis x = new DateAxis("Fecha venta");
+				ValueAxis x = new NumberAxis("Fecha venta");
 				ValueAxis y = new NumberAxis("Monto venta");
-				TimeSeries serie = new TimeSeries("Datos");
+				XYSeries serie = new XYSeries("Datos");
 				XYPlot plot;
 				
-				modelVentasCliente.setNumRows(ventasCliente.size());
+				for(int u = 1; u < datos.getRowCount(); u++)
+				{
+					serie.add(Float.parseFloat(datos.getValueAt(u, u).toString()), Float.parseFloat(datos.getValueAt(u, u+1).toString()));
+				}
 				
+				dataSet.addSeries(serie);
+				*/
+				//modelVentasCliente.setNumRows(ventasCliente.size());
+				/*
 				if(ventasCliente.isEmpty() == false)
 				{
 					int i = 0;
@@ -485,11 +500,7 @@ public class SeguimientoDeClientes extends JDialog
 						//System.out.println("Total Venta: " + ventaActual.getTotal());
 						i++;
 					}
-					
-					
-					
-				}
-				*/
+				}*/
 				// FIN GRAFICO DE LINEAS //
 				 
 			}
