@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.swing.JOptionPane;
+
 public class ArchivosDatos 
 {
 	
@@ -57,8 +59,7 @@ public class ArchivosDatos
 		        {
 		        	//lineas.add(lineaLectura);
 		        	//System.out.println(lineaLectura);
-		        }
-		        
+		        } 
 		        try
 		        {                    
 		           if(fr != null)
@@ -66,12 +67,17 @@ public class ArchivosDatos
 		              fr.close();  
 		           }                  
 		        }
+
 		        catch(Exception e2)
 		        { 
 		           e2.printStackTrace();
 		        }
 			}
 		}
+        catch(NullPointerException npe)
+        { 
+        	JOptionPane.showMessageDialog(null, "EL@@@@@@!!!!");
+        }
 		finally
 		{
 			

@@ -1,5 +1,6 @@
 package interfaces.componentes;
 
+import java.text.NumberFormat;
 import java.util.Collection;
 
 import javax.swing.JTable;
@@ -12,6 +13,7 @@ public class TablaProductos extends JTable {
 	private TableColumn columnaPrecio;
 	private TableColumn columnaPrecioPromocional;
 	private DefaultTableModel modeloTablaProductos;
+	private NumberFormat defaultFormat = NumberFormat.getCurrencyInstance();
 
 	/**
 	 * 

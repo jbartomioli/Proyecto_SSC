@@ -51,71 +51,79 @@ public class CatalogoProductos
 	//LISTO
 	public void obtenerProductos() throws Exception
 	{
+		
 		//SE CREA INSTANCIA DEL CATALOGO DE DATOS
 		datos.CatalogoProductos ctgDatos = new datos.CatalogoProductos();		
 		
 		ctgDatos.obtenerProductos();
+		
+		if(this.productos.isEmpty() || (ctgDatos.getProductos().size() != this.productos.size()))  
+		{		
 			
-        //SE RECORRE CADA PRODUCTO DEL CATALOGO DE DATOS
-		for(datos.Producto productoDato: ctgDatos.getProductos())
-        {  
-        	//SE CREA PRODUCTO TEMPORAL DE NEGOCIO PARA SETEOS
-        	negocio.Producto productoNegocio = new negocio.Producto();
-                            	
-        	//SETEOS DE DATOS DEL PRODUCTO
-        	productoNegocio.setIdProducto(productoDato.getIdProducto());
-        	productoNegocio.setCodProducto(productoDato.getCodProducto());
-        	productoNegocio.setNombre(productoDato.getNombre());
-        	productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
-        	
-        	{//SETEO DE LA SUBCATEGORIA DEL PRODUCTO
-        		
-        		//SE CREA SUBCATEGORIA TEMPORAL DE DATOS PARA SETEOS
-        		negocio.SubCategoria subCatTemp = new negocio.SubCategoria();
-        	
-        		//SE CREA SUBCATEGORIA DE DATOS PARA OBTENER DATOS
-        		datos.SubCategoria subcatDato = new datos.SubCategoria();
-        		
-        		//SE RECUPERA INFORMACION DE LA SUBCATEGORIA
-        		subcatDato = productoDato.getSubcategoria();
-        		
-        		//SE SETEAN DATOS DE LA SUBCATEGORIA
-        		subCatTemp.setDescripcion(subcatDato.getDescripcion());
-        		subCatTemp.setIdSubcategoria(subcatDato.getIdSubcategoria());
-        	
-        		//SE SETEA LA SUBCATEGORIA EN EL PRODUCTO
-        		productoNegocio.setSubCategoria(subCatTemp);
-        	}
-        	
-        	{//SETEO DE LOS PRECIOS DEL PRODUCTO
-        		
-        		//ARRAY TEMPORAL DE PRECIOS
-        		Collection<negocio.Precio> preciosArrTemp = new ArrayList<negocio.Precio>();
-        		
-        		//SE OBTIENE CADA PRECIO DEL PRODUCTO
-        		for(datos.Precio precioDato : productoDato.getPrecios())
-        		{	
-        			//PRECIO TEMPORAL PARA SETEO DE DATOS
-        			negocio.Precio precioProducto = new negocio.Precio();
-        			
-        			//SETEO DE DATOS DE PRECIO
-        			precioProducto.setIdPrecio(precioDato.getIdPrecio());
-        			precioProducto.setFechaDesde(precioDato.getFechaDesde());
-        			precioProducto.setFechaHasta(precioDato.getFechaHasta());
-        			precioProducto.setPrecio(precioDato.getPrecio());
-        			precioProducto.setPrecioPromocional(precioDato.getPrecioPromocional());
-        			
-        			//SE AGREGA EL PRECIO AL ARRAY TEMPORAL
-        			preciosArrTemp.add(precioProducto);
-        		}
-        		
-        		//SE SETEAN LOS PRECIOS EN EL PRODUCTO
-        		productoNegocio.setPrecios(preciosArrTemp);
-        	}
-        				
-        	//SE AGREGA EL PRODUCTO SETEADO EN EL ARRAY DEL CATALOGO
-			productos.add(productoNegocio);
-        }
+			if(ctgDatos.getProductos().size() != this.productos.size())
+				this.productos.clear();
+			
+	        //SE RECORRE CADA PRODUCTO DEL CATALOGO DE DATOS
+			for(datos.Producto productoDato: ctgDatos.getProductos())
+	        {  
+	        	//SE CREA PRODUCTO TEMPORAL DE NEGOCIO PARA SETEOS
+	        	negocio.Producto productoNegocio = new negocio.Producto();
+	                            	
+	        	//SETEOS DE DATOS DEL PRODUCTO
+	        	productoNegocio.setIdProducto(productoDato.getIdProducto());
+	        	productoNegocio.setCodProducto(productoDato.getCodProducto());
+	        	productoNegocio.setNombre(productoDato.getNombre());
+	        	productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
+	        	
+	        	{//SETEO DE LA SUBCATEGORIA DEL PRODUCTO
+	        		
+	        		//SE CREA SUBCATEGORIA TEMPORAL DE DATOS PARA SETEOS
+	        		negocio.SubCategoria subCatTemp = new negocio.SubCategoria();
+	        	
+	        		//SE CREA SUBCATEGORIA DE DATOS PARA OBTENER DATOS
+	        		datos.SubCategoria subcatDato = new datos.SubCategoria();
+	        		
+	        		//SE RECUPERA INFORMACION DE LA SUBCATEGORIA
+	        		subcatDato = productoDato.getSubcategoria();
+	        		
+	        		//SE SETEAN DATOS DE LA SUBCATEGORIA
+	        		subCatTemp.setDescripcion(subcatDato.getDescripcion());
+	        		subCatTemp.setIdSubcategoria(subcatDato.getIdSubcategoria());
+	        	
+	        		//SE SETEA LA SUBCATEGORIA EN EL PRODUCTO
+	        		productoNegocio.setSubCategoria(subCatTemp);
+	        	}
+	        	
+	        	{//SETEO DE LOS PRECIOS DEL PRODUCTO
+	        		
+	        		//ARRAY TEMPORAL DE PRECIOS
+	        		Collection<negocio.Precio> preciosArrTemp = new ArrayList<negocio.Precio>();
+	        		
+	        		//SE OBTIENE CADA PRECIO DEL PRODUCTO
+	        		for(datos.Precio precioDato : productoDato.getPrecios())
+	        		{	
+	        			//PRECIO TEMPORAL PARA SETEO DE DATOS
+	        			negocio.Precio precioProducto = new negocio.Precio();
+	        			
+	        			//SETEO DE DATOS DE PRECIO
+	        			precioProducto.setIdPrecio(precioDato.getIdPrecio());
+	        			precioProducto.setFechaDesde(precioDato.getFechaDesde());
+	        			precioProducto.setFechaHasta(precioDato.getFechaHasta());
+	        			precioProducto.setPrecio(precioDato.getPrecio());
+	        			precioProducto.setPrecioPromocional(precioDato.getPrecioPromocional());
+	        			
+	        			//SE AGREGA EL PRECIO AL ARRAY TEMPORAL
+	        			preciosArrTemp.add(precioProducto);
+	        		}
+	        		
+	        		//SE SETEAN LOS PRECIOS EN EL PRODUCTO
+	        		productoNegocio.setPrecios(preciosArrTemp);
+	        	}
+	        				
+	        	//SE AGREGA EL PRODUCTO SETEADO EN EL ARRAY DEL CATALOGO
+				productos.add(productoNegocio);
+	        }
+		}
 	}
 	//---------------------------------------------------------------
 		

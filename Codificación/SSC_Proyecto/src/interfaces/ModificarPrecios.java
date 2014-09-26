@@ -210,17 +210,6 @@ public class ModificarPrecios extends JDialog {
 					{
 						click_modificar_precio(controladorAnuncios);
 					} 
-//					catch(NullPointerException npe)
-//					{
-//						try 
-//						{
-//							click_modificar_precio(null);
-//						} 
-//						catch(Exception e)
-//						{
-//							e.printStackTrace();
-//						}
-//					}
 					catch(Exception e)
 					{
 						e.printStackTrace();
@@ -297,7 +286,7 @@ public class ModificarPrecios extends JDialog {
 					try 
 					{
 						controladorPrecios.getCatalogoProductos().obtenerProductos();
-						
+						tblProductos.limpiar_tabla();
 						tblProductos.completarTabla(controladorPrecios.getCatalogoProductos().buscarProducto(txtBuscarProductos.getText()));			
 					} 
 					catch (Exception e)
@@ -393,6 +382,7 @@ public class ModificarPrecios extends JDialog {
 			subcategoriaSeleccionada = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 			//subcategoriaSeleccionada.obtenerProductos();
 						
+			tblProductos.limpiar_tabla();
 			tblProductos.completarTabla(controladorPrecios.seleccionarSubcategoria(
 					subcategoriaSeleccionada.getIdcategoria(),
 					subcategoriaSeleccionada.getIdSubcategoria()));
@@ -409,6 +399,7 @@ public class ModificarPrecios extends JDialog {
 			subcategoriaSeleccionada = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 			subcategoriaSeleccionada.obtenerProductos();
 			
+			tblProductos.limpiar_tabla();
 			tblProductos.completarTabla(controladorPrecios.seleccionarSubcategoria(
 					subcategoriaSeleccionada.getIdcategoria(),
 					subcategoriaSeleccionada.getIdSubcategoria()));
@@ -426,7 +417,8 @@ public class ModificarPrecios extends JDialog {
 		try 
 		{
 			controladorPrecios.getCatalogoProductos().obtenerProductos();
-			
+			tblProductos.limpiar_tabla();
+
 			tblProductos.completarTabla(controladorPrecios.getCatalogoProductos().buscarProducto(txtBuscarProductos.getText()));
 			tblProductos.definirTablaProductos();
 			
@@ -496,6 +488,8 @@ public class ModificarPrecios extends JDialog {
 		        	negocio.SubCategoria subcategoriaActual = new negocio.SubCategoria();
 		        	subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		       		        	
+					tblProductos.limpiar_tabla();
+
 		        	tblProductos.completarTabla(
 		        		controladorPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
 		        
