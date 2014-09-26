@@ -1,14 +1,16 @@
 package interfaces.componentes;
 
 import java.awt.Component;
-
-
+import java.text.DecimalFormat;
+import javax.swing.BorderFactory;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.NumberFormatter;
 
-public class RendererFormatoPrecioTabla extends JTextField implements TableCellRenderer
+public class RendererFormatoPrecioTabla extends JFormattedTextField implements TableCellRenderer
 {
 	/**
 	 * 
@@ -21,33 +23,19 @@ public class RendererFormatoPrecioTabla extends JTextField implements TableCellR
         this.isBordered = isBordered;
     }
 	
+
     
-//    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
-//    {
-//        JFormattedTextField campoTexto = new JFormattedTextField();
-//        campoTexto.setBorder(BorderFactory.createEmptyBorder());
-//        
-//        campoTexto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(
-//            		new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("$ #,##0.00")))); 
-//                 
-//        
-//        //Se aplica alineación a la izquierda
-//        campoTexto.setHorizontalAlignment(SwingConstants.TRAILING); 
-//        campoTexto.setValue(value);
-//        
-//        if(isSelected){ 
-//            campoTexto.setBackground(table.getSelectionBackground()); 
-//        }
-//        
-//        return campoTexto;
-//    }
-    
-    public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) 
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
     {
-        // Muestra el Boton en cada fila del JTable ProductosAnuncio.
     	JFormattedTextField campoTexto = new JFormattedTextField();
-    	campoTexto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(
-        		new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("$ #,##0.00"))));
+    	campoTexto.setBorder(BorderFactory.createEmptyBorder());
+    	campoTexto.setHorizontalAlignment(SwingConstants.TRAILING); 
+    	campoTexto.setValue(value);
+    	
+    	if(isSelected)
+    		campoTexto.setBackground(table.getSelectionBackground()); 
+
+    	campoTexto.setFormatterFactory(new DefaultFormatterFactory(new NumberFormatter(new DecimalFormat("$ #,##0.00"))));
     	
     	return campoTexto;
     }

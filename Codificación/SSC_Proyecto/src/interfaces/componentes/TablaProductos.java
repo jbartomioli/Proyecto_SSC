@@ -3,8 +3,6 @@ package interfaces.componentes;
 import java.util.Collection;
 
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -65,30 +63,21 @@ public class TablaProductos extends JTable {
 		columnaNombre.setPreferredWidth(275);
 		
 		columnaPrecio = getColumn("Precio");
-
 		columnaPrecioPromocional = getColumn("Precio promocional");
+		
+		columnaPrecio.setCellEditor(new interfaces.componentes.EditorCeldasMonto(this));
 		columnaPrecioPromocional.setCellEditor(new interfaces.componentes.EditorCeldasMonto(this));
-		columnaPrecioPromocional.setCellRenderer(new interfaces.componentes.RendererFormatoPrecioTabla(false));
 
 
 		columnaPrecioPromocional.setPreferredWidth(150);
 		
 		this.ocultar_columna(0);
 		
-		DefaultTableCellRenderer AlinearNumero = new DefaultTableCellRenderer();
-		AlinearNumero.setHorizontalAlignment(SwingConstants.RIGHT);
-		//Alinea los valores numéricos a la derecha
-		this.getColumnModel().getColumn(2).setCellRenderer(AlinearNumero);
-		this.getColumnModel().getColumn(3).setCellRenderer(AlinearNumero);
-		this.getColumnModel().getColumn(4).setCellRenderer(AlinearNumero);
 		
 		for(int j=0; j<getColumnModel().getColumnCount(); ++j)
 			getColumnModel().getColumn(j).setResizable(false);
 		
 		getTableHeader().setReorderingAllowed(false);
-		
-
-
 	}
 
 	
@@ -108,6 +97,8 @@ public class TablaProductos extends JTable {
 	public void definirTablaProductos() 
 	{
 		columnaBoton.setCellRenderer(new interfaces.componentes.RendererBotonCeldaModificar(true));
+		columnaPrecio.setCellRenderer(new interfaces.componentes.RendererFormatoPrecioTabla(false));
+		columnaPrecioPromocional.setCellRenderer(new interfaces.componentes.RendererFormatoPrecioTabla(false));
 	}
 	
 	public void limpiar_tabla()

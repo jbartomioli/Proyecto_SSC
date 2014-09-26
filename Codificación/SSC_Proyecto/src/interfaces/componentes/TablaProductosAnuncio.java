@@ -12,6 +12,8 @@ public class TablaProductosAnuncio extends JTable
 {
 	private TableColumn columnaBoton;
 	private DefaultTableModel modeloTablaProductos;
+	private TableColumn columnaPrecioPromocional;
+	private TableColumn columnaPrecio;
 
 	/**
 	 * 
@@ -67,16 +69,18 @@ public class TablaProductosAnuncio extends JTable
 		columnaNombre = getColumn("Producto");
 		columnaNombre.setPreferredWidth(275);
 		
-		TableColumn columnaPrecio;
 		columnaPrecio = getColumn("Precio promocional");
 		columnaPrecio.setPreferredWidth(150);
 		
+		columnaPrecio = getColumn("Precio");
+		columnaPrecioPromocional = getColumn("Precio promocional");
+		
+		columnaPrecio.setCellEditor(new interfaces.componentes.EditorCeldasMonto(this));
+		columnaPrecioPromocional.setCellEditor(new interfaces.componentes.EditorCeldasMonto(this));
+		
 		DefaultTableCellRenderer AlinearNumero = new DefaultTableCellRenderer();
 		AlinearNumero.setHorizontalAlignment(SwingConstants.RIGHT);
-		//Alinea los valores numéricos a la derecha
-		this.getColumnModel().getColumn(2).setCellRenderer(AlinearNumero);
-		this.getColumnModel().getColumn(3).setCellRenderer(AlinearNumero);
-		this.getColumnModel().getColumn(4).setCellRenderer(AlinearNumero);
+		getColumn("Stock").setCellRenderer(AlinearNumero);
 		
 		
 		for(int j=0; j<getColumnModel().getColumnCount(); ++j)
@@ -86,17 +90,19 @@ public class TablaProductosAnuncio extends JTable
 	}
 
 	//
-	public void definirTablaProductosAnuncio() {
-		columnaBoton
-				.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(
-						true));
+	public void definirTablaProductosAnuncio() 
+	{
+		columnaBoton.setCellRenderer(new interfaces.componentes.RendererBotonCeldaEliminar(true));
+		columnaPrecio.setCellRenderer(new interfaces.componentes.RendererFormatoPrecioTabla(false));
+		columnaPrecioPromocional.setCellRenderer(new interfaces.componentes.RendererFormatoPrecioTabla(false));
 	}
 
 	//
-	public void definirTablaProductos() {
-		columnaBoton
-				.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(
-						true));
+	public void definirTablaProductos() 
+	{
+		columnaBoton.setCellRenderer(new interfaces.componentes.RendererBotonCeldaAniadir(true));
+		columnaPrecio.setCellRenderer(new interfaces.componentes.RendererFormatoPrecioTabla(false));
+		columnaPrecioPromocional.setCellRenderer(new interfaces.componentes.RendererFormatoPrecioTabla(false));
 	}
 	
 	public void limpiar_tabla()
