@@ -170,6 +170,7 @@ public class EditorHTML extends JDialog
 				   			+ "<th>Cod.</th>"
 				   			+ "<th>Producto</th>"
 				   			+ "<th>Precio Vigente</th>"
+				   			+ "<th>Precio Promocional</th>"
 				   			+ "</tr>";
 		   	
 	   		for(HashMap<String, String> productoActual: productos)
@@ -177,6 +178,7 @@ public class EditorHTML extends JDialog
 	   			renglon = "<tr>"
 	   					+ "<td>"+productoActual.get("ID")+"</td>"
 	   					+ "<td>"+productoActual.get("DESCRIPCION")+"</td>"
+	   					+ "<td>$ "+productoActual.get("VIGENTE")+"</td>"
 	   					+ "<td>$ "+productoActual.get("PROMOCIONAL")+"</td>"
 	   					+ "</tr>";
 
