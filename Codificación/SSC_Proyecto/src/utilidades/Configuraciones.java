@@ -34,6 +34,8 @@ public class Configuraciones{
 	public static String DIR_MAILS;
 	
 	public static String URL_FILE = "configuraciones.ini";
+	
+	public static String DIR_IMPORTADOR;
 	//---------------------------------------------------------------
 
 
@@ -99,6 +101,7 @@ public class Configuraciones{
 		
 		DIR_MAILS = propiedades.getProperty("DIR_MAILS").toString();
 		
+		DIR_IMPORTADOR = propiedades.getProperty("DIR_IMPORTADOR");
 		
 		SMTP_HOST = propiedades.getProperty("SMTP_HOST").toString();
 		SMTP_PORT = propiedades.getProperty("SMTP_PORT").toString();

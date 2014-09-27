@@ -39,7 +39,7 @@ public class ImportarDatos extends JDialog
 	private interfaces.componentes.BotonesIconos btnAceptar;
 	private interfaces.componentes.TablaImportacionDatos tblImportacion;
 	private BotonesIconos btnProcesar;
-	private String dirRaiz = "C:\\TMP\\";
+	//private String dirRaiz = "C:\\TMP\\";
 
 
 	
@@ -142,12 +142,12 @@ public class ImportarDatos extends JDialog
 		
 		Collection<String> archivos = new ArrayList<String>();
 		utilidades.ArchivosDatos listarDir = new utilidades.ArchivosDatos();
-		archivos = listarDir.obtenerArchivos(dirRaiz);
+		archivos = listarDir.obtenerArchivos(utilidades.Configuraciones.DIR_IMPORTADOR);
 		
 		try
 		{			
-			listarDir.leerArchivos(dirRaiz, archivos);
-			tblImportacion.completarRutaArchivos(dirRaiz, tablas, archivos);
+			listarDir.leerArchivos(utilidades.Configuraciones.DIR_IMPORTADOR, archivos);
+			tblImportacion.completarRutaArchivos(utilidades.Configuraciones.DIR_IMPORTADOR, tablas, archivos);
 			
 			//Evento para eliminar productos del anuncio
 			tblImportacion.addMouseListener(new MouseAdapter() {
