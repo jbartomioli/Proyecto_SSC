@@ -36,15 +36,15 @@ import java.awt.event.KeyAdapter;
 
 public class Principal extends JFrame {
 
-	/***************
-	 * SERIALIZABLE
-	 ***************/
+	//***************************************************************
+	//* SERIALIZABLE												*
+	//***************************************************************
 	private static final long serialVersionUID = 3856238941350632345L;
 	
 
-	/**************
-	 * COMPONENTES
-	 **************/
+	//***************************************************************
+	//* COMPONENTES													*
+	//***************************************************************
 	private JPanel cntContenedor;
 	private JLabel lblImagenfondo;
 	private JMenuBar mnuBarraMenu;
@@ -66,9 +66,7 @@ public class Principal extends JFrame {
 	private JMenuItem mntConfiguracion;
 	private interfaces.Acerca acerca;
 	private interfaces.Ayuda ayuda;
-
-
-	private ImportarDatos importarDatos;
+	private interfaces.ImportarDatos importarDatos;
 	
 
 	/*******************************
@@ -131,14 +129,15 @@ public class Principal extends JFrame {
 		mnuArchivo.setMnemonic('A');
 		mnuBarraMenu.add(mnuArchivo);
 		
-		importarDatos = new interfaces.ImportarDatos(this);
+		
 		
 		mntImportar = new JMenuItem("Importar Datos");
 		mntImportar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
 		mntImportar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"IMPORTAR_16.png"));
 		mntImportar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				importarDatos.setVisible(true);
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				action_importarDatos();
 			}
 		});
 		mnuArchivo.add(mntImportar);
@@ -251,7 +250,8 @@ public class Principal extends JFrame {
 		acerca = new interfaces.Acerca(this, true);
 		
 		mntAcerca.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) 
+			{
 				acerca.setVisible(true);
 			}
 			
@@ -273,9 +273,22 @@ public class Principal extends JFrame {
         });
 	}
 	
+	//***************************************************************
+	//* EVENTOS														*
+	//***************************************************************
 	
 	/**
-	 * EVENTOS
+	 * PANTALLA IMPORTAR DATOS
+	 */
+	protected void action_importarDatos()
+	{
+		importarDatos = new interfaces.ImportarDatos(this);
+		importarDatos.setVisible(true);
+	}
+	
+	
+	/**
+	 * PANTALLA GENERACIO ANUNCIO
 	 * @throws Exception 
 	 */
 	protected void action_confeccionar() throws Exception

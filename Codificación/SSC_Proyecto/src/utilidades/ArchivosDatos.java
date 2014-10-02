@@ -26,6 +26,7 @@ public class ArchivosDatos
 	}
 	
 	
+	
 	/**
 	 * OBTIENE LOS ARCHIVOS CONTENIDOS EN EL DIRECTORIO
 	 * DE IMPORTACION
@@ -43,7 +44,6 @@ public class ArchivosDatos
 		
 		if (ficheros == null)
 			return null;
-
 		else 
 		{
 			Collection<String> arrArchivos = new ArrayList<String>();
