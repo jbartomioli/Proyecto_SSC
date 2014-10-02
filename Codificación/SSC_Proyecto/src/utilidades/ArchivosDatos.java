@@ -6,23 +6,41 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.swing.JOptionPane;
 
+
+/**
+ * LECTURA DE ARCHIVOS EN DIRECTORIO DE IMPORTACION
+ * NO EFECTUA LECTURA DEL CONTENIDO DEL ARCHIVO
+ * @author User
+ *
+ */
 public class ArchivosDatos 
 {
 	
+	/**
+	 * CONSTRUCTOR
+	 */
 	public ArchivosDatos()
 	{
 		
 	}
 	
 	
+	/**
+	 * OBTIENE LOS ARCHIVOS CONTENIDOS EN EL DIRECTORIO
+	 * DE IMPORTACION
+	 * @param dirRaiz
+	 * @return
+	 */
 	public Collection<String> obtenerArchivos(String dirRaiz)
 	{
 		File dir = new File(dirRaiz);
+		
+		if(!dir.exists())
+			dir.mkdir();
 		   
 		String[] ficheros = dir.list();
-				   
+		
 		if (ficheros == null)
 			return null;
 
@@ -38,6 +56,12 @@ public class ArchivosDatos
 	}	
 	
 	
+	/**
+	 * SIN USO - PERMITE LEER LINEA POR LINEA UN ARCHIVO
+	 * @param dirRaiz
+	 * @param archivos
+	 * @throws Exception
+	 */
 	public void leerArchivos(String dirRaiz, Collection<String> archivos) throws Exception
 	{
 		try
@@ -45,20 +69,16 @@ public class ArchivosDatos
 			for(String archivoActual : archivos)
 			{				
 				String rutaArchivo = dirRaiz+archivoActual;
-				
-				//String archivoNombre = archivoActual.substring(0, archivoActual.length()-4);
-					
+									
 				File archivo = new File(rutaArchivo);
 				FileReader fr = new FileReader(archivo);
 				BufferedReader br = new BufferedReader(fr);
 		        
-		        @SuppressWarnings("unused")
 				String lineaLectura = new String();   
 		         
 		        while((lineaLectura = br.readLine()) != null)
 		        {
-		        	//lineas.add(lineaLectura);
-		        	//System.out.println(lineaLectura);
+		        	System.out.println(lineaLectura);
 		        } 
 		        try
 		        {                    
@@ -74,10 +94,6 @@ public class ArchivosDatos
 		        }
 			}
 		}
-        catch(NullPointerException npe)
-        { 
-        	JOptionPane.showMessageDialog(null, "EL@@@@@@!!!!");
-        }
 		finally
 		{
 			

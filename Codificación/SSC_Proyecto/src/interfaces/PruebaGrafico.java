@@ -1,4 +1,5 @@
 /*Clase para probar la funcionalidad de gráficos*/
+
 /*Clase temporal*/
 
 package interfaces;
