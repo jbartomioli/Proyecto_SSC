@@ -55,6 +55,7 @@ public class Principal extends JFrame {
 	private interfaces.ModificarPrecios modificarPrecios;
 	private interfaces.Configuraciones configuraciones;
 	private interfaces.SeguimientoDeClientes seguimientoClientes;
+	private interfaces.PruebaGrafico grafico;
 	private JMenuItem mntConfeccionar;
 	private JMenuItem mntSeguimiento;
 	private JMenuItem mntPrecios;
@@ -176,11 +177,12 @@ public class Principal extends JFrame {
 		mnuOperaciones.add(mntConfeccionar);
 	
 		seguimientoClientes = new interfaces.SeguimientoDeClientes(this);
-		
+		//grafico = new interfaces.PruebaGrafico();
 		mntSeguimiento = new JMenuItem("Realizar Seguimiento de Cliente");
 		mntSeguimiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				seguimientoClientes.setVisible(true);							
+				seguimientoClientes.setVisible(true);
+				//grafico.setVisible(true);
 			}
 		});
 		mntSeguimiento.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SEGUIMIENTO_16.png"));
