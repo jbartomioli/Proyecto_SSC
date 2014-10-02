@@ -1,17 +1,11 @@
 package interfaces.interfaces_software;
 
 import javax.swing.JOptionPane;
-
 import org.hibernate.HibernateException;
 
 
 public class TrabajoInicializar implements Runnable{
     
-//    private negocio.ControladorConfeccionarAnuncio ctrlAnuncios;
-	//private negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento;
-	//private negocio.ControladorRegistrarPedidoCliente controladorPedido;
-
-
     public TrabajoInicializar()
     {
     	
@@ -22,9 +16,6 @@ public class TrabajoInicializar implements Runnable{
     {		
         try
         {		
-        	//ctrlAnuncios.inicializarCatalogos();
-        	
-        	//
 			@SuppressWarnings("unused")
 			interfaces.Principal principal = new interfaces.Principal();
         	
@@ -34,7 +25,7 @@ public class TrabajoInicializar implements Runnable{
         {
             System.err.println( e.getMessage() );
         }
-		catch(HibernateException he)
+		catch(HibernateException he )
 		{
 			JOptionPane.showMessageDialog(
 					null, 
