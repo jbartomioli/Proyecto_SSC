@@ -27,17 +27,7 @@ public class PruebaGrafico extends JDialog
 	
 	private static final long serialVersionUID = 1L;
 	private JTable datos;
-	
-	ChartPanel panel;
-	JFreeChart chart = null;
-	
-	XYSplineRenderer renderer = new XYSplineRenderer();
-	XYSeriesCollection dataSet = new XYSeriesCollection();
-	ValueAxis x = new NumberAxis("Fecha venta");
-	ValueAxis y = new NumberAxis("Monto venta");
-	XYPlot plot;
-	XYSeries serie = new XYSeries("Datos");
-	
+		
 	public PruebaGrafico() 
 	{
 		
@@ -78,6 +68,18 @@ public class PruebaGrafico extends JDialog
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				JOptionPane.showMessageDialog(null, "Entra al action performed");
+				
+				ChartPanel panel;
+				JFreeChart chart = null;
+				
+				XYSplineRenderer renderer = new XYSplineRenderer();
+				XYSeriesCollection dataSet = new XYSeriesCollection();
+				ValueAxis x = new NumberAxis("Fecha venta");
+				ValueAxis y = new NumberAxis("Monto venta");
+				XYPlot plot;
+				XYSeries serie = new XYSeries("Datos");
+				
+				JOptionPane.showMessageDialog(null, "Pasa inicialización");
 				
 				/*
 				try
