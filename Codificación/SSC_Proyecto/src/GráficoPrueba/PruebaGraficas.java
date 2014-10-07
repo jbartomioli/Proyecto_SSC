@@ -43,7 +43,6 @@ public class PruebaGraficas extends JFrame
 	private JLayeredPane capas = null;
 	private JPanel lineas = null;
 	private JPanel barras = null;
-	private DefaultCategoryDataset data;
 
 	public PruebaGraficas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -121,7 +120,6 @@ public class PruebaGraficas extends JFrame
 		
 		setTitle("Gráficas");
 		
-		
 		btnGenerar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{				
@@ -130,14 +128,14 @@ public class PruebaGraficas extends JFrame
 				JFreeChart chart = null;
 				
 				if(radioLinea.isSelected())
-				{					
+				{	/*				
 					XYSplineRenderer renderer = new XYSplineRenderer();
 					XYSeriesCollection dataSet = new XYSeriesCollection();
 					ValueAxis x = new NumberAxis("Fecha venta");
 					ValueAxis y = new NumberAxis("Monto venta");
 					XYSeries serie = new XYSeries("Datos");
 					XYPlot plot;
-					/*
+					
 					lineas.removeAll();
 					
 					//JOptionPane.showMessageDialog(null, "Pasa inicialización");
@@ -156,8 +154,8 @@ public class PruebaGraficas extends JFrame
 					chart.setTitle("Gráfico de Líneas");*/
 				}
 				else
-				{
-					data = new DefaultCategoryDataset();
+				{/*
+					DefaultCategoryDataset data = new DefaultCategoryDataset();
 					
 					String prod1 = "Sopas";
 					String prod2 = "Sodas";
@@ -180,7 +178,7 @@ public class PruebaGraficas extends JFrame
 					chart = ChartFactory.createBarChart("Gráfico de Barras", "Día", "Cantidad", data, PlotOrientation.HORIZONTAL, true, true, true);
 					
 					CategoryPlot plot = (CategoryPlot) chart.getPlot();
-					plot.setDomainGridlinesVisible(true);
+					plot.setDomainGridlinesVisible(true);*/
 				}
 				
 				panel = new ChartPanel(chart);
