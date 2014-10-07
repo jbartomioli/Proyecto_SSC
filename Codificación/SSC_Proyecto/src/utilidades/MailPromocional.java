@@ -13,6 +13,7 @@ import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.ContentType;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -102,10 +103,16 @@ public class MailPromocional {
         	String cid = "IMG"+cidCont;
         	addCID(cid,imgString);
         	++cidCont;
-        	addAttach(imgString,cid);
+        	//addAttach(imgString,cid);
         }
         
-        mensaje.setContent(multipart);
+        
+		ContentType ct = new ContentType(mensaje.getContentType());
+	    ct.setParameter("charset", "utf-8");
+	    ct.setParameter("type", "multipart/related");
+        
+	    
+	    mensaje.setContent(multipart, ct.toString());
         
         Transport.send(mensaje);
 	}
@@ -119,6 +126,8 @@ public class MailPromocional {
         BodyPart messageBodyPart = new MimeBodyPart();
         messageBodyPart.setDataHandler(new DataHandler(fds));
         messageBodyPart.setHeader("Content-ID","<"+cidname+">");
+        messageBodyPart.addHeader("Content-Type", "image/jpeg");
+
         this.multipart.addBodyPart(messageBodyPart);
     }
 	
