@@ -1,11 +1,15 @@
 /*Clase para probar la funcionalidad de gráficos*/
-
 /*Clase temporal*/
 
-package interfaces;
+package GráficoPrueba;
 
-import javax.swing.JDialog;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -22,12 +26,13 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PruebaGrafico extends JDialog
-{	
-	
-	private static final long serialVersionUID = 1L;
+
+public class PruebaGrafico extends JDialog {
+
+	private JPanel contentPane;
 	private JTable datos;
-		
+
+	
 	public PruebaGrafico() 
 	{
 		
@@ -107,4 +112,5 @@ public class PruebaGrafico extends JDialog
 			}
 		});
 	}
+
 }
