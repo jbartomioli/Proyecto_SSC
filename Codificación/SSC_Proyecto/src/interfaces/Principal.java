@@ -234,9 +234,8 @@ public class Principal extends JFrame {
 		
 		mntContenidoAyuda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setCursor(new Cursor(Cursor.WAIT_CURSOR));
-				ayuda.openURL("D:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\recursos\\ayuda\\index.html");
-				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				ayuda.setVisible(true);
+				ayuda.cargarHTML();
 			}
 		});
 		

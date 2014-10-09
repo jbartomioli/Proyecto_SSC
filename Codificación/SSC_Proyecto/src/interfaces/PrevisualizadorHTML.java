@@ -284,27 +284,7 @@ public class PrevisualizadorHTML extends JDialog
 	    	new Thread(new interfaces.interfaces_software.HiloBarraProgreso(trabajoEnvio, this, this.barraProgreso, 200, true)).start();
 	    	        		        	
 			resultado = true;
-		}
-//			catch (MessagingException e)
-//			{
-//				e.printStackTrace();
-//				JOptionPane.showMessageDialog(
-//						this,
-//						"Se ha producido un error al intentar enviar el mensaje.\n"
-//						+ "Inténtelo más tarde.",
-//						"ERROR",
-//						JOptionPane.ERROR_MESSAGE);
-//				resultado = false;
-//			}
-//			catch(FileNotFoundException fne)
-//			{
-//				JOptionPane.showMessageDialog(
-//						this,
-//						"Se ha producido un error al confeccionar el mensaje",
-//						"ERROR",
-//						JOptionPane.ERROR_MESSAGE);
-//				resultado = false;
-//			}			
+		}	
 		finally
 		{
 	    	return resultado;
