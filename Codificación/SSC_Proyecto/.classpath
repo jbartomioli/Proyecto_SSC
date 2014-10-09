@@ -24,5 +24,6 @@
 	<classpathentry kind="var" path="LIB_EXT/hibernate-release-4.2.2.Final/lib/required/dom4j-1.6.1.jar"/>
 	<classpathentry kind="var" path="LIB_EXT/jfreechart-1.0.14.jar"/>
 	<classpathentry kind="var" path="LIB_EXT/javacsv2.1/javacsv.jar"/>
+	<classpathentry kind="var" path="LIB_EXT/jcommon-1.0.15.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
