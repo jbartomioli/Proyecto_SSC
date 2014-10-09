@@ -49,7 +49,8 @@ public class Ayuda extends JDialog
 		/******************
 		 * FORMULARIO BASE
 		 ******************/
-//		super(padre);		
+//	
+//	super(padre);		
    		setResizable(false);
 		setMinimumSize(new Dimension(800,600));
 		getContentPane().setMinimumSize(new Dimension(800, 600));
