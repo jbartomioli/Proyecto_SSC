@@ -3,7 +3,7 @@ package interfaces;
  * PANTALLA CORRESPONDIENTE AL CU GENERAR ANUNCIO
  */
 
-import java.awt.Color;
+
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -13,7 +13,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -30,7 +29,6 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
@@ -42,8 +40,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Vector;
-
-import javax.swing.SwingConstants;
 
 import negocio.SubCategoria;
 import net.atlanticbb.tantlinger.shef.EditorHTML;
@@ -72,8 +68,8 @@ public class GenerarAnuncio extends JDialog {
 	private interfaces.componentes.BotonesIconos btnGenerar;
 	private interfaces.componentes.BotonesIconos btnEnviar;
 	private interfaces.componentes.BotonesIconos btnCerrar;
-	private JLabel lblModificarDestinatarios;
-	private JLabel lblModificarPrecios;
+	private interfaces.componentes.LabelBoton lblModificarDestinatarios;
+	private interfaces.componentes.LabelBoton lblModificarPrecios;
 	private JTextField txtAsunto;
 	private JProgressBar prgProgresoAniadir;
 	private JScrollPane scrollProductosAnuncio;
@@ -257,16 +253,7 @@ public class GenerarAnuncio extends JDialog {
 		/*********************************
 		 * BOTON MODIFICAR DESTINATARIOS
 		 *********************************/
-		lblModificarDestinatarios = new JLabel("Modificar Destinatarios");
-		lblModificarDestinatarios.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblModificarDestinatarios.setForeground(SystemColor.inactiveCaptionText);
-		lblModificarDestinatarios.setBorder(new BevelBorder(0));
-		
-		// Cambia el tipo de cursor al posarlo sobre el link
-		lblModificarDestinatarios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblModificarDestinatarios.setBackground(UIManager.getColor("Button.disabledForeground"));
-		lblModificarDestinatarios.setForeground(new Color(8,98,235));
-		lblModificarDestinatarios.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblModificarDestinatarios = new interfaces.componentes.LabelBoton("Modificar Destinatarios");
 		lblModificarDestinatarios.setBounds(324, 558, 150, 19);
 		lblModificarDestinatarios.setEnabled(false);
 		getContentPane().add(lblModificarDestinatarios);
@@ -275,18 +262,8 @@ public class GenerarAnuncio extends JDialog {
 		/****************************
 		* BOTON MODIFICAR PRECIOS
 		****************************/
-		lblModificarPrecios = new JLabel("Modificar Precios");
-		lblModificarPrecios.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModificarPrecios.setForeground(SystemColor.inactiveCaptionText);
-		lblModificarPrecios.setBorder(new BevelBorder(0));
-				
-		// Cambia el tipo de cursor al posarlo sobre el link
-		lblModificarPrecios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblModificarPrecios.setBackground(UIManager.getColor("Button.disabledForeground"));
-		lblModificarPrecios.setForeground(new Color(8,98,235));
-		lblModificarPrecios.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblModificarPrecios = new interfaces.componentes.LabelBoton("Modificar Precios");
 		lblModificarPrecios.setBounds(324, 580, 150, 19);
-		lblModificarPrecios.setEnabled(true);
 		getContentPane().add(lblModificarPrecios);
 
 		
@@ -830,6 +807,7 @@ public class GenerarAnuncio extends JDialog {
 		btnEnviar.setEnabled(false);
 		btnGenerar.setEnabled(false);
 		lblModificarDestinatarios.setEnabled(false);
+		lblModificarPrecios.setEnabled(false);
 	}
 	
 	
@@ -841,6 +819,7 @@ public class GenerarAnuncio extends JDialog {
 		btnEnviar.setEnabled(true);
 		btnGenerar.setEnabled(true);
 		lblModificarDestinatarios.setEnabled(true);
+		lblModificarPrecios.setEnabled(true);
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		setEnabled(true);
 	}
