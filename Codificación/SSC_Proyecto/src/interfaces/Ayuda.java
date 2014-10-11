@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -122,21 +123,21 @@ public class Ayuda extends JDialog
 
 	public void cargarHTML()
 	{				
-		archivoHTML = new File(utilidades.Configuraciones.DIR_HELP);
-				
-	   	fr = null;
-	   	br = null;
-	   	
+//		archivoHTML = new File(utilidades.Configuraciones.DIR_HELP);
+//				
+//	   	fr = null;
+//	   	br = null;
+//	   	
 
 	   	try 
 	   	{		   		
-	   		fr = new FileReader(archivoHTML);
-	   		br = new BufferedReader(fr);
+//	   		fr = new FileReader(archivoHTML);
+//	   		br = new BufferedReader(fr);
 			 
-	   		String renglon = "";
-		 
-	   		while((renglon=br.readLine())!=null)
-	        		contenidoMailHTML += renglon;
+//	   		String renglon = "";
+//		 
+//	   		while((renglon=br.readLine())!=null)
+//	        		contenidoMailHTML += renglon;
 	   		
 
 			HTMLEditorKit kit = new HTMLEditorKit();
@@ -146,8 +147,9 @@ public class Ayuda extends JDialog
 	    	
 		    epnEditor.setEditorKit(kit);
 		    epnEditor.setDocument(doc);
-	   		epnEditor.setText(contenidoMailHTML);
-	   		
+	   		epnEditor.setContentType("html");
+	   		epnEditor.setPage(new URL("http://www.ibcrosario.com.ar"));
+	   		epnEditor.setEditable(false);
 	   		
 		    getContentPane().add(scrEditor);
 		    
