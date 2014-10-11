@@ -2,6 +2,7 @@ package interfaces;
 
 import interfaces.componentes.BotonesIconos;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -19,7 +20,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
-//import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -27,6 +27,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -38,14 +39,15 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 
-import java.util.Collection;
-
 import javax.swing.JLayeredPane;
+
+
 
 //INICIO IMPORTS PARA GRAFICAR
 //SOLO UTILES PARA GRAFICOS DE LINEAS
 import org.jfree.chart.*;
 import org.jfree.chart.renderer.xy.XYSplineRenderer;
+import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.axis.*;
 import org.jfree.data.time.TimeSeries;
@@ -91,7 +93,6 @@ public class SeguimientoDeClientes extends JDialog
 	
 	// INICIO VARIABLES GRAFICO DE LINEAS //
 	private JLayeredPane layerGrafico;
-	private JPanel pnlGrafico;
 	private JTable tblVentasCliente;
 	private DefaultTableModel modelVentasCliente;
 	//private Collection<negocio.Venta> ventasCliente;
@@ -284,10 +285,6 @@ public class SeguimientoDeClientes extends JDialog
 		layerGrafico.setBounds(656, 106, 632, 392);
 		getContentPane().add(layerGrafico);
 		
-		pnlGrafico = new JPanel();
-		pnlGrafico.setBounds(10, 21, 612, 360);
-		layerGrafico.add(pnlGrafico);
-		
 		tblVentasCliente = new JTable();
 		
 		modelVentasCliente = (DefaultTableModel) tblVentasCliente.getModel();
@@ -457,52 +454,59 @@ public class SeguimientoDeClientes extends JDialog
 				//ventasCliente = new ArrayList<negocio.Venta>();
 				//ventasCliente = cliente.getVentas();
 				/*
-				JTable datos = new JTable();
-				
-				datos.setValueAt(1, 1, 1);
-				datos.setValueAt(5, 1, 2);
-				datos.setValueAt(2, 2, 1);
-				datos.setValueAt(3, 2, 2);
-				datos.setValueAt(3, 3, 1);
-				datos.setValueAt(9, 3, 2);
-
-				ChartPanel panel;
-				JFreeChart chart = null;
-				XYSplineRenderer renderer = new XYSplineRenderer();
-				XYSeriesCollection dataSet = new XYSeriesCollection();
-				ValueAxis x = new NumberAxis("Fecha venta");
-				ValueAxis y = new NumberAxis("Monto venta");
-				XYSeries serie = new XYSeries("Datos");
-				XYPlot plot;
-				
-				for(int u = 1; u < datos.getRowCount(); u++)
-				{
-					serie.add(Float.parseFloat(datos.getValueAt(u, u).toString()), Float.parseFloat(datos.getValueAt(u, u+1).toString()));
-				}
-				
-				dataSet.addSeries(serie);
+				JPanel chartPanel = createChartPanel();
+				layerGrafico.add(chartPanel, BorderLayout.CENTER);
+ 
+				setSize(640, 480);
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				setLocationRelativeTo(null);	
 				*/
-				//modelVentasCliente.setNumRows(ventasCliente.size());
-				/*
-				if(ventasCliente.isEmpty() == false)
-				{
-					int i = 0;
-					
-					System.out.println("Ventas totales: " + ventasCliente.size());
-					
-					for(negocio.Venta ventaActual : ventasCliente)
-					{						
-						String fecha = ventaActual.getFechaVenta().toString().substring(0, 10);
-						//VER ERROR DE ADD
-						//serie.add(ventaActual.getFechaVenta(), ventaActual.getTotal());
-						modelVentasCliente.setValueAt(fecha, i, 0);
-						modelVentasCliente.setValueAt(ventaActual.getTotal(), i, 1);
-						//System.out.println("Total Venta: " + ventaActual.getTotal());
-						i++;
-					}
-				}*/
 				// FIN GRAFICO DE LINEAS //
 				 
 			}
 		}
+		
+		private JPanel createChartPanel() 
+		 {
+			 String chartTitle = "Objects Movement Chart";
+			 String xAxisLabel = "X";
+			 String yAxisLabel = "Y";
+			 
+			 XYDataset dataset = createDataset();
+			 
+			 JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, dataset, PlotOrientation.HORIZONTAL, true, true, true);
+			 
+			 return new ChartPanel(chart);
+		 }
+		 
+		 private XYDataset createDataset() 
+		 {
+			 XYSeriesCollection dataset = new XYSeriesCollection();
+		     XYSeries series1 = new XYSeries("Object 1");
+		     XYSeries series2 = new XYSeries("Object 2");
+		     XYSeries series3 = new XYSeries("Object 3");
+		     
+		     series1.add(1.0, 2.0);
+		     series1.add(2.0, 3.0);
+		     series1.add(3.0, 2.5);
+		     series1.add(3.5, 2.8);
+		     series1.add(4.2, 6.0);
+		     
+		     series2.add(2.0, 1.0);
+		     series2.add(2.5, 2.4);
+		     series2.add(3.2, 1.2);
+		     series2.add(3.9, 2.8);
+		     series2.add(4.6, 3.0);
+		     series3.add(1.2, 4.0);
+		     series3.add(2.5, 4.4);
+		     series3.add(3.8, 4.2);
+		     series3.add(4.3, 3.8);
+		     series3.add(4.5, 4.0);
+		     
+		     dataset.addSeries(series1);
+		     dataset.addSeries(series2);
+		     dataset.addSeries(series3);
+		     
+		     return dataset;
+		 }
 }
