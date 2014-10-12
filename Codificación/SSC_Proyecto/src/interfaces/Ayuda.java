@@ -2,43 +2,51 @@ package interfaces;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+
+
+
 
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
-import javax.swing.text.Document;
-import javax.swing.text.html.HTMLEditorKit;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+
+
+
+
+
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.Toolkit;
+
+import javax.swing.JScrollPane;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.event.HyperlinkListener;
+import javax.swing.event.HyperlinkEvent;
 
 
 public class Ayuda extends JDialog
 {
 	private static final long serialVersionUID = 2483184216073019363L;
 	
-	private String contenidoMailHTML = "";
-	private JEditorPane epnEditor;
-	private JScrollPane scrEditor;
+	private String contenidoMailHTML;
 	private File archivoHTML;
 	private FileReader fr;
 	private BufferedReader br;
-	private JButton btnSalir;
+	private interfaces.componentes.BotonesIconos btnAceptar;
+
+	private JEditorPane visorHTML;
+
+	private JScrollPane scrEditor;
 
 	
 	/****************
@@ -49,9 +57,7 @@ public class Ayuda extends JDialog
 	{
 		/******************
 		 * FORMULARIO BASE
-		 ******************/
-//	
-//	super(padre);		
+		 ******************/	
    		setResizable(false);
 		setMinimumSize(new Dimension(800,600));
 		getContentPane().setMinimumSize(new Dimension(800, 600));
@@ -60,8 +66,7 @@ public class Ayuda extends JDialog
 		setLocationRelativeTo(null);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"AYUDA_32.PNG"));
 		setTitle("Ayuda del Sistema");
-//		setModalityType(ModalityType.APPLICATION_MODAL);
-//		setModal(true);
+
 		
 		addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {
@@ -71,111 +76,117 @@ public class Ayuda extends JDialog
 		
 		addEscapeListenerWindowDialog();
 		
-		
-	    getContentPane().setLayout(new BorderLayout(0, 0));
+	    getContentPane().setLayout(null);
 	    
-	    /**
-	     * EDITOR
-	     */
-	    epnEditor = new JEditorPane();	  
-	    epnEditor.setEditable(false);
-	    epnEditor.setDragEnabled(true);
+	    visorHTML = new JEditorPane("text/html","");
+	    visorHTML.addHyperlinkListener(new HyperlinkListener() {
+	    	public void hyperlinkUpdate(HyperlinkEvent evento)
+	    	{
+	    		if(evento.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
+	    		{
+	    			try 
+	    			{
+	    				actualizarHTML(evento.getDescription().toString());
+					} 
+	    			catch (Exception e)
+	    			{
+						e.printStackTrace();
+					}
+	    		}
+	    	}
+	    });
+
+	    visorHTML.setBounds(0, 0, 794, 480);
+	    visorHTML.setEditable(false);
 	    
-	    scrEditor = new JScrollPane(epnEditor);
+	    scrEditor = new JScrollPane(visorHTML);
+	    scrEditor.setBounds(12, 12, 770, 472);
+	    getContentPane().add(scrEditor);
 	    
 	    
-	    /**
-	     * PANEL BOTONES
-	     */
-	    JPanel panelInferior = new JPanel();
-   		getContentPane().add(panelInferior, BorderLayout.SOUTH);
-   		panelInferior.setLayout(new GridLayout(0, 2, 0, 0));
-   		
-   		JPanel panelBotones = new JPanel();
-   		panelInferior.add(panelBotones);
-   		panelBotones.setLayout(new GridLayout(0, 2, 0, 0));
+	    btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.PNG");
+	    btnAceptar.setLocation(692, 496);
+	    getContentPane().add(btnAceptar);
+	    btnAceptar.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+				try
+	    		{
+	    			if( null != fr ) 
+	    				fr.close();
+	    			dispose();
+	    		} 
+	    		catch (IOException e1) 
+	    		{
+	   				e1.printStackTrace();
+	   			}	
+	    	}
+	    });
    
    		
    		/**
    		 * BOTON SALIR
    		 */
-   		btnSalir = new JButton("Salir");
-   		btnSalir.addActionListener(new ActionListener() {
-   			public void actionPerformed(ActionEvent e) {
-				try
-   				{
-   					if( null != fr ) 
-   						fr.close();
-   					dispose();
-   				} 
-   				catch (IOException e1) 
-   				{
-	   				e1.printStackTrace();
-	   			}	
-   			}
-   		});
-   		panelBotones.add(btnSalir);
    		
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 	}	
 		
 	
-
+	
 	public void cargarHTML()
+	{
+		actualizarHTML(utilidades.Configuraciones.DIR_HELP);
+	}
+	
+
+	public void actualizarHTML(String rutaHTML)
 	{				
-//		archivoHTML = new File(utilidades.Configuraciones.DIR_HELP);
-//				
-//	   	fr = null;
-//	   	br = null;
-//	   	
+		archivoHTML = new File(rutaHTML);
+				
+	   	fr = null;
+	   	br = null;
+	   	
+	   	contenidoMailHTML = "";
 
 	   	try 
 	   	{		   		
-//	   		fr = new FileReader(archivoHTML);
-//	   		br = new BufferedReader(fr);
+	   		fr = new FileReader(archivoHTML);
+	   		br = new BufferedReader(fr);
 			 
-//	   		String renglon = "";
-//		 
-//	   		while((renglon=br.readLine())!=null)
-//	        		contenidoMailHTML += renglon;
+	   		String renglon = "";
+		 
+	   		while((renglon=br.readLine())!=null)
+	        		contenidoMailHTML += renglon;
 	   		
-
+	   		
 			HTMLEditorKit kit = new HTMLEditorKit();
 			
 		    Document doc = kit.createDefaultDocument();
 		    
 	    	
-		    epnEditor.setEditorKit(kit);
-		    epnEditor.setDocument(doc);
-	   		epnEditor.setContentType("html");
-	   		epnEditor.setPage(new URL("http://www.ibcrosario.com.ar"));
-	   		epnEditor.setEditable(false);
-	   		
-		    getContentPane().add(scrEditor);
+		    visorHTML.setEditorKit(kit);
+		    visorHTML.setDocument(doc);	   		
+		    visorHTML.setText(contenidoMailHTML);
 		    
-	   		
+
+		    
 	        setVisible(true);
 	   	}
-	   	catch(FileNotFoundException fne)
+	   	catch(Exception e)
 	   	{
-	   		
+	   		e.printStackTrace();
 	   	} 
-	   	catch (IOException ioe) 
-	   	{
-	   		
-	   	}
-//        finally
-//        {
-//        	try
-//        	{                    
-//        		if( null != fr )   
-//        			fr.close();
-//        	}
-//        	catch (IOException e2)
-//        	{ 
-//        		e2.printStackTrace();
-//        	}
-//        }
+        finally
+        {
+        	try
+        	{                    
+        		if( null != fr )   
+        			fr.close();
+        	}
+        	catch (IOException e2)
+        	{ 
+        		e2.printStackTrace();
+        	}
+        }
 	}
 
 	

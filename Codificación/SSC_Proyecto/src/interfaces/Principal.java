@@ -234,8 +234,8 @@ public class Principal extends JFrame {
 		
 		mntContenidoAyuda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ayuda.setVisible(true);
 				ayuda.cargarHTML();
+				ayuda.setVisible(true);
 			}
 		});
 		
