@@ -8,10 +8,13 @@ import java.io.IOException;
 
 
 
+
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
 import javax.swing.KeyStroke;
+
 
 
 
@@ -32,9 +35,14 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.event.HyperlinkEvent;
+import javax.swing.JPanel;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Insets;
 
 
-public class Ayuda extends JDialog
+public class Ayuda extends JFrame
 {
 	private static final long serialVersionUID = 2483184216073019363L;
 	
@@ -55,10 +63,6 @@ public class Ayuda extends JDialog
 	 ****************/
 	public Ayuda()
 	{
-		/******************
-		 * FORMULARIO BASE
-		 ******************/	
-   		setResizable(false);
 		setMinimumSize(new Dimension(800,600));
 		getContentPane().setMinimumSize(new Dimension(800, 600));
 		getContentPane().setMaximumSize(new Dimension(800, 600));
@@ -75,10 +79,9 @@ public class Ayuda extends JDialog
         });
 		
 		addEscapeListenerWindowDialog();
-		
-	    getContentPane().setLayout(null);
 	    
 	    visorHTML = new JEditorPane("text/html","");
+	    visorHTML.setMargin(new Insets(10, 10, 10, 10));
 	    visorHTML.addHyperlinkListener(new HyperlinkListener() {
 	    	public void hyperlinkUpdate(HyperlinkEvent evento)
 	    	{
@@ -95,18 +98,22 @@ public class Ayuda extends JDialog
 	    		}
 	    	}
 	    });
+	    getContentPane().setLayout(new BorderLayout(0, 0));
 
 	    visorHTML.setBounds(0, 0, 794, 480);
 	    visorHTML.setEditable(false);
 	    
 	    scrEditor = new JScrollPane(visorHTML);
-	    scrEditor.setBounds(12, 12, 770, 472);
-	    getContentPane().add(scrEditor);
+	    getContentPane().add(scrEditor, BorderLayout.CENTER);
+	    
+	    JPanel panel = new JPanel();
+	    FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+	    flowLayout.setAlignment(FlowLayout.TRAILING);
+	    getContentPane().add(panel, BorderLayout.SOUTH);
 	    
 	    
 	    btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.PNG");
-	    btnAceptar.setLocation(692, 496);
-	    getContentPane().add(btnAceptar);
+	    panel.add(btnAceptar);
 	    btnAceptar.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 				try
