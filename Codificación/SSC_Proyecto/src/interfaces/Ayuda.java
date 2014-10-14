@@ -5,22 +5,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-
-
-
-
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
-
-
-
-
-
-
-
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -64,9 +53,6 @@ public class Ayuda extends JFrame
 	public Ayuda()
 	{
 		setMinimumSize(new Dimension(800,600));
-		getContentPane().setMinimumSize(new Dimension(800, 600));
-		getContentPane().setMaximumSize(new Dimension(800, 600));
-		setMaximumSize(new Dimension(800, 600));
 		setLocationRelativeTo(null);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"AYUDA_32.PNG"));
 		setTitle("Ayuda del Sistema");
@@ -81,7 +67,6 @@ public class Ayuda extends JFrame
 		addEscapeListenerWindowDialog();
 	    
 	    visorHTML = new JEditorPane("text/html","");
-	    visorHTML.setMargin(new Insets(10, 10, 10, 10));
 	    visorHTML.addHyperlinkListener(new HyperlinkListener() {
 	    	public void hyperlinkUpdate(HyperlinkEvent evento)
 	    	{
@@ -102,6 +87,8 @@ public class Ayuda extends JFrame
 
 	    visorHTML.setBounds(0, 0, 794, 480);
 	    visorHTML.setEditable(false);
+	    visorHTML.setMargin(new Insets(10, 10, 10, 10));
+
 	    
 	    scrEditor = new JScrollPane(visorHTML);
 	    getContentPane().add(scrEditor, BorderLayout.CENTER);
@@ -218,6 +205,7 @@ public class Ayuda extends JFrame
 	//---------------------------------------------------------------------
 	public void cerrar_salir()
 	{
+		setSize(new Dimension(800,600));
 		dispose();
 	}
 }
