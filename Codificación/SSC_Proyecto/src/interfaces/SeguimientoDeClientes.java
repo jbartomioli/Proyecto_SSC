@@ -2,6 +2,7 @@ package interfaces;
 
 import interfaces.componentes.BotonesIconos;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -13,6 +14,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 
 import javax.swing.Box;
@@ -29,8 +32,11 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
-
 import javax.swing.JLayeredPane;
+
+
+
+
 
 
 
@@ -84,6 +90,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 	
 	// INICIO VARIABLES GRAFICO DE LINEAS //
 	private JLayeredPane layerGrafico;
+	private JPanel pnlGrafico;
 	private JTable tblVentasCliente;
 	private DefaultTableModel modelVentasCliente;
 	//private Collection<negocio.Venta> ventasCliente;
@@ -254,8 +261,12 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		// INICIO GRAFICO DE LINEAS //
 		layerGrafico = new JLayeredPane();
 		layerGrafico.setBorder(new TitledBorder(null, "Ventas por Mes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		layerGrafico.setBounds(656, 106, 632, 392);
+		layerGrafico.setBounds(597, 106, 691, 434);
 		getContentPane().add(layerGrafico);
+		
+		pnlGrafico = new JPanel();
+		pnlGrafico.setBounds(10, 21, 671, 402);
+		layerGrafico.add(pnlGrafico);
 		
 		tblVentasCliente = new JTable();
 		
@@ -266,6 +277,12 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		//FIN GRAFICO DE LINEAS //
 		
 		inicializar(controladorSeguimiento);
+		
+		addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent arg0) {
+        		cerrar_salir();
+        	}
+        });
 	}
 	
 	
@@ -405,45 +422,40 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 				// INICIO GRAFICO DE LINEAS //
 				//ventasCliente = new ArrayList<negocio.Venta>();
 				//ventasCliente = cliente.getVentas();
-				/*
-				JPanel chartPanel = createChartPanel();
-				layerGrafico.add(chartPanel, BorderLayout.CENTER);
- 
-				setSize(640, 480);
-				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				setLocationRelativeTo(null);	
-				*/
+				String chartTitle = "Ventas por día";
+				String xAxisLabel = "Fecha";
+				String yAxisLabel = "Monto de Ventas";
+				
+				ValueAxis x = new NumberAxis();
+				ValueAxis y = new NumberAxis();
+				x.setLabel("Día");
+				y.setLabel("Monto de Venta");
+				 
+				XYDataset dataset = createDataset();
+				 
+				JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, dataset, PlotOrientation.HORIZONTAL, true, true, true);
+				
+				ChartPanel chartPanel = new ChartPanel(chart);
+				 
+				pnlGrafico.add(chartPanel, BorderLayout.CENTER);
 				// FIN GRAFICO DE LINEAS //
 				 
 			}
 		}
-		
-		private JPanel createChartPanel() 
-		 {
-			 String chartTitle = "Ventas por día";
-			 String xAxisLabel = "Días";
-			 String yAxisLabel = "Ventas";
-			 
-			 XYDataset dataset = createDataset();
-			 
-			 JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, dataset, PlotOrientation.HORIZONTAL, true, true, true);
-			 
-			 return new ChartPanel(chart);
-		 }
-		 
-		 private XYDataset createDataset() 
-		 {
-			 XYSeriesCollection dataset = new XYSeriesCollection();
-		     XYSeries series1 = new XYSeries("Object 1");
+				 
+		private XYDataset createDataset() 
+		{
+			XYSeriesCollection dataset = new XYSeriesCollection();
+		    XYSeries series1 = new XYSeries("Object 1");
+		    
+		    series1.add(1, 200);
+		    series1.add(2, 350);
+		    series1.add(3, 100);
+		    series1.add(3, 475);
+		    series1.add(4, 600);
 		     
-		     series1.add(1, 200);
-		     series1.add(2, 350);
-		     series1.add(3, 100);
-		     series1.add(3, 475);
-		     series1.add(4, 600);
+		    dataset.addSeries(series1);
 		     
-		     dataset.addSeries(series1);
-		     
-		     return dataset;
-		 }
+		    return dataset;
+		}
 }
