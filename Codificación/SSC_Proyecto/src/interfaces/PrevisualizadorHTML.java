@@ -8,13 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-import javax.swing.KeyStroke;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.JButton;
@@ -22,17 +20,12 @@ import javax.swing.JPanel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 
 
-public class PrevisualizadorHTML extends JDialog
+public class PrevisualizadorHTML extends interfaces.componentes.JDialogBaseFormularios
 {
 	private static final long serialVersionUID = 2483184216073019363L;
 	
@@ -61,25 +54,8 @@ public class PrevisualizadorHTML extends JDialog
 		/******************
 		 * FORMULARIO BASE
 		 ******************/
-		super(padre);		
-   		setResizable(false);
-		setMinimumSize(new Dimension(800,600));
-		getContentPane().setMinimumSize(new Dimension(800, 600));
-		getContentPane().setMaximumSize(new Dimension(800, 600));
-		setMaximumSize(new Dimension(800, 600));
-		setLocationRelativeTo(null);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"ENVIAR_32.png"));
-		setTitle("Vista Previa de Contenido de E-Mail");
-		setModalityType(ModalityType.APPLICATION_MODAL);
-		setModal(true);
-		
-		addWindowListener(new WindowAdapter() {
-        	public void windowClosing(WindowEvent arg0) {
-        		cerrar_salir();
-        	}
-        });
-		
-		addEscapeListenerWindowDialog();
+		super((JDialog) padre,"Vista Previa de Contenido de E-Mail","ENVIAR_32.png",true);		
+		setDimensionFormulario(800,600);
 		
 		
 	    getContentPane().setLayout(new BorderLayout(0, 0));
@@ -245,21 +221,7 @@ public class PrevisualizadorHTML extends JDialog
 	}
 
 	
-	//
-	//
-	protected void addEscapeListenerWindowDialog() 
-	{
-	 ActionListener escAction = new ActionListener() 
-	 {
-		 @Override
-		 public void actionPerformed(ActionEvent e) 
-		 {
-			 cerrar_salir();
-		 }
-	 };
-	 getRootPane().registerKeyboardAction(
-			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
-	}
+
 	
 	
 	//---------------------------------------------------------------------
@@ -396,7 +358,7 @@ public class PrevisualizadorHTML extends JDialog
 		{
 		case(1): //finalizarEdicion();
 				 break;
-		case(0): dispose();
+		case(0): super.cerrar_salir();
 				 break;
 		}
 	}

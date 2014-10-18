@@ -132,7 +132,7 @@ public class Ayuda extends JFrame
 	}
 	
 
-	public void actualizarHTML(String rutaHTML)
+	protected void actualizarHTML(String rutaHTML)
 	{				
 		archivoHTML = new File(rutaHTML);
 				
@@ -160,6 +160,8 @@ public class Ayuda extends JFrame
 		    visorHTML.setEditorKit(kit);
 		    visorHTML.setDocument(doc);	   		
 		    visorHTML.setText(contenidoMailHTML);
+		    
+		    visorHTML.setCaretPosition(0);
 		    
 
 		    

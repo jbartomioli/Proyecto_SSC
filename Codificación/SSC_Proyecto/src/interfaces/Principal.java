@@ -4,6 +4,7 @@ package interfaces;
  ***************************************/
 
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -30,7 +31,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.KeyAdapter;
 
 
 
@@ -86,14 +86,10 @@ public class Principal extends JFrame {
         setLocationRelativeTo(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);		
 		
-		addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) 
-			{
-				if(arg0.getKeyCode()==KeyEvent.VK_ESCAPE)
-					cerrando();
-			}
-		});
+        addEscapeListenerWindowDialog();
+		
+		
+		
         
 		/**
 		 * CONTENEDOR
@@ -147,7 +143,7 @@ public class Principal extends JFrame {
 		mntSalir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_16.png"));
 		mntSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cerrando();
+				cerrar_salir();
 			}
 		});
 		mnuArchivo.add(mntSalir);
@@ -266,7 +262,7 @@ public class Principal extends JFrame {
 		addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent evt) {
-            	cerrando();            	
+            	cerrar_salir();            	
             }
         });
 	}
@@ -274,6 +270,20 @@ public class Principal extends JFrame {
 	//***************************************************************
 	//* EVENTOS														*
 	//***************************************************************
+	
+	protected void addEscapeListenerWindowDialog() 
+	{
+	 ActionListener escAction = new ActionListener() 
+	 {
+		 @Override
+		 public void actionPerformed(ActionEvent e) 
+		 {
+			 cerrar_salir();
+		 }
+	 };
+	 getRootPane().registerKeyboardAction(escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	}
+	
 	
 	/**
 	 * PANTALLA IMPORTAR DATOS
@@ -302,7 +312,7 @@ public class Principal extends JFrame {
 	
 	
 	//------------------------------------------------
-	public void cerrando()
+	public void cerrar_salir()
 	{
 		int rta;
 		rta = JOptionPane.showConfirmDialog(null, 

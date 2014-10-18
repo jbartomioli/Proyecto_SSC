@@ -48,8 +48,9 @@ public class JDialogBaseFormularios extends JDialog
 		setResizable(false);
 		setTitle(tituloFormulario);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+icono));
-		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(esModal);
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		
 		getContentPane().setLayout(null);
@@ -115,6 +116,7 @@ public class JDialogBaseFormularios extends JDialog
 		 public void actionPerformed(ActionEvent e) 
 		 {
 			 interfaces.Ayuda ayuda = new interfaces.Ayuda();
+			 ayuda.cargarHTML();
 			 ayuda.setVisible(true);
 			 
 		 }

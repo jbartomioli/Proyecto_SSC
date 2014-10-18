@@ -4,47 +4,34 @@ package interfaces;
 import interfaces.componentes.BotonesIconos;
 
 import java.awt.SystemColor;
-
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.KeyStroke;
-
 import java.awt.Font;
-
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-
 import java.awt.Color;
-
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
 import javax.swing.UIManager;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.util.Vector;
-
 import javax.swing.JButton;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
-public class ModificarDestinatarios extends JDialog {
+public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFormularios 
+{
 
 	private static final long serialVersionUID = -6385198300914272668L;
 	
@@ -69,25 +56,8 @@ public class ModificarDestinatarios extends JDialog {
 		/**
 		 * FORMULARIO BASE
 		 */
-		super(dialogPadre);
-		setResizable(false);
-		setMinimumSize(new Dimension(1024, 460));
-		getContentPane().setMinimumSize(new Dimension(1024, 460));
-		getContentPane().setMaximumSize(new Dimension(1366, 460));
-		setMaximumSize(new Dimension(1366, 460));
-		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);	
-		setTitle("Modificar Clientes Destinatarios");
-		setModalityType(ModalityType.APPLICATION_MODAL);
-		setModal(true);
-		setBounds(100, 100, 450, 300);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CLIENTES_32.png"));
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		getContentPane().setLayout(null);
-		
-		setLocationRelativeTo(dialogPadre);
-
-	
-		addEscapeListenerWindowDialog();
+		super((JDialog) dialogPadre,"Modificar Clientes Destinatarios","CLIENTES_32.png",true);
+		setDimensionFormulario(1024, 460);		
 		
 		
 		/**
@@ -255,22 +225,6 @@ public class ModificarDestinatarios extends JDialog {
 	}
 	
 	
-	//
-	protected void addEscapeListenerWindowDialog() 
-	{
-	 ActionListener escAction = new ActionListener() 
-	 {
-		 @Override
-		 public void actionPerformed(ActionEvent e) 
-		 {
-			 click_boton_cancelar();
-		 }
-	 };
-	 getRootPane().registerKeyboardAction(
-			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
-	}
-	
-	
 	// EVENTOS
 	//-------------------------------------------------------------------------------------------------------
 	public void click_combo_especialidad(interfaces.GenerarAnuncio dialogPadre, ItemEvent evento)
@@ -339,21 +293,8 @@ public class ModificarDestinatarios extends JDialog {
 	//-------------------------------------------------------------------------------------------------------
 	public void click_boton_cancelar()
 	{
-		int rta = JOptionPane.showConfirmDialog(
-				this, 
-				"¿Desea salir y volver a la pantalla Generar Anuncio?\n"
-					+ "Todo cambio que no haya guardado se perderá.",
-				"ATENCIÓN",
-				JOptionPane.YES_NO_OPTION);
-			
-		switch(rta)
-		{
-		case(1):
-			break;
-		case(0): limpiar_formulario();
-			 dispose();
-			 break;
-		}
+		limpiar_formulario();
+		super.cerrar_salir();
 	}
 	
 	
@@ -366,7 +307,7 @@ public class ModificarDestinatarios extends JDialog {
 		
 		dialogPadre.actualizarClientesDestinatarios(modelo);
 		
-		dispose();
+		super.cerrar_salir();
 	}
 	
 	
