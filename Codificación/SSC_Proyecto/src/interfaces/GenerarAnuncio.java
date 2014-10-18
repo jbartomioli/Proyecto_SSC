@@ -5,18 +5,15 @@ package interfaces;
 
 
 import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
@@ -29,7 +26,6 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.io.BufferedReader;
@@ -48,7 +44,8 @@ import javax.swing.JTextField;
 import javax.swing.JProgressBar;
 
 
-public class GenerarAnuncio extends JDialog {
+public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormularios
+{
 	/****************
 	 * SERIALIZABLE
 	 ****************/
@@ -122,35 +119,16 @@ public class GenerarAnuncio extends JDialog {
 	 * @param controladorAnuncios
 	 * @throws Exception
 	 *******************************/
-	public GenerarAnuncio(Frame framePadre, boolean modal) throws Exception
+	public GenerarAnuncio(JFrame framePadre, boolean modal) throws Exception
 	{
 		/***************************************************************
 		 * FORMULARIO BASE
 		 ***************************************************************/
-		super(framePadre);
-		setResizable(false);
-		setMinimumSize(new Dimension(1024, 668));
-		getContentPane().setMinimumSize(new Dimension(1024, 668));
-		getContentPane().setMaximumSize(new Dimension(1366, 668));
-		setMaximumSize(new Dimension(1366, 768));
-		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);
-		setLocationRelativeTo(null);
-		setTitle("Confeccionar Anuncio");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CONFECCIONAR_32.png"));
-		setModalityType(ModalityType.APPLICATION_MODAL);
-		setModal(true);
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-		getContentPane().setLayout(null);
-		
-    	addWindowListener(new WindowAdapter() {
-        	public void windowClosing(WindowEvent arg0) {
-        		cerrar_salir();
-        	}
-        });
+		super(framePadre, "Confeccionar Anuncio", "CONFECCIONAR_32.png", modal);
+		setPantallaCompleta();
+		setDimensionFormulario(1024, 668);
     	
-    	
-    	addEscapeListenerWindowDialog();
-    	
+        
 		
     	/*********
     	 * TITULO
@@ -370,7 +348,6 @@ public class GenerarAnuncio extends JDialog {
 		/***************************************************************
 		 * TABLA PRODUCTOS ANUNCIO
 		 ***************************************************************/
-		//negocio.SubCategoria subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
 		
@@ -464,19 +441,22 @@ public class GenerarAnuncio extends JDialog {
 		/***************************************************************
 		 * BOTON CERRAR
 		 ***************************************************************/
-		btnCerrar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent evento) {
+		btnCerrar.addActionListener(new ActionListener()
+		{
+	        public void actionPerformed(ActionEvent evento)
+	        {
 	        	cerrar_salir();
-	        	}});
+	        }});
 		}
 		catch(NullPointerException npe)
 		{
 			JOptionPane.showMessageDialog(null, 
-					"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde ....",
+					"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos\n"
+					+ "en Menú Archivo.",
 					"ATENCIÓN",
 					JOptionPane.INFORMATION_MESSAGE);
 			dispose();
-			//npe.printStackTrace();
+			npe.printStackTrace();
 		}
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
@@ -742,16 +722,11 @@ public class GenerarAnuncio extends JDialog {
 	//-------------------------------------------------------------------
 	protected void cerrar_salir()
 	{
+		super.cerrar_salir();
 		limpiar_formulario();
 		limpiar_objetos_temporales();
 		controlador = new negocio.ControladorConfeccionarAnuncio();
-		try {
-			finalize();
-		} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		dispose();
+		
 	}
 	
 	

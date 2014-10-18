@@ -3,24 +3,18 @@ package interfaces;
 import interfaces.componentes.BotonesIconos;
 
 import javax.swing.Box;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -28,7 +22,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 
-public class ImportarDatos extends JDialog
+public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 {
 
 	/**
@@ -50,20 +44,8 @@ public class ImportarDatos extends JDialog
 		/**
 		 * FORMULARIO BASE
 		 */
-		super(dialogPadre);
-		setResizable(false);
-		setMinimumSize(new Dimension(800, 460));
-		getContentPane().setMinimumSize(new Dimension(800, 460));
-		getContentPane().setMaximumSize(new Dimension(800, 460));
-		setMaximumSize(new Dimension(800, 460));
-		setSize(800, 460);	
-		setTitle("Importar Datos");
-		setModalityType(ModalityType.APPLICATION_MODAL);
-		setModal(true);
-		setBounds(100, 100, 450, 300);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"IMPORTAR_32.png"));
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		getContentPane().setLayout(null);
+		super(dialogPadre, "Importar Datos","IMPORTAR_32.png",true);
+		setDimensionFormulario(800, 460);
 		
 		
 		
@@ -75,9 +57,7 @@ public class ImportarDatos extends JDialog
 		lblImportarDatos.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblImportarDatos.setBounds(10, 11, 266, 29);
 		getContentPane().add(lblImportarDatos);
-	
-		addEscapeListenerWindowDialog();
-		
+			
 		
 		/**
 		 * TABLAS
@@ -163,20 +143,6 @@ public class ImportarDatos extends JDialog
 	}
 	
 	
-	//
-	protected void addEscapeListenerWindowDialog() 
-	{
-	 ActionListener escAction = new ActionListener() 
-	 {
-		 @Override
-		 public void actionPerformed(ActionEvent e) 
-		 {
-			 click_boton_aceptar();
-		 }
-	 };
-	 getRootPane().registerKeyboardAction(
-			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
-	}
 	
 	//-------------------------------------------------------------------------------------------------------
 	public void click_boton_procesar()
@@ -208,8 +174,8 @@ public class ImportarDatos extends JDialog
 	
 	//-------------------------------------------------------------------------------------------------------
 	public void click_boton_aceptar()
-	{		
-		dispose();
+	{
+		super.cerrar_salir();
 	}
 	
 	

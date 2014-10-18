@@ -6,12 +6,11 @@ import interfaces.componentes.BotonesIconos;
 
 import java.awt.SystemColor;
 
-import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.KeyStroke;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -25,13 +24,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.Component;
 import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.Toolkit;
 
 import javax.swing.UIManager;
 
@@ -41,7 +35,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
-public class ModificarPrecios extends JDialog {
+public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormularios
+{
 	
 	/****************
 	 * SERIALIZABLE
@@ -68,10 +63,9 @@ public class ModificarPrecios extends JDialog {
 	 * CONSTRUCTOR JFRAME
 	 * @wbp.parser.constructor
 	 ****************************/
-	public ModificarPrecios(Frame padre) throws Exception 
+	public ModificarPrecios(JFrame jframePadre) throws Exception 
 	{
-		super(padre);
-		setLocationRelativeTo(padre);
+		super(jframePadre,"Modificar Precios","PRECIO_32.png",true);
 		controladorPrecios = new negocio.ControladorModificarPrecios();
 
 		controladorPrecios.inicializarCatalogos();
@@ -82,11 +76,10 @@ public class ModificarPrecios extends JDialog {
 	/****************************
 	 * CONSTRUCTOR JDIALOG
 	 ****************************/
-	public ModificarPrecios(JDialog padre, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
+	public ModificarPrecios(JDialog jdialogPadre, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
 	{
-		super(padre);
-		setLocationRelativeTo(padre);
-		//controladorAux = controladorAnuncios;
+		super(jdialogPadre, "Modificar Precios","PRECIO_32.png",true);
+		
 		controladorPrecios = new negocio.ControladorModificarPrecios();
 
 		controladorPrecios.setCatalogoCategorias(controladorAnuncios.getCatalogoCategorias());
@@ -105,28 +98,7 @@ public class ModificarPrecios extends JDialog {
 		/******************
 		 * FORMULARIO BASE
 		 ******************/
-		setResizable(false);
-		setMinimumSize(new Dimension(650, 460));
-		getContentPane().setMinimumSize(new Dimension(650, 460));
-		getContentPane().setMaximumSize(new Dimension(650, 460));
-		setMaximumSize(new Dimension(650, 460));
-		setSize(650, 460);
-		setTitle("Modificar Precios");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"PRECIO_32.png"));
-		setModalityType(ModalityType.APPLICATION_MODAL);
-		setModal(true);
-		setBounds(100, 100, 450, 300);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		getContentPane().setLayout(null);
-	
-		addWindowListener(new WindowAdapter() {
-        	public void windowClosing(WindowEvent arg0) {
-        		cerrar_salir();
-        	}
-        });
-		
-	
-		addEscapeListenerWindowDialog();	
+		setDimensionFormulario(650, 460);
 		
 		/*********
 		 * TITULO
@@ -241,7 +213,7 @@ public class ModificarPrecios extends JDialog {
 					"ATENCIÓN",
 					JOptionPane.INFORMATION_MESSAGE);
 			dispose();
-			//npe.printStackTrace();
+			npe.printStackTrace();
 		}
 
 	}
@@ -347,22 +319,6 @@ public class ModificarPrecios extends JDialog {
 	/**********
 	 * EVENTOS
 	 **********/
-	//
-	protected void addEscapeListenerWindowDialog() 
-	{
-	 ActionListener escAction = new ActionListener() 
-	 {
-		 @Override
-		 public void actionPerformed(ActionEvent e) 
-		 {
-			 cerrar_salir();
-		 }
-	 };
-	 getRootPane().registerKeyboardAction(
-			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
-	}
-	
-	
 	
 	protected void click_combo_categorias(ItemEvent evento) throws Exception
 	{		
@@ -408,7 +364,7 @@ public class ModificarPrecios extends JDialog {
 	
 	public void click_boton_aceptar()
 	{		
-		dispose();
+		super.cerrar_salir();
 	}
 	
 	public void click_boton_buscar()
@@ -444,8 +400,8 @@ public class ModificarPrecios extends JDialog {
 	//-------------------------------------------------------------
 		protected void cerrar_salir()
 		{
+			super.cerrar_salir();
 			limpiar_formulario();
-			dispose();
 		}
 		
 		

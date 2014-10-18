@@ -1,24 +1,16 @@
 package interfaces;
 
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -37,7 +29,7 @@ import javax.swing.JButton;
 
 
 
-public class Configuraciones extends JDialog
+public class Configuraciones extends interfaces.componentes.JDialogBaseFormularios
 {
 	
 	/****************
@@ -78,29 +70,9 @@ public class Configuraciones extends JDialog
 		/*******************
 		 * FORMULARIO BASE 
 		 *******************/
-		super(framePadre);
-		setResizable(false);
-		setMinimumSize(new Dimension(500,500));
-		getContentPane().setMinimumSize(new Dimension(500, 500));
-		getContentPane().setMaximumSize(new Dimension(500, 500));
-		setMaximumSize(new Dimension(500, 500));
-		setLocationRelativeTo(null);
-		setTitle("Configuraciones Generales");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"CONFIGURACION_32.png"));
-		setModalityType(ModalityType.APPLICATION_MODAL);
-		setModal(true);
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-		getContentPane().setLayout(null);
-		
-		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		
-		addWindowListener(new WindowAdapter() {
-	    	public void windowClosing(WindowEvent arg0) {
-	    		cerrar_salir();
-	    	}
-	    });
-		
-		addEscapeListenerWindowDialog();
+		super(framePadre, "Configuraciones Generales", "CONFIGURACION_32.png", true);
+		setDimensionFormulario(500,500);
+
 		
 		/**********
 		 * TITULO 
@@ -339,9 +311,10 @@ public class Configuraciones extends JDialog
 				new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCerrar.setLocation(394, 397);	
 		btnCerrar.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent evento) {
+	        public void actionPerformed(ActionEvent evento)
+	        {
 	        	cerrar_salir();
-	        	}});
+	        }});
 		getContentPane().add(btnCerrar);
 		
 		
@@ -350,8 +323,7 @@ public class Configuraciones extends JDialog
 		 **********************************/
 		inicializar();
 	}
-	
-	
+
 	//-------------------------------------------------------------
 	protected void inicializar()
 	{
@@ -416,20 +388,7 @@ public class Configuraciones extends JDialog
 		
 	}
 	
-	//
-	protected void addEscapeListenerWindowDialog() 
-	{
-	 ActionListener escAction = new ActionListener() 
-	 {
-		 @Override
-		 public void actionPerformed(ActionEvent e) 
-		 {
-			 cerrar_salir();
-		 }
-	 };
-	 getRootPane().registerKeyboardAction(
-			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
-	}
+	
 	
 	//-------------------------------------------------------------
 	@SuppressWarnings("deprecation")
@@ -566,13 +525,7 @@ public class Configuraciones extends JDialog
 	}
 	
 	
-	//-------------------------------------------------------------
-	protected void cerrar_salir()
-	{
-		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
-		dispose();	
-	}
 	
 	//-------------------------------------------------------------
 	protected boolean validar_mail(String mail)
@@ -616,7 +569,7 @@ public class Configuraciones extends JDialog
 		}
 		catch(Exception e)
 		{
-			
+			e.printStackTrace();
 		}
 		finally
 		{

@@ -2,13 +2,9 @@ package interfaces;
 
 import interfaces.componentes.BotonesIconos;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.SystemColor;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -17,23 +13,18 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -54,7 +45,7 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.xy.*;
 //FIN IMPORTS PARA GRAFICAR
 
-public class SeguimientoDeClientes extends JDialog
+public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFormularios
 {
 	/****************
 	 * SERIALIZABLE
@@ -102,35 +93,16 @@ public class SeguimientoDeClientes extends JDialog
 	 * CONSTRUCTOR
 	 * @param dialogPadre
 	 */
-	public SeguimientoDeClientes(Frame framePadre) throws Exception
+	public SeguimientoDeClientes(JFrame jframePadre) throws Exception
 	{
 		/***************************************************************
 		 * FORMULARIO BASE
 		 ***************************************************************/
-		super(framePadre);
-		setResizable(false);
-		setMinimumSize(new Dimension(1024, 668));
-		getContentPane().setMinimumSize(new Dimension(1024, 668));
-		getContentPane().setMaximumSize(new Dimension(1366, 668));
-		setMaximumSize(new Dimension(1366, 768));
-		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);
-		setLocationRelativeTo(null);
-		setTitle("Seguimiento de Clientes");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"SEGUIMIENTO_32.png"));
-		setModalityType(ModalityType.APPLICATION_MODAL);
-		setModal(true);
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-		getContentPane().setLayout(null);
+		super(jframePadre,"Seguimiento de Clientes","SEGUIMIENTO_32.png",true);
+		setPantallaCompleta();
+		setDimensionFormulario(1024, 668);
 		
 		controladorSeguimiento = new negocio.ControladorRealizarSeguimientoCliente();
-		
-		addWindowListener(new WindowAdapter() {
-        	public void windowClosing(WindowEvent arg0) {
-        		cerrar_salir();
-        	}
-        });
-		
-		addEscapeListenerWindowDialog();
 		
 		/*********
     	 * TITULO
@@ -341,26 +313,6 @@ public class SeguimientoDeClientes extends JDialog
 	}
 	
 	
-	/********************
-	 * EVENTOS
-	 * @param evento
-	 * @throws Exception
-	 ********************/
-	
-	//-------------------------------------------------------------------
-	protected void addEscapeListenerWindowDialog() 
-	{
-	 ActionListener escAction = new ActionListener() 
-	 {
-		 @Override
-		 public void actionPerformed(ActionEvent e) 
-		 {
-			 click_boton_cancelar();
-		 }
-	 };
-	 getRootPane().registerKeyboardAction(
-			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
-	}
 	
 	
 	//-------------------------------------------------------------------------------------------------------
@@ -414,8 +366,8 @@ public class SeguimientoDeClientes extends JDialog
 		}
 		
 		public void click_boton_aceptar()
-		{				
-			dispose();
+		{	
+			super.cerrar_salir();
 		}
 		
 		
