@@ -48,7 +48,6 @@ public class Ayuda extends JFrame
 	
 	/****************
 	 * CONSTRUCTOR
-	 * @param padre
 	 ****************/
 	public Ayuda()
 	{
