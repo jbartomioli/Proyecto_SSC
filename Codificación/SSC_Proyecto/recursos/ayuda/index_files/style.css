@@ -3,20 +3,20 @@ body
 	font-family: Verdana;
 }
 
-img
-{
-	padding: 10px;
-}
 
-img.encabezado
+p.imagenes
 {
-	width:100%;
+	text-align:center;
 }
 
 p
 {
+	text-align:justify;
 }
 
 h1
 {
+	border-style:dotted;
+	border-width:1px;
+	text-align:center;
 }
