@@ -354,8 +354,6 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		//-------------------------------------------------------------------
 		protected void cerrar_salir()
 		{
-			//limpiar_formulario();
-			//limpiar_objetos_temporales();
 			dispose();
 		}
 		
@@ -446,13 +444,13 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		private XYDataset createDataset() 
 		{
 			XYSeriesCollection dataset = new XYSeriesCollection();
-		    XYSeries series1 = new XYSeries("Object 1");
+		    XYSeries series1 = new XYSeries("Ventas por día");
 		    
-		    series1.add(1, 200);
-		    series1.add(2, 350);
-		    series1.add(3, 100);
-		    series1.add(3, 475);
-		    series1.add(4, 600);
+		    series1.add(1, 100);
+		    series1.add(2, 340);
+		    series1.add(3, 200);
+		    series1.add(3, 425);
+		    series1.add(4, 560);
 		     
 		    dataset.addSeries(series1);
 		     
