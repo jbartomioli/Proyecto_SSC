@@ -451,6 +451,11 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		    ventasCliente = new ArrayList<negocio.Venta>();
 		    ventasCliente = cliente.getVentas();
 		    
+		    for(negocio.Venta ventaCliente : ventasCliente)
+		    {
+		    	//serie1.add(ventaCliente);
+		    }
+		    
 		    series1.add(1, 100);
 		    series1.add(2, 340);
 		    series1.add(3, 200);
