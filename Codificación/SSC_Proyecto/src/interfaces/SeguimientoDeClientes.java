@@ -17,6 +17,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -33,6 +35,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 import javax.swing.JLayeredPane;
+
+
 
 
 
@@ -93,7 +97,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 	private JPanel pnlGrafico;
 	private JTable tblVentasCliente;
 	private DefaultTableModel modelVentasCliente;
-	//private Collection<negocio.Venta> ventasCliente;
+	private Collection<negocio.Venta> ventasCliente;
 	// FIN VARIABLES GRAFICO LINEAS //
 	
 	/**
@@ -418,8 +422,6 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 				lblTotVtasSelec.setVisible(true);
 				
 				// INICIO GRAFICO DE LINEAS //
-				//ventasCliente = new ArrayList<negocio.Venta>();
-				//ventasCliente = cliente.getVentas();
 				String chartTitle = "Ventas por día";
 				String xAxisLabel = "Fecha";
 				String yAxisLabel = "Monto de Ventas";
@@ -429,7 +431,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 				x.setLabel("Día");
 				y.setLabel("Monto de Venta");
 				 
-				XYDataset dataset = createDataset();
+				XYDataset dataset = createDataset(cliente);
 				 
 				JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, dataset, PlotOrientation.HORIZONTAL, true, true, true);
 				
@@ -441,10 +443,13 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 			}
 		}
 				 
-		private XYDataset createDataset() 
+		private XYDataset createDataset(negocio.Cliente cliente) 
 		{
 			XYSeriesCollection dataset = new XYSeriesCollection();
 		    XYSeries series1 = new XYSeries("Ventas por día");
+		    
+		    ventasCliente = new ArrayList<negocio.Venta>();
+		    ventasCliente = cliente.getVentas();
 		    
 		    series1.add(1, 100);
 		    series1.add(2, 340);
