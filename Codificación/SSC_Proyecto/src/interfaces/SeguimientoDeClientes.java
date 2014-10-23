@@ -38,12 +38,6 @@ import javax.swing.JLayeredPane;
 
 
 
-
-
-
-
-
-
 //INICIO IMPORTS PARA GRAFICAR
 //SOLO UTILES PARA GRAFICOS DE LINEAS
 import org.jfree.chart.*;
@@ -51,7 +45,9 @@ import org.jfree.chart.renderer.xy.XYSplineRenderer;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.axis.*;
+import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.*;
 //FIN IMPORTS PARA GRAFICAR
 
@@ -91,6 +87,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 	private Box boxClientesBuscados;
 	private Box boxClienteSeleccionado;
 	private JScrollPane scrollClientesBuscados;
+	private int idClienteSeleccionado;
 	
 	// INICIO VARIABLES GRAFICO DE LINEAS //
 	private JLayeredPane layerGrafico;
@@ -262,6 +259,8 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		lblTotVtasSelec.setVisible(false);
 		pnlClienteSeleccionado.add(lblTotVtasSelec);	
 		
+		idClienteSeleccionado = 0;
+		
 		// INICIO GRAFICO DE LINEAS //
 		layerGrafico = new JLayeredPane();
 		layerGrafico.setBorder(new TitledBorder(null, "Ventas por Mes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -331,6 +330,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
 		       		click_boton_aceptar();}});
+		
 	}
 	
 	
@@ -403,66 +403,78 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		    if(filaSeleccionada >= 0)
 			{
 		    	int idCliente = Integer.parseInt(fila.elementAt(0).toString());
-		    	negocio.Cliente cliente = controladorSeguimiento.getCatalogoClientes().buscarCliente(idCliente);
 		    	
-		    	cliente.obtenerVentas();
+		    	//JOptionPane.showMessageDialog(null, "IdCliente: " + idCliente);
+		    	//JOptionPane.showMessageDialog(null, "IdCliente Seleccionado: " + idClienteSeleccionado);
 		    	
-		    	lblApNomSelec.setText(cliente.getApellido() + ", " + cliente.getNombre());
-				lblEspecSelec.setText(cliente.getEspecialidad());
-				lblMailSelec.setText(cliente.getEmail());
-				lblDirSelec.setText(cliente.getDireccion());
-				lblTelSelec.setText(cliente.getTelefono());
-				lblTotVtasSelec.setText(String.valueOf(DecimalFormat.getCurrencyInstance().format(cliente.obtenerTotalVentas())));
-				
-				lblApNomSelec.setVisible(true);
-				lblEspecSelec.setVisible(true);
-				lblMailSelec.setVisible(true);
-				lblDirSelec.setVisible(true);
-				lblTelSelec.setVisible(true);
-				lblTotVtasSelec.setVisible(true);
-				
-				// INICIO GRAFICO DE LINEAS //
-				String chartTitle = "Ventas por día";
-				String xAxisLabel = "Fecha";
-				String yAxisLabel = "Monto de Ventas";
-				
-				ValueAxis x = new NumberAxis();
-				ValueAxis y = new NumberAxis();
-				x.setLabel("Día");
-				y.setLabel("Monto de Venta");
-				 
-				XYDataset dataset = createDataset(cliente);
-				 
-				JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, dataset, PlotOrientation.HORIZONTAL, true, true, true);
-				
-				ChartPanel chartPanel = new ChartPanel(chart);
-				 
-				pnlGrafico.add(chartPanel, BorderLayout.CENTER);
-				// FIN GRAFICO DE LINEAS //
+		    	if(idCliente != idClienteSeleccionado)
+		    	{
+		    		negocio.Cliente cliente = controladorSeguimiento.getCatalogoClientes().buscarCliente(idCliente);
+			    	
+			    	cliente.obtenerVentas();
+			    	
+			    	lblApNomSelec.setText(cliente.getApellido() + ", " + cliente.getNombre());
+					lblEspecSelec.setText(cliente.getEspecialidad());
+					lblMailSelec.setText(cliente.getEmail());
+					lblDirSelec.setText(cliente.getDireccion());
+					lblTelSelec.setText(cliente.getTelefono());
+					lblTotVtasSelec.setText(String.valueOf(DecimalFormat.getCurrencyInstance().format(cliente.obtenerTotalVentas())));
+					
+					lblApNomSelec.setVisible(true);
+					lblEspecSelec.setVisible(true);
+					lblMailSelec.setVisible(true);
+					lblDirSelec.setVisible(true);
+					lblTelSelec.setVisible(true);
+					lblTotVtasSelec.setVisible(true);
+					
+					// INICIO GRAFICO DE LINEAS //
+					String chartTitle = "Ventas por día";
+					String xAxisLabel = "Fecha";
+					String yAxisLabel = "Monto de Ventas";
+					
+					ValueAxis x = new NumberAxis();
+					ValueAxis y = new NumberAxis();
+					x.setLabel("Día");
+					y.setLabel("Monto de Venta");
+					 
+					XYDataset dataset = createDataset(cliente);
+					 
+					JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, dataset, PlotOrientation.HORIZONTAL, true, true, true);
+					
+					ChartPanel chartPanel = new ChartPanel(chart);
+					 
+					pnlGrafico.add(chartPanel, BorderLayout.CENTER);
+					// FIN GRAFICO DE LINEAS //		
+					
+					idClienteSeleccionado = idCliente;
+		    	}
 				 
 			}
 		}
 				 
 		private XYDataset createDataset(negocio.Cliente cliente) 
 		{
-			XYSeriesCollection dataset = new XYSeriesCollection();
-		    XYSeries series1 = new XYSeries("Ventas por día");
+			TimeSeriesCollection dataset = new TimeSeriesCollection();
+		    //XYSeries series1 = new XYSeries("Ventas por día");
+		    TimeSeries serie2 = new TimeSeries("Ventas por día");
 		    
 		    ventasCliente = new ArrayList<negocio.Venta>();
 		    ventasCliente = cliente.getVentas();
 		    
 		    for(negocio.Venta ventaCliente : ventasCliente)
 		    {
-		    	//serie1.add(ventaCliente);
+		    	serie2.add(new Day(ventaCliente.getFechaVenta()), ventaCliente.getTotal());
+		    	Day fecha = new Day(ventaCliente.getFechaVenta());
+		    	JOptionPane.showMessageDialog(null, "Fecha venta: " + fecha);
 		    }
 		    
-		    series1.add(1, 100);
-		    series1.add(2, 340);
-		    series1.add(3, 200);
-		    series1.add(3, 425);
-		    series1.add(4, 560);
+		    //series1.add(1, 100);
+		    //series1.add(2, 340);
+		    //series1.add(3, 200);
+		    //series1.add(3, 425);
+		    //series1.add(4, 560);
 		     
-		    dataset.addSeries(series1);
+		    dataset.addSeries(serie2);
 		     
 		    return dataset;
 		}
