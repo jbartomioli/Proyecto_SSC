@@ -37,14 +37,9 @@ import javax.swing.JPanel;
 import javax.swing.JLayeredPane;
 
 
-
 //INICIO IMPORTS PARA GRAFICAR
 //SOLO UTILES PARA GRAFICOS DE LINEAS
 import org.jfree.chart.*;
-import org.jfree.chart.renderer.xy.XYSplineRenderer;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.axis.*;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
@@ -264,11 +259,11 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		// INICIO GRAFICO DE LINEAS //
 		layerGrafico = new JLayeredPane();
 		layerGrafico.setBorder(new TitledBorder(null, "Ventas por Mes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		layerGrafico.setBounds(597, 106, 691, 434);
+		layerGrafico.setBounds(538, 106, 750, 434);
 		getContentPane().add(layerGrafico);
 		
 		pnlGrafico = new JPanel();
-		pnlGrafico.setBounds(10, 21, 671, 402);
+		pnlGrafico.setBounds(10, 21, 730, 402);
 		layerGrafico.add(pnlGrafico);
 		
 		tblVentasCliente = new JTable();
@@ -430,19 +425,15 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 					// INICIO GRAFICO DE LINEAS //
 					String chartTitle = "Ventas por día";
 					String xAxisLabel = "Fecha";
-					String yAxisLabel = "Monto de Ventas";
-					
-					ValueAxis x = new NumberAxis();
-					ValueAxis y = new NumberAxis();
-					x.setLabel("Día");
-					y.setLabel("Monto de Venta");
+					String yAxisLabel = "Monto de Ventas ($)";
 					 
 					XYDataset dataset = createDataset(cliente);
 					 
-					JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, dataset, PlotOrientation.HORIZONTAL, true, true, true);
-					
+					JFreeChart chart = ChartFactory.createTimeSeriesChart(chartTitle, xAxisLabel, yAxisLabel, dataset, true, true, false);
+
 					ChartPanel chartPanel = new ChartPanel(chart);
 					 
+					pnlGrafico.removeAll();
 					pnlGrafico.add(chartPanel, BorderLayout.CENTER);
 					// FIN GRAFICO DE LINEAS //		
 					
@@ -455,7 +446,6 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		private XYDataset createDataset(negocio.Cliente cliente) 
 		{
 			TimeSeriesCollection dataset = new TimeSeriesCollection();
-		    //XYSeries series1 = new XYSeries("Ventas por día");
 		    TimeSeries serie2 = new TimeSeries("Ventas por día");
 		    
 		    ventasCliente = new ArrayList<negocio.Venta>();
@@ -463,16 +453,8 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		    
 		    for(negocio.Venta ventaCliente : ventasCliente)
 		    {
-		    	serie2.add(new Day(ventaCliente.getFechaVenta()), ventaCliente.getTotal());
-		    	Day fecha = new Day(ventaCliente.getFechaVenta());
-		    	JOptionPane.showMessageDialog(null, "Fecha venta: " + fecha);
+		    	serie2.addOrUpdate(new Day(ventaCliente.getFechaVenta()), ventaCliente.getTotal());
 		    }
-		    
-		    //series1.add(1, 100);
-		    //series1.add(2, 340);
-		    //series1.add(3, 200);
-		    //series1.add(3, 425);
-		    //series1.add(4, 560);
 		     
 		    dataset.addSeries(serie2);
 		     
