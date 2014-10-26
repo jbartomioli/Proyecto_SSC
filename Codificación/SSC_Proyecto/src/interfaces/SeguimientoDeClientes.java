@@ -61,7 +61,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 	private JTextField txtBuscarCliente;
 	private JLabel lblEspecialidad;
 	private JComboBox<String> cmbEspecialidad;
-	private String[] especialidades = {"Seleccione...", "Distribuidor", "Endodoncia", "Gnatologia", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
+	private String[] especialidades = {"Seleccione...", "Distribuidor", "Endodoncia", "Gnatología", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
 	private interfaces.componentes.TablaModificarDestinatarios tblClientesBuscados;
 	private interfaces.componentes.BotonesIconos btnAceptar;	
 	private JButton btnBuscarCliente;
@@ -259,11 +259,11 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		// INICIO GRAFICO DE LINEAS //
 		layerGrafico = new JLayeredPane();
 		layerGrafico.setBorder(new TitledBorder(null, "Ventas por Mes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		layerGrafico.setBounds(538, 106, 750, 434);
+		layerGrafico.setBounds(556, 106, 732, 434);
 		getContentPane().add(layerGrafico);
 		
 		pnlGrafico = new JPanel();
-		pnlGrafico.setBounds(10, 21, 730, 402);
+		pnlGrafico.setBounds(10, 21, 712, 402);
 		layerGrafico.add(pnlGrafico);
 		
 		tblVentasCliente = new JTable();
@@ -271,7 +271,6 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		modelVentasCliente = (DefaultTableModel) tblVentasCliente.getModel();
 		modelVentasCliente.addColumn("Mes Venta");
 		modelVentasCliente.addColumn("Importe");
-				
 		//FIN GRAFICO DE LINEAS //
 		
 		inicializar(controladorSeguimiento);
@@ -304,7 +303,14 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 					buscar_cliente_textField(controladorSeguimiento);
 				}
 			}
-		});		
+		});
+		
+		btnBuscarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Busca clientes si el usuario presiona la lupa
+				buscar_cliente_boton(controladorSeguimiento);
+			}
+		});
 		
 		txtBuscarCliente.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) 
@@ -374,6 +380,12 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		
 		//-------------------------------------------------------------------------------------------------------
 		private void buscar_cliente_textField(negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento) 
+		{
+			tblClientesBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesDescPcial(txtBuscarCliente.getText()));
+			tblClientesBuscados.definirTablaDestinatariosBuscados();
+		}
+		
+		private void buscar_cliente_boton(negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento)
 		{
 			tblClientesBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesDescPcial(txtBuscarCliente.getText()));
 			tblClientesBuscados.definirTablaDestinatariosBuscados();
