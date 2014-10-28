@@ -335,8 +335,6 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 	}
 	
 	
-	
-	
 	//-------------------------------------------------------------------------------------------------------
 		public void click_boton_cancelar()
 		{
@@ -359,7 +357,18 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		//-------------------------------------------------------------------
 		protected void cerrar_salir()
 		{
+			lblApNomSelec.setVisible(false);
+			lblEspecSelec.setVisible(false);
+			lblMailSelec.setVisible(false);
+			lblDirSelec.setVisible(false);
+			lblTelSelec.setVisible(false);
+			lblTotVtasSelec.setVisible(false);
+			
+			pnlGrafico.setVisible(false);
+			
 			dispose();
+			
+			tblClientesBuscados.completarTabla(null);
 		}
 		
 		
@@ -393,7 +402,18 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		
 		public void click_boton_aceptar()
 		{	
+			lblApNomSelec.setVisible(false);
+			lblEspecSelec.setVisible(false);
+			lblMailSelec.setVisible(false);
+			lblDirSelec.setVisible(false);
+			lblTelSelec.setVisible(false);
+			lblTotVtasSelec.setVisible(false);
+			
+			pnlGrafico.setVisible(false);
+			
 			super.cerrar_salir();
+			
+			tblClientesBuscados.completarTabla(null);
 		}
 		
 		
@@ -446,6 +466,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 					ChartPanel chartPanel = new ChartPanel(chart);
 					 
 					pnlGrafico.removeAll();
+					pnlGrafico.setVisible(true);
 					pnlGrafico.add(chartPanel, BorderLayout.CENTER);
 					// FIN GRAFICO DE LINEAS //		
 					

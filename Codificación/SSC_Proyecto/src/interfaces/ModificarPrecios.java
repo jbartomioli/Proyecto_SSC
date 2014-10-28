@@ -24,6 +24,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.Component;
 import java.awt.Cursor;
 
@@ -70,6 +72,12 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 
 		controladorPrecios.inicializarCatalogos();
 		inicializar(null);
+		
+		addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent arg0) {
+        		cerrar_salir();
+        	}
+        });
 	}
 	
 	

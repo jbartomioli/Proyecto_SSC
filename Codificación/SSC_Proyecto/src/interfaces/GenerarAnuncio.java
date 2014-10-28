@@ -8,6 +8,8 @@ import java.awt.Cursor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -128,8 +130,7 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		setPantallaCompleta();
 		setDimensionFormulario(1024, 668);
     	
-        
-		
+        		
     	/*********
     	 * TITULO
     	 *********/
@@ -283,6 +284,12 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		/************************
 		 * INICIALIZAR CONTROLES
 		 ************************/
+		
+		addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent arg0) {
+        		cerrar_salir();
+        	}
+        });
 		
 	}
 
