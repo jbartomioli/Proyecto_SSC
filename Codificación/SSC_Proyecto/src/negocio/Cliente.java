@@ -1,7 +1,10 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Cliente 
 {
@@ -213,5 +216,27 @@ public class Cliente
 		}
 		
 		return totalVentas;
+	}
+	
+	
+	///////////////////////////////////////////////////
+	// OBTIENE IMPORTE TOTAL DE VENTAS DEL CLIENTE  //
+	//////////////////////////////////////////////////
+	//LISTO
+	public Date obtenerMaxVenta()
+	{
+		Date maxFechaVta = new Date();
+		
+		for(negocio.Venta ventaNegocio: this.ventas)
+		{
+			Date fechaVta = ventaNegocio.getFechaVenta();
+			
+			if(fechaVta.after(maxFechaVta))
+			{
+				maxFechaVta = fechaVta;
+			}
+		}
+
+		return maxFechaVta;
 	}
 }

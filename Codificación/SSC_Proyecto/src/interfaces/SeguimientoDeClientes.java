@@ -83,6 +83,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 	private Box boxClienteSeleccionado;
 	private JScrollPane scrollClientesBuscados;
 	private int idClienteSeleccionado;
+	private JLabel lblInfo;
 	
 	// INICIO VARIABLES GRAFICO DE LINEAS //
 	private JLayeredPane layerGrafico;
@@ -266,6 +267,12 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		pnlGrafico.setBounds(10, 21, 712, 402);
 		layerGrafico.add(pnlGrafico);
 		
+		lblInfo = new JLabel("Informaci\u00F3n ventas");
+		lblInfo.setBounds(567, 562, 657, 26);
+		getContentPane().add(lblInfo);
+		lblInfo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblInfo.setVisible(false);
+		
 		tblVentasCliente = new JTable();
 		
 		modelVentasCliente = (DefaultTableModel) tblVentasCliente.getModel();
@@ -363,6 +370,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 			lblDirSelec.setVisible(false);
 			lblTelSelec.setVisible(false);
 			lblTotVtasSelec.setVisible(false);
+			lblInfo.setVisible(false);
 			
 			pnlGrafico.setVisible(false);
 			
@@ -408,6 +416,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 			lblDirSelec.setVisible(false);
 			lblTelSelec.setVisible(false);
 			lblTotVtasSelec.setVisible(false);
+			lblInfo.setVisible(false);
 			
 			pnlGrafico.setVisible(false);
 			
@@ -469,6 +478,9 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 					pnlGrafico.setVisible(true);
 					pnlGrafico.add(chartPanel, BorderLayout.CENTER);
 					// FIN GRAFICO DE LINEAS //		
+					
+					//lblInfo.setText("La última venta del cliente ha sido el: " + cliente.obtenerMaxVenta().toString());
+					lblInfo.setVisible(true);
 					
 					idClienteSeleccionado = idCliente;
 		    	}
