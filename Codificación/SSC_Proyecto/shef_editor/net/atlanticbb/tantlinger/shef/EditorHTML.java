@@ -40,8 +40,6 @@ public class EditorHTML extends JDialog
 	 * COMPONENTES/VARIABLES
 	 ************************/
 	private HTMLEditorPane editor = new HTMLEditorPane();
-	private String tagIniComentario = "<!--";
-	private String tagFinComentario = "-->";
 	
 	
 	/*********************
@@ -133,61 +131,52 @@ public class EditorHTML extends JDialog
     //------------------------------------------------------
     public void inicializarContenido(String asunto, Collection<HashMap<String, String>> productos)
     {
-    	File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
+//    	File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
+    	
+    	File plantillaHTML = new File(Configuraciones.DIR_MAILS+"plantilla_mail.html");
 		
     	String contenidoMailHTML = "";
+    	String contenidoPlantilla = "";
     	
 	   	FileReader fr = null;
 	   	BufferedReader br = null;
 	   	
 	   	try 
 	   	{
-	   		fr = new FileReader(archivoHTML);
+	   		fr = new FileReader(plantillaHTML);
 	   		br = new BufferedReader(fr);
 			 
 	   		String renglon = "";
 	   		
 	   		while((renglon=br.readLine())!=null)
-		       		contenidoMailHTML += renglon;
+	   				contenidoPlantilla += renglon;  
 	   		
-	   		contenidoMailHTML = modificarAsunto(contenidoMailHTML, asunto);
-	   			   
-	   	}
-	   	catch(IOException ioe)
-	   	{
-		   	contenidoMailHTML += tagIniComentario;
-		   	contenidoMailHTML += asunto;	
-		   	contenidoMailHTML += tagFinComentario;
-		   	contenidoMailHTML += "</br>";	
-		   	
-		   	String renglon="";
-		   	
-		   	contenidoMailHTML+="<h1>Título del anuncio</h1>";
-		   	contenidoMailHTML+="<p>Párrafo 1</p>";
-		   	
-		   	contenidoMailHTML+="<table>"
-				   			+ "<tr>"
-				   			+ "<th>Cod.</th>"
-				   			+ "<th>Producto</th>"
-				   			+ "<th>Precio Vigente</th>"
-				   			+ "<th>Precio Promocional</th>"
-				   			+ "</tr>";
+	   		String patron = "";
+		   	String datosProductos = "";
 		   	
 	   		for(HashMap<String, String> productoActual: productos)
-	   		{
-	   			renglon = "<tr>"
-	   					+ "<td>"+productoActual.get("ID")+"</td>"
-	   					+ "<td>"+productoActual.get("DESCRIPCION")+"</td>"
-	   					+ "<td>$ "+productoActual.get("VIGENTE")+"</td>"
-	   					+ "<td>$ "+productoActual.get("PROMOCIONAL")+"</td>"
+	   		{	
+	   			patron = "<tr>"
+	   					+ "<td>%s</td>"
+	   					+ "<td>%s</td>"
+	   					+ "<td>$ %s</td>"
+	   					+ "<td>$ %s</td>"
 	   					+ "</tr>";
-
-        		contenidoMailHTML += renglon;
+	   			
+	   			datosProductos += String.format(
+	   					patron,
+	   					productoActual.get("ID"),
+	   					productoActual.get("DESCRIPCION"),
+	   					productoActual.get("VIGENTE"),
+	   					productoActual.get("PROMOCIONAL"));
 	   		}
-	   		contenidoMailHTML+="</table>";
 	   		
-	   		contenidoMailHTML+="<p>Párrafo 2</p>";
+	   		contenidoMailHTML = String.format(contenidoPlantilla, asunto, datosProductos);
+	   	}
+	   	catch(IOException ioe)
+	   	{		   	
 		   	
+	   		
 	   	}
 	   	finally
 	   	{
@@ -206,27 +195,27 @@ public class EditorHTML extends JDialog
     }
     
     //-------------------------------------------------------------
-    private String modificarAsunto(String contenidoMailHTML, String asunto) 
-    {
-    	String asuntoAnterior;
-       
-        StringBuffer sb = new StringBuffer(contenidoMailHTML);
-
-        if(sb.indexOf(tagIniComentario) != -1)
-        {
-        	int i = sb.indexOf(tagIniComentario);
-        	int j = sb.indexOf(tagFinComentario);
-        	
-        	asuntoAnterior = sb.substring(i+tagIniComentario.length(), j);
-        	        	
-        	if(!asunto.equals(asuntoAnterior))
-        	{
-        		sb.delete(i,j+tagFinComentario.length());
-        		sb.insert(i,tagIniComentario+asunto+tagFinComentario);
-        	}
-        }
-        return sb.toString();
-    }
+//    private String modificarAsunto(String contenidoMailHTML, String asunto) 
+//    {
+//    	String asuntoAnterior;
+//       
+//        StringBuffer sb = new StringBuffer(contenidoMailHTML);
+//
+//        if(sb.indexOf(tagIniComentario) != -1)
+//        {
+//        	int i = sb.indexOf(tagIniComentario);
+//        	int j = sb.indexOf(tagFinComentario);
+//        	
+//        	asuntoAnterior = sb.substring(i+tagIniComentario.length(), j);
+//        	        	
+//        	if(!asunto.equals(asuntoAnterior))
+//        	{
+//        		sb.delete(i,j+tagFinComentario.length());
+//        		sb.insert(i,tagIniComentario+asunto+tagFinComentario);
+//        	}
+//        }
+//        return sb.toString();
+//    }
 
 
 
@@ -264,12 +253,6 @@ public class EditorHTML extends JDialog
     	    
 	        writer.close();
 	        file.close();
-    		
-//        	JOptionPane.showMessageDialog(
-//        			this,
-//        			"Los cambios han sido guardados con éxito",
-//        			"TAREA COMPLETA",
-//        			JOptionPane.INFORMATION_MESSAGE);
     	}
     	catch(IOException ioe)
     	{
