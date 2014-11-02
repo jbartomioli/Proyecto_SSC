@@ -25,8 +25,9 @@ public class Observaciones {
 	 * 
 	 * Notas: del formulario de modificacion de destinatarios falta editar
 	 * los destinatarios y validar la carga, por ejemplo puedo agregar dos veces
-	 * el mismo destinatario... 
+	 * el mismo destinatario... ¡¡¡¿¿¿???!!! 
 	 * 
-	 * estado en anuncios...definir que hacemos
+	 * estado en anuncios...definir que hacemos ---> antes de hacer el insert le voy a poner
+	 * que inserte el enviado o que modifique el estado luego del envio
 	 * */
 }

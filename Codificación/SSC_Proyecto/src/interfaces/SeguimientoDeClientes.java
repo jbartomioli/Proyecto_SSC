@@ -422,6 +422,9 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 			
 			super.cerrar_salir();
 			
+			/*----------------------------
+			 * OJO QUE SALTA EXCEPCION!!!
+			 *----------------------------*/
 			tblClientesBuscados.completarTabla(null);
 		}
 		
