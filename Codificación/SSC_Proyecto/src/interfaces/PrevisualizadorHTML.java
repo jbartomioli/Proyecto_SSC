@@ -43,23 +43,23 @@ public class PrevisualizadorHTML extends interfaces.componentes.JDialogBaseFormu
 	private String pie_mail = "<img src=\"file:"+utilidades.Configuraciones.IMG_PIE_MAIL+"\"/></body></html>";
 	private JButton btnVolverModificar;
 	private JButton btnAceptarEnviar;
-
+	private negocio.ControladorConfeccionarAnuncio controlador;
 	
 	/****************
 	 * CONSTRUCTOR
-	 * @param padre
+	 * @param framePadre
 	 ****************/
-	public PrevisualizadorHTML(interfaces.GenerarAnuncio padre)
+	public PrevisualizadorHTML(interfaces.GenerarAnuncio framePadre)
 	{
 		/******************
 		 * FORMULARIO BASE
 		 ******************/
-		super((JDialog) padre,"Vista Previa de Contenido de E-Mail","ENVIAR_32.png",true);		
+		super((JDialog) framePadre,"Vista Previa de Contenido de E-Mail","ENVIAR_32.png",true);		
 		setDimensionFormulario(800,600);
-		
 		
 	    getContentPane().setLayout(new BorderLayout(0, 0));
 	    
+	    	    
 	    /**
 	     * EDITOR
 	     */
@@ -94,8 +94,8 @@ public class PrevisualizadorHTML extends interfaces.componentes.JDialogBaseFormu
    		btnAceptarEnviar = new JButton("Aceptar y Enviar");
    		panelBotones.add(btnAceptarEnviar);
    		btnAceptarEnviar.addActionListener(new ActionListener() {
-   			public void actionPerformed(ActionEvent e) {
-   				if(preparar_enviar(contenidoMailHTML, mailsClientes))
+			public void actionPerformed(ActionEvent e) {
+				if(preparar_enviar(contenidoMailHTML, mailsClientes, controlador))
    					try
 	   				{
 	   					if( null != fr ) 
@@ -137,12 +137,14 @@ public class PrevisualizadorHTML extends interfaces.componentes.JDialogBaseFormu
 	 * @return
 	 */
 	@SuppressWarnings("finally")
-	public boolean inicializar(String nombreArchivo, String [] mailsDestino)
+	public boolean inicializar(String nombreArchivo, String [] mailsDestino, negocio.ControladorConfeccionarAnuncio controlador)
 	{
 		
 		mailsClientes = mailsDestino;
-		
+				
 		imagenes = new ArrayList<String>();
+		
+		this.controlador = controlador;
 		
 		archivoHTML = new File(utilidades.Configuraciones.DIR_MAILS+nombreArchivo);
 		
@@ -226,7 +228,7 @@ public class PrevisualizadorHTML extends interfaces.componentes.JDialogBaseFormu
 	
 	//---------------------------------------------------------------------
 	@SuppressWarnings("finally")
-	public boolean preparar_enviar(String contenidoEnviar, String [] mailsClientes)
+	public boolean preparar_enviar(String contenidoEnviar, String [] mailsClientes, negocio.ControladorConfeccionarAnuncio controlador)
 	{
 		boolean resultado = false;
 	  	
@@ -240,7 +242,10 @@ public class PrevisualizadorHTML extends interfaces.componentes.JDialogBaseFormu
 			
 	    	String contenidoProcesado = procesarImagenes(contenidoEnviar);
 	    	
-	    	Thread trabajoEnvio = new Thread(new interfaces.interfaces_software.TrabajoEnvioMail(0, contenidoProcesado, mailsClientes, asunto, imagenes));
+	    	controlador.redactarMensaje(contenidoProcesado);
+	    	
+	    	
+	    	Thread trabajoEnvio = new Thread(new interfaces.interfaces_software.TrabajoEnvioMail(0, controlador, mailsClientes, asunto, imagenes));
 	    	trabajoEnvio.start();
 	    	
 	    	new Thread(new interfaces.interfaces_software.HiloBarraProgreso(trabajoEnvio, this, this.barraProgreso, 200, true)).start();

@@ -30,10 +30,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Font;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -584,6 +581,7 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 	protected void action_enviar(GenerarAnuncio dialogPadre)
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		
 		interfaces.PrevisualizadorHTML previsualizadorHTML = 
     			new interfaces.PrevisualizadorHTML(dialogPadre);
     	
@@ -594,48 +592,14 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
     	for(int i=0; i<tblDestinatarios.getModel().getRowCount();++i)
     		mailsClientes[i] = tblDestinatarios.getModel().getValueAt(i, 3).toString();
 
-    	enviado = previsualizadorHTML.inicializar("temporal.html", mailsClientes);
+    	enviado = previsualizadorHTML.inicializar("temporal.html", mailsClientes,controlador);
     	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     	
     	if(enviado)
     	{    		
-    		FileReader fr = null;
-    		BufferedReader br = null;
-    		
-    		try
-    		{      			
-    			File archivoHTML = new File(utilidades.Configuraciones.DIR_MAILS+"temporal.html");
-    			
-    		   	fr = new FileReader(archivoHTML);
-    		   	br = new BufferedReader(fr);
-    		   	
-    		   	String contenidoMailHTML = "";    		   		
-    		   	String renglon = "";
-    			 
-    		   	while((renglon=br.readLine())!=null)
-    		       		contenidoMailHTML += renglon;
-    		   	
-    		   	controlador.redactarMensaje(contenidoMailHTML);
-    		}
-    		catch(Exception e)
-    		{
-    			e.printStackTrace();
-    		}
-    		finally
-    		{
-            	try
-            	{                    
-            		if( null != fr )   
-            			fr.close();
-            		limpiar_formulario();
-            		eliminar_temporal();
-            	}
-            	catch (IOException e2)
-            	{ 
-            		e2.printStackTrace();
-            	}
-    		}
-    		
+            limpiar_formulario();
+            eliminar_temporal();
+            
     		controlador.finalizarCargaProducto();
     		controlador.guardarAnuncio();   
     		limpiar_objetos_temporales();

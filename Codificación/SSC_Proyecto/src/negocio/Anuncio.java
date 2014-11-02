@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.mail.MessagingException;
+
 
 
 public class Anuncio 
@@ -268,23 +270,11 @@ public class Anuncio
 	/////////////////////////////////////////////////////////////////
 	// METODO UTILIZADO PARA EL ENVIO DE MAIL DE ANUNCIO		   //
 	/////////////////////////////////////////////////////////////////
-	//FALTA
-	public void enviarAnuncio()
+	//LISTO
+	public void enviarAnuncio(String[] mailsDestinatarios, String asuntoMail, Collection<String> imagenes) throws MessagingException
 	{
-		try
-		{
-		//utilidades.MailPromocional nuevoMail = new utilidades.MailPromocional();
-		
-		//nuevoMail.enviarMail(this.getTextoMensaje(), mailsDestinatarios, asuntoMail);
-		}
-		catch(Exception e)
-		{
-			
-		}
-		finally
-		{
-			
-		}
+		utilidades.MailPromocional nuevoMail = new utilidades.MailPromocional();
+		nuevoMail.enviarMail(this.getTextoMensaje(), mailsDestinatarios, asuntoMail, imagenes);
 	}
 	//---------------------------------------------------------------
 

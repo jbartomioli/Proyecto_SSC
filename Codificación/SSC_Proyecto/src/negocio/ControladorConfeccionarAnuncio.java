@@ -3,6 +3,8 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.mail.MessagingException;
+
 public class ControladorConfeccionarAnuncio
 {
 	//***************************************************************
@@ -326,17 +328,17 @@ public class ControladorConfeccionarAnuncio
 	/////////////////////////////////////////////////////////////////
 	// Metodo DSD 1.3.1//
 	/////////////////////////////////////////////////////////////////
-	//LISTO - DEPURACION
+	//LISTO
 	public boolean guardarAnuncio() 
 	{
 		try
 		{
+			anuncioActual.setEstado("ENVIADO");
 			catalogoAnuncios.guardarAnuncio(this.anuncioActual);
 			return true;
 		}
 		catch(Exception e)
 		{
-			//DEPURACION
 			e.printStackTrace();
 			return false;
 		}
@@ -348,16 +350,16 @@ public class ControladorConfeccionarAnuncio
 	// Metodo DSD 1.4.1 - DSD NO SE ELABORO POR SIMPLICIDAD        //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public boolean enviarAnuncios() 
+	public boolean enviarAnuncio(String[] mailsDestinatarios, String asuntoMail, Collection<String> imagenes)
 	{
 		try
 		{
-			anuncioActual.enviarAnuncio();
+			this.anuncioActual.enviarAnuncio(mailsDestinatarios, asuntoMail, imagenes);
+			this.anuncioActual.setEstado("ENVIADO");
 			return true;
 		}
-		catch(Exception exc)
+		catch(MessagingException exc)
 		{
-			exc.printStackTrace();
 			return false;
 		}
 	}

@@ -2,12 +2,11 @@ package interfaces.interfaces_software;
 
 import java.util.Collection;
 
-import javax.mail.MessagingException;
 
 
 public class TrabajoEnvioMail implements Runnable{
-    
-    private String textoMensaje;
+	
+    private negocio.ControladorConfeccionarAnuncio controlador;
     private String [] mailsDestinatarios;
     private String asuntoMail;
     private Collection<String> imagenes;
@@ -16,12 +15,12 @@ public class TrabajoEnvioMail implements Runnable{
     
     public TrabajoEnvioMail( 
     		int tiempo, 
-    		String textoMensaje, 
+    		negocio.ControladorConfeccionarAnuncio controlador,
     		String [] mailsDestinatarios, 
     		String asuntoMail, 
     		Collection<String> imagenes)
     {
-        this.textoMensaje = textoMensaje;
+    	this.controlador = controlador;
         this.mailsDestinatarios = mailsDestinatarios;
         this.asuntoMail = asuntoMail; 
         this.imagenes = imagenes;
@@ -29,13 +28,10 @@ public class TrabajoEnvioMail implements Runnable{
     
     @Override
     public void run()
-    {
-    	utilidades.MailPromocional mail = new utilidades.MailPromocional();
-		
+    {		
         try
         {		
-
-        	mail.enviarMail(textoMensaje, mailsDestinatarios, asuntoMail, imagenes);
+        	controlador.enviarAnuncio(mailsDestinatarios, asuntoMail, imagenes);
 
         	Thread.sleep( 1000 );
         }
@@ -43,10 +39,6 @@ public class TrabajoEnvioMail implements Runnable{
         {
             System.err.println( e.getMessage() );
         }
-        catch (MessagingException me) 
-        {
-        	//
-		}
         finally
         {
         }
