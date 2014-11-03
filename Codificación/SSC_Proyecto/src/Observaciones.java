@@ -4,7 +4,7 @@ public class Observaciones {
 	 /*Agregar la tabla destinatarios en Modificar Destinatarios --> LISTO
 	 * Agregar campo Especialidad en la tabla de Modificar destinatarios --> LISTO
 	 * Buscar clientes utilizando la lupa en Modificar Destinatarios --> LISTO
-	 * Pantalla de Realizar seguimiento de Clientes (limpiar pantalla al salir y al seleccionar especialidad) --> CASI LISTA
+	 * Pantalla de Realizar seguimiento de Clientes (limpiar pantalla al salir y al seleccionar especialidad) --> LISTO
 	 * Detalles del mail --> CASI LISTO
 	 * Confeccionar encabezado y pie --> LISTO
 	 * Agregar pantalla para modificar precio de productos --> LISTO
