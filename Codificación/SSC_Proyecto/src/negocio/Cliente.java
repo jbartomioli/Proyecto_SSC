@@ -1,10 +1,11 @@
 package negocio;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class Cliente 
 {
@@ -223,20 +224,35 @@ public class Cliente
 	// OBTIENE IMPORTE TOTAL DE VENTAS DEL CLIENTE  //
 	//////////////////////////////////////////////////
 	//LISTO
-	public Date obtenerMaxVenta()
+	public String obtenerMaxVenta()
 	{
-		Date maxFechaVta = new Date();
-		
-		for(negocio.Venta ventaNegocio: this.ventas)
+		try
 		{
-			Date fechaVta = ventaNegocio.getFechaVenta();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			
-			if(fechaVta.after(maxFechaVta))
+			Date maxFechaVta = sdf.parse("1900-01-01");
+			
+			DateFormat outputFormatter = new SimpleDateFormat("dd/MM/yyyy");
+			
+			
+			for(negocio.Venta ventaNegocio: this.ventas)
 			{
-				maxFechaVta = fechaVta;
+				Date fechaVta = ventaNegocio.getFechaVenta();
+				
+				if(fechaVta.after(maxFechaVta))
+				{
+					maxFechaVta = fechaVta;
+				}
 			}
+			
+			String output = outputFormatter.format(maxFechaVta);
+			
+			return output;
 		}
-
-		return maxFechaVta;
+		catch(ParseException pe)
+		{
+			pe.printStackTrace();
+		}
+		return null;
 	}
 }

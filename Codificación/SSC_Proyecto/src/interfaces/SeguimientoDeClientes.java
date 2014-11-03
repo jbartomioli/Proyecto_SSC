@@ -16,9 +16,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -35,6 +39,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 import javax.swing.JLayeredPane;
+
+
+
 
 
 //INICIO IMPORTS PARA GRAFICAR
@@ -84,6 +91,11 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 	private JScrollPane scrollClientesBuscados;
 	private int idClienteSeleccionado;
 	private JLabel lblInfo;
+	private Date fechaActual;
+	private Date fechaMaxCompra;
+	private long diference;
+	private long days;
+	private JLabel lblWarning;
 	
 	// INICIO VARIABLES GRAFICO DE LINEAS //
 	private JLayeredPane layerGrafico;
@@ -249,7 +261,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		pnlClienteSeleccionado.add(lblTelSelec);
 		
 		lblTotVtasSelec = new JLabel("telSelec");
-		lblTotVtasSelec.setForeground(Color.RED);
+		lblTotVtasSelec.setForeground(new Color(46, 139, 87));
 		lblTotVtasSelec.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblTotVtasSelec.setBounds(134, 182, 276, 21);
 		lblTotVtasSelec.setVisible(false);
@@ -268,10 +280,18 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		layerGrafico.add(pnlGrafico);
 		
 		lblInfo = new JLabel("Informaci\u00F3n ventas");
-		lblInfo.setBounds(567, 562, 657, 26);
-		getContentPane().add(lblInfo);
+		lblInfo.setBounds(566, 551, 657, 26);
 		lblInfo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblInfo.setVisible(false);
+		getContentPane().add(lblInfo);
+		
+		lblWarning = new JLabel("Informaci\u00F3n falta de ventas");
+		lblWarning.setForeground(Color.RED);
+		lblWarning.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblWarning.setBounds(566, 577, 405, 18);
+		lblWarning.setVisible(false);
+		getContentPane().add(lblWarning);
+		
 		
 		tblVentasCliente = new JTable();
 		
@@ -452,6 +472,22 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 			    	
 			    	cliente.obtenerVentas();
 			    	
+			    	fechaActual = new Date();
+			    	fechaMaxCompra = new Date();
+			    	
+			    	DateFormat outputFormatter = new SimpleDateFormat("dd/MM/yyyy");
+		    		
+			    	try {
+						fechaMaxCompra = outputFormatter.parse(cliente.obtenerMaxVenta());
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		    		
+		    		diference = fechaActual.getTime() - fechaMaxCompra.getTime();
+		    		
+		    		days = diference / (24 * 60 * 60 * 1000);
+			    	
 			    	lblApNomSelec.setText(cliente.getApellido() + ", " + cliente.getNombre());
 					lblEspecSelec.setText(cliente.getEspecialidad());
 					lblMailSelec.setText(cliente.getEmail());
@@ -482,8 +518,18 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 					pnlGrafico.add(chartPanel, BorderLayout.CENTER);
 					// FIN GRAFICO DE LINEAS //		
 					
-					//lblInfo.setText("La última venta del cliente ha sido el: " + cliente.obtenerMaxVenta().toString());
+					lblInfo.setText("La última compra del cliente ha sido el: " + cliente.obtenerMaxVenta() + ".");
 					lblInfo.setVisible(true);
+					
+					if(days > 90)
+					{
+						lblWarning.setText("El cliente lleva más de 3 (tres) meses sin realizar una compra");
+						lblWarning.setVisible(true);
+					}
+					else
+					{
+						lblWarning.setVisible(false);
+					}
 					
 					idClienteSeleccionado = idCliente;
 		    	}
