@@ -396,7 +396,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 			
 			dispose();
 			
-			tblClientesBuscados.completarTabla(null);
+			tblClientesBuscados.limpiar_tabla();//completarTabla(null);
 		}
 		
 		
@@ -445,7 +445,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 			/*----------------------------
 			 * OJO QUE SALTA EXCEPCION!!!
 			 *----------------------------*/
-			tblClientesBuscados.completarTabla(null);
+			tblClientesBuscados.limpiar_tabla();//completarTabla(null);
 		}
 		
 		
