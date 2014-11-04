@@ -6,40 +6,39 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-
-public class TablaModificarDestinatarios extends JTable {
-
-	private TableColumn columnaBoton;
-	private DefaultTableModel modeloTablaDestinatarios;
-
-	private static final long serialVersionUID = -6350468692762393156L;
-
+public class TablaClientes extends JTable{
 	
-	public TablaModificarDestinatarios() {
-		modeloTablaDestinatarios = new DefaultTableModel(); 
-		modeloTablaDestinatarios.addColumn("ID");
-		modeloTablaDestinatarios.addColumn("Apellido"); 
-		modeloTablaDestinatarios.addColumn("Nombre"); 
-		modeloTablaDestinatarios.addColumn("Especialidad"); 
-		modeloTablaDestinatarios.addColumn(""); 
+	private TableColumn columnaBoton;
+	private DefaultTableModel modeloTablaClientes;
+	
+	private static final long serialVersionUID = 1149081666317096439L;
+	
+	public TablaClientes() 
+	{
+		modeloTablaClientes = new DefaultTableModel(); 
+		modeloTablaClientes.addColumn("ID");
+		modeloTablaClientes.addColumn("Apellido"); 
+		modeloTablaClientes.addColumn("Nombre");
+		modeloTablaClientes.addColumn("Especialidad");
+		modeloTablaClientes.addColumn("");
 	}
 	
 	
 	public void completarTabla(Collection<negocio.Cliente> arrClientes)
 	{						
-		while (modeloTablaDestinatarios.getRowCount() > 0)
-			modeloTablaDestinatarios.removeRow(0);
+		while (modeloTablaClientes.getRowCount() > 0)
+			modeloTablaClientes.removeRow(0);
 		
-		modeloTablaDestinatarios.setNumRows(arrClientes.size());
+		modeloTablaClientes.setNumRows(arrClientes.size());
 
-		setModel(modeloTablaDestinatarios);
+		setModel(modeloTablaClientes);
 		int i = 0;
 		for (negocio.Cliente clienteActual : arrClientes) {
-			modeloTablaDestinatarios.setValueAt(clienteActual.getIdCliente(), i, 0);
-			modeloTablaDestinatarios.setValueAt(clienteActual.getApellido(), i, 1);
-			modeloTablaDestinatarios.setValueAt(clienteActual.getNombre(),	i, 2);
-			modeloTablaDestinatarios.setValueAt(clienteActual.getEspecialidad(), i, 3);
-			modeloTablaDestinatarios.setValueAt(new Boolean(false), i, 4);
+			modeloTablaClientes.setValueAt(clienteActual.getIdCliente(), i, 0);
+			modeloTablaClientes.setValueAt(clienteActual.getApellido(), i, 1);
+			modeloTablaClientes.setValueAt(clienteActual.getNombre(),	i, 2);
+			modeloTablaClientes.setValueAt(clienteActual.getEspecialidad(), i, 3);
+			modeloTablaClientes.setValueAt(new Boolean(false), i, 4);
 			i++;
 		}
 		
@@ -94,4 +93,5 @@ public class TablaModificarDestinatarios extends JTable {
 	{
 		return false;
 	}
+
 }

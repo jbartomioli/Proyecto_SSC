@@ -69,7 +69,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 	private JLabel lblEspecialidad;
 	private JComboBox<String> cmbEspecialidad;
 	private String[] especialidades = {"Seleccione...", "Distribuidor", "Endodoncia", "Gnatología", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
-	private interfaces.componentes.TablaModificarDestinatarios tblClientesBuscados;
+	private interfaces.componentes.TablaClientes tblClientesBuscados;
 	private interfaces.componentes.BotonesIconos btnAceptar;	
 	private JButton btnBuscarCliente;
 	private JPanel pnlClienteSeleccionado;
@@ -180,7 +180,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		scrollClientesBuscados = new JScrollPane();
 		boxClientesBuscados.add(scrollClientesBuscados);
 		
-	    tblClientesBuscados = new interfaces.componentes.TablaModificarDestinatarios();
+	    tblClientesBuscados = new interfaces.componentes.TablaClientes();
 		scrollClientesBuscados.setViewportView(tblClientesBuscados);
 		
 		/**
