@@ -33,6 +33,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Collection;
 
 
 public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormularios
@@ -69,14 +70,15 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 		controladorPrecios = new negocio.ControladorModificarPrecios();
 
 		controladorPrecios.inicializarCatalogos();
-		inicializar(null);
+		inicializar(null, null);
+		
 	}
 	
 	
 	/****************************
 	 * CONSTRUCTOR JDIALOG
 	 ****************************/
-	public ModificarPrecios(JDialog jdialogPadre, negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
+	public ModificarPrecios(JDialog jdialogPadre, negocio.ControladorConfeccionarAnuncio controladorAnuncios, Collection<Integer> idProductos) throws Exception
 	{
 		super(jdialogPadre, "Modificar Precios","PRECIO_32.png",true);
 		
@@ -86,14 +88,14 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 		controladorPrecios.setCatalogoProductos(controladorAnuncios.getCatalogoProductos());
 		controladorPrecios.setCatalogoSubcategorias(controladorAnuncios.getCatalogoSubCategorias());
 		
-		inicializar(controladorAnuncios);
+		inicializar(controladorAnuncios, idProductos);
 	}
 	
 
 	/**********************
 	 * INICIALIZACION GUI
 	 **********************/
-	private void inicializar(final negocio.ControladorConfeccionarAnuncio controladorAnuncios)
+	private void inicializar(final negocio.ControladorConfeccionarAnuncio controladorAnuncios, final Collection<Integer> idProductos)
 	{
 		/******************
 		 * FORMULARIO BASE
@@ -180,7 +182,7 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 				if(tblProductos.columnAtPoint(mePrecio.getPoint())==5)
 					try 
 					{
-						click_modificar_precio(controladorAnuncios);
+						click_modificar_precio(controladorAnuncios, idProductos);
 					} 
 					catch(Exception e)
 					{
@@ -406,50 +408,68 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 		
 		
 		
-		protected void click_modificar_precio(negocio.ControladorConfeccionarAnuncio controladorAnuncios) throws Exception
+		protected void click_modificar_precio(negocio.ControladorConfeccionarAnuncio controladorAnuncios, Collection<Integer> idProductos) throws Exception
 		{
 			DefaultTableModel tableModel = (DefaultTableModel) tblProductos.getModel();
 			int idProductoInt = 0;
 			int filaSeleccionada = -1;
+			
+			boolean aux = false;
+			
 			filaSeleccionada = tblProductos.getSelectedRow();
 			
-			interfaces.componentes.JPanelPrecios panelPrecio = new interfaces.componentes.JPanelPrecios();
-			
-		    if (filaSeleccionada >= 0)
+			if (filaSeleccionada >= 0)
 		    {
-		    	idProductoInt = Integer.parseInt(tableModel.getValueAt(filaSeleccionada, 0).toString());	
-		    	productoSeleccionado = new negocio.Producto();
-		    	
-		    	productoSeleccionado = controladorPrecios.getCatalogoProductos().buscarProducto(idProductoInt);
-		    	
-		    	panelPrecio.setPrecioVigente(Float.parseFloat(tableModel.getValueAt(filaSeleccionada, 2).toString()));
-		    	panelPrecio.setPrecioPromocional(Float.parseFloat(tableModel.getValueAt(filaSeleccionada, 3).toString()));
+				if(idProductos != null && !idProductos.isEmpty() && idProductos.contains(tblProductos.getModel().getValueAt(filaSeleccionada, 0)))
+				{
+					aux = true;
+				}
+			
+				if(aux)
+				{
+					JOptionPane.showMessageDialog(null, 
+							"Antes de modificar el precio del producto, debe eliminarlo de la tabla Productos del Anuncio.", 
+							"ATENCIÓN",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					interfaces.componentes.JPanelPrecios panelPrecio = new interfaces.componentes.JPanelPrecios();
 
-		        int rta = 0;
-		        rta = JOptionPane.showConfirmDialog(this, panelPrecio, "Ingrese el/los nuevo/s precio/s", JOptionPane.OK_CANCEL_OPTION);
-		        
-		        if (rta == JOptionPane.OK_OPTION) 
-		        {
-		            //GUARDA NUEVOS PRECIOS		    	
-		        	controladorPrecios.getCatalogoProductos().actualizarPreciosProducto(
-		        			productoSeleccionado, 
-		        			panelPrecio.getPrecioVigente(),
-		        			panelPrecio.getPrecioPromocional());
-		        	
-		        	productoSeleccionado.setPrecioPromocional(panelPrecio.getPrecioPromocional());
-		        	productoSeleccionado.setPrecio(panelPrecio.getPrecioVigente());
-		        	
-		        	controladorPrecios.getCatalogoSubcategorias().actualizarProducto(productoSeleccionado);
-		        	
-		        	negocio.SubCategoria subcategoriaActual = new negocio.SubCategoria();
-		        	subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
-		       		        	
-					tblProductos.limpiar_tabla();
+			    	idProductoInt = Integer.parseInt(tableModel.getValueAt(filaSeleccionada, 0).toString());	
+			    	productoSeleccionado = new negocio.Producto();
+			    	
+			    	productoSeleccionado = controladorPrecios.getCatalogoProductos().buscarProducto(idProductoInt);
+			    	
+			    	panelPrecio.setPrecioVigente(Float.parseFloat(tableModel.getValueAt(filaSeleccionada, 2).toString()));
+			    	panelPrecio.setPrecioPromocional(Float.parseFloat(tableModel.getValueAt(filaSeleccionada, 3).toString()));
 
-		        	tblProductos.completarTabla(
-		        		controladorPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
-		        
-		        }
-		    }
+			        int rta = 0;
+			        rta = JOptionPane.showConfirmDialog(this, panelPrecio, "Ingrese el/los nuevo/s precio/s", JOptionPane.OK_CANCEL_OPTION);
+			        
+			        if (rta == JOptionPane.OK_OPTION) 
+			        {
+			            //GUARDA NUEVOS PRECIOS		    	
+			        	controladorPrecios.getCatalogoProductos().actualizarPreciosProducto(
+			        			productoSeleccionado, 
+			        			panelPrecio.getPrecioVigente(),
+			        			panelPrecio.getPrecioPromocional());
+			        	
+			        	productoSeleccionado.setPrecioPromocional(panelPrecio.getPrecioPromocional());
+			        	productoSeleccionado.setPrecio(panelPrecio.getPrecioVigente());
+			        	
+			        	controladorPrecios.getCatalogoSubcategorias().actualizarProducto(productoSeleccionado);
+			        	
+			        	negocio.SubCategoria subcategoriaActual = new negocio.SubCategoria();
+			        	subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
+			       		        	
+						tblProductos.limpiar_tabla();
+
+			        	tblProductos.completarTabla(
+			        		controladorPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
+			        
+			        }
+			    }				
+			}
 		}
 }

@@ -678,7 +678,14 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 	//-------------------------------------------------------------------
 	protected void click_label_modificar_precios(interfaces.GenerarAnuncio dialogPadre) throws Exception
 	{
-		interfaces.ModificarPrecios precios = new interfaces.ModificarPrecios(dialogPadre, controlador);
+		Collection<Integer> productosAgregados = new ArrayList<Integer>();
+		
+		for(int i = 0; i < tblProductosAnuncio.getRowCount(); i++)
+		{
+			productosAgregados.add((Integer) tblProductosAnuncio.getModel().getValueAt(i, 0));
+		}
+		
+		interfaces.ModificarPrecios precios = new interfaces.ModificarPrecios(dialogPadre, controlador, productosAgregados);
 		precios.setVisible(true);
 		
 		tblProductos.limpiar_tabla();
