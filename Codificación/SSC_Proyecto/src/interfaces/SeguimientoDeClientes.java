@@ -41,11 +41,7 @@ import javax.swing.JPanel;
 import javax.swing.JLayeredPane;
 
 
-
-
-
 //INICIO IMPORTS PARA GRAFICAR
-//SOLO UTILES PARA GRAFICOS DE LINEAS
 import org.jfree.chart.*;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
@@ -391,12 +387,14 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 			lblTelSelec.setVisible(false);
 			lblTotVtasSelec.setVisible(false);
 			lblInfo.setVisible(false);
+			lblWarning.setVisible(false);
 			
 			pnlGrafico.setVisible(false);
 			
 			dispose();
 			
-			tblClientesBuscados.limpiar_tabla();//completarTabla(null);
+			tblClientesBuscados.limpiar_tabla();
+			cmbEspecialidad.setSelectedIndex(0);
 		}
 		
 		
@@ -437,15 +435,14 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 			lblTelSelec.setVisible(false);
 			lblTotVtasSelec.setVisible(false);
 			lblInfo.setVisible(false);
+			lblWarning.setVisible(false);
 			
 			pnlGrafico.setVisible(false);
 			
 			super.cerrar_salir();
 			
-			/*----------------------------
-			 * OJO QUE SALTA EXCEPCION!!!
-			 *----------------------------*/
-			tblClientesBuscados.limpiar_tabla();//completarTabla(null);
+			tblClientesBuscados.limpiar_tabla();
+			cmbEspecialidad.setSelectedIndex(0);
 		}
 		
 		
@@ -462,9 +459,6 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		    if(filaSeleccionada >= 0)
 			{
 		    	int idCliente = Integer.parseInt(fila.elementAt(0).toString());
-		    	
-		    	//JOptionPane.showMessageDialog(null, "IdCliente: " + idCliente);
-		    	//JOptionPane.showMessageDialog(null, "IdCliente Seleccionado: " + idClienteSeleccionado);
 		    	
 		    	if(idCliente != idClienteSeleccionado)
 		    	{
