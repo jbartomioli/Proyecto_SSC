@@ -70,8 +70,6 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 	private JProgressBar prgProgresoAniadir;
 	private JScrollPane scrollProductosAnuncio;
 	private JScrollPane scrollProductos;
-
-
 	private SubCategoria subcategoriaActual;
 
 	

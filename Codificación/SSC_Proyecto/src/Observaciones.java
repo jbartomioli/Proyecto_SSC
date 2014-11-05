@@ -23,6 +23,8 @@ public class Observaciones {
 	 * En base a la decisión anterior actualizar la BD final y opciones del combo.
 	 * FIN - 25/10/2014, 26/10/2014 - RN
 	 * 
+	 * 05/11/2014 - Explicar funcionalidad de los check de pantalla configuraciones en el manual de usuario.
+	 * 
 	 * Notas: del formulario de modificacion de destinatarios falta editar
 	 * los destinatarios y validar la carga, por ejemplo puedo agregar dos veces
 	 * el mismo destinatario... ¡¡¡¿¿¿???!!! 
