@@ -127,7 +127,7 @@ public class Principal extends JFrame {
 		
 		
 		mntImportar = new JMenuItem("Importar Datos");
-		mntImportar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
+		mntImportar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK));
 		mntImportar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"IMPORTAR_16.png"));
 		mntImportar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
@@ -178,6 +178,7 @@ public class Principal extends JFrame {
 				seguimientoClientes.setVisible(true);
 			}
 		});
+		mntSeguimiento.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 		mntSeguimiento.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SEGUIMIENTO_16.png"));
 		mnuOperaciones.add(mntSeguimiento);
 		
