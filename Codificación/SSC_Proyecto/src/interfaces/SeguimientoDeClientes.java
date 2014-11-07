@@ -113,7 +113,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		super(jframePadre,"Seguimiento de Clientes","SEGUIMIENTO_32.png",true);
 		setPantallaCompleta();
 		setDimensionFormulario(1024, 668);
-		
+		setResizable(true);
 		controladorSeguimiento = new negocio.ControladorRealizarSeguimientoCliente();
 		
 		/*********
