@@ -37,7 +37,6 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import negocio.SubCategoria;
-import net.atlanticbb.tantlinger.shef.EditorHTML;
 
 import javax.swing.JTextField;
 import javax.swing.JProgressBar;
