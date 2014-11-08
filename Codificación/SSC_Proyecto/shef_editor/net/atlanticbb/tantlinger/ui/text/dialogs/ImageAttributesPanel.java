@@ -703,7 +703,14 @@ public class ImageAttributesPanel extends HTMLAttributeEditorPanel
 					
 					int seleccion = selector.showOpenDialog(attribPanel);
 
-					imgUrlField.setText("file:"+selector.getSelectedFile().getAbsolutePath());
+					try
+					{
+						imgUrlField.setText("file:"+selector.getSelectedFile().getAbsolutePath());
+					}
+					catch(NullPointerException npe)
+					{
+						imgUrlField.setText("");
+					}
 					
 				}
 			});
