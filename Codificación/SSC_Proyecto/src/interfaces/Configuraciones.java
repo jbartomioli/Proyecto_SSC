@@ -26,10 +26,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
+import interfaces.componentes.*;
 
 
 
-public class Configuraciones extends interfaces.componentes.JDialogBaseFormularios
+
+public class Configuraciones extends JDialogBaseFormularios
 {
 	
 	/****************
@@ -59,6 +61,12 @@ public class Configuraciones extends interfaces.componentes.JDialogBaseFormulari
 	private JCheckBox chkAutenticacionSmtp;
 	private JCheckBox chkTtlsSmtp;
 	private JTextField txtUbicacionFile;
+
+
+	private JButton btnBuscarArchivo;
+
+
+	private BotonesIconos btnCerrar;
 
 	
 	/*********************
@@ -196,7 +204,7 @@ public class Configuraciones extends interfaces.componentes.JDialogBaseFormulari
 		/*****************
 		 * BUSCAR ARCHIVO
 		 *****************/
-		JButton btnBuscarArchivo = new JButton("Buscar Archivo");
+		btnBuscarArchivo = new JButton("Buscar Archivo");
 		btnBuscarArchivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
@@ -294,12 +302,12 @@ public class Configuraciones extends interfaces.componentes.JDialogBaseFormulari
 		/****************
 		 * BOTON ACEPTAR
 		 ****************/
-		interfaces.componentes.BotonesIconos btnAceptar = 
-				new interfaces.componentes.BotonesIconos("Aceptar", utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
+		BotonesIconos btnAceptar = 
+				new BotonesIconos("Aceptar", utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
 		btnAceptar.setLocation(294, 397);	
 		btnAceptar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
-	        	action_aceptar();
+	        	click_aceptar();
 	        	}});
 		getContentPane().add(btnAceptar);
 		
@@ -307,8 +315,7 @@ public class Configuraciones extends interfaces.componentes.JDialogBaseFormulari
 		/*****************
 		 * BOTON CANCELAR
 		 *****************/
-		interfaces.componentes.BotonesIconos btnCerrar = 
-				new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		btnCerrar = new BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
 		btnCerrar.setLocation(394, 397);	
 		btnCerrar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento)
@@ -324,57 +331,72 @@ public class Configuraciones extends interfaces.componentes.JDialogBaseFormulari
 		inicializar();
 	}
 
-	//-------------------------------------------------------------
+
+	
+	
+	
+	/**
+	 * INICIALIZAR COMPONENTES
+	 */
 	protected void inicializar()
 	{
 		repaint();
-		
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
 		
-		archivoXML = new utilidades.HibernateCFG();
-		archivoXML.leerConfiguraciones();
-		
-		propiedades = archivoXML.getElementos();
-		
-		String urlDB = propiedades.get("hibernate.connection.url");
-		
-		StringTokenizer tokenizer = new StringTokenizer(urlDB,":");
-		String[] tokens = new String[tokenizer.countTokens()];
-		int i = 0;
-		
-		while (tokenizer.hasMoreTokens())
+		//OPCIONES SERVIDOR DE BASE DE DATOS
+		try
 		{
-			tokens[i] = tokenizer.nextToken();
-			i++;
+			archivoXML = new utilidades.HibernateCFG();
+			archivoXML.leerConfiguraciones();
+			
+			propiedades = archivoXML.getElementos();
+			
+			String urlDB = propiedades.get("hibernate.connection.url");
+			
+			StringTokenizer tokenizer = new StringTokenizer(urlDB,":");
+			String[] tokens = new String[tokenizer.countTokens()];
+			int i = 0;
+			
+			while (tokenizer.hasMoreTokens())
+			{
+				tokens[i] = tokenizer.nextToken();
+				i++;
+			}
+			
+			txtURL.setText(tokens[2].substring(2));
+			txtPuerto.setText(tokens[3].substring(0, tokens[3].indexOf('/')));
+			txtBD.setText(tokens[3].substring(tokens[3].indexOf('/')+1));
+			
+			txtUsuario.setText(propiedades.get("hibernate.connection.username"));
+			psfPass.setText(propiedades.get("hibernate.connection.password"));
+			psfPassRep.setText(propiedades.get("hibernate.connection.password"));
+
+			if(propiedades.get("hibernate.show_sql").equals("true"))
+				chkModoDepuracion.setSelected(true);
+			else
+				chkModoDepuracion.setSelected(false);
+		}
+		catch(NullPointerException npe)
+		{
+			//
 		}
 		
-		txtURL.setText(tokens[2].substring(2));
-		txtPuerto.setText(tokens[3].substring(0, tokens[3].indexOf('/')));
-		txtUsuario.setText(propiedades.get("hibernate.connection.username"));
-		psfPass.setText(propiedades.get("hibernate.connection.password"));
-		psfPassRep.setText(propiedades.get("hibernate.connection.password"));
-		txtBD.setText(tokens[3].substring(tokens[3].indexOf('/')+1));
-		if(propiedades.get("hibernate.show_sql").equals("true"))
-			chkModoDepuracion.setSelected(true);
-		else
-			chkModoDepuracion.setSelected(false);
-		
-		
+		//OPCIONES ARCHIVO DE CONFIGURACION GLOBAL
 		txtUbicacionFile.setText(utilidades.Configuraciones.URL_FILE);
+
 		
-		
-		
+		//OPCIONES SERVIDOR MAIL - SMTP
 		txtServerSmtp.setText(utilidades.Configuraciones.SMTP_HOST);
 		txtPuertoSmtp.setText(utilidades.Configuraciones.SMTP_PORT);
 		txtMail.setText(utilidades.Configuraciones.SMTP_USER);
 		psfPassSmtp.setText(utilidades.Configuraciones.SMTP_PASS);
 		psfPassSmtpRep.setText(utilidades.Configuraciones.SMTP_PASS);
-		
+				
 		if(utilidades.Configuraciones.SMTP_DEBUG == true)
 			chkModoDepuracionSmtp.setSelected(true);
 		else
 			chkModoDepuracionSmtp.setSelected(false);
-		
 		
 		if(utilidades.Configuraciones.SMTP_AUTH.equals("true"))
 			chkAutenticacionSmtp.setSelected(true);
@@ -385,14 +407,16 @@ public class Configuraciones extends interfaces.componentes.JDialogBaseFormulari
 			chkTtlsSmtp.setSelected(true);
 		else
 			chkTtlsSmtp.setSelected(false);
-		
 	}
 	
 	
 	
-	//-------------------------------------------------------------
+
+	/**
+	 * GUARDAR MODIFICACIONES
+	 */
 	@SuppressWarnings("deprecation")
-	protected void action_aceptar()
+	protected void click_aceptar()
 	{
 		if(validar_formulario())
 		{
@@ -442,7 +466,12 @@ public class Configuraciones extends interfaces.componentes.JDialogBaseFormulari
 		
 	}
 	
-	//-------------------------------------------------------------
+
+	
+	/**
+	 * VALIDAR DATOS DEL FORMULARIO
+	 * @return
+	 */
 	@SuppressWarnings("deprecation")
 	protected boolean validar_formulario()
 	{

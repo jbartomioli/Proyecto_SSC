@@ -46,7 +46,7 @@ public class CatalogoCategorias
 	// SE OBTIENEN TODAS LA CATEGORIAS DE LA BD					   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerCategorias()
+	public void obtenerCategorias() throws Exception
 	{
 		//SE CREA OBJETO CATALOGO CATEGORIAS DE DATOS PARA RECUPERAR DATOS
 		datos.CatalogoCategorias ctgDatos = new datos.CatalogoCategorias();

@@ -5,7 +5,7 @@ public class Observaciones {
 	 * Agregar campo Especialidad en la tabla de Modificar destinatarios --> LISTO
 	 * Buscar clientes utilizando la lupa en Modificar Destinatarios --> LISTO
 	 * Pantalla de Realizar seguimiento de Clientes (limpiar pantalla al salir y al seleccionar especialidad) --> LISTO
-	 * Detalles del mail --> CASI LISTO
+	 * Detalles del mail --> LISTO
 	 * Confeccionar encabezado y pie --> LISTO
 	 * Agregar pantalla para modificar precio de productos --> LISTO
 	 * Poner como no editable tabla de destinatarios --> LISTO
@@ -27,9 +27,9 @@ public class Observaciones {
 	 * 
 	 * Notas: del formulario de modificacion de destinatarios falta editar
 	 * los destinatarios y validar la carga, por ejemplo puedo agregar dos veces
-	 * el mismo destinatario... ¡¡¡¿¿¿???!!! 
+	 * el mismo destinatario... --> LISTO
 	 * 
 	 * estado en anuncios...definir que hacemos ---> antes de hacer el insert le voy a poner
-	 * que inserte el enviado o que modifique el estado luego del envio
+	 * que inserte el enviado o que modifique el estado luego del envio --> LISTO 
 	 * */
 }

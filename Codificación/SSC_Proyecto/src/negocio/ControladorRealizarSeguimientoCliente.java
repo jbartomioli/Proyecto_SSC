@@ -21,7 +21,6 @@ public class ControladorRealizarSeguimientoCliente
 	public ControladorRealizarSeguimientoCliente() 
 	{
 		this.catalogoClientes = new negocio.CatalogoClientes();
-		this.catalogoClientes.obtenerClientes();
 	}
 	//---------------------------------------------------------------
 
@@ -46,6 +45,15 @@ public class ControladorRealizarSeguimientoCliente
 	//***************************************************************
 	//* METODOS 													*
 	//***************************************************************
+	
+	
+	public void inicializarCatalgos()
+	{
+		this.catalogoClientes.obtenerClientes();
+	}
+	
+	
+	
 	
 	/////////////////////////////////////////////////////////////////
 	//Metodo 2.1.1 												   //

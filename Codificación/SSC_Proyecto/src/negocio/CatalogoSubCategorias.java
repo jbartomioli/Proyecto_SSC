@@ -48,7 +48,7 @@ public class CatalogoSubCategorias
 	// OBTIENE TODAS LA SUBCATEGORIAS DE LA BD					   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerSubCategorias()
+	public void obtenerSubCategorias() throws Exception
 	{
 		//SE CREA OBJETO CATALOGO SUBCATEGORIAS DE DATOS PARA RECUPERAR DATOS DE LA BD
 		datos.CatalogoSubCategorias ctgDatos = new datos.CatalogoSubCategorias();

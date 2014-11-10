@@ -51,8 +51,8 @@ public class CatalogoCategorias
 	// OBTIENE TODAS LAS CATEGORIAS DE LA BD					   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerCategorias()
-	{
+	public void obtenerCategorias() throws Exception
+	{ 
 		Session session = null;	
 		
 		try
@@ -83,13 +83,7 @@ public class CatalogoCategorias
 
             //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
-		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
+		} 
 		finally
 		{
 		 	session.close();

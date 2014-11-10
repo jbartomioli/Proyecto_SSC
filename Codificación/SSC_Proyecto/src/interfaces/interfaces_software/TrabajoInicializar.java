@@ -1,8 +1,8 @@
 package interfaces.interfaces_software;
 
 import javax.swing.JOptionPane;
-import org.hibernate.HibernateException;
 
+import org.hibernate.HibernateException;
 
 public class TrabajoInicializar implements Runnable{
     
@@ -35,6 +35,12 @@ public class TrabajoInicializar implements Runnable{
 					JOptionPane.ERROR_MESSAGE);	
 			he.printStackTrace();
 		}
+//        catch(JDBCConnectionException jdbcce)
+//        {
+//        	
+//        }
+        
+        
 		catch(Exception e)
 		{
 			JOptionPane.showMessageDialog(

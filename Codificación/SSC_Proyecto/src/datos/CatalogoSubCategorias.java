@@ -50,7 +50,7 @@ public class CatalogoSubCategorias
 	// OBTIENE TODAS LAS SUBCATEGORIAS                             //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerSubCategorias()
+	public void obtenerSubCategorias() throws Exception
 	{
 		Session session = null;	
 		
@@ -83,13 +83,7 @@ public class CatalogoSubCategorias
 
             //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
-		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
+		} 
 		finally
 		{
 		 	session.close();
