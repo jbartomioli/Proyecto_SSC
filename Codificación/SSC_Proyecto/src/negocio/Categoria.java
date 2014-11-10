@@ -76,7 +76,7 @@ public class Categoria
 	// 	OBTIENE LAS SUBCATEGORIAS DE UNA CATEGORIA ESPECIFICA      //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerSubCategorias() 
+	public void obtenerSubCategorias() throws Exception 
 	{
 		//SE CREA OBJETO CATEGORIA DE DATOS PARA OBTENER DATOS DE LA BD
 		datos.Categoria categoriaDatos = new datos.Categoria();

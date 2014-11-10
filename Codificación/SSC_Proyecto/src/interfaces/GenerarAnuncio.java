@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 
 
 
+
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -761,7 +762,11 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 	        catch (InterruptedException e)
 	        {
 	            System.err.println( e.getMessage() );
-	        }
+	        } 
+	        catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        finally
 	        {
 				if(tblDestinatarios.getModel().getRowCount()>0)

@@ -53,7 +53,7 @@ public class CatalogoPedidos
 	// OBTIENE TODOS LOS PEDIDOS DE LA BD						   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerPedidos()
+	public void obtenerPedidos() throws Exception
 	{
 		Session session = null;	
 		
@@ -86,12 +86,6 @@ public class CatalogoPedidos
 			}			
         session.getTransaction().commit();
 		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
 		finally
 		{
 		 	session.close();
@@ -105,7 +99,7 @@ public class CatalogoPedidos
 	// GUARDA EL NUEVO PEDIDO EN LA BD							   //
 	/////////////////////////////////////////////////////////////////
 	//FALTA COMPLETAR DATOS
-	public void agregarPedido(datos.Pedido pedidoDatos)
+	public void agregarPedido(datos.Pedido pedidoDatos) throws Exception
 	{
 		Session session = null;	
 		
@@ -169,12 +163,6 @@ public class CatalogoPedidos
 	        session.getTransaction().commit();
 		   
 		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
 		finally
 		{
 		 	session.close();

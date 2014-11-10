@@ -62,7 +62,7 @@ public class ParametrosNegocio
 	// OBTIENE LOS DATOS DE PARAMETROS NEGOCIO                     //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerParametrosNegocio()
+	public void obtenerParametrosNegocio() throws Exception
 	{
 		
 		Session session = null;	
@@ -88,13 +88,7 @@ public class ParametrosNegocio
 	        }
 	        //SE CONFIRMA TRANSACCION
 	        session.getTransaction().commit();
-		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
+		}		 
 		finally
 		{
 		 	session.close();
@@ -107,7 +101,7 @@ public class ParametrosNegocio
 	// //
 	/////////////////////////////////////////////////////////////////
 	//FALTA
-	public void guardarDatos() 
+	public void guardarDatos() throws Exception
 	{
 		Session session = null;	
 		
@@ -119,13 +113,7 @@ public class ParametrosNegocio
 		    session.refresh(this);
 		    
 	        session.getTransaction().commit();
-		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
+		}		 
 		finally
 		{
 		 	session.close();

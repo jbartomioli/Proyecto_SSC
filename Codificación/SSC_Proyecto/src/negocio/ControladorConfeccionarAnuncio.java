@@ -205,7 +205,7 @@ public class ControladorConfeccionarAnuncio
 	// Metodo DSD 1.1.1 - DSD 1.7.2 							   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public Collection<negocio.SubCategoria> seleccionarCategoria(int idCategoria) 
+	public Collection<negocio.SubCategoria> seleccionarCategoria(int idCategoria) throws Exception 
 	{
 		//instancia para almacenar la categoria actual seleccionada
 		negocio.Categoria categoriaActual = new negocio.Categoria();
@@ -255,7 +255,7 @@ public class ControladorConfeccionarAnuncio
 	// Metodo DSD 1.1.3 - DSD 1.7.4 							   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public Collection<negocio.Cliente> seleccionarProducto(int idProducto) 
+	public Collection<negocio.Cliente> seleccionarProducto(int idProducto) throws Exception 
 	{
 		//se crea instancia de producto
 		negocio.Producto productoActual = new negocio.Producto();
@@ -389,7 +389,7 @@ public class ControladorConfeccionarAnuncio
 	// Metodo DSD 1.5.2											   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void cambiarPrecio(float nuevoPrecio) 
+	public void cambiarPrecio(float nuevoPrecio) throws Exception 
 	{
 		negocio.Producto productoModificar = new negocio.Producto();
 

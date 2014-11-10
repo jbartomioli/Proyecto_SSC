@@ -52,7 +52,7 @@ public class CatalogoClientes
 	// OBTIENE TODOS LOS CLIENTES								   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerClientes()
+	public void obtenerClientes() throws Exception
 	{
 		Session session = null;	
 		
@@ -93,13 +93,7 @@ public class CatalogoClientes
 
             //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
-		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
+		} 
 		finally
 		{
 		 	session.close();

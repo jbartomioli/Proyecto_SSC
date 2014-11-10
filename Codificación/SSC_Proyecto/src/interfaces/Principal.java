@@ -214,7 +214,24 @@ public class Principal extends JFrame {
 					}
 					catch (Exception e) 
 					{
-						e.printStackTrace();
+						if (e.getClass().getName().equals("java.lang.NullPointerException"))
+						{
+							JOptionPane.showMessageDialog(null, 
+									"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos\n"
+									+ "en Menú Archivo.",
+									"ATENCIÓN",
+									JOptionPane.INFORMATION_MESSAGE);
+							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+						}
+						if(e.getClass().getName().equals("org.hibernate.exception.JDBCConnectionException"))
+						{
+							JOptionPane.showMessageDialog(null, 
+								"Se ha producido un error al intentar conectarse a la base de datos."
+								+ "\nVerifique la conexión al servidor e inténtelo más tarde.",
+								"ERROR",
+								JOptionPane.ERROR_MESSAGE);
+							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+						}
 					}
 				}
 			});

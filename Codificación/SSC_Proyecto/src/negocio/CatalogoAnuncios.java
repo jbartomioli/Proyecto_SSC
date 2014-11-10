@@ -46,7 +46,7 @@ public class CatalogoAnuncios
 	// OBTIENE TODOS LOS ANUNCIOS								   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerAnuncios() 
+	public void obtenerAnuncios() throws Exception 
 	{
 		//SE CREA OBJETO CATALOGO ANUNCIO DE DATOS PARA RECUPERAR 
 		//LOS ANUNCIOS DE LA BD

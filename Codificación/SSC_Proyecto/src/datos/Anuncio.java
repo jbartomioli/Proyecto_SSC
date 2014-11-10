@@ -124,7 +124,7 @@ public class Anuncio
 	// OBTIENE LOS PRODUCTOS DE UN ANUNCIO ANTERIOR				   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerProductos(int idAnuncio)
+	public void obtenerProductos(int idAnuncio) throws Exception
 	{
 		Session session = null;	
 			
@@ -161,13 +161,7 @@ public class Anuncio
             
             //SE CONFIRMA LA TRANSACCION           
 	        session.getTransaction().commit();
-		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
+		} 
 		finally
 		{
 		 	session.close();
@@ -180,7 +174,7 @@ public class Anuncio
 	// OBTIENE LOS CLIENTES DESTINATARIOS DE UN ANUNCIO ANTERIOR   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerClientes(int idAnuncio)
+	public void obtenerClientes(int idAnuncio) throws Exception
 	{
 		Session session = null;	
 			
@@ -220,13 +214,7 @@ public class Anuncio
             }
 
 	        session.getTransaction().commit();
-		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
+		} 
 		finally
 		{
 		 	session.close();

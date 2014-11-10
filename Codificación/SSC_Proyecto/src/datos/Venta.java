@@ -88,7 +88,7 @@ public class Venta
 	// OBTIENE LAS LINEAS DE VENTA DE UNA VENTA ESPECIFICA		   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerLineasDeVenta(int idVenta)
+	public void obtenerLineasDeVenta(int idVenta) throws Exception
 	{
 		Session session = null;	
 			
@@ -144,13 +144,7 @@ public class Venta
             }
             //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
-		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
+		}		 
 		finally
 		{
 		 	session.close();

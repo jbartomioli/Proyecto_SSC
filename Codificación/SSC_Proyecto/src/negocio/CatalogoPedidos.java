@@ -48,7 +48,7 @@ public class CatalogoPedidos
 	// GUARDA EL NUEVO PEDIDO									   //
 	/////////////////////////////////////////////////////////////////
 	//FALTA COMPLETAR DATOS
-	public void agregarPedido(negocio.Pedido pedidoNegocio)
+	public void agregarPedido(negocio.Pedido pedidoNegocio) throws Exception
 	{
 		//SE AGREGA EL ANUNCIO EN EL ARRAY
 		this.pedidos.add(pedidoNegocio);

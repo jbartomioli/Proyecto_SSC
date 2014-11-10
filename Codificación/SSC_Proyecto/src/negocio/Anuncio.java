@@ -123,7 +123,7 @@ public class Anuncio
 	// OBTIENE LOS PRODUCTOS DE UN ANUNCIO ESPECIFICO			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerProductos()
+	public void obtenerProductos() throws Exception
 	{
 		//SE CREA OBJETO ANUNCIO DE DATOS PARA RECUPERAR
 		//LOS DATOS DE LA BD
@@ -156,7 +156,7 @@ public class Anuncio
 	//OBTIENE LOS CLIENTES DESTINATARIOS DE UN ANUNCIO ESPECIFICO //
 	////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerClientes()
+	public void obtenerClientes() throws Exception
 	{
 		//SE CREA OBJETO ANUNCIO DE DATOS PARA RECUPERAR
 		//LOS DATOS DE LA BD

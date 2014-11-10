@@ -50,7 +50,7 @@ public class CatalogoAnuncios
 	// OBTIENE TODOS LOS ANUNCIOS 								   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerAnuncios()
+	public void obtenerAnuncios() throws Exception
 	{
 		Session session = null;	
 		
@@ -87,12 +87,6 @@ public class CatalogoAnuncios
             //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
 		finally
 		{
 		 	session.close();

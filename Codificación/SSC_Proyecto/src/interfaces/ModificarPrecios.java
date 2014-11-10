@@ -94,8 +94,9 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 
 	/**********************
 	 * INICIALIZACION GUI
+	 * @throws Exception 
 	 **********************/
-	private void inicializar(final negocio.ControladorConfeccionarAnuncio controladorAnuncios, final Collection<Integer> idProductos)
+	private void inicializar(final negocio.ControladorConfeccionarAnuncio controladorAnuncios, final Collection<Integer> idProductos) throws Exception
 	{
 		/******************
 		 * FORMULARIO BASE
@@ -223,8 +224,9 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 		
 	/**********************************
 	 * INICIALIZACION COMPONENTES GUI
+	 * @throws Exception 
 	 **********************************/
-	protected void inicializar_componentes()
+	protected void inicializar_componentes() throws Exception
 	{
 		cmbCategorias.completarDatos(controladorPrecios.getCatalogoCategorias().getCategorias());
 		cmbCategorias.addItemListener(new ItemListener() {

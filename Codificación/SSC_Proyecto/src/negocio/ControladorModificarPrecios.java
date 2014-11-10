@@ -62,7 +62,7 @@ public class ControladorModificarPrecios
 		
 	
 
-	public Collection<negocio.SubCategoria> seleccionarCategoria(int idCategoria) 
+	public Collection<negocio.SubCategoria> seleccionarCategoria(int idCategoria) throws Exception 
 	{
 		//instancia para almacenar la categoria actual seleccionada
 		negocio.Categoria categoriaActual = new negocio.Categoria();

@@ -55,7 +55,7 @@ public class ParametrosNegocio
 	// OBTIENE LOS DATOS DE PARAMETROS NEGOCIO                     //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerParametrosNegocio()
+	public void obtenerParametrosNegocio() throws Exception
 	{
 		//SE CREA OBJETO PARAMETROSNEGOCIO DE DATOS PARA RECUPERAR DATOS
     	datos.ParametrosNegocio parametrosDatos = new datos.ParametrosNegocio();

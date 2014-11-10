@@ -146,7 +146,7 @@ public class Cliente
 	// OBTIENE TODAS LAS VENTAS EFECTUADAS A UN CLIENTE ESPECIFICO  //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerVentas()
+	public void obtenerVentas() throws Exception
 	{
 		//SE CREA OBJETO CLIENTE DE DATOS PARA RECUPERAR
 		//VENTAS DE LA BD
@@ -185,7 +185,7 @@ public class Cliente
 	// VERIFICA SI EL CLIENTE COMPRO O NO UN PRODUCTO			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public boolean comproProducto(negocio.Producto productoActual)
+	public boolean comproProducto(negocio.Producto productoActual) throws Exception
 	{
 		//SE RECORRE CADA VENTA DEL CLIENTE
 		for(negocio.Venta ventaNegocio: this.ventas)

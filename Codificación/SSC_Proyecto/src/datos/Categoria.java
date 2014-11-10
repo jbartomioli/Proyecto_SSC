@@ -76,7 +76,7 @@ public class Categoria
 	// OBTIENE TODAS LAS SUBCATEGORIAS DE UNA CATEGORIA ESPECIFICA //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerSubCategorias(int idCategoria) 
+	public void obtenerSubCategorias(int idCategoria) throws Exception
 	{
 		Session session = null;	
 		
@@ -113,12 +113,6 @@ public class Categoria
             //SE CONFIRMA LA TRANSACCION
 	        session.getTransaction().commit();
 		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
 		finally
 		{
 		 	session.close();

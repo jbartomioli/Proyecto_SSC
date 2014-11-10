@@ -208,7 +208,7 @@ public class CatalogoProductos
 	// ACTUALIZA LA CANTIDAD DE PRODUCTOS EN STOCK				   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void actualizarStock(negocio.Producto productoParametro, int cantidad)
+	public void actualizarStock(negocio.Producto productoParametro, int cantidad) throws Exception
 	{
 		//SE RECORRE CADA PRODUCTO
 		for(negocio.Producto productoActual: this.productos)
@@ -250,7 +250,7 @@ public class CatalogoProductos
 	// ACTUALIZA EL PRECIO MODIFICADO EN EL ARRAY PROD.			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void actualizarPreciosProducto(negocio.Producto productoModificar, float nuevoPrecio, float nuevoPrecioProm)
+	public void actualizarPreciosProducto(negocio.Producto productoModificar, float nuevoPrecio, float nuevoPrecioProm) throws Exception
 	{
 		//SE RECORRE CADA PRODUCTO DEL ARRAY
 		for(negocio.Producto productoNegocio : this.productos)
@@ -289,7 +289,7 @@ public class CatalogoProductos
 	// ACTUALIZA EL PRECIO MODIFICADO EN EL ARRAY PROD.			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void actualizarPrecioProducto(negocio.Producto productoModificar, float nuevoPrecio)
+	public void actualizarPrecioProducto(negocio.Producto productoModificar, float nuevoPrecio) throws Exception
 	{
 		//SE RECORRE CADA PRODUCTO DEL ARRAY
 		for(negocio.Producto productoNegocio : this.productos)
@@ -325,7 +325,7 @@ public class CatalogoProductos
 	// ACTUALIZA EL PRECIO PROMOCIONAL MODIFICADO EN EL ARRAY PROD.//
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void actualizarPrecioPromProducto(negocio.Producto productoModificar, float nuevoPrecio)
+	public void actualizarPrecioPromProducto(negocio.Producto productoModificar, float nuevoPrecio) throws Exception
 	{
 		//SE RECORRE CADA PRODUCTO DEL ARRAY
 		for(negocio.Producto productoNegocio : this.productos)
@@ -351,9 +351,6 @@ public class CatalogoProductos
 					precioDatos.setIdPrecio(productoNegocio.getPrecioVigente().getIdPrecio());
 					
 					//SE GUARDA EN BD LA MODIFICACION DEL PRECIO DEL PRODUCTO
-					/**
-					 * 
-					 */
 					productoModifDatos.setPrecioPromocional(precioDatos, productoNegocio.getIdProducto());
 				}
 			}

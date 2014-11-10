@@ -159,7 +159,7 @@ public class CatalogoProductos
 	// ACTUALIZA LA CANTIDAD DE PRODUCTOS EN STOCK				   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void actualizarStock(datos.Producto prodActualizarStock)
+	public void actualizarStock(datos.Producto prodActualizarStock) throws Exception
 	{
 		Session session = null;	
 		
@@ -184,13 +184,7 @@ public class CatalogoProductos
 			//SE CONFIRMA TRANSACCION
 			session.getTransaction().commit();
 		   
-		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
+		} 
 		finally
 		{
 		 	session.close();

@@ -96,7 +96,7 @@ public class CatalogoSubCategorias
 	//---------------------------------------------------------------
 	
 	
-	public void actualizarProducto(negocio.Producto productoModif)
+	public void actualizarProducto(negocio.Producto productoModif) throws Exception
 	{
 		for(negocio.SubCategoria subcategoriaActual : this.getSubcategorias())
 		{

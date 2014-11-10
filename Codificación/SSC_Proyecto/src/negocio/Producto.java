@@ -197,7 +197,7 @@ public class Producto
 	// DEFINE EL NUEVO PRECIO PROMOCIONAL DEL PRODUCTO			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void setPrecioPromocional(float nuevoPrecio)
+	public void setPrecioPromocional(float nuevoPrecio) throws Exception
 	{
 		//SE RECORRE EL HISTORICO DE PRECIOS
 		for(negocio.Precio precioNegocio: this.precios)
@@ -237,7 +237,7 @@ public class Producto
 	// DEFINE EL NUEVO PRECIO VIGENTE DEL PRODUCTO  			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void setPrecio(float nuevoPrecio)
+	public void setPrecio(float nuevoPrecio) throws Exception
 	{
 		//SE RECORRE EL HISTORICO DE PRECIOS
 		for(negocio.Precio precioNegocio: this.precios)

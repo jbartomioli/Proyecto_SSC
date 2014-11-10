@@ -41,7 +41,7 @@ public class CatalogoClientes {
 	// OBTIENE TODOS LOS CLIENTES DE LA BD						   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerClientes()
+	public void obtenerClientes() throws Exception
 	{
 
 		//SE CREA OBJETO DE CATALOGO DE CLIENTES DE DATOS
@@ -79,7 +79,7 @@ public class CatalogoClientes {
 	// OBTIENE LOS CLIENTES QUE HAN COMPRADO UN PRODUCTO ESPECIFICO //
 	//////////////////////////////////////////////////////////////////
 	//LISTO
-	public Collection<negocio.Cliente> obtenerClientesProducto(negocio.Producto producto)
+	public Collection<negocio.Cliente> obtenerClientesProducto(negocio.Producto producto) throws Exception
 	{
 		//ARRAY TEMPORAL DE CLIENTES DE NEGOCIO UTILIZADO PARA AGREGARLOS POSIBLES CLIENTES DESTINATARIOS
 		Collection<negocio.Cliente> arrClientesInteresados = new ArrayList<negocio.Cliente>();

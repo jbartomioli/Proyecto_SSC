@@ -128,7 +128,7 @@ public class Cliente
 	// OBTIENE LA VENTAS HECHAS A UN CLIENTE DESDE LA BD		   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerVentas(int idCliente)
+	public void obtenerVentas(int idCliente) throws Exception
 	{
 		Session session = null;	
 			
@@ -164,12 +164,6 @@ public class Cliente
 
 	        session.getTransaction().commit();
 		}
-		 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
 		finally
 		{
 		 	session.close();

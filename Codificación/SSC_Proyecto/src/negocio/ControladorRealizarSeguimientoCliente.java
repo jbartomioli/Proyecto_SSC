@@ -47,7 +47,7 @@ public class ControladorRealizarSeguimientoCliente
 	//***************************************************************
 	
 	
-	public void inicializarCatalgos()
+	public void inicializarCatalgos() throws Exception
 	{
 		this.catalogoClientes.obtenerClientes();
 	}

@@ -84,7 +84,7 @@ public class Venta
 	// RECUPERA TODAS LAS LINEAS DE VENTA DE UNA VENTA ESPECIFICA  //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void obtenerLineasDeVenta()
+	public void obtenerLineasDeVenta() throws Exception
 	{
 		//SE CREA OBJETO VENTA DE DATOS PARA RECUPERAR 
 		//LA INFORMACION DE LA BD

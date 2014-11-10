@@ -109,7 +109,7 @@ public class Producto
 	// DEFINE LOS NUEVOS PRECIOS DEL PRODUCTO					   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void setPrecios(datos.Precio nuevoPrecio, int idProducto)
+	public void setPrecios(datos.Precio nuevoPrecio, int idProducto) throws Exception
 	{
 		Session session = null;	
 
@@ -141,11 +141,6 @@ public class Producto
 			session.getTransaction().commit();
 
 		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-
 		finally
 		{
 			session.close();
@@ -157,7 +152,7 @@ public class Producto
 	// DEFINE EL NUEVO PRECIO VIGENTE DEL PRODUCTO				   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void setPrecio(datos.Precio nuevoPrecio, int idProducto)
+	public void setPrecio(datos.Precio nuevoPrecio, int idProducto) throws Exception
 	{
 		Session session = null;	
 
@@ -190,11 +185,6 @@ public class Producto
 			session.getTransaction().commit();
 
 		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-
 		finally
 		{
 			session.close();
@@ -206,7 +196,7 @@ public class Producto
 	// DEFINE EL NUEVO PRECIO PROMOCIONAL DEL PRODUCTO			   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public void setPrecioPromocional(datos.Precio nuevoPrecio, int idProducto)
+	public void setPrecioPromocional(datos.Precio nuevoPrecio, int idProducto) throws Exception
 	{
 		Session session = null;	
 		
@@ -239,11 +229,6 @@ public class Producto
 	        session.getTransaction().commit();
 					
 		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		 
 		finally
 		{
 		 	session.close();

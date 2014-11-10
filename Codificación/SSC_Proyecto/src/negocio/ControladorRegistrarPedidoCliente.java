@@ -223,7 +223,7 @@ public class ControladorRegistrarPedidoCliente
 	// Metodo 3.3.1 			RN 13/09/2013						/
 	/////////////////////////////////////////////////////////////////
 	//FALTA	DEVOLUCION DE DATOS
-	public ArrayList<String> pedidoCompleto()
+	public ArrayList<String> pedidoCompleto() throws Exception
 	{
 		int idPedidoActual = 0;
 		

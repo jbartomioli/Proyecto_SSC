@@ -41,6 +41,8 @@ import javax.swing.JPanel;
 import javax.swing.JLayeredPane;
 
 
+
+
 //INICIO IMPORTS PARA GRAFICAR
 import org.jfree.chart.*;
 import org.jfree.data.time.Day;
@@ -348,7 +350,12 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 			public void mouseClicked(MouseEvent me)
 			{
 				if(tblClientesBuscados.columnAtPoint(me.getPoint())==4)
-					click_seleccionar_destinatario();
+					try {
+						click_seleccionar_destinatario();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}});
 		
 		btnAceptar.addActionListener(new ActionListener() {
@@ -448,7 +455,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		
 		//-------------------------------------------------------------------------------------------------------
 		@SuppressWarnings("rawtypes")
-		public void click_seleccionar_destinatario()
+		public void click_seleccionar_destinatario() throws Exception
 		{
 			DefaultTableModel modeloClientesBuscados = (DefaultTableModel) tblClientesBuscados.getModel();
 			
