@@ -97,7 +97,7 @@ public class Configuraciones extends JDialogBaseFormularios
 		 * IMAGEN 
 		 **********/
 		JLabel imagen = new JLabel();
-		imagen.setBounds(452, 11, 32, 32);
+		imagen.setBounds(385, 11, 32, 32);
 		imagen.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFIGURACION_32.png"));
 		getContentPane().add(imagen);
 		
@@ -331,6 +331,25 @@ public class Configuraciones extends JDialogBaseFormularios
         		cerrar_salir();
         	}
         });
+		
+		
+		/**
+		 * BOTON AYUDA
+		 */
+		JButton btnAyuda = new JButton("");
+		btnAyuda.setIcon(new ImageIcon("G:\\Mis documentos\\Facultad\\5to a\u00F1o\\Proyecto\\Sistema de seguimiento de clientes\\Codificaci\u00F3n\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\AYUDA_16.png"));
+		btnAyuda.setBounds(452, 15, 30, 23);
+		btnAyuda.setToolTipText("Ayuda");
+		btnAyuda.setFocusPainted(false);
+		getContentPane().add(btnAyuda);
+		
+		btnAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				interfaces.Ayuda ayuda = new interfaces.Ayuda();
+				ayuda.cargarHTML();
+				ayuda.setVisible(true);
+			}
+		});
 		
 		
 		/**********************************

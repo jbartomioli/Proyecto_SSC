@@ -22,6 +22,8 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 
 public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
@@ -92,6 +94,25 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");		
 		btnAceptar.setLocation(692, 356);
 		getContentPane().add(btnAceptar);
+		
+		
+		/**
+		 * BOTON AYUDA
+		 */
+		JButton btnAyuda = new JButton("");
+		btnAyuda.setIcon(new ImageIcon("G:\\Mis documentos\\Facultad\\5to a\u00F1o\\Proyecto\\Sistema de seguimiento de clientes\\Codificaci\u00F3n\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\AYUDA_16.png"));
+		btnAyuda.setBounds(750, 17, 30, 23);
+		btnAyuda.setToolTipText("Ayuda");
+		btnAyuda.setFocusPainted(false);
+		getContentPane().add(btnAyuda);
+		
+		btnAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				interfaces.Ayuda ayuda = new interfaces.Ayuda();
+				ayuda.cargarHTML();
+				ayuda.setVisible(true);
+			}
+		});
 		
 		addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {

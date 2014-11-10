@@ -4,28 +4,41 @@ package interfaces;
 import interfaces.componentes.BotonesIconos;
 
 import java.awt.SystemColor;
+
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
 import java.awt.Color;
+
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.UIManager;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.util.Vector;
+
 import javax.swing.JButton;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -151,6 +164,30 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 		btnBuscarDestinatario = new BotonesIconos("",utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_16.png");
 		btnBuscarDestinatario.setBounds(434, 51, 30, 20);
 		getContentPane().add(btnBuscarDestinatario);
+		
+		/**
+		 * BOTON AYUDA
+		 */
+		JButton btnAyuda = new JButton("");
+		btnAyuda.setIcon(new ImageIcon("G:\\Mis documentos\\Facultad\\5to a\u00F1o\\Proyecto\\Sistema de seguimiento de clientes\\Codificaci\u00F3n\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\AYUDA_16.png"));
+		btnAyuda.setBounds(978, 45, 30, 23);
+		btnAyuda.setToolTipText("Ayuda");
+		btnAyuda.setFocusPainted(false);
+		getContentPane().add(btnAyuda);
+		
+		btnAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				interfaces.Ayuda ayuda = new interfaces.Ayuda();
+				ayuda.cargarHTML();
+				ayuda.setVisible(true);
+			}
+		});
+		
+		addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent arg0) {
+        		cerrar_salir();
+        	}
+        });
 		
 		/**
 		 * INICIALIZACION DE CONTROLES
