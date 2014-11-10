@@ -40,8 +40,9 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 	/**
 	 * 
 	 * @param dialogPadre
+	 * @throws Exception 
 	 */
-	public ImportarDatos(JFrame dialogPadre) 
+	public ImportarDatos(JFrame dialogPadre) throws Exception 
 	{
 		/**
 		 * FORMULARIO BASE
@@ -106,7 +107,7 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 	/**
 	 * 
 	 */
-	protected void inicializar()
+	protected void inicializar() throws Exception
 	{
 		btnProcesar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
@@ -128,25 +129,18 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 		Collection<String> archivos = new ArrayList<String>();
 		utilidades.ArchivosDatos listarDir = new utilidades.ArchivosDatos();
 		archivos = listarDir.obtenerArchivos(utilidades.Configuraciones.DIR_IMPORTADOR);
+					
+		tblImportacion.completarRutaArchivos(utilidades.Configuraciones.DIR_IMPORTADOR, tablas, archivos);
 		
-		try
-		{			
-			tblImportacion.completarRutaArchivos(utilidades.Configuraciones.DIR_IMPORTADOR, tablas, archivos);
-			
-			tblImportacion.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent me) 
+		tblImportacion.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent me) 
+			{
+				if(tblImportacion.columnAtPoint(me.getPoint())==3)
 				{
-					if(tblImportacion.columnAtPoint(me.getPoint())==3)
-					{
-						click_editar_ruta();
-					}
+					click_editar_ruta();
 				}
-			});
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		} 
+			}
+		});
 	}
 	
 	

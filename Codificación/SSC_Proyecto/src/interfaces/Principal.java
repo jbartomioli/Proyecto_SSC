@@ -123,7 +123,22 @@ public class Principal extends JFrame {
 			{
 				public void actionPerformed(ActionEvent arg0) 
 				{
-					click_importar_datos();
+					try
+					{
+						click_importar_datos();
+					}
+					catch (Exception e)
+					{
+						if(e.getClass().getName().equals("com.mysql.jdbc.exceptions.jdbc4.CommunicationsException"))
+						{ 
+							JOptionPane.showMessageDialog(null, 
+									"Se ha producido un error al intentar conectarse a la base de datos."
+									+ "\nVerifique la conexión al servidor e inténtelo más tarde.",
+									"ERROR",
+									JOptionPane.ERROR_MESSAGE);
+							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+						}
+					}
 				}
 			});
 			mnuArchivo.add(mntImportar);
@@ -365,8 +380,9 @@ public class Principal extends JFrame {
 	
 	/**
 	 * PANTALLA IMPORTAR DATOS
+	 * @throws Exception 
 	 */
-	protected void click_importar_datos()
+	protected void click_importar_datos() throws Exception
 	{
 		importarDatos = new interfaces.ImportarDatos(this);
 		importarDatos.setVisible(true);
