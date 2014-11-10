@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 
 
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -271,7 +274,14 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		prgProgresoAniadir = new JProgressBar();
 		prgProgresoAniadir.setStringPainted(true);
 		prgProgresoAniadir.setBounds(10, 558, 304, 19);
-		getContentPane().add(prgProgresoAniadir);	
+		getContentPane().add(prgProgresoAniadir);
+		
+		
+		addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent arg0) {
+        		cerrar_salir();
+        	}
+        });
 	}
 
 	

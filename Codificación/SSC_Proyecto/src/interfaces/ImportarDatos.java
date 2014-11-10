@@ -17,6 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -90,6 +92,11 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 		btnAceptar.setLocation(692, 356);
 		getContentPane().add(btnAceptar);
 		
+		addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent arg0) {
+        		cerrar_salir();
+        	}
+        });
 		
 		inicializar();
 		
