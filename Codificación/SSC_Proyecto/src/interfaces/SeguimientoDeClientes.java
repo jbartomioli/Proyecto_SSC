@@ -117,6 +117,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		setDimensionFormulario(1024, 668);
 		
 		controladorSeguimiento = new negocio.ControladorRealizarSeguimientoCliente();
+		controladorSeguimiento.inicializarCatalgos();
 		
 		/*********
     	 * TITULO

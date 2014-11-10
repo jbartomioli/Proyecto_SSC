@@ -119,19 +119,23 @@ public class Principal extends JFrame {
 			mntImportar = new JMenuItem("Importar Datos");
 			mntImportar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK));
 			mntImportar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"IMPORTAR_16.png"));
-			mntImportar.addActionListener(new ActionListener() {
+			mntImportar.addActionListener(new ActionListener()
+			{
 				public void actionPerformed(ActionEvent arg0) 
 				{
 					click_importar_datos();
-				}});
+				}
+			});
 			mnuArchivo.add(mntImportar);
 			
 			//SALIR		
 			mntSalir = new JMenuItem("Salir...");
 			mntSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
 			mntSalir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_16.png"));
-			mntSalir.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
+			mntSalir.addActionListener(new ActionListener() 
+			{
+				public void actionPerformed(ActionEvent arg0)
+				{
 					click_salir();
 				}
 			});
@@ -194,7 +198,24 @@ public class Principal extends JFrame {
 					} 
 					catch (Exception e)
 					{
-						e.printStackTrace();
+						if (e.getClass().getName().equals("java.lang.NullPointerException"))
+						{
+							JOptionPane.showMessageDialog(null, 
+									"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos\n"
+									+ "en Menú Archivo.",
+									"ATENCIÓN",
+									JOptionPane.INFORMATION_MESSAGE);
+							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+						}
+						if(e.getClass().getName().equals("org.hibernate.exception.JDBCConnectionException"))
+						{
+							JOptionPane.showMessageDialog(null, 
+								"Se ha producido un error al intentar conectarse a la base de datos."
+								+ "\nVerifique la conexión al servidor e inténtelo más tarde.",
+								"ERROR",
+								JOptionPane.ERROR_MESSAGE);
+							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+						}
 					}
 				}
 			});
@@ -279,7 +300,8 @@ public class Principal extends JFrame {
 			mntContenidoAyuda = new JMenuItem("Manual de Usuario");
 			mntContenidoAyuda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 			
-			mntContenidoAyuda.addActionListener(new ActionListener() {
+			mntContenidoAyuda.addActionListener(new ActionListener() 
+			{
 				public void actionPerformed(ActionEvent arg0)
 				{
 					click_ayuda();
@@ -309,7 +331,8 @@ public class Principal extends JFrame {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setVisible(true);
 		
-		addWindowListener(new WindowAdapter() {
+		addWindowListener(new WindowAdapter() 
+		{
             @Override
             public void windowClosing(WindowEvent evt)
             {
@@ -354,7 +377,7 @@ public class Principal extends JFrame {
 	/**
 	 * CERRAR SISTEMA
 	 */
-	public void click_salir()
+	protected void click_salir()
 	{
 		int rta;
 		rta = JOptionPane.showConfirmDialog(null, 
