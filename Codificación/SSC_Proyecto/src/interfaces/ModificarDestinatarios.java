@@ -27,8 +27,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.UIManager;
 
@@ -164,12 +162,6 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 		btnBuscarDestinatario.setBounds(434, 51, 30, 20);
 		getContentPane().add(btnBuscarDestinatario);
 		
-		
-		addWindowListener(new WindowAdapter() {
-        	public void windowClosing(WindowEvent arg0) {
-        		cerrar_salir();
-        	}
-        });
 		
 		/**
 		 * INICIALIZACION DE CONTROLES

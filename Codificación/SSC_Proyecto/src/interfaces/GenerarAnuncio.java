@@ -275,11 +275,7 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		getContentPane().add(prgProgresoAniadir);
 		
 		
-//		addWindowListener(new WindowAdapter() {
-//        	public void windowClosing(WindowEvent arg0) {
-//        		cerrar_salir();
-//        	}
-//        });
+
 	}
 
 	

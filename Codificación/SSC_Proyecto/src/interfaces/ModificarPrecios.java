@@ -96,13 +96,7 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 		controladorPrecios.setCatalogoCategorias(controladorAnuncios.getCatalogoCategorias());
 		controladorPrecios.setCatalogoProductos(controladorAnuncios.getCatalogoProductos());
 		controladorPrecios.setCatalogoSubcategorias(controladorAnuncios.getCatalogoSubCategorias());
-		
-		addWindowListener(new WindowAdapter() {
-        	public void windowClosing(WindowEvent arg0) {
-        		cerrar_salir();
-        	}
-        });
-		
+
 		inicializar(controladorAnuncios, idProductos);
 	}
 	

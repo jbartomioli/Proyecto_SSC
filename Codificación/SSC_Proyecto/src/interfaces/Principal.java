@@ -384,8 +384,10 @@ public class Principal extends JFrame {
 	 */
 	protected void click_importar_datos() throws Exception
 	{
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		importarDatos = new interfaces.ImportarDatos(this);
 		importarDatos.setVisible(true);
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	
 	
@@ -429,8 +431,10 @@ public class Principal extends JFrame {
 	 */
 	protected void click_realizar_seguimiento() throws Exception
 	{
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		seguimientoClientes = new interfaces.SeguimientoDeClientes(this);
-		seguimientoClientes.setVisible(true);		
+		seguimientoClientes.setVisible(true);
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	
 	
@@ -442,9 +446,11 @@ public class Principal extends JFrame {
 	 */
 	protected void click_modificar_precios() throws Exception
 	{
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		modificarPrecios = new interfaces.ModificarPrecios(this);
 		modificarPrecios.setVisible(true);
 		modificarPrecios.inicializar_componentes();
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	
 	
@@ -454,7 +460,9 @@ public class Principal extends JFrame {
 	 */
 	protected void click_configuraciones()
 	{
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		configuraciones.setVisible(true);
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	
 	
@@ -464,9 +472,11 @@ public class Principal extends JFrame {
 	 */
 	protected void click_ayuda()
 	{
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		ayuda = new interfaces.Ayuda();
 		ayuda.cargarHTML();
-		ayuda.setVisible(true);		
+		ayuda.setVisible(true);	
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	
 	
@@ -477,7 +487,9 @@ public class Principal extends JFrame {
 	 */
 	protected void click_acerca()
 	{
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		acerca = new interfaces.Acerca(this, true);
 		acerca.setVisible(true);		
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 }

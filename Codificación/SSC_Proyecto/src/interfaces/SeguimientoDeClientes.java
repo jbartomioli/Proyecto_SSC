@@ -14,8 +14,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -302,12 +300,6 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		
 		
 		inicializar(controladorSeguimiento);
-		
-		addWindowListener(new WindowAdapter() {
-        	public void windowClosing(WindowEvent arg0) {
-        		cerrar_salir();
-        	}
-        });
 	}
 	
 	
