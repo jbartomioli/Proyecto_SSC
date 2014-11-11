@@ -11,14 +11,10 @@ import java.awt.event.ActionEvent;
 
 
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -127,7 +123,7 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		super(framePadre, "Confeccionar Anuncio", "CONFECCIONAR_32.png", modal);
 		setPantallaCompleta();
 		setDimensionFormulario(1024, 668);
-    	
+    	setBotonAyuda(884,32);
         		
     	/*********
     	 * TITULO
@@ -278,30 +274,12 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		prgProgresoAniadir.setBounds(10, 558, 304, 19);
 		getContentPane().add(prgProgresoAniadir);
 		
-		/**
-		 * BOTON AYUDA
-		 */
-		JButton btnAyuda = new JButton("");
-		btnAyuda.setIcon(new ImageIcon("G:\\Mis documentos\\Facultad\\5to a\u00F1o\\Proyecto\\Sistema de seguimiento de clientes\\Codificaci\u00F3n\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\AYUDA_16.png"));
-		btnAyuda.setBounds(884, 38, 30, 23);
-		btnAyuda.setToolTipText("Ayuda");
-		btnAyuda.setFocusPainted(false);
-		getContentPane().add(btnAyuda);
 		
-		btnAyuda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				interfaces.Ayuda ayuda = new interfaces.Ayuda();
-				ayuda.cargarHTML();
-				ayuda.setVisible(true);
-			}
-		});
-		
-		
-		addWindowListener(new WindowAdapter() {
-        	public void windowClosing(WindowEvent arg0) {
-        		cerrar_salir();
-        	}
-        });
+//		addWindowListener(new WindowAdapter() {
+//        	public void windowClosing(WindowEvent arg0) {
+//        		cerrar_salir();
+//        	}
+//        });
 	}
 
 	

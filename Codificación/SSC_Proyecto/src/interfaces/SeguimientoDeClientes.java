@@ -26,7 +26,6 @@ import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -117,6 +116,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		super(jframePadre,"Seguimiento de Clientes","SEGUIMIENTO_32.png",true);
 		setPantallaCompleta();
 		setDimensionFormulario(1024, 668);
+		setBotonAyuda(1258,48);
 		
 		controladorSeguimiento = new negocio.ControladorRealizarSeguimientoCliente();
 		controladorSeguimiento.inicializarCatalgos();
@@ -300,23 +300,6 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		modelVentasCliente.addColumn("Importe");
 		//FIN GRAFICO DE LINEAS //
 		
-		/**
-		 * BOTON AYUDA
-		 */
-		JButton btnAyuda = new JButton("");
-		btnAyuda.setIcon(new ImageIcon("G:\\Mis documentos\\Facultad\\5to a\u00F1o\\Proyecto\\Sistema de seguimiento de clientes\\Codificaci\u00F3n\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\AYUDA_16.png"));
-		btnAyuda.setBounds(1258, 48, 30, 23);
-		btnAyuda.setToolTipText("Ayuda");
-		btnAyuda.setFocusPainted(false);
-		getContentPane().add(btnAyuda);
-		
-		btnAyuda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				interfaces.Ayuda ayuda = new interfaces.Ayuda();
-				ayuda.cargarHTML();
-				ayuda.setVisible(true);
-			}
-		});
 		
 		inicializar(controladorSeguimiento);
 		

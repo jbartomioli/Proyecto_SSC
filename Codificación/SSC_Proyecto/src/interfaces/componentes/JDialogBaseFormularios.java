@@ -125,6 +125,27 @@ public class JDialogBaseFormularios extends JDialog
 	}
 	
 	
+	/**
+	 * BOTON AYUDA
+	 */
+	public void setBotonAyuda(int x, int y)
+	{
+		BotonesIconos btnAyuda = new BotonesIconos(utilidades.Configuraciones.IMG_ICONOS+"AYUDA_16.PNG");
+		btnAyuda.setLocation(x, y);
+		btnAyuda.setToolTipText("Ayuda");
+		btnAyuda.setFocusPainted(false);
+		getContentPane().add(btnAyuda);
+	
+		btnAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				interfaces.Ayuda ayuda = new interfaces.Ayuda();
+				ayuda.cargarHTML();
+				ayuda.setVisible(true);
+			}
+		});
+	}
+	
+	
 	
 	/**
 	 * ACCION AL SALIR DEL FORMULARIO

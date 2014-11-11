@@ -19,5 +19,13 @@ public class BotonesIconos extends JButton {
 		setIcon(new ImageIcon(imagen));
 		setSize(90,60);
 	}
+	
+	
+	public BotonesIconos(String imagen) 
+	{
+		setText("");
+		setIcon(new ImageIcon(imagen));
+		setSize(30,23);
+	}
 
 }

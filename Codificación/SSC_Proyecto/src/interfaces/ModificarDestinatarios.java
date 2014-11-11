@@ -5,7 +5,6 @@ import interfaces.componentes.BotonesIconos;
 
 import java.awt.SystemColor;
 
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -71,7 +70,7 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 		 */
 		super((JDialog) dialogPadre,"Modificar Clientes Destinatarios","CLIENTES_32.png",true);
 		setDimensionFormulario(1024, 460);		
-		
+		setBotonAyuda(978, 45);
 		
 		/**
 		 * TITULO
@@ -165,23 +164,6 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 		btnBuscarDestinatario.setBounds(434, 51, 30, 20);
 		getContentPane().add(btnBuscarDestinatario);
 		
-		/**
-		 * BOTON AYUDA
-		 */
-		JButton btnAyuda = new JButton("");
-		btnAyuda.setIcon(new ImageIcon("G:\\Mis documentos\\Facultad\\5to a\u00F1o\\Proyecto\\Sistema de seguimiento de clientes\\Codificaci\u00F3n\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\AYUDA_16.png"));
-		btnAyuda.setBounds(978, 45, 30, 23);
-		btnAyuda.setToolTipText("Ayuda");
-		btnAyuda.setFocusPainted(false);
-		getContentPane().add(btnAyuda);
-		
-		btnAyuda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				interfaces.Ayuda ayuda = new interfaces.Ayuda();
-				ayuda.cargarHTML();
-				ayuda.setVisible(true);
-			}
-		});
 		
 		addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {

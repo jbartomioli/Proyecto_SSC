@@ -82,7 +82,7 @@ public class Configuraciones extends JDialogBaseFormularios
 		 *******************/
 		super(framePadre, "Configuraciones Generales", "CONFIGURACION_32.png", true);
 		setDimensionFormulario(500,500);
-
+		setBotonAyuda(452, 15);
 		
 		/**********
 		 * TITULO 
@@ -331,25 +331,6 @@ public class Configuraciones extends JDialogBaseFormularios
         		cerrar_salir();
         	}
         });
-		
-		
-		/**
-		 * BOTON AYUDA
-		 */
-		JButton btnAyuda = new JButton("");
-		btnAyuda.setIcon(new ImageIcon("G:\\Mis documentos\\Facultad\\5to a\u00F1o\\Proyecto\\Sistema de seguimiento de clientes\\Codificaci\u00F3n\\Codificaci\u00F3n\\SSC_Proyecto\\recursos\\iconos\\AYUDA_16.png"));
-		btnAyuda.setBounds(452, 15, 30, 23);
-		btnAyuda.setToolTipText("Ayuda");
-		btnAyuda.setFocusPainted(false);
-		getContentPane().add(btnAyuda);
-		
-		btnAyuda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				interfaces.Ayuda ayuda = new interfaces.Ayuda();
-				ayuda.cargarHTML();
-				ayuda.setVisible(true);
-			}
-		});
 		
 		
 		/**********************************
