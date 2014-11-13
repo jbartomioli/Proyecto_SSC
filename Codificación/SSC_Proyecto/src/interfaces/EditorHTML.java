@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -132,7 +133,6 @@ public class EditorHTML extends JDialog
     //------------------------------------------------------
     public void inicializarContenido(String asunto, Collection<HashMap<String, String>> productos)
     {
-//    	File archivoHTML = new File(Configuraciones.DIR_MAILS+"temporal.html");
     	
     	File plantillaHTML = new File(Configuraciones.DIR_MAILS+"plantilla_mail.html");
 		
@@ -157,22 +157,17 @@ public class EditorHTML extends JDialog
 		   	
 	   		for(HashMap<String, String> productoActual: productos)
 	   		{	
-	   			patron = "<tr>"
-	   					+ "<td>%s</td>"
-	   					+ "<td>%s</td>"
-	   					+ "<td>$ %s</td>"
-	   					+ "<td>$ %s</td>"
-	   					+ "</tr>";
+	   			patron = Configuraciones.VARIOS_PATTERN1;
 	   			
-	   			datosProductos += String.format(
+	   			datosProductos += MessageFormat.format(
 	   					patron,
 	   					productoActual.get("ID"),
 	   					productoActual.get("DESCRIPCION"),
-	   					productoActual.get("VIGENTE"),
-	   					productoActual.get("PROMOCIONAL"));
+	   					"$ "+productoActual.get("VIGENTE"),
+	   					"$ "+productoActual.get("PROMOCIONAL"));
 	   		}
 	   		
-	   		contenidoMailHTML = String.format(contenidoPlantilla, asunto, datosProductos);
+	   		contenidoMailHTML = MessageFormat.format(contenidoPlantilla, asunto, datosProductos);
 	   	}
 	   	catch(IOException ioe)
 	   	{		   	
