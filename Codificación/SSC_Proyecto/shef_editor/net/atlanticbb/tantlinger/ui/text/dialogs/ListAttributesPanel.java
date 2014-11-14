@@ -5,13 +5,18 @@
 package net.atlanticbb.tantlinger.ui.text.dialogs;
 
 import java.awt.GridBagLayout;
+
 import javax.swing.*;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.SpinnerNumberModel;
+
 import java.util.*;
 
+@SuppressWarnings({"rawtypes","unchecked"})
 public class ListAttributesPanel extends HTMLAttributeEditorPanel
 {
     /**

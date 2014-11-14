@@ -30,6 +30,7 @@ import net.atlanticbb.tantlinger.ui.text.HTMLUtils;
  * @author Bob Tantlinger
  *
  */
+@SuppressWarnings({"rawtypes","unused"})
 public class EnterKeyAction extends DecoratedTextAction
 {    
     /**

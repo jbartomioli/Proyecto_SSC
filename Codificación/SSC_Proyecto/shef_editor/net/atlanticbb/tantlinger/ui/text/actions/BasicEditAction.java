@@ -14,10 +14,16 @@ import javax.swing.JEditorPane;
  * @author Bob Tantlinger
  *
  */
+
 public abstract class BasicEditAction extends HTMLTextEditAction
 {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 876856120617108711L;
+
+	/**
      * @param name
      */
     public BasicEditAction(String name)

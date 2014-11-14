@@ -5,10 +5,12 @@
 package net.atlanticbb.tantlinger.ui.text.dialogs;
 
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.util.*;
 
+@SuppressWarnings({"rawtypes","unchecked"})
 public class RowAttributesPanel extends HTMLAttributeEditorPanel
 {
     /**

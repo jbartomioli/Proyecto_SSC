@@ -85,6 +85,7 @@ import org.bushe.swing.action.ActionUIFactory;
  *
  * @author Bob Tantlinger
  */
+@SuppressWarnings({"rawtypes","unchecked","unused"})
 public class HTMLEditorPane extends JPanel 
 {
 	 /**

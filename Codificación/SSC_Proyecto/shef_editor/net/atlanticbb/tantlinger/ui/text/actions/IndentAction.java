@@ -4,9 +4,7 @@
 package net.atlanticbb.tantlinger.ui.text.actions;
 
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -16,10 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JEditorPane;
-import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
 import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
@@ -32,6 +27,8 @@ import net.atlanticbb.tantlinger.ui.text.HTMLUtils;
  * @author Bob Tantlinger
  *
  */
+@SuppressWarnings({"rawtypes","unchecked","unused"})
+
 public class IndentAction extends HTMLTextEditAction
 {   
     private static final long serialVersionUID = 1L;

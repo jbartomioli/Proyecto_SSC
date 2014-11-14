@@ -5,15 +5,18 @@
 package net.atlanticbb.tantlinger.ui.text.dialogs;
 
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JTextField;
 
 import net.atlanticbb.tantlinger.ui.text.TextEditPopupManager;
 
 import java.util.*;
 
-
+@SuppressWarnings({"rawtypes","unchecked"})
 public class StyleAttributesPanel extends HTMLAttributeEditorPanel
 {
     /**

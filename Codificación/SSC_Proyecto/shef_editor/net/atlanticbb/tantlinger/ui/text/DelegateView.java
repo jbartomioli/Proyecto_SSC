@@ -26,6 +26,8 @@ import javax.swing.text.Position.Bias;
  * 
  * @author Bob Tantlinger
  */
+@SuppressWarnings({"deprecation"})
+
 public abstract class DelegateView extends View
 {
     protected View delegate;    

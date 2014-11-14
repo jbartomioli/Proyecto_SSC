@@ -44,6 +44,8 @@ import org.bushe.swing.action.ShouldBeEnabledDelegate;
  * @author Bob Tantlinger
  *
  */
+@SuppressWarnings({"rawtypes","unchecked"})
+
 public class HTMLElementPropertiesAction extends HTMLTextEditAction
 {
     /**

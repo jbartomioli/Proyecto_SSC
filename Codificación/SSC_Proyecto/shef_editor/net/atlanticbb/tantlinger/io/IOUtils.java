@@ -26,6 +26,8 @@ import java.util.List;
  * @author Bob Tantlinger
  *
  */
+@SuppressWarnings({"rawtypes","unchecked"})
+
 public class IOUtils
 {
     private static final int BUFFER_SIZE = 1024 * 4;

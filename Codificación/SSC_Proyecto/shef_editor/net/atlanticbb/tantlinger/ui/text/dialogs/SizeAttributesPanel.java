@@ -5,11 +5,15 @@
 package net.atlanticbb.tantlinger.ui.text.dialogs;
 
 import java.awt.GridBagLayout;
+
 import javax.swing.JCheckBox;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.SpinnerNumberModel;
+
 import java.util.*;
 
 
@@ -19,6 +23,7 @@ import java.util.*;
  * @author Bob Tantlinger
  *
  */
+@SuppressWarnings({"rawtypes","unchecked"})
 public class SizeAttributesPanel extends HTMLAttributeEditorPanel
 {
     /**

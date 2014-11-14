@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import net.atlanticbb.tantlinger.ui.text.TextEditPopupManager;
 
 
-
+@SuppressWarnings({"rawtypes","unchecked"})
 public class LinkPanel extends HTMLAttributeEditorPanel
 {
     /**

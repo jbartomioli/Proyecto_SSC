@@ -16,7 +16,7 @@ import net.atlanticbb.tantlinger.i18n.I18n;
 import net.atlanticbb.tantlinger.ui.UIUtils;
 
 
-
+@SuppressWarnings({"rawtypes"})
 public class HyperlinkDialog extends HTMLOptionDialog
 {
     /**

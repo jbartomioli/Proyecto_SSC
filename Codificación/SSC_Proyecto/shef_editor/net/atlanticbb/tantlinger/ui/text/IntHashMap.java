@@ -34,6 +34,8 @@ package net.atlanticbb.tantlinger.ui.text;
  * @version $Revision: 1.1 $
  * @see java.util.HashMap
  */
+@SuppressWarnings({"unused"})
+
 class IntHashMap {
 
     /**

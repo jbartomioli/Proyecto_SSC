@@ -21,9 +21,15 @@ import net.atlanticbb.tantlinger.i18n.I18n;
  * @author Bob Tantlinger
  *
  */
+@SuppressWarnings({"rawtypes"})
 public abstract class HTMLAttributeEditorPanel extends JPanel
 {
-    static final I18n i18n = I18n.getInstance("net.atlanticbb.tantlinger.ui.text.dialogs");
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 9079416166402340334L;
+
+	static final I18n i18n = I18n.getInstance("net.atlanticbb.tantlinger.ui.text.dialogs");
     
     protected Map attribs = new HashMap();
     

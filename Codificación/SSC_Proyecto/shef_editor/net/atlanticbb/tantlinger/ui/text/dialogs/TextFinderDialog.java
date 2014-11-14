@@ -59,6 +59,7 @@ import net.atlanticbb.tantlinger.ui.text.TextEditPopupManager;
  * A find and replace dialog for JTextComponents 
  * 
  */
+@SuppressWarnings({"rawtypes","unchecked","unused"})
 public class TextFinderDialog extends JDialog
 {
     /**

@@ -34,6 +34,8 @@ import org.bushe.swing.action.ActionManager;
  * @author Bob Tantlinger
  *
  */
+@SuppressWarnings({"rawtypes","unchecked"})
+
 public class HTMLBlockAction extends HTMLTextEditAction
 {    
     /**

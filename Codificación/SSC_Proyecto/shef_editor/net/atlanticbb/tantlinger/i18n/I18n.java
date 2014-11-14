@@ -25,6 +25,8 @@ import java.util.StringTokenizer;
  * @author Bob Tantlinger
  *
  */
+@SuppressWarnings({"rawtypes","unchecked","deprecation"})
+
 public class I18n
 {
     

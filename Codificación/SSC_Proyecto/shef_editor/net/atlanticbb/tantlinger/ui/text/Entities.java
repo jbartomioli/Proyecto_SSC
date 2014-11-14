@@ -38,6 +38,8 @@ import java.util.TreeMap;
  * @since 2.0
  * @version $Id: Entities.java,v 1.1 2007/11/20 13:49:17 cvsbob Exp $
  */
+@SuppressWarnings({"rawtypes","unchecked"})
+
 public class Entities
 {
 

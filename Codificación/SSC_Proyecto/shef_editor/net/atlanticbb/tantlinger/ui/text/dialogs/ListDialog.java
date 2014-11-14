@@ -15,6 +15,7 @@ import net.atlanticbb.tantlinger.ui.UIUtils;
 
 import java.util.*;
 
+@SuppressWarnings({"rawtypes"})
 public class ListDialog extends OptionDialog
 {
     /**

@@ -24,7 +24,12 @@ import net.atlanticbb.tantlinger.ui.OptionDialog;
  */
 public abstract class HTMLOptionDialog extends OptionDialog
 {    
-    public HTMLOptionDialog(Frame parent, String title, String desc, Icon ico)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1418800217641566839L;
+
+	public HTMLOptionDialog(Frame parent, String title, String desc, Icon ico)
     {
         super(parent, title, desc, ico);        
     }

@@ -5,8 +5,11 @@
 package net.atlanticbb.tantlinger.ui.text.dialogs;
 
 import java.awt.GridBagLayout;
+
 import javax.swing.JCheckBox;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -15,7 +18,7 @@ import net.atlanticbb.tantlinger.ui.text.TextEditPopupManager;
 
 
 
-
+@SuppressWarnings({"rawtypes","unchecked"})
 public class LinkAttributesPanel extends HTMLAttributeEditorPanel
 {
     /**

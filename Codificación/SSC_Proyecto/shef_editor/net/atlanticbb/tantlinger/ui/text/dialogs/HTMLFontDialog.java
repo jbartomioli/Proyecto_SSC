@@ -5,14 +5,21 @@
 package net.atlanticbb.tantlinger.ui.text.dialogs;
 
 import java.awt.BorderLayout;
+
 import javax.swing.*;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
+
 import java.awt.*;
 import java.util.Vector;
+
 import javax.swing.JPanel;
 
 import net.atlanticbb.tantlinger.i18n.I18n;
@@ -21,7 +28,7 @@ import net.atlanticbb.tantlinger.ui.UIUtils;
 
 
 
-
+@SuppressWarnings({"rawtypes","unchecked"})
 public class HTMLFontDialog extends HTMLOptionDialog
 {
     /**

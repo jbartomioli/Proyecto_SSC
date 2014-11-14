@@ -15,7 +15,7 @@ import net.atlanticbb.tantlinger.ui.OptionDialog;
 import net.atlanticbb.tantlinger.ui.UIUtils;
 
 
-
+@SuppressWarnings({"rawtypes"})
 public class ElementStyleDialog extends OptionDialog
 {
     /**

@@ -48,6 +48,8 @@ import net.atlanticbb.tantlinger.ui.UIUtils;
  * 
  * @author Bob Tantlinger
  */
+@SuppressWarnings({"rawtypes","unchecked"})
+
 public class CompoundUndoManager implements UndoableEditListener
 {   
     private static final I18n i18n = I18n.getInstance("net.atlanticbb.tantlinger.ui.text");

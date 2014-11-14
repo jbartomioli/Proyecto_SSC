@@ -31,6 +31,8 @@ import javax.swing.text.html.ImageView;
  * @author Bob Tantlinger
  *
  */
+@SuppressWarnings({"deprecation"})
+
 public class CachedImageView extends ImageView 
 {
     public static final String USER_HOME = System.getProperty("user.home");

@@ -19,6 +19,7 @@ import net.atlanticbb.tantlinger.i18n.I18n;
 import net.atlanticbb.tantlinger.ui.OptionDialog;
 import net.atlanticbb.tantlinger.ui.UIUtils;
 
+@SuppressWarnings({"rawtypes"})
 public class TablePropertiesDialog extends OptionDialog
 {
     /**

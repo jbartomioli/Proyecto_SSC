@@ -13,7 +13,11 @@ import javax.swing.text.TextAction;;
  */
 public abstract class DecoratedTextAction extends TextAction
 {
-    Action delegate;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4058000051279019271L;
+	Action delegate;
     
     public DecoratedTextAction(String name, Action delegate)
     {

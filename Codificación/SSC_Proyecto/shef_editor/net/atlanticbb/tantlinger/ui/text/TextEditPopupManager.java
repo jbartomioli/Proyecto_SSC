@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 import java.util.Iterator;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JPopupMenu;
@@ -47,6 +48,7 @@ import net.atlanticbb.tantlinger.ui.UIUtils;
  * @author Bob Tantlinger 
  * TODO Internationalize, add mnemonics, etc
  */
+@SuppressWarnings({"rawtypes","unchecked"})
 
 public class TextEditPopupManager
 {    

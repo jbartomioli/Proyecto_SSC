@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+@SuppressWarnings({"rawtypes","unchecked"})
 public class TableAttributesPanel extends HTMLAttributeEditorPanel
 {
 

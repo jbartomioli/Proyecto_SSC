@@ -18,6 +18,7 @@ import javax.swing.JTabbedPane;
 import net.atlanticbb.tantlinger.ui.text.HTMLUtils;
 import net.atlanticbb.tantlinger.ui.text.TextEditPopupManager;
 
+@SuppressWarnings({"rawtypes","unchecked"})
 public class ImagePanel extends HTMLAttributeEditorPanel
 {
     /**

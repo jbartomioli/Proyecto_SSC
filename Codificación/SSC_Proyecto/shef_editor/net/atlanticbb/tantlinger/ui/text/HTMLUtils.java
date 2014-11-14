@@ -6,8 +6,6 @@ package net.atlanticbb.tantlinger.ui.text;
 
 import java.awt.Color;
 import java.io.ByteArrayInputStream;
-import java.io.Reader;
-import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
@@ -54,6 +52,8 @@ import org.w3c.tidy.Tidy;
  * @author Bob Tantlinger
  *
  */
+
+@SuppressWarnings({"rawtypes","unchecked"})
 public class HTMLUtils
 {
     

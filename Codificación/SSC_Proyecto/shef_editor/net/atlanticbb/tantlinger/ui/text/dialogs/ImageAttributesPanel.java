@@ -25,7 +25,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+@SuppressWarnings({"rawtypes","unchecked","unused"})
 public class ImageAttributesPanel extends HTMLAttributeEditorPanel
 {
     /**

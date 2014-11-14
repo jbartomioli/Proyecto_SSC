@@ -57,6 +57,8 @@ import net.atlanticbb.tantlinger.ui.text.actions.TabAction;
  * @author Bob Tantlinger
  *
  */
+@SuppressWarnings({"rawtypes","unchecked"})
+
 public class WysiwygHTMLEditorKit extends HTMLEditorKit
 {
     /**
