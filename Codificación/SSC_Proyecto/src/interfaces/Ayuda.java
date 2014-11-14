@@ -1,5 +1,7 @@
 package interfaces;
 
+import interfaces.componentes.UtilidadesGUI;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,7 +19,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 
 import javax.swing.JScrollPane;
 import javax.swing.text.Document;
@@ -53,7 +54,7 @@ public class Ayuda extends JFrame
 	{
 		setMinimumSize(new Dimension(800,600));
 		setLocationRelativeTo(null);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"AYUDA_32.PNG"));
+		setIconImage(UtilidadesGUI.obtenerIcono(UtilidadesGUI.X32,"AYUDA.png").getImage());
 		setTitle("Ayuda del Sistema");
 
 		
@@ -98,7 +99,7 @@ public class Ayuda extends JFrame
 	    getContentPane().add(panel, BorderLayout.SOUTH);
 	    
 	    
-	    btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.PNG");
+	    btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar","ACEPTAR.png");
 	    panel.add(btnAceptar);
 	    btnAceptar.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {

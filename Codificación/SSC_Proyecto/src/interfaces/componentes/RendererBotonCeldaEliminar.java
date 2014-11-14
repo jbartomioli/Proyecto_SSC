@@ -2,8 +2,6 @@ package interfaces.componentes;
 
 import java.awt.Component;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
@@ -27,8 +25,7 @@ public class RendererBotonCeldaEliminar extends JLabel implements TableCellRende
     public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) 
     {
         // Muestra el Boton Eliminar en cada fila del JTable ProductosAnuncio.
-    	JButton botonEliminar = new JButton();
-    	botonEliminar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ELIMINAR_16.png"));
+    	BotonesIconos botonEliminar = new BotonesIconos("ELIMINAR.png");
     	
     	return botonEliminar;
     }

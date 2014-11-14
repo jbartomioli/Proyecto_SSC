@@ -111,7 +111,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		/***************************************************************
 		 * FORMULARIO BASE
 		 ***************************************************************/
-		super(jframePadre,"Seguimiento de Clientes","SEGUIMIENTO_32.png",true);
+		super(jframePadre,"Seguimiento de Clientes","SEGUIMIENTO.png",true);
 		setPantallaCompleta();
 		setDimensionFormulario(1024, 668);
 		setBotonAyuda(1258,48);
@@ -157,14 +157,14 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		/**
 		 * BOTON ACEPTAR
 		 */
-		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");		
+		btnAceptar = new BotonesIconos("Aceptar","ACEPTAR.png");		
 		btnAceptar.setLocation(1200, 609);
 		getContentPane().add(btnAceptar);
 		
 		/**
 		 * BOTON BUSCADOR
 		 */
-		btnBuscarCliente = new BotonesIconos("",utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_16.png");
+		btnBuscarCliente = new BotonesIconos("BUSCAR.png");
 		btnBuscarCliente.setBounds(434, 51, 30, 20);
 		getContentPane().add(btnBuscarCliente);
 

@@ -46,7 +46,7 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 		/**
 		 * FORMULARIO BASE
 		 */
-		super(dialogPadre, "Importar Datos","IMPORTAR_32.png",true);
+		super(dialogPadre, "Importar Datos","IMPORTAR.png",true);
 		setDimensionFormulario(800, 460);
 		setBotonAyuda(750,17);
 		
@@ -80,7 +80,7 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 		/**
 		 * BOTON PROCESAR
 		 */
-		btnProcesar = new BotonesIconos("Procesar", utilidades.Configuraciones.IMG_ICONOS+"IMPORTAR_32.png");
+		btnProcesar = new BotonesIconos("Procesar","IMPORTAR.png");
 		btnProcesar.setBounds(590, 356, 90, 60);
 		getContentPane().add(btnProcesar);
 		
@@ -88,7 +88,7 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 		/**
 		 * BOTON ACEPTAR
 		 */
-		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");		
+		btnAceptar = new BotonesIconos("Aceptar","ACEPTAR.png");		
 		btnAceptar.setLocation(692, 356);
 		getContentPane().add(btnAceptar);
 		

@@ -1,5 +1,7 @@
 package interfaces;
 
+import interfaces.componentes.UtilidadesGUI;
+
 import java.awt.Color;
 import java.awt.Cursor;
 
@@ -12,7 +14,6 @@ import javax.swing.SwingConstants;
 import javax.swing.JProgressBar;
 import javax.swing.ImageIcon;
 
-import java.awt.Toolkit;
 
 
 public class PantallaBienvenida extends JDialog{
@@ -32,7 +33,7 @@ public class PantallaBienvenida extends JDialog{
 		 */
 		setTitle("SSC - Sistema de Seguimiento de Clientes");
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"SSC_128.png"));
+		setIconImage(UtilidadesGUI.obtenerIcono(UtilidadesGUI.X128,"SSC.png").getImage());
 		setBackground(Color.WHITE);
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);

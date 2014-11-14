@@ -3,6 +3,8 @@ package interfaces;
  * INTERFAZ PRINCIPAL DE LA APLICACION
  ***************************************/
 
+import interfaces.componentes.UtilidadesGUI;
+
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -21,7 +23,6 @@ import java.awt.Color;
 
 import javax.swing.SwingConstants;
 
-import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -77,7 +78,7 @@ public class Principal extends JFrame {
 	public Principal() throws Exception 
 	{
 		//FORMULARIO BASE
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"SSC_128.png"));
+		setIconImage(UtilidadesGUI.getIcon(UtilidadesGUI.X128+"SSC.png").getImage());
 		setMinimumSize(new Dimension(800, 600));
 		setSize(getToolkit().getScreenSize());
 		setTitle("SSC - Sistema de Seguimiento de Clientes");
@@ -118,7 +119,7 @@ public class Principal extends JFrame {
 			//IMPORTAR DATOS
 			mntImportar = new JMenuItem("Importar Datos");
 			mntImportar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK));
-			mntImportar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"IMPORTAR_16.png"));
+			mntImportar.setIcon(UtilidadesGUI.getIcon(UtilidadesGUI.X16+"IMPORTAR.png"));
 			mntImportar.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent arg0) 
@@ -146,7 +147,7 @@ public class Principal extends JFrame {
 			//SALIR		
 			mntSalir = new JMenuItem("Salir...");
 			mntSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
-			mntSalir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_16.png"));
+			mntSalir.setIcon(UtilidadesGUI.getIcon(UtilidadesGUI.X16+"SALIR.png"));
 			mntSalir.addActionListener(new ActionListener() 
 			{
 				public void actionPerformed(ActionEvent arg0)
@@ -199,7 +200,7 @@ public class Principal extends JFrame {
 				}
 			});
 			mntConfeccionar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
-			mntConfeccionar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFECCIONAR_16.png"));
+			mntConfeccionar.setIcon(UtilidadesGUI.getIcon(UtilidadesGUI.X16+"CONFECCIONAR.png"));
 			mnuOperaciones.add(mntConfeccionar);
 		
 			//REALIZAR SEGUIMIENTO
@@ -235,11 +236,12 @@ public class Principal extends JFrame {
 				}
 			});
 			mntSeguimiento.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
-			mntSeguimiento.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SEGUIMIENTO_16.png"));
+			mntSeguimiento.setIcon(UtilidadesGUI.getIcon(UtilidadesGUI.X16+"SEGUIMIENTO.png"));
 			mnuOperaciones.add(mntSeguimiento);
 			
 			//MODIFICAR PRECIOS
 			mntPrecios = new JMenuItem("Modificar Precios");
+			mntPrecios.setIcon(UtilidadesGUI.getIcon(UtilidadesGUI.X16+"PRECIO.png"));
 			mntPrecios.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent arg0) 
@@ -272,7 +274,6 @@ public class Principal extends JFrame {
 				}
 			});
 			mntPrecios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
-			mntPrecios.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"PRECIO_16.png"));
 			mnuOperaciones.add(mntPrecios);
 		///////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -288,7 +289,7 @@ public class Principal extends JFrame {
 			//ITEM CONFIGURACIONES
 			mntConfiguracion = new JMenuItem("Configuraci\u00F3n");
 			mntConfiguracion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
-			mntConfiguracion.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFIGURACION_16.png"));
+			mntConfiguracion.setIcon(UtilidadesGUI.getIcon(UtilidadesGUI.X16+"CONFIGURACION.png"));
 		
 			configuraciones = new interfaces.Configuraciones(this);
 			
@@ -324,11 +325,11 @@ public class Principal extends JFrame {
 			});
 		
 			mnuAyuda.add(mntContenidoAyuda);
-			mntContenidoAyuda.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"AYUDA_16.png"));
+			mntContenidoAyuda.setIcon(UtilidadesGUI.getIcon(UtilidadesGUI.X16+"AYUDA.png"));
 		
 			//ACERCA DEL SISTEMA
 			mntAcerca = new JMenuItem("Acerca de SSC");
-			mntAcerca.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ACERCA_16.png"));			
+			mntAcerca.setIcon(UtilidadesGUI.getIcon(UtilidadesGUI.X16+"ACERCA.png"));			
 			mntAcerca.addActionListener(new ActionListener() 
 			{
 				public void actionPerformed(ActionEvent arg0) 
@@ -403,7 +404,7 @@ public class Principal extends JFrame {
 				"ATENCIÓN",
 				JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE, 
-				new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"SALIR_32.png"));
+				UtilidadesGUI.getIcon(UtilidadesGUI.X32+"SALIR.png"));
 		if(rta==JOptionPane.YES_OPTION)
 			System.exit(0);
 	}

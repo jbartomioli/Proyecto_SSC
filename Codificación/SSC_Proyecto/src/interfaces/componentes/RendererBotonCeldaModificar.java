@@ -2,8 +2,6 @@ package interfaces.componentes;
 
 import java.awt.Component;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
@@ -27,8 +25,7 @@ public class RendererBotonCeldaModificar extends JLabel implements TableCellRend
     public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) 
     {
         // Muestra el Boton en cada fila del JTable ProductosAnuncio.
-    	JButton botonModificar = new JButton();
-    	botonModificar.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"MODIFICAR_16.png"));
+    	BotonesIconos botonModificar = new BotonesIconos("MODIFICAR.png");
     	
     	return botonModificar; //new JButton();
     }

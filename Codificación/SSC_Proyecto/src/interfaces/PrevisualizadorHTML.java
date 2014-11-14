@@ -54,7 +54,7 @@ public class PrevisualizadorHTML extends interfaces.componentes.JDialogBaseFormu
 		/******************
 		 * FORMULARIO BASE
 		 ******************/
-		super((JDialog) framePadre,"Vista Previa de Contenido de E-Mail","ENVIAR_32.png",true);		
+		super((JDialog) framePadre,"Vista Previa de Contenido de E-Mail","ENVIAR.png",true);		
 		setDimensionFormulario(800,600);
 		
 	    getContentPane().setLayout(new BorderLayout(0, 0));

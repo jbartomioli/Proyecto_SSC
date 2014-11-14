@@ -1,8 +1,8 @@
 package interfaces.componentes;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
 
 public class BotonesIconos extends JButton 
 {
@@ -17,12 +17,12 @@ public class BotonesIconos extends JButton
 	 * @param texto
 	 * @param imagen
 	 */
-	public BotonesIconos(String texto, String imagen) 
+	public BotonesIconos(String texto, String nombreIcono) 
 	{
 		setText(texto);
 		setVerticalTextPosition(SwingConstants.BOTTOM);
 		setHorizontalTextPosition(SwingConstants.CENTER);
-		setIcon(new ImageIcon(imagen));
+		setIcon(UtilidadesGUI.obtenerIcono(UtilidadesGUI.X32, nombreIcono));
 		setSize(90,60);
 	}
 	
@@ -32,10 +32,10 @@ public class BotonesIconos extends JButton
 	 * BOTON CON IMAGEN Y SIN TEXTO DE 30X23
 	 * @param imagen
 	 */
-	public BotonesIconos(String imagen) 
+	public BotonesIconos(String nombreIcono) 
 	{
 		setText("");
-		setIcon(new ImageIcon(imagen));
+		setIcon(UtilidadesGUI.obtenerIcono(UtilidadesGUI.X16, nombreIcono));
 		setSize(30,23);
 	}
 

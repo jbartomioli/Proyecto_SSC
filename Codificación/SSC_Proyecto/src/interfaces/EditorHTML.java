@@ -1,4 +1,6 @@
 package interfaces;
+import interfaces.componentes.UtilidadesGUI;
+
 import javax.swing.JDialog;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
@@ -6,7 +8,6 @@ import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 
 import javax.swing.JButton;
 
@@ -62,7 +63,7 @@ public class EditorHTML extends JDialog
 		getContentPane().setMaximumSize(new Dimension(800, 600));
 		setMaximumSize(new Dimension(800, 600));
 		setLocationRelativeTo(null);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png"));
+		setIconImage(UtilidadesGUI.obtenerIcono(UtilidadesGUI.X32,"GENERAR.png").getImage());
 		
 		/**************
 		 * INICIALIZAR

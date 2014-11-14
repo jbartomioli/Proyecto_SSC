@@ -68,7 +68,7 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 	 ****************************/
 	public ModificarPrecios(JFrame jframePadre) throws Exception 
 	{
-		super(jframePadre,"Modificar Precios","PRECIO_32.png",true);
+		super(jframePadre,"Modificar Precios","PRECIO.png",true);
 		controladorPrecios = new negocio.ControladorModificarPrecios();
 
 		controladorPrecios.inicializarCatalogos();
@@ -89,7 +89,7 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 	 ****************************/
 	public ModificarPrecios(JDialog jdialogPadre, negocio.ControladorConfeccionarAnuncio controladorAnuncios, Collection<Integer> idProductos) throws Exception
 	{
-		super(jdialogPadre, "Modificar Precios","PRECIO_32.png",true);
+		super(jdialogPadre, "Modificar Precios","PRECIO.png",true);
 		
 		controladorPrecios = new negocio.ControladorModificarPrecios();
 
@@ -164,7 +164,7 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 		txtBuscarProductos.setColumns(10);
 		getContentPane().add(txtBuscarProductos);
 		
-		btnBuscarProducto = new BotonesIconos("",utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_16.png");
+		btnBuscarProducto = new BotonesIconos("BUSCAR.png");
 		btnBuscarProducto.setBounds(444, 89, 30, 19);
 		getContentPane().add(btnBuscarProducto);
 		
@@ -206,7 +206,7 @@ public class ModificarPrecios extends interfaces.componentes.JDialogBaseFormular
 		/****************
 		 * BOTON ACEPTAR			
 		 ****************/
-		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
+		btnAceptar = new BotonesIconos("Aceptar","ACEPTAR.png");
 		btnAceptar.setLocation(540, 357);
 		getContentPane().add(btnAceptar);
 		

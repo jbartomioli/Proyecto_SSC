@@ -66,7 +66,7 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 		/**
 		 * FORMULARIO BASE
 		 */
-		super((JDialog) dialogPadre,"Modificar Clientes Destinatarios","CLIENTES_32.png",true);
+		super((JDialog) dialogPadre,"Modificar Clientes Destinatarios","CLIENTES.png",true);
 		setDimensionFormulario(1024, 460);		
 		setBotonAyuda(978, 45);
 		
@@ -142,7 +142,7 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 		/**
 		 * BOTON ACEPTAR
 		 */
-		btnAceptar = new BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");		
+		btnAceptar = new BotonesIconos("Aceptar","ACEPTAR.png");		
 		btnAceptar.setLocation(819, 357);
 		getContentPane().add(btnAceptar);
 		
@@ -150,7 +150,7 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 		/**
 		 * BOTON CANCELAR
 		 */
-		btnCancelar = new BotonesIconos("Cancelar",utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		btnCancelar = new BotonesIconos("Cancelar","CERRAR.png");
 		btnCancelar.setLocation(918, 357);
 		getContentPane().add(btnCancelar);
 		
@@ -158,7 +158,7 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 		/**
 		 * BOTON BUSCADOR
 		 */
-		btnBuscarDestinatario = new BotonesIconos("",utilidades.Configuraciones.IMG_ICONOS+"BUSCAR_16.png");
+		btnBuscarDestinatario = new BotonesIconos("BUSCAR.png");
 		btnBuscarDestinatario.setBounds(434, 51, 30, 20);
 		getContentPane().add(btnBuscarDestinatario);
 		

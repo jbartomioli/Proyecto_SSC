@@ -29,27 +29,27 @@ public class JDialogBaseFormularios extends JDialog
 	
 	
 	
-	public JDialogBaseFormularios(JFrame framePadre, String tituloFormulario, String icono, boolean esModal)
+	public JDialogBaseFormularios(JFrame framePadre, String tituloFormulario, String nombreIcono, boolean esModal)
 	{
 		super(framePadre);
-		seteosGenerales(tituloFormulario, icono, esModal);
+		seteosGenerales(tituloFormulario, nombreIcono, esModal);
 	}
 	
 	
-	public JDialogBaseFormularios(JDialog framePadre, String tituloFormulario, String icono, boolean esModal)
+	public JDialogBaseFormularios(JDialog framePadre, String tituloFormulario, String nombreIcono, boolean esModal)
 	{
 		super(framePadre);
-		seteosGenerales(tituloFormulario, icono, esModal);
+		seteosGenerales(tituloFormulario, nombreIcono, esModal);
 	}
 	
 
 	
 	
-	public void seteosGenerales(String tituloFormulario, String icono, boolean esModal)
+	public void seteosGenerales(String tituloFormulario, String nombreIcono, boolean esModal)
 	{
 		setResizable(false);
 		setTitle(tituloFormulario);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(utilidades.Configuraciones.IMG_ICONOS+icono));
+		setIconImage(UtilidadesGUI.obtenerIcono(UtilidadesGUI.X32,nombreIcono).getImage());
 		setModal(esModal);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 
@@ -139,7 +139,7 @@ public class JDialogBaseFormularios extends JDialog
 	 */
 	public void setBotonAyuda(int x, int y)
 	{
-		BotonesIconos btnAyuda = new BotonesIconos(utilidades.Configuraciones.IMG_ICONOS+"AYUDA_16.PNG");
+		BotonesIconos btnAyuda = new BotonesIconos("AYUDA.PNG");
 		btnAyuda.setLocation(x, y);
 		btnAyuda.setToolTipText("Ayuda");
 		btnAyuda.setFocusPainted(false);

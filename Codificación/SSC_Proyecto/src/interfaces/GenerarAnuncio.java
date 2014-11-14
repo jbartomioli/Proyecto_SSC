@@ -120,7 +120,7 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		/***************************************************************
 		 * FORMULARIO BASE
 		 ***************************************************************/
-		super(framePadre, "Confeccionar Anuncio", "CONFECCIONAR_32.png", modal);
+		super(framePadre, "Confeccionar Anuncio", "CONFECCIONAR.png", modal);
 		setPantallaCompleta();
 		setDimensionFormulario(1024, 668);
     	setBotonAyuda(884,32);
@@ -243,7 +243,7 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		/*************************
 		 * BOTON GENERAR ANUNCIO
 		 *************************/
-		btnGenerar = new interfaces.componentes.BotonesIconos("Modificar Contenido", utilidades.Configuraciones.IMG_ICONOS+"GENERAR_32.png");
+		btnGenerar = new interfaces.componentes.BotonesIconos("Modificar Contenido","GENERAR.png");
 		btnGenerar.setText("Generar");
 		btnGenerar.setLocation(22, 608);
 		getContentPane().add(btnGenerar);
@@ -252,7 +252,7 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		/****************
 		 * BOTON ENVIAR
 		 ****************/
-		btnEnviar = new interfaces.componentes.BotonesIconos("Enviar Mail", utilidades.Configuraciones.IMG_ICONOS+"ENVIAR_32.png");
+		btnEnviar = new interfaces.componentes.BotonesIconos("Enviar Mail","ENVIAR.png");
 		btnEnviar.setText("Enviar");
 		btnEnviar.setLocation(145, 608);		
 	    getContentPane().add(btnEnviar);
@@ -261,7 +261,7 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		/****************
 		 * BOTON CERRAR
 		 ****************/
-		btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar","CERRAR.png");
 		btnCerrar.setLocation(817, 609);				
 		getContentPane().add(btnCerrar);		
 		

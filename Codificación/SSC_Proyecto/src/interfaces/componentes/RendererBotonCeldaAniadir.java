@@ -2,8 +2,6 @@ package interfaces.componentes;
 
 import java.awt.Component;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
@@ -26,8 +24,7 @@ public class RendererBotonCeldaAniadir extends JLabel implements TableCellRender
     public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) 
     {
         // Muestra el Boton en cada fila del JTable ProductosAnuncio.
-    	JButton botonAniadir = new JButton();
-    	botonAniadir.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ANIADIR_16.png"));
+    	BotonesIconos botonAniadir = new BotonesIconos("ANIADIR.png");
     	
     	return botonAniadir; //new JButton();
     }

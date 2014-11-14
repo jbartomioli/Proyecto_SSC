@@ -4,6 +4,8 @@ package interfaces;
  * SOBRE EL DESARROLLO
  */
 
+import interfaces.componentes.UtilidadesGUI;
+
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
@@ -23,7 +25,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.JComponent;
 import javax.swing.JTextPane;
 import javax.swing.JSeparator;
-import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
 
@@ -59,7 +60,6 @@ public class Acerca extends JDialog {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		getContentPane().setLayout(null);
-		
 		addEscapeListenerWindowDialog();
 
 		
@@ -100,7 +100,7 @@ public class Acerca extends JDialog {
 		 */
 		imgAcerca = new JLabel("");
 		imgAcerca.setSize(new Dimension(128, 128));
-		imgAcerca.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"ACERCA_128.png"));
+		imgAcerca.setIcon(UtilidadesGUI.obtenerIcono(UtilidadesGUI.X128, "ACERCA.PNG"));
 		imgAcerca.setBounds(260, 115, 130, 132);
 		pnlContenido.add(imgAcerca);
 		
@@ -145,7 +145,7 @@ public class Acerca extends JDialog {
 		/**
 		 * BOTON ACEPTAR
 		 */
-		btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar",utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
+		btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar","ACEPTAR.png");
 		btnAceptar.setLocation(300, 329);
 		pnlContenido.add(btnAceptar);
 		btnAceptar.addActionListener(new ActionListener() {

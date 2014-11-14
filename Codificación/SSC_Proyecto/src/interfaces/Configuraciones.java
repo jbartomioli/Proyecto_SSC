@@ -78,7 +78,7 @@ public class Configuraciones extends JDialogBaseFormularios
 		/*******************
 		 * FORMULARIO BASE 
 		 *******************/
-		super(framePadre, "Configuraciones Generales", "CONFIGURACION_32.png", true);
+		super(framePadre, "Configuraciones Generales", "CONFIGURACION.png", true);
 		setDimensionFormulario(500,500);
 		setBotonAyuda(452, 15);
 		
@@ -303,7 +303,7 @@ public class Configuraciones extends JDialogBaseFormularios
 		 * BOTON ACEPTAR
 		 ****************/
 		BotonesIconos btnAceptar = 
-				new BotonesIconos("Aceptar", utilidades.Configuraciones.IMG_ICONOS+"ACEPTAR_32.png");
+				new BotonesIconos("Aceptar","ACEPTAR.png");
 		btnAceptar.setLocation(294, 397);	
 		btnAceptar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento) {
@@ -315,7 +315,7 @@ public class Configuraciones extends JDialogBaseFormularios
 		/*****************
 		 * BOTON CANCELAR
 		 *****************/
-		btnCerrar = new BotonesIconos("Cerrar", utilidades.Configuraciones.IMG_ICONOS+"CERRAR_32.png");
+		btnCerrar = new BotonesIconos("Cerrar", "CERRAR.png");
 		btnCerrar.setLocation(394, 397);	
 		btnCerrar.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evento)
@@ -376,7 +376,7 @@ public class Configuraciones extends JDialogBaseFormularios
 		}
 		catch(NullPointerException npe)
 		{
-			//
+			npe.printStackTrace();
 		}
 		
 		//OPCIONES ARCHIVO DE CONFIGURACION GLOBAL
