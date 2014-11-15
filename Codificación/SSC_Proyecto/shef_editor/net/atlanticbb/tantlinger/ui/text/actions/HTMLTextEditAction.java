@@ -23,7 +23,12 @@ import net.atlanticbb.tantlinger.ui.DefaultAction;
  */
 public abstract class HTMLTextEditAction extends DefaultAction
 {
-    static final I18n i18n = I18n.getInstance("net.atlanticbb.tantlinger.ui.text.actions");
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7336575716765780135L;
+
+	static final I18n i18n = I18n.getInstance("net.atlanticbb.tantlinger.ui.text.actions");
     
     public static final String EDITOR = "editor";
     
