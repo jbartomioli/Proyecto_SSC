@@ -1,10 +1,8 @@
 package interfaces;
-/*
- * PANTALLA PARA MOSTRAR INFORMACION
- * SOBRE EL DESARROLLO
- */
+
 
 import interfaces.componentes.UtilidadesGUI;
+import interfaces.componentes.BotonesIconos;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -28,30 +26,39 @@ import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
 
 
-public class Acerca extends JDialog {
+/**
+ * PANTALLA PARA MOSTRAR INFORMACION
+ * SOBRE EL DESARROLLO
+ *
+ * @author Javier Bartomioli - Rodrigo Naredo
+ *
+ */
+public class Acerca extends JDialog
+{
 
+	//SERIALIZABLE
 	private static final long serialVersionUID = 143340851367791756L;
 	
+	//COMPONENTES
 	private JPanel pnlContenido;
 	private JLabel lblTitulo;
 	private JSeparator sprSeparadorSup;
 	private JLabel imgAcerca;
 	private JTextPane txtInformacion;
 	private JTextPane txtInformacion2;
-	private interfaces.componentes.BotonesIconos btnAceptar;
+	private BotonesIconos btnAceptar;
 	private JTextPane txtVersion;
 
+	
 
 	/**
 	 * CONSTRUCTOR
-	 * @param padre
-	 * @param modal
+	 * @param padre JFrame - Frame Padre
+	 * @param modal boolean - Es modal
 	 */
 	public Acerca(JFrame padre, boolean modal)
 	{
-		/**
-		 * FORMULARIO BASE
-		 */
+		//FORMAULARIO BASE
 		super(padre,modal);
 		setRootPaneCheckingEnabled(false);
 		getContentPane().setBackground(Color.WHITE);
@@ -63,9 +70,7 @@ public class Acerca extends JDialog {
 		addEscapeListenerWindowDialog();
 
 		
-		/**
-		 * PANEL SUPERIOR
-		 */
+		// PANEL SUPERIOR
 		pnlContenido = new JPanel();
 		pnlContenido.setBackground(Color.WHITE);
 		pnlContenido.setBorder(new LineBorder(new Color(102, 153, 255), 2));
@@ -74,9 +79,8 @@ public class Acerca extends JDialog {
 		pnlContenido.setLayout(null);
 		
 		
-		/**
-		 * TITULO PRINCIPAL
-		 */
+		
+		//TITULO PRINCIPAL
 		lblTitulo = new JLabel("SSC - Sistema de Seguimiento de Clientes");
 		lblTitulo.setForeground(new Color(102, 153, 255));
 		lblTitulo.setBounds(10, 23, 380, 42);
@@ -86,18 +90,14 @@ public class Acerca extends JDialog {
 		lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 19));
 		
 		
-		/**
-		 * SEPARADOR
-		 */
+		//SEPARADOR
 		sprSeparadorSup = new JSeparator();
 		sprSeparadorSup.setForeground(new Color(153, 204, 255));
 		sprSeparadorSup.setBounds(10, 63, 380, 2);
 		pnlContenido.add(sprSeparadorSup);
 		
 		
-		/**
-		 * IMAGEN
-		 */
+		//IMAGEN
 		imgAcerca = new JLabel("");
 		imgAcerca.setSize(new Dimension(128, 128));
 		imgAcerca.setIcon(UtilidadesGUI.obtenerIcono(UtilidadesGUI.X128, "ACERCA.PNG"));
@@ -105,9 +105,8 @@ public class Acerca extends JDialog {
 		pnlContenido.add(imgAcerca);
 		
 		
-		/**
-		 * TEXTO INFORMATIVO SUPERIOR
-		 */
+		
+		//TEXTO INFORMATIVO SUPERIOR
 		txtInformacion = new JTextPane();
 		txtInformacion.setAutoscrolls(false);
 		txtInformacion.setEditable(false);
@@ -116,9 +115,8 @@ public class Acerca extends JDialog {
 		pnlContenido.add(txtInformacion);
 		
 		
-		/**
-		 * TEXTO INFORMATIVO INFERIOR
-		 */
+		
+		//TEXTO INFORMATIVO INFERIOR
 		txtInformacion2 = new JTextPane();
 		txtInformacion2.setOpaque(false);
 		txtInformacion2.setText("Confeccionado por los alumnos:\r\n - Javier Bartomioli\r\n - Rodrigo Naredo\r\n\r\nProfesor a cargo:\r\n - Mario Osvaldo Bressano");
@@ -128,9 +126,8 @@ public class Acerca extends JDialog {
 		pnlContenido.add(txtInformacion2);
 			
 		
-		/**
-		 * VERSION
-		 */
+
+		//VERSION
 		txtVersion = new JTextPane();
 		txtVersion.setOpaque(false);
 		txtVersion.setForeground(Color.GRAY);
@@ -142,10 +139,8 @@ public class Acerca extends JDialog {
 		pnlContenido.add(txtVersion);
 		
 		
-		/**
-		 * BOTON ACEPTAR
-		 */
-		btnAceptar = new interfaces.componentes.BotonesIconos("Aceptar","ACEPTAR.png");
+		//BOTON ACEPTAR
+		btnAceptar = new BotonesIconos("Aceptar","ACEPTAR.png");
 		btnAceptar.setLocation(300, 329);
 		pnlContenido.add(btnAceptar);
 		btnAceptar.addActionListener(new ActionListener() {
@@ -154,14 +149,15 @@ public class Acerca extends JDialog {
 	        }
 	      });
 	}
-	//--------------------------------------------------------------------------------------
+	///////////////////////////////////////////
 	
 	
 	
-	//EVENTOS	
-	
-	//
-	protected void addEscapeListenerWindowDialog() 
+	//EVENTOS
+	/**
+	 * ACCION BOTON CERRAR VENTANA
+	 */
+	protected void addEscapeListenerWindowDialog()
 	{
 	 ActionListener escAction = new ActionListener() 
 	 {
@@ -174,11 +170,16 @@ public class Acerca extends JDialog {
 	 getRootPane().registerKeyboardAction(
 			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 	}
+	///////////////////////////////////////////////
 	
-	//EVENTO BOTON ACEPTAR
+	
+	
+	/**
+	 * CLICK BOTON CERRAR
+	 */
 	private void click_boton_cerrar()
 	{
 		dispose();
 	}
-	
+	//////////////////////////////////
 }

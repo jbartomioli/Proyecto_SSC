@@ -1,5 +1,6 @@
 package interfaces;
 
+import interfaces.componentes.BotonesIconos;
 import interfaces.componentes.UtilidadesGUI;
 
 import java.io.BufferedReader;
@@ -31,35 +32,46 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Insets;
 
-
+/**
+ * PANTALLA DE AYUDA DEL SISTEMA
+ * 
+ * @author Javier Bartomioli - Rodrigo Naredo
+ *
+ */
 public class Ayuda extends JFrame
 {
+	//SERIALIZABLE
 	private static final long serialVersionUID = 2483184216073019363L;
 	
+	//COMPONENTES
+	private BotonesIconos btnAceptar;
+	private JEditorPane visorHTML;
+	private JScrollPane scrEditor;
+	
+	//VARIABLES
 	private String contenidoMailHTML;
 	private File archivoHTML;
 	private FileReader fr;
 	private BufferedReader br;
-	private interfaces.componentes.BotonesIconos btnAceptar;
+		
 
-	private JEditorPane visorHTML;
-
-	private JScrollPane scrEditor;
-
-	
-	/****************
+	/**
 	 * CONSTRUCTOR
-	 ****************/
+	 */
 	public Ayuda()
 	{
+		//FORMULARIO BASE
 		setMinimumSize(new Dimension(800,600));
 		setLocationRelativeTo(null);
 		setIconImage(UtilidadesGUI.obtenerIcono(UtilidadesGUI.X32,"AYUDA.png").getImage());
 		setTitle("Ayuda del Sistema");
+        setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
 		
-		addWindowListener(new WindowAdapter() {
-        	public void windowClosing(WindowEvent arg0) {
+		addWindowListener(new WindowAdapter() 
+		{
+        	public void windowClosing(WindowEvent arg0) 
+        	{
         		cerrar_salir();
         	}
         });
@@ -67,7 +79,8 @@ public class Ayuda extends JFrame
 		addEscapeListenerWindowDialog();
 	    
 	    visorHTML = new JEditorPane("text/html","");
-	    visorHTML.addHyperlinkListener(new HyperlinkListener() {
+	    visorHTML.addHyperlinkListener(new HyperlinkListener()
+	    {
 	    	public void hyperlinkUpdate(HyperlinkEvent evento)
 	    	{
 	    		if(evento.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
@@ -89,7 +102,6 @@ public class Ayuda extends JFrame
 	    visorHTML.setEditable(false);
 	    visorHTML.setMargin(new Insets(10, 10, 10, 10));
 
-	    
 	    scrEditor = new JScrollPane(visorHTML);
 	    getContentPane().add(scrEditor, BorderLayout.CENTER);
 	    
@@ -115,23 +127,27 @@ public class Ayuda extends JFrame
 	   			}	
 	    	}
 	    });
-   
-   		
-   		/**
-   		 * BOTON SALIR
-   		 */
-   		
-        setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+	    
 	}	
-		
+	///////////////	
 	
 	
+	//METODOS
+	/**
+	 * INICIALIZAR CONTENIDO DE HTML EDITOR
+	 */
 	public void cargarHTML()
 	{
 		actualizarHTML(utilidades.Configuraciones.DIR_HELP);
 	}
+	/////////////////////////
 	
-
+	
+	
+	/**
+	 * ACTUALIZAR CONTENIDO DE HTML EDITOR
+	 * @param rutaHTML
+	 */
 	protected void actualizarHTML(String rutaHTML)
 	{				
 		archivoHTML = new File(rutaHTML);
@@ -162,9 +178,7 @@ public class Ayuda extends JFrame
 		    visorHTML.setText(contenidoMailHTML);
 		    
 		    visorHTML.setCaretPosition(0);
-		    
 
-		    
 	        setVisible(true);
 	   	}
 	   	catch(Exception e)
@@ -184,30 +198,36 @@ public class Ayuda extends JFrame
         	}
         }
 	}
-
+	///////////////////////////////////////////////
 	
 	
-	//
-	protected void addEscapeListenerWindowDialog() 
+	
+	/**
+	 * ACCION TECLA ESC
+	 */
+	protected void addEscapeListenerWindowDialog()
 	{
-	 ActionListener escAction = new ActionListener() 
-	 {
-		 @Override
-		 public void actionPerformed(ActionEvent e) 
-		 {
-			 cerrar_salir();
-		 }
-	 };
-	 getRootPane().registerKeyboardAction(
+		ActionListener escAction = new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				cerrar_salir();
+			}
+		};
+	 	getRootPane().registerKeyboardAction(
 			 escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 	}
-
+	///////////////////////////////////////////////
 	
 	
-	//---------------------------------------------------------------------
+	/**
+	 * ACCION AL CERRAR O SALIR DE LA VENTANA
+	 */
 	public void cerrar_salir()
 	{
 		setSize(new Dimension(800,600));
 		dispose();
 	}
+	///////////////////////////
 }
