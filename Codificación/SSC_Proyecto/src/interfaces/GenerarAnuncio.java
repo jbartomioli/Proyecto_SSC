@@ -604,7 +604,7 @@ public class GenerarAnuncio extends JDialogBaseFormularios
 				Thread hiloTrabajoAniadir = new Thread( new TabajoAniadirProducto(producto.getIdProducto()));
 				hiloTrabajoAniadir.start();		    	
 		    	
-				new Thread(new interfaces.interfaces_software.HiloBarraProgreso(hiloTrabajoAniadir, this, prgProgresoAniadir, 500, false)).start();   
+				new Thread(new interfaces.software.HiloBarraProgreso(hiloTrabajoAniadir, this, prgProgresoAniadir, 500, false)).start();   
 			}	
 	}
 	////////////////////////////////////////

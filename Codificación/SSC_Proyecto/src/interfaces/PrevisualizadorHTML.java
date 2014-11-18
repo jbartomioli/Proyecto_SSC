@@ -245,10 +245,10 @@ public class PrevisualizadorHTML extends interfaces.componentes.JDialogBaseFormu
 	    	controlador.redactarMensaje(contenidoProcesado);
 	    	
 	    	
-	    	Thread trabajoEnvio = new Thread(new interfaces.interfaces_software.TrabajoEnvioMail(0, controlador, mailsClientes, asunto, imagenes));
+	    	Thread trabajoEnvio = new Thread(new interfaces.software.TrabajoEnvioMail(0, controlador, mailsClientes, asunto, imagenes));
 	    	trabajoEnvio.start();
 	    	
-	    	new Thread(new interfaces.interfaces_software.HiloBarraProgreso(trabajoEnvio, this, this.barraProgreso, 200, true)).start();
+	    	new Thread(new interfaces.software.HiloBarraProgreso(trabajoEnvio, this, this.barraProgreso, 200, true)).start();
 	    	        		        	
 			resultado = true;
 		}	

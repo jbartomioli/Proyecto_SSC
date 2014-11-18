@@ -1,8 +1,8 @@
 package interfaces;
 
 import interfaces.componentes.UtilidadesGUI;
-import interfaces.interfaces_software.HiloBarraProgreso;
-import interfaces.interfaces_software.TrabajoInicializar;
+import interfaces.software.HiloBarraProgreso;
+import interfaces.software.TrabajoInicializar;
 
 import java.awt.Color;
 import java.awt.Cursor;
