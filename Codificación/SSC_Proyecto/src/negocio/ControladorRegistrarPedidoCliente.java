@@ -201,18 +201,11 @@ public class ControladorRegistrarPedidoCliente
 		
 		//producto = cp.buscarProducto(descParcial);
 		
-		if(producto != null)
-		{	
-			//Obtener datos del producto mediante subclase
+		if(producto.getExistenciaStock()>=cantidad)
+		{
+			PCTemporal.agregarProducto(producto, cantidad);
 			
-			if(producto.getExistenciaStock()>=cantidad)
-			{
-				PCTemporal.agregarProducto(producto, cantidad);
-				
-				return null; //Devolver datos
-			}
-			else
-				return null;
+			return null; //Devolver datos
 		}
 		else
 			return null;

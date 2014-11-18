@@ -1,16 +1,16 @@
 package interfaces;
-/**
- * PANTALLA CORRESPONDIENTE AL CU GENERAR ANUNCIO
- */
 
+import interfaces.componentes.BotonesIconos;
+import interfaces.componentes.ComboCategorias;
+import interfaces.componentes.ComboSubcategorias;
+import interfaces.componentes.JDialogBaseFormularios;
+import interfaces.componentes.LabelBoton;
+import interfaces.componentes.TablaClientesDestino;
+import interfaces.componentes.TablaProductosAnuncio;
 
 import java.awt.Cursor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-
-
-
 
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -35,56 +35,58 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Vector;
 
-import negocio.SubCategoria;
 
 import javax.swing.JTextField;
 import javax.swing.JProgressBar;
 
 
-
-public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormularios
+/**
+ * PANTALLA CORRESPONDIENTE AL CU GENERAR ANUNCIO
+ */
+public class GenerarAnuncio extends JDialogBaseFormularios
 {
-	/****************
-	 * SERIALIZABLE
-	 ****************/
+	//SERIALIZABLE
 	private static final long serialVersionUID = 4454249604145639442L;
 	
 	
-	/**************
-	 * COMPONENTES
-	 **************/
-	private negocio.ControladorConfeccionarAnuncio controlador;
+	//COMPONENTES
 	private negocio.Categoria categoria;
-	private interfaces.componentes.TablaProductosAnuncio tblProductosAnuncio;
-	private interfaces.componentes.TablaClientesDestino tblDestinatarios;
-	private interfaces.componentes.TablaProductosAnuncio tblProductos;
-	private interfaces.componentes.ComboCategorias cmbCategorias;
-	private interfaces.componentes.ComboSubcategorias cmbSubcategorias;
-	private interfaces.componentes.BotonesIconos btnGenerar;
-	private interfaces.componentes.BotonesIconos btnEnviar;
-	private interfaces.componentes.BotonesIconos btnCerrar;
-	private interfaces.componentes.LabelBoton lblModificarDestinatarios;
-	private interfaces.componentes.LabelBoton lblModificarPrecios;
+	private TablaProductosAnuncio tblProductosAnuncio;
+	private TablaClientesDestino tblDestinatarios;
+	private TablaProductosAnuncio tblProductos;
+	private ComboCategorias cmbCategorias;
+	private ComboSubcategorias cmbSubcategorias;
+	private BotonesIconos btnGenerar;
+	private BotonesIconos btnEnviar;
+	private BotonesIconos btnCerrar;
+	private LabelBoton lblModificarDestinatarios;
+	private LabelBoton lblModificarPrecios;
 	private JTextField txtAsunto;
 	private JProgressBar prgProgresoAniadir;
 	private JScrollPane scrollProductosAnuncio;
 	private JScrollPane scrollProductos;
-	private SubCategoria subcategoriaActual;
-
 	
+	//VARIABLES TEMPORALES
+	private negocio.SubCategoria subcategoriaActual;
+	private negocio.ControladorConfeccionarAnuncio controlador;
 
-	/***********
-	 * METODOS
-	 * @return
-	 ***********/
-	//-------------------------------------------------------------------
+
+	/**
+	 * OBTIENE EL CONTROLADOR
+	 * @return negocio.ControladorConfeccionarAnuncio - Controlador
+	 */
 	public negocio.ControladorConfeccionarAnuncio getControlador()
 	{
 		return controlador;
 	}
-
+	///////////////////////////////////////////////////////////////
 	
-	//-------------------------------------------------------------------
+	
+	
+	/**
+	 * 
+	 * @param nuevoModelo
+	 */
 	public void actualizarClientesDestinatarios(TableModel nuevoModelo)
 	{			
 		String[] idClientesModif = new String[nuevoModelo.getRowCount()];
@@ -106,6 +108,8 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		tblDestinatarios.completarDatos(controlador.getArrClientesInteresados());
 		
 	}
+	////////////////////////////////////////////////////////////////////
+	
 	
 	
 	/*******************************
@@ -117,177 +121,153 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 	 *******************************/
 	public GenerarAnuncio(JFrame framePadre, boolean modal) throws Exception
 	{
-		/***************************************************************
-		 * FORMULARIO BASE
-		 ***************************************************************/
+		//FORMULARIO BASE
 		super(framePadre, "Confeccionar Anuncio", "CONFECCIONAR.png", modal);
 		setPantallaCompleta();
 		setDimensionFormulario(1024, 668);
     	setBotonAyuda(884,32);
         		
-    	/*********
-    	 * TITULO
-    	 *********/
-    	JLabel lblTitulo = new JLabel("Generar Anuncio");
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblTitulo.setBounds(10, 11, 304, 23);
-		getContentPane().add(lblTitulo);
-    	
-    	/*************
-    	 * CATEGORIAS 
-    	 *************/
-		JLabel lblCategoria = new JLabel("Categor\u00EDa:");
-		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCategoria.setBounds(10, 38, 77, 23);
-		getContentPane().add(lblCategoria);
+    		//TITULO
+	    	JLabel lblTitulo = new JLabel("Generar Anuncio");
+			lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblTitulo.setBounds(10, 11, 304, 23);
+			getContentPane().add(lblTitulo);
+	    	
 
-		cmbCategorias = new interfaces.componentes.ComboCategorias();
-		lblCategoria.setLabelFor(cmbCategorias);
-		cmbCategorias.setBounds(87, 38, 200, 23);
-		getContentPane().add(cmbCategorias);
-		
-		
-		/****************
-		 * SUBCATEGORIAS
-		 ****************/
-		JLabel lblSubcategoria = new JLabel("Subcategor\u00EDa:");
-		lblSubcategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblSubcategoria.setBounds(310, 38, 97, 23);
-		getContentPane().add(lblSubcategoria);
-
-		cmbSubcategorias = new interfaces.componentes.ComboSubcategorias();
-		lblSubcategoria.setLabelFor(cmbSubcategorias);
-		cmbSubcategorias.setBounds(410, 38, 196, 23);
-		getContentPane().add(cmbSubcategorias);
-		
-		
-		/*********
-		 * ASUNTO
-		 *********/
-		JLabel lblAsunto = new JLabel("Asunto:");
-		lblAsunto.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblAsunto.setBounds(10, 72, 77, 23);
-		getContentPane().add(lblAsunto);
-		
-		txtAsunto = new JTextField();
-		lblAsunto.setLabelFor(txtAsunto);
-		txtAsunto.setBounds(87, 73, 519, 20);
-		txtAsunto.setText("");
-		getContentPane().add(txtAsunto);
-		txtAsunto.setColumns(10);
-		
-		
-		/*******************************
-		 * TABLA PRODUCTOS DEL ANUNCIO
-		 *******************************/
-		Box boxProductosAnuncio = Box.createHorizontalBox();
-		boxProductosAnuncio.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		boxProductosAnuncio.setBounds(10, 106, 464, 244);
-		getContentPane().add(boxProductosAnuncio);
-		
-		scrollProductosAnuncio = new JScrollPane();
-		scrollProductosAnuncio.setAlignmentY(Component.TOP_ALIGNMENT);
-		scrollProductosAnuncio.setAlignmentX(Component.LEFT_ALIGNMENT);
-		boxProductosAnuncio.add(scrollProductosAnuncio);
+			//CATEGORIAS 
+			JLabel lblCategoria = new JLabel("Categor\u00EDa:");
+			lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lblCategoria.setBounds(10, 38, 77, 23);
+			getContentPane().add(lblCategoria);
 	
-				
-		/****************************
-		 * TABLA PRODUCTOS A AGREGAR
-		 ****************************/
-		Box boxProductos = Box.createHorizontalBox();
-		boxProductos.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		boxProductos.setBounds(484, 106, 430, 446);
-		getContentPane().add(boxProductos);
-		
-		scrollProductos = new JScrollPane();
-		scrollProductos.setAlignmentY(0.0f);
-		scrollProductos.setAlignmentX(0.0f);
-		boxProductos.add(scrollProductos);
-		
-		tblProductos = new interfaces.componentes.TablaProductosAnuncio();
-		scrollProductos.setViewportView(tblProductos);
-	
-		
-		/**********************
-		 * TABLA DESTINATARIOS
-		 **********************/
-		Box boxDestinatarios = Box.createHorizontalBox();
-		boxDestinatarios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
-		boxDestinatarios.setBounds(10, 361, 464, 192);
-		getContentPane().add(boxDestinatarios);
-		
-		JScrollPane scrollDestinatarios = new JScrollPane();
-		boxDestinatarios.add(scrollDestinatarios);
-		
-		tblDestinatarios = new interfaces.componentes.TablaClientesDestino();
-		scrollDestinatarios.setViewportView(tblDestinatarios);
-
-		
-		/*********************************
-		 * BOTON MODIFICAR DESTINATARIOS
-		 *********************************/
-		lblModificarDestinatarios = new interfaces.componentes.LabelBoton("Modificar Destinatarios");
-		lblModificarDestinatarios.setBounds(324, 558, 150, 19);
-		lblModificarDestinatarios.setEnabled(false);
-		getContentPane().add(lblModificarDestinatarios);
-		
-		
-		/****************************
-		* BOTON MODIFICAR PRECIOS
-		****************************/
-		lblModificarPrecios = new interfaces.componentes.LabelBoton("Modificar Precios");
-		lblModificarPrecios.setBounds(324, 580, 150, 19);
-		getContentPane().add(lblModificarPrecios);
-
-		
-		/*************************
-		 * BOTON GENERAR ANUNCIO
-		 *************************/
-		btnGenerar = new interfaces.componentes.BotonesIconos("Modificar Contenido","GENERAR.png");
-		btnGenerar.setText("Generar");
-		btnGenerar.setLocation(22, 608);
-		getContentPane().add(btnGenerar);
+			cmbCategorias = new ComboCategorias();
+			lblCategoria.setLabelFor(cmbCategorias);
+			cmbCategorias.setBounds(87, 38, 200, 23);
+			getContentPane().add(cmbCategorias);
 			
-		
-		/****************
-		 * BOTON ENVIAR
-		 ****************/
-		btnEnviar = new interfaces.componentes.BotonesIconos("Enviar Mail","ENVIAR.png");
-		btnEnviar.setText("Enviar");
-		btnEnviar.setLocation(145, 608);		
-	    getContentPane().add(btnEnviar);
+			
+			//SUBCATEGORIAS
+			JLabel lblSubcategoria = new JLabel("Subcategor\u00EDa:");
+			lblSubcategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lblSubcategoria.setBounds(310, 38, 97, 23);
+			getContentPane().add(lblSubcategoria);
 	
+			cmbSubcategorias = new ComboSubcategorias();
+			lblSubcategoria.setLabelFor(cmbSubcategorias);
+			cmbSubcategorias.setBounds(410, 38, 196, 23);
+			getContentPane().add(cmbSubcategorias);
+			
+			
+			 //ASUNTO
+			JLabel lblAsunto = new JLabel("Asunto:");
+			lblAsunto.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lblAsunto.setBounds(10, 72, 77, 23);
+			getContentPane().add(lblAsunto);
+			
+			txtAsunto = new JTextField();
+			lblAsunto.setLabelFor(txtAsunto);
+			txtAsunto.setBounds(87, 73, 519, 20);
+			txtAsunto.setText("");
+			getContentPane().add(txtAsunto);
+			txtAsunto.setColumns(10);
+			
+			
+			 //TABLA PRODUCTOS DEL ANUNCIO
+			Box boxProductosAnuncio = Box.createHorizontalBox();
+			boxProductosAnuncio.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
+			boxProductosAnuncio.setBounds(10, 106, 464, 244);
+			getContentPane().add(boxProductosAnuncio);
+			
+			scrollProductosAnuncio = new JScrollPane();
+			scrollProductosAnuncio.setAlignmentY(Component.TOP_ALIGNMENT);
+			scrollProductosAnuncio.setAlignmentX(Component.LEFT_ALIGNMENT);
+			boxProductosAnuncio.add(scrollProductosAnuncio);
+		
+					
+			//TABLA PRODUCTOS A AGREGAR
+			Box boxProductos = Box.createHorizontalBox();
+			boxProductos.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Productos", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
+			boxProductos.setBounds(484, 106, 430, 446);
+			getContentPane().add(boxProductos);
+			
+			scrollProductos = new JScrollPane();
+			scrollProductos.setAlignmentY(0.0f);
+			scrollProductos.setAlignmentX(0.0f);
+			boxProductos.add(scrollProductos);
+			
+			tblProductos = new TablaProductosAnuncio();
+			scrollProductos.setViewportView(tblProductos);
+		
+			
+			//TABLA DESTINATARIOS
+			Box boxDestinatarios = Box.createHorizontalBox();
+			boxDestinatarios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Destinatarios del Anuncio", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
+			boxDestinatarios.setBounds(10, 361, 464, 192);
+			getContentPane().add(boxDestinatarios);
+			
+			JScrollPane scrollDestinatarios = new JScrollPane();
+			boxDestinatarios.add(scrollDestinatarios);
+			
+			tblDestinatarios = new TablaClientesDestino();
+			scrollDestinatarios.setViewportView(tblDestinatarios);
+	
+			
+			//BOTON MODIFICAR DESTINATARIOS
+			lblModificarDestinatarios = new LabelBoton("Modificar Destinatarios");
+			lblModificarDestinatarios.setBounds(324, 558, 150, 19);
+			lblModificarDestinatarios.setEnabled(false);
+			getContentPane().add(lblModificarDestinatarios);
+			
+			
+			//BOTON MODIFICAR PRECIOS
+			lblModificarPrecios = new LabelBoton("Modificar Precios");
+			lblModificarPrecios.setBounds(324, 580, 150, 19);
+			getContentPane().add(lblModificarPrecios);
+	
+			
+			//BOTON GENERAR ANUNCIO
+			btnGenerar = new BotonesIconos("Modificar Contenido","GENERAR.png");
+			btnGenerar.setText("Generar");
+			btnGenerar.setLocation(22, 608);
+			getContentPane().add(btnGenerar);
 				
-		/****************
-		 * BOTON CERRAR
-		 ****************/
-		btnCerrar = new interfaces.componentes.BotonesIconos("Cerrar","CERRAR.png");
-		btnCerrar.setLocation(817, 609);				
-		getContentPane().add(btnCerrar);		
+			
+			//BOTON ENVIAR
+			btnEnviar = new BotonesIconos("Enviar Mail","ENVIAR.png");
+			btnEnviar.setText("Enviar");
+			btnEnviar.setLocation(145, 608);		
+		    getContentPane().add(btnEnviar);
 		
-		
-		/*********************
-		 * BARRA DE PROGRESO
-		 *********************/
-		prgProgresoAniadir = new JProgressBar();
-		prgProgresoAniadir.setStringPainted(true);
-		prgProgresoAniadir.setBounds(10, 558, 304, 19);
-		getContentPane().add(prgProgresoAniadir);
-		
-		
-
+					
+			//BOTON CERRAR
+			btnCerrar = new BotonesIconos("Cerrar","CERRAR.png");
+			btnCerrar.setLocation(817, 609);				
+			getContentPane().add(btnCerrar);		
+			
+			
+			//BARRA DE PROGRESO
+			prgProgresoAniadir = new JProgressBar();
+			prgProgresoAniadir.setStringPainted(true);
+			prgProgresoAniadir.setBounds(10, 558, 304, 19);
+			getContentPane().add(prgProgresoAniadir);
+		/////////////////////////////////////////////
 	}
-
+	/////////////////////////////////////////////////////////////////////////
 	
 	
-	//
+	
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	public void actualizar() throws Exception
 	{
 		this.inicializar();
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}	
-	
+	//////////////////////////////////////////
 
+	
 	
 	/**
 	 * INCIALIZACION DE COMPONENTES
@@ -340,7 +320,7 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		subcategoriaActual = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
 		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
 		
-		tblProductosAnuncio = new interfaces.componentes.TablaProductosAnuncio();
+		tblProductosAnuncio = new TablaProductosAnuncio();
 		tblProductosAnuncio.completarTabla(productos);
 		tblProductosAnuncio.definirTablaProductosAnuncio();
 		scrollProductosAnuncio.setViewportView(tblProductosAnuncio);
@@ -443,14 +423,15 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
-
+	//////////////////////////////////////////////
 
 	
-	/********************
-	 * EVENTOS
+	
+	/**
+	 * ACCION CLICK COMBO CATEGORIAS
 	 * @param evento
 	 * @throws Exception
-	 ********************/
+	 */
 	protected void click_combo_categorias(ItemEvent evento) throws Exception
 	{
 		if(evento.getStateChange() == ItemEvent.SELECTED)
@@ -474,10 +455,15 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 					subcategoriaSeleccionada.getIdSubcategoria()));
 		}
 	}
-	
+	/////////////////////////////////////////////////////////////////////////
 
 	
-	//-------------------------------------------------------------------
+
+	/**
+	 * 
+	 * @param evento
+	 * @throws Exception
+	 */
 	protected void click_combo_subcategorias(ItemEvent evento) throws Exception
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
@@ -492,10 +478,14 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 					subcategoriaSeleccionada.getIdSubcategoria()));
 		}
 	}
+	////////////////////////////////////////////////////////////////////////////
+	
+	
 
-	
-	
-	//-------------------------------------------------------------------
+	/**
+	 * 
+	 * @param dialogPadre
+	 */
 	protected void action_generar(JDialog dialogPadre)
 	{
     	if(txtAsunto.getText().equals(""))
@@ -536,10 +526,14 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 	        	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	        }
 	}
+	///////////////////////////////////////////////////
 	
 	
 	
-	//-------------------------------------------------------------------
+	/**
+	 * 
+	 * @param dialogPadre
+	 */
 	protected void action_enviar(GenerarAnuncio dialogPadre)
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
@@ -567,12 +561,15 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
     		limpiar_objetos_temporales();
     	}
 	}
-	
+	/////////////////////////////////////////////////////////
 	
 
-	//-------------------------------------------------------------------
+	
+	/**
+	 * 
+	 */
 	@SuppressWarnings("rawtypes")
-	protected void click_aniadir_producto() 
+	protected void click_aniadir_producto()
 	{
 		DefaultTableModel modeloTblProductosAnuncio = (DefaultTableModel) tblProductosAnuncio.getModel();
 		DefaultTableModel modeloTblProductos = (DefaultTableModel) tblProductos.getModel();
@@ -610,11 +607,14 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 				new Thread(new interfaces.interfaces_software.HiloBarraProgreso(hiloTrabajoAniadir, this, prgProgresoAniadir, 500, false)).start();   
 			}	
 	}
+	////////////////////////////////////////
 	
 	
 	
-	//-------------------------------------------------------------------
-	protected void click_eliminar_producto() 
+	/**
+	 * 
+	 */
+	protected void click_eliminar_producto()
 	{
 		DefaultTableModel tableModel = (DefaultTableModel) tblProductosAnuncio.getModel();
 		int filaSeleccionada = tblProductosAnuncio.getSelectedRow();
@@ -625,19 +625,28 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 	    	tableModel.removeRow(filaSeleccionada);	
 	    }	    
 	}
+	/////////////////////////////////////////
 	
 	
 	
-	//-------------------------------------------------------------------
-	protected void click_label_modificar_destinatarios(interfaces.GenerarAnuncio dialogPadre) 
+	/**
+	 * 
+	 * @param dialogPadre
+	 */
+	protected void click_label_modificar_destinatarios(interfaces.GenerarAnuncio dialogPadre)
 	{
 		interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(dialogPadre);
 		modif.setVisible(true);	
 	}
+	//////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	
-	//-------------------------------------------------------------------
+	/**
+	 * 
+	 * @param dialogPadre
+	 * @throws Exception
+	 */
 	protected void click_label_modificar_precios(interfaces.GenerarAnuncio dialogPadre) throws Exception
 	{
 		Collection<Integer> productosAgregados = new ArrayList<Integer>();
@@ -656,10 +665,13 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 					subAux.getIdcategoria(), 
 					subAux.getIdSubcategoria()));
 	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	
-	
-	//-------------------------------------------------------------------
+		
+
+	/**
+	 * 
+	 */
 	protected void cerrar_salir()
 	{
 		super.cerrar_salir();
@@ -667,10 +679,13 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		limpiar_objetos_temporales();
 		controlador = new negocio.ControladorConfeccionarAnuncio();
 	}
+	//////////////////////////////
 	
 	
-	
-	//-------------------------------------------------------------------
+
+	/**
+	 * 
+	 */
 	protected void limpiar_formulario()
 	{
 		cmbCategorias.setSelectedIndex(0);
@@ -682,21 +697,26 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		tblDestinatarios.limpiar_tabla();
 		prgProgresoAniadir.setValue(0);
 	}
+	////////////////////////////////////
 	
 	
-	
-	//-------------------------------------------------------------------
+
+	/**
+	 * 
+	 */
 	private void limpiar_objetos_temporales()
 	{
 		controlador.getArrClientesInteresados().clear();
 		controlador.getArrProductosPublicación().clear();
 		controlador.setAnuncioActual(new negocio.Anuncio()); 
 	}
+	//////////////////////////////////////////
 	
 	
-	
-	//-------------------------------------------------------------------
-	private void eliminar_temporal() 
+	/**
+	 * 
+	 */
+	private void eliminar_temporal()
 	{
 		try
 			{
@@ -709,9 +729,13 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 				e1.printStackTrace();
 			}	
 	}
+	/////////////////////////////////
 	
 	
-	//-------------------------------------------------------------------
+	
+	/**
+	 * 
+	 */
 	private void desactivar_botones()
 	{
 		setEnabled(false);
@@ -722,10 +746,12 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		lblModificarDestinatarios.setEnabled(false);
 		lblModificarPrecios.setEnabled(false);
 	}
+	//////////////////////////////////
 	
 	
-	
-	//-------------------------------------------------------------------
+	/**
+	 * 
+	 */
 	private void activar_botones()
 	{
 		btnCerrar.setEnabled(true);
@@ -736,11 +762,17 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		setEnabled(true);
 	}
+	///////////////////////////////
 	
 	
 	
-	//-------------------------------------------------------------------
-	public class TabajoAniadirProducto implements Runnable{
+	/**
+	 * 
+	 *  
+	 *
+	 */
+	public class TabajoAniadirProducto implements Runnable
+	{
 		
 		private int idProducto;
 
@@ -767,8 +799,8 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 	        {
 	            System.err.println( e.getMessage() );
 	        } 
-	        catch (Exception e) {
-				// TODO Auto-generated catch block
+	        catch (Exception e) 
+	        {
 				e.printStackTrace();
 			}
 	        finally
@@ -779,7 +811,6 @@ public class GenerarAnuncio extends interfaces.componentes.JDialogBaseFormulario
 				activar_botones();
 	        }
 	    }
-	}    
-	
-
+	} 
+	///////////////////////////////////////////////////////
 }

@@ -1,4 +1,4 @@
-package inicializacion;
+package main;
 /*
  * INICIALIZACION DE LA APLICACION
  */
@@ -8,12 +8,12 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 
-public class Inicializacion 
+public class Main 
 {
 	/**
 	 * CONSTRUCTOR
 	 */
-	public Inicializacion() 
+	public Main() 
 	{			
 		try
 		{
@@ -51,7 +51,7 @@ public class Inicializacion
 	 */
 	public static void main(String [] args)
 	{		
-		new Inicializacion();
+		new Main();
 	}
 
 }

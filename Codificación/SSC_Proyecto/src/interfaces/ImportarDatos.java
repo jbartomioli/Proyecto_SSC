@@ -1,6 +1,8 @@
 package interfaces;
 
 import interfaces.componentes.BotonesIconos;
+import interfaces.componentes.JDialogBaseFormularios;
+import interfaces.componentes.TablaImportacionDatos;
 
 import javax.swing.Box;
 import javax.swing.JFileChooser;
@@ -22,26 +24,29 @@ import java.util.Collection;
 import java.util.HashMap;
 
 
-
-public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
+/**
+ * PANTALLA DE IMPORTACION DE DATOS
+ * @author Javier Bartomioli - Rodrigo Naredo
+ *
+ */
+public class ImportarDatos extends JDialogBaseFormularios
 {
-
-	/**
-	 * 
-	 */
+	//SERIALIZABLE
 	private static final long serialVersionUID = -1861553205753683189L;
+	
+	//COMPONENTES
 	private JLabel lblImportarDatos;
-	private interfaces.componentes.BotonesIconos btnAceptar;
-	private interfaces.componentes.TablaImportacionDatos tblImportacion;
+	private BotonesIconos btnAceptar;
+	private TablaImportacionDatos tblImportacion;
 	private BotonesIconos btnProcesar;
 
 	
 	/**
-	 * 
+	 * CONSTRUCTOR
 	 * @param dialogPadre
 	 * @throws Exception 
 	 */
-	public ImportarDatos(JFrame dialogPadre) throws Exception 
+	public ImportarDatos(JFrame dialogPadre) throws Exception
 	{
 		/**
 		 * FORMULARIO BASE
@@ -72,7 +77,7 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 		JScrollPane scrollTablas = new JScrollPane();
 		boxTablas.add(scrollTablas);
 		
-		tblImportacion = new interfaces.componentes.TablaImportacionDatos();
+		tblImportacion = new TablaImportacionDatos();
 		scrollTablas.setViewportView(tblImportacion);
 		
 		
@@ -93,10 +98,12 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 		getContentPane().add(btnAceptar);
 		
 
-		
+		//INICIALIZACION
 		inicializar();
 		
 	}
+	//////////////////////////////////////////////////////////
+	
 	
 	
 	/**
@@ -127,7 +134,8 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 					
 		tblImportacion.completarRutaArchivos(utilidades.Configuraciones.DIR_IMPORTADOR, tablas, archivos);
 		
-		tblImportacion.addMouseListener(new MouseAdapter() {
+		tblImportacion.addMouseListener(new MouseAdapter()
+		{
 			public void mouseClicked(MouseEvent me) 
 			{
 				if(tblImportacion.columnAtPoint(me.getPoint())==3)
@@ -137,10 +145,13 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 			}
 		});
 	}
+	//////////////////////////////////////////////
 	
 	
 	
-	//-------------------------------------------------------------------------------------------------------
+	/**
+	 * 
+	 */
 	public void click_boton_procesar()
 	{	
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
@@ -166,16 +177,24 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 		
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
+	///////////////////////////////////
 	
+
 	
-	//-------------------------------------------------------------------------------------------------------
+	/**
+	 * 
+	 */
 	public void click_boton_aceptar()
 	{
 		super.cerrar_salir();
 	}
+	//////////////////////////////////
 	
+
 	
-	//-------------------------------------------------------------------------------------------------------
+	/**
+	 * 
+	 */
 	public void click_editar_ruta()
 	{	
 		int nroFila = tblImportacion.getSelectedRow();
@@ -207,4 +226,5 @@ public class ImportarDatos extends interfaces.componentes.JDialogBaseFormularios
 		}
 	
 	}
+	////////////////////////////////
 }

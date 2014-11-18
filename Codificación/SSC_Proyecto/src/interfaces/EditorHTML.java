@@ -29,33 +29,30 @@ import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.HashMap;
 
-
-
+/**
+ * PANTALLA DE EDICION DE CONTENIDO HTML
+ * @author Javier Bartomioli - Rodrigo Naredo
+ *
+ */
 public class EditorHTML extends JDialog
 {
-
-	/***************
-	 * SERIALIZABLE
-	 ***************/
+	//SERIALIZABLE
 	private static final long serialVersionUID = -523425622964525664L;
 	
-	/************************
-	 * COMPONENTES/VARIABLES
-	 ************************/
+	
+	//COMPONENTES/VARIABLES
 	private HTMLEditorPane editor = new HTMLEditorPane();
 	
 	
-	/*********************
+	/**
 	 * CONSTRUCTOR
-	 * @param padre
-	 * @param productos
-	 * @param asunto
-	 *********************/
+	 * @param padre JDialog - Pantalla padre
+	 * @param productos Collection<HashMap<String,String>> - Elementos del contenido del mail
+	 * @param asunto String - Asunto del mail
+	*/
     public EditorHTML(JDialog padre,Collection<HashMap<String, String>> productos, String asunto)
     {
-    	/*******************
-    	 * FORMULARIO BASE
-    	 *******************/
+    	//FORMULARIO BASE
 		super(padre);
 		setResizable(false);
 		setMinimumSize(new Dimension(800,600));
@@ -64,24 +61,22 @@ public class EditorHTML extends JDialog
 		setMaximumSize(new Dimension(800, 600));
 		setLocationRelativeTo(null);
 		setIconImage(UtilidadesGUI.obtenerIcono(UtilidadesGUI.X32,"GENERAR.png").getImage());
-		
-		/**************
-		 * INICIALIZAR
-		 **************/
-    	inicializarContenido(asunto, productos);
-    	
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setModal(true);
+		
+		
+		//INICIALIZAR
+    	inicializarContenido(asunto, productos);
     	
+
     	addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent arg0) {
         		cerrarEditor();
         	}
         });
         
-    	/*************
-    	 * BARRA MENU
-    	 *************/
+    	
+    	//BARRA MENU
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(editor.getEditMenu());
         menuBar.add(editor.getFormatMenu());
@@ -91,35 +86,35 @@ public class EditorHTML extends JDialog
         setTitle("Editor de Contenido HTML de E-Mail");
         setSize(800, 600);
         
-        /**********
-         * EDITOR
-         **********/
+        
+        //EDITOR
         getContentPane().add(editor);
         
-        /****************
-         * PANEL BOTONES
-         ****************/
+
+        //PANEL BOTONES
         JPanel panel = new JPanel();
         editor.add(panel, BorderLayout.SOUTH);
         panel.setLayout(new GridLayout(0, 2, 0, 0));
         
-        /******************
-         * BOTON FINALIZAR
-         ******************/
+        
+        //BOTON FINALIZAR
         JButton btnFinalizarEdicion = new JButton("Finalizar Edici\u00F3n");
-        btnFinalizarEdicion.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        btnFinalizarEdicion.addActionListener(new ActionListener() 
+        {
+        	public void actionPerformed(ActionEvent e) 
+        	{
         		finalizarEdicion();
         	}
         });
         panel.add(btnFinalizarEdicion);
         
-        /*****************
-         * BOTON CANCELAR
-         *****************/
+        
+        //BOTON CANCELAR
         JButton btnCancelar = new JButton("Cancelar");
-        btnCancelar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        btnCancelar.addActionListener(new ActionListener()
+        {
+        	public void actionPerformed(ActionEvent e)
+        	{
         		cerrarEditor();
         	}
         });
@@ -130,8 +125,14 @@ public class EditorHTML extends JDialog
     }
     
     
+
+    //METODOS
     
-    //------------------------------------------------------
+    /**
+     * INICIALIZACION DE CONTENIDOS EN EL EDITOR
+     * @param asunto String - Asunto del mensaje
+     * @param productos Collection<HashMap<String,String>> - Productos del anuncio
+     */
     public void inicializarContenido(String asunto, Collection<HashMap<String, String>> productos)
     {
     	
@@ -190,33 +191,13 @@ public class EditorHTML extends JDialog
 	   	}
         
     }
-    
-    //-------------------------------------------------------------
-//    private String modificarAsunto(String contenidoMailHTML, String asunto) 
-//    {
-//    	String asuntoAnterior;
-//       
-//        StringBuffer sb = new StringBuffer(contenidoMailHTML);
-//
-//        if(sb.indexOf(tagIniComentario) != -1)
-//        {
-//        	int i = sb.indexOf(tagIniComentario);
-//        	int j = sb.indexOf(tagFinComentario);
-//        	
-//        	asuntoAnterior = sb.substring(i+tagIniComentario.length(), j);
-//        	        	
-//        	if(!asunto.equals(asuntoAnterior))
-//        	{
-//        		sb.delete(i,j+tagFinComentario.length());
-//        		sb.insert(i,tagIniComentario+asunto+tagFinComentario);
-//        	}
-//        }
-//        return sb.toString();
-//    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-	//-------------------------------------------------------------
+    /**
+     * CERRAR EL EDITOR Y SALIR
+     */
     public void cerrarEditor()
     {
 		int rta = JOptionPane.showConfirmDialog(
@@ -234,8 +215,13 @@ public class EditorHTML extends JDialog
 				 break;
 		}
     }
+    ///////////////////////////
+
     
-    //-------------------------------------------------------------
+    
+    /**
+     * FINALIZAR EDICION DE CONTENIDO DEL ANUNCIO
+     */
     public void finalizarEdicion()
     {
     	FileWriter file;
@@ -264,6 +250,6 @@ public class EditorHTML extends JDialog
         	dispose();
     	}
     }
-    
+    ///////////////////////////////
 
 }
