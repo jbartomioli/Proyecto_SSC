@@ -44,7 +44,7 @@ public class HiloBarraProgreso implements Runnable
             //retardo en milisegundos
             try
             {
-            	Thread.sleep( this.value );
+            	Thread.sleep(this.value);
             }            
             catch (InterruptedException e)
             { 

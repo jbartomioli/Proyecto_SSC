@@ -6,20 +6,29 @@ import org.hibernate.HibernateException;
 
 public class TrabajoInicializar implements Runnable{
     
+	
+	/**
+	 * CONSTRUCTOR
+	 */
     public TrabajoInicializar()
     {
     	
     }
+    ////////////////////////////
     
+    /**
+     * 
+     */
     @Override
     public void run()
     {		
         try
         {		
+        	Thread.sleep(2000);
+
 			@SuppressWarnings("unused")
 			interfaces.Principal principal = new interfaces.Principal();
         	
-        	Thread.sleep( 1000 );
         }
         catch (InterruptedException e)
         {
@@ -35,12 +44,6 @@ public class TrabajoInicializar implements Runnable{
 					JOptionPane.ERROR_MESSAGE);	
 			he.printStackTrace();
 		}
-//        catch(JDBCConnectionException jdbcce)
-//        {
-//        	
-//        }
-        
-        
 		catch(Exception e)
 		{
 			JOptionPane.showMessageDialog(
@@ -51,9 +54,6 @@ public class TrabajoInicializar implements Runnable{
 					JOptionPane.ERROR_MESSAGE);	
 			e.printStackTrace();
 		}
-        finally
-        {
-        }
-    }
-    
+   }
+    //////////////////
 }
