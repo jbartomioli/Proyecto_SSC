@@ -36,8 +36,11 @@ import java.util.HashMap;
 import java.util.Vector;
 
 
+
 import javax.swing.JTextField;
 import javax.swing.JProgressBar;
+
+import controladores.ControladorPrevisualizarHTML;
 
 
 /**
@@ -538,17 +541,21 @@ public class GenerarAnuncio extends JDialogBaseFormularios
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		
-		interfaces.PrevisualizadorHTML previsualizadorHTML = 
-    			new interfaces.PrevisualizadorHTML(dialogPadre);
-    	
     	boolean enviado = false;
+		
     	
+		PrevisualizadorHTML guiPrevisualizador = new PrevisualizadorHTML(dialogPadre);
+		
     	String mailsClientes[] = new String[tblDestinatarios.getModel().getRowCount()];
     	
     	for(int i=0; i<tblDestinatarios.getModel().getRowCount();++i)
     		mailsClientes[i] = tblDestinatarios.getModel().getValueAt(i, 3).toString();
+    	
+		ControladorPrevisualizarHTML controladorPrevisualizarHTML = 
+    			new ControladorPrevisualizarHTML(guiPrevisualizador,dialogPadre,controlador,"temporal.html",mailsClientes);
+		
+		enviado = controladorPrevisualizarHTML.seEnvio();
 
-    	enviado = previsualizadorHTML.inicializar("temporal.html", mailsClientes,controlador);
     	setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     	
     	if(enviado)
