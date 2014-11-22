@@ -21,7 +21,11 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 
 import negocio.ControladorConfeccionarAnuncio;
-
+/**
+ * 
+ * @author Javier
+ *
+ */
 public class ControladorPrevisualizarHTML implements ActionListener, WindowListener
 {
 	
@@ -42,11 +46,12 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 
 	
 	/**
-	 *
+	 * CONSTRUCTOR
 	 * @param guiPrevisualizador
 	 * @param framePadre
 	 */
-	public ControladorPrevisualizarHTML(PrevisualizadorHTML guiPrevisualizador, GenerarAnuncio framePadre, ControladorConfeccionarAnuncio controlador, String nombreArchivo, String [] mailsDestino) 
+	public ControladorPrevisualizarHTML(PrevisualizadorHTML guiPrevisualizador,
+			GenerarAnuncio framePadre, ControladorConfeccionarAnuncio controlador, String nombreArchivo, String [] mailsDestino) 
 	{
 		this.guiPrevisualizadorHTML = guiPrevisualizador;
 		this.controlador = controlador;
@@ -55,17 +60,18 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 		this.guiPrevisualizadorHTML.frmPrevisualizacion.addWindowListener(this);
 		cargar_vista_previa(nombreArchivo, mailsDestino);
 	}
-	
+	////////////////////////////////////////////////////////////////////////////
 	
 	
 	
 	/**
-	 * 
+	 * REDEFINICION DE ACTIONPERFORMED
+	 * PARA BOTONES DE LA GUI
 	 */
 	@Override
 	public void actionPerformed(ActionEvent evento)
 	{
-		
+		//EVENTO BOTON ACEPTAR Y ENVIAR
 		if(evento.getSource().equals(guiPrevisualizadorHTML.btnAceptarEnviar))
 		{
 			if(preparar_enviar(contenidoMailHTML, mailsClientes))
@@ -81,16 +87,13 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	   				e1.printStackTrace();
 	   			}	
    		}
-   
+		//EVENTO BOTON VOLVER Y MODIFICAR
 		if(evento.getSource().equals(guiPrevisualizadorHTML.btnVolverModificar))
 		{
    			guiPrevisualizadorHTML.frmPrevisualizacion.dispose();
    		}
-
-		
 	}
-
-	
+	////////////////////////////////////////////////
 	
 	
 	@Override
@@ -98,67 +101,44 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	{		
 	}
 
-
-
-
 	@Override
 	public void windowClosed(WindowEvent evento)
 	{		
 	}
 
-
-
-
 	@Override
 	public void windowClosing(WindowEvent evento) 
 	{
-//		if(evento.getSource().equals(guiPrevisualizadorHTML.frmPrevisualizacion))
-//			cerrar_salir();
 	}
-
-
-
 
 	@Override
 	public void windowDeactivated(WindowEvent evento) 
 	{		
 	}
 
-
-
-
 	@Override
 	public void windowDeiconified(WindowEvent evento) 
 	{
 	}
-
-
-
 
 	@Override
 	public void windowIconified(WindowEvent evento)
 	{
 	}
 
-
-
-
 	@Override
 	public void windowOpened(WindowEvent evento)
 	{
 	}
+	/////////////////////////////////////////////
 	
-	
-	
-	
-	
-	
+		
 	
 	/**
-	 * INICIALIZACION
-	 * @param nombreArchivo
-	 * @param mailsDestino
-	 * @return
+	 * CARGA VISTA PREVIA DEL CONTENIDO DEL MENSAJE
+	 * @param nombreArchivo String - Nombre del archivo 
+	 * @param mailsDestino String[] - Mails destinatarios
+	 * @return boolean - Estado del proceso
 	 */
 	@SuppressWarnings("finally")
 	private boolean cargar_vista_previa(String nombreArchivo, String [] mailsDestino)
@@ -173,8 +153,6 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	   	fr = null;
 	   	br = null;
 	   	
-
-
 	   	try 
 	   	{	
 			contenidoMailHTML += encabezado_mail;
@@ -191,8 +169,6 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	   		
 	   		contenidoMailHTML += pie_mail;
 	   		
-
-			
 			HTMLEditorKit kit = new HTMLEditorKit();
 			
 		    Document doc = kit.createDefaultDocument();
@@ -241,20 +217,17 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
         		e2.printStackTrace();
         	}
         	return aux;
-     }
+        }
 	}
-
+	//////////////////////////////////////////////////////////////////////////////////
 	
 
 	
-	
-
 	/**
-	 * 
-	 * @param contenidoEnviar
-	 * @param mailsClientes
-	 * @param controlador
-	 * @return
+	 * PREPARA EL MENSAJE Y EFECTUA EL ENVIO
+	 * @param contenidoEnviar String - Contenido del mensaje
+	 * @param mailsClientes String - Mails destinatarios
+	 * @return boolean - Estado del proceso
 	 */
 	@SuppressWarnings("finally")
 	private boolean preparar_enviar(String contenidoEnviar, String [] mailsClientes)
@@ -277,7 +250,8 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	    	Thread trabajoEnvio = new Thread(new interfaces.software.TrabajoEnvioMail(0, controlador, mailsClientes, asunto, imagenes));
 	    	trabajoEnvio.start();
 	    	
-	    	new Thread(new interfaces.software.HiloBarraProgreso(trabajoEnvio, guiPrevisualizadorHTML.frmPrevisualizacion, guiPrevisualizadorHTML.barraProgreso, 200, true)).start();
+	    	new Thread(new interfaces.software.HiloBarraProgreso(
+	    			trabajoEnvio, guiPrevisualizadorHTML.frmPrevisualizacion, guiPrevisualizadorHTML.barraProgreso, 200, true)).start();
 	    	        		        	
 			resultado = true;
 		}	
@@ -286,14 +260,15 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	    	return resultado;
 		}
 	}
-
+	/////////////////////////////////////////////////////////////////////////////////
 	
 	
 	
 	/**
-	 * 
-	 * @param contenidoEnviar
-	 * @return
+	 * PROCESA IMAGENES DEL MENSAJE MODIFICANDO RUTAS ABSOLUTAS
+	 * Y AGREGANDO CID
+	 * @param contenidoEnviar String - Contenido del mensaje
+	 * @return String - Contenido del mensaje procesado
 	 */
 	private String procesarImagenes(String contenidoEnviar)
 	{
@@ -324,21 +299,16 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	        	imagenCode += " >";
 	        			            	
 	        	StringBuffer sbSrc = new StringBuffer(imagenCode);
-	        	//System.out.println(imagenCode);
 	        	
 	        	String srcOriginal = sbSrc.substring(sbSrc.indexOf(atributoSrc)+atributoSrc.length());
-	        	//System.out.println(srcOriginal);
 	        	
 				String depuracionInicial = srcOriginal.substring("\"file:".length());
-	        	//System.out.println(depuracionInicial);
 				
 				
 				String depuracionFinal = depuracionInicial.substring(0,depuracionInicial.indexOf("\""));			
-	        	//System.out.println(depuracionFinal);
 	
 				
 				String rutaArchivo = depuracionFinal.replace('\\', '/');
-	        	//System.out.println(rutaArchivo);
 					
 				imagenes.add(rutaArchivo);
 				
@@ -363,14 +333,15 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	    }      
 	   return sb.toString();
 	}
-	
+	////////////////////////////////////////////////////////
 	
 	
 	
 	/**
-	 * 
-	 * @param contenidoEnviar
-	 * @return
+	 * DEVUELVE EL ASUNTO DEL MENSAJE A PARTIR DEL 
+	 * CONTENIDO DEL MENSAJE
+	 * @param contenidoEnviar String - Contenido del mensaje
+	 * @return String - Asunto del mensaje
 	 */
 	private String obtenerAsunto(String contenidoEnviar)
 	{
@@ -387,51 +358,30 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 				
 		return asunto;
 	}
-	
-	
+	/////////////////////////////////////////////////////
 
 
-//	/**
-//	 * 
-//	 */
-//	private void cerrar_salir()
-//	{
-//		int rta = JOptionPane.showConfirmDialog(
-//				 	guiPrevisualizadorHTML.frmPrevisualizacion, 
-//					"Está a punto de salir sin enviar el mensaje.\n"
-//						+ "¿Desea salir y volver al editor de mensaje?\n"
-//						+ "Si presiona NO, se enviará el mensaje",
-//					"ATENCIÓN",
-//					JOptionPane.YES_NO_OPTION);
-//				
-//		switch(rta)
-//		{
-//		case(JOptionPane.YES_OPTION): //guiPrevisualizadorHTML.frmPrevisualizacion.dispose();
-//									break;
-//		case(JOptionPane.NO_OPTION):  guiPrevisualizadorHTML.btnAceptarEnviar.doClick();
-//				 					break;
-//		}
-//	}
 	
-	
-
-
 	/**
-	 * 
+	 * DESACTIVA CONTROLES DE LA GUI
 	 */
-	private void desactivar_controles() 
+	private void desactivar_controles()
 	{
 		guiPrevisualizadorHTML.btnAceptarEnviar.setEnabled(false);
 		guiPrevisualizadorHTML.btnVolverModificar.setEnabled(false);
 		guiPrevisualizadorHTML.frmPrevisualizacion.setEnabled(false);
 	}
+	////////////////////////////////////
 
-
+	
+	
+	/**
+	 * DEVUELVE ESTADO DEL PROCESO
+	 * @return boolean - Estado del proceso
+	 */
 	public boolean seEnvio()
 	{
 		return aux;
 	}
-
-
-
+	/////////////////////////
 }
