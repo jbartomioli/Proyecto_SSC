@@ -28,6 +28,9 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.KeyStroke;
 
+import controladores.ControladorAyuda;
+import controladores.ControladorImportarDatos;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.WindowAdapter;
@@ -66,10 +69,6 @@ public class Principal extends JFrame {
 	private JMenuItem mntImportar;
 	private JMenuItem mntConfiguracion;
 	private interfaces.Acerca acerca;
-	private interfaces.Ayuda ayuda;
-	private interfaces.ImportarDatos importarDatos;
-	
-
 	/*******************************
 	 * CONSTRUCTOR
 	 * @param controladorAnuncios
@@ -386,8 +385,11 @@ public class Principal extends JFrame {
 	protected void click_importar_datos() throws Exception
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		importarDatos = new interfaces.ImportarDatos(this);
-		importarDatos.setVisible(true);
+		
+		ImportarDatos guiImportarDatos = new ImportarDatos(this);
+		new ControladorImportarDatos(guiImportarDatos);
+		guiImportarDatos.frmImportarDatos.setVisible(true);
+
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	
@@ -474,9 +476,12 @@ public class Principal extends JFrame {
 	protected void click_ayuda()
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		ayuda = new interfaces.Ayuda();
-		ayuda.cargarHTML();
-		ayuda.setVisible(true);	
+		Ayuda guiAyuda = new Ayuda();
+		
+		new ControladorAyuda(guiAyuda);
+		
+		guiAyuda.frmAyuda.setVisible(true);	
+		
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	

@@ -1,5 +1,7 @@
 package interfaces.componentes;
 
+import interfaces.Ayuda;
+
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -14,37 +16,69 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 
+import controladores.ControladorAyuda;
+/**
+ * CLASE FORMULARIO BASE PARA UTILIZAR EN EL RESTO
+ * @author Javier Bartomioli - Rodrigo Naredo
+ *
+ */
 public class JDialogBaseFormularios extends JDialog
 {
 
-	/**
-	 * 
-	 */
+	//SERIALIZABLE
 	private static final long serialVersionUID = -6057840038900155154L;
 
+	
+	
+	/**
+	 * CONSTRUCTOR
+	 */
 	public JDialogBaseFormularios()
 	{
 		
 	}
+	////////////////////////////////
 	
 	
 	
+	/**
+	 * CONSTRUCTOR
+	 * @param framePadre
+	 * @param tituloFormulario
+	 * @param nombreIcono
+	 * @param esModal
+	 */
 	public JDialogBaseFormularios(JFrame framePadre, String tituloFormulario, String nombreIcono, boolean esModal)
 	{
 		super(framePadre);
 		seteosGenerales(tituloFormulario, nombreIcono, esModal);
 	}
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
+	
+	/**
+	 * CONSTRUCTOR
+	 * @param framePadre
+	 * @param tituloFormulario
+	 * @param nombreIcono
+	 * @param esModal
+	 */
 	public JDialogBaseFormularios(JDialog framePadre, String tituloFormulario, String nombreIcono, boolean esModal)
 	{
 		super(framePadre);
 		seteosGenerales(tituloFormulario, nombreIcono, esModal);
 	}
-	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	
 	
+	/**
+	 * SETEOS GENERALES DEL FORMULARIO
+	 * @param tituloFormulario
+	 * @param nombreIcono
+	 * @param esModal
+	 */
 	public void seteosGenerales(String tituloFormulario, String nombreIcono, boolean esModal)
 	{
 		setResizable(false);
@@ -69,6 +103,8 @@ public class JDialogBaseFormularios extends JDialog
     	}
     });
 	}
+	//////////////////////////////////////////////////////////////////////////////////////////
+	
 	
 	
 	/**
@@ -78,6 +114,8 @@ public class JDialogBaseFormularios extends JDialog
 	{
 		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height-50);
 	}
+	//////////////////////////////////
+	
 	
 	
 	/**
@@ -85,7 +123,7 @@ public class JDialogBaseFormularios extends JDialog
 	 * @param ancho
 	 * @param alto
 	 */
-	public void setDimensionFormulario(int ancho, int alto) 
+	public void setDimensionFormulario(int ancho, int alto)
 	{
 		setMinimumSize(new Dimension(ancho,alto));
 		getContentPane().setMinimumSize(new Dimension(ancho,alto));
@@ -94,13 +132,14 @@ public class JDialogBaseFormularios extends JDialog
 		
 		setLocationRelativeTo(null);
 	}
-
+	////////////////////////////////////////////////////////
+	
 	
 	
 	/**
 	 * ACCION TECLA ESCAPE
 	 */
-	protected void addEscapeListenerWindowDialog() 
+	protected void addEscapeListenerWindowDialog()
 	{
 	 ActionListener escAction = new ActionListener() 
 	 {
@@ -112,26 +151,29 @@ public class JDialogBaseFormularios extends JDialog
 	 };
 	 getRootPane().registerKeyboardAction(escAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 	}
+	///////////////////////////////////////////////
+	
 	
 	
 	/**
-	 * 
+	 * ACCION TECLA F1
 	 */
-	protected void addF1ListenerWindowDialog() 
+	protected void addF1ListenerWindowDialog()
 	{
 	 ActionListener escAction = new ActionListener() 
 	 {
 		 @Override
 		 public void actionPerformed(ActionEvent e) 
 		 {
-			 interfaces.Ayuda ayuda = new interfaces.Ayuda();
-			 ayuda.cargarHTML();
-			 ayuda.setVisible(true);
-			 
+			 Ayuda guiAyuda = new Ayuda();
+			 new ControladorAyuda(guiAyuda);
+			 guiAyuda.frmAyuda.setVisible(true);	 
 		 }
 	 };
 	 getRootPane().registerKeyboardAction(escAction, KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 	}
+	///////////////////////////////////////////
+	
 	
 	
 	/**
@@ -146,13 +188,15 @@ public class JDialogBaseFormularios extends JDialog
 		getContentPane().add(btnAyuda);
 	
 		btnAyuda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				interfaces.Ayuda ayuda = new interfaces.Ayuda();
-				ayuda.cargarHTML();
-				ayuda.setVisible(true);
+			public void actionPerformed(ActionEvent arg0)
+			{
+				 Ayuda guiAyuda = new Ayuda();
+				 new ControladorAyuda(guiAyuda);
+				 guiAyuda.frmAyuda.setVisible(true);
 			}
 		});
 	}
+	////////////////////////////////////////
 	
 	
 	
@@ -166,5 +210,5 @@ public class JDialogBaseFormularios extends JDialog
 //		finalize();		
 		dispose();	
 	}
-
+	//////////////////////////////
 }

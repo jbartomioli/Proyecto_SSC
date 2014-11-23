@@ -544,15 +544,17 @@ public class GenerarAnuncio extends JDialogBaseFormularios
     	boolean enviado = false;
 		
     	
-		PrevisualizadorHTML guiPrevisualizador = new PrevisualizadorHTML(dialogPadre);
-		
+		PrevisualizadorHTML guiPrevisualizadorHTML = new PrevisualizadorHTML(dialogPadre);
+
     	String mailsClientes[] = new String[tblDestinatarios.getModel().getRowCount()];
     	
     	for(int i=0; i<tblDestinatarios.getModel().getRowCount();++i)
     		mailsClientes[i] = tblDestinatarios.getModel().getValueAt(i, 3).toString();
     	
 		ControladorPrevisualizarHTML controladorPrevisualizarHTML = 
-    			new ControladorPrevisualizarHTML(guiPrevisualizador,dialogPadre,controlador,"temporal.html",mailsClientes);
+    			new ControladorPrevisualizarHTML(guiPrevisualizadorHTML,dialogPadre,controlador,"temporal.html",mailsClientes);
+	    guiPrevisualizadorHTML.frmPrevisualizacion.setVisible(true);
+
 		
 		enviado = controladorPrevisualizarHTML.seEnvio();
 

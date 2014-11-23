@@ -22,8 +22,9 @@ import javax.swing.text.html.HTMLEditorKit;
 
 import negocio.ControladorConfeccionarAnuncio;
 /**
+ * CONTROLADOR PREVISUALIZAR HTML DE MENSAJE
  * 
- * @author Javier
+ * @author Javier Bartomioli- Rodrigo Naredo
  *
  */
 public class ControladorPrevisualizarHTML implements ActionListener, WindowListener
@@ -51,7 +52,7 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	 * @param framePadre
 	 */
 	public ControladorPrevisualizarHTML(PrevisualizadorHTML guiPrevisualizador,
-			GenerarAnuncio framePadre, ControladorConfeccionarAnuncio controlador, String nombreArchivo, String [] mailsDestino) 
+			GenerarAnuncio framePadre, ControladorConfeccionarAnuncio controlador, String nombreArchivo, String[] mailsDestino) 
 	{
 		this.guiPrevisualizadorHTML = guiPrevisualizador;
 		this.controlador = controlador;
@@ -96,6 +97,9 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	////////////////////////////////////////////////
 	
 	
+	/**
+	 * REESCRITURA WINDOW LISTENER
+	 */
 	@Override
 	public void windowActivated(WindowEvent arg0) 
 	{		
@@ -178,11 +182,7 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 		    guiPrevisualizadorHTML.epnEditor.setDocument(doc);
 		    guiPrevisualizadorHTML.epnEditor.setText(contenidoMailHTML);
 	   		
-	   		
 		    guiPrevisualizadorHTML.frmPrevisualizacion.getContentPane().add(guiPrevisualizadorHTML.epnEditor);
-		    
-	   		
-		    guiPrevisualizadorHTML.frmPrevisualizacion.setVisible(true);
 	   	}
 	   	catch(FileNotFoundException fne)
 	   	{
