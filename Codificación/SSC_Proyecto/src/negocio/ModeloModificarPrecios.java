@@ -3,7 +3,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class ControladorModificarPrecios 
+public class ModeloModificarPrecios 
 {
 	
 	private negocio.CatalogoProductos catalogoProductos;
@@ -44,7 +44,11 @@ public class ControladorModificarPrecios
 
 
 
-	public ControladorModificarPrecios() 
+	/**
+	 * @throws Exception 
+	 * 
+	 */
+	public ModeloModificarPrecios() throws Exception 
 	{
 		this.catalogoProductos = new negocio.CatalogoProductos();
 		this.catalogoCategorias = new negocio.CatalogoCategorias();
@@ -52,7 +56,11 @@ public class ControladorModificarPrecios
 	}
 
 	
-	//---------------------------------------------------------
+
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	public void inicializarCatalogos() throws Exception
 	{
 		this.catalogoCategorias.obtenerCategorias();
@@ -62,6 +70,12 @@ public class ControladorModificarPrecios
 		
 	
 
+	/**
+	 * 
+	 * @param idCategoria
+	 * @return
+	 * @throws Exception
+	 */
 	public Collection<negocio.SubCategoria> seleccionarCategoria(int idCategoria) throws Exception 
 	{
 		//instancia para almacenar la categoria actual seleccionada
@@ -84,7 +98,13 @@ public class ControladorModificarPrecios
 	//---------------------------------------------------------------
 
 	
-	
+	/**
+	 * 
+	 * @param idCategoria
+	 * @param idSubCategoria
+	 * @return
+	 * @throws Exception
+	 */
 	public Collection<negocio.Producto> seleccionarSubcategoria(int idCategoria, int idSubCategoria) throws Exception 
 	{
 		negocio.SubCategoria subCatActual = new negocio.SubCategoria();

@@ -28,8 +28,10 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.KeyStroke;
 
+import negocio.ModeloModificarPrecios;
 import controladores.ControladorAyuda;
 import controladores.ControladorImportarDatos;
+import controladores.ControladorModificarPrecios;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
@@ -56,7 +58,6 @@ public class Principal extends JFrame {
 	private JMenuItem mntSalir;
 	private JMenu mnuOperaciones;
 	private interfaces.GenerarAnuncio generarAnuncio;
-	private interfaces.ModificarPrecios modificarPrecios;
 	private interfaces.Configuraciones configuraciones;
 	private interfaces.SeguimientoDeClientes seguimientoClientes;
 	private JMenuItem mntConfeccionar;
@@ -414,7 +415,7 @@ public class Principal extends JFrame {
 	
 	
 	/**
-	 * PANTALLA GENERACIO ANUNCIO
+	 * PANTALLA GENERACION ANUNCIO
 	 * @throws Exception 
 	 */
 	protected void click_generar_anuncio() throws Exception
@@ -450,9 +451,13 @@ public class Principal extends JFrame {
 	protected void click_modificar_precios() throws Exception
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		modificarPrecios = new interfaces.ModificarPrecios(this);
-		modificarPrecios.setVisible(true);
-		modificarPrecios.inicializar_componentes();
+		
+		ModificarPrecios guiModificarPrecios = new ModificarPrecios(this);
+		ModeloModificarPrecios modeloModificarPrecios = new ModeloModificarPrecios();
+	
+		new ControladorModificarPrecios(guiModificarPrecios, modeloModificarPrecios);
+		guiModificarPrecios.frmModificarPrecios.setVisible(true);
+
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	

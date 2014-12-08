@@ -37,9 +37,13 @@ import java.util.Vector;
 
 
 
+
+
 import javax.swing.JTextField;
 import javax.swing.JProgressBar;
 
+import negocio.ModeloModificarPrecios;
+import controladores.ControladorModificarPrecios;
 import controladores.ControladorPrevisualizarHTML;
 
 
@@ -664,9 +668,19 @@ public class GenerarAnuncio extends JDialogBaseFormularios
 		{
 			productosAgregados.add((Integer) tblProductosAnuncio.getModel().getValueAt(i, 0));
 		}
+				
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		
-		interfaces.ModificarPrecios precios = new interfaces.ModificarPrecios(dialogPadre, controlador, productosAgregados);
-		precios.setVisible(true);
+		ModificarPrecios guiModificarPrecios = new ModificarPrecios(this);
+
+		ModeloModificarPrecios modeloModificarPrecios = new ModeloModificarPrecios();
+		
+		new ControladorModificarPrecios(guiModificarPrecios, modeloModificarPrecios, controlador, productosAgregados);
+		
+		guiModificarPrecios.frmModificarPrecios.setVisible(true);
+
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		
 		
 		tblProductos.limpiar_tabla();
 		negocio.SubCategoria subAux = (negocio.SubCategoria) cmbSubcategorias.getSelectedItem();
