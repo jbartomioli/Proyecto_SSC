@@ -1,7 +1,5 @@
 package interfaces;
-/**
- * PANTALLA DE MODIFICACION DE PRECIOS
- */
+
 import interfaces.componentes.BotonesIconos;
 import interfaces.componentes.ComboCategorias;
 import interfaces.componentes.ComboSubcategorias;
@@ -25,12 +23,12 @@ import java.awt.Component;
 import javax.swing.UIManager;
 
 
-
+/**
+ * PANTALLA DE MODIFICACION DE PRECIOS
+ */
 public class ModificarPrecios
 {
-	/**************
-	 * COMPONENTES
-	 **************/
+	//COMPONENTES
 	public JDialogBaseFormularios frmModificarPrecios;
 	public JTextField txtBuscarProductos;
 	public ComboCategorias cmbCategorias;
@@ -41,12 +39,14 @@ public class ModificarPrecios
 
 
 
-	/****************************
-	 * CONSTRUCTOR JFRAME
-	 * @wbp.parser.constructor
-	 ****************************/
+	/**
+	 * CONSTRUCTOR
+	 * @param padre
+	 * @throws Exception
+	 */
 	public ModificarPrecios(Object padre) throws Exception 
-	{		
+	{	
+		//FORMULARIO BASE
 		if(padre.getClass().getSuperclass().toString().equals("class javax.swing.JFrame"))
 			frmModificarPrecios = new JDialogBaseFormularios((JFrame) padre,"Modificar Precios","PRECIO.png",true);
 		else
@@ -55,9 +55,8 @@ public class ModificarPrecios
 		frmModificarPrecios.setDimensionFormulario(650, 460);
 		frmModificarPrecios.setBotonAyuda(600, 11);
 		
-		/*********
-		 * TITULO
-		 *********/
+
+		//TITULO
 		JLabel lblPrecios = new JLabel("Modificar Precios");
 		lblPrecios.setLabelFor(frmModificarPrecios.getContentPane());
 		lblPrecios.setForeground(Color.DARK_GRAY);
@@ -66,38 +65,31 @@ public class ModificarPrecios
 		frmModificarPrecios.getContentPane().add(lblPrecios);
 		
 				
-		/*************
-		 * CATEGORIAS
-		 *************/
+		//CATEGORIAS
 		JLabel lblCategoria = new JLabel("Categoría:");
 		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCategoria.setBounds(10, 43, 77, 23);
 		frmModificarPrecios.getContentPane().add(lblCategoria);
-				
-		cmbCategorias = new interfaces.componentes.ComboCategorias();
 		
+		cmbCategorias = new ComboCategorias();
 		lblCategoria.setLabelFor(cmbCategorias);
 		cmbCategorias.setBounds(87, 43, 200, 23);
 		frmModificarPrecios.getContentPane().add(cmbCategorias);
 		
 		
-		/****************
-		 * SUBCATEGORIAS
-		 ****************/
+		//SUBCATEGORIAS
 		JLabel lblSubcategoria = new JLabel("Subcategoria:");
 		lblSubcategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblSubcategoria.setBounds(334, 43, 97, 23);
 		frmModificarPrecios.getContentPane().add(lblSubcategoria);
 				
-		cmbSubcategorias = new interfaces.componentes.ComboSubcategorias();
+		cmbSubcategorias = new ComboSubcategorias();
 		lblSubcategoria.setLabelFor(cmbSubcategorias);
 		cmbSubcategorias.setBounds(434, 43, 196, 23);
 		frmModificarPrecios.getContentPane().add(cmbSubcategorias);
 		
 				
-		/***********
-		 * BUSCADOR
-		 ***********/
+		//BUSCADOR
 		txtBuscarProductos = new JTextField();
 		txtBuscarProductos.setForeground(Color.GRAY);
 		txtBuscarProductos.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -111,9 +103,7 @@ public class ModificarPrecios
 		frmModificarPrecios.getContentPane().add(btnBuscarProducto);
 		
 		
-		/******************
-		 * TABLA PRODUCTOS
-		 ******************/
+		//TABLA PRODUCTOS
 		Box boxPrecios = Box.createHorizontalBox();
 		boxPrecios.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Precios Productos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		boxPrecios.setBounds(10, 120, 622, 222);
@@ -130,11 +120,10 @@ public class ModificarPrecios
 		scrollPrecios.setViewportView(tblProductos);
 		
 		
-		/****************
-		 * BOTON ACEPTAR			
-		 ****************/
+		//BOTON ACEPTAR
 		btnAceptar = new BotonesIconos("Aceptar","ACEPTAR.png");
 		btnAceptar.setLocation(540, 357);
 		frmModificarPrecios.getContentPane().add(btnAceptar);
+		/////////////////////////////////////////////////////
 	}
 }
