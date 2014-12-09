@@ -17,7 +17,6 @@ public class HibernateCFG
 {
 	private HashMap<String,String> elementos;
 	private File xmlFile;
-	//private String urlFile = "C:\\Proyecto_SSC\\Codificación\\SSC_Proyecto\\src\\main\\resources\\hibernate.cfg.xml";
 	private String urlFile = "bin\\main\\resources\\hibernate.cfg.xml";
 	
 	
@@ -54,7 +53,7 @@ public class HibernateCFG
 	        for (int i = 0; i < propiedades.size(); i++)
 	        {
 	        	Element propiedad = (Element) propiedades.get(i);
-	        	elementos.put(propiedad.getAttributeValue("name").toString(), propiedad.getValue().toString());
+	        	elementos.put(propiedad.getAttributeValue("name").toString(), Utilidades.utf8_decode(propiedad.getValue().toString()));
 	        }
 	    }
 	    catch ( IOException io )
@@ -88,7 +87,7 @@ public class HibernateCFG
 	        {
 	        	Element propiedad = (Element) propiedades.get(i);
 	        	
-	        	String contenido = propiedadesNuevas.get(propiedad.getAttributeValue("name"));
+	        	String contenido = Utilidades.utf8_encode(propiedadesNuevas.get(propiedad.getAttributeValue("name")));
 	        		
 	        	propiedad.setText(contenido);
 	        }
