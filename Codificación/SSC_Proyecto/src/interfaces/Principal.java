@@ -389,7 +389,6 @@ public class Principal extends JFrame {
 		
 		ImportarDatos guiImportarDatos = new ImportarDatos(this);
 		new ControladorImportarDatos(guiImportarDatos);
-		guiImportarDatos.frmImportarDatos.setVisible(true);
 
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
@@ -456,7 +455,6 @@ public class Principal extends JFrame {
 		ModeloModificarPrecios modeloModificarPrecios = new ModeloModificarPrecios();
 	
 		new ControladorModificarPrecios(guiModificarPrecios, modeloModificarPrecios);
-		guiModificarPrecios.frmModificarPrecios.setVisible(true);
 
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}

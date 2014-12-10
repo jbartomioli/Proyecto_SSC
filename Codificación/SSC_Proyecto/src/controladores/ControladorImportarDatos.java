@@ -1,16 +1,19 @@
 package controladores;
 
 import interfaces.ImportarDatos;
+
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -37,9 +40,20 @@ public class ControladorImportarDatos implements ActionListener
 		try
 		{
 			inicializar();
+			this.guiImportarDatos.frmImportarDatos.setVisible(true);
 		} 
-		catch (Exception e) 
+		catch (SQLException sqe) 
 		{
+			JOptionPane.showMessageDialog(
+					guiImportarDatos.frmImportarDatos, 
+					"Error al conectarse a la Base de Datos.\nRevisar la configuración y volver a intentarlo.",
+					"ERROR",
+					JOptionPane.ERROR_MESSAGE);
+			guiImportarDatos.frmImportarDatos.dispose();
+		}
+		catch (Exception e)
+		{
+			guiImportarDatos.frmImportarDatos.dispose();
 			e.printStackTrace();
 		}
 	}
