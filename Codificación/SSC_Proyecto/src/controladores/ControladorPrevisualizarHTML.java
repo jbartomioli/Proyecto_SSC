@@ -181,9 +181,7 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 		    guiPrevisualizadorHTML.epnEditor.setEditorKit(kit);
 		    guiPrevisualizadorHTML.epnEditor.setDocument(doc);
 		    guiPrevisualizadorHTML.epnEditor.setText(contenidoMailHTML);
-		    	   				    
-		    guiPrevisualizadorHTML.frmPrevisualizacion.getContentPane().add(guiPrevisualizadorHTML.epnEditor);
-			
+		    
 		    guiPrevisualizadorHTML.frmPrevisualizacion.setVisible(true);
 
 	   	}
