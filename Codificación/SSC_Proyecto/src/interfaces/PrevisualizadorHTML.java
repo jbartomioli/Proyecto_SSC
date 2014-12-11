@@ -42,7 +42,8 @@ public class PrevisualizadorHTML
 		    epnEditor.setEditable(false);
 		      
 		    scrEditor = new JScrollPane(epnEditor);
-		    
+		    scrEditor.setAutoscrolls(true);
+		    frmPrevisualizacion.getContentPane().add(scrEditor, BorderLayout.CENTER);
 		    
 		    //PANEL BOTONES
 		    JPanel panelInferior = new JPanel();
