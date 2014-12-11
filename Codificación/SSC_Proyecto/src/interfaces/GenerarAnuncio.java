@@ -557,7 +557,7 @@ public class GenerarAnuncio extends JDialogBaseFormularios
     	
 		ControladorPrevisualizarHTML controladorPrevisualizarHTML = 
     			new ControladorPrevisualizarHTML(guiPrevisualizadorHTML,dialogPadre,controlador,"temporal.html",mailsClientes);
-	    guiPrevisualizadorHTML.frmPrevisualizacion.setVisible(true);
+//	    guiPrevisualizadorHTML.frmPrevisualizacion.setVisible(true);
 
 		
 		enviado = controladorPrevisualizarHTML.seEnvio();

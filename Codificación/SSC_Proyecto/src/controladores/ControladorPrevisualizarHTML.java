@@ -183,6 +183,9 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 		    guiPrevisualizadorHTML.epnEditor.setText(contenidoMailHTML);
 	   		
 		    guiPrevisualizadorHTML.frmPrevisualizacion.getContentPane().add(guiPrevisualizadorHTML.epnEditor);
+			
+		    guiPrevisualizadorHTML.frmPrevisualizacion.setVisible(true);
+
 	   	}
 	   	catch(FileNotFoundException fne)
 	   	{
@@ -192,7 +195,7 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	   				+ "Primero debe confeccionarse el cuerpo del mensaje.",
 	   				"ERROR",
 	   				JOptionPane.ERROR_MESSAGE);
-	   		guiPrevisualizadorHTML.frmPrevisualizacion.dispose();
+	   		guiPrevisualizadorHTML.frmPrevisualizacion.setVisible(false);
 	   	} 
 	   	catch (IOException ioe) 
 	   	{
@@ -202,7 +205,7 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	   				+ "Deberá reconfeccionar el contenido del mensaje.",
 	   				"ERROR",
 	   				JOptionPane.ERROR_MESSAGE);
-	   		guiPrevisualizadorHTML.frmPrevisualizacion.dispose();
+	   		guiPrevisualizadorHTML.frmPrevisualizacion.setVisible(false);
 	   		
 	   	}
         finally
