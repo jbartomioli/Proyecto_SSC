@@ -26,6 +26,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
+
 import utilidades.HibernateCFG;
 import interfaces.componentes.*;
 
@@ -434,8 +435,14 @@ public class Configuraciones extends JDialogBaseFormularios
 			
 			utilidades.Configuraciones.guardar_modificaciones_mail(atributosMail);
 			
-			utilidades.Configuraciones.modificar_url_archivo_config(txtUbicacionFile.getText());;
-						
+			utilidades.Configuraciones.modificar_url_archivo_config(txtUbicacionFile.getText());
+			
+			JOptionPane.showMessageDialog(
+					this,
+					"Deberá reiniciar la aplicación para que los cambios de configuración surtan efectos.",
+					"ATENCIÓN",
+					JOptionPane.WARNING_MESSAGE);
+			
 			cerrar_salir();
 		}
 		
