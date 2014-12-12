@@ -30,6 +30,7 @@ import javax.swing.KeyStroke;
 
 import negocio.ModeloModificarPrecios;
 import controladores.ControladorAyuda;
+import controladores.ControladorConfiguraciones;
 import controladores.ControladorImportarDatos;
 import controladores.ControladorModificarPrecios;
 
@@ -58,7 +59,6 @@ public class Principal extends JFrame {
 	private JMenuItem mntSalir;
 	private JMenu mnuOperaciones;
 	private interfaces.GenerarAnuncio generarAnuncio;
-	private interfaces.Configuraciones configuraciones;
 	private interfaces.SeguimientoDeClientes seguimientoClientes;
 	private JMenuItem mntConfeccionar;
 	private JMenuItem mntSeguimiento;
@@ -289,10 +289,7 @@ public class Principal extends JFrame {
 			//ITEM CONFIGURACIONES
 			mntConfiguracion = new JMenuItem("Configuraci\u00F3n");
 			mntConfiguracion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
-			mntConfiguracion.setIcon(UtilidadesGUI.getIcon(UtilidadesGUI.X16+"CONFIGURACION.png"));
-		
-			configuraciones = new interfaces.Configuraciones(this);
-			
+			mntConfiguracion.setIcon(UtilidadesGUI.getIcon(UtilidadesGUI.X16+"CONFIGURACION.png"));			
 			mntConfiguracion.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent arg0) 
@@ -466,8 +463,14 @@ public class Principal extends JFrame {
 	 */
 	protected void click_configuraciones()
 	{
+		
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		configuraciones.setVisible(true);
+		Configuraciones guiConfiguraciones = new Configuraciones(this);
+		
+		new ControladorConfiguraciones(guiConfiguraciones);
+		
+		guiConfiguraciones.frmConfiguraciones.setVisible(true);	
+		
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	

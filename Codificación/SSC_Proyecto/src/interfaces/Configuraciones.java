@@ -1,33 +1,18 @@
 package interfaces;
 
-import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import java.awt.Color;
-import java.util.HashMap;
-import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-
-
-import utilidades.HibernateCFG;
 import interfaces.componentes.*;
 
 
@@ -37,34 +22,30 @@ import interfaces.componentes.*;
  * @author Javier Bartomioli - Rodrigo Naredo
  *
  */
-public class Configuraciones extends JDialogBaseFormularios
+public class Configuraciones
 {
-	//SERIALIZABLE
-	private static final long serialVersionUID = 5183774197207425835L;
-	
 	
 	//COMPONENTES
-	private JTextField txtURL;
-	private JTextField txtPuerto;
-	private JTextField txtUsuario;
-	private JPasswordField psfPass;
-	private JTextField txtBD;
-	private JCheckBox chkModoDepuracion; 
-	private HashMap<String, String> propiedades;
-	private HibernateCFG archivoXML;
-	private JPasswordField psfPassRep;
-	private JTextField txtServerSmtp;
-	private JTextField txtPuertoSmtp;
-	private JPasswordField psfPassSmtp;
-	private JPasswordField psfPassSmtpRep;
-	private JTextField txtMail;
-	private JCheckBox chkModoDepuracionSmtp;
-	private JCheckBox chkAutenticacionSmtp;
-	private JCheckBox chkTtlsSmtp;
-	private JTextField txtUbicacionFile;
-	private JButton btnBuscarArchivo;
-	private BotonesIconos btnCerrar;
-	private BotonesIconos btnAceptar;
+	public JDialogBaseFormularios frmConfiguraciones;
+	public JTextField txtURL;
+	public JTextField txtPuerto;
+	public JTextField txtUsuario;
+	public JPasswordField psfPass;
+	public JTextField txtBD;
+	public JCheckBox chkModoDepuracion; 
+	public JPasswordField psfPassRep;
+	public JTextField txtServerSmtp;
+	public JTextField txtPuertoSmtp;
+	public JPasswordField psfPassSmtp;
+	public JPasswordField psfPassSmtpRep;
+	public JTextField txtMail;
+	public JCheckBox chkModoDepuracionSmtp;
+	public JCheckBox chkAutenticacionSmtp;
+	public JCheckBox chkTtlsSmtp;
+	public JTextField txtUbicacionFile;
+	public JButton btnBuscarArchivo;
+	public BotonesIconos btnCerrar;
+	public BotonesIconos btnAceptar;
 
 	
 	/**
@@ -74,9 +55,9 @@ public class Configuraciones extends JDialogBaseFormularios
 	public Configuraciones(JFrame framePadre)
 	{
 		//FORMULARIO BASE
-		super(framePadre, "Configuraciones Generales", "CONFIGURACION.png", true);
-		setDimensionFormulario(500,500);
-		setBotonAyuda(452, 15);
+		frmConfiguraciones = new JDialogBaseFormularios(framePadre, "Configuraciones Generales", "CONFIGURACION.png", true);
+		frmConfiguraciones.setDimensionFormulario(500,500);
+		frmConfiguraciones.setBotonAyuda(452, 15);
 		
 		
 		//TITULO
@@ -84,20 +65,20 @@ public class Configuraciones extends JDialogBaseFormularios
 		lblTitulo.setForeground(Color.BLACK);
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitulo.setBounds(10, 11, 374, 23);
-		getContentPane().add(lblTitulo);
+		frmConfiguraciones.getContentPane().add(lblTitulo);
 		
 		
 		//IMAGEN
 		JLabel imagen = new JLabel();
 		imagen.setBounds(385, 11, 32, 32);
 		imagen.setIcon(new ImageIcon(utilidades.Configuraciones.IMG_ICONOS+"CONFIGURACION_32.png"));
-		getContentPane().add(imagen);
+		frmConfiguraciones.getContentPane().add(imagen);
 		
 		//PANEL BASE DE DATOS 
 		JPanel panelBD = new JPanel();
 		panelBD.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Base de Datos", TitledBorder.LEFT, TitledBorder.TOP, null, Color.DARK_GRAY));
 		panelBD.setBounds(10, 45, 474, 135);
-		getContentPane().add(panelBD);
+		frmConfiguraciones.getContentPane().add(panelBD);
 		panelBD.setLayout(null);
 		
 		
@@ -172,7 +153,7 @@ public class Configuraciones extends JDialogBaseFormularios
 		JPanel panelFile = new JPanel();
 		panelFile.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Archivos", TitledBorder.LEADING, TitledBorder.TOP, null, Color.DARK_GRAY));
 		panelFile.setBounds(10, 185, 474, 68);
-		getContentPane().add(panelFile);
+		frmConfiguraciones.getContentPane().add(panelFile);
 		panelFile.setLayout(null);
 			
 		
@@ -189,12 +170,6 @@ public class Configuraciones extends JDialogBaseFormularios
 			
 			//BUSCAR ARCHIVO
 			btnBuscarArchivo = new JButton("Buscar Archivo");
-			btnBuscarArchivo.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) 
-				{
-					buscar_archivo();
-				}
-			});
 			btnBuscarArchivo.setBounds(341, 21, 121, 26);
 			panelFile.add(btnBuscarArchivo);
 		////////////////////////////////////
@@ -205,7 +180,7 @@ public class Configuraciones extends JDialogBaseFormularios
 		JPanel panelMail = new JPanel();
 		panelMail.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Mail", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
 		panelMail.setBounds(10, 256, 474, 130);
-		getContentPane().add(panelMail);	
+		frmConfiguraciones.getContentPane().add(panelMail);	
 		panelMail.setLayout(null);
 		
 		
@@ -279,338 +254,13 @@ public class Configuraciones extends JDialogBaseFormularios
 		//BOTON ACEPTAR
 		btnAceptar = new BotonesIconos("Aceptar","ACEPTAR.png");
 		btnAceptar.setLocation(294, 397);	
-		btnAceptar.addActionListener(new ActionListener() 
-		{
-	        public void actionPerformed(ActionEvent evento) 
-	        {
-	        	click_aceptar();
-	        }
-		});
-		getContentPane().add(btnAceptar);
+		frmConfiguraciones.getContentPane().add(btnAceptar);
 		
 		
 		//BOTON CANCELAR
 		btnCerrar = new BotonesIconos("Cerrar", "CERRAR.png");
 		btnCerrar.setLocation(394, 397);	
-		btnCerrar.addActionListener(new ActionListener()
-		{
-	        public void actionPerformed(ActionEvent evento)
-	        {
-	        	cerrar_salir();
-	        }
-	    });
-		getContentPane().add(btnCerrar);
-		
-		
-		//INICIALIZACIONES DE COMPONENTES
-		inicializar();
+		frmConfiguraciones.getContentPane().add(btnCerrar);
 	}	
 	//////////////////////////////////////////
-	
-	
-	
-	
-	//METODOS
-	/**
-	 * INICIALIZAR COMPONENTES
-	 */
-	protected void inicializar()
-	{
-		repaint();
-		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-
-		
-		//OPCIONES SERVIDOR DE BASE DE DATOS
-		try
-		{
-			archivoXML = new utilidades.HibernateCFG();
-			archivoXML.leerConfiguraciones();
-			
-			propiedades = archivoXML.getElementos();
-			
-			String urlDB = propiedades.get("hibernate.connection.url");
-			
-			StringTokenizer tokenizer = new StringTokenizer(urlDB,":");
-			String[] tokens = new String[tokenizer.countTokens()];
-			int i = 0;
-			
-			while (tokenizer.hasMoreTokens())
-			{
-				tokens[i] = tokenizer.nextToken();
-				i++;
-			}
-			
-			txtURL.setText(tokens[2].substring(2));
-			txtPuerto.setText(tokens[3].substring(0, tokens[3].indexOf('/')));
-			txtBD.setText(tokens[3].substring(tokens[3].indexOf('/')+1));
-			
-			txtUsuario.setText(propiedades.get("hibernate.connection.username"));
-			psfPass.setText(propiedades.get("hibernate.connection.password"));
-			psfPassRep.setText(propiedades.get("hibernate.connection.password"));
-
-			if(propiedades.get("hibernate.show_sql").equals("true"))
-				chkModoDepuracion.setSelected(true);
-			else
-				chkModoDepuracion.setSelected(false);
-		}
-		catch(NullPointerException npe)
-		{
-			npe.printStackTrace();
-		}
-		
-		//OPCIONES ARCHIVO DE CONFIGURACION GLOBAL
-		txtUbicacionFile.setText(utilidades.Configuraciones.URL_FILE);
-
-		
-		//OPCIONES SERVIDOR MAIL - SMTP
-		txtServerSmtp.setText(utilidades.Configuraciones.SMTP_HOST);
-		txtPuertoSmtp.setText(utilidades.Configuraciones.SMTP_PORT);
-		txtMail.setText(utilidades.Configuraciones.SMTP_USER);
-		psfPassSmtp.setText(utilidades.Configuraciones.SMTP_PASS);
-		psfPassSmtpRep.setText(utilidades.Configuraciones.SMTP_PASS);
-				
-		if(utilidades.Configuraciones.SMTP_DEBUG == true)
-			chkModoDepuracionSmtp.setSelected(true);
-		else
-			chkModoDepuracionSmtp.setSelected(false);
-		
-		if(utilidades.Configuraciones.SMTP_AUTH.equals("true"))
-			chkAutenticacionSmtp.setSelected(true);
-		else
-			chkAutenticacionSmtp.setSelected(false);
-		
-		if(utilidades.Configuraciones.SMTP_TTLS.equals("true"))
-			chkTtlsSmtp.setSelected(true);
-		else
-			chkTtlsSmtp.setSelected(false);
-	}
-	/////////////////////////////
-	
-	
-
-	/**
-	 * GUARDAR MODIFICACIONES
-	 */
-	@SuppressWarnings("deprecation")
-	protected void click_aceptar()
-	{
-		if(validar_formulario())
-		{
-			propiedades.put("hibernate.connection.username", txtUsuario.getText());
-			propiedades.put("hibernate.connection.password", psfPass.getText());
-			if(chkModoDepuracion.isSelected())
-				propiedades.put("hibernate.show_sql", "true");
-			else
-				propiedades.put("hibernate.show_sql", "false");
-			
-			String urlDB = "jdbc:mysql://"+txtURL.getText()+":"+txtPuerto.getText()+"/"+txtBD.getText();
-			propiedades.put("hibernate.connection.url", urlDB);
-			
-			setCursor(new Cursor(Cursor.WAIT_CURSOR));
-			
-			archivoXML.guardarConfiguraciones(propiedades);
-			
-			HashMap<String, String> atributosMail = new HashMap<String, String>();
-			
-			atributosMail.put("SMTP_HOST", txtServerSmtp.getText());
-			atributosMail.put("SMTP_PORT", txtPuertoSmtp.getText());
-			
-			if(chkAutenticacionSmtp.isSelected())
-				atributosMail.put("SMTP_AUTH", "true");
-			else
-				atributosMail.put("SMTP_AUTH", "false");
-			
-			atributosMail.put("SMTP_USER", txtMail.getText());
-			atributosMail.put("SMTP_PASS", psfPassSmtp.getText());
-			
-			if(chkTtlsSmtp.isSelected())
-				atributosMail.put("SMTP_TTLS", "true");
-			else
-				atributosMail.put("SMTP_TTLS", "false");
-			
-			if(chkTtlsSmtp.isSelected())
-				atributosMail.put("SMTP_DEBUG", "true");
-			else
-				atributosMail.put("SMTP_DEBUG", "false");
-			
-			utilidades.Configuraciones.guardar_modificaciones_mail(atributosMail);
-			
-			utilidades.Configuraciones.modificar_url_archivo_config(txtUbicacionFile.getText());
-			
-			
-			
-			int rta = JOptionPane.showConfirmDialog(
-								this,
-								"Deberá reiniciar la aplicación para que los cambios de configuración surtan efectos.\n"
-								+ "¿Desea cerrar la aplicación en este momento?",
-								"ATENCIÓN",
-								JOptionPane.YES_NO_OPTION);
-			
-			cerrar_salir();
-			
-			if(rta == JOptionPane.YES_OPTION)
-			{
-				System.exit(0);
-			}
-			
-		}
-		
-	}
-	///////////////////////////////
-	
-
-	
-	/**
-	 * VALIDAR DATOS DEL FORMULARIO
-	 * @return boolean - Formulario valido
-	 */
-	@SuppressWarnings("deprecation")
-	protected boolean validar_formulario()
-	{
-		boolean rta = true;
-		String mensaje = "";
-		
-		if(txtURL.getText().equals(""))
-		{
-			mensaje += "El campo de servidor no puede estar vacío\n";
-			rta = false;
-		}
-
-		if(!validar_puerto(txtPuerto.getText()))
-		{
-			mensaje += "El campo de puerto de BD no es válido\n";
-			rta = false;
-		}
-		
-		if(txtUsuario.getText().equals(""))
-		{
-			mensaje += "El campo de usuario no puede estar vacío\n";
-			rta = false;
-		}
-
-		if(txtBD.getText().equals(""))
-			mensaje += "El campo de base de datos no puede estar vacío\n";
-		
-		if(psfPass.getText().equals(""))
-		{
-			mensaje += "El campo de contraseña de base de datos no puede estar vacío\n";
-			rta = false;
-		}
-		
-		if(!psfPass.getText().equals(psfPassRep.getText()))
-		{
-			mensaje += "Las contraseñas de base de datos no coinciden\n";
-			rta = false;
-		}
-		
-		if(txtUbicacionFile.getText().equals(""))
-		{
-			mensaje += "El campo de ubicación del archivo de configuraciones no puede ser nulo\n";
-			rta = false;
-		}	
-		
-		if(txtServerSmtp.getText().equals(""))
-		{
-			mensaje += "El campo de servidor SMTP no puede estar vacio\n";
-			rta = false;
-		}
-			
-		if(!validar_puerto(txtPuertoSmtp.getText()))
-		{
-			mensaje += "El campo de puerto SMTP no es válido\n";
-			rta = false;
-		}
-		
-		if(!validar_mail(txtMail.getText()))
-		{
-			mensaje += "El campo de mail no es válido\n";
-			rta = false;
-		}
-		
-		if(psfPassSmtp.getText().equals(""))
-		{
-			mensaje += "El campo de contraseña de mail no puede estar vacío\n";
-			rta = false;
-		}
-		
-		if(!psfPassSmtpRep.getText().equals(psfPassSmtp.getText()))
-		{
-			mensaje += "Las contraseñas de mail no coinciden\n";
-			rta = false;
-		}
-			
-		if(!rta)
-			JOptionPane.showMessageDialog(this, mensaje, "ATENCIÓN", JOptionPane.WARNING_MESSAGE);
-		
-		return rta;
-	}
-	///////////////////////////////////////
-	
-
-	
-	/**
-	 * VALIDACION DE MAIL INGRESADO
-	 * @param mail - Mail a validar
-	 * @return boolean - Mail validado
-	 */
-	protected boolean validar_mail(String mail)
-    {
-		String patron_mail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern patron = Pattern.compile(patron_mail);
- 
-        Matcher matcher = patron.matcher(mail);
-        return matcher.matches();
-    }
-	////////////////////////////////////////////
-	
-	
-
-	/**
-	 * VALIDAR NRO DE PUERTO INGRESADO
-	 * @param puerto - Nro a validar
-	 * @return boolean - Puerto validado
-	 */
-	protected boolean validar_puerto(String puerto)
-    {
-		String patron_puerto = "\\d{1,5}";
-        Pattern patron = Pattern.compile(patron_puerto);
- 
-        Matcher matcher = patron.matcher(puerto);
-        return matcher.matches();
-    }
-	////////////////////////////////////////////////
-
-	
-	/**
-	 * BUSCAR ARCHIVO DE CONFIGURACIONES
-	 */
-	protected void buscar_archivo()
-	{
-		try
-		{
-			setCursor(new Cursor(Cursor.WAIT_CURSOR));
-
-			JFileChooser buscarArchivo = new JFileChooser();
-			
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("ini","INI");
-			buscarArchivo.setFileFilter(filter);
-			
-			@SuppressWarnings("unused")
-			int seleccion = buscarArchivo.showOpenDialog(this);
-						
-			buscarArchivo.setVisible(true);
-			String urlArchivo = buscarArchivo.getSelectedFile().getAbsolutePath();
-			txtUbicacionFile.setText(urlArchivo);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		}
-	}	
-	////////////////////////////////
-
 }
