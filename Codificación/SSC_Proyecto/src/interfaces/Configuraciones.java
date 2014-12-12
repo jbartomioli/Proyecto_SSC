@@ -437,13 +437,22 @@ public class Configuraciones extends JDialogBaseFormularios
 			
 			utilidades.Configuraciones.modificar_url_archivo_config(txtUbicacionFile.getText());
 			
-			JOptionPane.showMessageDialog(
-					this,
-					"Deberá reiniciar la aplicación para que los cambios de configuración surtan efectos.",
-					"ATENCIÓN",
-					JOptionPane.WARNING_MESSAGE);
+			
+			
+			int rta = JOptionPane.showConfirmDialog(
+								this,
+								"Deberá reiniciar la aplicación para que los cambios de configuración surtan efectos.\n"
+								+ "¿Desea cerrar la aplicación en este momento?",
+								"ATENCIÓN",
+								JOptionPane.YES_NO_OPTION);
 			
 			cerrar_salir();
+			
+			if(rta == JOptionPane.YES_OPTION)
+			{
+				System.exit(0);
+			}
+			
 		}
 		
 	}
