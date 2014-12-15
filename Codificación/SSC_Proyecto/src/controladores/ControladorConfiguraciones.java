@@ -15,7 +15,11 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import utilidades.HibernateCFG;
-
+/**
+ * CONTROLADOR CONFIGURACIONES GENERALES DEL PROGRAMA
+ * @author Javier
+ *
+ */
 public class ControladorConfiguraciones implements ActionListener
 {
 	
@@ -27,6 +31,10 @@ public class ControladorConfiguraciones implements ActionListener
 	private HibernateCFG archivoXML;
 
 	
+	/**
+	 * CONSTRUCTOR
+	 * @param guiConfiguraciones
+	 */
 	public ControladorConfiguraciones(Configuraciones guiConfiguraciones)
 	{
 		this.guiConfiguraciones = guiConfiguraciones;
@@ -37,10 +45,14 @@ public class ControladorConfiguraciones implements ActionListener
 		
 		inicializar();
 	}
-
+	//////////////////////////////////////////////////////////////////////
 	
 	
 	
+	//METODOS
+	/**
+	 * REESCRITURA ACTION PERFORMED
+	 */
 	@Override
 	public void actionPerformed(ActionEvent evento)
 	{
@@ -53,15 +65,10 @@ public class ControladorConfiguraciones implements ActionListener
 		if(evento.getSource().equals(guiConfiguraciones.btnCerrar))
 			cerrar_salir();
 	}
+	////////////////////////////////////////////////
 	
 	
 	
-
-
-
-
-
-	//METODOS
 	/**
 	 * INICIALIZAR COMPONENTES
 	 */
@@ -369,10 +376,12 @@ public class ControladorConfiguraciones implements ActionListener
 	
 	
 	
-	
+	/**
+	 * CIERRA PAANTALLA DE CONFIGURACION
+	 */
 	private void cerrar_salir()
 	{
 		guiConfiguraciones.frmConfiguraciones.dispose();
 	}
-	
+	////////////////////////////
 }

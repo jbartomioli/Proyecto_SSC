@@ -39,6 +39,10 @@ public class TrabajoEnvioMail implements Runnable{
         {
             System.err.println( e.getMessage() );
         }
+        catch(Exception e)
+        {
+        	
+        }
         finally
         {
         }

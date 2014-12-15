@@ -87,6 +87,14 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
    					aux = false;
 	   				e1.printStackTrace();
 	   			}	
+			else
+			{
+				JOptionPane.showMessageDialog(
+						guiPrevisualizadorHTML.frmPrevisualizacion, 
+						"Se ha producido un error al realizar el envío del email.\nDeberá confeccionar nuevamente el mensaje.",
+						"ERROR",
+						JOptionPane.ERROR_MESSAGE);
+			}
    		}
 		//EVENTO BOTON VOLVER Y MODIFICAR
 		if(evento.getSource().equals(guiPrevisualizadorHTML.btnVolverModificar))

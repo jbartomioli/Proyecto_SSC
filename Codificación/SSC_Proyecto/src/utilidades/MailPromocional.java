@@ -49,7 +49,7 @@ public class MailPromocional {
 	/////////////////////////////////////////////////////////////////
 	//	//
 	/////////////////////////////////////////////////////////////////
-	public void enviarMail(String textoMensaje, String [] mailsDestinatarios, String asuntoMail, Collection<String> imagenes) throws MessagingException
+	public void enviarMail(String textoMensaje, String [] mailsDestinatarios, String asuntoMail, Collection<String> imagenes) throws Exception
 	{
 
 		this.propiedades = System.getProperties();
@@ -120,7 +120,7 @@ public class MailPromocional {
 	
 	
 	//---------------------------------------------------------------
-	public void addCID(String cidname,String pathname) throws MessagingException
+	public void addCID(String cidname,String pathname) throws Exception
     {
         DataSource fds = new FileDataSource(pathname);
         BodyPart messageBodyPart = new MimeBodyPart();
@@ -132,7 +132,7 @@ public class MailPromocional {
     }
 	
 	//---------------------------------------------------------------
-	public void addContent(String htmlText) throws MessagingException
+	public void addContent(String htmlText) throws Exception
     {
         // first part (the html)
         BodyPart messageBodyPart = new MimeBodyPart();
@@ -142,7 +142,7 @@ public class MailPromocional {
     }
 	
 	//---------------------------------------------------------------
-	public void addAttach(String pathname, String cid) throws MessagingException
+	public void addAttach(String pathname, String cid) throws Exception
     {
         File file = new File(pathname);
         BodyPart messageBodyPart = new MimeBodyPart();
