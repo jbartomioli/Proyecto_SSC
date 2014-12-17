@@ -1,9 +1,15 @@
 //CLASE LISTA
 
-package negocio;
+package controladores;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import negocio.CatalogoClientes;
+import negocio.Cliente;
+import negocio.LineaDeVenta;
+import negocio.Producto;
+import negocio.Venta;
 
 
 public class ControladorRealizarSeguimientoCliente 

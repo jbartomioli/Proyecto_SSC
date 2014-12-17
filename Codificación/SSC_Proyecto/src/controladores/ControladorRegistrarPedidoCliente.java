@@ -1,8 +1,18 @@
-package negocio;
+package controladores;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+
+import negocio.CatalogoClientes;
+import negocio.CatalogoPedidos;
+import negocio.CatalogoProductos;
+import negocio.Cliente;
+import negocio.LineaDePedido;
+import negocio.MailDeposito;
+import negocio.ParametrosNegocio;
+import negocio.Pedido;
+import negocio.Producto;
 
 
 public class ControladorRegistrarPedidoCliente 

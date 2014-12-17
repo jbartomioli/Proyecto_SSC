@@ -17,13 +17,13 @@ import java.util.Collection;
 
 
 
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import org.hibernate.exception.JDBCConnectionException;
 
 import negocio.Categoria;
-import negocio.ControladorConfeccionarAnuncio;
 import negocio.ModeloModificarPrecios;
 import negocio.Producto;
 import negocio.SubCategoria;

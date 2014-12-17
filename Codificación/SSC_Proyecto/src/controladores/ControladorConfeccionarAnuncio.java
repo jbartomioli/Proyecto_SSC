@@ -1,7 +1,18 @@
-package negocio;
+package controladores;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import negocio.Anuncio;
+import negocio.CatalogoAnuncios;
+import negocio.CatalogoCategorias;
+import negocio.CatalogoClientes;
+import negocio.CatalogoProductos;
+import negocio.CatalogoSubCategorias;
+import negocio.Categoria;
+import negocio.Cliente;
+import negocio.Producto;
+import negocio.SubCategoria;
 
 
 public class ControladorConfeccionarAnuncio

@@ -61,7 +61,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 	/**************
 	 * COMPONENTES
 	 **************/
-	private negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento;
+	private controladores.ControladorRealizarSeguimientoCliente controladorSeguimiento;
 	private JTextField txtBuscarCliente;
 	private JLabel lblEspecialidad;
 	private JComboBox<String> cmbEspecialidad;
@@ -116,7 +116,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		setDimensionFormulario(1024, 668);
 		setBotonAyuda(1258,48);
 		
-		controladorSeguimiento = new negocio.ControladorRealizarSeguimientoCliente();
+		controladorSeguimiento = new controladores.ControladorRealizarSeguimientoCliente();
 		controladorSeguimiento.inicializarCatalgos();
 		
 		/*********
@@ -308,7 +308,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 	 * @param controladorAnuncios
 	 * @throws Exception
 	 *********************************/
-	protected void inicializar(final negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento) throws Exception
+	protected void inicializar(final controladores.ControladorRealizarSeguimientoCliente controladorSeguimiento) throws Exception
 	{		
 		cmbEspecialidad.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
@@ -401,7 +401,7 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		
 		
 		//-------------------------------------------------------------------------------------------------------
-		public void click_combo_especialidad(negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento, ItemEvent evento)
+		public void click_combo_especialidad(controladores.ControladorRealizarSeguimientoCliente controladorSeguimiento, ItemEvent evento)
 		{		
 			if(evento.getStateChange() == ItemEvent.SELECTED)
 			{			
@@ -416,13 +416,13 @@ public class SeguimientoDeClientes extends interfaces.componentes.JDialogBaseFor
 		
 		
 		//-------------------------------------------------------------------------------------------------------
-		private void buscar_cliente_textField(negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento) 
+		private void buscar_cliente_textField(controladores.ControladorRealizarSeguimientoCliente controladorSeguimiento) 
 		{
 			tblClientesBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesDescPcial(txtBuscarCliente.getText()));
 			tblClientesBuscados.definirTablaDestinatariosBuscados();
 		}
 		
-		private void buscar_cliente_boton(negocio.ControladorRealizarSeguimientoCliente controladorSeguimiento)
+		private void buscar_cliente_boton(controladores.ControladorRealizarSeguimientoCliente controladorSeguimiento)
 		{
 			tblClientesBuscados.completarTabla(controladorSeguimiento.getCatalogoClientes().buscarClientesDescPcial(txtBuscarCliente.getText()));
 			tblClientesBuscados.definirTablaDestinatariosBuscados();

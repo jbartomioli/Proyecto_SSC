@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public class TrabajoEnvioMail implements Runnable{
 	
-    private negocio.ControladorConfeccionarAnuncio controlador;
+    private controladores.ControladorConfeccionarAnuncio controlador;
     private String [] mailsDestinatarios;
     private String asuntoMail;
     private Collection<String> imagenes;
@@ -16,7 +16,7 @@ public class TrabajoEnvioMail implements Runnable{
     
     public TrabajoEnvioMail( 
     		int tiempo, 
-    		negocio.ControladorConfeccionarAnuncio controlador,
+    		controladores.ControladorConfeccionarAnuncio controlador,
     		String [] mailsDestinatarios, 
     		String asuntoMail, 
     		Collection<String> imagenes)

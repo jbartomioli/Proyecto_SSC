@@ -19,8 +19,6 @@ import java.util.Collection;
 import javax.swing.JOptionPane;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
-
-import negocio.ControladorConfeccionarAnuncio;
 /**
  * CONTROLADOR PREVISUALIZAR HTML DE MENSAJE
  * 
@@ -42,7 +40,7 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	private String encabezado_mail = "<html><body><img src=\"file:"+utilidades.Configuraciones.IMG_ENCABEZADO_MAIL+"\"/><br/><br/>";
 	private String pie_mail = "<img src=\"file:"+utilidades.Configuraciones.IMG_PIE_MAIL+"\"/></body></html>";
 	
-	private negocio.ControladorConfeccionarAnuncio controlador;
+	private controladores.ControladorConfeccionarAnuncio controlador;
 	
 
 	

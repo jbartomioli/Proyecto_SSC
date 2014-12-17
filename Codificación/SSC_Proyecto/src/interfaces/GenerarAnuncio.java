@@ -75,14 +75,14 @@ public class GenerarAnuncio extends JDialogBaseFormularios
 	
 	//VARIABLES TEMPORALES
 	private negocio.SubCategoria subcategoriaActual;
-	private negocio.ControladorConfeccionarAnuncio controlador;
+	private controladores.ControladorConfeccionarAnuncio controlador;
 
 
 	/**
 	 * OBTIENE EL CONTROLADOR
 	 * @return negocio.ControladorConfeccionarAnuncio - Controlador
 	 */
-	public negocio.ControladorConfeccionarAnuncio getControlador()
+	public controladores.ControladorConfeccionarAnuncio getControlador()
 	{
 		return controlador;
 	}
@@ -287,7 +287,7 @@ public class GenerarAnuncio extends JDialogBaseFormularios
 		
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 
-		controlador = new negocio.ControladorConfeccionarAnuncio();
+		controlador = new controladores.ControladorConfeccionarAnuncio();
 		controlador.inicializarCatalogos();
 		
 		
@@ -700,7 +700,7 @@ public class GenerarAnuncio extends JDialogBaseFormularios
 		super.cerrar_salir();
 		limpiar_formulario();
 		limpiar_objetos_temporales();
-		controlador = new negocio.ControladorConfeccionarAnuncio();
+		controlador = new controladores.ControladorConfeccionarAnuncio();
 	}
 	//////////////////////////////
 	
