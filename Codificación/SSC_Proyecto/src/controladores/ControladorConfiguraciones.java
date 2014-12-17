@@ -127,7 +127,7 @@ public class ControladorConfiguraciones implements ActionListener
 		guiConfiguraciones.psfPassSmtp.setText(utilidades.Configuraciones.SMTP_PASS);
 		guiConfiguraciones.psfPassSmtpRep.setText(utilidades.Configuraciones.SMTP_PASS);
 				
-		if(utilidades.Configuraciones.SMTP_DEBUG == true)
+		if(utilidades.Configuraciones.SMTP_DEBUG.equals("true"))
 			guiConfiguraciones.chkModoDepuracionSmtp.setSelected(true);
 		else
 			guiConfiguraciones.chkModoDepuracionSmtp.setSelected(false);
@@ -186,7 +186,7 @@ public class ControladorConfiguraciones implements ActionListener
 			else
 				atributosMail.put("SMTP_TTLS", "false");
 			
-			if(guiConfiguraciones.chkTtlsSmtp.isSelected())
+			if(guiConfiguraciones.chkModoDepuracionSmtp.isSelected())
 				atributosMail.put("SMTP_DEBUG", "true");
 			else
 				atributosMail.put("SMTP_DEBUG", "false");

@@ -22,7 +22,7 @@ public class Configuraciones{
 	public static String SMTP_USER;
 	public static String SMTP_PASS;
 	public static String SMTP_TTLS;
-	public static boolean SMTP_DEBUG;
+	public static String SMTP_DEBUG;
 	
 	//CONFIGURACIONES DIRECTORIOS
 	public static String IMG_PRESENTACION;
@@ -115,7 +115,7 @@ public class Configuraciones{
 		SMTP_USER = propiedades.getProperty("SMTP_USER").toString();
 		SMTP_PASS = propiedades.getProperty("SMTP_PASS").toString();
 		SMTP_TTLS = propiedades.getProperty("SMTP_TTLS").toString();
-		SMTP_DEBUG = propiedades.getProperty("SMTP_DEBUG").toString()=="true"?true:false;
+		SMTP_DEBUG = propiedades.getProperty("SMTP_DEBUG").equals("true")?"true":"false";
 	}
 	
 	
@@ -128,7 +128,7 @@ public class Configuraciones{
 		SMTP_USER = atributosMail.get("SMTP_USER");
 		SMTP_PASS = atributosMail.get("SMTP_PASS");
 		SMTP_TTLS = atributosMail.get("SMTP_TTLS");
-		SMTP_DEBUG = atributosMail.get("SMTP_DEBUG")=="true"?true:false;
+		SMTP_DEBUG = atributosMail.get("SMTP_DEBUG").equals("true")?"true":"false";
 		
 		Properties propiedades = new Properties();
 		

@@ -4,14 +4,15 @@ import java.util.Collection;
 
 
 
+
+
 public class TrabajoEnvioMail implements Runnable{
 	
     private negocio.ControladorConfeccionarAnuncio controlador;
     private String [] mailsDestinatarios;
     private String asuntoMail;
     private Collection<String> imagenes;
-    
-
+        
     
     public TrabajoEnvioMail( 
     		int tiempo, 
@@ -32,7 +33,7 @@ public class TrabajoEnvioMail implements Runnable{
         try
         {		
         	controlador.enviarAnuncio(mailsDestinatarios, asuntoMail, imagenes);
-
+        	
         	Thread.sleep( 1000 );
         }
         catch (InterruptedException e)
@@ -41,7 +42,7 @@ public class TrabajoEnvioMail implements Runnable{
         }
         catch(Exception e)
         {
-        	
+        	e.printStackTrace();
         }
         finally
         {

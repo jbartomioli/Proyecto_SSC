@@ -9,7 +9,6 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -73,7 +72,7 @@ public class MailPromocional {
 	    };       
 	
 		Session sesionMail = Session.getDefaultInstance(this.propiedades, authenticator);
-		sesionMail.setDebug(utilidades.Configuraciones.SMTP_DEBUG);
+		sesionMail.setDebug(Boolean.getBoolean(utilidades.Configuraciones.SMTP_DEBUG));
 	    
 		//SE CREA EL MENSAJE
 		MimeMessage mensaje = new MimeMessage(sesionMail);

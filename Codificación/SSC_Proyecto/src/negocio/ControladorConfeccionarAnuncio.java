@@ -3,7 +3,6 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.mail.MessagingException;
 
 public class ControladorConfeccionarAnuncio
 {
@@ -358,7 +357,7 @@ public class ControladorConfeccionarAnuncio
 			this.anuncioActual.setEstado("ENVIADO");
 			return true;
 		}
-		catch(MessagingException exc)
+		catch(Exception exc)
 		{
 			return false;
 		}
