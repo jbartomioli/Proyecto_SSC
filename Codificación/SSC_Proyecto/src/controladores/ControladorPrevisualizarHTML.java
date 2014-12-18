@@ -1,6 +1,5 @@
 package controladores;
 
-import interfaces.GenerarAnuncio;
 import interfaces.PrevisualizadorHTML;
 
 import java.awt.Cursor;
