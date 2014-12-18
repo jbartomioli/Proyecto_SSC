@@ -36,6 +36,8 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 
+import controladores.ControladorConfeccionarAnuncio;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -61,7 +63,7 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 	 * CONSTRUCTOR
 	 * @param dialogPadre
 	 */
-	public ModificarDestinatarios(final interfaces.GenerarAnuncio dialogPadre) 
+	public ModificarDestinatarios(final JDialog dialogPadre, ControladorConfeccionarAnuncio controladorConfeccionarAnuncio) 
 	{
 		/**
 		 * FORMULARIO BASE
@@ -166,17 +168,17 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 		/**
 		 * INICIALIZACION DE CONTROLES
 		 */
-		inicializar(dialogPadre);
+		inicializar(controladorConfeccionarAnuncio);
 	}
 	
 	
 	
 	//-------------------------------------------------------------------------
-	protected void inicializar(final interfaces.GenerarAnuncio dialogPadre)
+	protected void inicializar(final ControladorConfeccionarAnuncio controladorConfeccionarAnuncio)
 	{
 		cmbEspecialidad.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evento) {
-				click_combo_especialidad(dialogPadre, evento);}});
+				click_combo_especialidad(controladorConfeccionarAnuncio, evento);}});
 		
 		
 		txtBuscarDestinatarios.addKeyListener(new KeyAdapter() {
@@ -184,7 +186,7 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 				//Busca clientes si el usuario presiona enter
 				if(evento.getKeyCode() == KeyEvent.VK_ENTER)
 				{
-					buscar_cliente_textField(dialogPadre);
+					buscar_cliente_textField(controladorConfeccionarAnuncio);
 				}
 			}
 		});		
@@ -199,7 +201,7 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 		
 		
 		// LA TABLA SE DEBE LLENAR CON LOS CLIENTES ASOCIADOS A LOS PRODUCTOS SELECCIONADOS
-		tblDestinatariosNuevos.completarTabla(dialogPadre.getControlador().getArrClientesInteresados());
+		tblDestinatariosNuevos.completarTabla(controladorConfeccionarAnuncio.getModeloConfeccionarAnuncio().getArrClientesInteresados());
 		//Agrega el btn eliminar a la tabla
 		tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
 				
@@ -224,7 +226,7 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-		       		click_boton_aceptar(dialogPadre);}});
+		       		click_boton_aceptar(controladorConfeccionarAnuncio);}});
 				
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
@@ -232,20 +234,20 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 				
 		btnBuscarDestinatario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-					click_boton_buscar(dialogPadre);}});
+					click_boton_buscar(controladorConfeccionarAnuncio);}});
 	}
 	
 	
 	// EVENTOS
 	//-------------------------------------------------------------------------------------------------------
-	public void click_combo_especialidad(interfaces.GenerarAnuncio dialogPadre, ItemEvent evento)
+	public void click_combo_especialidad(ControladorConfeccionarAnuncio controladorConfeccionarAnuncio, ItemEvent evento)
 	{		
 		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{			
 			Object esp = cmbEspecialidad.getSelectedItem();
 			String especialidad = String.valueOf(esp);
 					
-			tblDestinatariosBuscados.completarTabla(dialogPadre.getControlador().getCatalogoClientes().buscarClientesPorEspecialidad(especialidad));
+			tblDestinatariosBuscados.completarTabla(controladorConfeccionarAnuncio.getModeloConfeccionarAnuncio().getCatalogoClientes().buscarClientesPorEspecialidad(especialidad));
 			
 			//Agrega el btn eliminar a la tabla
 			//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
@@ -257,10 +259,10 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 	
 	//-------------------------------------------------------------------------------------------------------
 	@SuppressWarnings("rawtypes")
-	public void completarDestinatarios(interfaces.GenerarAnuncio dialogPadre)
+	public void completarDestinatarios(ControladorConfeccionarAnuncio controladorConfeccionarAnuncio)
 	{
 		DefaultTableModel modelo = (DefaultTableModel) tblDestinatariosNuevos.getModel();
-		modelo.addRow((Vector) dialogPadre.getControlador().getArrClientesInteresados());
+		modelo.addRow((Vector) controladorConfeccionarAnuncio.getModeloConfeccionarAnuncio().getArrClientesInteresados());
 		
 		//Agrega el btn eliminar a la tabla
 		//tblDestinatariosNuevos.definirTablaDestinatariosAnuncio();
@@ -310,32 +312,32 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 	
 	
 	//-------------------------------------------------------------------------------------------------------
-	public void click_boton_aceptar(interfaces.GenerarAnuncio dialogPadre)
+	public void click_boton_aceptar(ControladorConfeccionarAnuncio controladorConfeccionarAnuncio)
 	{		
 		TableModel modelo = new DefaultTableModel();
 		
 		modelo = tblDestinatariosNuevos.getModel();
 		
-		dialogPadre.actualizarClientesDestinatarios(modelo);
+		controladorConfeccionarAnuncio.actualizarClientesDestinatarios(modelo);
 		
 		super.cerrar_salir();
 	}
 	
 	
 	//-------------------------------------------------------------------------------------------------------
-	public void click_boton_buscar(interfaces.GenerarAnuncio dialogPadre)
+	public void click_boton_buscar(ControladorConfeccionarAnuncio controladorConfeccionarAnuncio)
 	{
 		//Evento para llenar la tabla de destinatarios buscados desde la lupa
-		tblDestinatariosBuscados.completarTabla(dialogPadre.getControlador().getCatalogoClientes().buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
+		tblDestinatariosBuscados.completarTabla(controladorConfeccionarAnuncio.getModeloConfeccionarAnuncio().getCatalogoClientes().buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
 		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 	}
 	
 	
 	
 	//-------------------------------------------------------------------------------------------------------
-	private void buscar_cliente_textField(interfaces.GenerarAnuncio dialogPadre) 
+	private void buscar_cliente_textField(ControladorConfeccionarAnuncio controladorConfeccionarAnuncio) 
 	{
-		tblDestinatariosBuscados.completarTabla(dialogPadre.getControlador().getCatalogoClientes().buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
+		tblDestinatariosBuscados.completarTabla(controladorConfeccionarAnuncio.getModeloConfeccionarAnuncio().getCatalogoClientes().buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
 		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 	}
 	

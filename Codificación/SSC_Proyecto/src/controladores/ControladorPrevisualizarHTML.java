@@ -16,9 +16,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
+
+import negocio.ModeloConfeccionarAnuncio;
 /**
  * CONTROLADOR PREVISUALIZAR HTML DE MENSAJE
  * 
@@ -40,7 +43,7 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	private String encabezado_mail = "<html><body><img src=\"file:"+utilidades.Configuraciones.IMG_ENCABEZADO_MAIL+"\"/><br/><br/>";
 	private String pie_mail = "<img src=\"file:"+utilidades.Configuraciones.IMG_PIE_MAIL+"\"/></body></html>";
 	
-	private controladores.ControladorConfeccionarAnuncio controlador;
+	private ModeloConfeccionarAnuncio modeloConfeccionarAnuncio;
 	
 
 	
@@ -50,10 +53,10 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	 * @param framePadre
 	 */
 	public ControladorPrevisualizarHTML(PrevisualizadorHTML guiPrevisualizador,
-			GenerarAnuncio framePadre, ControladorConfeccionarAnuncio controlador, String nombreArchivo, String[] mailsDestino) 
+			JDialog framePadre, ModeloConfeccionarAnuncio controlador, String nombreArchivo, String[] mailsDestino) 
 	{
 		this.guiPrevisualizadorHTML = guiPrevisualizador;
-		this.controlador = controlador;
+		this.modeloConfeccionarAnuncio = controlador;
 		this.guiPrevisualizadorHTML.btnAceptarEnviar.addActionListener(this);
 		this.guiPrevisualizadorHTML.btnVolverModificar.addActionListener(this);
 		this.guiPrevisualizadorHTML.frmPrevisualizacion.addWindowListener(this);
@@ -251,10 +254,10 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 			
 	    	String contenidoProcesado = procesarImagenes(contenidoEnviar);
 	    	
-	    	controlador.redactarMensaje(contenidoProcesado);
+	    	modeloConfeccionarAnuncio.redactarMensaje(contenidoProcesado);
 	    	
 	    	
-	    	Thread trabajoEnvio = new Thread(new interfaces.software.TrabajoEnvioMail(0, controlador, mailsClientes, asunto, imagenes));
+	    	Thread trabajoEnvio = new Thread(new interfaces.software.TrabajoEnvioMail(0, modeloConfeccionarAnuncio, mailsClientes, asunto, imagenes));
 	    	trabajoEnvio.start();
 	    	
 	    	new Thread(new interfaces.software.HiloBarraProgreso(

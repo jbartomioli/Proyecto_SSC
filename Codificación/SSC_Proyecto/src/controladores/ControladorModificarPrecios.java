@@ -18,12 +18,14 @@ import java.util.Collection;
 
 
 
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import org.hibernate.exception.JDBCConnectionException;
 
 import negocio.Categoria;
+import negocio.ModeloConfeccionarAnuncio;
 import negocio.ModeloModificarPrecios;
 import negocio.Producto;
 import negocio.SubCategoria;
@@ -109,7 +111,7 @@ public class ControladorModificarPrecios implements ActionListener, MouseListene
 	public ControladorModificarPrecios(
 			ModificarPrecios guiModificarPrecios, 
 			ModeloModificarPrecios modeloModificarPrecios, 
-			ControladorConfeccionarAnuncio controladorAnuncios, 
+			ModeloConfeccionarAnuncio controladorAnuncios, 
 			Collection<Integer> idProductos)
 	{	
 		this.modeloModificarPrecios = modeloModificarPrecios;

@@ -1,500 +1,802 @@
 package controladores;
 
+import interfaces.EditorHTML;
+import interfaces.GenerarAnuncio;
+import interfaces.ModificarPrecios;
+import interfaces.PrevisualizadorHTML;
+
+import java.awt.Cursor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Vector;
 
-import negocio.Anuncio;
-import negocio.CatalogoAnuncios;
-import negocio.CatalogoCategorias;
-import negocio.CatalogoClientes;
-import negocio.CatalogoProductos;
-import negocio.CatalogoSubCategorias;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 import negocio.Categoria;
-import negocio.Cliente;
-import negocio.Producto;
-import negocio.SubCategoria;
+import negocio.ModeloConfeccionarAnuncio;
+import negocio.ModeloModificarPrecios;
 
 
-public class ControladorConfeccionarAnuncio
+public class ControladorConfeccionarAnuncio implements ActionListener, WindowListener, ItemListener, MouseListener
 {
-	//***************************************************************
-	//* ATRIBUTOS													*
-	//***************************************************************
-	private negocio.CatalogoCategorias catalogoCategorias;
-	private negocio.CatalogoSubCategorias catalogoSubCategorias;
-	private negocio.CatalogoProductos catalogoProductos;
-	private negocio.CatalogoAnuncios catalogoAnuncios;
-	private negocio.CatalogoClientes catalogoClientes;
-	private Collection<negocio.Producto> productos;
-	private Collection<negocio.SubCategoria> subCategorias;
-	private negocio.Producto productoActual;
-	private Collection<negocio.Cliente> arrClientesInteresados;
-	private Collection<negocio.Producto> arrProductosPublicación;
-	private negocio.Anuncio anuncioActual;
-	private negocio.Producto productoModificar;
-	//---------------------------------------------------------------
+	
+	//ATRIBUTOS
+	private ModeloConfeccionarAnuncio modeloConfeccionarAnuncio;
+	private GenerarAnuncio guiGenerarAnuncio;
+	
+	//VARIABLES TEMPORALES
+	private negocio.SubCategoria subcategoriaActual;
+	private Categoria categoria;
 
-
-	//***************************************************************
-	//* CONSTRUCTOR													*
-	//***************************************************************
-	public ControladorConfeccionarAnuncio() 
+	
+	
+	public ControladorConfeccionarAnuncio(ModeloConfeccionarAnuncio modeloConfeccionarAnuncio, GenerarAnuncio guiGenerarAnuncio) throws Exception
 	{
-		this.catalogoCategorias = new negocio.CatalogoCategorias();
-		this.catalogoSubCategorias = new negocio.CatalogoSubCategorias();
-		this.catalogoProductos = new negocio.CatalogoProductos();
-		this.catalogoAnuncios = new negocio.CatalogoAnuncios();		
-		this.catalogoClientes = new negocio.CatalogoClientes();		
-		this.productos = new ArrayList<negocio.Producto>();
-		this.subCategorias = new ArrayList<negocio.SubCategoria>();
-		this.productoActual = new negocio.Producto();
-		this.arrClientesInteresados = new ArrayList<negocio.Cliente>();
-		this.arrProductosPublicación = new ArrayList<negocio.Producto>();
-		this.anuncioActual = new negocio.Anuncio();
-		this.productoModificar = new negocio.Producto();
-	}
-	//---------------------------------------------------------------
+		this.modeloConfeccionarAnuncio = modeloConfeccionarAnuncio;
+		this.guiGenerarAnuncio = guiGenerarAnuncio;
+		
+		this.guiGenerarAnuncio.btnGenerar.addActionListener(this);
+		this.guiGenerarAnuncio.btnEnviar.addActionListener(this);
+		this.guiGenerarAnuncio.btnCerrar.addActionListener(this);
+		this.guiGenerarAnuncio.cmbCategorias.addItemListener(this);
+		this.guiGenerarAnuncio.cmbSubcategorias.addItemListener(this);
+		this.guiGenerarAnuncio.tblProductos.addMouseListener(this);
+		this.guiGenerarAnuncio.tblProductosAnuncio.addMouseListener(this);
+		this.guiGenerarAnuncio.tblDestinatarios.addMouseListener(this);
+		this.guiGenerarAnuncio.lblModificarDestinatarios.addMouseListener(this);
+		this.guiGenerarAnuncio.lblModificarPrecios.addMouseListener(this);
 
-
-	//***************************************************************
-	//* GETTES & SETTERS											*
-	//***************************************************************
-	public negocio.CatalogoCategorias getCatalogoCategorias() {
-		return catalogoCategorias;
-	}
-
-
-	public void setCatalogoCategorias(negocio.CatalogoCategorias catalogoCategorias) {
-		this.catalogoCategorias = catalogoCategorias;
-	}
-
-
-	public negocio.CatalogoSubCategorias getCatalogoSubCategorias() {
-		return catalogoSubCategorias;
-	}
-
-
-	public void setCatalogoSubCategorias(
-			negocio.CatalogoSubCategorias catalogoSubCategorias) {
-		this.catalogoSubCategorias = catalogoSubCategorias;
-	}
-
-
-	public negocio.CatalogoProductos getCatalogoPrecios() {
-		return catalogoProductos;
-	}
-
-
-	public void setCatalogoPrecios(negocio.CatalogoProductos catalogoPrecios) {
-		this.catalogoProductos = catalogoPrecios;
-	}
-
-
-	public negocio.CatalogoAnuncios getCatalogoAnuncios() {
-		return catalogoAnuncios;
-	}
-
-
-	public void setCatalogoAnuncios(negocio.CatalogoAnuncios catalogoAnuncios) {
-		this.catalogoAnuncios = catalogoAnuncios;
-	}
-
-
-	public negocio.CatalogoClientes getCatalogoClientes() {
-		return catalogoClientes;
-	}
-
-
-	public void setCatalogoClientes(negocio.CatalogoClientes catalogoClientes) {
-		this.catalogoClientes = catalogoClientes;
-	}
-
-
-	public Collection<negocio.Producto> getProductos() {
-		return productos;
-	}
-
-
-	public void setProductos(Collection<negocio.Producto> productos) {
-		this.productos = productos;
-	}
-
-
-	public Collection<negocio.SubCategoria> getSubCategorias() {
-		return subCategorias;
-	}
-
-
-	public void setSubCategorias(Collection<negocio.SubCategoria> subCategorias) {
-		this.subCategorias = subCategorias;
-	}
-
-
-	public negocio.Producto getProductoActual() {
-		return productoActual;
-	}
-
-
-	public void setProductoActual(negocio.Producto productoActual) {
-		this.productoActual = productoActual;
-	}
-
-
-	public Collection<negocio.Cliente> getArrClientesInteresados() {
-		return arrClientesInteresados;
-	}
-
-
-	public void setArrClientesInteresados(
-			Collection<negocio.Cliente> arrClientesInteresados) {
-		this.arrClientesInteresados = arrClientesInteresados;
-	}
-
-
-	public Collection<negocio.Producto> getArrProductosPublicación() {
-		return arrProductosPublicación;
-	}
-
-
-	public void setArrProductosPublicación(
-			Collection<negocio.Producto> arrProductosPublicación) {
-		this.arrProductosPublicación = arrProductosPublicación;
-	}
-
-
-	public negocio.Anuncio getAnuncioActual() {
-		return anuncioActual;
-	}
-
-
-	public void setAnuncioActual(negocio.Anuncio anuncioActual) {
-		this.anuncioActual = anuncioActual;
-	}
-
-
-	public negocio.Producto getProductoModificar() {
-		return productoModificar;
-	}
-
-
-	public void setProductoModificar(negocio.Producto productoModificar) {
-		this.productoModificar = productoModificar;
+		inicializar();
+		
 	}
 	
-	public negocio.CatalogoProductos getCatalogoProductos() {
-		return catalogoProductos;
-	}
-
-	public void setCatalogoProductos(negocio.CatalogoProductos catalogoProductos) {
-		this.catalogoProductos = catalogoProductos;
-	}
-	//---------------------------------------------------------------
-
 	
 	
 	
-	//***************************************************************
-	//* METODOS 													*
-	//***************************************************************
+	
 
-
-	/////////////////////////////////////////////////////////////////
-	//
-	/////////////////////////////////////////////////////////////////
-	public void inicializarCatalogos() throws Exception
+	/**
+	 * OBTIENE EL modeloConfeccionarAnuncio
+	 * @return negocio.modeloConfeccionarAnuncioConfeccionarAnuncio - modeloConfeccionarAnuncio
+	 */
+	public ModeloConfeccionarAnuncio getModeloConfeccionarAnuncio()
 	{
-		this.catalogoCategorias.obtenerCategorias();
-		this.catalogoSubCategorias.obtenerSubCategorias();
-		this.catalogoProductos.obtenerProductos();
-		this.catalogoAnuncios.obtenerAnuncios();
-		this.catalogoClientes.obtenerClientes();
+		return modeloConfeccionarAnuncio;
 	}
-	//---------------------------------------------------------------
-	
-	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.1.1 - DSD 1.7.2 							   //
-	/////////////////////////////////////////////////////////////////
-	//LISTO
-	public Collection<negocio.SubCategoria> seleccionarCategoria(int idCategoria) throws Exception 
-	{
-		//instancia para almacenar la categoria actual seleccionada
-		negocio.Categoria categoriaActual = new negocio.Categoria();
-		
-		//se almacena la categoria buscada 
-		categoriaActual = catalogoCategorias.buscarCategoria(idCategoria);
-		
-		//se crea arreglo de subcategorias
-		Collection<negocio.SubCategoria> subCats = new ArrayList<negocio.SubCategoria>();
-		
-		//se obtienen las subcategorias de la categoria actual
-		if (categoriaActual.getSubCats().isEmpty())
-				categoriaActual.obtenerSubCategorias();
-		
-		subCats = categoriaActual.getSubCats();
-		
-		return subCats;	
-	}
-	//---------------------------------------------------------------
-
+	///////////////////////////////////////////////////////////////
 	
 	
-	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.1.2 - DSD 1.7.3 							   //
-	/////////////////////////////////////////////////////////////////
-	//LISTO
-	public Collection<negocio.Producto> seleccionarSubcategoria(int idCategoria, int idSubCategoria) throws Exception 
-	{
-		negocio.SubCategoria subCatActual = new negocio.SubCategoria();
-		
-		subCatActual = catalogoSubCategorias.buscarSubCategoria(idCategoria,idSubCategoria);
-				
-		Collection<negocio.Producto> productos = new ArrayList<negocio.Producto>();
-		
-		if(subCatActual.getProductos().isEmpty())
-			subCatActual.obtenerProductos();
-
-		productos = subCatActual.getProductos();
-		
-		return productos;
-	}
-	//---------------------------------------------------------------
 	
-	
-
-	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.1.3 - DSD 1.7.4 							   //
-	/////////////////////////////////////////////////////////////////
-	//LISTO
-	public Collection<negocio.Cliente> seleccionarProducto(int idProducto) throws Exception 
-	{
-		//se crea instancia de producto
-		negocio.Producto productoActual = new negocio.Producto();
+	/**
+	 * 
+	 * @param nuevoModelo
+	 */
+	public void actualizarClientesDestinatarios(TableModel nuevoModelo)
+	{			
+		String[] idClientesModif = new String[nuevoModelo.getRowCount()];
 		
-		//se busca el producto y se guarda en la instancia creada
-		//si no se encuentra el producto se guarda null en la instancia
-		productoActual = catalogoProductos.buscarProducto(idProducto);	
+		modeloConfeccionarAnuncio.getArrClientesInteresados().clear();
 		
-		//se valida que el producto exista
-		if (productoActual != null)
+		for(int j=0; j<nuevoModelo.getRowCount(); j++)
+			idClientesModif[j] = nuevoModelo.getValueAt(j,0).toString();
+		
+		for(int i=0; i<idClientesModif.length; i++)
 		{
-			//
-			//arrClientesInteresados = catalogoClientes.obtenerClientesProducto(productoActual);
-			for(negocio.Cliente clienteNegocio : catalogoClientes.obtenerClientesProducto(productoActual))
-			{
-				if(!arrClientesInteresados.contains(clienteNegocio))
-					arrClientesInteresados.add(clienteNegocio);
+			negocio.Cliente clienteActual = new negocio.Cliente();
+			
+			clienteActual = modeloConfeccionarAnuncio.getCatalogoClientes().buscarCliente(Integer.parseInt(idClientesModif[i]));
+			
+			modeloConfeccionarAnuncio.getArrClientesInteresados().add(clienteActual);
+		}
+		
+		guiGenerarAnuncio.tblDestinatarios.completarDatos(modeloConfeccionarAnuncio.getArrClientesInteresados());
+		
+	}
+	////////////////////////////////////////////////////////////////////
+	
+	
+	@Override
+	public void itemStateChanged(ItemEvent evento)
+	{
+		if(evento.getSource().equals(guiGenerarAnuncio.cmbCategorias))
+		{
+			try {
+				click_combo_categorias(evento);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			
-			arrProductosPublicación.add(productoActual);
 		}
-		return arrClientesInteresados;
-	}
-	//---------------------------------------------------------------
-	
-	
-	
-	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.1.4 										   //
-	/////////////////////////////////////////////////////////////////
-	//LISTO - DEPURACION
-	public boolean finalizarCargaProducto() 
-	{
-		try
-		{			
-			//se setea estado
-			this.anuncioActual.setEstado("PENDIENTE");
 		
-			//se guardan los productos
-			this.anuncioActual.setProductos(this.arrProductosPublicación);
-			
-			//se guardan los clientes destinatarios
-			this.anuncioActual.setClientes(this.arrClientesInteresados);
-		
-			return true;
-		}
-		catch (Exception e)
+		if(evento.getSource().equals(guiGenerarAnuncio.cmbSubcategorias))
 		{
-			e.printStackTrace();
-			return false;
+			try {
+				click_combo_subcategorias(evento);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+
+
+
+
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+	@Override
+	public void windowClosed(WindowEvent e)
+	{
+		cerrar_salir();
+	}
+
+
+
+
+
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent evento)
+	{
+		if(evento.getSource().equals(guiGenerarAnuncio.btnGenerar))
+		{
+			action_generar();
+		}
+
+		if(evento.getSource().equals(guiGenerarAnuncio.btnEnviar))
+		{
+        	action_enviar();
+		}
+		
+		if(evento.getSource().equals(guiGenerarAnuncio.btnCerrar))
+		{
+        	cerrar_salir();
+		}			
+	}
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public void mouseClicked(MouseEvent evento)
+	{
+		//
+		if(guiGenerarAnuncio.tblProductos.columnAtPoint(evento.getPoint())==5)
+		{
+			click_aniadir_producto();
+		}
+		//
+		if(guiGenerarAnuncio.tblProductosAnuncio.columnAtPoint(evento.getPoint())==5)
+		{
+			click_eliminar_producto();
+		}
+		//
+		if(evento.getSource().equals(guiGenerarAnuncio.lblModificarDestinatarios))
+		{
+			if(guiGenerarAnuncio.lblModificarDestinatarios.isEnabled())
+			{
+				click_label_modificar_destinatarios();
+			}
+		}
+		//
+		if(evento.getSource().equals(guiGenerarAnuncio.lblModificarPrecios))
+		{
+			if(guiGenerarAnuncio.lblModificarPrecios.isEnabled())
+			{
+				try
+				{
+					click_label_modificar_precios();
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+
 		}
 	}
-	//---------------------------------------------------------------
+
+
+
+
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	
-	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.2.1 //
-	/////////////////////////////////////////////////////////////////
-	//LISTO
-	public void redactarMensaje(String mensaje) 
+	
+	/**
+	 * 
+	 * @throws Exception
+	 */
+	public void actualizar() throws Exception
+	{
+		this.inicializar();
+		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	}	
+	//////////////////////////////////////////
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * INCIALIZACION DE COMPONENTES
+	 * @throws Exception 
+	 */
+	protected void inicializar() throws Exception
 	{		
-		this.anuncioActual.setTextoMensaje(mensaje);
-	}
-	//---------------------------------------------------------------
+		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 
-	
-	
-	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.3.1//
-	/////////////////////////////////////////////////////////////////
-	//LISTO
-	public boolean guardarAnuncio() 
-	{
-		try
-		{
-			anuncioActual.setEstado("ENVIADO");
-			catalogoAnuncios.guardarAnuncio(this.anuncioActual);
-			return true;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return false;
-		}
-	}
-	//---------------------------------------------------------------
-	
-	
-	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.4.1 - DSD NO SE ELABORO POR SIMPLICIDAD        //
-	/////////////////////////////////////////////////////////////////
-	//LISTO
-	public boolean enviarAnuncio(String[] mailsDestinatarios, String asuntoMail, Collection<String> imagenes)
-	{
-		try
-		{
-			this.anuncioActual.enviarAnuncio(mailsDestinatarios, asuntoMail, imagenes);
-			this.anuncioActual.setEstado("ENVIADO");
-			return true;
-		}
-		catch(Exception exc)
-		{
-			return false;
-		}
-	}
-	//---------------------------------------------------------------
+		modeloConfeccionarAnuncio.inicializarCatalogos();
 		
-	
-	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.5.1											   //
-	/////////////////////////////////////////////////////////////////
-	//LISTO
-	public String modificarPrecioProducto(int idProducto) 
-	{
-		negocio.Producto productoModificar;
+		
 
-		productoModificar = anuncioActual.modificarPrecioProducto(idProducto);
-
-		if (productoModificar != null)
-			return Double.toString(productoModificar.getPrecioActual());
-		else
-			return null;
-	}
-	//---------------------------------------------------------------
-	
-	
-	
-	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.5.2											   //
-	/////////////////////////////////////////////////////////////////
-	//LISTO
-	public void cambiarPrecio(float nuevoPrecio) throws Exception 
-	{
-		negocio.Producto productoModificar = new negocio.Producto();
-
-		productoModificar.setPrecioPromocional(nuevoPrecio);
-
-		catalogoProductos.actualizarPrecioPromProducto(productoModificar, nuevoPrecio);
-
-		anuncioActual.actualizarProducto(productoModificar);
-	}
-	//---------------------------------------------------------------
-	
-	
-	
-	////////////////////////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.6.1 (no modifica, solo muestra los posibles clientes a modificar) //
-	////////////////////////////////////////////////////////////////////////////////////
-	//LISTO
-	public void modificarClientesDestinatarios() 
-	{
-		//Collection<negocio.Cliente> arrClientes = new ArrayList<negocio.Cliente>();
-
-		//arrClientes = anuncioActual.getClientes();
-
-//		//SALIDA
-//		String[][] arrDatos = new String[arrClientes.size()][2];
-//
-//		int i = 0;
-//
-//		for (negocio.Cliente c : arrClientes) 
-//		{
-//			arrDatos[i][0] = Integer.toString(c.getIdCliente());
-//			arrDatos[i][1] = c.getNombre();
-//			arrDatos[i][2] = c.getApellido();
-//			i++;
-//		}
-//
-//		return arrDatos;
-	}
-	//---------------------------------------------------------------
-
-	
-	
-	/////////////////////////////////////////////////////////////////
-	// Metodo DSD 1.6.2 										   //
-	/////////////////////////////////////////////////////////////////
-	//LISTO
-	public String[][] seleccionarClientes(String[] idCliente) 
-	{
-		Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
-
-		arrClientesTemp = anuncioActual.seleccionarClientes(idCliente);
-
-		anuncioActual.setClientes(arrClientesTemp);
-
-		//El anuncio actual ya tiene los clientes como atributo
-		catalogoAnuncios.guardarCambioClientesAnuncio(anuncioActual);
-
-		//SALIDA
-		String[][] arrDatos = new String[arrClientesTemp.size()][2]; // Revisar definicion
-
-		int i = 0;
-
-		for (negocio.Cliente c : arrClientesTemp) 
-		{
-			arrDatos[i][0] = Integer.toString(c.getIdCliente());
-			arrDatos[i][1] = c.getNombre();
-			arrDatos[i][2] = c.getApellido();
-			i++;
-		}
-
-		return arrDatos;
-	}
-	//---------------------------------------------------------------
-
-	
-	
-	/////////////////////////////////////////////////////////////////
-	// Metodo 1.7.1 											   //
-	/////////////////////////////////////////////////////////////////
-	//FALTA COMPLETAR
-	public void eliminarProducto(int idProducto) 
-	{
-		negocio.Producto productoActual = new negocio.Producto();
-		//Collection<negocio.Cliente> arrClientesEliminar = new ArrayList<negocio.Cliente>();
+		/***************************************************************
+		 * COMBO CATEGORIAS
+		 ***************************************************************/
+		guiGenerarAnuncio.cmbCategorias.completarDatos(modeloConfeccionarAnuncio.getCatalogoCategorias().getCategorias());
 
 		
-		productoActual = catalogoProductos.buscarProducto(idProducto);
 
-		//arrClientesEliminar = catalogoClientes.obtenerClientesProducto(productoActual);
+		/***************************************************************
+		 * COMBO SUBCATEGORIAS
+		 ***************************************************************/
+		categoria = (negocio.Categoria) guiGenerarAnuncio.cmbCategorias.getSelectedItem();
+		guiGenerarAnuncio.cmbSubcategorias.completarDatos(modeloConfeccionarAnuncio.seleccionarCategoria(categoria.getIdCategoria()));
+		
+		
+		subcategoriaActual = (negocio.SubCategoria) guiGenerarAnuncio.cmbSubcategorias.getSelectedItem();
 
-		//VALIDAR QUE EL CLIENTE NO TENGA OTRO PRODUCTO
-		//ES DECIR, SI ELIMINAMOS UN CLIENTE QUE SEA UN POSIBLE INTERESADO DE OTRO
-		//PRODUCTO DEL ANUNCIO
-		//arrClientesInteresados.remove(arrClientesEliminar);
+		
+		/***************************************************************
+		* TABLA PRODUCTOS
+		***************************************************************/		 
+		guiGenerarAnuncio.tblProductos.completarTabla(modeloConfeccionarAnuncio.seleccionarSubcategoria(
+				subcategoriaActual.getIdcategoria(), 
+				subcategoriaActual.getIdSubcategoria()));
+		guiGenerarAnuncio.tblProductos.definirTablaProductos();
+				
+		guiGenerarAnuncio.tblProductosAnuncio.completarTabla(new ArrayList<negocio.Producto>());
 
-		arrProductosPublicación.remove(productoActual);
+		
+		
+		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
+	//////////////////////////////////////////////
+
+	
+	
+	/**
+	 * ACCION CLICK COMBO CATEGORIAS
+	 * @param evento
+	 * @throws Exception
+	 */
+	protected void click_combo_categorias(ItemEvent evento) throws Exception
+	{
+		if(evento.getStateChange() == ItemEvent.SELECTED)
+		{
+			categoria = new negocio.Categoria();
+			
+			categoria = (negocio.Categoria) guiGenerarAnuncio.cmbCategorias.getSelectedItem();
+			
+			categoria.obtenerSubCategorias();
+			
+			guiGenerarAnuncio.cmbSubcategorias.completarDatos(
+					modeloConfeccionarAnuncio.seleccionarCategoria(categoria.getIdCategoria()));	
+			
+			negocio.SubCategoria subcategoriaSeleccionada = new negocio.SubCategoria();
+			
+			subcategoriaSeleccionada = (negocio.SubCategoria) guiGenerarAnuncio.cmbSubcategorias.getSelectedItem();
+			subcategoriaSeleccionada.obtenerProductos();
+						
+			guiGenerarAnuncio.tblProductos.completarTabla(modeloConfeccionarAnuncio.seleccionarSubcategoria(
+					subcategoriaSeleccionada.getIdcategoria(),
+					subcategoriaSeleccionada.getIdSubcategoria()));
+		}
+	}
+	/////////////////////////////////////////////////////////////////////////
+
+	
+
+	/**
+	 * 
+	 * @param evento
+	 * @throws Exception
+	 */
+	protected void click_combo_subcategorias(ItemEvent evento) throws Exception
+	{		
+		if(evento.getStateChange() == ItemEvent.SELECTED)
+		{			
+			negocio.SubCategoria subcategoriaSeleccionada = new negocio.SubCategoria();
+			
+			subcategoriaSeleccionada = (negocio.SubCategoria) guiGenerarAnuncio.cmbSubcategorias.getSelectedItem();
+			subcategoriaSeleccionada.obtenerProductos();
+			
+			guiGenerarAnuncio.tblProductos.completarTabla(modeloConfeccionarAnuncio.seleccionarSubcategoria(
+					subcategoriaSeleccionada.getIdcategoria(),
+					subcategoriaSeleccionada.getIdSubcategoria()));
+		}
+	}
+	////////////////////////////////////////////////////////////////////////////
+	
+	
+
+	/**
+	 * 
+	 * @param dialogPadre
+	 */
+	protected void action_generar()
+	{
+    	if(guiGenerarAnuncio.txtAsunto.getText().equals(""))
+    		JOptionPane.showMessageDialog(
+    				guiGenerarAnuncio.frmGenerarAnuncio, 
+    				"Debe completar el Asunto.", 
+    				"ATENCIÓN",
+    				JOptionPane.WARNING_MESSAGE);
+    	else 
+    		if(guiGenerarAnuncio.tblProductosAnuncio.getModel().getRowCount() == 0)
+    			JOptionPane.showMessageDialog(
+    					guiGenerarAnuncio.frmGenerarAnuncio, 
+    					"Debe Agregar al menos un producto.", 
+    					"ATENCIÓN",
+    					JOptionPane.WARNING_MESSAGE);
+        	else
+	        {
+        		eliminar_temporal();
+        		
+        		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+	        	
+	        	Collection<HashMap<String, String>> productos = new ArrayList<HashMap<String,String>>();
+	        		        	
+	        	for(int i=0; i<guiGenerarAnuncio.tblProductosAnuncio.getModel().getRowCount();++i)
+	        	{
+	        		HashMap<String, String> producto = new HashMap<String, String>();
+	        		
+	        		producto.put("ID", guiGenerarAnuncio.tblProductosAnuncio.getModel().getValueAt(i, 0).toString());
+	        		producto.put("DESCRIPCION", guiGenerarAnuncio.tblProductosAnuncio.getModel().getValueAt(i, 1).toString());
+	        		producto.put("VIGENTE", guiGenerarAnuncio.tblProductosAnuncio.getModel().getValueAt(i, 2).toString());
+	        		producto.put("PROMOCIONAL", guiGenerarAnuncio.tblProductosAnuncio.getModel().getValueAt(i, 3).toString());
+	        		
+	        		productos.add(producto);
+	        	}
+	        		        		        	
+				@SuppressWarnings("unused")
+				EditorHTML editorHTML = new EditorHTML(guiGenerarAnuncio.frmGenerarAnuncio, productos, guiGenerarAnuncio.txtAsunto.getText());
+	        	if(guiGenerarAnuncio.txtAsunto.getText().equals(""))
+	        		guiGenerarAnuncio.txtAsunto.setEnabled(false);
+	        	guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	        }
+	}
+	///////////////////////////////////////////////////
+	
+	
+	
+	/**
+	 * 
+	 * @param dialogPadre
+	 */
+	protected void action_enviar()
+	{
+		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		
+    	boolean enviado = false;
+		
+    	
+		PrevisualizadorHTML guiPrevisualizadorHTML = new PrevisualizadorHTML(guiGenerarAnuncio.frmGenerarAnuncio);
+
+    	String mailsClientes[] = new String[guiGenerarAnuncio.tblDestinatarios.getModel().getRowCount()];
+    	
+    	for(int i=0; i<guiGenerarAnuncio.tblDestinatarios.getModel().getRowCount();++i)
+    		mailsClientes[i] = guiGenerarAnuncio.tblDestinatarios.getModel().getValueAt(i, 3).toString();
+    	
+		ControladorPrevisualizarHTML controladorPrevisualizarHTML = 
+    			new ControladorPrevisualizarHTML(guiPrevisualizadorHTML, guiGenerarAnuncio.frmGenerarAnuncio, modeloConfeccionarAnuncio, "temporal.html", mailsClientes);
+
+		
+		enviado = controladorPrevisualizarHTML.seEnvio();
+
+		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    	
+    	if(enviado)
+    	{    		
+            limpiar_formulario();
+            eliminar_temporal();
+            
+    		modeloConfeccionarAnuncio.finalizarCargaProducto();
+    		modeloConfeccionarAnuncio.guardarAnuncio();   
+    		limpiar_objetos_temporales();
+    	}
+	}
+	/////////////////////////////////////////////////////////
+	
+
+	
+	/**
+	 * 
+	 */
+	@SuppressWarnings("rawtypes")
+	protected void click_aniadir_producto()
+	{
+		DefaultTableModel modeloTblProductosAnuncio = (DefaultTableModel) guiGenerarAnuncio.tblProductosAnuncio.getModel();
+		DefaultTableModel modeloTblProductos = (DefaultTableModel) guiGenerarAnuncio.tblProductos.getModel();
+
+		
+		int filaSeleccionada = guiGenerarAnuncio.tblProductos.getSelectedRow();
+		Vector fila = new Vector(1);
+		fila = (Vector) modeloTblProductos.getDataVector().elementAt(filaSeleccionada);
+		
+		boolean aux = false;
+
+		for(int i=0; i<guiGenerarAnuncio.tblProductosAnuncio.getRowCount(); ++i)
+		{
+			if(guiGenerarAnuncio.tblProductosAnuncio.getValueAt(i, 0) == guiGenerarAnuncio.tblProductos.getValueAt(filaSeleccionada,0))
+			{ 
+				JOptionPane.showMessageDialog(
+						guiGenerarAnuncio.frmGenerarAnuncio, 
+						"No puede agregar dos veces el mismo producto al anuncio.", 
+						"ATENCIÓN",
+						JOptionPane.WARNING_MESSAGE);
+				aux = true;
+			}
+		}
+		
+		if(!aux && filaSeleccionada >= 0)
+			{
+				modeloTblProductosAnuncio.addRow(fila);
+				guiGenerarAnuncio.tblProductosAnuncio.definirTablaProductosAnuncio();
+												
+				int idProducto = Integer.parseInt(fila.elementAt(0).toString());
+				
+				negocio.Producto producto = modeloConfeccionarAnuncio.getCatalogoProductos().buscarProducto(idProducto);
+				
+				Thread hiloTrabajoAniadir = new Thread( new TabajoAniadirProducto(producto.getIdProducto()));
+				hiloTrabajoAniadir.start();		    	
+		    	
+				new Thread(new interfaces.software.HiloBarraProgreso(hiloTrabajoAniadir, guiGenerarAnuncio.frmGenerarAnuncio, guiGenerarAnuncio.prgProgresoAniadir, 500, false)).start();   
+			}	
+	}
+	////////////////////////////////////////
+	
+	
+	
+	/**
+	 * 
+	 */
+	protected void click_eliminar_producto()
+	{
+		DefaultTableModel tableModel = (DefaultTableModel) guiGenerarAnuncio.tblProductosAnuncio.getModel();
+		int filaSeleccionada = guiGenerarAnuncio.tblProductosAnuncio.getSelectedRow();
+
+	    if (filaSeleccionada >= 0)
+	    {
+	    	modeloConfeccionarAnuncio.eliminarProducto(Integer.parseInt(guiGenerarAnuncio.tblProductosAnuncio.getModel().getValueAt(filaSeleccionada,0).toString()));
+	    	tableModel.removeRow(filaSeleccionada);	
+	    }	    
+	}
+	/////////////////////////////////////////
+	
+	
+	
+	/**
+	 * 
+	 * @param dialogPadre
+	 */
+	protected void click_label_modificar_destinatarios()
+	{
+		interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(guiGenerarAnuncio.frmGenerarAnuncio, this);
+		modif.setVisible(true);	
+	}
+	//////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	/**
+	 * 
+	 * @param dialogPadre
+	 * @throws Exception
+	 */
+	protected void click_label_modificar_precios() throws Exception
+	{
+		Collection<Integer> productosAgregados = new ArrayList<Integer>();
+		
+		for(int i = 0; i < guiGenerarAnuncio.tblProductosAnuncio.getRowCount(); i++)
+		{
+			productosAgregados.add((Integer) guiGenerarAnuncio.tblProductosAnuncio.getModel().getValueAt(i, 0));
+		}
+				
+		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		
+		ModificarPrecios guiModificarPrecios = new ModificarPrecios(guiGenerarAnuncio.frmGenerarAnuncio);
+
+		ModeloModificarPrecios modeloModificarPrecios = new ModeloModificarPrecios();
+		
+		new ControladorModificarPrecios(guiModificarPrecios, modeloModificarPrecios, modeloConfeccionarAnuncio, productosAgregados);
+		
+		guiModificarPrecios.frmModificarPrecios.setVisible(true);
+
+		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		
+		
+		guiGenerarAnuncio.tblProductos.limpiar_tabla();
+		negocio.SubCategoria subAux = (negocio.SubCategoria) guiGenerarAnuncio.cmbSubcategorias.getSelectedItem();
+		guiGenerarAnuncio.tblProductos.completarTabla(modeloConfeccionarAnuncio.seleccionarSubcategoria(
+					subAux.getIdcategoria(), 
+					subAux.getIdSubcategoria()));
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+		
+
+	/**
+	 * 
+	 */
+	protected void cerrar_salir()
+	{
+		limpiar_formulario();
+		limpiar_objetos_temporales();
+		modeloConfeccionarAnuncio = new ModeloConfeccionarAnuncio();
+		guiGenerarAnuncio.frmGenerarAnuncio.dispose();
+	}
+	//////////////////////////////
+	
+	
+
+	/**
+	 * 
+	 */
+	protected void limpiar_formulario()
+	{
+		guiGenerarAnuncio.cmbCategorias.setSelectedIndex(0);
+		guiGenerarAnuncio.cmbSubcategorias.setSelectedIndex(0);
+		guiGenerarAnuncio.txtAsunto.setText("");
+		guiGenerarAnuncio.lblModificarDestinatarios.setEnabled(false);
+		
+		guiGenerarAnuncio.tblProductosAnuncio.limpiar_tabla();
+		guiGenerarAnuncio.tblDestinatarios.limpiar_tabla();
+		guiGenerarAnuncio.prgProgresoAniadir.setValue(0);
+	}
+	////////////////////////////////////
+	
+	
+
+	/**
+	 * 
+	 */
+	private void limpiar_objetos_temporales()
+	{
+		modeloConfeccionarAnuncio.getArrClientesInteresados().clear();
+		modeloConfeccionarAnuncio.getArrProductosPublicacion().clear();
+		modeloConfeccionarAnuncio.setAnuncioActual(new negocio.Anuncio()); 
+	}
+	//////////////////////////////////////////
+	
+	
+	/**
+	 * 
+	 */
+	private void eliminar_temporal()
+	{
+		try
+			{
+				File archivoHTML = new File(utilidades.Configuraciones.DIR_MAILS+"temporal.html");
+				if(archivoHTML.exists())
+					archivoHTML.delete();
+			} 
+			catch (Exception e1) 
+			{
+				e1.printStackTrace();
+			}	
+	}
+	/////////////////////////////////
+	
+	
+	
+	/**
+	 * 
+	 */
+	private void desactivar_botones()
+	{
+		guiGenerarAnuncio.frmGenerarAnuncio.setEnabled(false);
+		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		guiGenerarAnuncio.btnCerrar.setEnabled(false);
+		guiGenerarAnuncio.btnEnviar.setEnabled(false);
+		guiGenerarAnuncio.btnGenerar.setEnabled(false);
+		guiGenerarAnuncio.lblModificarDestinatarios.setEnabled(false);
+		guiGenerarAnuncio.lblModificarPrecios.setEnabled(false);
+	}
+	//////////////////////////////////
+	
+	
+	/**
+	 * 
+	 */
+	private void activar_botones()
+	{
+		guiGenerarAnuncio.btnCerrar.setEnabled(true);
+		guiGenerarAnuncio.btnEnviar.setEnabled(true);
+		guiGenerarAnuncio.btnGenerar.setEnabled(true);
+		guiGenerarAnuncio.lblModificarDestinatarios.setEnabled(true);
+		guiGenerarAnuncio.lblModificarPrecios.setEnabled(true);
+		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		guiGenerarAnuncio.frmGenerarAnuncio.setEnabled(true);
+	}
+	///////////////////////////////
+	
+	
+	
+	/**
+	 * 
+	 *  
+	 *
+	 */
+	public class TabajoAniadirProducto implements Runnable
+	{
+		
+		private int idProducto;
+
+	    
+	    public TabajoAniadirProducto(int idProducto)
+	    {
+	    	this.idProducto = idProducto;
+	    }
+	    
+	    @Override
+	    public void run()
+	    {			
+	        try
+	        {		
+	        	desactivar_botones();
+	        	
+	        	modeloConfeccionarAnuncio.seleccionarProducto(this.idProducto);		
+	        	
+	        	guiGenerarAnuncio.tblDestinatarios.completarDatos(modeloConfeccionarAnuncio.getArrClientesInteresados());
+
+	        	Thread.sleep( 1000 );
+	        }
+	        catch (InterruptedException e)
+	        {
+	            System.err.println( e.getMessage() );
+	        } 
+	        catch (Exception e) 
+	        {
+				e.printStackTrace();
+			}
+	        finally
+	        {
+				if(guiGenerarAnuncio.tblDestinatarios.getModel().getRowCount()>0)
+					guiGenerarAnuncio.lblModificarDestinatarios.setEnabled(true);
+				
+				activar_botones();
+	        }
+	    }
+	} 
+	
+	
+	///////////////////////////////////////////////////////
 }

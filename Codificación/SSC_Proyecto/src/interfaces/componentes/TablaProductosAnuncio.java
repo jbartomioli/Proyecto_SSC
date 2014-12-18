@@ -32,7 +32,8 @@ public class TablaProductosAnuncio extends JTable
 	}
 
 
-	public void completarTabla(Collection<negocio.Producto> productos) {
+	public void completarTabla(Collection<negocio.Producto> productos)
+	{
 
 		while (modeloTablaProductos.getRowCount() > 0)
 			modeloTablaProductos.removeRow(0);

@@ -28,7 +28,7 @@ public class PrevisualizadorHTML
 	 * CONSTRUCTOR
 	 * @param framePadre GenerarAnuncio - Frame padre
 	 */
-	public PrevisualizadorHTML(GenerarAnuncio framePadre)
+	public PrevisualizadorHTML(JDialog framePadre)
 	{
 		//FORMULARIO BASE
 		frmPrevisualizacion = new JDialogBaseFormularios((JDialog) framePadre,"Vista Previa de Contenido de E-Mail","ENVIAR.png",true);		

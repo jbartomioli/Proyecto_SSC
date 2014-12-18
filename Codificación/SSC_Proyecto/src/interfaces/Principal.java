@@ -28,8 +28,10 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.KeyStroke;
 
+import negocio.ModeloConfeccionarAnuncio;
 import negocio.ModeloModificarPrecios;
 import controladores.ControladorAyuda;
+import controladores.ControladorConfeccionarAnuncio;
 import controladores.ControladorConfiguraciones;
 import controladores.ControladorImportarDatos;
 import controladores.ControladorModificarPrecios;
@@ -58,7 +60,6 @@ public class Principal extends JFrame {
 	private JMenu mnuArchivo;
 	private JMenuItem mntSalir;
 	private JMenu mnuOperaciones;
-	private interfaces.GenerarAnuncio generarAnuncio;
 	private interfaces.SeguimientoDeClientes seguimientoClientes;
 	private JMenuItem mntConfeccionar;
 	private JMenuItem mntSeguimiento;
@@ -186,6 +187,7 @@ public class Principal extends JFrame {
 									"ATENCIÓN",
 									JOptionPane.INFORMATION_MESSAGE);
 							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+							e.printStackTrace();
 						}
 						if(e.getClass().getName().equals("org.hibernate.exception.JDBCConnectionException"))
 						{
@@ -195,6 +197,8 @@ public class Principal extends JFrame {
 								"ERROR",
 								JOptionPane.ERROR_MESSAGE);
 							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+							e.printStackTrace();
+
 						}
 					}
 				}
@@ -417,9 +421,15 @@ public class Principal extends JFrame {
 	protected void click_generar_anuncio() throws Exception
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		generarAnuncio = new interfaces.GenerarAnuncio(this, true);
-		generarAnuncio.actualizar();
-		generarAnuncio.setVisible(true);
+		
+		GenerarAnuncio guiGenerarAnuncio = new GenerarAnuncio(this, true);
+		
+		ModeloConfeccionarAnuncio modeloConfeccionarAnuncio = new ModeloConfeccionarAnuncio();
+		
+		new ControladorConfeccionarAnuncio(modeloConfeccionarAnuncio, guiGenerarAnuncio);
+		
+		guiGenerarAnuncio.frmGenerarAnuncio.setVisible(true);
+		
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	

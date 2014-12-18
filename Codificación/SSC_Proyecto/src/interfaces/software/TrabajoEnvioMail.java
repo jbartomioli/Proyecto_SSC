@@ -2,13 +2,15 @@ package interfaces.software;
 
 import java.util.Collection;
 
+import negocio.ModeloConfeccionarAnuncio;
+
 
 
 
 
 public class TrabajoEnvioMail implements Runnable{
 	
-    private controladores.ControladorConfeccionarAnuncio controlador;
+    private ModeloConfeccionarAnuncio modeloConfeccionarAnuncio;
     private String [] mailsDestinatarios;
     private String asuntoMail;
     private Collection<String> imagenes;
@@ -16,12 +18,12 @@ public class TrabajoEnvioMail implements Runnable{
     
     public TrabajoEnvioMail( 
     		int tiempo, 
-    		controladores.ControladorConfeccionarAnuncio controlador,
+    		ModeloConfeccionarAnuncio modeloConfeccionarAnuncio,
     		String [] mailsDestinatarios, 
     		String asuntoMail, 
     		Collection<String> imagenes)
     {
-    	this.controlador = controlador;
+    	this.modeloConfeccionarAnuncio = modeloConfeccionarAnuncio;
         this.mailsDestinatarios = mailsDestinatarios;
         this.asuntoMail = asuntoMail; 
         this.imagenes = imagenes;
@@ -32,7 +34,7 @@ public class TrabajoEnvioMail implements Runnable{
     {		
         try
         {		
-        	controlador.enviarAnuncio(mailsDestinatarios, asuntoMail, imagenes);
+        	modeloConfeccionarAnuncio.enviarAnuncio(mailsDestinatarios, asuntoMail, imagenes);
         	
         	Thread.sleep( 1000 );
         }
