@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <HTML>
-<img alt="Imágen encabezado" src="C:\Users\PCRodrigo\Desktop\Codificación\SSC_Proyecto\recursos\presentacion\imgInicioSup.jpg">
+<img alt="Imágen encabezado" src="img/imgInicioSup.jpg">
     <HEAD>
         <TITLE>Login Sistema de Pedidos</TITLE>
     </HEAD>
@@ -38,5 +38,5 @@
             %>
          
     </BODY>
-<img alt="Imágen pie" src="C:\Users\PCRodrigo\Desktop\Codificación\SSC_Proyecto\recursos\presentacion\imgInicioInf.jpg">
+<img alt="Imágen pie" src="img/imgInicioInf.jpg">
 </HTML> 
