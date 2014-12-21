@@ -41,7 +41,12 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	private Categoria categoria;
 
 	
-	
+	/**
+	 * CONSTRUCTOR
+	 * @param modeloConfeccionarAnuncio
+	 * @param guiGenerarAnuncio
+	 * @throws Exception
+	 */
 	public ControladorConfeccionarAnuncio(ModeloConfeccionarAnuncio modeloConfeccionarAnuncio, GenerarAnuncio guiGenerarAnuncio) throws Exception
 	{
 		this.modeloConfeccionarAnuncio = modeloConfeccionarAnuncio;
@@ -59,11 +64,8 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 		this.guiGenerarAnuncio.lblModificarPrecios.addMouseListener(this);
 
 		inicializar();
-		
 	}
-	
-	
-	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 	
 

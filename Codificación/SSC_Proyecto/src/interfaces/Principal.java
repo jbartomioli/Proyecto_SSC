@@ -30,11 +30,13 @@ import javax.swing.KeyStroke;
 
 import negocio.ModeloConfeccionarAnuncio;
 import negocio.ModeloModificarPrecios;
+import negocio.ModeloRealizarSeguimientoCliente;
 import controladores.ControladorAyuda;
 import controladores.ControladorConfeccionarAnuncio;
 import controladores.ControladorConfiguraciones;
 import controladores.ControladorImportarDatos;
 import controladores.ControladorModificarPrecios;
+import controladores.ControladorRealizarSeguimientoCliente;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
@@ -60,7 +62,6 @@ public class Principal extends JFrame {
 	private JMenu mnuArchivo;
 	private JMenuItem mntSalir;
 	private JMenu mnuOperaciones;
-	private interfaces.SeguimientoDeClientes seguimientoClientes;
 	private JMenuItem mntConfeccionar;
 	private JMenuItem mntSeguimiento;
 	private JMenuItem mntPrecios;
@@ -442,8 +443,15 @@ public class Principal extends JFrame {
 	protected void click_realizar_seguimiento() throws Exception
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		seguimientoClientes = new interfaces.SeguimientoDeClientes(this);
-		seguimientoClientes.setVisible(true);
+		
+			
+		SeguimientoDeClientes guiSeguimiento = new SeguimientoDeClientes(this);
+		ModeloRealizarSeguimientoCliente modeloSeguimiento = new ModeloRealizarSeguimientoCliente();
+		
+		new ControladorRealizarSeguimientoCliente(guiSeguimiento, modeloSeguimiento);
+		
+		guiSeguimiento.frmSeguimiento.setVisible(true);
+		
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	
