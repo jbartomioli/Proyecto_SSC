@@ -28,15 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import negocio.ModeloRealizarSeguimientoCliente;
 
-
-
-
-
-
-
-
-
-
+import negocio.Venta;
 
 //INICIO IMPORTS PARA GRAFICAR
 import org.jfree.chart.*;
@@ -44,7 +36,6 @@ import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.*;
-
 //FIN IMPORTS PARA GRAFICAR
 
 
@@ -55,18 +46,6 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 	//ATRIBUTOS
 	private ModeloRealizarSeguimientoCliente modeloSeguimiento;
 	private SeguimientoDeClientes guiSeguimiento;
-
-
-	
-	
-	private int idClienteSeleccionado;
-	private Date fechaActual;
-	private Date fechaMaxCompra;
-	private long diference;
-	private long days;
-	private Collection<negocio.Venta> ventasCliente;
-	
-	
 	
 	
 
@@ -95,9 +74,8 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 
 
 	@Override
-	public void windowActivated(WindowEvent evento) {
-		// TODO Auto-generated method stub
-		
+	public void windowActivated(WindowEvent evento)
+	{		
 	}
 
 
@@ -114,41 +92,36 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 
 
 	@Override
-	public void windowClosing(WindowEvent evento) {
-		// TODO Auto-generated method stub
-		
+	public void windowClosing(WindowEvent evento)
+	{		
 	}
 
 
 
 	@Override
-	public void windowDeactivated(WindowEvent evento) {
-		// TODO Auto-generated method stub
-		
+	public void windowDeactivated(WindowEvent evento)
+	{
 	}
 
 
 
 	@Override
-	public void windowDeiconified(WindowEvent evento) {
-		// TODO Auto-generated method stub
-		
+	public void windowDeiconified(WindowEvent evento)
+	{		
 	}
 
 
 
 	@Override
-	public void windowIconified(WindowEvent evento) {
-		// TODO Auto-generated method stub
-		
+	public void windowIconified(WindowEvent evento)
+	{		
 	}
 
 
 
 	@Override
-	public void windowOpened(WindowEvent evento) {
-		// TODO Auto-generated method stub
-		
+	public void windowOpened(WindowEvent evento) 
+	{
 	}
 
 
@@ -181,37 +154,31 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseEntered(MouseEvent evento)
+	{
 	}
 
 
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseExited(MouseEvent evento)
+	{		
 	}
 
 
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mousePressed(MouseEvent evento)
+	{		
 	}
 
 
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseReleased(MouseEvent evento)
+	{
 	}
 
-	
-	
 	
 
 
@@ -260,17 +227,15 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void keyReleased(KeyEvent e)
+	{
 	}
 
 
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void keyTyped(KeyEvent e)
+	{
 	}
 	
 	
@@ -278,184 +243,193 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 		
 
 	
-		/**
-		 * 
-		 */
-		protected void cerrar_salir()
+	/**
+	 * 
+	 */
+	protected void cerrar_salir()
+	{			
+		guiSeguimiento.frmSeguimiento.dispose();
+	}
+		
+		
+		
+		
+		
+	/**
+	 * 
+	 * @param modeloSeguimiento
+	 * @param evento
+	 */
+	protected void click_combo_especialidad(ModeloRealizarSeguimientoCliente modeloSeguimiento, ItemEvent evento)
+	{		
+		if(evento.getStateChange() == ItemEvent.SELECTED)
 		{			
-			guiSeguimiento.frmSeguimiento.dispose();
-		}
-		
-		
-		
-		
-		
-		/**
-		 * 
-		 * @param modeloSeguimiento
-		 * @param evento
-		 */
-		protected void click_combo_especialidad(ModeloRealizarSeguimientoCliente modeloSeguimiento, ItemEvent evento)
-		{		
-			if(evento.getStateChange() == ItemEvent.SELECTED)
-			{			
-				Object esp = guiSeguimiento.cmbEspecialidad.getSelectedItem();
-				String especialidad = String.valueOf(esp);
-						
-				guiSeguimiento.tblClientesBuscados.completarTabla(
-						modeloSeguimiento.getCatalogoClientes().buscarClientesPorEspecialidad(especialidad));
-				
-				guiSeguimiento.tblClientesBuscados.definirTablaDestinatariosBuscados();
-			}
-		}
-		
-		
-		
-		
-		
-		/**
-		 * 
-		 * @param modeloSeguimiento
-		 */
-		protected void buscar_cliente_textField(ModeloRealizarSeguimientoCliente modeloSeguimiento) 
-		{
+			Object esp = guiSeguimiento.cmbEspecialidad.getSelectedItem();
+			String especialidad = String.valueOf(esp);
+					
 			guiSeguimiento.tblClientesBuscados.completarTabla(
-					modeloSeguimiento.buscarCliente(guiSeguimiento.txtBuscarCliente.getText()));
-			guiSeguimiento.tblClientesBuscados.definirTablaDestinatariosBuscados();
-		}
-		
-		
-		
-		
-		/**
-		 * 
-		 * @param modeloSeguimiento
-		 */
-		protected void buscar_cliente_boton(ModeloRealizarSeguimientoCliente modeloSeguimiento)
-		{
-			guiSeguimiento.tblClientesBuscados.completarTabla(
-					modeloSeguimiento.buscarCliente(guiSeguimiento.txtBuscarCliente.getText()));
-			guiSeguimiento.tblClientesBuscados.definirTablaDestinatariosBuscados();
-		}
-		
-		
-		
-		
-		/**
-		 * 
-		 */
-		protected void click_boton_aceptar()
-		{				
-			guiSeguimiento.frmSeguimiento.dispose();
-		}
-		
-		
-		/**
-		 * 
-		 * @throws Exception
-		 */
-		@SuppressWarnings("rawtypes")
-		protected void click_seleccionar_cliente() throws Exception
-		{
-			DefaultTableModel modeloClientesBuscados = (DefaultTableModel) guiSeguimiento.tblClientesBuscados.getModel();
+					modeloSeguimiento.getCatalogoClientes().buscarClientesPorEspecialidad(especialidad));
 			
-			int filaSeleccionada = guiSeguimiento.tblClientesBuscados.getSelectedRow();
-			java.util.Vector fila;
-			fila = (java.util.Vector) modeloClientesBuscados.getDataVector().elementAt(filaSeleccionada);
-			  
-		    if(filaSeleccionada >= 0)
-			{
-		    	int idCliente = Integer.parseInt(fila.elementAt(0).toString());
-		    	
-		    	if(idCliente != idClienteSeleccionado)
-		    	{
-		    		negocio.Cliente cliente = this.modeloSeguimiento.buscarCliente(idCliente);
-			    	
-			    	cliente.obtenerVentas();
-			    	
-			    	fechaActual = new Date();
-			    	fechaMaxCompra = new Date();
-			    	
-			    	DateFormat outputFormatter = new SimpleDateFormat("dd/MM/yyyy");
-		    		
-			    	try {
-						fechaMaxCompra = outputFormatter.parse(cliente.obtenerMaxVenta());
-					} catch (ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-		    		
-		    		diference = fechaActual.getTime() - fechaMaxCompra.getTime();
-		    		
-		    		days = diference / (24 * 60 * 60 * 1000);
-			    	
-		    		guiSeguimiento.txtApNomSelec.setText(cliente.getApellido() + ", " + cliente.getNombre());
-		    		guiSeguimiento.txtEspecSelec.setText(cliente.getEspecialidad());
-		    		guiSeguimiento.txtMailSelec.setText(cliente.getEmail());
-		    		guiSeguimiento.txtDirSelec.setText(cliente.getDireccion());
-		    		guiSeguimiento.txtTelSelec.setText(cliente.getTelefono());
-		    		guiSeguimiento.txtTotVtasSelec.setText(String.valueOf(DecimalFormat.getCurrencyInstance().format(cliente.obtenerTotalVentas())));
-					
-					
-					// INICIO GRAFICO DE LINEAS //
-					String chartTitle = "Ventas por día";
-					String xAxisLabel = "Fecha";
-					String yAxisLabel = "Monto de Ventas ($)";
-					 
-					XYDataset dataset = createDataset(cliente);
-					 
-					JFreeChart chart = ChartFactory.createTimeSeriesChart(chartTitle, xAxisLabel, yAxisLabel, dataset, true, true, false);
-
-					ChartPanel chartPanel = new ChartPanel(chart);
-					 
-					guiSeguimiento.pnlGrafico.removeAll();
-					guiSeguimiento.pnlGrafico.setVisible(true);
-					guiSeguimiento.pnlGrafico.add(chartPanel, BorderLayout.CENTER);
-					// FIN GRAFICO DE LINEAS //		
-					
-					guiSeguimiento.lblInfo.setText("La última compra del cliente ha sido el: " + cliente.obtenerMaxVenta() + ".");
-					guiSeguimiento.lblInfo.setVisible(true);
-					
-					if(days > 90)
-					{
-						guiSeguimiento.lblWarning.setText("El cliente lleva más de 3 (tres) meses sin realizar una compra");
-					}
-					else
-					{
-						guiSeguimiento.lblWarning.setText("");
-					}
-					
-					idClienteSeleccionado = idCliente;
-		    	}
-				 
-			}
+			guiSeguimiento.tblClientesBuscados.definirTablaDestinatariosBuscados();
 		}
-				
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * @param modeloSeguimiento
+	 */
+	protected void buscar_cliente_textField(ModeloRealizarSeguimientoCliente modeloSeguimiento) 
+	{
+		guiSeguimiento.tblClientesBuscados.completarTabla(
+				modeloSeguimiento.buscarCliente(guiSeguimiento.txtBuscarCliente.getText()));
+		guiSeguimiento.tblClientesBuscados.definirTablaDestinatariosBuscados();
+	}
+	
+	
+	
+	
+	/**
+	 * 
+	 * @param modeloSeguimiento
+	 */
+	protected void buscar_cliente_boton(ModeloRealizarSeguimientoCliente modeloSeguimiento)
+	{
+		guiSeguimiento.tblClientesBuscados.completarTabla(
+				modeloSeguimiento.buscarCliente(guiSeguimiento.txtBuscarCliente.getText()));
+		guiSeguimiento.tblClientesBuscados.definirTablaDestinatariosBuscados();
+	}
+	
+	
+	
+	
+	/**
+	 * 
+	 */
+	protected void click_boton_aceptar()
+	{				
+		guiSeguimiento.frmSeguimiento.dispose();
+	}
+	
+	
+	/**
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("rawtypes")
+	protected void click_seleccionar_cliente() throws Exception
+	{
+		int idClienteSeleccionado = 0;
+		Date fechaActual;
+		Date fechaMaxCompra;
+		long diference;
+		long days;
 		
+		DefaultTableModel modeloClientesBuscados = (DefaultTableModel) guiSeguimiento.tblClientesBuscados.getModel();
 		
-		
-		/**
-		 * 
-		 * @param cliente
-		 * @return
-		 */
-		protected XYDataset createDataset(negocio.Cliente cliente) 
+		int filaSeleccionada = guiSeguimiento.tblClientesBuscados.getSelectedRow();
+		java.util.Vector fila;
+		fila = (java.util.Vector) modeloClientesBuscados.getDataVector().elementAt(filaSeleccionada);
+		  
+	    if(filaSeleccionada >= 0)
 		{
-			TimeSeriesCollection dataset = new TimeSeriesCollection();
-		    TimeSeries serie2 = new TimeSeries("Ventas por día");
-		    
-		    ventasCliente = new ArrayList<negocio.Venta>();
-		    ventasCliente = cliente.getVentas();
-		    
-		    for(negocio.Venta ventaCliente : ventasCliente)
-		    {
-		    	serie2.addOrUpdate(new Day(ventaCliente.getFechaVenta()), ventaCliente.getTotal());
-		    }
-		     
-		    dataset.addSeries(serie2);
-		     
-		    return dataset;
+	    	int idCliente = Integer.parseInt(fila.elementAt(0).toString());
+	    	
+	    	if(idCliente != idClienteSeleccionado)
+	    	{
+	    		negocio.Cliente cliente = this.modeloSeguimiento.buscarCliente(idCliente);
+		    	
+		    	cliente.obtenerVentas();
+		    	
+		    	fechaActual = new Date();
+		    	fechaMaxCompra = new Date();
+		    	
+		    	DateFormat outputFormatter = new SimpleDateFormat("dd/MM/yyyy");
+	    		
+		    	try
+		    	{
+					fechaMaxCompra = outputFormatter.parse(cliente.obtenerMaxVenta());
+				}
+		    	catch (ParseException e)
+				{
+					e.printStackTrace();
+				}
+	    		
+	    		diference = fechaActual.getTime() - fechaMaxCompra.getTime();
+	    		
+	    		days = diference / (24 * 60 * 60 * 1000);
+		    	
+	    		guiSeguimiento.txtApNomSelec.setText(cliente.getApellido() + ", " + cliente.getNombre());
+	    		guiSeguimiento.txtEspecSelec.setText(cliente.getEspecialidad());
+	    		guiSeguimiento.txtMailSelec.setText(cliente.getEmail());
+	    		guiSeguimiento.txtDirSelec.setText(cliente.getDireccion());
+	    		guiSeguimiento.txtTelSelec.setText(cliente.getTelefono());
+	    		guiSeguimiento.txtTotVtasSelec.setText(String.valueOf(DecimalFormat.getCurrencyInstance().format(cliente.obtenerTotalVentas())));
+				
+				
+				// INICIO GRAFICO DE LINEAS //
+				String chartTitle = "Ventas por día";
+				String xAxisLabel = "Fecha";
+				String yAxisLabel = "Monto de Ventas ($)";
+				 
+				XYDataset dataset = createDataset(cliente);
+				 
+				JFreeChart chart = ChartFactory.createTimeSeriesChart(chartTitle, xAxisLabel, yAxisLabel, dataset, true, true, false);
+
+				ChartPanel chartPanel = new ChartPanel(chart);
+				 
+				guiSeguimiento.pnlGrafico.removeAll();
+				guiSeguimiento.pnlGrafico.setVisible(true);
+				guiSeguimiento.pnlGrafico.add(chartPanel, BorderLayout.CENTER);
+				// FIN GRAFICO DE LINEAS //		
+				
+				guiSeguimiento.lblInfo.setText("La última compra del cliente ha sido el: " + cliente.obtenerMaxVenta() + ".");
+				guiSeguimiento.lblInfo.setVisible(true);
+				
+				if(days > 90)
+				{
+					guiSeguimiento.lblWarning.setText("El cliente lleva más de 3 (tres) meses sin realizar una compra");
+				}
+				else
+				{
+					guiSeguimiento.lblWarning.setText("");
+				}
+				
+				idClienteSeleccionado = idCliente;
+	    	}
+			 
 		}
+	}
+			
+	
+	
+	
+	/**
+	 * 
+	 * @param cliente
+	 * @return
+	 */
+	protected XYDataset createDataset(negocio.Cliente cliente) 
+	{
+		TimeSeriesCollection dataset = new TimeSeriesCollection();
+	    TimeSeries serie2 = new TimeSeries("Ventas por día");
+	    
+	    Collection<Venta> ventasCliente = new ArrayList<Venta>();
+	   
+	    ventasCliente = cliente.getVentas();
+	    
+	    for(Venta ventaCliente : ventasCliente)
+	    {
+	    	serie2.addOrUpdate(new Day(ventaCliente.getFechaVenta()), ventaCliente.getTotal());
+	    }
+	     
+	    dataset.addSeries(serie2);
+	     
+	    return dataset;
+	}
 
 
 
