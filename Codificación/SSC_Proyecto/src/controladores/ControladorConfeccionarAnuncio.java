@@ -2,6 +2,7 @@ package controladores;
 
 import interfaces.EditorHTML;
 import interfaces.GenerarAnuncio;
+import interfaces.ModificarDestinatarios;
 import interfaces.ModificarPrecios;
 import interfaces.PrevisualizadorHTML;
 
@@ -98,7 +99,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 		{
 			negocio.Cliente clienteActual = new negocio.Cliente();
 			
-			clienteActual = modeloConfeccionarAnuncio.getCatalogoClientes().buscarCliente(Integer.parseInt(idClientesModif[i]));
+			clienteActual = modeloConfeccionarAnuncio.buscarCliente(Integer.parseInt(idClientesModif[i]));
 			
 			modeloConfeccionarAnuncio.getArrClientesInteresados().add(clienteActual);
 		}
@@ -114,20 +115,24 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	{
 		if(evento.getSource().equals(guiGenerarAnuncio.cmbCategorias))
 		{
-			try {
+			try 
+			{
 				click_combo_categorias(evento);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
+			} 
+			catch (Exception e)
+			{
 				e.printStackTrace();
 			}
 		}
 		
 		if(evento.getSource().equals(guiGenerarAnuncio.cmbSubcategorias))
 		{
-			try {
+			try
+			{
 				click_combo_subcategorias(evento);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
+			}
+			catch (Exception e)
+			{
 				e.printStackTrace();
 			}
 		}
@@ -611,8 +616,13 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	 */
 	protected void click_label_modificar_destinatarios()
 	{
-		interfaces.ModificarDestinatarios modif = new interfaces.ModificarDestinatarios(guiGenerarAnuncio.frmGenerarAnuncio, this);
-		modif.setVisible(true);	
+		ModificarDestinatarios guiModificarDestinatarios = new ModificarDestinatarios(guiGenerarAnuncio.frmGenerarAnuncio);
+		
+		new ControladorModificarDestinatarios(guiModificarDestinatarios, this);
+		
+		guiModificarDestinatarios.frmModificarDestinatarios.setVisible(true);
+		
+		
 	}
 	//////////////////////////////////////////////////////////////////////////////////////////
 	

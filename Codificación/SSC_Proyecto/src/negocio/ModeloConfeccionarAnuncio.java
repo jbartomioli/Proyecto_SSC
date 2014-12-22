@@ -271,7 +271,10 @@ public class ModeloConfeccionarAnuncio
 			for(negocio.Cliente clienteNegocio : catalogoClientes.obtenerClientesProducto(productoActual))
 			{
 				if(!arrClientesInteresados.contains(clienteNegocio))
+				{
 					arrClientesInteresados.add(clienteNegocio);
+				}
+				
 			}
 			
 			
@@ -406,26 +409,13 @@ public class ModeloConfeccionarAnuncio
 	// Metodo DSD 1.6.1 (no modifica, solo muestra los posibles clientes a modificar) //
 	////////////////////////////////////////////////////////////////////////////////////
 	//LISTO
-	public void modificarClientesDestinatarios() 
+	public Collection<Cliente> modificarClientesDestinatarios() 
 	{
-		//Collection<negocio.Cliente> arrClientes = new ArrayList<negocio.Cliente>();
+//		Collection<Cliente> arrClientes = new ArrayList<Cliente>();
 
-		//arrClientes = anuncioActual.getClientes();
+//		arrClientes = anuncioActual.getClientes();
 
-//		//SALIDA
-//		String[][] arrDatos = new String[arrClientes.size()][2];
-//
-//		int i = 0;
-//
-//		for (negocio.Cliente c : arrClientes) 
-//		{
-//			arrDatos[i][0] = Integer.toString(c.getIdCliente());
-//			arrDatos[i][1] = c.getNombre();
-//			arrDatos[i][2] = c.getApellido();
-//			i++;
-//		}
-//
-//		return arrDatos;
+		return getArrClientesInteresados();
 	}
 	//---------------------------------------------------------------
 
@@ -435,7 +425,7 @@ public class ModeloConfeccionarAnuncio
 	// Metodo DSD 1.6.2 										   //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public String[][] seleccionarClientes(String[] idCliente) 
+	public void seleccionarClientes(String[] idCliente) 
 	{
 		Collection<negocio.Cliente> arrClientesTemp = new ArrayList<negocio.Cliente>();
 
@@ -447,24 +437,71 @@ public class ModeloConfeccionarAnuncio
 		catalogoAnuncios.guardarCambioClientesAnuncio(anuncioActual);
 
 		//SALIDA
-		String[][] arrDatos = new String[arrClientesTemp.size()][2]; // Revisar definicion
+//		String[][] arrDatos = new String[arrClientesTemp.size()][2]; // Revisar definicion
 
-		int i = 0;
+//		int i = 0;
 
-		for (negocio.Cliente c : arrClientesTemp) 
-		{
-			arrDatos[i][0] = Integer.toString(c.getIdCliente());
-			arrDatos[i][1] = c.getNombre();
-			arrDatos[i][2] = c.getApellido();
-			i++;
-		}
+//		for (negocio.Cliente c : arrClientesTemp) 
+//		{
+//			arrDatos[i][0] = Integer.toString(c.getIdCliente());
+//			arrDatos[i][1] = c.getNombre();
+//			arrDatos[i][2] = c.getApellido();
+//			i++;
+//		}
 
-		return arrDatos;
+//		return arrDatos;
 	}
 	//---------------------------------------------------------------
 
 	
+	/////////////////////////////////////////////////////////////////
+	//											   //
+	/////////////////////////////////////////////////////////////////
+	//
+	public negocio.Cliente buscarCliente(int idCliente)
+	{
+		//cliente temporal
+		negocio.Cliente cliente;
+				
+		//se busca al cliente por su idCliente		
+		cliente = catalogoClientes.buscarCliente(idCliente);
+		
+		return cliente;
+	}
+	//---------------------------------------------------------------
 	
+	
+	/////////////////////////////////////////////////////////////////
+	//											   //
+	/////////////////////////////////////////////////////////////////
+	//
+	public Collection<negocio.Cliente> buscarCliente(String descParcial)
+	{
+			
+		Collection<negocio.Cliente> clientes = new ArrayList<negocio.Cliente>();
+						
+		clientes = catalogoClientes.buscarClientesDescPcial(descParcial);
+		
+		return clientes;
+	}
+	//---------------------------------------------------------------
+	
+	
+	
+	
+	public Collection<negocio.Cliente> buscarClientesPorEspecialidad(String especialidad)
+	{
+			
+		Collection<negocio.Cliente> clientes = new ArrayList<negocio.Cliente>();
+						
+		clientes = catalogoClientes.buscarClientesPorEspecialidad(especialidad);
+		
+		return clientes;
+	}
+	//---------------------------------------------------------------
+	
+	
+		
 	/////////////////////////////////////////////////////////////////
 	// Metodo 1.7.1 											   //
 	/////////////////////////////////////////////////////////////////
