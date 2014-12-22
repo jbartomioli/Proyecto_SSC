@@ -21,15 +21,11 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 import javax.swing.JLayeredPane;
-
-
-
-
-
-
-
-
-
+/**
+ * GUI FORMULARIO DE SEGUIMIENTO DE CLIENTES
+ * @author Javier Bartomioli - Rodrigo Naredo 
+ *
+ */
 public class SeguimientoDeClientes
 {
 	//COMPONENTES
@@ -60,20 +56,11 @@ public class SeguimientoDeClientes
 	private JLabel lblTitulo;
 	public JLabel lblInfo;
 	public JTextField lblWarning;
-
-	
 	private String[] especialidades = {"Seleccione...", "Distribuidor", "Endodoncia", "Gnatología", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
-
-
-
-	
-	// INICIO VARIABLES GRAFICO DE LINEAS s//
 	private JLayeredPane layerGrafico;
 	public JPanel pnlGrafico;
 	private JTable tblVentasCliente;
 	private DefaultTableModel modelVentasCliente;
-
-	// FIN VARIABLES GRAFICO LINEAS //
 	
 	/**
 	 * CONSTRUCTOR
@@ -88,33 +75,28 @@ public class SeguimientoDeClientes
 		frmSeguimiento.setBotonAyuda(1258,48);
 
 		
-		/*********
-    	 * TITULO
-    	 *********/
+    	//TITULO
 		lblTitulo = new JLabel("Seguimiento de Clientes");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitulo.setBounds(10, 11, 304, 23);
 		frmSeguimiento.getContentPane().add(lblTitulo);
 		
-		/**
-		 * LABEL BUSCADOR
-		 */
+		
+		//LABEL BUSCADOR
 		lblEspecialidad = new JLabel("Especialidad:");
 		lblEspecialidad.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblEspecialidad.setBounds(10, 54, 83, 14);
 		frmSeguimiento.getContentPane().add(lblEspecialidad);
+	
 		
-		/**
-		 * COMBO ESPECIALIDADES
-		 */
+		//COMBO ESPECIALIDADES
 		cmbEspecialidad = new JComboBox<String>();		
 		cmbEspecialidad.setModel(new DefaultComboBoxModel<String>(especialidades));
 		cmbEspecialidad.setBounds(92, 51, 154, 20);
 		frmSeguimiento.getContentPane().add(cmbEspecialidad);
 		
-		/**
-		 * BUSCADOR NOMBRE
-		 */
+
+		//BUSCADOR NOMBRE
 		txtBuscarCliente = new JTextField();
 		txtBuscarCliente.setForeground(Color.GRAY);
 		txtBuscarCliente.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -123,23 +105,20 @@ public class SeguimientoDeClientes
 		txtBuscarCliente.setColumns(10);
 		frmSeguimiento.getContentPane().add(txtBuscarCliente);
 		
-		/**
-		 * BOTON ACEPTAR
-		 */
+
+		//BOTON ACEPTAR
 		btnAceptar = new BotonesIconos("Aceptar","ACEPTAR.png");		
 		btnAceptar.setLocation(1200, 609);
 		frmSeguimiento.getContentPane().add(btnAceptar);
 		
-		/**
-		 * BOTON BUSCADOR
-		 */
+		
+		//BOTON BUSCADOR
 		btnBuscarCliente = new BotonesIconos("BUSCAR.png");
 		btnBuscarCliente.setBounds(434, 51, 30, 20);
 		frmSeguimiento.getContentPane().add(btnBuscarCliente);
 
-		/**
-		 * TABLA CLIENTES BUSCADOS
-		 */
+
+		//TABLA CLIENTES BUSCADOS
 		boxClientesBuscados = Box.createHorizontalBox();
 		boxClientesBuscados.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Clientes por Especialidad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		boxClientesBuscados.setBounds(10, 106, 464, 244);
@@ -151,122 +130,121 @@ public class SeguimientoDeClientes
 	    tblClientesBuscados = new interfaces.componentes.TablaClientes();
 		scrollClientesBuscados.setViewportView(tblClientesBuscados);
 		
-		/**
-		 * TABLA CLIENTE SELECCIONADO
-		 */
+	
+		//TABLA CLIENTE SELECCIONADO
 		boxClienteSeleccionado = Box.createHorizontalBox();
 		boxClienteSeleccionado.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cliente seleccionado", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, null));
 		boxClienteSeleccionado.setBounds(10, 371, 464, 235);
 		frmSeguimiento.getContentPane().add(boxClienteSeleccionado);
 		
+		
+		//PANEL DATOS CLIENTE
 		pnlClienteSeleccionado = new JPanel();
 		boxClienteSeleccionado.add(pnlClienteSeleccionado);
 		pnlClienteSeleccionado.setLayout(null);
 		
-		lblApellidoNombre = new JLabel("Apellido y Nombre:");
-		lblApellidoNombre.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblApellidoNombre.setBounds(10, 12, 121, 21);
-		pnlClienteSeleccionado.add(lblApellidoNombre);
+			lblApellidoNombre = new JLabel("Apellido y Nombre:");
+			lblApellidoNombre.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblApellidoNombre.setBounds(10, 12, 121, 21);
+			pnlClienteSeleccionado.add(lblApellidoNombre);
+			
+			txtApNomSelec = new JTextField("");
+			txtApNomSelec.setEditable(false);
+			txtApNomSelec.setForeground(Color.DARK_GRAY);
+			txtApNomSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			txtApNomSelec.setBounds(134, 12, 308, 21);
+			pnlClienteSeleccionado.add(txtApNomSelec);
+			
+			txtEspecSelec = new JTextField("");
+			txtEspecSelec.setEditable(false);
+			txtEspecSelec.setForeground(Color.DARK_GRAY);
+			txtEspecSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			txtEspecSelec.setBounds(96, 45, 346, 21);
+			
+			lblEspecialidadProf = new JLabel("Especialidad:");
+			lblEspecialidadProf.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblEspecialidadProf.setBounds(10, 45, 85, 21);
+			pnlClienteSeleccionado.add(lblEspecialidadProf);
+			pnlClienteSeleccionado.add(txtEspecSelec);
+			
+			lblEmail = new JLabel("E-mail:");
+			lblEmail.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblEmail.setBounds(10, 78, 48, 21);
+			pnlClienteSeleccionado.add(lblEmail);
+			
+			txtMailSelec = new JTextField("");
+			txtMailSelec.setEditable(false);
+			txtMailSelec.setForeground(Color.DARK_GRAY);
+			txtMailSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			txtMailSelec.setBounds(59, 78, 383, 21);
+			pnlClienteSeleccionado.add(txtMailSelec);
+			
+			lblDireccion = new JLabel("Direcci\u00F3n:");
+			lblDireccion.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblDireccion.setBounds(10, 111, 66, 21);
+			pnlClienteSeleccionado.add(lblDireccion);
+			
+			txtDirSelec = new JTextField("");
+			txtDirSelec.setEditable(false);
+			txtDirSelec.setForeground(Color.DARK_GRAY);
+			txtDirSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			txtDirSelec.setBounds(78, 111, 364, 21);
+			pnlClienteSeleccionado.add(txtDirSelec);
+			
+			lblTelfono = new JLabel("Tel\u00E9fono:");
+			lblTelfono.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblTelfono.setBounds(10, 144, 66, 21);
+			pnlClienteSeleccionado.add(lblTelfono);
+			
+			txtTelSelec = new JTextField("");
+			txtTelSelec.setEditable(false);
+			txtTelSelec.setForeground(Color.DARK_GRAY);
+			txtTelSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			txtTelSelec.setBounds(77, 144, 365, 21);
+			pnlClienteSeleccionado.add(txtTelSelec);
+			
+			lblTotalVentas = new JLabel("Total por ventas:");
+			lblTotalVentas.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblTotalVentas.setBounds(10, 177, 121, 21);
+			pnlClienteSeleccionado.add(lblTotalVentas);
+			
+			txtTotVtasSelec = new JTextField("");
+			txtTotVtasSelec.setEditable(false);
+			txtTotVtasSelec.setForeground(new Color(46, 139, 87));
+			txtTotVtasSelec.setFont(new Font("Tahoma", Font.BOLD, 13));
+			txtTotVtasSelec.setBounds(134, 177, 308, 21);
+			pnlClienteSeleccionado.add(txtTotVtasSelec);	
+		////////////////////////////////////////////////	
 		
-		txtApNomSelec = new JTextField("");
-		txtApNomSelec.setEditable(false);
-		txtApNomSelec.setForeground(Color.DARK_GRAY);
-		txtApNomSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtApNomSelec.setBounds(134, 12, 308, 21);
-		pnlClienteSeleccionado.add(txtApNomSelec);
-		
-		txtEspecSelec = new JTextField("");
-		txtEspecSelec.setEditable(false);
-		txtEspecSelec.setForeground(Color.DARK_GRAY);
-		txtEspecSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtEspecSelec.setBounds(96, 45, 346, 21);
-		
-		lblEspecialidadProf = new JLabel("Especialidad:");
-		lblEspecialidadProf.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEspecialidadProf.setBounds(10, 45, 85, 21);
-		pnlClienteSeleccionado.add(lblEspecialidadProf);
-		pnlClienteSeleccionado.add(txtEspecSelec);
-		
-		lblEmail = new JLabel("E-mail:");
-		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEmail.setBounds(10, 78, 48, 21);
-		pnlClienteSeleccionado.add(lblEmail);
-		
-		txtMailSelec = new JTextField("");
-		txtMailSelec.setEditable(false);
-		txtMailSelec.setForeground(Color.DARK_GRAY);
-		txtMailSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtMailSelec.setBounds(59, 78, 383, 21);
-		pnlClienteSeleccionado.add(txtMailSelec);
-		
-		lblDireccion = new JLabel("Direcci\u00F3n:");
-		lblDireccion.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblDireccion.setBounds(10, 111, 66, 21);
-		pnlClienteSeleccionado.add(lblDireccion);
-		
-		txtDirSelec = new JTextField("");
-		txtDirSelec.setEditable(false);
-		txtDirSelec.setForeground(Color.DARK_GRAY);
-		txtDirSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtDirSelec.setBounds(78, 111, 364, 21);
-		pnlClienteSeleccionado.add(txtDirSelec);
-		
-		lblTelfono = new JLabel("Tel\u00E9fono:");
-		lblTelfono.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTelfono.setBounds(10, 144, 66, 21);
-		pnlClienteSeleccionado.add(lblTelfono);
-		
-		txtTelSelec = new JTextField("");
-		txtTelSelec.setEditable(false);
-		txtTelSelec.setForeground(Color.DARK_GRAY);
-		txtTelSelec.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtTelSelec.setBounds(77, 144, 365, 21);
-		pnlClienteSeleccionado.add(txtTelSelec);
-		
-		lblTotalVentas = new JLabel("Total por ventas:");
-		lblTotalVentas.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblTotalVentas.setBounds(10, 177, 121, 21);
-		pnlClienteSeleccionado.add(lblTotalVentas);
-		
-		txtTotVtasSelec = new JTextField("");
-		txtTotVtasSelec.setEditable(false);
-		txtTotVtasSelec.setForeground(new Color(46, 139, 87));
-		txtTotVtasSelec.setFont(new Font("Tahoma", Font.BOLD, 13));
-		txtTotVtasSelec.setBounds(134, 177, 308, 21);
-		pnlClienteSeleccionado.add(txtTotVtasSelec);	
-		
-		
-		// INICIO GRAFICO DE LINEAS //
+			
+		//INICIO GRAFICO DE LINEAS //
 		layerGrafico = new JLayeredPane();
 		layerGrafico.setBorder(new TitledBorder(null, "Ventas por Mes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		layerGrafico.setBounds(556, 106, 732, 434);
 		frmSeguimiento.getContentPane().add(layerGrafico);
-		
-		pnlGrafico = new JPanel();
-		pnlGrafico.setBounds(10, 21, 712, 402);
-		layerGrafico.add(pnlGrafico);
-		
-		lblInfo = new JLabel("Informaci\u00F3n ventas");
-		lblInfo.setBounds(566, 552, 724, 22);
-		lblInfo.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblInfo.setVisible(false);
-		frmSeguimiento.getContentPane().add(lblInfo);
-		
-		lblWarning = new JTextField("Informaci\u00F3n falta de ventas");
-		lblWarning.setEditable(false);
-		lblWarning.setForeground(Color.RED);
-		lblWarning.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblWarning.setBounds(566, 577, 724, 18);
-		lblWarning.setVisible(false);
-		frmSeguimiento.getContentPane().add(lblWarning);
-		
-		tblVentasCliente = new JTable();
-		modelVentasCliente = (DefaultTableModel) tblVentasCliente.getModel();
-		modelVentasCliente.addColumn("Mes Venta");
-		modelVentasCliente.addColumn("Importe");
-		//FIN GRAFICO DE LINEAS //
-		
-		
-//		inicializar(controladorSeguimiento);
+
+			pnlGrafico = new JPanel();
+			pnlGrafico.setBounds(10, 21, 712, 402);
+			layerGrafico.add(pnlGrafico);
+			
+			lblInfo = new JLabel("Informaci\u00F3n ventas");
+			lblInfo.setBounds(566, 552, 724, 22);
+			lblInfo.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblInfo.setVisible(false);
+			frmSeguimiento.getContentPane().add(lblInfo);
+			
+			lblWarning = new JTextField("Informaci\u00F3n falta de ventas");
+			lblWarning.setEditable(false);
+			lblWarning.setForeground(Color.RED);
+			lblWarning.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblWarning.setBounds(566, 577, 724, 18);
+			lblWarning.setVisible(false);
+			frmSeguimiento.getContentPane().add(lblWarning);
+			
+			tblVentasCliente = new JTable();
+			modelVentasCliente = (DefaultTableModel) tblVentasCliente.getModel();
+			modelVentasCliente.addColumn("Mes Venta");
+			modelVentasCliente.addColumn("Importe");
+		//FIN GRAFICO DE LINEAS//
 	}
 }

@@ -38,11 +38,14 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.*;
 //FIN IMPORTS PARA GRAFICAR
 
-
-
+/**
+ * CONTROLADOR SEGUIMIENTO DE CLIENTES
+ * 
+ * @author Javier Bartomioli- Rodrigo Naredo
+ *
+ */
 public class ControladorRealizarSeguimientoCliente implements ActionListener, MouseListener, WindowListener, ItemListener, KeyListener
 {
-
 	//ATRIBUTOS
 	private ModeloRealizarSeguimientoCliente modeloSeguimiento;
 	private SeguimientoDeClientes guiSeguimiento;
@@ -55,7 +58,7 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 	 * @param guiSeguimiento
 	 * @throws Exception 
 	 */
-	public ControladorRealizarSeguimientoCliente(SeguimientoDeClientes guiSeguimiento, ModeloRealizarSeguimientoCliente modeloSeguimiento) throws Exception 
+	public ControladorRealizarSeguimientoCliente(SeguimientoDeClientes guiSeguimiento, ModeloRealizarSeguimientoCliente modeloSeguimiento) throws Exception
 	{
 		this.modeloSeguimiento = modeloSeguimiento;
 		this.guiSeguimiento = guiSeguimiento;
@@ -70,15 +73,17 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 		
 		this.modeloSeguimiento.inicializarCatalogos();
 	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 
-
-
+	
+	/**
+	 * REESCRITURA WINDOWS LISTENERS
+	 */
 	@Override
 	public void windowActivated(WindowEvent evento)
 	{		
 	}
-
-
 
 	@Override
 	public void windowClosed(WindowEvent evento)
@@ -89,43 +94,37 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 		}
 	}
 
-
-
 	@Override
 	public void windowClosing(WindowEvent evento)
 	{		
 	}
-
-
 
 	@Override
 	public void windowDeactivated(WindowEvent evento)
 	{
 	}
 
-
-
 	@Override
 	public void windowDeiconified(WindowEvent evento)
 	{		
 	}
-
-
 
 	@Override
 	public void windowIconified(WindowEvent evento)
 	{		
 	}
 
-
-
 	@Override
-	public void windowOpened(WindowEvent evento) 
+	public void windowOpened(WindowEvent evento)
 	{
 	}
+	/////////////////////////////////////////////
 
 
-
+	
+	/**
+	 * REESCRITURA MOUSELISTENERS
+	 */
 	@Override
 	public void mouseClicked(MouseEvent evento)
 	{
@@ -151,37 +150,32 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 		}
 	}
 
-
-
 	@Override
 	public void mouseEntered(MouseEvent evento)
 	{
 	}
-
-
 
 	@Override
 	public void mouseExited(MouseEvent evento)
 	{		
 	}
 
-
-
 	@Override
 	public void mousePressed(MouseEvent evento)
 	{		
 	}
 
-
-
 	@Override
 	public void mouseReleased(MouseEvent evento)
 	{
 	}
-
+	/////////////////////////////////////////////
 	
-
-
+	
+	
+	/**
+	 * REESCRITURA ACTION PERFORMED
+	 */
 	@Override
 	public void actionPerformed(ActionEvent evento)
 	{
@@ -192,26 +186,31 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 		
 		if(evento.getSource().equals(guiSeguimiento.btnBuscarCliente))
 		{
-			buscar_cliente_boton(modeloSeguimiento);
+			buscar_cliente(modeloSeguimiento);
 		}
 	}
-
-
-
+	////////////////////////////////////////////////
+	
+	
+	
+	/**
+	 * REESCRITURA ITEMLISTENERS
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent evento)
 	{
 		if(evento.getSource().equals(guiSeguimiento.cmbEspecialidad))
 		{
-			click_combo_especialidad(this.modeloSeguimiento, evento);
+			click_combo_especialidad(modeloSeguimiento, evento);
 		}
 	}
+	///////////////////////////////////////////////
 
-
+		
 	
-	
-	
-	
+	/**
+	 * REESCRITURA KEYLISTENERS	
+	 */
 	@Override
 	public void keyPressed(KeyEvent evento)
 	{
@@ -219,44 +218,37 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 		{
 			if(evento.getKeyCode() == KeyEvent.VK_ENTER)
 			{
-				buscar_cliente_textField(this.modeloSeguimiento);
+				buscar_cliente(modeloSeguimiento);
 			}
 		}
 	}
-
-
 
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
 	}
 
-
-
 	@Override
 	public void keyTyped(KeyEvent e)
 	{
 	}
+	/////////////////////////////////
 	
 	
-	
-		
-
 	
 	/**
-	 * 
+	 * CIERRA LA PANTALLA
 	 */
 	protected void cerrar_salir()
 	{			
 		guiSeguimiento.frmSeguimiento.dispose();
 	}
-		
-		
+	//////////////////////////////
 		
 		
 		
 	/**
-	 * 
+	 * COMPLETA LA TABLA EN BASE A LA ESPECIALIDAD SELECCIONADA
 	 * @param modeloSeguimiento
 	 * @param evento
 	 */
@@ -273,50 +265,52 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 			guiSeguimiento.tblClientesBuscados.definirTablaDestinatariosBuscados();
 		}
 	}
-	
-	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	
 	/**
-	 * 
+	 * BUSCA EL CLIENTE INGRESADO POR SU DESCRIPCION PARCIAL
 	 * @param modeloSeguimiento
 	 */
-	protected void buscar_cliente_textField(ModeloRealizarSeguimientoCliente modeloSeguimiento) 
+	protected void buscar_cliente(ModeloRealizarSeguimientoCliente modeloSeguimiento)
 	{
 		guiSeguimiento.tblClientesBuscados.completarTabla(
 				modeloSeguimiento.buscarCliente(guiSeguimiento.txtBuscarCliente.getText()));
 		guiSeguimiento.tblClientesBuscados.definirTablaDestinatariosBuscados();
 	}
+	////////////////////////////////////////////////////////////////////////////////////////////
 	
+	
+	
+//	/**
+//	 * BUSCA EL 
+//	 * @param modeloSeguimiento
+//	 */
+//	protected void buscar_cliente_boton(ModeloRealizarSeguimientoCliente modeloSeguimiento)
+//	{
+//		guiSeguimiento.tblClientesBuscados.completarTabla(
+//				modeloSeguimiento.buscarCliente(guiSeguimiento.txtBuscarCliente.getText()));
+//		guiSeguimiento.tblClientesBuscados.definirTablaDestinatariosBuscados();
+//	}
+//	////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	
 	/**
-	 * 
-	 * @param modeloSeguimiento
-	 */
-	protected void buscar_cliente_boton(ModeloRealizarSeguimientoCliente modeloSeguimiento)
-	{
-		guiSeguimiento.tblClientesBuscados.completarTabla(
-				modeloSeguimiento.buscarCliente(guiSeguimiento.txtBuscarCliente.getText()));
-		guiSeguimiento.tblClientesBuscados.definirTablaDestinatariosBuscados();
-	}
-	
-	
-	
-	
-	/**
-	 * 
+	 * ACCION BOTON ACEPTAR
 	 */
 	protected void click_boton_aceptar()
 	{				
 		guiSeguimiento.frmSeguimiento.dispose();
 	}
+	/////////////////////////////////////
+	
 	
 	
 	/**
-	 * 
+	 * MUESTRA LOS DATOS DEL CLIENTE Y DE SUS COMPRAS
+	 * SEGUN LA SELECCION DEL MISMO
 	 * @throws Exception
 	 */
 	@SuppressWarnings("rawtypes")
@@ -403,7 +397,7 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 			 
 		}
 	}
-			
+	////////////////////////////////////////////////////////////		
 	
 	
 	
@@ -412,7 +406,7 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 	 * @param cliente
 	 * @return
 	 */
-	protected XYDataset createDataset(negocio.Cliente cliente) 
+	protected XYDataset createDataset(negocio.Cliente cliente)
 	{
 		TimeSeriesCollection dataset = new TimeSeriesCollection();
 	    TimeSeries serie2 = new TimeSeries("Ventas por día");
@@ -430,12 +424,5 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 	     
 	    return dataset;
 	}
-
-
-
-
-
-	
-
-
+	///////////////////////////////////////////////////////////
 }

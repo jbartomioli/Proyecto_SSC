@@ -337,7 +337,8 @@ public class ModificarDestinatarios extends interfaces.componentes.JDialogBaseFo
 	//-------------------------------------------------------------------------------------------------------
 	private void buscar_cliente_textField(ControladorConfeccionarAnuncio controladorConfeccionarAnuncio) 
 	{
-		tblDestinatariosBuscados.completarTabla(controladorConfeccionarAnuncio.getModeloConfeccionarAnuncio().getCatalogoClientes().buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
+		tblDestinatariosBuscados.completarTabla(
+				controladorConfeccionarAnuncio.getModeloConfeccionarAnuncio().getCatalogoClientes().buscarClientesDescPcial(txtBuscarDestinatarios.getText()));
 		tblDestinatariosBuscados.definirTablaDestinatariosBuscados();
 	}
 	
