@@ -436,21 +436,6 @@ public class ModeloConfeccionarAnuncio
 
 		//El anuncio actual ya tiene los clientes como atributo
 		catalogoAnuncios.guardarCambioClientesAnuncio(anuncioActual);
-
-		//SALIDA
-//		String[][] arrDatos = new String[arrClientesTemp.size()][2]; // Revisar definicion
-
-//		int i = 0;
-
-//		for (negocio.Cliente c : arrClientesTemp) 
-//		{
-//			arrDatos[i][0] = Integer.toString(c.getIdCliente());
-//			arrDatos[i][1] = c.getNombre();
-//			arrDatos[i][2] = c.getApellido();
-//			i++;
-//		}
-
-//		return arrDatos;
 	}
 	//---------------------------------------------------------------
 

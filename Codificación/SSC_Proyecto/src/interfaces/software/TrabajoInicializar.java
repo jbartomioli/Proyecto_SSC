@@ -1,8 +1,12 @@
 package interfaces.software;
 
+import interfaces.Principal;
+
 import javax.swing.JOptionPane;
 
 import org.hibernate.HibernateException;
+
+import utilidades.HibernateUtil;
 
 public class TrabajoInicializar implements Runnable{
     
@@ -24,10 +28,12 @@ public class TrabajoInicializar implements Runnable{
     {		
         try
         {		
+        	HibernateUtil.buildSessionFactory();
+        	
         	Thread.sleep(2000);
 
 			@SuppressWarnings("unused")
-			interfaces.Principal principal = new interfaces.Principal();
+			Principal principal = new Principal();
         	
         }
         catch (InterruptedException e)

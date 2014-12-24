@@ -110,9 +110,14 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	////////////////////////////////////////////////////////////////////
 	
 	
+	
+	/**
+	 * REESCRITURA ITEMLISTENER
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent evento)
 	{
+		//SELECCION DE ITEM DE COMBO CATEGORIAS
 		if(evento.getSource().equals(guiGenerarAnuncio.cmbCategorias))
 		{
 			try 
@@ -124,142 +129,111 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 				e.printStackTrace();
 			}
 		}
-		
+		//SELECCION DE ITEM DE COMBO SUBCATEGORIAS
 		if(evento.getSource().equals(guiGenerarAnuncio.cmbSubcategorias))
 		{
-			try
+			if(evento.getStateChange() == ItemEvent.SELECTED)
 			{
-				click_combo_subcategorias(evento);
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
+				try
+				{
+					click_combo_subcategorias(evento);
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
 			}
 		}
-		
 	}
 
-
-
-
-
-
 	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void windowActivated(WindowEvent evento)
+	{
 	}
-
-
-
-
-
-
+	//////////////////////////////////////////
+	
+	
+	
+	/**
+	 * REESCRITURA WINDOWLISTERNER
+	 */
 	@Override
-	public void windowClosed(WindowEvent e)
+	public void windowClosed(WindowEvent evento)
 	{
 		cerrar_salir();
 	}
 
-
-
-
-
-
 	@Override
-	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void windowClosing(WindowEvent evento)
+	{
 	}
 
-
-
-
-
-
 	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void windowDeactivated(WindowEvent evento)
+	{		
 	}
 
-
-
-
-
-
 	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void windowDeiconified(WindowEvent evento)
+	{		
 	}
 
-
-
-
-
-
 	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void windowIconified(WindowEvent evento)
+	{
 	}
 
-
-
-
-
-
 	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void windowOpened(WindowEvent evento)
+	{		
 	}
+	///////////////////////////////////////
+	
 
-
-
-
-
-
+	
+	/**
+	 * REESCRITURA ACTIONPERFORMED
+	 */
 	@Override
 	public void actionPerformed(ActionEvent evento)
 	{
+		//BOTON GENERAR
 		if(evento.getSource().equals(guiGenerarAnuncio.btnGenerar))
 		{
 			action_generar();
 		}
-
+		//BOTON ENVIAR
 		if(evento.getSource().equals(guiGenerarAnuncio.btnEnviar))
 		{
         	action_enviar();
 		}
-		
+		//BOTON CERRAR
 		if(evento.getSource().equals(guiGenerarAnuncio.btnCerrar))
 		{
         	cerrar_salir();
 		}			
 	}
+	////////////////////////////////////////////////
 	
 	
 	
-	
-	
-	
-	
+	/**
+	 * REESCRITURA MOUSE LISTENER
+	 */
 	@Override
 	public void mouseClicked(MouseEvent evento)
 	{
-		//
+		//CLICK ANIADIR PRODUCTO
 		if(guiGenerarAnuncio.tblProductos.columnAtPoint(evento.getPoint())==5)
 		{
 			click_aniadir_producto();
 		}
-		//
+		//CLICK ELIMINAR PRODUCTO
 		if(guiGenerarAnuncio.tblProductosAnuncio.columnAtPoint(evento.getPoint())==5)
 		{
 			click_eliminar_producto();
 		}
-		//
+		//CLICK MODIFICAR DESTINATARIOS
 		if(evento.getSource().equals(guiGenerarAnuncio.lblModificarDestinatarios))
 		{
 			if(guiGenerarAnuncio.lblModificarDestinatarios.isEnabled())
@@ -267,7 +241,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 				click_label_modificar_destinatarios();
 			}
 		}
-		//
+		//CLICK MODIFICAR PRECIOS
 		if(evento.getSource().equals(guiGenerarAnuncio.lblModificarPrecios))
 		{
 			if(guiGenerarAnuncio.lblModificarPrecios.isEnabled())
@@ -284,74 +258,45 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 
 		}
 	}
-
-
-
-
-
+	////////////////////////////////////////////
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseEntered(MouseEvent evento)
+	{		
 	}
-
-
-
-
-
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseExited(MouseEvent e)
+	{		
 	}
-
-
-
-
-
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mousePressed(MouseEvent e)
+	{		
 	}
-
-
-
-
-
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseReleased(MouseEvent e)
+	{		
 	}
+	//////////////////////////////////////////
 	
 	
 	
-	
+	//METODOS
 	/**
 	 * 
 	 * @throws Exception
 	 */
-	public void actualizar() throws Exception
-	{
-		this.inicializar();
-		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-	}	
+//	public void actualizar() throws Exception
+//	{
+//		this.inicializar();
+//		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+//	}	
 	//////////////////////////////////////////
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	/**
 	 * INCIALIZACION DE COMPONENTES
 	 * @throws Exception 
@@ -362,30 +307,15 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 
 		modeloConfeccionarAnuncio.inicializarCatalogos();
 		
-		
-
-		/***************************************************************
-		 * COMBO CATEGORIAS
-		 ***************************************************************/
 		guiGenerarAnuncio.cmbCategorias.completarDatos(
 				modeloConfeccionarAnuncio.getCatalogoCategorias().getCategorias());
 
-		
-
-		/***************************************************************
-		 * COMBO SUBCATEGORIAS
-		 ***************************************************************/
 		categoria = (negocio.Categoria) guiGenerarAnuncio.cmbCategorias.getSelectedItem();
 		guiGenerarAnuncio.cmbSubcategorias.completarDatos(
 				modeloConfeccionarAnuncio.seleccionarCategoria(categoria.getIdCategoria()));
 		
-		
 		subcategoriaActual = (negocio.SubCategoria) guiGenerarAnuncio.cmbSubcategorias.getSelectedItem();
 
-		
-		/***************************************************************
-		* TABLA PRODUCTOS
-		***************************************************************/		 
 		guiGenerarAnuncio.tblProductos.completarTabla(modeloConfeccionarAnuncio.seleccionarSubcategoria(
 				subcategoriaActual.getIdcategoria(), 
 				subcategoriaActual.getIdSubcategoria()));
@@ -393,8 +323,6 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 				
 		guiGenerarAnuncio.tblProductosAnuncio.completarTabla(new ArrayList<negocio.Producto>());
 
-		
-		
 		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	//////////////////////////////////////////////
@@ -434,30 +362,27 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 
 	/**
-	 * 
+	 * EVENTO DE SELECCION EN COMBO SUBCATEGORIAS
 	 * @param evento
 	 * @throws Exception
 	 */
 	protected void click_combo_subcategorias(ItemEvent evento) throws Exception
-	{		
-		if(evento.getStateChange() == ItemEvent.SELECTED)
-		{			
-			negocio.SubCategoria subcategoriaSeleccionada = new negocio.SubCategoria();
+	{				
+		negocio.SubCategoria subcategoriaSeleccionada = new negocio.SubCategoria();
 			
-			subcategoriaSeleccionada = (negocio.SubCategoria) guiGenerarAnuncio.cmbSubcategorias.getSelectedItem();
-			subcategoriaSeleccionada.obtenerProductos();
-			
-			guiGenerarAnuncio.tblProductos.completarTabla(modeloConfeccionarAnuncio.seleccionarSubcategoria(
-					subcategoriaSeleccionada.getIdcategoria(),
-					subcategoriaSeleccionada.getIdSubcategoria()));
-		}
+		subcategoriaSeleccionada = (negocio.SubCategoria) guiGenerarAnuncio.cmbSubcategorias.getSelectedItem();
+		subcategoriaSeleccionada.obtenerProductos();
+		
+		guiGenerarAnuncio.tblProductos.completarTabla(modeloConfeccionarAnuncio.seleccionarSubcategoria(
+				subcategoriaSeleccionada.getIdcategoria(),
+				subcategoriaSeleccionada.getIdSubcategoria()));
 	}
 	////////////////////////////////////////////////////////////////////////////
 	
 	
 
 	/**
-	 * 
+	 * ACCION BOTON GENERAR CONTENIDO HTML MAIL
 	 * @param dialogPadre
 	 */
 	protected void action_generar()
@@ -495,10 +420,8 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	        		productos.add(producto);
 	        	}
 	        		        		        	
-				@SuppressWarnings("unused")
-				EditorHTML editorHTML = new EditorHTML(guiGenerarAnuncio.frmGenerarAnuncio, productos, guiGenerarAnuncio.txtAsunto.getText());
-	        	if(guiGenerarAnuncio.txtAsunto.getText().equals(""))
-	        		guiGenerarAnuncio.txtAsunto.setEnabled(false);
+				new EditorHTML(guiGenerarAnuncio.frmGenerarAnuncio, productos, guiGenerarAnuncio.txtAsunto.getText());
+	        	
 	        	guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	        }
 	}
@@ -507,7 +430,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 	
 	/**
-	 * 
+	 * ACCION ENVIAR EMAIL
 	 * @param dialogPadre
 	 */
 	protected void action_enviar()
@@ -548,7 +471,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 
 	
 	/**
-	 * 
+	 * ACCION ANIADIR PRODUCTO
 	 */
 	@SuppressWarnings("rawtypes")
 	protected void click_aniadir_producto()
@@ -595,7 +518,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 	
 	/**
-	 * 
+	 * ACCION ELIMINAR PRODUCTO
 	 */
 	protected void click_eliminar_producto()
 	{
@@ -614,7 +537,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 	
 	/**
-	 * 
+	 * ACCION MODIFICAR DESTINATARIOS
 	 * @param dialogPadre
 	 */
 	protected void click_label_modificar_destinatarios()
@@ -634,7 +557,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 	
 	/**
-	 * 
+	 * ACCION MODIFICAR PRECIOS
 	 * @param dialogPadre
 	 * @throws Exception
 	 */
@@ -671,7 +594,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 		
 
 	/**
-	 * 
+	 * ACCION AL CERRAR MODULO
 	 */
 	protected void cerrar_salir()
 	{
@@ -684,7 +607,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 
 	/**
-	 * 
+	 * LIMPIA CAMPOS DEL FORMULARIO
 	 */
 	protected void limpiar_formulario()
 	{
@@ -702,7 +625,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 
 	/**
-	 * 
+	 * LIMPIA OBJETOS TEMPORALES
 	 */
 	private void limpiar_objetos_temporales()
 	{
@@ -714,7 +637,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 	
 	/**
-	 * 
+	 * ELIMINA ARCHIVO TEMPORAL
 	 */
 	private void eliminar_temporal()
 	{
@@ -734,7 +657,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 	
 	/**
-	 * 
+	 * DESACTIVA CONTROLES
 	 */
 	private void desactivar_botones()
 	{
@@ -750,7 +673,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 	
 	/**
-	 * 
+	 * ACTIVA CONTROLES
 	 */
 	private void activar_botones()
 	{
@@ -767,11 +690,10 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 	
 	/**
+	 * TRABAJO HILO ANIADIR PRODUCTO AL ANUNCIO
 	 * 
-	 *  
-	 *
 	 */
-	public class TabajoAniadirProducto implements Runnable
+	private class TabajoAniadirProducto implements Runnable
 	{
 		
 		private int idProducto;
@@ -793,7 +715,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	        	
 	        	guiGenerarAnuncio.tblDestinatarios.completarDatos(modeloConfeccionarAnuncio.getArrClientesInteresados());
 
-	        	Thread.sleep( 1000 );
+	        	Thread.sleep(1000);
 	        }
 	        catch(InterruptedException e)
 	        {
@@ -812,7 +734,5 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	        }
 	    }
 	} 
-	
-	
 	///////////////////////////////////////////////////////
 }
