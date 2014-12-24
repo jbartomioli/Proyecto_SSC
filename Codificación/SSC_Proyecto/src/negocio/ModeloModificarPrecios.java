@@ -124,4 +124,52 @@ public class ModeloModificarPrecios
 		return productos;
 	}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	
+	
+	/**
+	 * ACTUALIZA EL PRECIO DEL PRODUCTO
+	 * @param productoSeleccionado
+	 * @param precioVigente
+	 * @param precioPromocional
+	 * @throws Exception
+	 */
+	public void actualizarPreciosProducto(Producto productoSeleccionado, float precioVigente, float precioPromocional) throws Exception
+	{		
+		catalogoProductos.actualizarPreciosProducto(productoSeleccionado, precioVigente, precioPromocional);
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	/**
+	 * ACTUALIZA EL PRODUCTO MODIFICADO EN LA COLECCION
+	 * @param productoSeleccionado
+	 * @throws Exception
+	 */
+	public void actualizarProducto(Producto productoSeleccionado) throws Exception
+	{
+		catalogoSubcategorias.actualizarProducto(productoSeleccionado);
+	}
+	//////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	/**
+	 * BUSCA UN PRODUCTO POR SU ID
+	 * @param idProducto
+	 * @return
+	 */
+	public Producto buscarProducto(int idProducto)
+	{
+		negocio.Producto producto = new negocio.Producto();
+		
+		producto = catalogoProductos.buscarProducto(idProducto);
+		
+		if(producto != null)
+			return producto;
+		else 
+			return null;
+	}
+	///////////////////////////////////////////////	
 }

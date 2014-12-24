@@ -29,7 +29,12 @@ import negocio.Categoria;
 import negocio.ModeloConfeccionarAnuncio;
 import negocio.ModeloModificarPrecios;
 
-
+/**
+ * CONTROLADOR CONFECCIONAR ANUNCIO
+ * 
+ * @author Javier Bartomioli - Rodrigo Naredo
+ *
+ */
 public class ControladorConfeccionarAnuncio implements ActionListener, WindowListener, ItemListener, MouseListener
 {
 	
@@ -83,7 +88,8 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	
 	
 	/**
-	 * 
+	 * ACTUALIZA LA LISTA DE DESTINATARIOS DEL ANUNCIO
+	 * LUEGO DE HABER SIDO MODIFICADA
 	 * @param nuevoModelo
 	 */
 	public void actualizarClientesDestinatarios(TableModel nuevoModelo)

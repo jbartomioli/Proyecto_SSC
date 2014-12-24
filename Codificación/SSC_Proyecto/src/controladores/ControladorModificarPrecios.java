@@ -440,7 +440,7 @@ public class ControladorModificarPrecios implements ActionListener, MouseListene
 		    	idProductoInt = Integer.parseInt(tableModel.getValueAt(filaSeleccionada, 0).toString());	
 		    	productoSeleccionado = new negocio.Producto();
 		    	
-		    	productoSeleccionado = modeloModificarPrecios.getCatalogoProductos().buscarProducto(idProductoInt);
+		    	productoSeleccionado = modeloModificarPrecios.buscarProducto(idProductoInt);
 		    	
 		    	panelPrecio.setPrecioVigente(Float.parseFloat(tableModel.getValueAt(filaSeleccionada, 2).toString()));
 		    	panelPrecio.setPrecioPromocional(Float.parseFloat(tableModel.getValueAt(filaSeleccionada, 3).toString()));
@@ -451,7 +451,7 @@ public class ControladorModificarPrecios implements ActionListener, MouseListene
 		        if (rta == JOptionPane.OK_OPTION) 
 		        {
 		            //GUARDA NUEVOS PRECIOS		    	
-		        	modeloModificarPrecios.getCatalogoProductos().actualizarPreciosProducto(
+		        	modeloModificarPrecios.actualizarPreciosProducto(
 		        			productoSeleccionado, 
 		        			panelPrecio.getPrecioVigente(),
 		        			panelPrecio.getPrecioPromocional());
@@ -459,7 +459,7 @@ public class ControladorModificarPrecios implements ActionListener, MouseListene
 		        	productoSeleccionado.setPrecioPromocional(panelPrecio.getPrecioPromocional());
 		        	productoSeleccionado.setPrecio(panelPrecio.getPrecioVigente());
 		        	
-		        	modeloModificarPrecios.getCatalogoSubcategorias().actualizarProducto(productoSeleccionado);
+		        	modeloModificarPrecios.actualizarProducto(productoSeleccionado);
 		        	
 		        	negocio.SubCategoria subcategoriaActual = new negocio.SubCategoria();
 		        	subcategoriaActual = (negocio.SubCategoria) guiModificarPrecios.cmbSubcategorias.getSelectedItem();
@@ -467,8 +467,9 @@ public class ControladorModificarPrecios implements ActionListener, MouseListene
 					guiModificarPrecios.tblProductos.limpiar_tabla();
 
 		        	guiModificarPrecios.tblProductos.completarTabla(
-		        			modeloModificarPrecios.getCatalogoProductos().obtenerProductoSubCategoria(subcategoriaActual.getDescripcion()));
-		        
+		        			modeloModificarPrecios.seleccionarSubcategoria(
+		        					subcategoriaActual.getIdcategoria(),
+		        					subcategoriaActual.getIdSubcategoria()));		        
 		        }
 		    }				
 		}

@@ -182,27 +182,6 @@ public class CatalogoProductos
 		return null;
 	}
 	
-	/////////////////////////////////////////////////////////////////
-	// BUSCA UN PRODUCTO POR SU SUBCATEGORIA					   //
-	/////////////////////////////////////////////////////////////////
-	public Collection<negocio.Producto> obtenerProductoSubCategoria(String descSubCateg)
-	{		
-		//SE CREA COLECCION DE PRODUCTOS PARA AGREGAR LOS QUE PERTENECEN A LA SUBCATEGORIA
-		Collection<negocio.Producto> productosSubCateg = new ArrayList<negocio.Producto>();
-				
-		//SE RECORRE CADA PRODUCTO DEL ARRAY
-		for(negocio.Producto productoNegocio: this.getProductos())
-		{
-			//System.out.println("Categ: " + productoNegocio.getSubCategoria().getIdcategoria() + " " + "Subcateg: " + productoNegocio.getSubCategoria().getIdSubcategoria());
-			//SE EVALUA SI EL NOMBRE DEL PRODUCTO CONTIENE LA CADENA
-			if(productoNegocio.getSubCategoria().getDescripcion().contains(descSubCateg))
-				productosSubCateg.add(productoNegocio);
-				
-		}
-		//System.out.println("Array de prod subcateg: " + productosSubCateg.size());
-		return productosSubCateg;
-	}
-
 	
 	/////////////////////////////////////////////////////////////////
 	// ACTUALIZA LA CANTIDAD DE PRODUCTOS EN STOCK				   //
