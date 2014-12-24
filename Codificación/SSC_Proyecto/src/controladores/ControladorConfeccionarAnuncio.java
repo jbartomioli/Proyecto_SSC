@@ -367,7 +367,8 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 		/***************************************************************
 		 * COMBO CATEGORIAS
 		 ***************************************************************/
-		guiGenerarAnuncio.cmbCategorias.completarDatos(modeloConfeccionarAnuncio.getCatalogoCategorias().getCategorias());
+		guiGenerarAnuncio.cmbCategorias.completarDatos(
+				modeloConfeccionarAnuncio.getCatalogoCategorias().getCategorias());
 
 		
 
@@ -375,7 +376,8 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 		 * COMBO SUBCATEGORIAS
 		 ***************************************************************/
 		categoria = (negocio.Categoria) guiGenerarAnuncio.cmbCategorias.getSelectedItem();
-		guiGenerarAnuncio.cmbSubcategorias.completarDatos(modeloConfeccionarAnuncio.seleccionarCategoria(categoria.getIdCategoria()));
+		guiGenerarAnuncio.cmbSubcategorias.completarDatos(
+				modeloConfeccionarAnuncio.seleccionarCategoria(categoria.getIdCategoria()));
 		
 		
 		subcategoriaActual = (negocio.SubCategoria) guiGenerarAnuncio.cmbSubcategorias.getSelectedItem();
@@ -530,12 +532,13 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 
 		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     	
+		modeloConfeccionarAnuncio.finalizarCargaProducto();
+		
     	if(enviado)
     	{    		
             limpiar_formulario();
             eliminar_temporal();
             
-    		modeloConfeccionarAnuncio.finalizarCargaProducto();
     		modeloConfeccionarAnuncio.guardarAnuncio();   
     		limpiar_objetos_temporales();
     	}
@@ -579,13 +582,12 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 				guiGenerarAnuncio.tblProductosAnuncio.definirTablaProductosAnuncio();
 												
 				int idProducto = Integer.parseInt(fila.elementAt(0).toString());
-				
-				negocio.Producto producto = modeloConfeccionarAnuncio.getCatalogoProductos().buscarProducto(idProducto);
-				
-				Thread hiloTrabajoAniadir = new Thread( new TabajoAniadirProducto(producto.getIdProducto()));
+								
+				Thread hiloTrabajoAniadir = new Thread(new TabajoAniadirProducto(idProducto));
 				hiloTrabajoAniadir.start();		    	
 		    	
-				new Thread(new interfaces.software.HiloBarraProgreso(hiloTrabajoAniadir, guiGenerarAnuncio.frmGenerarAnuncio, guiGenerarAnuncio.prgProgresoAniadir, 500, false)).start();   
+				new Thread(new interfaces.software.HiloBarraProgreso(
+						hiloTrabajoAniadir, guiGenerarAnuncio.frmGenerarAnuncio, guiGenerarAnuncio.prgProgresoAniadir, 500, false)).start();   
 			}	
 	}
 	////////////////////////////////////////
@@ -602,7 +604,8 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 
 	    if (filaSeleccionada >= 0)
 	    {
-	    	modeloConfeccionarAnuncio.eliminarProducto(Integer.parseInt(guiGenerarAnuncio.tblProductosAnuncio.getModel().getValueAt(filaSeleccionada,0).toString()));
+	    	modeloConfeccionarAnuncio.eliminarProducto(
+	    			Integer.parseInt(guiGenerarAnuncio.tblProductosAnuncio.getModel().getValueAt(filaSeleccionada,0).toString()));
 	    	tableModel.removeRow(filaSeleccionada);	
 	    }	    
 	}
@@ -616,6 +619,8 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	 */
 	protected void click_label_modificar_destinatarios()
 	{
+		modeloConfeccionarAnuncio.finalizarCargaProducto();
+		
 		ModificarDestinatarios guiModificarDestinatarios = new ModificarDestinatarios(guiGenerarAnuncio.frmGenerarAnuncio);
 		
 		new ControladorModificarDestinatarios(guiModificarDestinatarios, this);
@@ -672,7 +677,6 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	{
 		limpiar_formulario();
 		limpiar_objetos_temporales();
-		modeloConfeccionarAnuncio = new ModeloConfeccionarAnuncio();
 		guiGenerarAnuncio.frmGenerarAnuncio.dispose();
 	}
 	//////////////////////////////
@@ -791,11 +795,11 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 
 	        	Thread.sleep( 1000 );
 	        }
-	        catch (InterruptedException e)
+	        catch(InterruptedException e)
 	        {
-	            System.err.println( e.getMessage() );
+	        	e.printStackTrace();
 	        } 
-	        catch (Exception e) 
+	        catch(Exception e) 
 	        {
 				e.printStackTrace();
 			}

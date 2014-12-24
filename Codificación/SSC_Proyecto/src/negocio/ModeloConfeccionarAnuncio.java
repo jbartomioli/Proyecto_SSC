@@ -270,6 +270,7 @@ public class ModeloConfeccionarAnuncio
 			//arrClientesInteresados = catalogoClientes.obtenerClientesProducto(productoActual);
 			for(negocio.Cliente clienteNegocio : catalogoClientes.obtenerClientesProducto(productoActual))
 			{
+				//SI EL CLIENTE ACTUAL NO ESTA EN LA COLECCION LO AGREGA
 				if(!arrClientesInteresados.contains(clienteNegocio))
 				{
 					arrClientesInteresados.add(clienteNegocio);
@@ -277,7 +278,7 @@ public class ModeloConfeccionarAnuncio
 				
 			}
 			
-			
+			//AGREGA EL PRODUCTO A LA COLECCION
 			arrProductosPublicacion.add(productoActual);
 		}
 		return arrClientesInteresados;
@@ -411,11 +412,11 @@ public class ModeloConfeccionarAnuncio
 	//LISTO
 	public Collection<Cliente> modificarClientesDestinatarios() 
 	{
-//		Collection<Cliente> arrClientes = new ArrayList<Cliente>();
+		Collection<Cliente> arrClientes = new ArrayList<Cliente>();
 
-//		arrClientes = anuncioActual.getClientes();
+		arrClientes = anuncioActual.getClientes();
 
-		return getArrClientesInteresados();
+		return arrClientes;
 	}
 	//---------------------------------------------------------------
 
