@@ -38,7 +38,7 @@ public class TrabajoInicializar implements Runnable{
         }
         catch (InterruptedException e)
         {
-            System.err.println( e.getMessage() );
+            e.printStackTrace();
         }
 		catch(HibernateException he )
 		{
