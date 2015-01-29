@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<img alt="Imágen encabezado" src="img/imgInicioSup.jpg">
+<img alt="Imágen encabezado" src="C:\Users\PCRodrigo\Desktop\Codificación\SSC_Proyecto\recursos\presentacion\imgInicioSup.jpg">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Pedido</title>
@@ -57,5 +57,5 @@
       
 </form>  
 </body>
-<img alt="Imágen pie" src="img/imgInicioInf.jpg">
+<img alt="Imágen pie" src="C:\Users\PCRodrigo\Desktop\Codificación\SSC_Proyecto\recursos\presentacion\imgInicioInf.jpg">
 </html>
