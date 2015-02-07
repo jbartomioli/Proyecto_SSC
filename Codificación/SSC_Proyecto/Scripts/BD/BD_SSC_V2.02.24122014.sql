@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+use bd_ssc;
 --
 -- Estructura de tabla para la tabla `anuncios`
 --

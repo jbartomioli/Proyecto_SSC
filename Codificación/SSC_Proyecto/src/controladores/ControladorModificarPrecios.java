@@ -105,13 +105,13 @@ public class ControladorModificarPrecios implements ActionListener, MouseListene
 	 * CONSTRUCTOR JDIALOG
 	 * @param guiModificarPrecios
 	 * @param modeloModificarPrecios
-	 * @param controladorAnuncios
+	 * @param modeloGenerarAnuncio
 	 * @param idProductos
 	 */
 	public ControladorModificarPrecios(
 			ModificarPrecios guiModificarPrecios, 
 			ModeloModificarPrecios modeloModificarPrecios, 
-			ModeloConfeccionarAnuncio controladorAnuncios, 
+			ModeloConfeccionarAnuncio modeloGenerarAnuncio, 
 			Collection<Integer> idProductos)
 	{	
 		this.modeloModificarPrecios = modeloModificarPrecios;
@@ -125,9 +125,9 @@ public class ControladorModificarPrecios implements ActionListener, MouseListene
 		this.guiModificarPrecios.cmbCategorias.addItemListener(this);
 		this.guiModificarPrecios.cmbSubcategorias.addItemListener(this);
 					
-		this.modeloModificarPrecios.setCatalogoCategorias(controladorAnuncios.getCatalogoCategorias());
-		this.modeloModificarPrecios.setCatalogoProductos(controladorAnuncios.getCatalogoProductos());
-		this.modeloModificarPrecios.setCatalogoSubcategorias(controladorAnuncios.getCatalogoSubCategorias());
+		this.modeloModificarPrecios.setCatalogoCategorias(modeloGenerarAnuncio.getCatalogoCategorias());
+		this.modeloModificarPrecios.setCatalogoProductos(modeloGenerarAnuncio.getCatalogoProductos());
+		this.modeloModificarPrecios.setCatalogoSubcategorias(modeloGenerarAnuncio.getCatalogoSubCategorias());
 		
 		this.idProductos = idProductos;
 		
