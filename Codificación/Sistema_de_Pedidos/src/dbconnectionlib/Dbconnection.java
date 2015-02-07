@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Dbconnection {
 
-	public static void main(String[] args) {
+	public static Connection main() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("Driver found");
@@ -26,6 +26,8 @@ public class Dbconnection {
 		} catch (SQLException e) {
 			System.out.println("Error al leer la cadena de conexión: "+e);
 		}
+        
+        return connection;
 
 	}
 

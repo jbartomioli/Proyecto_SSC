@@ -1,4 +1,4 @@
-﻿# SQL Manager Lite for MySQL 5.3.1.3
+# SQL Manager Lite for MySQL 5.3.1.3
 # ---------------------------------------
 # Host     : 192.168.1.103
 # Port     : 3306

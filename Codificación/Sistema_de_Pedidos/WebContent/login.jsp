@@ -1,6 +1,9 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import ="java.sql.*" %>
+<%@ page import = "dbconnectionlib.Dbconnection"%>
+<%@ page import = "java.sql.Connection"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -8,23 +11,34 @@
 </head>
 <body>
 <%
-            String username = request.getParameter("username");
+			Connection theConnection = Dbconnection.main();         
+
+			String username = request.getParameter("username");
             String password = request.getParameter("password");
-           out.println("Checking login<br>");
-            if (username == null || password == null) {
- 
-                out.print("Invalid paramters ");
-            }
- 
-            // Here you put the check on the username and password
-            if (username.toLowerCase().trim().equals("admin") && password.toLowerCase().trim().equals("admin")) {
-                response.sendRedirect("principal.jsp");              
-         
-            }
-           else 
-               {
-                out.println("Invalid username and password");
-           }
+            
+            PreparedStatement theStatement = null;
+            
+            try{   
+                theStatement = theConnection.prepareStatement("select * from userdetail where username=? and password=?");
+                theStatement.setString(1,request.getParameter("username"));
+                theStatement.setString(2,request.getParameter("password"));
+                ResultSet theResult = theStatement.executeQuery();
+
+                if(theResult.next())
+                {
+                    response.sendRedirect("principal.jsp");
+                }
+                else
+                {
+                	request.setAttribute("errorMessage", "Invalid username or password");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+                    dispatcher.forward(request, response);
+                }
+                    
+
+                }catch(Exception e){
+                    System.out.println("Exception occured! "+e.getMessage()+" "+e.getStackTrace());
+                }
 %> 
 </body>
 </html>
