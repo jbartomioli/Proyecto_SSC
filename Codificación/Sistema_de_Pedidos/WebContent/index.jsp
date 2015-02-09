@@ -1,8 +1,10 @@
-<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import ="java.sql.*" %>
 <%@page import ="java.io.IOException" %>
 <%@page import = "dbconnectionlib.Dbconnection"%>
 <%@page import = "controladores.ControladorRegistrarPedidoCliente" %>
+
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,7 +30,7 @@
 	       
 	      if(ctrl_pedido.iniciarSesion(usuario, password))
 	      {
-	    	  request.setAttribute("nombreUsuario", ctrl_pedido.getUsuario().getName());
+	    	  session.setAttribute("ctrl_pedido", ctrl_pedido);
 	    	  response.sendRedirect("confeccionPedido.jsp");
 	      }
 	      else

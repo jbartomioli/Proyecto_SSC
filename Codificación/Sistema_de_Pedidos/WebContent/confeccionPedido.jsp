@@ -1,9 +1,10 @@
-<%@page import="controladores.ControladorRegistrarPedidoCliente"%>
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ page import = "dbconnectionlib.Dbconnection"%>
-<%@ page import = "java.sql.Connection"%>
-<%@page import ="java.sql.*" %>
+<%@page import = "controladores.ControladorRegistrarPedidoCliente"%>
+<%@page import = "dbconnectionlib.Dbconnection"%>
+<%@page import = "java.sql.Connection"%>
+<%@page import = "java.sql.*" %>
+
+<%@page language = "java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,8 +21,10 @@
 	ResultSet rs = null;
 	Statement stmt = theConnection.createStatement();
 	
+	ControladorRegistrarPedidoCliente ctrl_pedido = (ControladorRegistrarPedidoCliente) session.getAttribute("ctrl_pedido");
+	
 	%>
-	<p>Bienvenido <%=request.getParameter("password") %> <a href="logout.jsp">Cerrar sesión</a></p>
+	<p>Bienvenido <%= ctrl_pedido.getUsuario().getName() %> <a href="logout.jsp">Cerrar sesión</a></p>
 	<h2>Pedido</h2>
 	<form name="form1" method="post" action="servlet/PrintResultsServlet">
 		<select name="comboCategoria">  
