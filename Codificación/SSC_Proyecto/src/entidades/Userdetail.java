@@ -14,6 +14,10 @@ import javax.persistence.Table;
 @Table(name = "userdetail", catalog = "BD_SSC")
 public class Userdetail implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5020822505644084224L;
 	private int id;
 	private String name;
 	private String username;

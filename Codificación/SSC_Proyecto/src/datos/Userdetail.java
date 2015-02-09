@@ -85,7 +85,7 @@ public class Userdetail
 	
 
 	/////////////////////////////////////////////////////////////////
-	// OBTIENE LOS DATOS DE PARAMETROS NEGOCIO                     //
+	//  //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
 	public void obtenerUser(String user, String password) throws Exception
@@ -98,7 +98,7 @@ public class Userdetail
 		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
 		    session.beginTransaction();
 		        
-	        Query query = session.createQuery("from Userdetail u where u.username = :uName and u.password = :uPass");
+	        Query query = session.createQuery("from Userdetail u where u.username like :uName and u.password like :uPass");
             query.setParameter("uName", user);
             query.setParameter("uPass", password);
 	        @SuppressWarnings("unchecked")
@@ -107,13 +107,13 @@ public class Userdetail
 	        //SE RECORRE CADA ELEMENTO RESULTANTE DE LA CONSULTA
 	        for(Iterator<Query> it=list.iterator();it.hasNext();)
 	        {             
-	        	//SE CREA OBJETO PARAMETROSNEGOCIO DE ENTIDADES
+	        	//SE CREA OBJETO  DE ENTIDADES
 				entidades.Userdetail entUserdetail = (entidades.Userdetail) it.next();  
 	           
 				//SE SETEAN LOS DATOS
-	        	this.setName(entUserdetail.getName());
-	        	this.setUsername(entUserdetail.getUsername());
-	        	this.setPassword(entUserdetail.getPassword());
+	        	setName(entUserdetail.getName());
+	        	setUsername(entUserdetail.getUsername());
+	        	setPassword(entUserdetail.getPassword());
 	        }
 	        //SE CONFIRMA TRANSACCION
 	        session.getTransaction().commit();

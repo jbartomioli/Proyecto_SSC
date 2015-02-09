@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 09/02/2015 13:02:15 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="Userdetail" table="userdetail" catalog="BD_SSC">
+    <class name="entidades.Userdetail" table="userdetail" catalog="BD_SSC">
         <id name="id" type="int">
             <column name="id" />
             <generator class="assigned" />
