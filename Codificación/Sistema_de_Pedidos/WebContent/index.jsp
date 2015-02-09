@@ -21,25 +21,19 @@
   {
 
 		  ControladorRegistrarPedidoCliente ctrl_pedido = new ControladorRegistrarPedidoCliente();
-		 
-		  session.setAttribute("ctrl_pedido", ctrl_pedido);
 		  
 	      String usuario = request.getParameter("usuario");
 	      String password = request.getParameter("password");
 	      
-	      String mensajeLogin = ctrl_pedido.iniciarSesion(usuario, password);
 	       
-	      if(mensajeLogin != null)
+	      if(ctrl_pedido.iniciarSesion(usuario, password))
 	      {
-	    	  out.println(mensajeLogin);
-	%>
-	    	  <%@include file="confeccionPedido.jsp" %>
-	<%
+	    	  request.setAttribute("nombreUsuario", ctrl_pedido.getUsuario().getName());
+	    	  response.sendRedirect("confeccionPedido.jsp");
 	      }
 	      else
 	      {
 	    	  response.sendError(403, "Acceso denegado");
-	    	  //response.sendRedirect("index.jsp");
 	      }
   }
   else

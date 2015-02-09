@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import negocio.ModeloRegistrarPedidoCliente;
+import negocio.Userdetail;
 
 
 
@@ -14,6 +15,7 @@ public class ControladorRegistrarPedidoCliente
 	//* ATRIBUTOS													*
 	//***************************************************************
 	private negocio.ModeloRegistrarPedidoCliente modeloRegistrarPedido; 
+	private negocio.Userdetail usuario;
 		
 	
 	//***************************************************************
@@ -22,6 +24,7 @@ public class ControladorRegistrarPedidoCliente
 	public ControladorRegistrarPedidoCliente() throws Exception 
 	{
 		this.modeloRegistrarPedido = new ModeloRegistrarPedidoCliente();
+		this.usuario = new Userdetail();
 	}
 	//---------------------------------------------------------------
 
@@ -29,7 +32,14 @@ public class ControladorRegistrarPedidoCliente
 	//***************************************************************
 	//* GETTES & SETTERS											*
 	//***************************************************************
-	
+	public negocio.Userdetail getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(negocio.Userdetail usuario) {
+		this.usuario = usuario;
+	}
 	//---------------------------------------------------------------
 	
 	
@@ -41,13 +51,16 @@ public class ControladorRegistrarPedidoCliente
 	
 	
 
+
+
+
 	/**
 	 * 
 	 * @param user
 	 * @param password
 	 * @return
 	 */
-	public String iniciarSesion(String user, String password)
+	public boolean iniciarSesion(String user, String password)
 	{
 		negocio.Userdetail usuarioNegocio = new negocio.Userdetail();
 		
@@ -56,14 +69,19 @@ public class ControladorRegistrarPedidoCliente
 			usuarioNegocio.obtenerUser(user, password);
 			
 			if(usuarioNegocio.getName().equals(""))
-				return null;
+				return false;
 			else
-				return "<p>Bienvenido "+usuarioNegocio.getName()+" .<a href=\"logout.jsp\">Cerrar sesión</a></p>";
+			{
+				this.usuario.setName(usuarioNegocio.getName());
+				this.usuario.setUsername(usuarioNegocio.getUsername());
+				this.usuario.setPassword(usuarioNegocio.getPassword());
+				return true;
+			}
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			return null;
+			return false;
 		}
 	}
 }
