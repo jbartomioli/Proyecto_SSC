@@ -16,7 +16,7 @@
 	Statement stmt = theConnection.createStatement();;
 	%>
 <h2>Pedido</h2>
-<form name="form1" method="get" action="servlet/PrintResultsServlet">   
+<form name="form1" method="post" action="servlet/PrintResultsServlet">   
   
 <select name="comboCategoria">  
 	<option>Seleccionar Categoría</option>

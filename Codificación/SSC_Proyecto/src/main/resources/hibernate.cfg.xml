@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-     "file:///G:\Mis documentos\Facultad\5to año\Proyecto\Sistema de seguimiento de clientes\Codificación\Codificación\SSC_Proyecto\src\main\resources\hibernate-configuration-3.0.dtd">
+     "file:///E:\Proyecto_SSC\Codificación\SSC_Proyecto\src\main\resources\hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
@@ -21,6 +21,7 @@
   <mapping class="entidades.Subcategorias" resource="entidades/Subcategorias.hbm.xml"/>
   <mapping class="entidades.Ventas" resource="entidades/Ventas.hbm.xml"/>
   <mapping class="entidades.Anuncios" resource="entidades/Anuncios.hbm.xml"/>
+  <mapping class="entidades.Userdetail" resource="entidades/Userdetail.hbm.xml"/>
   <!--   <mapping class="entidades.Categorias" resource="entidades/Categorias.hbm.xml"/>  
    <mapping class="entidades." resource="entidades/.hbm.xml"/>  -->
  </session-factory>

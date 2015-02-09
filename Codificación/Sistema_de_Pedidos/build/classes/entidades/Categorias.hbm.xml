@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/01/2014 20:39:55 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+ <class catalog="BD_SSC" name="entidades.Categorias" table="categorias">
+  <id name="idCategoria" type="java.lang.Integer">
+   <column name="idCategoria"/>
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="descripcion" type="string">
+   <column length="50" name="descripcion"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="subcategoriases"
+   order-by="idCategoria" sort="unsorted" table="subcategorias">
+   <key>
+    <column name="idCategoria" not-null="true"/>
+   </key>
+   <one-to-many class="entidades.Subcategorias"/>
+  </set>
+ </class>
+</hibernate-mapping>

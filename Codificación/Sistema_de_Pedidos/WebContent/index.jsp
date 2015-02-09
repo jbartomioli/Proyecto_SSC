@@ -1,44 +1,58 @@
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@page import ="java.sql.*" %>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import ="java.sql.*" %>
 <%@page import ="java.io.IOException" %>
+<%@page import = "dbconnectionlib.Dbconnection"%>
+<%@page import = "controladores.ControladorRegistrarPedidoCliente" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<HTML>
-<img alt="Imágen encabezado" src="img/imgInicioSup.jpg">
-    <HEAD>
-        <TITLE>Login Sistema de Pedidos</TITLE>
-    </HEAD>
+<html>
+<head>
+  <title>Módulo de Registro de Pedidos - Sistema de Seguimiento de Clientes</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+</head>
  
-    <BODY>
-        <H2>Sistema de Pedidos</H2>
-        <%
-        String myname =  (String)session.getAttribute("username");
+<body>
+ 	<img alt="Imágen encabezado" src="img/imgInicioSup.jpg">
+	<h2>Módulo de Registro de Pedidos</h2>
+  <%
         
-        if(myname!=null)
-            {
-             out.println("Welcome  "+myname+"  , <a href=\"logout.jsp\" >Logout</a>");
-            }
-        else 
-            {
-            %>
-            <form action="login.jsp">
-                <table>
-                    <tr>
-                        <td> Usuario: </td><td> <input name="username" size=15 type="text" /> </td> 
-                    </tr>
-                    <tr>
-                        <td> Password: </td><td> <input name="password" type="password" size=15 type="text" /> </td> 
-                    </tr>
-                </table>
-                <br>
-                <input type="submit" value="Login" />
-            </form>
-            <% 
-            }
-         
-             
-            %>
-         
-    </BODY>
-<img alt="Imágen pie" src="img/imgInicioInf.jpg">
-</HTML> 
+  if( request.getParameter("ingresar") != null )
+  {
+	  
+	  ControladorRegistrarPedidoCliente ctrl_pedido = new ControladorRegistrarPedidoCliente();
+	 
+      String usuario = request.getParameter("usuario");
+      String password = request.getParameter("password");
+      
+      String mensajeLogin = ctrl_pedido.iniciarSesion(usuario, password);
+       
+      if(mensajeLogin != null)
+      {
+    	  out.println("Bienvenido "+usuario+".<a href=\"logout.jsp\">Cerrar sesión</a>");
+      }
+  }
+  else
+  {
+      %>
+      <form id="login" name="form_login" action="index.jsp" method="post">
+          <table>
+              <tr>
+                  <td class="labels">Usuario:</td>
+                  <td class="campos"><input name="usuario" size=15 type="text" /></td> 
+              </tr>
+              <tr>
+                  <td class="labels">Password:</td>
+                  <td class="campos"><input name="password" type="password" size=15 type="text" /></td> 
+              </tr>
+              <tr>
+              	<td class="boton" colspan="2"><input name="ingresar" type="submit" value="Ingresar" /></td>
+              </tr>
+          </table>
+      </form>
+      <% 
+ }
+      %>
+	<img alt="Imágen pie" src="img/imgInicioInf.jpg">
+</body>
+</html> 

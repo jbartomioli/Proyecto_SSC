@@ -1,0 +1,7 @@
+body { font-family: arial;}
+
+form#login { position: center; }
+
+td.boton { text-align: center; }
+td.labels { text-align: right; }
+td.campos { text-align: left; }

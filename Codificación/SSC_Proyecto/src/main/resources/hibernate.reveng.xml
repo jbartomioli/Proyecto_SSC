@@ -18,9 +18,9 @@
 	<table-filter match-name="pedidos" match-catalog="BD_SSC"></table-filter>
 	<table-filter match-name="precios" match-catalog="BD_SSC"></table-filter>
 	<table-filter match-name="productos" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="productos_anuncios"
-		match-catalog="BD_SSC">
+	<table-filter match-name="productos_anuncios" match-catalog="BD_SSC">
 	</table-filter>
 	<table-filter match-name="subcategorias" match-catalog="BD_SSC"></table-filter>
 	<table-filter match-name="ventas" match-catalog="BD_SSC"></table-filter>
+	<table-filter match-name="userdetail" match-catalog="BD_SSC"></table-filter>
 </hibernate-reverse-engineering>

@@ -98,6 +98,27 @@ public class ControladorRegistrarPedidoCliente
 	//* METODOS 													*
 	//***************************************************************
 	
+	
+	
+	public String iniciarSesion(String user, String password)
+	{
+		
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/////////////////////////////////////////////////////////////////
 	// Metodo 3.1.1 												/
 	/////////////////////////////////////////////////////////////////
