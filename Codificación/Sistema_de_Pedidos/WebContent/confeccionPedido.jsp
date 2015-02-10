@@ -10,11 +10,12 @@
 <html>
 <head>
   <title>Módulo de Registro de Pedidos - Sistema de Seguimiento de Clientes</title>
+  <script type="text/javascript" src="scripts/jquery-1.3.2.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
 </head>
  
 <body>
-	<img alt="Imágen encabezado" src="img/imgInicioSup.jpg">
+	<div id="encabezado"></div>
 	<% 
 	
 	Connection theConnection = Dbconnection.main();
@@ -24,63 +25,61 @@
 	ControladorRegistrarPedidoCliente ctrl_pedido = (ControladorRegistrarPedidoCliente) session.getAttribute("ctrl_pedido");
 	
 	%>
-	<p>Bienvenido <%= ctrl_pedido.getUsuario().getName() %> <a href="logout.jsp">Cerrar sesión</a></p>
-	<h2>Pedido</h2>
-	<form name="form1" method="post" action="servlet/PrintResultsServlet">
-		<select name="comboCategoria">  
-			<option>Seleccionar Categoría</option>
-			<%
-			rs = stmt.executeQuery("select descripcion from categorias");
-			while(rs.next())
-			{
-				out.write("<option value=" + rs.getString("descripcion") + ">" + rs.getString("descripcion") + "</option>");
-			}
-			%>
-		</select>  
- 
-		<br />
-		<br />
-		<select name="comboSubCategoria">  
-			<option>Seleccionar Subcategoría</option>
-			<%
-				rs = stmt.executeQuery("select descripcion from subcategorias");
+	<div id="contenido">
+		<p>Bienvenido <%= ctrl_pedido.getUsuario().getName() %> <a href="logout.jsp">Cerrar sesión</a></p>
+		<h2>Confección de Pedido</h2>
+		<form name="form1" method="post" action="servlet/PrintResultsServlet">
+			<select name="comboCategoria">  
+				<option>Seleccionar Categoría</option>
+				<%
+				rs = stmt.executeQuery("select descripcion from categorias");
 				while(rs.next())
 				{
 					out.write("<option value=" + rs.getString("descripcion") + ">" + rs.getString("descripcion") + "</option>");
-	    
 				}
-			%>
-		</select>   
-		<br />
-		<br />
-		<table width="50%" border="1" align="left">
-		  <tr>
-		    <th>Producto</th>
-		    <th>Stock</th>
-		    <th>Precio</th>
-		    <th>Check</th>
-		  </tr>
-		  <tr>
-		    <td>Contenido</td>
-		    <td>Contenido</td>
-		    <td>Contenido</td>
-		    <td>Contenido</td>
-		  </tr>
-		  <tr>
-		    <td>Contenido</td>
-		    <td>Contenido</td>
-		    <td>Contenido</td>
-		    <td>Contenido</td>
-		  </tr>
-		</table>
-		<br />
-		<br />
-		<br />
-		<br />   
-		<p align="center">  
-			<input type="submit" name="Submit" value="Buscar">  
-		</p>          
-	</form>  
-	<img alt="Imágen pie" src="img/imgInicioInf.jpg">
+				%>
+			</select>  
+	 
+			<br />
+			<br />
+			<select name="comboSubCategoria">  
+				<option>Seleccionar Subcategoría</option>
+				<%
+					rs = stmt.executeQuery("select descripcion from subcategorias");
+					while(rs.next())
+					{
+						out.write("<option value=" + rs.getString("descripcion") + ">" + rs.getString("descripcion") + "</option>");
+		    
+					}
+				%>
+			</select>   
+			<br />
+			<br />
+			<table class="productos">
+			  <tr>
+			    <th class="label">Producto</th>
+			    <th class="label">Stock</th>
+			    <th class="label">Precio</th>
+			    <th class="label">Check</th>
+			  </tr>
+			  <tr>
+			    <td>Contenido</td>
+			    <td>Contenido</td>
+			    <td>Contenido</td>
+			    <td>Contenido</td>
+			  </tr>
+			  <tr>
+			    <td>Contenido</td>
+			    <td>Contenido</td>
+			    <td>Contenido</td>
+			    <td>Contenido</td>
+			  </tr>
+			  <tr>
+			  	<td class="boton" colspan="4"><input type="submit" name="buscar" value="Buscar"></td>
+			  </tr>
+			</table>   
+		</form>  
+	</div>
+	<div id="pie"></div>
 </body>
 </html> 

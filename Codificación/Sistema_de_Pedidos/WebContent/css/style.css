@@ -1,7 +1,20 @@
-body { font-family: arial;}
+body { font-family: arial; width: 80%; }
 
-form#login { position: center; }
+h2 { text-align: left; font-size: 16px; }
 
-td.boton { text-align: center; }
-td.labels { text-align: right; }
+div#encabezado { background-image: url("../img/imgInicioSup.jpg"); background-repeat: repeat-x; width: 100%; padding: 40px; }
+div#contenido { margin: 10px; }
+div#pie { background-image: url("../img/imgInicioInf.jpg"); background-repeat: repeat-x; width: 100%; padding: 40px; }
+
+form#login { position: center; padding: 10px;}
+
+table.productos { width:50%; border: solid; text-align:left; border-collapse: collapse; font-size: 12px;}
+table.productos td {border-style: solid; border-width: 1px; border-color: black;}
+table.productos tr:HOVER {background-color: #81BEF7;}
+table.productos th {background-color: #C4FFE4; vertical-align: center; border-style: solid; 
+					border-width: 1px; border-color: black; text-align: center;}
+
+
+td.boton { text-align: center; padding: 10px; font-size: 10px;}
+td.labels { text-align: right; font-size: 12px;}
 td.campos { text-align: left; }
