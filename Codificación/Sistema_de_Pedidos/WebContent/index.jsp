@@ -1,6 +1,3 @@
-<%@page import ="java.sql.*" %>
-<%@page import ="java.io.IOException" %>
-<%@page import = "dbconnectionlib.Dbconnection"%>
 <%@page import = "controladores.ControladorRegistrarPedidoCliente" %>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
@@ -21,6 +18,7 @@
 	<div id="contenido">
 		<h2>Módulo de Registro de Pedidos</h2>
 	  	<%
+	  	boolean resultadoLogin = true;
 	  		if( request.getParameter("ingresar") != null )
 		  	{
 		
@@ -29,35 +27,24 @@
 			    String usuario = request.getParameter("usuario");
 			    String password = request.getParameter("password");
 			           
-			    if(ctrl_pedido.iniciarSesion(usuario, password))
+			    if(resultadoLogin = ctrl_pedido.iniciarSesion(usuario, password))
 			    {
 			    	session.setAttribute("ctrl_pedido", ctrl_pedido);
-			    	response.sendRedirect("confeccionPedido.jsp");
+			    	response.sendRedirect("buscarCliente.jsp");
 			    }
 			    else
 			    {
-			    	response.sendError(401, "Acceso denegado");
+			    %>
+			    	<%@include file="html_content/formulario_login.html" %>
+			    <%
+			    	out.print("<p>Usuario y/o contraseña no válido/s</p>");
 			    }
 		  	}
 		  	else
 		  	{
 	   %>
-		<form id="login" name="form_login" action="index.jsp" method="post">
-	    	<table>
-	        	<tr>
-	            	<td class="labels">Usuario:</td>
-	                <td class="campos"><input name="usuario" size=15 type="text" /></td> 
-	            </tr>
-	            <tr>
-	               	<td class="labels">Password:</td>
-	               	<td class="campos"><input name="password" type="password" size=15 type="text" /></td> 
-	            </tr>
-	            <tr>
-	            	<td class="boton" colspan="2"><input name="ingresar" type="submit" value="Ingresar" /></td>
-	            </tr>
-			</table>
-		</form>
-	   <% 
+		<%@include file="html_content/formulario_login.html" %>
+	   <%
 	 }
 	   %>
     </div>
