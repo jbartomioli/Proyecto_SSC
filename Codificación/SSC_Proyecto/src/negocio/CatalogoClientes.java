@@ -132,8 +132,8 @@ public class CatalogoClientes {
 		for(negocio.Cliente clienteNegocio : this.clientes)
 		{
 			//SI EL NOMBRE Y EL APELLIDO COINCIDEN DEVUELVE EL PRIMER CLIENTE
-			if ((clienteNegocio.getNombre().equals(nombre))
-					&& (clienteNegocio.getApellido().equals(apellido)))
+			if ((clienteNegocio.getNombre().toUpperCase().equals(nombre.toUpperCase()))
+					&& (clienteNegocio.getApellido().toUpperCase().equals(apellido.toUpperCase())))
 				return clienteNegocio;
 		}
 		//EN CASO DE NO ENCONTRARLO DEVUELVE NULO

@@ -27,11 +27,15 @@
 		            <td class="campos"><input name="nro_cliente" type="text" /></td> 
 				</tr>
 				<tr>
-		            <td class="labels">Nombre y Apellido:</td>
-		            <td class="campos"><input name="nomape_cliente" type="text" /></td> 
+		            <td class="labels">Nombre:</td>
+		            <td class="campos"><input name="nom_cliente" type="text" /></td>
+		        </tr>
+		        <tr>
+				    <td class="labels">Apellido:</td>
+		            <td class="campos"><input name="ape_cliente" type="text" /></td> 
 				</tr>
 				<tr>
-					<td colspan="2"><input name="buscar" type="submit" value="Buscar" /></td>
+					<td class="boton" colspan="2"><input name="buscar" type="submit" value="Buscar" /></td>
 				</tr>
 			</table>
 		</form>
@@ -42,14 +46,11 @@
 			ControladorRegistrarPedidoCliente ctrl_pedido = (ControladorRegistrarPedidoCliente) session.getAttribute("ctrl_pedido");
 			
 			String nro_cliente = request.getParameter("nro_cliente");
-			String nomape_cliente = request.getParameter("nomape_cliente");
+			String nom_cliente = request.getParameter("nom_cliente");
+			String ape_cliente = request.getParameter("ape_cliente");
 			
-			out.print(ctrl_pedido.buscarCliente(nro_cliente, nomape_cliente));
-			%>
-			<form action="confeccionPedido.jsp">
-				<input type="submit" value="Confeccionar Pedido" />
-			</form>
-			<%
+			out.print(ctrl_pedido.buscarCliente(nro_cliente, nom_cliente, ape_cliente));
+
 		}
 		%>
     </div>

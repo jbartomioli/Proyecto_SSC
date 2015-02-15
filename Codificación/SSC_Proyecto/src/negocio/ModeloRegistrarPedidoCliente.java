@@ -105,6 +105,12 @@ public class ModeloRegistrarPedidoCliente
 	//* METODOS 													*
 	//***************************************************************
 	
+	public void inicializarCatalogos() throws Exception
+	{
+		catalogoClientes.obtenerClientes();	
+		//catalogoProductos.obtenerProductos();
+		//catalogoPedidos.
+	}
 	
 	
 	
@@ -152,7 +158,7 @@ public class ModeloRegistrarPedidoCliente
 	// Metodo 3.1.1 												/
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public DatosClienteSalida buscarCliente(int idCliente)
+	public negocio.Cliente buscarCliente(int idCliente)
 	{
 		negocio.Pedido PCTemporal = new negocio.Pedido();
 		
@@ -160,19 +166,12 @@ public class ModeloRegistrarPedidoCliente
 		
 		clienteActual=catalogoClientes.buscarCliente(idCliente);
 		
-		DatosClienteSalida datosCliente = new DatosClienteSalida();
-		
 		if(clienteActual!= null)
 		{	
-			datosCliente.setNombre(clienteActual.getNombre());
-			datosCliente.setApellido(clienteActual.getApellido());
-			datosCliente.setDireccion(clienteActual.getDireccion());
-			datosCliente.setTelefono(clienteActual.getTelefono());
-			
 			PCTemporal.setCliente(clienteActual);
 			PCTemporal.setFecha(new Date());
 			
-			return datosCliente;		
+			return clienteActual;		
 		}
 		else
 			return null;
@@ -184,7 +183,7 @@ public class ModeloRegistrarPedidoCliente
 	// Metodo 3.1.2 												/
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public DatosClienteSalida buscarCliente(String apellido, String nombre)
+	public negocio.Cliente buscarCliente(String apellido, String nombre)
 	{
 		
 		negocio.Pedido PCTemporal = new negocio.Pedido();
@@ -193,19 +192,12 @@ public class ModeloRegistrarPedidoCliente
 		
 		clienteActual=catalogoClientes.buscarCliente(apellido, nombre);
 		
-		DatosClienteSalida datosCliente = new DatosClienteSalida();
-		
 		if(clienteActual!= null)
-		{	
-			datosCliente.setNombre(clienteActual.getNombre());
-			datosCliente.setApellido(clienteActual.getApellido());
-			datosCliente.setDireccion(clienteActual.getDireccion());
-			datosCliente.setTelefono(clienteActual.getTelefono());
-			
+		{				
 			PCTemporal.setCliente(clienteActual);
 			PCTemporal.setFecha(new Date());
 			
-			return datosCliente;	
+			return clienteActual;	
 		}
 		else
 			return null;
@@ -402,79 +394,6 @@ public class ModeloRegistrarPedidoCliente
 	
 	
 	
-	
-	//***************************************************************
-	// SUBCLASES SALIDA DE DATOS 									*
-	//***************************************************************
-	
-	
-	/////////////////////////////////////////////////////////////////
-	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 3.1 					/
-	/////////////////////////////////////////////////////////////////
-	public class DatosClienteSalida 
-	{
-		//ATRIBUTOS
-		private String nombre, apellido, direccion, telefono;
-	
-		//CONSTRUCTOR
-		public DatosClienteSalida() 
-		{
-			this.nombre = "";
-			this.apellido = "";
-			this.direccion = "";
-			this.telefono = "";
-		}
-		
-		
-		public String getNombre() 
-		{
-			return nombre;
-		}
-		
-		
-		public void setNombre(String nombre) 
-		{
-			this.nombre = nombre;
-		}
-		
-		
-		public String getApellido() 
-		{
-			return apellido;
-		}
-		
-		
-		public void setApellido(String apellido) 
-		{
-			this.apellido = apellido;
-		}
-		
-		
-		public String getDireccion() 
-		{
-			return direccion;
-		}
-		
-		
-		public void setDireccion(String direccion) 
-		{
-			this.direccion = direccion;
-		}
-		
-		
-		public String getTelefono() 
-		{
-			return telefono;
-		}
-		
-		
-		public void setTelefono(String telefono) 
-		{
-			this.telefono = telefono;
-		}
-
-	}
-	//---------------------------------------------------------------
 	
 	/////////////////////////////////////////////////////////////////
 	//SUB CLASE PARA DEVOLVER DATOS DEL DSD 3.2 y 3.6 				/
