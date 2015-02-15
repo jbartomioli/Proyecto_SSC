@@ -103,16 +103,16 @@ public class ControladorRegistrarPedidoCliente
 		if(nro_cliente.matches("[0-9]{1,}") || nom_cliente.matches("[a-zA-z]{1,}") || ape_cliente.matches("[a-zA-z]{1,}"))
 		{
 			//BUSCAR POR NRO CLIENTE
-			if(!nro_cliente.equals("") && ( nom_cliente.equals("") || ape_cliente.equals("") ) )
+			if(!nro_cliente.equals("") && ( nom_cliente.trim().equals("") || ape_cliente.trim().equals("") ) )
 			{
 				clienteActual = modeloRegistrarPedido.buscarCliente(Integer.parseInt(nro_cliente));
 			}
 			//BUSCAR POR NOMBRE APELLIDO CLIENTE
 			else
 			{
-				if(nro_cliente.equals("") && !( nom_cliente.equals("") && ape_cliente.equals("") ) )
+				if(nro_cliente.equals("") && !( nom_cliente.trim().equals("") && ape_cliente.trim().equals("") ) )
 				{
-					clienteActual = modeloRegistrarPedido.buscarCliente(nom_cliente, ape_cliente);
+					clienteActual = modeloRegistrarPedido.buscarCliente(nom_cliente.trim(), ape_cliente.trim());
 				}
 			}
 			
