@@ -100,7 +100,7 @@ public class ControladorRegistrarPedidoCliente
 	{
 		negocio.Cliente clienteActual = new negocio.Cliente();
 		
-		if(nro_cliente.matches("[0-9]{1,}") || nom_cliente.matches("[a-zA-z]{1,}") || ape_cliente.matches("[a-zA-z]{1,}"))
+		if(nro_cliente.matches("[0-9]{1,}") || ( nom_cliente.matches("[a-zA-z]{1,}") && ape_cliente.matches("[a-zA-z]{1,}") ) )
 		{
 			//BUSCAR POR NRO CLIENTE
 			if(!nro_cliente.equals("") && ( nom_cliente.trim().equals("") || ape_cliente.trim().equals("") ) )
@@ -149,7 +149,7 @@ public class ControladorRegistrarPedidoCliente
 		else
 		{
 			//DATOS INGRESADOS ERRONEOS
-			return "<h2 class=\"res_error\"Los datos ingresados son erróneos</h2>";
+			return "<h2 class=\"res_error\">Los datos ingresados son erróneos</h2>";
 		}
 	}
 	

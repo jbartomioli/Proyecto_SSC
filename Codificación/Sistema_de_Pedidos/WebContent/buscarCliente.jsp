@@ -39,7 +39,7 @@
 				</tr>
 			</table>
 		</form>
-		<hr>
+		<hr></hr>
 		<%
 		if(request.getParameter("buscar") != null)
 		{
