@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.seguimientoCliente</groupId>
+        <artifactId>seguimiento_cliente</artifactId>
+        <version>1.0</version>
+    </parent>
+    <groupId>org.seguimientoCliente</groupId>
+    <artifactId>sistema_pedidos_webapp</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+    <name>sistema_pedidos_webapp Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+  
+    <properties>
+		<!--Spring-->
+        <spring-framework.version>4.0.6.RELEASE</spring-framework.version>
+        <!--Json-->
+        <jackson.version>1.9.10</jackson.version>
+    </properties> 
+    <dependencies>
+    <!--Spring-->
+        <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-core</artifactId>
+	        <version>${spring-framework.version}</version>
+        </dependency>
+        <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-web</artifactId>
+	        <version>${spring-framework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-framework.version}</version>
+        </dependency>
+        <!-- Jackson JSON Mapper -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+    <!--Junits-->    
+        <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>3.8.1</version>
+          <scope>test</scope>
+        </dependency>
+    <!--Log4j-->
+        <dependency>
+           <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.9</version>
+            </dependency>
+        </dependencies>
+    <build>
+        <finalName>sistema_pedidos_webapp</finalName>
+    </build>
+</project>
