@@ -1,0 +1,7 @@
+127.0.0.1 - - [10/Oct/2015:09:15:27 -0300] "GET /pedido HTTP/1.1" 302 - http-bio-8080-exec-1 0
+127.0.0.1 - - [10/Oct/2015:09:15:28 -0300] "GET /pedido/ HTTP/1.1" 200 52 http-bio-8080-exec-3 176
+127.0.0.1 - - [10/Oct/2015:09:15:28 -0300] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-4 0
+127.0.0.1 - - [10/Oct/2015:09:15:37 -0300] "GET /pedido/pedido HTTP/1.1" 200 2468 http-bio-8080-exec-5 201
+127.0.0.1 - - [10/Oct/2015:09:15:37 -0300] "GET /pedido/resources/js/bootstrap.min.js HTTP/1.1" 200 35951 http-bio-8080-exec-6 20
+127.0.0.1 - - [10/Oct/2015:09:15:37 -0300] "GET /pedido/resources/js/jquery.min.js HTTP/1.1" 200 84355 http-bio-8080-exec-2 24
+127.0.0.1 - - [10/Oct/2015:09:15:37 -0300] "GET /pedido/resources/css/bootstrap.min.css HTTP/1.1" 200 117305 http-bio-8080-exec-8 53

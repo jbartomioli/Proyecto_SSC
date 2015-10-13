@@ -1,0 +1,2 @@
+127.0.0.1 - - [06/Oct/2015:01:27:40 -0300] "GET /pedido/ HTTP/1.1" 200 52 http-bio-8080-exec-1 2845
+127.0.0.1 - - [06/Oct/2015:01:27:40 -0300] "GET /pedido/pedido HTTP/1.1" 200 2468 http-bio-8080-exec-2 1688
