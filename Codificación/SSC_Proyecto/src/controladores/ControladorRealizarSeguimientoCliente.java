@@ -27,11 +27,15 @@ import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 import negocio.ModeloRealizarSeguimientoCliente;
-
 import negocio.Venta;
+
+
+
 
 //INICIO IMPORTS PARA GRAFICAR
 import org.jfree.chart.*;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
@@ -345,7 +349,7 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 	    		
 		    	try
 		    	{
-					fechaMaxCompra = outputFormatter.parse(cliente.obtenerMaxVenta());
+					fechaMaxCompra = outputFormatter.parse(cliente.obtenerMaxFechaVenta());
 				}
 		    	catch (ParseException e)
 				{
@@ -368,10 +372,14 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 				String chartTitle = "Ventas por día";
 				String xAxisLabel = "Fecha";
 				String yAxisLabel = "Monto de Ventas ($)";
+				double saltoYAxis = 5000.00;
 				 
 				XYDataset dataset = createDataset(cliente);
 				 
 				JFreeChart chart = ChartFactory.createTimeSeriesChart(chartTitle, xAxisLabel, yAxisLabel, dataset, true, true, false);
+				XYPlot xyPlot = chart.getXYPlot();
+				ValueAxis yAxis = xyPlot.getRangeAxis();
+				yAxis.setRange(0.00, cliente.obtenerVentaMaxima() + saltoYAxis);
 
 				ChartPanel chartPanel = new ChartPanel(chart);
 				 
@@ -380,7 +388,7 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 				guiSeguimiento.pnlGrafico.add(chartPanel, BorderLayout.CENTER);
 				// FIN GRAFICO DE LINEAS //		
 				
-				guiSeguimiento.lblInfo.setText("La última compra del cliente ha sido el: " + cliente.obtenerMaxVenta() + ".");
+				guiSeguimiento.lblInfo.setText("La última compra del cliente ha sido el: " + cliente.obtenerMaxFechaVenta() + ".");
 				guiSeguimiento.lblInfo.setVisible(true);
 				
 				if(days > 90)

@@ -221,10 +221,10 @@ public class Cliente
 	
 	
 	///////////////////////////////////////////////////
-	// OBTIENE IMPORTE TOTAL DE VENTAS DEL CLIENTE  //
+	// OBTIENE LA FECHA MAXIMA DE VENTAS DEL CLIENTE //
 	//////////////////////////////////////////////////
 	//LISTO
-	public String obtenerMaxVenta()
+	public String obtenerMaxFechaVenta()
 	{
 		try
 		{
@@ -254,5 +254,28 @@ public class Cliente
 			pe.printStackTrace();
 		}
 		return null;
+	}
+	
+	
+	/////////////////////////////////////////////////////
+	// OBTIENE EL IMPORTE MAXIMO DE VENTAS DEL CLIENTE //
+	////////////////////////////////////////////////////
+	//LISTO
+	public double obtenerVentaMaxima()
+	{
+		double importeMaximo = 0.00;
+		
+		
+		for(negocio.Venta ventaNegocio: this.ventas)
+		{
+			double importeVta = ventaNegocio.getTotal();
+			
+			if(importeVta > importeMaximo)
+			{
+				importeMaximo = importeVta;
+			}
+		}
+		
+		return importeMaximo;
 	}
 }

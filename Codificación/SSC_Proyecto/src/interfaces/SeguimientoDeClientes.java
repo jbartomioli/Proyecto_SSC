@@ -4,8 +4,10 @@ import interfaces.componentes.BotonesIconos;
 import interfaces.componentes.JDialogBaseFormularios;
 import interfaces.componentes.TablaClientes;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+
 
 
 import javax.swing.Box;
@@ -225,7 +227,7 @@ public class SeguimientoDeClientes
 
 			pnlGrafico = new JPanel();
 			pnlGrafico.setBounds(10, 21, 712, 402);
-			layerGrafico.add(pnlGrafico);
+			layerGrafico.add(pnlGrafico, BorderLayout.CENTER);
 			
 			lblInfo = new JLabel("Informaci\u00F3n ventas");
 			lblInfo.setBounds(566, 552, 724, 22);
