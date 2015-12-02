@@ -389,15 +389,18 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 				// FIN GRAFICO DE LINEAS //		
 				
 				guiSeguimiento.lblInfo.setText("La última compra del cliente ha sido el: " + cliente.obtenerMaxFechaVenta() + ".");
-				guiSeguimiento.lblInfo.setVisible(true);
 				
 				if(days > 90)
 				{
-					guiSeguimiento.lblWarning.setText("El cliente lleva más de 3 (tres) meses sin realizar una compra");
+					guiSeguimiento.lblWarning.setText("El cliente lleva más de 3 (tres) meses sin realizar una compra.");
+					guiSeguimiento.lblWarning.setVisible(true);
+					guiSeguimiento.lblInfo.setVisible(false);
 				}
 				else
 				{
 					guiSeguimiento.lblWarning.setText("");
+					guiSeguimiento.lblWarning.setVisible(false);
+					guiSeguimiento.lblInfo.setVisible(true);
 				}
 				
 				idClienteSeleccionado = idCliente;

@@ -56,8 +56,7 @@ public class SeguimientoDeClientes
 	public JTextField txtTelSelec;
 	public JTextField txtTotVtasSelec;
 	private JLabel lblTitulo;
-	public JLabel lblInfo;
-	public JTextField lblWarning;
+	public JLabel lblInfo, lblWarning;
 	private String[] especialidades = {"Seleccione...", "Distribuidor", "Endodoncia", "Gnatología", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
 	private JLayeredPane layerGrafico;
 	public JPanel pnlGrafico;
@@ -235,11 +234,10 @@ public class SeguimientoDeClientes
 			lblInfo.setVisible(false);
 			frmSeguimiento.getContentPane().add(lblInfo);
 			
-			lblWarning = new JTextField("Informaci\u00F3n falta de ventas");
-			lblWarning.setEditable(false);
+			lblWarning = new JLabel("Informaci\u00F3n falta de ventas");
+			lblWarning.setBounds(566, 552, 724, 22);
 			lblWarning.setForeground(Color.RED);
 			lblWarning.setFont(new Font("Tahoma", Font.BOLD, 13));
-			lblWarning.setBounds(566, 577, 724, 18);
 			lblWarning.setVisible(false);
 			frmSeguimiento.getContentPane().add(lblWarning);
 			

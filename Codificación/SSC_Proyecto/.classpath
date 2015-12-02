@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="shef_editor"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="var" path="LIB_EXT/mysql/mysql-connector-java-5.1.24-bin.jar"/>
 	<classpathentry kind="var" path="LIB_EXT/slf4j-1.7.5/slf4j-simple-1.7.5.jar"/>
 	<classpathentry kind="var" path="LIB_EXT/javamail-1.4.7/mail.jar"/>
