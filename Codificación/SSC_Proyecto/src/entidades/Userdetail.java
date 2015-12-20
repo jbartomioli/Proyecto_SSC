@@ -22,6 +22,7 @@ public class Userdetail implements java.io.Serializable {
 	private String name;
 	private String username;
 	private String password;
+	private int idCliente;
 
 	public Userdetail() {
 	}
@@ -73,5 +74,15 @@ public class Userdetail implements java.io.Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@Column(name = "idCliente", nullable = true)
+	public int getIdCliente() {
+		return this.id;
+	}
+
+	public void setIdCliente(int id) {
+		this.id = id;
+	}
+
 
 }

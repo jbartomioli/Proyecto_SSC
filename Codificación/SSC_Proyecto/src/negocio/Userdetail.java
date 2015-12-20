@@ -11,6 +11,7 @@ public class Userdetail
 		private String name;
 		private String username;
 		private String password;
+		private int idCliente;
 		//---------------------------------------------------------------
 
 
@@ -73,6 +74,16 @@ public class Userdetail
 		
 		
 		
+		public int getIdCliente() {
+			return idCliente;
+		}
+
+
+		public void setIdCliente(int idCliente) {
+			this.idCliente = idCliente;
+		}
+
+
 		//***************************************************************
 		//* METODOS 													*
 		//***************************************************************
@@ -85,6 +96,7 @@ public class Userdetail
 			setName(usuarioDatos.getName());
 			setPassword(usuarioDatos.getPassword());
 			setUsername(usuarioDatos.getUsername());
+			setIdCliente(usuarioDatos.getIdCliente());
 
 		}
 		

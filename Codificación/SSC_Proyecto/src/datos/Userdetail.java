@@ -16,6 +16,7 @@ public class Userdetail
 	private String name;
 	private String username;
 	private String password;
+	private int idCliente;
 	//---------------------------------------------------------------
 
 
@@ -28,6 +29,7 @@ public class Userdetail
 		this.name = "";
 		this.username = "";
 		this.password = "";
+		this.idCliente = 0;
 	}
 	//---------------------------------------------------------------
 
@@ -84,6 +86,16 @@ public class Userdetail
 
 	
 
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+
+
 	/////////////////////////////////////////////////////////////////
 	//  //
 	/////////////////////////////////////////////////////////////////
@@ -114,9 +126,11 @@ public class Userdetail
 	        	setName(entUserdetail.getName());
 	        	setUsername(entUserdetail.getUsername());
 	        	setPassword(entUserdetail.getPassword());
+	        	setIdCliente(entUserdetail.getIdCliente());
+	        	
 	        }
 	        //SE CONFIRMA TRANSACCION
-	        session.getTransaction().commit();
+//	        session.getTransaction().commit();
 		}		 
 		finally
 		{

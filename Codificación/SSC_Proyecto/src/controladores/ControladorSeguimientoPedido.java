@@ -1,25 +1,27 @@
 package controladores;
 
-import negocio.ModeloRegistrarPedidoCliente;
+
+
+import negocio.ModeloTrackingPedidoCliente;
 import negocio.Userdetail;
 
 
 
-public class ControladorRegistrarPedidoCliente 
+public class ControladorSeguimientoPedido
 {
 	//***************************************************************
 	//* ATRIBUTOS													*
 	//***************************************************************
-	private negocio.ModeloRegistrarPedidoCliente modeloRegistrarPedido; 
+	private negocio.ModeloTrackingPedidoCliente modeloTrackingPedido; 
 	private negocio.Userdetail usuario;
 		
 	
 	//***************************************************************
 	//* CONSTRUCTOR													*
 	//***************************************************************
-	public ControladorRegistrarPedidoCliente() throws Exception 
+	public ControladorSeguimientoPedido() throws Exception 
 	{
-		this.modeloRegistrarPedido = new ModeloRegistrarPedidoCliente();
+		this.modeloTrackingPedido = new ModeloTrackingPedidoCliente();
 		this.usuario = new Userdetail();
 	}
 	//---------------------------------------------------------------
@@ -72,7 +74,7 @@ public class ControladorRegistrarPedidoCliente
 				this.usuario.setUsername(usuarioNegocio.getUsername());
 				this.usuario.setPassword(usuarioNegocio.getPassword());
 				
-				modeloRegistrarPedido.inicializarCatalogos();
+				modeloTrackingPedido.inicializarCatalogos();
 				
 				return true;
 			}
@@ -101,14 +103,14 @@ public class ControladorRegistrarPedidoCliente
 			//BUSCAR POR NRO CLIENTE
 			if(!nro_cliente.equals("") && ( nom_cliente.trim().equals("") || ape_cliente.trim().equals("") ) )
 			{
-				clienteActual = modeloRegistrarPedido.buscarCliente(Integer.parseInt(nro_cliente));
+				clienteActual = modeloTrackingPedido.buscarCliente(Integer.parseInt(nro_cliente));
 			}
 			//BUSCAR POR NOMBRE APELLIDO CLIENTE
 			else
 			{
 				if(nro_cliente.equals("") && !( nom_cliente.trim().equals("") && ape_cliente.trim().equals("") ) )
 				{
-					clienteActual = modeloRegistrarPedido.buscarCliente(nom_cliente.trim(), ape_cliente.trim());
+					clienteActual = modeloTrackingPedido.buscarCliente(nom_cliente.trim(), ape_cliente.trim());
 				}
 			}
 			
@@ -157,7 +159,7 @@ public class ControladorRegistrarPedidoCliente
 	 */
 	public String cerrarSesion()
 	{
-		this.modeloRegistrarPedido = null;
+		this.modeloTrackingPedido = null;
 		this.usuario = null;
 		
 		return "<h2>Salida exitosa</h2>";
