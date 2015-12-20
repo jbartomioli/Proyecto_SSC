@@ -167,4 +167,72 @@ public class Pedido
 		return null;
 	}
 	//---------------------------------------------------------------
+	
+	
+	
+	
+	
+	
+	
+	
+	public void obtenerLineasDePedido() throws Exception
+	{
+//		//SE CREA OBJETO VENTA DE DATOS PARA RECUPERAR 
+//		//LA INFORMACION DE LA BD
+//		datos.Venta ventaDato = new datos.Venta();
+//		
+//		//SE RECUPERAN DE LA BD TODAS LAS LINEAS DE VENTA DE LA VENTA
+//		ventaDato.obtenerLineasDeVenta(this.idVenta);
+//		
+//		//SI EL OBJETO VENTA DE NEGOCIO YA TIENE SUS LINEAS
+//		//CARGADAS SE LAS VUELVE A SETEAR CON EL FIN DE MANTENER
+//		//ACTUALIZADO EL ARRAY AL MOMENTO DE LLAMAR ESTE METODO
+//		if(this.lineasDeVenta != null)
+//		{
+//			//SE RECORRE CADA OBJETO RESULTANTE DE LA CONSULTA A LA BD
+//			for(datos.LineaDeVenta lineaDato: ventaDato.getLineas())
+//			{
+//				//SE CREA UN OBJETO LINEA DE VENTA DE NEGOCIO PARA
+//				//SETEARLO Y LUEGO AGREGARLO AL ARRAY
+//				negocio.LineaDeVenta lineaNegocio = new negocio.LineaDeVenta();
+//				
+//				//SE SETEAN DATOS DE LA LINEA
+//				lineaNegocio.setCantidad(lineaDato.getCantidad());
+//				lineaNegocio.setSubTotal(lineaDato.getSubTotal());
+//				lineaNegocio.setIdVenta(lineaDato.getIdVenta());
+//
+//				{//SETEO DE DATOS DEL PRODUCTO DE LA LINEA
+//					//SE CREA OBJETO PRODUCTO DE NEGOCIO PARA SETEAR EL PRODUCTO
+//					negocio.Producto productoNegocio = new negocio.Producto();
+//					
+//					//SE CREA OBJETO PRODUCTO DE DATOS PARA OBTENER DATOS DEL MISMO
+//					datos.Producto productoDato = lineaDato.getProductoLinea();
+//					
+//					//SE SETEAN DATOS DEL PRODUCTO DE NEGOCIO
+//					productoNegocio.setCodProducto(productoDato.getCodProducto());
+//					productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
+//					productoNegocio.setIdProducto(productoDato.getIdProducto());
+//					productoNegocio.setNombre(productoDato.getNombre());
+//
+//					//SE SETEA LA LINEA CON EL PRODUCTO
+//					lineaNegocio.setProductoLinea(productoNegocio);
+//				}
+//				
+//				//SE AGREGA LA LINEA DE VENTA EN EL ARRAY		
+//				this.lineasDeVenta.add(lineaNegocio);
+//			}
+//		}
+		
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

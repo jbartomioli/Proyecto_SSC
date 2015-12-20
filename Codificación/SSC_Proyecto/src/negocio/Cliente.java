@@ -21,6 +21,7 @@ public class Cliente
 	private String telefono;
 	private boolean tipoCliente;
 	private Collection<negocio.Venta> ventas;
+	private Collection<negocio.Pedido> pedidos;
 	//---------------------------------------------------------------
 
 
@@ -278,4 +279,46 @@ public class Cliente
 		
 		return importeMaximo;
 	}
+	
+	
+	
+	
+	
+	
+	
+	public void obtenerPedidos() throws Exception
+	{
+		//SE CREA OBJETO CLIENTE DE DATOS PARA RECUPERAR
+		//VENTAS DE LA BD
+		datos.Cliente clienteDato = new datos.Cliente();
+		
+		//SE RECUPERAN LAS VENTAS DE LA BD
+		clienteDato.obtenerPedidos(this.getIdCliente());
+		
+		//SI EL OBJETO CLIENTE DE NEGOCIO YA TIENE SUS VENTAS
+		//CARGADAS SE LAS VUELVE A SETEAR CON EL FIN DE MANTENER
+		//ACTUALIZADO EL ARRAY AL MOMENTO DE LLAMAR ESTE METODO
+		if(this.ventas != null)
+		{
+			//SE RECORRE CADA VENTA DE LA BD
+			for(datos.Venta ventaDato: clienteDato.getVentas())
+			{
+				//SE CREA OBJETO VENTA DE NEGOCIO PARA SETEARLO Y DESPUES
+				//AGREGARLO AL ARRAY
+				negocio.Venta ventaNegocio = new negocio.Venta();
+				
+				//SE SETEAN LOS DATOS DE LA VENTA
+				ventaNegocio.setIdVenta(ventaDato.getIdVenta());
+				ventaNegocio.setFechaVenta(ventaDato.getFechaVenta());
+				ventaNegocio.setTotal(ventaDato.getTotal());
+				
+				//SE AGREGA LA VENTA AL ARRAY
+				this.ventas.add(ventaNegocio);
+			}
+		}
+		
+	}
+	//---------------------------------------------------------------
+	
+	
 }
