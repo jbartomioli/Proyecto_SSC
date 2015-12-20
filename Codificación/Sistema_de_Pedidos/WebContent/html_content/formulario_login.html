@@ -1,15 +1,15 @@
-		<form id="login" name="form_login" action="index.jsp" method="post">
-	    	<table>
-	        	<tr>
-	            	<td class="labels">Usuario:</td>
-	                <td class="campos"><input name="usuario" size=15 type="text" /></td> 
-	            </tr>
-	            <tr>
-	               	<td class="labels">Password:</td>
-	               	<td class="campos"><input name="password" type="password" size=15 type="text" /></td> 
-	            </tr>
-	            <tr>
-	            	<td class="boton" colspan="2"><input name="ingresar" type="submit" value="Ingresar" /></td>
-	            </tr>
-			</table>
+		<form id="login" name="form_login" action="index.jsp" method="post" class="form-horizontal">
+	    	<div class="form-group">
+	            <label for="usuario" class="col-sm-2 control-label">Usuario</label>
+	            <div class="col-sm-10">
+	            	<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario">
+	            </div>
+	        </div>
+			<div class="form-group">
+			   <label for="password" class="col-sm-2 control-label">Contraseña</label>
+			   <div class="col-sm-10">
+			   		<input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+			   </div>
+			</div>	            
+	        <button type="submit" class="btn btn-default" name="ingresar">Ingresar</button>
 		</form>
