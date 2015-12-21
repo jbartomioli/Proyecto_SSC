@@ -14,7 +14,7 @@
  
 <body>
     <div class="col-md-12">
- 		<img width="100%" src="img/imgInicioInf.jpg" alt="" class="img-rounded img-responsive">
+ 		<img width="100%" src="img/imgInicioInf.png" alt="" class="img-rounded img-responsive">
     </div>
   
   	<div class="col-md-12">  	
@@ -52,9 +52,5 @@
 		   %>
 	    </div>
 	</div>
-    
-    <div class="col-md-12">
- 		<img width="100%" src="img/imgInicioSup.jpg" alt="" class="img-rounded img-responsive">
-    </div>
 </body>
 </html> 

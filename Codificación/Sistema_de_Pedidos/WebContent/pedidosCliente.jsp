@@ -14,21 +14,16 @@
  
 <body>
     <div class="col-md-12">
- 		<img width="100%" src="img/imgInicioInf.jpg" alt="" class="img-rounded img-responsive">
+ 		<img width="100%" src="img/imgInicioInf.png" alt="" class="img-rounded img-responsive">
     </div>
 	
 	 <div class="col-md-12">
 		<h2>Módulo de Seguimiento de Pedidos</h2>
 		<h3>Listado de Pedidos</h3>
-		<div class="table-responsive">
-		<table class="table table-striped table-hover">
-		</table>
+		<div class="table-responsive col-md-6">
+			<table class="table table-striped table-hover">
+			</table>
 		</div>
-		<hr></hr>
-    </div>
-    
-    <div class="col-md-12">
- 		<img width="100%" src="img/imgInicioSup.jpg" alt="" class="img-rounded img-responsive">
     </div>
 </body>
 </html> 
