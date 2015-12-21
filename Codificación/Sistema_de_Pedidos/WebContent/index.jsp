@@ -13,41 +13,48 @@
 </head>
  
 <body>
- 	<div id="encabezado"></div>
-	
-	<div class="form-group">
-		<h2>Módulo de Seguimiento de Pedidos</h2>
-	  	<%
-	  	boolean resultadoLogin = true;
-	  		if( request.getParameter("ingresar") != null )
-		  	{
-		
-				ControladorRegistrarPedidoCliente ctrl_pedido = new ControladorRegistrarPedidoCliente();
-				  
-			    String usuario = request.getParameter("usuario");
-			    String password = request.getParameter("password");
-			           
-			    if(resultadoLogin = ctrl_pedido.iniciarSesion(usuario, password))
-			    {
-			    	session.setAttribute("ctrl_pedido", ctrl_pedido);
-			    	response.sendRedirect("pedidosCliente.jsp");
-			    }
-			    else
-			    {
-			    %>
-			    	<%@include file="html_content/formulario_login.html" %>
-			    <%
-			    	out.print("<p>Usuario y/o contraseña no válido/s</p>");
-			    }
-		  	}
-		  	else
-		  	{
-	   %>
-		<%@include file="html_content/formulario_login.html" %>
-	   <%
-	 }
-	   %>
+    <div class="col-md-12">
+ 		<img width="100%" src="img/imgInicioInf.jpg" alt="" class="img-rounded img-responsive">
     </div>
-	<div id="pie"></div>
+  
+  	<div class="col-md-12">  	
+		<div class="form-group">
+			<h2>Módulo de Seguimiento de Pedidos</h2>
+		  	<%
+		  	boolean resultadoLogin = true;
+		  		if( request.getParameter("ingresar") != null )
+			  	{
+			
+					ControladorRegistrarPedidoCliente ctrl_pedido = new ControladorRegistrarPedidoCliente();
+					  
+				    String usuario = request.getParameter("usuario");
+				    String password = request.getParameter("password");
+				           
+				    if(resultadoLogin = ctrl_pedido.iniciarSesion(usuario, password))
+				    {
+				    	session.setAttribute("ctrl_pedido", ctrl_pedido);
+				    	response.sendRedirect("pedidosCliente.jsp");
+				    }
+				    else
+				    {
+				    %>
+				    	<%@include file="html_content/formulario_login.html" %>
+				    <%
+				    	out.print("<p>Usuario y/o contraseña no válido/s</p>");
+				    }
+			  	}
+			  	else
+			  	{
+		   %>
+			<%@include file="html_content/formulario_login.html" %>
+		   <%
+		 }
+		   %>
+	    </div>
+	</div>
+    
+    <div class="col-md-12">
+ 		<img width="100%" src="img/imgInicioSup.jpg" alt="" class="img-rounded img-responsive">
+    </div>
 </body>
 </html> 

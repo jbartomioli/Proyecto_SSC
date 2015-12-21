@@ -13,17 +13,22 @@
 </head>
  
 <body>
- 	<div id="encabezado"></div>
+    <div class="col-md-12">
+ 		<img width="100%" src="img/imgInicioInf.jpg" alt="" class="img-rounded img-responsive">
+    </div>
 	
-	<div id="contenido">
+	 <div class="col-md-12">
 		<h2>Módulo de Seguimiento de Pedidos</h2>
 		<h3>Listado de Pedidos</h3>
-		<table class="table table-striped">
-		
+		<div class="table-responsive">
+		<table class="table table-striped table-hover">
 		</table>
+		</div>
 		<hr></hr>
     </div>
     
-	<div id="pie"></div>
+    <div class="col-md-12">
+ 		<img width="100%" src="img/imgInicioSup.jpg" alt="" class="img-rounded img-responsive">
+    </div>
 </body>
 </html> 
