@@ -1,3 +1,4 @@
+<%@page import="controladores.ControladorSeguimientoPedido"%>
 <%@page import = "controladores.ControladorRegistrarPedidoCliente" %>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
@@ -22,6 +23,12 @@
 		<h3>Listado de Pedidos</h3>
 		<div class="table-responsive col-md-6">
 			<table class="table table-striped table-hover">
+			<% 	ControladorSeguimientoPedido ctrl_pedido = (ControladorSeguimientoPedido) session.getAttribute("ctrl_pedido"); 
+			for(negocio.Pedido pedidoActual : ctrl_pedido.obtenerPedidos(1) )
+			{
+				out.print("<tr><td>"+pedidoActual.getIdPedido()+"</td><td>aaaa</td></tr>");
+			}
+			%>
 			</table>
 		</div>
     </div>

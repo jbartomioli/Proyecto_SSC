@@ -159,7 +159,14 @@ public class ControladorSeguimientoPedido
 	public Collection<negocio.Pedido> obtenerPedidos(int idCliente)
 	{
 		
+		negocio.Cliente clienteActual = new negocio.Cliente();
 		
+		try {
+			clienteActual.obtenerPedidos();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return null;
 	}

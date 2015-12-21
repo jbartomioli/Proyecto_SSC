@@ -117,6 +117,14 @@ public class Cliente
 	public void setVentas(Collection<datos.Venta> ventas) {
 		this.ventas = ventas;
 	}
+	
+	public Collection<datos.Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Collection<datos.Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 	//---------------------------------------------------------------
 	
 	
@@ -182,42 +190,42 @@ public class Cliente
 	{
 		Session session = null;	
 			
-//		try
-//		{
-//		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
-//		    session.beginTransaction();
-//		        
-//            Query query = session.createQuery("select c.ventases from Clientes c where c.idCliente = :idC");
-//            query.setParameter("idC", idCliente);
-//            
-//            @SuppressWarnings("unchecked")
-//			List<Query> list = query.list();
-//            
-//            //SE RECORRE CADA ELEMENTO RESULTANTE DE LA CONSULTA A LA BD
-//            for(Iterator<Query> it=list.iterator();it.hasNext();)
-//            {  
-//            	//SE CREA OBJETO VENTA DE DATOS PARA SETEARLO Y AGREGARLO AL ARRAY
-//	        	datos.Venta ventaDatos = new datos.Venta();
-//	           
-//	        	//SE CREA OBJETO VENTA DE ENTIDADES PARA RECUPERAR DATOS 
-//	        	//DE LA BD Y SETEAR EL OBJETO DE VENTA DATOS
-//	        	entidades.Ventas entVenta = (entidades.Ventas) it.next();  
-//	           
-//	        	//SE SETEA EL OBJETO VENTA DE DATOS
-//	        	ventaDatos.setIdVenta(entVenta.getIdVenta());
-//	        	ventaDatos.setFechaVenta(entVenta.getFecha()); 
-//	        	ventaDatos.setTotal(entVenta.getTotal());
-//	        	
-//	        	//SE AGREGA LA VENTA AL ARRAY
-//	           	this.ventas.add(ventaDatos);
-//            }
-//
-//	        session.getTransaction().commit();
-//		}
-//		finally
-//		{
-//		 	session.close();
-//		}	
+		try
+		{
+		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
+		    session.beginTransaction();
+		        
+            Query query = session.createQuery("select c.pedidoses from Clientes c where c.idCliente = :idC");
+            query.setParameter("idC", idCliente);
+            
+            @SuppressWarnings("unchecked")
+			List<Query> list = query.list();
+            
+            //SE RECORRE CADA ELEMENTO RESULTANTE DE LA CONSULTA A LA BD
+            for(Iterator<Query> it=list.iterator();it.hasNext();)
+            {  
+            	//SE CREA OBJETO VENTA DE DATOS PARA SETEARLO Y AGREGARLO AL ARRAY
+	        	datos.Pedido pedidoDatos = new datos.Pedido();
+	           
+	        	//SE CREA OBJETO VENTA DE ENTIDADES PARA RECUPERAR DATOS 
+	        	//DE LA BD Y SETEAR EL OBJETO DE VENTA DATOS
+	        	entidades.Pedidos entPedido = (entidades.Pedidos) it.next();  
+	           
+	        	//SE SETEA EL OBJETO VENTA DE DATOS
+	        	pedidoDatos.setIdPedido(entPedido.getIdPedido());
+	        	pedidoDatos.setFecha(entPedido.getFecha()); 
+	        	pedidoDatos.setTotal(entPedido.getTotal());
+	        	
+	        	//SE AGREGA LA VENTA AL ARRAY
+	           	this.pedidos.add(pedidoDatos);
+            }
+
+	        session.getTransaction().commit();
+		}
+		finally
+		{
+		 	session.close();
+		}	
 	}
 	
 	

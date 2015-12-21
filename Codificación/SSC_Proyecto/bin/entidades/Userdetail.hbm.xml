@@ -17,5 +17,8 @@
         <property name="password" type="string">
             <column name="password" length="35" />
         </property>
+         <property name="idCliente" type="int">
+            <column name="idCliente" />
+        </property>
     </class>
 </hibernate-mapping>

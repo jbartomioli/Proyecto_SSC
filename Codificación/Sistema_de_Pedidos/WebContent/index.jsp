@@ -1,4 +1,4 @@
-<%@page import = "controladores.ControladorRegistrarPedidoCliente" %>
+<%@page import = "controladores.ControladorSeguimientoPedido" %>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
@@ -25,7 +25,8 @@
 		  		if( request.getParameter("ingresar") != null )
 			  	{
 			
-					ControladorRegistrarPedidoCliente ctrl_pedido = new ControladorRegistrarPedidoCliente();
+		  			ControladorSeguimientoPedido ctrl_pedido = new ControladorSeguimientoPedido();
+					session.setAttribute("ctrl_pedido",ctrl_pedido);
 					  
 				    String usuario = request.getParameter("usuario");
 				    String password = request.getParameter("password");

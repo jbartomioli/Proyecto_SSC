@@ -298,22 +298,22 @@ public class Cliente
 		//SI EL OBJETO CLIENTE DE NEGOCIO YA TIENE SUS VENTAS
 		//CARGADAS SE LAS VUELVE A SETEAR CON EL FIN DE MANTENER
 		//ACTUALIZADO EL ARRAY AL MOMENTO DE LLAMAR ESTE METODO
-		if(this.ventas != null)
+		if(this.pedidos != null)
 		{
 			//SE RECORRE CADA VENTA DE LA BD
-			for(datos.Venta ventaDato: clienteDato.getVentas())
+			for(datos.Pedido pedidoDato: clienteDato.getPedidos())
 			{
 				//SE CREA OBJETO VENTA DE NEGOCIO PARA SETEARLO Y DESPUES
 				//AGREGARLO AL ARRAY
-				negocio.Venta ventaNegocio = new negocio.Venta();
+				negocio.Pedido pedidoNegocio = new negocio.Pedido();
 				
 				//SE SETEAN LOS DATOS DE LA VENTA
-				ventaNegocio.setIdVenta(ventaDato.getIdVenta());
-				ventaNegocio.setFechaVenta(ventaDato.getFechaVenta());
-				ventaNegocio.setTotal(ventaDato.getTotal());
-				
+				pedidoNegocio.setIdPedido(pedidoDato.getIdPedido());
+				pedidoNegocio.setFecha(pedidoDato.getFecha());
+				pedidoNegocio.setTotal(pedidoDato.getTotal());
+						
 				//SE AGREGA LA VENTA AL ARRAY
-				this.ventas.add(ventaNegocio);
+				this.pedidos.add(pedidoNegocio);
 			}
 		}
 		
