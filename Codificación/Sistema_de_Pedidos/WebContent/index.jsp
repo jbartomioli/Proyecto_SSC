@@ -26,7 +26,6 @@
 			  	{
 			
 		  			ControladorSeguimientoPedido ctrl_pedido = new ControladorSeguimientoPedido();
-					session.setAttribute("ctrl_pedido",ctrl_pedido);
 					  
 				    String usuario = request.getParameter("usuario");
 				    String password = request.getParameter("password");
