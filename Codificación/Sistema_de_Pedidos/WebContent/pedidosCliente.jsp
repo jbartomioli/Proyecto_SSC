@@ -1,5 +1,11 @@
+<%@page import="utilidades.Utilidades"%>
 <%@page import="controladores.ControladorSeguimientoPedido"%>
-<%@page import = "controladores.ControladorRegistrarPedidoCliente" %>
+<%@page import = "negocio.Pedido" %>
+<%@page import = "java.text.SimpleDateFormat" %>
+<%@page import = "java.text.DecimalFormat" %>
+<%@page import = "java.util.Collection" %>
+<%@page import = "java.util.ArrayList" %>
+
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
@@ -23,17 +29,45 @@
 	
 	 <div class="col-md-12">
 		<h2>Módulo de Seguimiento de Pedidos</h2>
-		<h3>Bienvenido/a <% out.print(ctrl_pedido.getUsuario().getName()); %></h3>
+		<h3>Bienvenido/a <% out.print(ctrl_pedido.getModeloTrackingPedido().getUsuario().getName()); %></h3>
 		<h4>Listado de Pedidos</h4>
 		<div class="table-responsive col-md-6">
+		
+		<% 
+		Collection<Pedido> pedidos = new ArrayList<Pedido>();
+		
+		pedidos = ctrl_pedido.obtenerPedidos();
+		
+		if(pedidos.isEmpty())
+		{
+			out.print("<h5>No tiene pedidos a su nombre</h5>");
+		}
+		else
+		{
+		%>
 			<table class="table table-striped table-hover">
+				<tr>
+					<th>Número</th>
+					<th>Fecha de Solicitud</th>
+					<th>Estado</th>
+					<th>Monto</th>
+				</tr>
 			<%			
-			for(negocio.Pedido pedidoActual : ctrl_pedido.obtenerPedidos(1) )
+			for(negocio.Pedido pedidoActual : pedidos )
 			{
-				out.print("<tr><td>"+pedidoActual.getIdPedido()+"</td><td>"+pedidoActual.getFecha()+"</td></tr>");
+				String fechaFormato = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(pedidoActual.getFecha());
+				String decimalFormato = new DecimalFormat("$ 0.00##").format(pedidoActual.getTotal());
+				
+				out.print("<tr><td>"+pedidoActual.getCodPedido()+
+						"</td><td>"+fechaFormato+
+						"</td><td>"+pedidoActual.getEstado()+
+						"</td><td>"+decimalFormato+"</td></tr>");		
 			}
 			%>
 			</table>
+		<% 
+		} 
+		%>
 		</div>
     </div>
 </body>
