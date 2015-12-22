@@ -163,7 +163,10 @@ public class ControladorSeguimientoPedido
 		this.cliente.setIdCliente(idCliente);
 		
 		try {
-			cliente.obtenerPedidos();
+			if(cliente.getPedidos().isEmpty())
+			{
+				cliente.obtenerPedidos();
+			}
 			return cliente.getPedidos();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

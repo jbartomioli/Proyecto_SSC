@@ -321,7 +321,7 @@ public class Cliente
 				
 				//SE SETEAN LOS DATOS DE LA VENTA
 				pedidoNegocio.setIdPedido(pedidoDato.getIdPedido());
-//				pedidoNegocio.setFecha(pedidoDato.getFecha());
+				pedidoNegocio.setFecha(pedidoDato.getFecha());
 				//pedidoNegocio.setTotal(pedidoDato.getTotal());
 						
 				//SE AGREGA LA VENTA AL ARRAY

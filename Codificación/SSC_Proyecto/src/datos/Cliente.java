@@ -39,6 +39,7 @@ public class Cliente
 		this.telefono = "";
 		this.tipoCliente = false;
 		this.ventas = new ArrayList<datos.Venta>();
+		this.pedidos = new ArrayList<datos.Pedido>();
 	}
 	//---------------------------------------------------------------
 
@@ -213,7 +214,7 @@ public class Cliente
 	           
 	        	//SE SETEA EL OBJETO VENTA DE DATOS
 	        	pedidoDatos.setIdPedido(entPedido.getIdPedido());
-//	        	pedidoDatos.setFecha(entPedido.getFecha()); 
+	        	pedidoDatos.setFecha(entPedido.getFecha()); 
 	        	//pedidoDatos.setTotal(entPedido.getTotal());
 	        	
 	        	//SE AGREGA LA VENTA AL ARRAY
