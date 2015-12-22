@@ -1,10 +1,6 @@
 package controladores;
 
-
-
 import java.util.Collection;
-
-
 
 
 public class ControladorSeguimientoPedido
@@ -13,8 +9,7 @@ public class ControladorSeguimientoPedido
 	//* ATRIBUTOS													*
 	//***************************************************************
 	private negocio.ModeloTrackingPedidoCliente modeloTrackingPedido; 
-	private negocio.Userdetail usuario;
-	private negocio.Cliente cliente;
+
 		
 	
 	//***************************************************************
@@ -23,8 +18,7 @@ public class ControladorSeguimientoPedido
 	public ControladorSeguimientoPedido() throws Exception 
 	{
 		this.modeloTrackingPedido = new negocio.ModeloTrackingPedidoCliente();
-		this.usuario = new negocio.Userdetail();
-		this.cliente = new negocio.Cliente();
+		this.modeloTrackingPedido.inicializarCatalogos();
 	}
 	//---------------------------------------------------------------
 
@@ -32,13 +26,15 @@ public class ControladorSeguimientoPedido
 	//***************************************************************
 	//* GETTES & SETTERS											*
 	//***************************************************************
-	public negocio.Userdetail getUsuario() {
-		return usuario;
+	public negocio.ModeloTrackingPedidoCliente getModeloTrackingPedido()
+	{
+		return modeloTrackingPedido;
 	}
 
 
-	public void setUsuario(negocio.Userdetail usuario) {
-		this.usuario = usuario;
+	public void setModeloTrackingPedido(negocio.ModeloTrackingPedidoCliente modeloTrackingPedido)
+	{
+		this.modeloTrackingPedido = modeloTrackingPedido;
 	}
 	//---------------------------------------------------------------
 	
@@ -46,12 +42,6 @@ public class ControladorSeguimientoPedido
 	//***************************************************************
 	//* METODOS 													*
 	//***************************************************************
-	
-	
-	
-	
-
-
 
 
 	/**
@@ -62,145 +52,15 @@ public class ControladorSeguimientoPedido
 	 */
 	public boolean iniciarSesion(String user, String password)
 	{
-		negocio.Userdetail usuarioNegocio = new negocio.Userdetail();
-		
-		try
-		{
-			usuarioNegocio.obtenerUser(user, password);
-			
-			if(usuarioNegocio.getName().equals(""))
-				return false;
-			else
-			{
-				this.usuario.setName(usuarioNegocio.getName());
-				this.usuario.setUsername(usuarioNegocio.getUsername());
-				this.usuario.setPassword(usuarioNegocio.getPassword());
-				
-//				modeloTrackingPedido.inicializarCatalogos();
-				
-				return true;
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			return false;
-		}
+		return modeloTrackingPedido.iniciarSesion(user, password);
 	}
 	
-	
-	
-	/**
-	 * 
-	 * @param nro_cliente
-	 * @param nomape_cliente
-	 * @return
-	 */
-//	public String buscarCliente(String nro_cliente, String nom_cliente, String ape_cliente)
-//	{
-//		negocio.Cliente clienteActual = new negocio.Cliente();
-//		
-//		if(nro_cliente.matches("[0-9]{1,}") || ( nom_cliente.matches("[a-zA-z]{1,}") && ape_cliente.matches("[a-zA-z]{1,}") ) )
-//		{
-//			//BUSCAR POR NRO CLIENTE
-//			if(!nro_cliente.equals("") && ( nom_cliente.trim().equals("") || ape_cliente.trim().equals("") ) )
-//			{
-//				clienteActual = modeloTrackingPedido.buscarCliente(Integer.parseInt(nro_cliente));
-//			}
-//			//BUSCAR POR NOMBRE APELLIDO CLIENTE
-//			else
-//			{
-//				if(nro_cliente.equals("") && !( nom_cliente.trim().equals("") && ape_cliente.trim().equals("") ) )
-//				{
-//					clienteActual = modeloTrackingPedido.buscarCliente(nom_cliente.trim(), ape_cliente.trim());
-//				}
-//			}
-//			
-//			if(clienteActual != null)
-//			{
-//				String salidaResultados = "<table class=\"resultados\">"
-//						+ "	<tr>"
-//						+ "		<td class=\"labels\">Nombre:</td>"
-//						+ "		<td>"+clienteActual.getNombre()+"</td>"
-//						+ "	</tr>"
-//						+ "	<tr>"
-//						+ "		<td class=\"labels\">Apellido:</td>"
-//						+ "		<td>"+clienteActual.getApellido()+"</td>"
-//						+ "	</tr>"
-//						+ "	<tr>"
-//						+ "		<td class=\"labels\">Dirección:</td>"
-//						+ "		<td>"+clienteActual.getDireccion()+"</td>"
-//						+ "	</tr>"
-//						+ "	<tr>"
-//						+ "		<td class=\"labels\">Teléfono:</td>"
-//						+ "		<td>"+clienteActual.getTelefono()+"</td>"
-//						+ "	</tr>"
-//						+ "</table>"
-//						+ "<form action=\"confeccionPedido.jsp\" method=\"post\" ><input type=\"submit\" value=\"Confeccionar Pedido\" /></form>";
-//				
-//				return salidaResultados;
-//			}
-//			else
-//			{
-//				return "<h2 class=\"res_error\">No se ha encontrado el cliente buscado</h2>";
-//			}
-//			
-//		}
-//		else
-//		{
-//			//DATOS INGRESADOS ERRONEOS
-//			return "<h2 class=\"res_error\">Los datos ingresados son erróneos</h2>";
-//		}
-//	}
-//	
-	
-	
-	
-	public Collection<negocio.Pedido> obtenerPedidos(int idCliente)
+
+
+
+	public Collection<negocio.Pedido> obtenerPedidos()
 	{
-		
-		//negocio.Cliente clienteActual = new negocio.Cliente();
-		this.cliente.setIdCliente(idCliente);
-		
-		try {
-			if(cliente.getPedidos().isEmpty())
-			{
-				cliente.obtenerPedidos();
-			}
-			return cliente.getPedidos();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-		
-//		return null;
+		return modeloTrackingPedido.obtenerPedidos();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/**
-	 * 
-	 */
-	public String cerrarSesion()
-	{
-		this.modeloTrackingPedido = null;
-		this.usuario = null;
-		
-		return "<h2>Salida exitosa</h2>";
-	}
-	
+
 }

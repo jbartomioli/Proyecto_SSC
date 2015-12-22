@@ -21,6 +21,7 @@ public class Pedido
 	private Date fecha;
 	private Collection<datos.LineaDePedido> lineas;
 	private String estado;
+	private String codPedido;
 	//---------------------------------------------------------------
 	
 
@@ -36,6 +37,7 @@ public class Pedido
 		this.fecha = new Date();
 		this.lineas = new ArrayList<datos.LineaDePedido>();
 		this.estado = "";
+		this.codPedido = "";
 	}
 	//---------------------------------------------------------------
 
@@ -101,6 +103,16 @@ public class Pedido
 	public void setEstado(String estado) 
 	{
 		this.estado = estado;
+	}
+	
+	public String getCodPedido() 
+	{
+		return codPedido;
+	}
+
+	public void setCodPedido(String codPedido) 
+	{
+		this.codPedido = codPedido;
 	}
 	//---------------------------------------------------------------
 	

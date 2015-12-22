@@ -129,8 +129,6 @@ public class Userdetail
 	        	setIdCliente(entUserdetail.getIdCliente());
 	        	
 	        }
-	        //SE CONFIRMA TRANSACCION
-//	        session.getTransaction().commit();
 		}		 
 		finally
 		{

@@ -34,17 +34,19 @@ public class Pedidos implements java.io.Serializable {
 	private Float total;
 	private Date fecha;
 	private String estado;
+	private String codPedido;
 	private Set<LineaDePedido> lineaDePedidos = new HashSet<LineaDePedido>(0);
 
 	public Pedidos() {
 	}
 
-	public Pedidos(Clientes clientes, Float total, Date fecha, String estado,
+	public Pedidos(Clientes clientes, Float total, Date fecha, String estado, String codPedido,
 			Set<LineaDePedido> lineaDePedidos) {
 		this.clientes = clientes;
 		this.total = total;
 		this.fecha = fecha;
 		this.estado = estado;
+		this.codPedido = codPedido;
 		this.lineaDePedidos = lineaDePedidos;
 	}
 
@@ -96,6 +98,15 @@ public class Pedidos implements java.io.Serializable {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
+	@Column(name = "codPedido", length = 45)
+	public String getCodPedido() {
+		return this.codPedido;
+	}
+
+	public void setCodPedido(String codPedido) {
+		this.codPedido = codPedido;
+	}	
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedidos")
 	public Set<LineaDePedido> getLineaDePedidos() {

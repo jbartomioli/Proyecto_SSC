@@ -20,6 +20,9 @@
         <property name="estado" type="string">
             <column name="estado" length="50" />
         </property>
+        <property name="codPedido" type="string">
+            <column name="codPedido" length="45" />
+        </property>
         <set name="lineaDePedidos" table="lineaDePedido" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idPedido" not-null="true" />

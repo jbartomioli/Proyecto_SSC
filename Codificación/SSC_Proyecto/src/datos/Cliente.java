@@ -215,7 +215,9 @@ public class Cliente
 	        	//SE SETEA EL OBJETO VENTA DE DATOS
 	        	pedidoDatos.setIdPedido(entPedido.getIdPedido());
 	        	pedidoDatos.setFecha(entPedido.getFecha()); 
-	        	//pedidoDatos.setTotal(entPedido.getTotal());
+	        	pedidoDatos.setTotal(entPedido.getTotal());
+	        	pedidoDatos.setEstado(entPedido.getEstado());
+	        	pedidoDatos.setCodPedido(entPedido.getCodPedido());
 	        	
 	        	//SE AGREGA LA VENTA AL ARRAY
 	           	this.pedidos.add(pedidoDatos);
