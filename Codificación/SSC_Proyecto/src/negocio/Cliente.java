@@ -39,6 +39,7 @@ public class Cliente
 		this.telefono = "";
 		this.tipoCliente = false;
 		this.ventas = new ArrayList<negocio.Venta>();
+		this.pedidos = new ArrayList<negocio.Pedido>();
 	}
 	//---------------------------------------------------------------
 
@@ -134,6 +135,17 @@ public class Cliente
 	public void setEspecialidad(String especialidad) 
 	{
 		this.especialidad = especialidad;
+	}
+	
+	
+	public Collection<negocio.Pedido> getPedidos()
+	{		
+		return pedidos;
+	}
+	
+	public void setPedidos(Collection<negocio.Pedido> pedidos) 
+	{
+		this.pedidos = pedidos;
 	}
 	//---------------------------------------------------------------
 	
@@ -309,8 +321,8 @@ public class Cliente
 				
 				//SE SETEAN LOS DATOS DE LA VENTA
 				pedidoNegocio.setIdPedido(pedidoDato.getIdPedido());
-				pedidoNegocio.setFecha(pedidoDato.getFecha());
-				pedidoNegocio.setTotal(pedidoDato.getTotal());
+//				pedidoNegocio.setFecha(pedidoDato.getFecha());
+				//pedidoNegocio.setTotal(pedidoDato.getTotal());
 						
 				//SE AGREGA LA VENTA AL ARRAY
 				this.pedidos.add(pedidoNegocio);

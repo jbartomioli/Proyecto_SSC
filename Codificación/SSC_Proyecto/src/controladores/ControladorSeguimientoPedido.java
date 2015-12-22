@@ -4,8 +4,6 @@ package controladores;
 
 import java.util.Collection;
 
-import negocio.ModeloTrackingPedidoCliente;
-import negocio.Userdetail;
 
 
 
@@ -16,6 +14,7 @@ public class ControladorSeguimientoPedido
 	//***************************************************************
 	private negocio.ModeloTrackingPedidoCliente modeloTrackingPedido; 
 	private negocio.Userdetail usuario;
+	private negocio.Cliente cliente;
 		
 	
 	//***************************************************************
@@ -23,8 +22,9 @@ public class ControladorSeguimientoPedido
 	//***************************************************************
 	public ControladorSeguimientoPedido() throws Exception 
 	{
-		this.modeloTrackingPedido = new ModeloTrackingPedidoCliente();
-		this.usuario = new Userdetail();
+		this.modeloTrackingPedido = new negocio.ModeloTrackingPedidoCliente();
+		this.usuario = new negocio.Userdetail();
+		this.cliente = new negocio.Cliente();
 	}
 	//---------------------------------------------------------------
 
@@ -76,7 +76,7 @@ public class ControladorSeguimientoPedido
 				this.usuario.setUsername(usuarioNegocio.getUsername());
 				this.usuario.setPassword(usuarioNegocio.getPassword());
 				
-				modeloTrackingPedido.inicializarCatalogos();
+//				modeloTrackingPedido.inicializarCatalogos();
 				
 				return true;
 			}
@@ -159,16 +159,19 @@ public class ControladorSeguimientoPedido
 	public Collection<negocio.Pedido> obtenerPedidos(int idCliente)
 	{
 		
-		negocio.Cliente clienteActual = new negocio.Cliente();
+		//negocio.Cliente clienteActual = new negocio.Cliente();
+		this.cliente.setIdCliente(idCliente);
 		
 		try {
-			clienteActual.obtenerPedidos();
+			cliente.obtenerPedidos();
+			return cliente.getPedidos();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 		
-		return null;
+//		return null;
 	}
 	
 	
