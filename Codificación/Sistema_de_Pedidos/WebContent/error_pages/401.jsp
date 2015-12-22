@@ -3,17 +3,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>Módulo de Registro de Pedidos - Sistema de Seguimiento de Clientes</title>
+  <title>Módulo de Seguimiento de Pedidos - Sistema de Seguimiento de Clientes</title>
   <script type="text/javascript" src="scripts/jquery-1.3.2.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
 </head>
  
 <body>
- 	<div id="encabezado"></div>
-	
-	<div id="contenido">
+    <div class="col-md-12">
+ 		<img width="100%" src="img/imgInicioInf.png" alt="" class="img-rounded img-responsive">
+    </div>	
+    
+	<div class="col-md-12">
 		<h2>Error HTTP 401 Unauthorized (No autorizado)</h2>
     </div>
-	<div id="pie"></div>
 </body>
 </html> 

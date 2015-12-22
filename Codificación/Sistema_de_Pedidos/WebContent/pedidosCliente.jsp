@@ -27,12 +27,10 @@
 		<h4>Listado de Pedidos</h4>
 		<div class="table-responsive col-md-6">
 			<table class="table table-striped table-hover">
-			<%
-			//ctrl_pedido.obtenerPedidos(1);
-			
+			<%			
 			for(negocio.Pedido pedidoActual : ctrl_pedido.obtenerPedidos(1) )
 			{
-				out.print("<tr><td>"+pedidoActual.getIdPedido()+"</td><td>aaaa</td></tr>");
+				out.print("<tr><td>"+pedidoActual.getIdPedido()+"</td><td>"+pedidoActual.getFecha()+"</td></tr>");
 			}
 			%>
 			</table>
