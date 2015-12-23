@@ -224,6 +224,7 @@ public class Cliente
 	public double obtenerTotalVentas()
 	{
 		double totalVentas = 0;
+		
 		for(negocio.Venta ventaNegocio: this.ventas)
 		{
 			totalVentas = totalVentas + ventaNegocio.getTotal();

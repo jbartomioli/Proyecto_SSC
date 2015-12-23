@@ -32,6 +32,7 @@ import negocio.Venta;
 
 
 
+
 //INICIO IMPORTS PARA GRAFICAR
 import org.jfree.chart.*;
 import org.jfree.chart.axis.ValueAxis;
@@ -54,6 +55,7 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 	private ModeloRealizarSeguimientoCliente modeloSeguimiento;
 	private SeguimientoDeClientes guiSeguimiento;
 	
+	int idClienteSeleccionado = 0;
 	
 
 	/**
@@ -320,7 +322,6 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 	@SuppressWarnings("rawtypes")
 	protected void click_seleccionar_cliente() throws Exception
 	{
-		int idClienteSeleccionado = 0;
 		Date fechaActual;
 		Date fechaMaxCompra;
 		long diference;
@@ -404,6 +405,7 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 				}
 				
 				idClienteSeleccionado = idCliente;
+				
 	    	}
 			 
 		}
