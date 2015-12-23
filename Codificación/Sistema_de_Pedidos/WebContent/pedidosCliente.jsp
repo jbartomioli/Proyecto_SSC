@@ -21,16 +21,33 @@
  
 <body>
 
-<% ControladorSeguimientoPedido ctrl_pedido = (ControladorSeguimientoPedido) session.getAttribute("ctrl_pedido");  %>
-
+<% ControladorSeguimientoPedido ctrl_pedido = (ControladorSeguimientoPedido) session.getAttribute("ctrl_pedido"); 
+if(ctrl_pedido.getModeloTrackingPedido().getUsuario().getIdCliente() == 0)
+{
+	response.sendRedirect("index.jsp");
+}
+else
+{
+%>
     <div class="col-md-12">
  		<img width="100%" src="img/imgInicioInf.png" alt="" class="img-rounded img-responsive">
     </div>
 	
+	<div class="col-md-3">
+		<form id="logout" name="form_logout" action="pedidosCliente.jsp" method="post" class="form-horizontal"> 
+			<div class="form-group">
+    			<div class="col-sm-offset-2 col-sm-2">
+	        		<button type="submit" class="btn btn-default" name="salir">Cerrar Sesión</button>
+    			</div>
+  			</div>		           
+		</form>
+	</div>
+	
 	 <div class="col-md-12">
 		<h2>Módulo de Seguimiento de Pedidos</h2>
 		<h3>Bienvenido/a <% out.print(ctrl_pedido.getModeloTrackingPedido().getUsuario().getName()); %></h3>
-		<h4>Listado de Pedidos</h4>
+		<h4>Listado de Pedidos</h4>	
+
 		<div class="table-responsive col-md-6">
 		
 		<% 
@@ -70,5 +87,14 @@
 		%>
 		</div>
     </div>
+<% 
+} 
+
+if( request.getParameter("salir") != null )
+{
+	ctrl_pedido.cerrarSesion();
+	response.sendRedirect("index.jsp");
+}
+%>
 </body>
 </html> 
