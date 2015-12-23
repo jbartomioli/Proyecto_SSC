@@ -2,6 +2,8 @@ package controladores;
 
 import java.util.Collection;
 
+import negocio.ModeloTrackingPedidoCliente;
+
 
 public class ControladorSeguimientoPedido
 {
@@ -61,6 +63,18 @@ public class ControladorSeguimientoPedido
 	public Collection<negocio.Pedido> obtenerPedidos()
 	{
 		return modeloTrackingPedido.obtenerPedidos();
+	}
+	
+	public void cerrarSesion()
+	{
+		modeloTrackingPedido.cerrarSesion();
+		modeloTrackingPedido = new ModeloTrackingPedidoCliente();
+		
+//		if(modeloTrackingPedido.equals(null))
+//		{
+//			return true;
+//		}
+		
 	}
 
 }

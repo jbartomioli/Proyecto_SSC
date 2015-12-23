@@ -104,10 +104,6 @@ public class ModeloTrackingPedidoCliente
 	
 	public Collection<negocio.Pedido> obtenerPedidos()
 	{
-		
-		//negocio.Cliente clienteActual = new negocio.Cliente();
-//		this.cliente.setIdCliente(idCliente);
-		
 		try 
 		{
 			if(this.cliente.getPedidos().isEmpty())
