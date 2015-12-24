@@ -49,12 +49,12 @@ else
 	 <div class="col-md-12">
 		<h2>M&oacute;dulo de Seguimiento de Pedidos</h2>
 		
-		<div class="col-md-12">
+		<div class="row">
 			
-				<h3 class="">Bienvenido/a <% out.print(ctrl_pedido.getModeloTrackingPedido().getUsuario().getName()); %></h3>
+				<h4 class="col-md-4 col-xs-4">Bienvenido/a <% out.print(ctrl_pedido.getModeloTrackingPedido().getUsuario().getName()); %></h4>
 		
 			
-			<div class="col-md-6">
+			<div class="col-md-2 col-xs-2">
 				<form id="logout" name="form_logout" action="pedidosCliente.jsp" method="post" class="form-horizontal"> 
 					<button type="submit" class="btn btn-default" name="salir">Cerrar Sesi&oacute;n</button>		           
 				</form>
