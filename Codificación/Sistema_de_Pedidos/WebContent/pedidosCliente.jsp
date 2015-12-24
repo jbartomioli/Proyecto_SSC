@@ -14,7 +14,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>Módulo de Registro de Pedidos - Sistema de Seguimiento de Clientes</title>
+  <title>Modulo de Registro de Pedidos - Sistema de Seguimiento de Clientes</title>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
 </head>
@@ -33,22 +33,39 @@ else
  		<img width="100%" src="img/imgInicioInf.png" alt="" class="img-rounded img-responsive">
     </div>
 	
-	<div class="col-md-3">
-		<form id="logout" name="form_logout" action="pedidosCliente.jsp" method="post" class="form-horizontal"> 
-			<div class="form-group">
-    			<div class="col-sm-offset-2 col-sm-2">
-	        		<button type="submit" class="btn btn-default" name="salir">Cerrar Sesión</button>
-    			</div>
-  			</div>		           
-		</form>
-	</div>
+<!-- 	<div class="col-md-3"> -->
+<!-- 		<form id="logout" name="form_logout" action="pedidosCliente.jsp" method="post" class="form-horizontal">  -->
+<!-- 			<div class="form-group"> -->
+<!--     			<div class="col-sm-offset-2 col-sm-2"> -->
+<!-- 	        		<button type="submit" class="btn btn-default" name="salir">Cerrar Sesi?n</button> -->
+<!--     			</div> -->
+<!--   			</div>		            -->
+<!-- 		</form> -->
+<!-- 	</div> -->
+
+
+
 	
 	 <div class="col-md-12">
-		<h2>Módulo de Seguimiento de Pedidos</h2>
-		<h3>Bienvenido/a <% out.print(ctrl_pedido.getModeloTrackingPedido().getUsuario().getName()); %></h3>
-		<h4>Listado de Pedidos</h4>	
+		<h2>M&oacute;dulo de Seguimiento de Pedidos</h2>
+		
+		<div class="col-md-12">
+			
+				<h3 class="">Bienvenido/a <% out.print(ctrl_pedido.getModeloTrackingPedido().getUsuario().getName()); %></h3>
+		
+			
+			<div class="col-md-6">
+				<form id="logout" name="form_logout" action="pedidosCliente.jsp" method="post" class="form-horizontal"> 
+					<button type="submit" class="btn btn-default" name="salir">Cerrar Sesi&oacute;n</button>		           
+				</form>
+			</div>
+		</div>
+		
+		<div class="col-md-12">
+			<h4>Listado de Pedidos</h4>	
+		</div>
 
-		<div class="table-responsive col-md-6">
+		<div class="table-responsive col-md-12">
 		
 		<% 
 		Collection<Pedido> pedidos = new ArrayList<Pedido>();
@@ -64,7 +81,7 @@ else
 		%>
 			<table class="table table-striped table-hover">
 				<tr>
-					<th>Número</th>
+					<th>N&uacute;mero</th>
 					<th>Fecha de Solicitud</th>
 					<th>Estado</th>
 					<th>Monto</th>
