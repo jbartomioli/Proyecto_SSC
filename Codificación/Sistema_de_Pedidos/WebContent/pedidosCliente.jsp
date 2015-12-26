@@ -20,6 +20,22 @@
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/pagination.js"></script>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
+  
+  <script type="text/javascript">
+	function mostrarOcultarTablas(id)
+	{
+		mostrado=0;
+		elem = document.getElementById(id);
+	
+		if(elem.style.display=='inline-table')
+			mostrado=1;
+			elem.style.display='none';
+			
+		if(mostrado!=1)
+			elem.style.display='inline-table';
+	}
+	</script>
+  
 </head>
  
 <body>
@@ -102,7 +118,7 @@ else
 				String fechaFormato = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(pedidoActual.getFecha());
 				String decimalFormato = new DecimalFormat("$ 0.00##").format(pedidoActual.getTotal());
 
-				out.print("<tr><td><a href=\"#\" id=\""+pedidoActual.getCodPedido()+"\">"+pedidoActual.getCodPedido()+"</a>"+
+				out.print("<tr><td><a href=\"javascript:mostrarOcultarTablas(\'"+pedidoActual.getCodPedido()+"\')\" >"+pedidoActual.getCodPedido()+"</a>"+
 						"</td><td>"+fechaFormato+
 						"</td><td>"+pedidoActual.getEstado()+
 						"</td><td>"+decimalFormato+"</td></tr>");
@@ -112,7 +128,7 @@ else
 				
 				out.print("<tr><td colspan=\"4\">");
 				
-				out.print("<table class=\"table table-condensedd table-bordered table-hover\">");
+				out.print("<table class=\"table table-condensedd table-bordered table-hover\" style=\"display:none;\" id=\""+pedidoActual.getCodPedido()+"\">");
 				out.print("<thead>");
 				out.print("<tr>");
 				out.print("<th>Cod.</th>");
