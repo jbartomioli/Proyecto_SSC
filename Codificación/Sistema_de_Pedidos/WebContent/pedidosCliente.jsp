@@ -1,3 +1,4 @@
+<%@page import="negocio.LineaDePedido"%>
 <%@page import="utilidades.Utilidades"%>
 <%@page import="controladores.ControladorSeguimientoPedido"%>
 <%@page import = "negocio.Pedido" %>
@@ -15,7 +16,9 @@
 <html>
 <head>
   <title>Modulo de Registro de Pedidos - Sistema de Seguimiento de Clientes</title>
+  <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/pagination.js"></script>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
 </head>
  
@@ -56,7 +59,7 @@ else
 			
 			<div class="col-md-2 col-xs-2">
 				<form id="logout" name="form_logout" action="pedidosCliente.jsp" method="post" class="form-horizontal"> 
-					<button type="submit" class="btn btn-default" name="salir">Cerrar Sesi&oacute;n</button>		           
+					<button type="submit" class="btn btn-primary" name="salir">Cerrar Sesi&oacute;n</button>		           
 				</form>
 			</div>
 		</div>
@@ -74,36 +77,78 @@ else
 		
 		if(pedidos.isEmpty())
 		{
-			out.print("<h5>No tiene pedidos a su nombre</h5>");
+			out.print("<p class=\"bg-warning\">No tiene pedidos registrados a su nombre</p>");
 		}
 		else
 		{
 		%>
-			<table class="table table-striped table-hover">
-				<tr>
-					<th>N&uacute;mero</th>
-					<th>Fecha de Solicitud</th>
-					<th>Estado</th>
-					<th>Monto</th>
-				</tr>
+
+	<div class="row">
+      <div class="table-responsive">
+			<table class="table table-striped table-hover" height="20">
+				<thead>
+					<tr>
+						<th>N&uacute;mero</th>
+						<th>Fecha de Solicitud</th>
+						<th>Estado</th>
+						<th>Monto</th>
+					</tr>
+				</thead>
 			<%			
+			out.print("<tbody id=\"myTable\">");
+
 			for(negocio.Pedido pedidoActual : pedidos )
 			{
 				String fechaFormato = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(pedidoActual.getFecha());
 				String decimalFormato = new DecimalFormat("$ 0.00##").format(pedidoActual.getTotal());
-				
-				out.print("<tr><td>"+pedidoActual.getCodPedido()+
+
+				out.print("<tr><td><a href=\"#\" id=\""+pedidoActual.getCodPedido()+"\">"+pedidoActual.getCodPedido()+"</a>"+
 						"</td><td>"+fechaFormato+
 						"</td><td>"+pedidoActual.getEstado()+
-						"</td><td>"+decimalFormato+"</td></tr>");		
+						"</td><td>"+decimalFormato+"</td></tr>");
+				
+				if(pedidoActual.getLineas().isEmpty())
+					pedidoActual.obtenerLineasDePedido();
+				
+				out.print("<tr><td colspan=\"4\">");
+				
+				out.print("<table class=\"table table-condensedd table-bordered table-hover\">");
+				out.print("<thead>");
+				out.print("<tr>");
+				out.print("<th>Cod. Producto</th>");
+				out.print("<th>Cant. Pedida</th>");
+				out.print("</tr>");
+				out.print("</thead>");
+
+
+				out.print("<tbody>");
+				for(LineaDePedido PA : pedidoActual.getLineas())
+				{
+					out.print("<tr>");
+					out.println("<td>"+PA.getProducto().getCodProducto()+"</td>");
+					out.println("<td>"+PA.getCantidadPedida()+"</td>");
+					out.print("</tr>");
+				}
+				out.print("</tbody>");
+
+				
+				out.print("</table>");
+				out.print("</td></tr>");
+
 			}
+			out.print("</tbody>");
 			%>
 			</table>
+			</div>
+			<div class="col-md-12 text-center">
+      			<ul class="pagination" id="myPager"></ul>
+     		</div>
+     		</div>
+     		</div>
 		<% 
 		} 
 		%>
 		</div>
-    </div>
 <% 
 } 
 

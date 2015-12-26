@@ -8,6 +8,7 @@
 <html>
 <head>
   <title>Módulo de Seguimiento de Pedidos - Sistema de Seguimiento de Clientes</title>
+  <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
 </head>
@@ -40,7 +41,7 @@
 				    %>
 				    	<%@include file="html_content/formulario_login.html" %>
 				    <%
-				    	out.print("<p>Usuario y/o contraseña no válido/s</p>");
+				    	out.print("<p class=\"bg-danger\">Usuario y/o contraseña no válido/s</p>");
 				    }
 			  	}
 			  	else
