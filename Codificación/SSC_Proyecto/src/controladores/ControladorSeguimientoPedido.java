@@ -65,6 +65,14 @@ public class ControladorSeguimientoPedido
 		return modeloTrackingPedido.obtenerPedidos();
 	}
 	
+	
+	public Collection<negocio.LineaDePedido> obtenerLineasPedidos(int idPedido)
+	{
+		return modeloTrackingPedido.obtenerLineasPedidos();
+	}
+	
+	
+	
 	public void cerrarSesion()
 	{
 		modeloTrackingPedido.cerrarSesion();

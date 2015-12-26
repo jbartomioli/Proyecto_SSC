@@ -13,7 +13,7 @@ public class Pedido
 	private float total;
 	private negocio.Cliente cliente;
 	private Date fecha;
-	private Collection<negocio.LineaDePedido> lineas;
+	private Collection<negocio.LineaDePedido> lineasDePedido;
 	private String estado;
 	private String codPedido;
 	//---------------------------------------------------------------
@@ -28,7 +28,7 @@ public class Pedido
 		this.total = 0;
 		this.cliente = new negocio.Cliente();
 		this.fecha = new Date();
-		this.lineas = new ArrayList<negocio.LineaDePedido>();
+		this.lineasDePedido = new ArrayList<negocio.LineaDePedido>();
 		this.estado = "";
 		this.codPedido = "";
 	}
@@ -80,12 +80,12 @@ public class Pedido
 
 	public  Collection<negocio.LineaDePedido> getLineas() 
 	{
-		return lineas;
+		return lineasDePedido;
 	}
 
 	public void setLineas(Collection<negocio.LineaDePedido> lineas) 
 	{
-		this.lineas = lineas;
+		this.lineasDePedido = lineas;
 	}
 
 	public String getEstado() 
@@ -138,7 +138,7 @@ public class Pedido
 		lineaNegocio.setSubTotal(subTotal);
 		
 		//SE AGREGA LA LINEA AL ARRAY
-		this.lineas.add(lineaNegocio);
+		this.lineasDePedido.add(lineaNegocio);
 	}
 	//---------------------------------------------------------------
 
@@ -150,7 +150,7 @@ public class Pedido
 	public negocio.LineaDePedido buscarLinea(negocio.LineaDePedido lineaActual)
 	{
 		//SE RECORRE CADA ELEMENTO DEL ARRAY
-		for(negocio.LineaDePedido lineaNegocio : this.lineas)
+		for(negocio.LineaDePedido lineaNegocio : this.lineasDePedido)
 		{
 			//SI LAS LINEAS SON IGUALES SE DEVUELVE LA LINEA ACTUAL
 			if (lineaNegocio == lineaActual)
@@ -169,7 +169,7 @@ public class Pedido
 	public negocio.LineaDePedido buscarLinea(int idProductoViejo)
 	{
 		//SE RECORRE CADA ELEMENTO DEL ARRAY
-		for(negocio.LineaDePedido lineaNegocio : this.lineas)
+		for(negocio.LineaDePedido lineaNegocio : this.lineasDePedido)
 		{
 			//SI LAS LINEAS TIENEN EL MISMO PRODUCTO DEVUELVE LA LINEA ACTUAL
 			if (lineaNegocio.getProducto().getIdProducto() == idProductoViejo)
@@ -189,62 +189,49 @@ public class Pedido
 	
 	public void obtenerLineasDePedido() throws Exception
 	{
-//		//SE CREA OBJETO VENTA DE DATOS PARA RECUPERAR 
-//		//LA INFORMACION DE LA BD
-//		datos.Venta ventaDato = new datos.Venta();
-//		
-//		//SE RECUPERAN DE LA BD TODAS LAS LINEAS DE VENTA DE LA VENTA
-//		ventaDato.obtenerLineasDeVenta(this.idVenta);
-//		
-//		//SI EL OBJETO VENTA DE NEGOCIO YA TIENE SUS LINEAS
-//		//CARGADAS SE LAS VUELVE A SETEAR CON EL FIN DE MANTENER
-//		//ACTUALIZADO EL ARRAY AL MOMENTO DE LLAMAR ESTE METODO
-//		if(this.lineasDeVenta != null)
-//		{
-//			//SE RECORRE CADA OBJETO RESULTANTE DE LA CONSULTA A LA BD
-//			for(datos.LineaDeVenta lineaDato: ventaDato.getLineas())
-//			{
-//				//SE CREA UN OBJETO LINEA DE VENTA DE NEGOCIO PARA
-//				//SETEARLO Y LUEGO AGREGARLO AL ARRAY
-//				negocio.LineaDeVenta lineaNegocio = new negocio.LineaDeVenta();
-//				
-//				//SE SETEAN DATOS DE LA LINEA
-//				lineaNegocio.setCantidad(lineaDato.getCantidad());
-//				lineaNegocio.setSubTotal(lineaDato.getSubTotal());
-//				lineaNegocio.setIdVenta(lineaDato.getIdVenta());
-//
-//				{//SETEO DE DATOS DEL PRODUCTO DE LA LINEA
-//					//SE CREA OBJETO PRODUCTO DE NEGOCIO PARA SETEAR EL PRODUCTO
-//					negocio.Producto productoNegocio = new negocio.Producto();
-//					
-//					//SE CREA OBJETO PRODUCTO DE DATOS PARA OBTENER DATOS DEL MISMO
-//					datos.Producto productoDato = lineaDato.getProductoLinea();
-//					
-//					//SE SETEAN DATOS DEL PRODUCTO DE NEGOCIO
-//					productoNegocio.setCodProducto(productoDato.getCodProducto());
-//					productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
-//					productoNegocio.setIdProducto(productoDato.getIdProducto());
-//					productoNegocio.setNombre(productoDato.getNombre());
-//
-//					//SE SETEA LA LINEA CON EL PRODUCTO
-//					lineaNegocio.setProductoLinea(productoNegocio);
-//				}
-//				
-//				//SE AGREGA LA LINEA DE VENTA EN EL ARRAY		
-//				this.lineasDeVenta.add(lineaNegocio);
-//			}
-//		}
+		//SE CREA OBJETO VENTA DE DATOS PARA RECUPERAR 
+		//LA INFORMACION DE LA BD
+		datos.Pedido pedidoDato = new datos.Pedido();
 		
-	}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		//SE RECUPERAN DE LA BD TODAS LAS LINEAS DE VENTA DE LA VENTA
+		pedidoDato.obtenerLineasDePedido(this.idPedido);
+		
+		//SI EL OBJETO VENTA DE NEGOCIO YA TIENE SUS LINEAS
+		//CARGADAS SE LAS VUELVE A SETEAR CON EL FIN DE MANTENER
+		//ACTUALIZADO EL ARRAY AL MOMENTO DE LLAMAR ESTE METODO
+		if(this.lineasDePedido != null)
+		{
+			//SE RECORRE CADA OBJETO RESULTANTE DE LA CONSULTA A LA BD
+			for(datos.LineaDePedido lineaDato: pedidoDato.getLineas())
+			{
+				//SE CREA UN OBJETO LINEA DE VENTA DE NEGOCIO PARA
+				//SETEARLO Y LUEGO AGREGARLO AL ARRAY
+				negocio.LineaDePedido lineaNegocio = new negocio.LineaDePedido();
+				
+				//SE SETEAN DATOS DE LA LINEA
+				lineaNegocio.setCantidadPedida(lineaDato.getCantidadPedida());
+
+				{//SETEO DE DATOS DEL PRODUCTO DE LA LINEA
+				 //SE CREA OBJETO PRODUCTO DE NEGOCIO PARA SETEAR EL PRODUCTO
+					negocio.Producto productoNegocio = new negocio.Producto();
+					
+					//SE CREA OBJETO PRODUCTO DE DATOS PARA OBTENER DATOS DEL MISMO
+					datos.Producto productoDato = lineaDato.getProducto();
+					
+					//SE SETEAN DATOS DEL PRODUCTO DE NEGOCIO
+					productoNegocio.setCodProducto(productoDato.getCodProducto());
+					productoNegocio.setExistenciaStock(productoDato.getExistenciaStock());
+					productoNegocio.setIdProducto(productoDato.getIdProducto());
+					productoNegocio.setNombre(productoDato.getNombre());
+
+					//SE SETEA LA LINEA CON EL PRODUCTO
+					lineaNegocio.setProducto(productoNegocio);
+				}
+				
+				//SE AGREGA LA LINEA DE VENTA EN EL ARRAY		
+				this.lineasDePedido.add(lineaNegocio);
+			}
+		}
+		
+	}		
 }
