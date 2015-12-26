@@ -41,7 +41,7 @@
 				    %>
 				    	<%@include file="html_content/formulario_login.html" %>
 				    <%
-				    	out.print("<p class=\"bg-danger\">Usuario y/o contraseña no válido/s</p>");
+				    	out.print("<div class=\"alert alert-danger\" role=\"alert\"><p>Usuario y/o contraseña no válido/s</p></div>");
 				    }
 			  	}
 			  	else

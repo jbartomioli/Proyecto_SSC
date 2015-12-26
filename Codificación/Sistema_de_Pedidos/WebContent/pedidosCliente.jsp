@@ -115,7 +115,8 @@ else
 				out.print("<table class=\"table table-condensedd table-bordered table-hover\">");
 				out.print("<thead>");
 				out.print("<tr>");
-				out.print("<th>Cod. Producto</th>");
+				out.print("<th>Cod.</th>");
+				out.print("<th>Producto</th>");
 				out.print("<th>Cant. Pedida</th>");
 				out.print("</tr>");
 				out.print("</thead>");
@@ -126,6 +127,7 @@ else
 				{
 					out.print("<tr>");
 					out.println("<td>"+PA.getProducto().getCodProducto()+"</td>");
+					out.println("<td>"+PA.getProducto().getNombre()+"</td>");
 					out.println("<td>"+PA.getCantidadPedida()+"</td>");
 					out.print("</tr>");
 				}
