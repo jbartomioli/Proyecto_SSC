@@ -122,33 +122,11 @@ public class ModeloTrackingPedidoCliente
 
 
 		
-		/**
-		 * 
-		 */
+
 		public void cerrarSesion()
 		{
 			this.usuario = new Userdetail();
 			this.cliente = new Cliente(); 
-			
-//			return "<h2>Salida exitosa</h2>";
-		}
-
-
-		public Collection<LineaDePedido> obtenerLineasPedidos()
-		{		
-//			try 
-//			{
-//				if(this.cliente.getPedidos().isEmpty())
-//				{
-//					this.cliente.obtenerPedidos();
-//				}
-//				
-//				return cliente.getPedidos();
-//			} 
-//			catch (Exception e)
-//			{
-//				e.printStackTrace();
-				return null;
 		}
 		
 }

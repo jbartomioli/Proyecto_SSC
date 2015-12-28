@@ -1,8 +1,13 @@
 package controladores;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import negocio.ModeloTrackingPedidoCliente;
+import negocio.Pedido;
+import negocio.Userdetail;
 
 
 public class ControladorSeguimientoPedido
@@ -58,18 +63,113 @@ public class ControladorSeguimientoPedido
 	}
 	
 
+	public boolean sessionActiva()
+	{
+		try
+		{
+			Userdetail usuario = this.modeloTrackingPedido.getUsuario();
+			return true;
+		}
+		catch(NullPointerException npe)
+		{
+			return false;
+		}
+	}
 
 
-	public Collection<negocio.Pedido> obtenerPedidos()
+	public String obtenerPedidos()
 	{
-		return modeloTrackingPedido.obtenerPedidos();
-	}
+		
+		Collection<negocio.Pedido> pedidos = new ArrayList<negocio.Pedido>();
+		
+		pedidos = modeloTrackingPedido.obtenerPedidos();
+		
+		String salidaStringHTML = "";
+
+		
+		if(pedidos.isEmpty())
+		{
+			salidaStringHTML = "<p class=\"bg-warning\">No tiene pedidos registrados a su nombre</p>";
+		}
+		else
+		{
+			salidaStringHTML += "<div class=\"row\">";
+			salidaStringHTML += "<div class=\"table-responsive\">";
+			salidaStringHTML += "<table class=\"table table-striped table-hover\" height=\"20\">";
+			salidaStringHTML += "<thead>";
+			salidaStringHTML += "<tr>";
+			salidaStringHTML += "<th>N&uacute;mero</th>";
+			salidaStringHTML += "<th>Fecha de Solicitud</th>";
+			salidaStringHTML += "<th>Estado</th>";
+			salidaStringHTML += "<th>Monto</th>";
+			salidaStringHTML += "</tr>";
+			salidaStringHTML += "</thead>";
+			salidaStringHTML += "<tbody id=\"myTable\">";
+			
+			for(negocio.Pedido pedidoActual : pedidos )
+			{
+				String fechaFormato = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(pedidoActual.getFecha());
+				String decimalFormato = new DecimalFormat("$ 0.00##").format(pedidoActual.getTotal());
+
+				salidaStringHTML += "<tr><td><a href=\"javascript:mostrarOcultarTablas(\'"+pedidoActual.getCodPedido()+"\')\" >"+pedidoActual.getCodPedido()+"</a>";
+				salidaStringHTML += "</td><td>"+fechaFormato;
+				salidaStringHTML += "</td><td>"+pedidoActual.getEstado();
+				salidaStringHTML += "</td><td>"+decimalFormato+"</td></tr>";
+				
+				if(pedidoActual.getLineas().isEmpty())
+				{
+					try 
+					{
+						pedidoActual.obtenerLineasDePedido();
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+						return "aaa";
+					}
+				}
+				
+				salidaStringHTML += "<tr><td colspan=\"4\">";
+				
+				salidaStringHTML += "<table class=\"table table-condensedd table-bordered table-hover\" style=\"display:none;\" id=\""+pedidoActual.getCodPedido()+"\">";
+				salidaStringHTML += "<thead>";
+				salidaStringHTML += "<tr>";
+				salidaStringHTML += "<th>Cod.</th>";
+				salidaStringHTML += "<th>Producto</th>";
+				salidaStringHTML += "<th>Cant. Pedida</th>";
+				salidaStringHTML += "</tr>";
+				salidaStringHTML += "</thead>";
+
+
+				salidaStringHTML += "<tbody>";
+				for(negocio.LineaDePedido lineaActual : pedidoActual.getLineas())
+				{
+					salidaStringHTML += "<tr>";
+					salidaStringHTML += "<td>"+lineaActual.getProducto().getCodProducto()+"</td>";
+					salidaStringHTML += "<td>"+lineaActual.getProducto().getNombre()+"</td>";
+					salidaStringHTML += "<td>"+lineaActual.getCantidadPedida()+"</td>";
+					salidaStringHTML += "</tr>";
+				}
+				salidaStringHTML +="</tbody>";
+
+				
+				salidaStringHTML +="</table>";
+				salidaStringHTML +="</td></tr>";
+
+			}
+			salidaStringHTML +="</tbody>";
+			
+			salidaStringHTML += "</table>";
+			salidaStringHTML += "</div>";
+
+			salidaStringHTML += "</div>";
+		} 
+		return salidaStringHTML;
+		}
 	
 	
-	public Collection<negocio.LineaDePedido> obtenerLineasPedidos(int idPedido)
-	{
-		return modeloTrackingPedido.obtenerLineasPedidos();
-	}
+	
+
 	
 	
 	
@@ -77,12 +177,6 @@ public class ControladorSeguimientoPedido
 	{
 		modeloTrackingPedido.cerrarSesion();
 		modeloTrackingPedido = new ModeloTrackingPedidoCliente();
-		
-//		if(modeloTrackingPedido.equals(null))
-//		{
-//			return true;
-//		}
-		
 	}
 
 }
