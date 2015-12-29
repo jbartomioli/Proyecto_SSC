@@ -294,11 +294,6 @@ public class Cliente
 	}
 	
 	
-	
-	
-	
-	
-	
 	public void obtenerPedidos() throws Exception
 	{
 		//SE CREA OBJETO CLIENTE DE DATOS PARA RECUPERAR
@@ -334,6 +329,5 @@ public class Cliente
 		
 	}
 	//---------------------------------------------------------------
-	
 	
 }
