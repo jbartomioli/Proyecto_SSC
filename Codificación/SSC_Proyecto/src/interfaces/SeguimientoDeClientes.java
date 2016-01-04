@@ -57,7 +57,7 @@ public class SeguimientoDeClientes
 	public JTextField txtTotVtasSelec;
 	private JLabel lblTitulo;
 	public JLabel lblInfo, lblWarning;
-	private String[] especialidades = {"Seleccione...", "Distribuidor", "Endodoncia", "Gnatología", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
+	private String[] especialidades = {"Seleccione...", "Distribuidor", "Endodoncia", "Gnatologia", "Odontologia General", "Ortodoncia", "Periodoncia", "Protesista"};
 	private JLayeredPane layerGrafico;
 	public JPanel pnlGrafico;
 	private JTable tblVentasCliente;
