@@ -63,7 +63,7 @@ public class ControladorSeguimientoPedido
 	}
 	
 
-	public boolean sessionActiva()
+	public boolean sesionActiva()
 	{
 		try
 		{
@@ -72,6 +72,7 @@ public class ControladorSeguimientoPedido
 		}
 		catch(NullPointerException npe)
 		{
+			npe.printStackTrace();
 			return false;
 		}
 	}
@@ -82,17 +83,13 @@ public class ControladorSeguimientoPedido
 		
 		Collection<negocio.Pedido> pedidos = new ArrayList<negocio.Pedido>();
 		
-		pedidos = modeloTrackingPedido.obtenerPedidos();
-		
 		String salidaStringHTML = "";
 
 		
-		if(pedidos.isEmpty())
+		try 
 		{
-			salidaStringHTML = "<p class=\"bg-warning\">No tiene pedidos registrados a su nombre</p>";
-		}
-		else
-		{
+			pedidos = modeloTrackingPedido.obtenerPedidos();
+			
 			salidaStringHTML += "<div class=\"row\">";
 			salidaStringHTML += "<div class=\"table-responsive\">";
 			salidaStringHTML += "<table class=\"table table-striped table-hover\" height=\"20\">";
@@ -118,15 +115,7 @@ public class ControladorSeguimientoPedido
 				
 				if(pedidoActual.getLineas().isEmpty())
 				{
-					try 
-					{
-						pedidoActual.obtenerLineasDePedido();
-					}
-					catch (Exception e)
-					{
-						e.printStackTrace();
-						return "aaa";
-					}
+					pedidoActual.obtenerLineasDePedido();
 				}
 				
 				salidaStringHTML += "<tr><td colspan=\"4\">";
@@ -164,8 +153,17 @@ public class ControladorSeguimientoPedido
 
 			salidaStringHTML += "</div>";
 		} 
-		return salidaStringHTML;
+		catch (NullPointerException npe) 
+		{
+			npe.printStackTrace();
+			salidaStringHTML = "<p class=\"bg-warning\">No tiene pedidos registrados a su nombre</p>";
 		}
+		catch (Exception e1) 
+		{
+			e1.printStackTrace();
+		}
+	return salidaStringHTML;
+	}
 	
 	
 	
@@ -176,7 +174,7 @@ public class ControladorSeguimientoPedido
 	public void cerrarSesion()
 	{
 		modeloTrackingPedido.cerrarSesion();
-		modeloTrackingPedido = new ModeloTrackingPedidoCliente();
+		modeloTrackingPedido = null;
 	}
 
 }

@@ -22,8 +22,9 @@ public class ModeloTrackingPedidoCliente
 	//***************************************************************
 	public ModeloTrackingPedidoCliente()
 	{
-		this.usuario = new negocio.Userdetail();
-		this.cliente = new negocio.Cliente();
+//		this.usuario = new negocio.Userdetail();
+		this.usuario = null;
+		this.cliente = null;
 		this.catalogoClientes = new negocio.CatalogoClientes();
 	}
 	//---------------------------------------------------------------
@@ -83,6 +84,9 @@ public class ModeloTrackingPedidoCliente
 				return false;
 			else
 			{
+				this.usuario = new Userdetail();
+				this.cliente = new negocio.Cliente();
+				
 				this.usuario.setName(usuarioNegocio.getName());
 				this.usuario.setUsername(usuarioNegocio.getUsername());
 				this.usuario.setPassword(usuarioNegocio.getPassword());
@@ -102,31 +106,23 @@ public class ModeloTrackingPedidoCliente
 	
 	
 	
-	public Collection<negocio.Pedido> obtenerPedidos()
+	public Collection<negocio.Pedido> obtenerPedidos() throws Exception
 	{
-		try 
+		if(this.cliente.getPedidos().isEmpty())
 		{
-			if(this.cliente.getPedidos().isEmpty())
-			{
-				this.cliente.obtenerPedidos();
-			}
-			
-			return cliente.getPedidos();
-		} 
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			return null;
+			this.cliente.obtenerPedidos();
 		}
+		
+		return cliente.getPedidos();
 	}
 
 
 		
 
-		public void cerrarSesion()
-		{
-			this.usuario = new Userdetail();
-			this.cliente = new Cliente(); 
-		}
+	public void cerrarSesion()
+	{
+		this.usuario = null;
+		this.cliente = null; 
+	}
 		
 }
