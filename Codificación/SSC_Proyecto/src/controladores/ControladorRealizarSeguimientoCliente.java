@@ -1,5 +1,3 @@
-//CLASE LISTA
-
 package controladores;
 
 import interfaces.SeguimientoDeClientes;
@@ -28,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 
 import negocio.ModeloRealizarSeguimientoCliente;
 import negocio.Venta;
+
 
 
 
