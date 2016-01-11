@@ -92,7 +92,8 @@ public class ControladorSeguimientoPedido
 			
 			salidaStringHTML += "<div class=\"row\">";
 			salidaStringHTML += "<div class=\"table-responsive\">";
-			salidaStringHTML += "<table class=\"table table-striped table-hover\" height=\"20\">";
+			salidaStringHTML += "<table class=\"table table-striped table-hover\" >";
+			//height=\"20\"
 			salidaStringHTML += "<thead>";
 			salidaStringHTML += "<tr>";
 			salidaStringHTML += "<th>N&uacute;mero</th>";
@@ -164,17 +165,4 @@ public class ControladorSeguimientoPedido
 		}
 	return salidaStringHTML;
 	}
-	
-	
-	
-
-	
-	
-	
-	public void cerrarSesion()
-	{
-		modeloTrackingPedido.cerrarSesion();
-		modeloTrackingPedido = null;
-	}
-
 }

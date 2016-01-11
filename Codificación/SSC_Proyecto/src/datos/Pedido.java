@@ -177,8 +177,6 @@ public class Pedido
 		        	
 		        	//SE SETEAN LOS DATOS DE LA LINEA
 	            	lineaDatos.setCantidadPedida(entLinea.getCantidad()); 
-//	            	lineaDatos.setSubTotal(entLinea.get);
-//	            	lineaDatos.setIdVenta(entLinea.getId().getIdVenta());
 	        	
 	            	{//SETEO DEL PRODUCTO DE LA LINEA
 	            		//SE CREA OBJETO PRODUCTO DE ENTIDADES

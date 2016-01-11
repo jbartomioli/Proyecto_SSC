@@ -110,7 +110,7 @@ public class Userdetail
 		    session = utilidades.HibernateUtil.getSessionFactory().openSession();
 		    session.beginTransaction();
 		        
-	        Query query = session.createQuery("from Userdetail u where u.username like :uName and u.password like :uPass");
+	        Query query = session.createQuery("from Userdetail u where u.username like :uName and u.password like password(:uPass)");
             query.setParameter("uName", user);
             query.setParameter("uPass", password);
 	        @SuppressWarnings("unchecked")

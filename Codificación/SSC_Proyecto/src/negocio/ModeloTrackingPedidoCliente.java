@@ -22,9 +22,8 @@ public class ModeloTrackingPedidoCliente
 	//***************************************************************
 	public ModeloTrackingPedidoCliente()
 	{
-//		this.usuario = new negocio.Userdetail();
-		this.usuario = null;
-		this.cliente = null;
+		this.usuario = new negocio.Userdetail();
+		this.cliente = new negocio.Cliente();
 		this.catalogoClientes = new negocio.CatalogoClientes();
 	}
 	//---------------------------------------------------------------
@@ -115,14 +114,4 @@ public class ModeloTrackingPedidoCliente
 		
 		return cliente.getPedidos();
 	}
-
-
-		
-
-	public void cerrarSesion()
-	{
-		this.usuario = null;
-		this.cliente = null; 
-	}
-		
 }
