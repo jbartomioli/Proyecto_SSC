@@ -40,65 +40,63 @@
 		<div class="form-group">
 			<h2>Módulo de Seguimiento de Pedidos</h2>
 		  	<%
-		  		boolean resultadoLogin = true;
-		  		if( request.getParameter("ingresar") != null )
-			  	{
-			
-		  			ControladorSeguimientoPedido ctrl_pedido = new ControladorSeguimientoPedido();
+	
+		  	if(request.getParameter("ingresar") != null)
+			{
+		  		ControladorSeguimientoPedido ctrl_pedido = new ControladorSeguimientoPedido();
 		  			
-					    String usuario = request.getParameter("usuario");
-					    String password = request.getParameter("password");
-					           
-					    if(resultadoLogin = ctrl_pedido.iniciarSesion(usuario, password))
-					    {
-					    %>
-					 		<div class="row">			
-					 			<h4 class="col-md-4 col-xs-4">Bienvenido/a <% out.print(ctrl_pedido.getModeloTrackingPedido().getUsuario().getName()); %></h4>
+				String usuario = request.getParameter("usuario");
+				String password = request.getParameter("password");
+												
+				if(ctrl_pedido.iniciarSesion(usuario, password))
+				{
+			    	%>
+			 		<div class="row">			
+			 			<h4 class="col-md-4 col-xs-4">Bienvenido/a <% out.print(ctrl_pedido.getModeloTrackingPedido().getUsuario().getName()); %></h4>
 
-					 			<div class="col-md-2 col-xs-2">
-					 				<form id="logout" name="form_logout" action="index.jsp" method="post" class="form-horizontal"> 
-					 					<button type="submit" class="btn btn-primary" name="salir">Cerrar Sesi&oacute;n</button>		           
-					 				</form>
-					 			</div>
-					 			
-					 			<div class="col-md-12">
-					 				<h4>Listado de Pedidos</h4>	
-					 			</div>
-					 		</div>
-					 		
+			 			<div class="col-md-2 col-xs-2">
+			 				<form id="logout" name="form_logout" action="index.jsp" method="post" class="form-horizontal"> 
+			 					<button type="submit" class="btn btn-primary" name="salir">Cerrar Sesi&oacute;n</button>		           
+			 				</form>
+			 			</div>
+			 			
+			 			<div class="col-md-12">
+			 				<h4>Listado de Pedidos</h4>	
+			 			</div>
+			 		</div>
+			 		
 
 
-					 		<div class="table-responsive col-md-12">
-					 		<%
-					 			out.print(ctrl_pedido.obtenerPedidos());
-					 		%>
-					 		</div>
-					 		
-					 		<div class="col-md-12 text-center">
-					       		<ul class="pagination" id="myPager"></ul>
-					      	</div>
-					 <%
-						 	if( request.getParameter("salir") != null )
-						 	{
-						 		ctrl_pedido.cerrarSesion();
-						 		response.sendRedirect("index.jsp");
-						 	}
-					    }
-					    else
-						{
-							 %>
-						   		<%@include file="html_content/formulario_login.html" %>
-							 <%
-						 	out.print("<div class=\"alert alert-danger\" role=\"alert\"><p>Usuario y/o contraseña no válido/s</p></div>");
-						}
-				  	}
-		  		else
-		  		{
-			   		%>
-						<%@include file="html_content/formulario_login.html" %>
-			   		<%
-		  		}
-			   %>
+			 		<div class="table-responsive col-md-12">
+			 		<%
+			 			out.print(ctrl_pedido.obtenerPedidos());
+			 		%>
+			 		</div>
+			 		
+			 		<div class="col-md-12 text-center">
+			       		<ul class="pagination" id="myPager"></ul>
+			      	</div>
+					<%
+				 	if( request.getParameter("salir") != null )
+				 	{
+				 		session.setAttribute("ctrl_pedido", null);
+				 	}
+				}
+				else
+				{
+				 %>
+					<%@include file="html_content/formulario_login.html" %>
+				 <%
+				 	out.print("<div class=\"alert alert-danger\" role=\"alert\"><p>Usuario y/o contraseña no válido/s</p></div>");
+				}
+			}
+		  	else
+		  	{
+			 %>
+				<%@include file="html_content/formulario_login.html" %>
+			 <%
+		  	}
+			 %>
 	    </div>
 	</div>
 </body>

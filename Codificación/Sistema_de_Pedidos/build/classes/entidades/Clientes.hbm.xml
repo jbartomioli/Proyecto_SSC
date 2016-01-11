@@ -46,7 +46,7 @@
    </many-to-many>
   </set>
   <set fetch="select" inverse="true" lazy="true" name="pedidoses"
-   sort="unsorted" table="pedidos">
+    table="pedidos" order-by="codPedido desc">
    <key>
     <column name="idCliente"/>
    </key>
