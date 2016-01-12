@@ -44,9 +44,9 @@
     order-by="idAnuncio" unique="false">
     <column name="idAnuncio" not-null="true"/>
    </many-to-many>
-  </set>
-  <set fetch="select" inverse="true" lazy="true" name="pedidoses"
-    table="pedidos" order-by="codPedido desc">
+  </set> 
+  <set fetch="select" inverse="true" lazy="true" name="pedidoses" sort="natural"
+    table="pedidos" >
    <key>
     <column name="idCliente"/>
    </key>

@@ -63,19 +63,19 @@ public class ControladorSeguimientoPedido
 	}
 	
 
-	public boolean sesionActiva()
-	{
-		try
-		{
-			Userdetail usuario = this.modeloTrackingPedido.getUsuario();
-			return true;
-		}
-		catch(NullPointerException npe)
-		{
-			npe.printStackTrace();
-			return false;
-		}
-	}
+//	public boolean sesionActiva()
+//	{
+//		try
+//		{
+//			Userdetail usuario = this.modeloTrackingPedido.getUsuario();
+//			return true;
+//		}
+//		catch(NullPointerException npe)
+//		{
+//			npe.printStackTrace();
+//			return false;
+//		}
+//	}
 
 
 	public String obtenerPedidos()
@@ -159,9 +159,10 @@ public class ControladorSeguimientoPedido
 			npe.printStackTrace();
 			salidaStringHTML = "<p class=\"bg-warning\">No tiene pedidos registrados a su nombre</p>";
 		}
-		catch (Exception e1) 
+		catch(Exception e) 
 		{
-			e1.printStackTrace();
+			e.printStackTrace();
+			salidaStringHTML = "<p class=\"bg-warning\">Se ha producido un error al recuperar la información de sus pedidos</p>";
 		}
 	return salidaStringHTML;
 	}
