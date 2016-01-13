@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -113,5 +114,19 @@ public class ModeloTrackingPedidoCliente
 		}
 		
 		return cliente.getPedidos();
+	}
+
+
+	public Collection<Pedido> buscarPedidos(String codPedido) 
+	{
+		Collection<Pedido> pedidos = new ArrayList<Pedido>();
+		
+		for(Pedido pedidoActual : this.cliente.getPedidos())
+		{
+			if(pedidoActual.getCodPedido().contains(codPedido))
+				pedidos.add(pedidoActual);
+		}
+		
+		return pedidos;
 	}
 }
