@@ -9,7 +9,13 @@ import negocio.ModeloTrackingPedidoCliente;
 import negocio.Pedido;
 import negocio.Userdetail;
 
-
+/**
+ * CONTROLADOR SEGUIMIENTO DE PEDIDOS
+ * 
+ * @author Javier Bartomioli - Rodrigo Naredo
+ * @version 1.01.20160118
+ * 
+ */
 public class ControladorSeguimientoPedido
 {
 	//***************************************************************
@@ -46,13 +52,12 @@ public class ControladorSeguimientoPedido
 	//---------------------------------------------------------------
 	
 	
+	
 	//***************************************************************
 	//* METODOS 													*
 	//***************************************************************
-
-
 	/**
-	 * 
+	 * INICIA LA SESION EN EL SERVIDOR
 	 * @param user
 	 * @param password
 	 * @return
@@ -61,30 +66,20 @@ public class ControladorSeguimientoPedido
 	{
 		return modeloTrackingPedido.iniciarSesion(user, password);
 	}
+	//////////////////////////////////////////////////////////
+
+
 	
-
-//	public boolean sesionActiva()
-//	{
-//		try
-//		{
-//			Userdetail usuario = this.modeloTrackingPedido.getUsuario();
-//			return true;
-//		}
-//		catch(NullPointerException npe)
-//		{
-//			npe.printStackTrace();
-//			return false;
-//		}
-//	}
-
-
+	/**
+	 * RECUPERA LOS PEDIDOS DEL CLIENTE
+	 * @return
+	 */
 	public String obtenerPedidos()
 	{
 		
 		Collection<negocio.Pedido> pedidos = new ArrayList<negocio.Pedido>();
 		
 		String salidaStringHTML = "";
-
 		
 		try 
 		{
@@ -93,7 +88,6 @@ public class ControladorSeguimientoPedido
 			salidaStringHTML += "<div class=\"row\">";
 			salidaStringHTML += "<div class=\"table-responsive\">";
 			salidaStringHTML += "<table class=\"table table-striped table-hover\" >";
-			//height=\"20\"
 			salidaStringHTML += "<thead>";
 			salidaStringHTML += "<tr>";
 			salidaStringHTML += "<th>N&uacute;mero</th>";
@@ -156,20 +150,23 @@ public class ControladorSeguimientoPedido
 		} 
 		catch (NullPointerException npe) 
 		{
-			npe.printStackTrace();
 			salidaStringHTML = "<p class=\"bg-warning\">No tiene pedidos registrados a su nombre</p>";
 		}
 		catch(Exception e) 
 		{
-			e.printStackTrace();
 			salidaStringHTML = "<p class=\"bg-warning\">Se ha producido un error al recuperar la información de sus pedidos</p>";
 		}
 	return salidaStringHTML;
 	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	
-	
+	/**
+	 * BUSCA UN PEDIDO SEGUN SU COD PEDIDO
+	 * @param codPedido
+	 * @return
+	 */
 	public String buscarPedidos(String codPedido)
 	{
 		Collection<Pedido> pedidos = new ArrayList<Pedido>();
@@ -178,14 +175,13 @@ public class ControladorSeguimientoPedido
 		
 		try
 		{
-			pedidos = this.modeloTrackingPedido.buscarPedidos(codPedido);
+			pedidos = this.modeloTrackingPedido.buscarPedidos(codPedido.toUpperCase());
 			
 			if(pedidos.size()>0)
 			{
 				salidaStringHTML += "<div class=\"row\">";
 				salidaStringHTML += "<div class=\"table-responsive\">";
 				salidaStringHTML += "<table class=\"table table-striped table-hover\" >";
-				//height=\"20\"
 				salidaStringHTML += "<thead>";
 				salidaStringHTML += "<tr>";
 				salidaStringHTML += "<th>N&uacute;mero</th>";
@@ -253,15 +249,14 @@ public class ControladorSeguimientoPedido
 		}
 		catch (NullPointerException npe) 
 		{
-			npe.printStackTrace();
 			salidaStringHTML = "<p class=\"bg-warning\">No tiene pedidos registrados a su nombre</p>";
 		}
 		catch(Exception e) 
 		{
-			e.printStackTrace();
 			salidaStringHTML = "<p class=\"bg-warning\">Se ha producido un error al recuperar la información de sus pedidos</p>";
 		}
 		
 		return salidaStringHTML;
 	}
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

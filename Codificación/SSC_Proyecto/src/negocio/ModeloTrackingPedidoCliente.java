@@ -3,9 +3,13 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
-
-
+/**
+ * CLASE MODELO: SEGUIMIENTO DE PEDIDOS
+ * 
+ * @author Javier Bartomioli - Rodrigo Naredo
+ * @version 1.01.20160118
+ *
+ */
 public class ModeloTrackingPedidoCliente 
 {
 	//***************************************************************
@@ -33,21 +37,25 @@ public class ModeloTrackingPedidoCliente
 	//***************************************************************
 	//* GETTES & SETTERS											*
 	//***************************************************************
-	public negocio.CatalogoClientes getCatalogoClientes() {
+	public negocio.CatalogoClientes getCatalogoClientes()
+	{
 		return catalogoClientes;
 	}
 
 
-	public void setCatalogoClientes(negocio.CatalogoClientes catalogoClientes) {
+	public void setCatalogoClientes(negocio.CatalogoClientes catalogoClientes) 
+	{
 		this.catalogoClientes = catalogoClientes;
 	}
 
-	public negocio.Userdetail getUsuario() {
+	public negocio.Userdetail getUsuario() 
+	{
 		return usuario;
 	}
 
 
-	public void setUsuario(negocio.Userdetail usuario) {
+	public void setUsuario(negocio.Userdetail usuario)
+	{
 		this.usuario = usuario;
 	}
 
@@ -57,17 +65,19 @@ public class ModeloTrackingPedidoCliente
 	//***************************************************************
 	//* METODOS 													*
 	//***************************************************************
-	
+	/**
+	 * INICIALIZA CATALGOS DEL MODELO
+	 * @throws Exception
+	 */
 	public void inicializarCatalogos() throws Exception
 	{
 		catalogoClientes.obtenerClientes();	
 	}
 	
 	
-	
 
 	/**
-	 * 
+	 * INICIA LA SESION EN EL SERVIDOR
 	 * @param user
 	 * @param password
 	 * @return
@@ -103,9 +113,15 @@ public class ModeloTrackingPedidoCliente
 			return false;
 		}
 	}
+	/////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	
+	/**
+	 * RECUPERA LOS PEDIDOS DEL CLIENTE Y LOS DEVUELVE AL CONTROLADOR
+	 * @return
+	 * @throws Exception
+	 */
 	public Collection<negocio.Pedido> obtenerPedidos() throws Exception
 	{
 		if(this.cliente.getPedidos().isEmpty())
@@ -115,8 +131,15 @@ public class ModeloTrackingPedidoCliente
 		
 		return cliente.getPedidos();
 	}
-
-
+	///////////////////////////////////////////////////////////////////
+	
+	
+	
+	/**
+	 * BUSCA UN PEDIDO EN BASE A SU CODIGO
+	 * @param codPedido
+	 * @return
+	 */
 	public Collection<Pedido> buscarPedidos(String codPedido) 
 	{
 		Collection<Pedido> pedidos = new ArrayList<Pedido>();
@@ -129,4 +152,5 @@ public class ModeloTrackingPedidoCliente
 		
 		return pedidos;
 	}
+	////////////////////////////////////////////////////////////
 }
