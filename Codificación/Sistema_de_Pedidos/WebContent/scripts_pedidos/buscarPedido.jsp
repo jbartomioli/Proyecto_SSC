@@ -8,6 +8,7 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/pagination.js"></script>
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" media="screen" />
   
     <script type="text/javascript">
@@ -90,7 +91,7 @@
 	}
 	catch(NullPointerException npe)
 	{
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("../index.jsp");
 	}
 	%>
 	</div>

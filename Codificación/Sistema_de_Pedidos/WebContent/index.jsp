@@ -11,6 +11,7 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/pagination.js"></script>
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" media="screen" />
 </head>
 
@@ -18,7 +19,7 @@
 
 <body>
     <div class="col-md-12 col-xs-12">
- 		<img width="100%" src="img/imgInicioInf.png" alt="" class="img-rounded img-responsive">
+ 		<img width="100%" src="${pageContext.request.contextPath}/img/imgInicioInf.png" alt="" class="img-rounded img-responsive">
     </div>
   
   	<div class="col-md-12 col-xs-12">  	

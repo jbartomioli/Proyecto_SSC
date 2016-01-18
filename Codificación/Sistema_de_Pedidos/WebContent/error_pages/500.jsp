@@ -4,18 +4,23 @@
 <html>
 <head>
   <title>Módulo de Seguimiento de Pedidos - Sistema de Seguimiento de Clientes</title>
-  <script type="text/javascript" src="scripts/jquery-1.3.2.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
+  <script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon.png" />
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" media="screen" />
 </head>
  
 <body>
     <div class="col-md-12">
- 		<img width="100%" src="img/imgInicioInf.png" alt="" class="img-rounded img-responsive">
+ 		<img width="100%" src="${pageContext.request.contextPath}/img/imgInicioInf.png" alt="" class="img-rounded img-responsive">
     </div>	
     
 	<div class="col-md-12">
 		<h2>Error HTTP 500 Internal server error (Error interno del servidor)</h2>
+    </div>
+    
+    <div class="col-md-12">
+		<h3><a class="btn btn-info" href="${pageContext.request.contextPath}/index.jsp" role="button">Volver a Inicio</a></h3>
     </div>
 </body>
 </html> 
