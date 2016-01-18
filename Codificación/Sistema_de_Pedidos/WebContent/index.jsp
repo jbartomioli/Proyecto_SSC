@@ -8,10 +8,10 @@
 <html>
 <head>
   <title>M&oacute;dulo de Seguimiento de Pedidos - Sistema de Seguimiento de Clientes</title>
-  <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/pagination.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/pagination.js"></script>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" media="screen" />
 </head>
 
 
@@ -36,7 +36,7 @@
 				if(ctrl_pedido.iniciarSesion(usuario, password))
 				{
 					session.setAttribute("ctrl_pedido", ctrl_pedido);
-			    	response.sendRedirect("pedidos.jsp");
+			    	response.sendRedirect("scripts_pedidos/pedidos.jsp");
 				}
 				else
 				{
