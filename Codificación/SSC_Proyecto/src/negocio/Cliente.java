@@ -173,6 +173,7 @@ public class Cliente
 		//ACTUALIZADO EL ARRAY AL MOMENTO DE LLAMAR ESTE METODO
 		if(this.ventas != null)
 		{
+			this.ventas = new ArrayList<negocio.Venta>();
 			//SE RECORRE CADA VENTA DE LA BD
 			for(datos.Venta ventaDato: clienteDato.getVentas())
 			{

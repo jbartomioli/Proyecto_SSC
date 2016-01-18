@@ -5,9 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import negocio.ModeloTrackingPedidoCliente;
 import negocio.Pedido;
-import negocio.Userdetail;
 
 /**
  * CONTROLADOR SEGUIMIENTO DE PEDIDOS
