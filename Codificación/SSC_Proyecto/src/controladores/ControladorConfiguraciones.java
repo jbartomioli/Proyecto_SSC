@@ -42,8 +42,9 @@ public class ControladorConfiguraciones implements ActionListener
 		this.guiConfiguraciones.btnBuscarArchivo.addActionListener(this);
 		this.guiConfiguraciones.btnAceptar.addActionListener(this);
 		this.guiConfiguraciones.btnCerrar.addActionListener(this);
-		
+
 		inicializar();
+		guiConfiguraciones.frmConfiguraciones.setVisible(true);	
 	}
 	//////////////////////////////////////////////////////////////////////
 	

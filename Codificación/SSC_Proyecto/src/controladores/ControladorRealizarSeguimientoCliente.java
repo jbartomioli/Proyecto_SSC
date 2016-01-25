@@ -22,10 +22,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import negocio.ModeloRealizarSeguimientoCliente;
 import negocio.Venta;
+
 
 
 
@@ -63,7 +65,7 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 	 * @param guiSeguimiento
 	 * @throws Exception 
 	 */
-	public ControladorRealizarSeguimientoCliente(SeguimientoDeClientes guiSeguimiento, ModeloRealizarSeguimientoCliente modeloSeguimiento) throws Exception
+	public ControladorRealizarSeguimientoCliente(SeguimientoDeClientes guiSeguimiento, ModeloRealizarSeguimientoCliente modeloSeguimiento)
 	{
 		this.modeloSeguimiento = modeloSeguimiento;
 		this.guiSeguimiento = guiSeguimiento;
@@ -76,7 +78,33 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 		this.guiSeguimiento.tblClientesBuscados.addMouseListener(this);
 		this.guiSeguimiento.frmSeguimiento.addWindowListener(this);
 		
-		this.modeloSeguimiento.inicializarCatalogos();
+				
+		try
+		{
+			this.modeloSeguimiento.inicializarCatalogos();
+			guiSeguimiento.frmSeguimiento.setVisible(true);
+		}
+		catch(Exception e)
+		{
+			if(e.toString().contains("NullPointerException"))
+			{
+				JOptionPane.showMessageDialog(null, 
+						"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos.",
+						"ATENCIÓN",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+			if(e.toString().contains("GenericJDBCException") || e.toString().contains("JDBCConnectionException") )
+			{
+				JOptionPane.showMessageDialog(null, 
+						"Error al conectarse a la Base de Datos.\nRevisar la configuración y volver a intentarlo.",
+						"ERROR",
+						JOptionPane.ERROR_MESSAGE);
+			}			
+			
+			guiSeguimiento.frmSeguimiento.dispose();
+		}
+		
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

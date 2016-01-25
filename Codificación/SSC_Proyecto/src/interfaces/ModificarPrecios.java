@@ -44,7 +44,7 @@ public class ModificarPrecios
 	 * @param padre
 	 * @throws Exception
 	 */
-	public ModificarPrecios(Object padre) throws Exception 
+	public ModificarPrecios(Object padre) 
 	{	
 		//FORMULARIO BASE
 		if(padre.getClass().getSuperclass().toString().equals("class javax.swing.JFrame"))

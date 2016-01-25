@@ -67,7 +67,7 @@ public class SeguimientoDeClientes
 	 * CONSTRUCTOR
 	 * @param dialogPadre
 	 */
-	public SeguimientoDeClientes(JFrame jframePadre) throws Exception
+	public SeguimientoDeClientes(JFrame jframePadre)
 	{
 		//FORMULARIO BASE
 		frmSeguimiento = new JDialogBaseFormularios(jframePadre,"Seguimiento de Clientes","SEGUIMIENTO.png",true);

@@ -174,34 +174,7 @@ public class Principal extends JFrame {
 			mntConfeccionar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) 
 				{
-					try
-					{
-						click_generar_anuncio();
-					} 
-					catch(Exception e)
-					{						
-						if (e.getClass().getName().equals("java.lang.NullPointerException"))
-						{
-							JOptionPane.showMessageDialog(null, 
-									"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos\n"
-									+ "en Menú Archivo.",
-									"ATENCIÓN",
-									JOptionPane.INFORMATION_MESSAGE);
-							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-							e.printStackTrace();
-						}
-						if(e.getClass().getName().equals("org.hibernate.exception.JDBCConnectionException"))
-						{
-							JOptionPane.showMessageDialog(null, 
-								"Se ha producido un error al intentar conectarse a la base de datos."
-								+ "\nVerifique la conexión al servidor e inténtelo más tarde.",
-								"ERROR",
-								JOptionPane.ERROR_MESSAGE);
-							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-							e.printStackTrace();
-
-						}
-					}
+					click_generar_anuncio();
 				}
 			});
 			mntConfeccionar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
@@ -213,31 +186,7 @@ public class Principal extends JFrame {
 			mntSeguimiento.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0)
 				{
-					try 
-					{
-						click_realizar_seguimiento();
-					} 
-					catch (Exception e)
-					{
-						if (e.getClass().getName().equals("java.lang.NullPointerException"))
-						{
-							JOptionPane.showMessageDialog(null, 
-									"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos\n"
-									+ "en Menú Archivo.",
-									"ATENCIÓN",
-									JOptionPane.INFORMATION_MESSAGE);
-							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-						}
-						if(e.getClass().getName().equals("org.hibernate.exception.JDBCConnectionException"))
-						{
-							JOptionPane.showMessageDialog(null, 
-								"Se ha producido un error al intentar conectarse a la base de datos."
-								+ "\nVerifique la conexión al servidor e inténtelo más tarde.",
-								"ERROR",
-								JOptionPane.ERROR_MESSAGE);
-							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-						}
-					}
+					click_realizar_seguimiento();
 				}
 			});
 			mntSeguimiento.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
@@ -251,31 +200,8 @@ public class Principal extends JFrame {
 			{
 				public void actionPerformed(ActionEvent arg0) 
 				{
-					try
-					{
-						click_modificar_precios();
-					}
-					catch (Exception e) 
-					{
-						if (e.getClass().getName().equals("java.lang.NullPointerException"))
-						{
-							JOptionPane.showMessageDialog(null, 
-									"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos\n"
-									+ "en Menú Archivo.",
-									"ATENCIÓN",
-									JOptionPane.INFORMATION_MESSAGE);
-							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-						}
-						if(e.getClass().getName().equals("org.hibernate.exception.JDBCConnectionException"))
-						{
-							JOptionPane.showMessageDialog(null, 
-								"Se ha producido un error al intentar conectarse a la base de datos."
-								+ "\nVerifique la conexión al servidor e inténtelo más tarde.",
-								"ERROR",
-								JOptionPane.ERROR_MESSAGE);
-							setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-						}
-					}
+
+					click_modificar_precios();
 				}
 			});
 			mntPrecios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
@@ -419,18 +345,15 @@ public class Principal extends JFrame {
 	 * PANTALLA GENERACION ANUNCIO
 	 * @throws Exception 
 	 */
-	protected void click_generar_anuncio() throws Exception
+	protected void click_generar_anuncio()
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		
 		GenerarAnuncio guiGenerarAnuncio = new GenerarAnuncio(this, true);
-		
 		ModeloConfeccionarAnuncio modeloConfeccionarAnuncio = new ModeloConfeccionarAnuncio();
 		
 		new ControladorConfeccionarAnuncio(modeloConfeccionarAnuncio, guiGenerarAnuncio);
-		
-		guiGenerarAnuncio.frmGenerarAnuncio.setVisible(true);
-		
+				
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	
@@ -440,17 +363,14 @@ public class Principal extends JFrame {
 	 * REALIZAR SEGUIMIENTO DE CLIENTES
 	 * @throws Exception
 	 */
-	protected void click_realizar_seguimiento() throws Exception
+	protected void click_realizar_seguimiento()
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		
 			
 		SeguimientoDeClientes guiSeguimiento = new SeguimientoDeClientes(this);
 		ModeloRealizarSeguimientoCliente modeloSeguimiento = new ModeloRealizarSeguimientoCliente();
 		
 		new ControladorRealizarSeguimientoCliente(guiSeguimiento, modeloSeguimiento);
-		
-		guiSeguimiento.frmSeguimiento.setVisible(true);
 		
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
@@ -462,7 +382,7 @@ public class Principal extends JFrame {
 	 * @throws Exception 
 	 * 
 	 */
-	protected void click_modificar_precios() throws Exception
+	protected void click_modificar_precios()
 	{
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		
@@ -481,14 +401,12 @@ public class Principal extends JFrame {
 	 */
 	protected void click_configuraciones()
 	{
-		
 		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		
 		Configuraciones guiConfiguraciones = new Configuraciones(this);
 		
 		new ControladorConfiguraciones(guiConfiguraciones);
-		
-		guiConfiguraciones.frmConfiguraciones.setVisible(true);	
-		
+				
 		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	

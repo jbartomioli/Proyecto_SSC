@@ -1,8 +1,9 @@
 package utilidades;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.List;
 
@@ -94,7 +95,7 @@ public class HibernateCFG
 			
 			XMLOutputter xmlOutput = new XMLOutputter();
 	 
-			xmlOutput.output(document, new FileWriter(urlFile)); 
+			xmlOutput.output(document, new OutputStreamWriter(new FileOutputStream(urlFile),"UTF-8")); 
 			
 	    }
 	    catch ( IOException io )

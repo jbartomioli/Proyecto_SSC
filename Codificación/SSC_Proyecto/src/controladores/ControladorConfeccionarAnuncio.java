@@ -53,10 +53,11 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	 * @param guiGenerarAnuncio
 	 * @throws Exception
 	 */
-	public ControladorConfeccionarAnuncio(ModeloConfeccionarAnuncio modeloConfeccionarAnuncio, GenerarAnuncio guiGenerarAnuncio) throws Exception
+	public ControladorConfeccionarAnuncio(ModeloConfeccionarAnuncio modeloConfeccionarAnuncio, GenerarAnuncio guiGenerarAnuncio)
 	{
 		this.modeloConfeccionarAnuncio = modeloConfeccionarAnuncio;
 		this.guiGenerarAnuncio = guiGenerarAnuncio;
+
 		
 		this.guiGenerarAnuncio.btnGenerar.addActionListener(this);
 		this.guiGenerarAnuncio.btnEnviar.addActionListener(this);
@@ -69,7 +70,31 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 		this.guiGenerarAnuncio.lblModificarDestinatarios.addMouseListener(this);
 		this.guiGenerarAnuncio.lblModificarPrecios.addMouseListener(this);
 
-		inicializar();
+		try
+		{
+			inicializar();
+			this.guiGenerarAnuncio.frmGenerarAnuncio.setVisible(true);
+		}
+		catch(Exception e)
+		{
+			if(e.toString().contains("NullPointerException"))
+			{
+				JOptionPane.showMessageDialog(null, 
+						"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos.",
+						"ATENCIÓN",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+			if(e.toString().contains("GenericJDBCException") || e.toString().contains("JDBCConnectionException") )
+			{
+				JOptionPane.showMessageDialog(null, 
+						"Error al conectarse a la Base de Datos.\nRevisar la configuración y volver a intentarlo.",
+						"ERROR",
+						JOptionPane.ERROR_MESSAGE);
+			}			
+			guiGenerarAnuncio.frmGenerarAnuncio.dispose();
+			//e.printStackTrace();
+		}
 	}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	

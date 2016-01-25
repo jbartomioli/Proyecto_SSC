@@ -53,7 +53,7 @@ public class GenerarAnuncio
 	 * @param controladorAnuncios
 	 * @throws Exception
 	 *******************************/
-	public GenerarAnuncio(JFrame framePadre, boolean modal) throws Exception
+	public GenerarAnuncio(JFrame framePadre, boolean modal)
 	{
 		//FORMULARIO BASE
 		frmGenerarAnuncio = new JDialogBaseFormularios(framePadre, "Confeccionar Anuncio", "CONFECCIONAR.png", modal);

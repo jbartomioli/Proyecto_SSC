@@ -48,7 +48,7 @@ public class ModeloModificarPrecios
 	 * CONSTRUCTOR
 	 * @throws Exception 
 	 */
-	public ModeloModificarPrecios() throws Exception
+	public ModeloModificarPrecios()
 	{
 		this.catalogoProductos = new negocio.CatalogoProductos();
 		this.catalogoCategorias = new negocio.CatalogoCategorias();

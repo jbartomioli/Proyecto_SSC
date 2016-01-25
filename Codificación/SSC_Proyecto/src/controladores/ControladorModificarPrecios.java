@@ -14,15 +14,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Collection;
 
-
-
-
-
-
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-import org.hibernate.exception.JDBCConnectionException;
 
 import negocio.Categoria;
 import negocio.ModeloConfeccionarAnuncio;
@@ -73,28 +66,25 @@ public class ControladorModificarPrecios implements ActionListener, MouseListene
 			inicializar_componentes();
 			this.guiModificarPrecios.frmModificarPrecios.setVisible(true);
 		}
-		catch(NullPointerException npe)
-		{
-			JOptionPane.showMessageDialog(null, 
-					"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos.",
-					"ATENCIÓN",
-					JOptionPane.INFORMATION_MESSAGE);
-			guiModificarPrecios.frmModificarPrecios.dispose();
-			npe.printStackTrace();
-		} 
-		catch (JDBCConnectionException  jdbce)
-		{
-			JOptionPane.showMessageDialog(null, 
-					"Error al conectarse a la Base de Datos.\nRevisar la configuración y volver a intentarlo.",
-					"ERROR",
-					JOptionPane.ERROR_MESSAGE);
-			guiModificarPrecios.frmModificarPrecios.dispose();
-			jdbce.printStackTrace();
-		}
 		catch(Exception e)
 		{
+			if(e.toString().contains("NullPointerException"))
+			{
+				JOptionPane.showMessageDialog(null, 
+						"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos.",
+						"ATENCIÓN",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+			if(e.toString().contains("GenericJDBCException") || e.toString().contains("JDBCConnectionException") )
+			{
+				JOptionPane.showMessageDialog(null, 
+						"Error al conectarse a la Base de Datos.\nRevisar la configuración y volver a intentarlo.",
+						"ERROR",
+						JOptionPane.ERROR_MESSAGE);
+			}			
 			guiModificarPrecios.frmModificarPrecios.dispose();
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
