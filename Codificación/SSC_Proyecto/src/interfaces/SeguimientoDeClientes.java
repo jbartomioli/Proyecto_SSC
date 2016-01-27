@@ -221,21 +221,22 @@ public class SeguimientoDeClientes
 		//INICIO GRAFICO DE LINEAS //
 		layerGrafico = new JLayeredPane();
 		layerGrafico.setBorder(new TitledBorder(null, "Ventas por Mes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		layerGrafico.setBounds(556, 106, 732, 434);
+		layerGrafico.setBounds(486, 106, 802, 434);
 		frmSeguimiento.getContentPane().add(layerGrafico);
 
 			pnlGrafico = new JPanel();
-			pnlGrafico.setBounds(10, 21, 712, 402);
+			pnlGrafico.setBounds(10, 21, 780, 402);
 			layerGrafico.add(pnlGrafico, BorderLayout.CENTER);
+			pnlGrafico.setLayout(new BorderLayout(0, 0));
 			
 			lblInfo = new JLabel("Informaci\u00F3n ventas");
-			lblInfo.setBounds(566, 552, 724, 22);
+			lblInfo.setBounds(488, 552, 802, 22);
 			lblInfo.setFont(new Font("Tahoma", Font.BOLD, 13));
 			lblInfo.setVisible(false);
 			frmSeguimiento.getContentPane().add(lblInfo);
 			
 			lblWarning = new JLabel("Informaci\u00F3n falta de ventas");
-			lblWarning.setBounds(566, 552, 724, 22);
+			lblWarning.setBounds(486, 552, 804, 22);
 			lblWarning.setForeground(Color.RED);
 			lblWarning.setFont(new Font("Tahoma", Font.BOLD, 13));
 			lblWarning.setVisible(false);
