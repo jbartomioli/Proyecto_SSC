@@ -7,6 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+  <meta name="viewport" content="width=360, initial-scale=0.75">
   <title>M&oacute;dulo de Seguimiento de Pedidos - Sistema de Seguimiento de Clientes</title>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
@@ -44,7 +45,7 @@
 		ControladorSeguimientoPedido ctrl_pedido = (ControladorSeguimientoPedido) session.getAttribute("ctrl_pedido");
 %>
 	<div class="row">			
-		<h4 class="col-md-4 col-xs-2">Bienvenido/a <% out.print(ctrl_pedido.getModeloTrackingPedido().getUsuario().getName()); %></h4>
+		<h4 class="col-md-4 col-xs-8">Bienvenido/a <% out.print(ctrl_pedido.getModeloTrackingPedido().getUsuario().getName()); %></h4>
 
 		<div class="col-md-2 col-xs-4">
 			<form id="logout" name="form_logout" action="${pageContext.request.contextPath}/scripts_sesion/logout.jsp" method="post" class="form-horizontal"> 
@@ -52,16 +53,19 @@
 			</form>
 		</div>
 		
-		<div class="col-md-5 col-xs-5">
+		<div class="visible-xs-12 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+		
+		<div class="row col-md-5 col-xs-12">
 			<%@include file="../html_content/formulario_buscar.html" %>
 		</div>
+				
 			 			
 		<div class="col-md-12 col-xs-12">
 			<h4>Listado de Pedidos</h4>	
 		</div>
 	</div>
 			 		
-	<div class="table-responsive col-md-12 col-sx-12">
+	<div class="table-responsive col-md-12 col-xs-12">
 	<%
 		out.print(ctrl_pedido.obtenerPedidos());
 	%>
