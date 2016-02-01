@@ -4,18 +4,18 @@
 	"http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-	<table-filter match-name="anuncios" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="categorias" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="clientes" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="clientes_anuncios" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="lineaDePedido" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="lineasDeVentas" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="parametrosNegocio" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="pedidos" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="precios" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="productos" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="productos_anuncios" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="subcategorias" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="ventas" match-catalog="BD_SSC"></table-filter>
-	<table-filter match-name="userdetail" match-catalog="BD_SSC"></table-filter>
+<!-- 	<table-filter match-name="anuncios" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="categorias" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="clientes" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="clientes_anuncios" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="lineaDePedido" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="lineasDeVentas" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="parametrosNegocio" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="pedidos" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="precios" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="productos" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="productos_anuncios" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="subcategorias" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="ventas" match-catalog="BD_SSC"></table-filter> -->
+<!-- 	<table-filter match-name="userdetail" match-catalog="BD_SSC"></table-filter> -->
 </hibernate-reverse-engineering>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
-"classpath://main/resources/hibernate-configuration-3.0.dtd">
+"file:///D:\Proyecto_SSC\Codificación\SSC_Proyecto\src\main\resources\hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://192.168.1.102:3306/bd_ssc</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bd_ssc</property>
   <property name="hibernate.connection.username">ssc_proyecto</property>
   <property name="hibernate.connection.password">ssc_proyecto</property>
   <property name="hibernate.show_sql">false</property>

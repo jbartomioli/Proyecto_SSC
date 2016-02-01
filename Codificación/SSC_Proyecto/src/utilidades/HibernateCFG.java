@@ -1,6 +1,7 @@
 package utilidades;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -17,7 +18,7 @@ import org.jdom.output.XMLOutputter;
 public class HibernateCFG
 {
 	private HashMap<String,String> elementos;
-	private File xmlFile;
+	private FileInputStream xmlFile;
 	private String urlFile = "bin\\main\\resources\\hibernate.cfg.xml";
 	
 	
@@ -37,11 +38,11 @@ public class HibernateCFG
 	//-----------------------------------------------------------
 	public void leerConfiguraciones()
 	{
-		xmlFile = new File(urlFile);
-	    SAXBuilder builder = new SAXBuilder();
-  
 		try
 	    {
+			xmlFile = new FileInputStream(urlFile);
+		    SAXBuilder builder = new SAXBuilder();
+		    
 	        Document document = (Document) builder.build( xmlFile );
 	 
 	        Element hibernateConfig = document.getRootElement();
@@ -71,12 +72,12 @@ public class HibernateCFG
 	//-------------------------------------------------------------
 	@SuppressWarnings("rawtypes")
 	public void guardarConfiguraciones(HashMap<String, String> propiedadesNuevas)
-	{
-		xmlFile = new File(urlFile);
-	    SAXBuilder builder = new SAXBuilder();
-  
+	{  
 		try
-	    {	
+	    {
+			xmlFile = new FileInputStream(urlFile);
+		    SAXBuilder builder = new SAXBuilder();
+		    
 			Document document = (Document) builder.build(xmlFile);
 			Element hibernateConfig = document.getRootElement();
 	 
