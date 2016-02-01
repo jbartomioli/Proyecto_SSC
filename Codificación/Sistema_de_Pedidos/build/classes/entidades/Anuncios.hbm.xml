@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 23/01/2014 20:39:55 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="entidades.Anuncios" table="anuncios" catalog="BD_SSC">
+    <class name="entidades.Anuncios" table="anuncios" >
         <id name="idAnuncio" type="java.lang.Integer">
             <column name="idAnuncio" />
             <generator class="identity" />
