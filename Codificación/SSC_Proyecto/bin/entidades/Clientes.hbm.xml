@@ -3,7 +3,7 @@
                                    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 23/01/2014 20:39:55 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
- <class catalog="BD_SSC" name="entidades.Clientes" table="clientes">
+ <class  name="entidades.Clientes" table="clientes">
   <id name="idCliente" type="java.lang.Integer">
    <column name="idCliente"/>
    <generator class="identity"/>
@@ -44,9 +44,9 @@
     order-by="idAnuncio" unique="false">
     <column name="idAnuncio" not-null="true"/>
    </many-to-many>
-  </set>
-  <set fetch="select" inverse="true" lazy="true" name="pedidoses"
-   sort="unsorted" table="pedidos">
+  </set> 
+  <set fetch="select" inverse="true" lazy="true" name="pedidoses" sort="natural"
+    table="pedidos" >
    <key>
     <column name="idCliente"/>
    </key>

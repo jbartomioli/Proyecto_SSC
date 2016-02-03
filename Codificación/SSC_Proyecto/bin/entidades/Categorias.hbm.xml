@@ -3,7 +3,7 @@
                                    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 23/01/2014 20:39:55 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
- <class catalog="BD_SSC" name="entidades.Categorias" table="categorias">
+ <class name="entidades.Categorias" table="categorias">
   <id name="idCategoria" type="java.lang.Integer">
    <column name="idCategoria"/>
    <generator class="identity"/>

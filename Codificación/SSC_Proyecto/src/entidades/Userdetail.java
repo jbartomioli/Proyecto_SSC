@@ -22,6 +22,7 @@ public class Userdetail implements java.io.Serializable {
 	private String name;
 	private String username;
 	private String password;
+	@SuppressWarnings("unused")
 	private int idCliente;
 
 	public Userdetail() {

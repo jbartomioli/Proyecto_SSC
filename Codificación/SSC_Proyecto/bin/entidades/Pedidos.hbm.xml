@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 23/01/2014 20:39:55 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="entidades.Pedidos" table="pedidos" catalog="BD_SSC">
+    <class name="entidades.Pedidos" table="pedidos">
         <id name="idPedido" type="java.lang.Integer">
             <column name="idPedido" />
             <generator class="identity" />
@@ -19,6 +19,9 @@
         </property>
         <property name="estado" type="string">
             <column name="estado" length="50" />
+        </property>
+        <property name="codPedido" type="string">
+            <column name="codPedido" length="45" />
         </property>
         <set name="lineaDePedidos" table="lineaDePedido" inverse="true" lazy="true" fetch="select">
             <key>
