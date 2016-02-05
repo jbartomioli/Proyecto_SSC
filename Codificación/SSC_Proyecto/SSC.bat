@@ -4,6 +4,7 @@ color B
 title SSC - Sistema de Seguimiento de Clientes
 echo *************************************************
 echo * BIENVENIDO SISTEMA DE SEGUIMIENTO DE CLIENTES *
+echo *				MODO DEPURACION					 *
 echo *************************************************
 echo. 
 echo.
@@ -42,8 +43,6 @@ set SSC_LIBIMP=%SSC_LIB01%%SSC_LIB02%%SSC_LIB03%%SSC_LIB04%%SSC_LIB05%%SSC_LIB06
 set CLASSPATH=%SSC_DIR%\bin;%SSC_LIBIMP%
 
 java main.Main
-
-
 
 echo.
 SET /P = Presione una tecla para salir...
