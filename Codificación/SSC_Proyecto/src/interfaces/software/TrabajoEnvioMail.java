@@ -2,6 +2,8 @@ package interfaces.software;
 
 import java.util.Collection;
 
+import javax.swing.JOptionPane;
+
 import negocio.ModeloConfeccionarAnuncio;
 
 
@@ -40,14 +42,32 @@ public class TrabajoEnvioMail implements Runnable{
         }
         catch (InterruptedException e)
         {
-            System.err.println( e.getMessage() );
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al procesar envío de mails");
         }
         catch(Exception e)
         {
+        	if(e.toString().contains("AuthenticationFailedException"))
+        	{
+        		JOptionPane.showMessageDialog(
+        				null,
+        				"Se ha producido un error al iniciar sesión en el servidor de correo.\n"
+        				+ "Revise que su configuración sea correcta.",
+        				"ERROR",
+        				JOptionPane.ERROR_MESSAGE);
+        	}
+        	
+        	if(e.toString().contains("MessagingException"))
+        	{
+        		JOptionPane.showMessageDialog(
+        				null,
+        				"Se ha producido un error al enviar el correo.\n"
+        				+ "Inténtelo más tarde.",
+        				"ERROR",
+        				JOptionPane.ERROR_MESSAGE);
+        	}
+        	
         	e.printStackTrace();
-        }
-        finally
-        {
         }
     }
     

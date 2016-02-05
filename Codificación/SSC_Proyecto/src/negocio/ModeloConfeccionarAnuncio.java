@@ -353,18 +353,10 @@ public class ModeloConfeccionarAnuncio
 	// Metodo DSD 1.4.1 - DSD NO SE ELABORO POR SIMPLICIDAD        //
 	/////////////////////////////////////////////////////////////////
 	//LISTO
-	public boolean enviarAnuncio(String[] mailsDestinatarios, String asuntoMail, Collection<String> imagenes)
+	public void enviarAnuncio(String[] mailsDestinatarios, String asuntoMail, Collection<String> imagenes) throws Exception
 	{
-		try
-		{
-			this.anuncioActual.enviarAnuncio(mailsDestinatarios, asuntoMail, imagenes);
-			this.anuncioActual.setEstado("ENVIADO");
-			return true;
-		}
-		catch(Exception exc)
-		{
-			return false;
-		}
+		this.anuncioActual.enviarAnuncio(mailsDestinatarios, asuntoMail, imagenes);
+		this.anuncioActual.setEstado("ENVIADO");
 	}
 	//---------------------------------------------------------------
 		

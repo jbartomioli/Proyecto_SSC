@@ -93,7 +93,7 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 						JOptionPane.ERROR_MESSAGE);
 			}			
 			guiGenerarAnuncio.frmGenerarAnuncio.dispose();
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -673,15 +673,22 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	private void eliminar_temporal()
 	{
 		try
-			{
-				File archivoHTML = new File(utilidades.Configuraciones.DIR_MAILS+"temporal.html");
-				if(archivoHTML.exists())
-					archivoHTML.delete();
-			} 
-			catch (Exception e1) 
-			{
-				e1.printStackTrace();
-			}	
+		{
+			File archivoHTML = new File(utilidades.Configuraciones.DIR_MAILS+"temporal.html");
+			
+			if(archivoHTML.exists())
+				archivoHTML.delete();
+		} 
+		catch (Exception e) 
+		{
+			JOptionPane.showMessageDialog(
+					guiGenerarAnuncio.frmGenerarAnuncio, 
+					"Se ha producido un error al eliminar o acceder al archivo temporal en la ubicación:\n"
+					+ utilidades.Configuraciones.DIR_MAILS+"temporal.html" + "Verifique los permisos del directorio y del archivo.", 
+					"ERROR",
+					JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}	
 	}
 	/////////////////////////////////
 	
