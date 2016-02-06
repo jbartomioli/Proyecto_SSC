@@ -49,10 +49,17 @@ public class ControladorImportarDatos implements ActionListener
 					"Error al conectarse a la Base de Datos.\nRevisar la configuración y volver a intentarlo.",
 					"ERROR",
 					JOptionPane.ERROR_MESSAGE);
+			sqe.printStackTrace();
 			guiImportarDatos.frmImportarDatos.dispose();
 		}
 		catch (Exception e)
 		{
+			JOptionPane.showMessageDialog(
+					guiImportarDatos.frmImportarDatos,
+					"Se ha producido un error grave. Comuníquese con los desarrolladores y exponga el caso.\n"
+					+ "Gracias.",
+					"ERROR GRAVE",
+					JOptionPane.ERROR_MESSAGE);
 			guiImportarDatos.frmImportarDatos.dispose();
 			e.printStackTrace();
 		}
@@ -129,6 +136,7 @@ public class ControladorImportarDatos implements ActionListener
 			catch(NullPointerException npe)
 			{
 				tablas_archivos.put(guiImportarDatos.tblImportacion.getValueAt(i, 1).toString(),"");
+				npe.printStackTrace();
 			}				
 		}
 		
@@ -179,6 +187,7 @@ public class ControladorImportarDatos implements ActionListener
 		catch(NullPointerException npe)
 		{
 			guiImportarDatos.tblImportacion.setValueAt(guiImportarDatos.tblImportacion.getValueAt(nroFila, 2), nroFila, 2);
+			npe.printStackTrace();
 		}
 		finally
 		{

@@ -112,9 +112,15 @@ public class ControladorConfiguraciones implements ActionListener
 			else
 				guiConfiguraciones.chkModoDepuracion.setSelected(false);
 		}
-		catch(NullPointerException npe)
+		catch(Exception e)
 		{
-			npe.printStackTrace();
+			JOptionPane.showMessageDialog(
+					guiConfiguraciones.frmConfiguraciones,
+					"Se ha producido un error grave. Comuníquese con los desarrolladores y exponga el caso.\n"
+					+ "Gracias.",
+					"ERROR GRAVE",
+					JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
 		}
 		
 		//OPCIONES ARCHIVO DE CONFIGURACION GLOBAL
@@ -367,6 +373,7 @@ public class ControladorConfiguraciones implements ActionListener
 		{
 			String urlArchivo = urlArchivoOLD;
 			guiConfiguraciones.txtUbicacionFile.setText(urlArchivo);
+			npe.printStackTrace();
 		}
 		finally
 		{

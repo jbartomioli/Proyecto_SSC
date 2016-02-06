@@ -70,7 +70,8 @@ public class ControladorModificarPrecios implements ActionListener, MouseListene
 		{
 			if(e.toString().contains("NullPointerException"))
 			{
-				JOptionPane.showMessageDialog(null, 
+				JOptionPane.showMessageDialog(
+						guiModificarPrecios.frmModificarPrecios, 
 						"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos.",
 						"ATENCIÓN",
 						JOptionPane.INFORMATION_MESSAGE);
@@ -78,13 +79,14 @@ public class ControladorModificarPrecios implements ActionListener, MouseListene
 			
 			if(e.toString().contains("GenericJDBCException") || e.toString().contains("JDBCConnectionException") )
 			{
-				JOptionPane.showMessageDialog(null, 
+				JOptionPane.showMessageDialog(
+						guiModificarPrecios.frmModificarPrecios, 
 						"Error al conectarse a la Base de Datos.\nRevisar la configuración y volver a intentarlo.",
 						"ERROR",
 						JOptionPane.ERROR_MESSAGE);
 			}			
 			guiModificarPrecios.frmModificarPrecios.dispose();
-//			e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,6 +138,12 @@ public class ControladorModificarPrecios implements ActionListener, MouseListene
 		} 
 		catch (Exception e)
 		{
+			JOptionPane.showMessageDialog(
+					guiModificarPrecios.frmModificarPrecios,
+					"Se ha producido un error grave. Comuníquese con los desarrolladores y exponga el caso.\n"
+					+ "Gracias.",
+					"ERROR GRAVE",
+					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 		

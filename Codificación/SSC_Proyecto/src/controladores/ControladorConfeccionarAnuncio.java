@@ -311,20 +311,6 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 	{		
 	}
 	//////////////////////////////////////////
-	
-	
-	
-	//METODOS
-	/**
-	 * 
-	 * @throws Exception
-	 */
-//	public void actualizar() throws Exception
-//	{
-//		this.inicializar();
-//		guiGenerarAnuncio.frmGenerarAnuncio.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-//	}	
-	//////////////////////////////////////////
 
 	
 		
@@ -755,9 +741,9 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 
 	        	Thread.sleep(1000);
 	        }
-	        catch(InterruptedException e)
+	        catch(InterruptedException ie)
 	        {
-	        	e.printStackTrace();
+	        	ie.printStackTrace();
 	        } 
 	        catch(Exception e) 
 	        {

@@ -3,6 +3,7 @@ package controladores;
 import interfaces.SeguimientoDeClientes;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import negocio.ModeloRealizarSeguimientoCliente;
 import negocio.Venta;
+
 
 
 
@@ -88,7 +90,8 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 		{
 			if(e.toString().contains("NullPointerException"))
 			{
-				JOptionPane.showMessageDialog(null, 
+				JOptionPane.showMessageDialog(
+						guiSeguimiento.frmSeguimiento, 
 						"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos.",
 						"ATENCIÓN",
 						JOptionPane.INFORMATION_MESSAGE);
@@ -96,12 +99,14 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 			
 			if(e.toString().contains("GenericJDBCException") || e.toString().contains("JDBCConnectionException") )
 			{
-				JOptionPane.showMessageDialog(null, 
+				JOptionPane.showMessageDialog(
+						guiSeguimiento.frmSeguimiento, 
 						"Error al conectarse a la Base de Datos.\nRevisar la configuración y volver a intentarlo.",
 						"ERROR",
 						JOptionPane.ERROR_MESSAGE);
 			}			
 			
+			e.printStackTrace();
 			guiSeguimiento.frmSeguimiento.dispose();
 		}
 		
@@ -173,11 +178,22 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 			{
 				try
 				{
+					guiSeguimiento.frmSeguimiento.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 					click_seleccionar_cliente();
 				}
 				catch (Exception e)
 				{
+					JOptionPane.showMessageDialog(
+							guiSeguimiento.frmSeguimiento,
+							"Se ha producido un error al recuperar la información solicitada.",
+							"ERROR",
+							JOptionPane.ERROR_MESSAGE
+							);
 					e.printStackTrace();
+				}
+				finally
+				{
+					guiSeguimiento.frmSeguimiento.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 				}
 			}
 		}
@@ -316,20 +332,6 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 	
 	
 	
-//	/**
-//	 * BUSCA EL 
-//	 * @param modeloSeguimiento
-//	 */
-//	protected void buscar_cliente_boton(ModeloRealizarSeguimientoCliente modeloSeguimiento)
-//	{
-//		guiSeguimiento.tblClientesBuscados.completarTabla(
-//				modeloSeguimiento.buscarCliente(guiSeguimiento.txtBuscarCliente.getText()));
-//		guiSeguimiento.tblClientesBuscados.definirTablaDestinatariosBuscados();
-//	}
-//	////////////////////////////////////////////////////////////////////////////////////////
-	
-	
-	
 	/**
 	 * ACCION BOTON ACEPTAR
 	 */
@@ -381,6 +383,14 @@ public class ControladorRealizarSeguimientoCliente implements ActionListener, Mo
 				}
 		    	catch (ParseException e)
 				{
+		    		JOptionPane.showMessageDialog(
+		    				guiSeguimiento.frmSeguimiento,
+		    				"Se ha producido un error al generar el gráfico de ventas.\n"
+		    				+ "Por favor, comuníquese con los desarrolladores del sistema comentando la situación.\n"
+		    				+ "Gracias",
+		    				"ERROR GRAVE",
+		    				JOptionPane.ERROR_MESSAGE);
+		    		
 					e.printStackTrace();
 				}
 	    		

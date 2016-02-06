@@ -76,22 +76,24 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 		if(evento.getSource().equals(guiPrevisualizadorHTML.btnAceptarEnviar))
 		{
 			if(preparar_enviar(contenidoMailHTML, mailsClientes))
+			{
 				try
-   				{
-   					if( null != fr ) 
-   						fr.close();
-   					aux = true;
-   				} 
-   				catch (IOException e1) 
-   				{
-   					aux = false;
-	   				e1.printStackTrace();
-	   			}	
+	   			{
+	   				if( null != fr ) 
+	   					fr.close();
+	   				aux = true;
+	   			} 
+	   			catch (IOException e) 
+	   			{
+	   				aux = false;
+		   			e.printStackTrace();
+	   			}
+			}
 			else
 			{
 				JOptionPane.showMessageDialog(
 						guiPrevisualizadorHTML.frmPrevisualizacion, 
-						"Se ha producido un error al realizar el envío del email.\nDeberá confeccionar nuevamente el mensaje.",
+						"Se ha producido un error en la generación del archivo html del mail.\nDeberá confeccionar nuevamente el mensaje.",
 						"ERROR",
 						JOptionPane.ERROR_MESSAGE);
 			}
@@ -202,6 +204,8 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	   				"ERROR",
 	   				JOptionPane.ERROR_MESSAGE);
 	   		guiPrevisualizadorHTML.frmPrevisualizacion.setVisible(false);
+	   		
+	   		fne.printStackTrace();
 	   	} 
 	   	catch (IOException ioe) 
 	   	{
@@ -212,7 +216,8 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
 	   				"ERROR",
 	   				JOptionPane.ERROR_MESSAGE);
 	   		guiPrevisualizadorHTML.frmPrevisualizacion.setVisible(false);
-	   		
+
+	   		ioe.printStackTrace();
 	   	}
         finally
         {
@@ -221,9 +226,9 @@ public class ControladorPrevisualizarHTML implements ActionListener, WindowListe
         		if( null != fr )   
         			fr.close();
         	}
-        	catch (IOException e2)
+        	catch (IOException e)
         	{ 
-        		e2.printStackTrace();
+        		e.printStackTrace();
         	}
         	return aux;
         }

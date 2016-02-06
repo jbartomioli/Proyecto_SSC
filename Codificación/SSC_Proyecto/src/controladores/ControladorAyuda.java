@@ -60,7 +60,8 @@ public class ControladorAyuda implements ActionListener, WindowListener, Hyperli
 	{
 		if(evento.getSource().equals(guiAyuda.btnAceptar))
 		{
-			try {
+			try
+			{
 				fr.close();
 				guiAyuda.frmAyuda.dispose();
 			}

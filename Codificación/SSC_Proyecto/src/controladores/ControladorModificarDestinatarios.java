@@ -276,11 +276,13 @@ public class ControladorModificarDestinatarios implements ActionListener, ItemLi
 					"No puede agregar dos veces al mismo cliente.", 
 					"ATENCIÓN",
 					JOptionPane.WARNING_MESSAGE);
-		else 
+		else
+		{
 			if(filaSeleccionada >= 0)
 			{
 				modeloTblDestNuevos.addRow(fila);
 			}
+		}
 	}
 	
 	
