@@ -79,7 +79,8 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 		{
 			if(e.toString().contains("NullPointerException"))
 			{
-				JOptionPane.showMessageDialog(null, 
+				JOptionPane.showMessageDialog(
+						guiGenerarAnuncio.frmGenerarAnuncio, 
 						"No existen datos almacenados en la Base de Datos. Debe importar el contenido desde el importador de datos.",
 						"ATENCIÓN",
 						JOptionPane.INFORMATION_MESSAGE);
@@ -87,7 +88,8 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 			
 			if(e.toString().contains("GenericJDBCException") || e.toString().contains("JDBCConnectionException") )
 			{
-				JOptionPane.showMessageDialog(null, 
+				JOptionPane.showMessageDialog(
+						guiGenerarAnuncio.frmGenerarAnuncio, 
 						"Error al conectarse a la Base de Datos.\nRevisar la configuración y volver a intentarlo.",
 						"ERROR",
 						JOptionPane.ERROR_MESSAGE);
