@@ -2,21 +2,24 @@ package interfaces.software;
 
 import interfaces.Principal;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-import org.hibernate.HibernateException;
 
 import utilidades.HibernateUtil;
 
-public class TrabajoInicializar implements Runnable{
+public class TrabajoInicializar implements Runnable
+{
     
+	JDialog pantalla;
 	
 	/**
 	 * CONSTRUCTOR
+	 * @param pantallaBienvenida 
 	 */
-    public TrabajoInicializar()
+    public TrabajoInicializar(JDialog pantalla)
     {
-    	
+    	this.pantalla = pantalla;
     }
     ////////////////////////////
     
@@ -27,35 +30,21 @@ public class TrabajoInicializar implements Runnable{
     public void run()
     {		
         try
-        {		
+        {		        	
         	HibernateUtil.buildSessionFactory();
         	
         	Thread.sleep(2000);
 
 			@SuppressWarnings("unused")
 			Principal principal = new Principal();
-        	
         }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-		catch(HibernateException he )
-		{
-			JOptionPane.showMessageDialog(
-					null, 
-					"Se ha producido un error al conectarse al servidor.\n\n"
-					+ "El sistema no puede continuar...\n",
-					"ERROR",
-					JOptionPane.ERROR_MESSAGE);	
-			he.printStackTrace();
-		}
 		catch(Exception e)
 		{
 			JOptionPane.showMessageDialog(
-					null, 
-					"Se ha producido un error grave.\n\n"
-					+ "El sistema no puede continuar...\n",
+					pantalla, 
+					"Se ha producido un error grave al inicializar el sistema.\n"
+					+ "Contáctese con los desarrolladores.\n\n"
+					+ "El sistema no puede continuar...",
 					"ERROR",
 					JOptionPane.ERROR_MESSAGE);	
 			e.printStackTrace();

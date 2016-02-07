@@ -38,8 +38,8 @@ public class PantallaBienvenida extends JDialog{
 	{
 		//FORMUALRIO BASE
 		setTitle("SSC - Sistema de Seguimiento de Clientes");
-		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		setIconImage(UtilidadesGUI.obtenerIcono(UtilidadesGUI.X128,"SSC.png").getImage());
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		setBackground(Color.WHITE);
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
@@ -113,9 +113,9 @@ public class PantallaBienvenida extends JDialog{
 	 */
 	protected void iniciar_trabajos()
 	{
-    	Thread trabajoInicializar = new Thread(new TrabajoInicializar());
+    	Thread trabajoInicializar = new Thread(new TrabajoInicializar(this));
     	trabajoInicializar.start();
-    	
+   		
     	new Thread(new HiloBarraProgreso(trabajoInicializar, this, prgBarraProgreso, 200, true)).start(); 
 	}
 	//////////////////////////////////

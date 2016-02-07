@@ -2,6 +2,7 @@ package interfaces.software;
 import java.awt.Cursor;
 
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 
 
@@ -46,10 +47,17 @@ public class HiloBarraProgreso implements Runnable
             {
             	Thread.sleep(this.value);
             }            
-            catch (InterruptedException e)
-            { 
-            	System.err.println( e.getMessage() ); 
-            }            
+    		catch(Exception e)
+    		{
+    			JOptionPane.showMessageDialog(
+    					dialog, 
+    					"Se ha producido un error grave al inicializar el sistema.\n"
+    					+ "Contáctese con los desarrolladores.\n\n"
+    					+ "El sistema no puede continuar...",
+    					"ERROR",
+    					JOptionPane.ERROR_MESSAGE);	
+    			e.printStackTrace();
+    		}            
             //si el trabajo en paralelo a terminado
             if( !trabajo.isAlive() )
             {
