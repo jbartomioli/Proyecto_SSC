@@ -135,7 +135,7 @@ public class ControladorImportarDatos implements ActionListener
 		{
 			try
 			{
-				tablas_archivos.put(guiImportarDatos.tblImportacion.getValueAt(i, 1).toString(),guiImportarDatos.tblImportacion.getValueAt(i, 2).toString());
+				tablas_archivos.put(guiImportarDatos.tblImportacion.getValueAt(i, 1).toString().trim(),guiImportarDatos.tblImportacion.getValueAt(i, 2).toString().trim());
 			}
 			catch(NullPointerException npe)
 			{
@@ -145,7 +145,7 @@ public class ControladorImportarDatos implements ActionListener
 			}				
 		}
 		
-		if(nulos == guiImportarDatos.tblImportacion.getRowCount()-1)
+		if(nulos == guiImportarDatos.tblImportacion.getRowCount())
 		{
 			JOptionPane.showMessageDialog(
 					guiImportarDatos.frmImportarDatos,
