@@ -238,7 +238,18 @@ public class ControladorConfeccionarAnuncio implements ActionListener, WindowLis
 		//BOTON ENVIAR
 		if(evento.getSource().equals(guiGenerarAnuncio.btnEnviar))
 		{
-        	action_enviar();
+			if(guiGenerarAnuncio.tblDestinatarios.getRowCount()==0)
+			{
+				JOptionPane.showMessageDialog(
+						guiGenerarAnuncio.frmGenerarAnuncio, 
+						"Para realizar el envío del anuncio debe seleccionar al menos un destinatario.",
+						"ATENCIÓN",
+						JOptionPane.WARNING_MESSAGE);
+			}
+			else
+			{
+	        	action_enviar();
+			}
 		}
 		//BOTON CERRAR
 		if(evento.getSource().equals(guiGenerarAnuncio.btnCerrar))
