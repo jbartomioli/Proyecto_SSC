@@ -235,70 +235,73 @@ public class ControladorConfiguraciones implements ActionListener
 		boolean rta = true;
 		String mensaje = "";
 		
-		if(guiConfiguraciones.txtURL.getText().equals(""))
+		if(guiConfiguraciones.txtURL.getText().trim().equals(""))
 		{
 			mensaje += "El campo de servidor no puede estar vacío\n";
 			rta = false;
 		}
 
-		if(!validar_puerto(guiConfiguraciones.txtPuerto.getText()))
+		if(!validar_puerto(guiConfiguraciones.txtPuerto.getText().trim()))
 		{
 			mensaje += "El campo de puerto de BD no es válido\n";
 			rta = false;
 		}
 		
-		if(guiConfiguraciones.txtUsuario.getText().equals(""))
+		if(guiConfiguraciones.txtUsuario.getText().trim().equals(""))
 		{
 			mensaje += "El campo de usuario no puede estar vacío\n";
 			rta = false;
 		}
 
-		if(guiConfiguraciones.txtBD.getText().equals(""))
+		if(guiConfiguraciones.txtBD.getText().trim().equals(""))
+		{
 			mensaje += "El campo de base de datos no puede estar vacío\n";
+			rta = false;
+		}
 		
-		if(guiConfiguraciones.psfPass.getText().equals(""))
+		if(guiConfiguraciones.psfPass.getText().trim().equals(""))
 		{
 			mensaje += "El campo de contraseña de base de datos no puede estar vacío\n";
 			rta = false;
 		}
 		
-		if(!guiConfiguraciones.psfPass.getText().equals(guiConfiguraciones.psfPassRep.getText()))
+		if(!guiConfiguraciones.psfPass.getText().trim().equals(guiConfiguraciones.psfPassRep.getText()))
 		{
 			mensaje += "Las contraseñas de base de datos no coinciden\n";
 			rta = false;
 		}
 		
-		if(guiConfiguraciones.txtUbicacionFile.getText().equals(""))
+		if(guiConfiguraciones.txtUbicacionFile.getText().trim().equals(""))
 		{
 			mensaje += "El campo de ubicación del archivo de configuraciones no puede ser nulo\n";
 			rta = false;
 		}	
 		
-		if(guiConfiguraciones.txtServerSmtp.getText().equals(""))
+		if(guiConfiguraciones.txtServerSmtp.getText().trim().equals(""))
 		{
 			mensaje += "El campo de servidor SMTP no puede estar vacio\n";
 			rta = false;
 		}
 			
-		if(!validar_puerto(guiConfiguraciones.txtPuertoSmtp.getText()))
+		if(!validar_puerto(guiConfiguraciones.txtPuertoSmtp.getText().trim()))
 		{
 			mensaje += "El campo de puerto SMTP no es válido\n";
 			rta = false;
 		}
 		
-		if(!validar_mail(guiConfiguraciones.txtMail.getText()))
+		if(!validar_mail(guiConfiguraciones.txtMail.getText().trim()))
 		{
 			mensaje += "El campo de mail no es válido\n";
 			rta = false;
 		}
 		
-		if(guiConfiguraciones.psfPassSmtp.getText().equals(""))
+		if(guiConfiguraciones.psfPassSmtp.getText().trim().equals(""))
 		{
 			mensaje += "El campo de contraseña de mail no puede estar vacío\n";
 			rta = false;
 		}
 		
-		if(!guiConfiguraciones.psfPassSmtpRep.getText().equals(guiConfiguraciones.psfPassSmtp.getText()))
+		if(!guiConfiguraciones.psfPassSmtpRep.getText().trim().equals(guiConfiguraciones.psfPassSmtp.getText()))
 		{
 			mensaje += "Las contraseñas de mail no coinciden\n";
 			rta = false;
