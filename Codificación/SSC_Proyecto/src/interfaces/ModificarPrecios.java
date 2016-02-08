@@ -99,7 +99,7 @@ public class ModificarPrecios
 		frmModificarPrecios.getContentPane().add(txtBuscarProductos);
 		
 		btnBuscarProducto = new BotonesIconos("BUSCAR.png");
-		btnBuscarProducto.setBounds(444, 89, 30, 19);
+		btnBuscarProducto.setBounds(444, 88, 30, 19);
 		frmModificarPrecios.getContentPane().add(btnBuscarProducto);
 		
 		
