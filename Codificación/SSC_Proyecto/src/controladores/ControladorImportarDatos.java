@@ -61,6 +61,8 @@ public class ControladorImportarDatos implements ActionListener
 					"ERROR GRAVE",
 					JOptionPane.ERROR_MESSAGE);
 			guiImportarDatos.frmImportarDatos.dispose();
+			
+			
 			e.printStackTrace();
 		}
 	}
@@ -127,6 +129,8 @@ public class ControladorImportarDatos implements ActionListener
 		
 		HashMap<String, String> tablas_archivos = new HashMap<String, String>();
 		
+		int nulos = 0;
+		
 		for(int i=0; i<guiImportarDatos.tblImportacion.getRowCount();++i)
 		{
 			try
@@ -136,8 +140,19 @@ public class ControladorImportarDatos implements ActionListener
 			catch(NullPointerException npe)
 			{
 				tablas_archivos.put(guiImportarDatos.tblImportacion.getValueAt(i, 1).toString(),"");
+				nulos++;
 				npe.printStackTrace();
 			}				
+		}
+		
+		if(nulos == guiImportarDatos.tblImportacion.getRowCount()-1)
+		{
+			JOptionPane.showMessageDialog(
+					guiImportarDatos.frmImportarDatos,
+					"No se realizarán cambios en la base de datos ya que no se han definido\n"
+					+ "rutas de archivos de orígenes de datos.",
+					"ATENCIÓN",
+					JOptionPane.WARNING_MESSAGE);
 		}
 		
 		@SuppressWarnings("unused")
