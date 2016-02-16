@@ -1,0 +1,5 @@
+Los dos primeros DSD's están perfectos. 
+
+El tercero está mal usar la clase categoria como agrupamiento de clientes. Esa categoria es de productos. 
+Mi propuesta es crear una clase TiposCliente y ahí lo manejamos. 
+
